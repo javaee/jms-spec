@@ -1,0 +1,2561 @@
+<MIFFile 4.00>
+# Creator: Visual Thought-1.3
+# For: mwh
+# Title: expert1.vthought
+# Creation Date: Wed May 20, 1998 9:38:08 PM PDT
+<Units Upt> # All dimensions are in points
+<ColorCatalog
+ <Color
+  <ColorTag `Black'>
+  <ColorCyan 0>
+  <ColorMagenta 0>
+  <ColorYellow 0>
+  <ColorBlack 100>
+  <ColorAttribute ColorIsBlack>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `White'>
+  <ColorCyan 0>
+  <ColorMagenta 0>
+  <ColorYellow 0>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsWhite>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Red'>
+  <ColorCyan 0>
+  <ColorMagenta 100>
+  <ColorYellow 100>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsRed>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Green'>
+  <ColorCyan 100>
+  <ColorMagenta 0>
+  <ColorYellow 100>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsGreen>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Blue'>
+  <ColorCyan 100>
+  <ColorMagenta 100>
+  <ColorYellow 0>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsBlue>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Cyan'>
+  <ColorCyan 100>
+  <ColorMagenta 0>
+  <ColorYellow 0>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsCyan>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Magenta'>
+  <ColorCyan 0>
+  <ColorMagenta 100>
+  <ColorYellow 0>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsMagenta>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `Yellow'>
+  <ColorCyan 0>
+  <ColorMagenta 0>
+  <ColorYellow 100>
+  <ColorBlack 0>
+  <ColorAttribute ColorIsYellow>
+  <ColorAttribute ColorIsReserved>
+ >
+ <Color
+  <ColorTag `c040.0_m040.0_y040.0'>
+  <ColorCyan 40>
+  <ColorMagenta 40>
+  <ColorYellow 40>
+  <ColorBlack 0>
+ >
+> # end of ColorCatalog
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect -0.5 -0.5 384 390>
+ <ShapeRect -0.5 -0.5 384 390>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <BRect 159.25 110.5 54 27>
+ <ShapeRect 159.25 110.5 54 27>
+ <Smoothed No>
+>
+<Rectangle
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <Angle 0>
+ <BRect 159.25 110.5 54 27>
+ <ShapeRect 159.25 110.5 54 27>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 156.25 107.5 54 27>
+ <ShapeRect 156.25 107.5 54 27>
+ <Smoothed No>
+>
+<Rectangle
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <Angle 0>
+ <BRect 156.25 107.5 54 27>
+ <ShapeRect 156.25 107.5 54 27>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 166.75 122.5>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Session'>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <Point 152.5 37.9375>
+ <Point 152.5 33.2776>
+ <Point 156.2776 29.5>
+ <Point 160.9375 29.5>
+ <Point 160.9375 29.5>
+ <Point 218.3125 29.5>
+ <Point 218.3125 29.5>
+ <Point 222.9724 29.5>
+ <Point 226.75 33.2776>
+ <Point 226.75 37.9375>
+ <Point 226.75 37.9375>
+ <Point 226.75 54.8125>
+ <Point 226.75 54.8125>
+ <Point 226.75 59.4724>
+ <Point 222.9724 63.2499>
+ <Point 218.3125 63.2499>
+ <Point 218.3125 63.2499>
+ <Point 160.9375 63.2499>
+ <Point 160.9375 63.2499>
+ <Point 156.2776 63.2499>
+ <Point 152.5 59.4723>
+ <Point 152.5 54.8124>
+ <Point 152.5 54.8124>
+ <Point 152.5 37.9375>
+ <Point 152.5 37.9375>
+ <Smoothed Yes>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 152.5 37.9375>
+ <Point 152.5 33.2776>
+ <Point 156.2776 29.5>
+ <Point 160.9375 29.5>
+ <Point 160.9375 29.5>
+ <Point 218.3125 29.5>
+ <Point 218.3125 29.5>
+ <Point 222.9724 29.5>
+ <Point 226.75 33.2776>
+ <Point 226.75 37.9375>
+ <Point 226.75 37.9375>
+ <Point 226.75 54.8125>
+ <Point 226.75 54.8125>
+ <Point 226.75 59.4724>
+ <Point 222.9724 63.2499>
+ <Point 218.3125 63.2499>
+ <Point 218.3125 63.2499>
+ <Point 160.9375 63.2499>
+ <Point 160.9375 63.2499>
+ <Point 156.2776 63.2499>
+ <Point 152.5 59.4723>
+ <Point 152.5 54.8124>
+ <Point 152.5 54.8124>
+ <Point 152.5 37.9375>
+ <Point 152.5 37.9375>
+ <Smoothed Yes>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <Point 149.5 34.9375>
+ <Point 149.5 30.2776>
+ <Point 153.2776 26.5>
+ <Point 157.9375 26.5>
+ <Point 157.9375 26.5>
+ <Point 215.3125 26.5>
+ <Point 215.3125 26.5>
+ <Point 219.9724 26.5>
+ <Point 223.75 30.2776>
+ <Point 223.75 34.9375>
+ <Point 223.75 34.9375>
+ <Point 223.75 51.8125>
+ <Point 223.75 51.8125>
+ <Point 223.75 56.4724>
+ <Point 219.9724 60.2499>
+ <Point 215.3125 60.2499>
+ <Point 215.3125 60.2499>
+ <Point 157.9375 60.2499>
+ <Point 157.9375 60.2499>
+ <Point 153.2776 60.2499>
+ <Point 149.5 56.4723>
+ <Point 149.5 51.8124>
+ <Point 149.5 51.8124>
+ <Point 149.5 34.9375>
+ <Point 149.5 34.9375>
+ <Smoothed Yes>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 149.5 34.9375>
+ <Point 149.5 30.2776>
+ <Point 153.2776 26.5>
+ <Point 157.9375 26.5>
+ <Point 157.9375 26.5>
+ <Point 215.3125 26.5>
+ <Point 215.3125 26.5>
+ <Point 219.9724 26.5>
+ <Point 223.75 30.2776>
+ <Point 223.75 34.9375>
+ <Point 223.75 34.9375>
+ <Point 223.75 51.8125>
+ <Point 223.75 51.8125>
+ <Point 223.75 56.4724>
+ <Point 219.9724 60.2499>
+ <Point 215.3125 60.2499>
+ <Point 215.3125 60.2499>
+ <Point 157.9375 60.2499>
+ <Point 157.9375 60.2499>
+ <Point 153.2776 60.2499>
+ <Point 149.5 56.4723>
+ <Point 149.5 51.8124>
+ <Point 149.5 51.8124>
+ <Point 149.5 34.9375>
+ <Point 149.5 34.9375>
+ <Smoothed Yes>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 156.25 45.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `ServerSession'>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <Point 287.5 152.6875>
+ <Point 287.5 148.0276>
+ <Point 291.2776 144.25>
+ <Point 295.9375 144.25>
+ <Point 295.9375 144.25>
+ <Point 373.5625 144.25>
+ <Point 373.5625 144.25>
+ <Point 378.2224 144.25>
+ <Point 382 148.0276>
+ <Point 382 152.6875>
+ <Point 382 152.6875>
+ <Point 382 169.5625>
+ <Point 382 169.5625>
+ <Point 382 174.2224>
+ <Point 378.2224 178>
+ <Point 373.5625 178>
+ <Point 373.5625 178>
+ <Point 295.9375 178>
+ <Point 295.9375 178>
+ <Point 291.2776 178>
+ <Point 287.5001 174.2223>
+ <Point 287.5001 169.5624>
+ <Point 287.5001 169.5624>
+ <Point 287.5 152.6875>
+ <Point 287.5 152.6875>
+ <Smoothed Yes>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 287.5 152.6875>
+ <Point 287.5 148.0276>
+ <Point 291.2776 144.25>
+ <Point 295.9375 144.25>
+ <Point 295.9375 144.25>
+ <Point 373.5625 144.25>
+ <Point 373.5625 144.25>
+ <Point 378.2224 144.25>
+ <Point 382 148.0276>
+ <Point 382 152.6875>
+ <Point 382 152.6875>
+ <Point 382 169.5625>
+ <Point 382 169.5625>
+ <Point 382 174.2224>
+ <Point 378.2224 178>
+ <Point 373.5625 178>
+ <Point 373.5625 178>
+ <Point 295.9375 178>
+ <Point 295.9375 178>
+ <Point 291.2776 178>
+ <Point 287.5001 174.2223>
+ <Point 287.5001 169.5624>
+ <Point 287.5001 169.5624>
+ <Point 287.5 152.6875>
+ <Point 287.5 152.6875>
+ <Smoothed Yes>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <Point 284.5 149.6875>
+ <Point 284.5 145.0276>
+ <Point 288.2776 141.25>
+ <Point 292.9375 141.25>
+ <Point 292.9375 141.25>
+ <Point 370.5625 141.25>
+ <Point 370.5625 141.25>
+ <Point 375.2224 141.25>
+ <Point 379 145.0276>
+ <Point 379 149.6875>
+ <Point 379 149.6875>
+ <Point 379 166.5625>
+ <Point 379 166.5625>
+ <Point 379 171.2224>
+ <Point 375.2224 175>
+ <Point 370.5625 175>
+ <Point 370.5625 175>
+ <Point 292.9375 175>
+ <Point 292.9375 175>
+ <Point 288.2776 175>
+ <Point 284.5001 171.2223>
+ <Point 284.5001 166.5624>
+ <Point 284.5001 166.5624>
+ <Point 284.5 149.6875>
+ <Point 284.5 149.6875>
+ <Smoothed Yes>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 284.5 149.6875>
+ <Point 284.5 145.0276>
+ <Point 288.2776 141.25>
+ <Point 292.9375 141.25>
+ <Point 292.9375 141.25>
+ <Point 370.5625 141.25>
+ <Point 370.5625 141.25>
+ <Point 375.2224 141.25>
+ <Point 379 145.0276>
+ <Point 379 149.6875>
+ <Point 379 149.6875>
+ <Point 379 166.5625>
+ <Point 379 166.5625>
+ <Point 379 171.2224>
+ <Point 375.2224 175>
+ <Point 370.5625 175>
+ <Point 370.5625 175>
+ <Point 292.9375 175>
+ <Point 292.9375 175>
+ <Point 288.2776 175>
+ <Point 284.5001 171.2223>
+ <Point 284.5001 166.5624>
+ <Point 284.5001 166.5624>
+ <Point 284.5 149.6875>
+ <Point 284.5 149.6875>
+ <Smoothed Yes>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 292 160>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `ServerSessionPool'>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <BRect 4 171.25 54 33.75>
+ <ShapeRect 4 171.25 54 33.75>
+ <Smoothed No>
+>
+<Rectangle
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <Angle 0>
+ <BRect 4 171.25 54 33.75>
+ <ShapeRect 4 171.25 54 33.75>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 1 168.25 54 33.75>
+ <ShapeRect 1 168.25 54 33.75>
+ <Smoothed No>
+>
+<Rectangle
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <Angle 0>
+ <BRect 1 168.25 54 33.75>
+ <ShapeRect 1 168.25 54 33.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 3.25 181.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Connection'>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 7 192.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Consumer'>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <ArcRect 267.25 265.75 60.75 40.5>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 267.25 265.75 60.75 40.5>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <ArcRect 264.25 262.75 60.75 40.5>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 264.25 262.75 60.75 40.5>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 275.5 279.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Message'>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 277.75 289.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Listener'>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <ArcRect 314.5 2.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 314.5 2.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <ArcRect 311.5 -0.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 311.5 -0.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 329.5 22.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `App '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 324.25 33.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Server'>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <ArcRect 10.75 2.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 10.75 2.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <ArcRect 7.75 -0.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 7.75 -0.5 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 25 22.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `JMS '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 16.75 33.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Provider'>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <ArcRect 24.25 252.25 108 47.25>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 24.25 252.25 108 47.25>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <ArcRect 21.25 249.25 108 47.25>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 21.25 249.25 108 47.25>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 40.75 264.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Destination with '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 38.5 274.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `optional message '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 58 285.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `selector'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 64.894 45.6826>
+ <Point 155.8981 103.5942>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 65.1218 45.8275>
+ <Point 57.5289 40.9956>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 65.1218 45.8275>
+ <Point 59.5422 37.8319>
+ <Point 58.7944 41.801>
+ <Point 55.5156 44.1594>
+ <Point 65.1218 45.8275>
+ <Point 65.1218 45.8275>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 65.1218 45.8275>
+ <Point 59.5422 37.8319>
+ <Point 58.7944 41.801>
+ <Point 55.5156 44.1594>
+ <Point 65.1218 45.8275>
+ <Point 65.1218 45.8275>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 162.0357 107.5>
+ <Point 156.4561 99.5044>
+ <Point 155.7083 103.4734>
+ <Point 152.4295 105.8319>
+ <Point 162.0357 107.5>
+ <Point 162.0357 107.5>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 162.0357 107.5>
+ <Point 156.4561 99.5044>
+ <Point 155.7083 103.4734>
+ <Point 152.4295 105.8319>
+ <Point 162.0357 107.5>
+ <Point 162.0357 107.5>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 85.75 67.75 48 12.75>
+ <ShapeRect 85.75 67.75 48 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 86.5 76>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `implements'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 33.2309 62.1977>
+ <Point 29.0274 160.9816>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 33.2195 62.4675>
+ <Point 33.6021 53.4756>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 33.2195 62.4675>
+ <Point 37.3487 53.635>
+ <Point 33.5383 54.9742>
+ <Point 29.8555 53.3162>
+ <Point 33.2195 62.4675>
+ <Point 33.2195 62.4675>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 33.2195 62.4675>
+ <Point 37.3487 53.635>
+ <Point 33.5383 54.9742>
+ <Point 29.8555 53.3162>
+ <Point 33.2195 62.4675>
+ <Point 33.2195 62.4675>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 28.7181 168.25>
+ <Point 32.8473 159.4176>
+ <Point 29.0369 160.7568>
+ <Point 25.3541 159.0987>
+ <Point 28.7181 168.25>
+ <Point 28.7181 168.25>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 28.7181 168.25>
+ <Point 32.8473 159.4176>
+ <Point 29.0369 160.7568>
+ <Point 25.3541 159.0987>
+ <Point 28.7181 168.25>
+ <Point 28.7181 168.25>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect -6.5 104.5 75 12.75>
+ <ShapeRect -6.5 104.5 75 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 7.75 112.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `implements'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 336.6701 62.1831>
+ <Point 332.988 133.9845>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 336.6563 62.4527>
+ <Point 337.1172 53.4646>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 336.6563 62.4527>
+ <Point 340.8623 53.6566>
+ <Point 337.0404 54.9626>
+ <Point 333.3721 53.2725>
+ <Point 336.6563 62.4527>
+ <Point 336.6563 62.4527>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 336.6563 62.4527>
+ <Point 340.8623 53.6566>
+ <Point 337.0404 54.9626>
+ <Point 333.3721 53.2725>
+ <Point 336.6563 62.4527>
+ <Point 336.6563 62.4527>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 332.6154 141.25>
+ <Point 336.8214 132.4539>
+ <Point 332.9995 133.7598>
+ <Point 329.3313 132.0698>
+ <Point 332.6154 141.25>
+ <Point 332.6154 141.25>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 332.6154 141.25>
+ <Point 336.8214 132.4539>
+ <Point 332.9995 133.7598>
+ <Point 329.3313 132.0698>
+ <Point 332.6154 141.25>
+ <Point 332.6154 141.25>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 297.25 91 75 12.75>
+ <ShapeRect 297.25 91 75 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 311.5 99.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `implements'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 302.9885 30.4457>
+ <Point 230.9805 38.4466>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 302.7202 30.4756>
+ <Point 311.6651 29.4817>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 302.7202 30.4756>
+ <Point 312.0792 33.2087>
+ <Point 310.1743 29.6473>
+ <Point 311.251 25.7546>
+ <Point 302.7202 30.4756>
+ <Point 302.7202 30.4756>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 302.7202 30.4756>
+ <Point 312.0792 33.2087>
+ <Point 310.1743 29.6473>
+ <Point 311.251 25.7546>
+ <Point 302.7202 30.4756>
+ <Point 302.7202 30.4756>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 223.75 39.25>
+ <Point 233.1091 41.9832>
+ <Point 231.2041 38.4218>
+ <Point 232.2808 34.5291>
+ <Point 223.75 39.25>
+ <Point 223.75 39.25>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 223.75 39.25>
+ <Point 233.1091 41.9832>
+ <Point 231.2041 38.4218>
+ <Point 232.2808 34.5291>
+ <Point 223.75 39.25>
+ <Point 223.75 39.25>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 244 28 48 12.75>
+ <ShapeRect 244 28 48 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 244.75 36.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `implements'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 185.5121 68.9718>
+ <Point 184.153 100.2319>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 185.5004 69.2415>
+ <Point 185.8913 60.25>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 185.5004 69.2415>
+ <Point 189.6377 60.4129>
+ <Point 185.8261 61.7486>
+ <Point 182.1448 60.0871>
+ <Point 185.5004 69.2415>
+ <Point 185.5004 69.2415>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 185.5004 69.2415>
+ <Point 189.6377 60.4129>
+ <Point 185.8261 61.7486>
+ <Point 182.1448 60.0871>
+ <Point 185.5004 69.2415>
+ <Point 185.5004 69.2415>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 183.837 107.5>
+ <Point 187.9743 98.6714>
+ <Point 184.1627 100.0071>
+ <Point 180.4814 98.3456>
+ <Point 183.837 107.5>
+ <Point 183.837 107.5>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 183.837 107.5>
+ <Point 187.9743 98.6714>
+ <Point 184.1627 100.0071>
+ <Point 180.4814 98.3456>
+ <Point 183.837 107.5>
+ <Point 183.837 107.5>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 160.75 72.25 48 23.25>
+ <ShapeRect 160.75 72.25 48 23.25>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 167.5 80.5>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `controls '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 164.5 91>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `thread for'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 303.5601 135.8353>
+ <Point 213.6735 64.7622>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 303.3483 135.6679>
+ <Point 310.4081 141.25>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 303.3483 135.6679>
+ <Point 308.0822 144.1915>
+ <Point 309.2314 140.3196>
+ <Point 312.7339 138.3084>
+ <Point 303.3483 135.6679>
+ <Point 303.3483 135.6679>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 303.3483 135.6679>
+ <Point 308.0822 144.1915>
+ <Point 309.2314 140.3196>
+ <Point 312.7339 138.3084>
+ <Point 303.3483 135.6679>
+ <Point 303.3483 135.6679>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 207.9669 60.25>
+ <Point 212.7008 68.7737>
+ <Point 213.85 64.9018>
+ <Point 217.3525 62.8906>
+ <Point 207.9669 60.25>
+ <Point 207.9669 60.25>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 207.9669 60.25>
+ <Point 212.7008 68.7737>
+ <Point 213.85 64.9018>
+ <Point 217.3525 62.8906>
+ <Point 207.9669 60.25>
+ <Point 207.9669 60.25>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 228.25 88.75 61.5 23.25>
+ <ShapeRect 228.25 88.75 61.5 23.25>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 235 97>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `Manages a '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 244.75 107.5>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `pool of'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.6957 181.952>
+ <Point 277.2536 162.9691>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.9646 181.9282>
+ <Point 55 182.725>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 63.9646 181.9282>
+ <Point 54.668 178.9898>
+ <Point 56.4941 182.5922>
+ <Point 55.332 186.4603>
+ <Point 63.9646 181.9282>
+ <Point 63.9646 181.9282>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.9646 181.9282>
+ <Point 54.668 178.9898>
+ <Point 56.4941 182.5922>
+ <Point 55.332 186.4603>
+ <Point 63.9646 181.9282>
+ <Point 63.9646 181.9282>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 284.5 162.325>
+ <Point 275.2033 159.3866>
+ <Point 277.0294 162.989>
+ <Point 275.8674 166.8571>
+ <Point 284.5 162.325>
+ <Point 284.5 162.325>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 284.5 162.325>
+ <Point 275.2033 159.3866>
+ <Point 277.0294 162.989>
+ <Point 275.8674 166.8571>
+ <Point 284.5 162.325>
+ <Point 284.5 162.325>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 132.25 155.5 75 33.75>
+ <ShapeRect 132.25 155.5 75 33.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 156.25 163.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `gets a '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 139 174.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `ServerSession '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 160.75 184.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `from'>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <Angle 0>
+ <ArcRect 152.5 333.25 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 5>
+ <ObColor `c040.0_m040.0_y040.0'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 152.5 333.25 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <ArcRect 149.5 330.25 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<Arc
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <ArcRect 149.5 330.25 54 54>
+ <ArcTheta -270>
+ <ArcDTheta 360>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 167.5 358.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `App'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 206.7503 338.2355>
+ <Point 266.3652 300.7633>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 206.9789 338.0918>
+ <Point 199.3592 342.8814>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 206.9789 338.0918>
+ <Point 197.3635 339.7065>
+ <Point 200.6291 342.0831>
+ <Point 201.3548 346.0562>
+ <Point 206.9789 338.0918>
+ <Point 206.9789 338.0918>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 206.9789 338.0918>
+ <Point 197.3635 339.7065>
+ <Point 200.6291 342.0831>
+ <Point 201.3548 346.0562>
+ <Point 206.9789 338.0918>
+ <Point 206.9789 338.0918>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 272.5245 296.8918>
+ <Point 262.9091 298.5064>
+ <Point 266.1747 300.8831>
+ <Point 266.9004 304.8562>
+ <Point 272.5245 296.8918>
+ <Point 272.5245 296.8918>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 272.5245 296.8918>
+ <Point 262.9091 298.5064>
+ <Point 266.1747 300.8831>
+ <Point 266.9004 304.8562>
+ <Point 272.5245 296.8918>
+ <Point 272.5245 296.8918>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 198.25 313.75 75 12.75>
+ <ShapeRect 198.25 313.75 75 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 212.5 322>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `implements'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 149.0515 334.3762>
+ <Point 105.9398 298.4499>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 148.844 334.2034>
+ <Point 155.758 339.965>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 148.844 334.2034>
+ <Point 153.3573 342.8459>
+ <Point 154.6057 339.0048>
+ <Point 158.1587 337.0842>
+ <Point 148.844 334.2034>
+ <Point 148.844 334.2034>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 148.844 334.2034>
+ <Point 153.3573 342.8459>
+ <Point 154.6057 339.0048>
+ <Point 158.1587 337.0842>
+ <Point 148.844 334.2034>
+ <Point 148.844 334.2034>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 100.351 293.7925>
+ <Point 104.8643 302.435>
+ <Point 106.1127 298.5939>
+ <Point 109.6657 296.6734>
+ <Point 100.351 293.7925>
+ <Point 100.351 293.7925>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 100.351 293.7925>
+ <Point 104.8643 302.435>
+ <Point 106.1127 298.5939>
+ <Point 109.6657 296.6734>
+ <Point 100.351 293.7925>
+ <Point 100.351 293.7925>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 90.25 310.75 75 12.75>
+ <ShapeRect 90.25 310.75 75 12.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 110.5 319>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `supplies'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 197.477 141.6939>
+ <Point 277.8476 258.5965>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 197.63 141.9164>
+ <Point 192.5312 134.5>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 197.63 141.9164>
+ <Point 195.6214 132.3755>
+ <Point 193.3811 135.7361>
+ <Point 189.4411 136.6245>
+ <Point 197.63 141.9164>
+ <Point 197.63 141.9164>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 197.63 141.9164>
+ <Point 195.6214 132.3755>
+ <Point 193.3811 135.7361>
+ <Point 189.4411 136.6245>
+ <Point 197.63 141.9164>
+ <Point 197.63 141.9164>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 281.9691 264.5915>
+ <Point 279.9605 255.0506>
+ <Point 277.7202 258.4111>
+ <Point 273.7802 259.2995>
+ <Point 281.9691 264.5915>
+ <Point 281.9691 264.5915>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 281.9691 264.5915>
+ <Point 279.9605 255.0506>
+ <Point 277.7202 258.4111>
+ <Point 273.7802 259.2995>
+ <Point 281.9691 264.5915>
+ <Point 281.9691 264.5915>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 214 182.5 46.5 33.75>
+ <ShapeRect 214 182.5 46.5 33.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 220.75 190.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `delivers '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 216.25 201.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `messages '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 232.75 211.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `to'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 41.2254 209.6865>
+ <Point 59.4187 243.474>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 41.3534 209.9242>
+ <Point 37.0865 202>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 41.3534 209.9242>
+ <Point 40.3883 200.2221>
+ <Point 37.7977 203.3207>
+ <Point 33.7848 203.7779>
+ <Point 41.3534 209.9242>
+ <Point 41.3534 209.9242>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 41.3534 209.9242>
+ <Point 40.3883 200.2221>
+ <Point 37.7977 203.3207>
+ <Point 33.7848 203.7779>
+ <Point 41.3534 209.9242>
+ <Point 41.3534 209.9242>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 62.8678 249.8795>
+ <Point 61.9027 240.1774>
+ <Point 59.3121 243.2759>
+ <Point 55.2992 243.7331>
+ <Point 62.8678 249.8795>
+ <Point 62.8678 249.8795>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 62.8678 249.8795>
+ <Point 61.9027 240.1774>
+ <Point 59.3121 243.2759>
+ <Point 55.2992 243.7331>
+ <Point 62.8678 249.8795>
+ <Point 62.8678 249.8795>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 12.25 214 75 23.25>
+ <ShapeRect 12.25 214 75 23.25>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 25 222.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `is delivered '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 22 232.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `messages for'>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.0688 170.6401>
+ <Point 149.526 134.9295>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.3183 170.537>
+ <Point 55 173.9728>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 63.3183 170.537>
+ <Point 53.5684 170.5069>
+ <Point 56.3864 173.4002>
+ <Point 56.4316 177.4388>
+ <Point 63.3183 170.537>
+ <Point 63.3183 170.537>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 63.3183 170.537>
+ <Point 53.5684 170.5069>
+ <Point 56.3864 173.4002>
+ <Point 56.4316 177.4388>
+ <Point 63.3183 170.537>
+ <Point 63.3183 170.537>
+ <Smoothed No>
+>
+<Polygon
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 0>
+ <ObColor `Black'>
+ <Angle 0>
+ <Point 156.25 132.1522>
+ <Point 146.5001 132.122>
+ <Point 149.318 135.0153>
+ <Point 149.3632 139.054>
+ <Point 156.25 132.1522>
+ <Point 156.25 132.1522>
+ <Smoothed No>
+>
+<PolyLine
+ <Pen 0>
+ <PenWidth 1>
+ <Fill 15>
+ <Separation 0>
+ <ObColor `Black'>
+ <DashedPattern <DashedStyle Solid>>
+ <HeadCap Butt>
+ <TailCap Butt>
+ <Angle 0>
+ <Point 156.25 132.1522>
+ <Point 146.5001 132.122>
+ <Point 149.318 135.0153>
+ <Point 149.3632 139.054>
+ <Point 156.25 132.1522>
+ <Point 156.25 132.1522>
+ <Smoothed No>
+>
+<Rectangle
+ <Fill 0>
+ <Pen 15>
+ <PenWidth 0>
+ <Separation 1>
+ <ObColor `White'>
+ <Angle 0>
+ <BRect 82.75 136 46.5 33.75>
+ <ShapeRect 82.75 136 46.5 33.75>
+ <Smoothed No>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 89.5 144.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `delivers '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 85 154.75>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `messages '>
+>
+<TextLine
+ <Angle 0>
+ <TLOrigin 101.5 165.25>
+ <TLAlignment Left>
+ <Font
+  <FFamily `Helvetica'>
+  <FWeight `Regular'>
+  <FAngle `Regular'>
+  <FVar `Regular'>
+  <FPostScriptName `Helvetica'>
+  <FSize 9>
+  <FSeparation 0>
+  <FColor `Black'>
+ >
+ <String `to'>
+>
+# End of MIFFILE
