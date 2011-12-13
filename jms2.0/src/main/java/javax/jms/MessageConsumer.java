@@ -31,22 +31,32 @@ package javax.jms;
   * message consumer using one of its <CODE>receive</CODE> methods. There are 
   * several variations of <CODE>receive</CODE> that allow a 
   * client to poll or wait for the next message.
-  *
-  * <P>For asynchronous delivery, a client can register a 
-  * <CODE>MessageListener</CODE> object with a message consumer. 
+  * 
+  * <P>For asynchronous delivery, a client can register a single listener object
+  * with a message consumer which may be either a <CODE>MessageListener</CODE> 
+  * or a <code>BatchMessageListener</code>object. 
+  * <ul>
+  * <li>
+  * <p>A <CODE>MessageListener</CODE> is used to receive messages individually.
   * As messages arrive at the message consumer, it delivers them by calling the 
   * <CODE>MessageListener</CODE>'s <CODE>onMessage</CODE> method.
+  * </li>
+  * <li>
+  * <p>A <CODE>BatchMessageListener</CODE> is used to receive messages in batches.
+  * Messages which arrive at the message consumer will be delivered in batches 
+  * by calling the <CODE>BatchMessageListener</CODE>'s <CODE>onMessages</CODE> method.
+  * </li>
+  * </ul>
+  * <P>It is a client programming error for a <CODE>MessageListener</CODE> 
+  * or <code>BatchMessageListener</code> to throw an exception.
   *
-  * <P>It is a client programming error for a <CODE>MessageListener</CODE> to 
-  * throw an exception.
-  *
-  * @version     1.0 - 13 March 1998
-  * @author      Mark Hapner
-  * @author      Rich Burridge
+  * @version     2.0
   *
   * @see         javax.jms.QueueReceiver
   * @see         javax.jms.TopicSubscriber
   * @see         javax.jms.Session
+  * @see         javax.jms.MessageListener
+  * @see         javax.jms.BatchMessageListener
   */
 
 public interface MessageConsumer {
@@ -66,26 +76,55 @@ public interface MessageConsumer {
     getMessageSelector() throws JMSException;
 
 
-    /** Gets the message consumer's <CODE>MessageListener</CODE>.
+    /** Gets the message consumer's <code>MessageListener</code>. 
+     * <p>
+     * A message consumer's listener is configured by calling either
+     * <code>setMessageListener</code> or <code>setBatchMessageListener</code>.
+     * This method will only return a listener that has been set using <code>setMessageListener</code>.
+     * To return a listener that has been set using <code>setBatchMessageListener</code>
+     * then use <code>getBatchMessageListener()</code> instead.
       *  
-      * @return the listener for the message consumer, or null if no listener
-      * is set
+      * @return the message consumer's <code>MessageListener</code>, or null if one was not set
       *  
-      * @exception JMSException if the JMS provider fails to get the message
-      *                         listener due to some internal error.
-      * @see javax.jms.MessageConsumer#setMessageListener
+      * @exception JMSException if the JMS provider fails to get the <code>MessageListener</code>
+      *                         due to some internal error.
+      *                         
+      * @see javax.jms.MessageConsumer#getBatchMessageListener()
+      * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
       */ 
+    MessageListener getMessageListener() throws JMSException;
+    
+    /** Gets the message consumer's <code>BatchMessageListener</code>. 
+     * <p>
+     * A message consumer's listener is configured by calling either
+     * <code>setMessageListener</code> or <code>setBatchMessageListener</code>.
+     * This method will only return a listener that has been set using <code>setBatchMessageListener</code>.
+     * To return a listener that has been set using <code>setMessageListener</code>
+     * then use <code>getMessageListener()</code> instead.
+      *  
+      * @return the message consumer's <code>BatchMessageListener</code>, or null if one was not set
+      *  
+      * @exception JMSException if the JMS provider fails to get the <code>BatchMessageListener</code>
+      *                         due to some internal error.
+      *                         
+      * @see javax.jms.MessageConsumer#getMessageListener()
+      * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
+      */ 
+    BatchMessageListener getBatchMessageListener() throws JMSException;
 
-    MessageListener
-    getMessageListener() throws JMSException;
 
-
-    /** Sets the message consumer's <CODE>MessageListener</CODE>.
-      * 
-      * <P>Setting the message listener to null is the equivalent of 
-      * unsetting the message listener for the message consumer.
-      *
-      * <P>The effect of calling <CODE>MessageConsumer.setMessageListener</CODE>
+    /** Sets the message consumer's listener to be the specified <CODE>MessageListener</CODE>.
+      * <p>
+      * A message consumer may only have one listener at a time. 
+      * So if a listener has already been configured 
+      * (either using this method or <code>setBatchMessageListener</code>)
+      * the new new listener replaces the old one, 
+      * <p>
+      * Setting a value of null will unset any existing listener.
+      * <p>
+      * The effect of calling this method
       * while messages are being consumed by an existing listener
       * or the consumer is being used to consume messages synchronously
       * is undefined.
@@ -95,13 +134,47 @@ public interface MessageConsumer {
       *  
       * @exception JMSException if the JMS provider fails to set the message
       *                         listener due to some internal error.
-      * @see javax.jms.MessageConsumer#getMessageListener
+      *                         
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
+      * @see javax.jms.MessageConsumer#getMessageListener()
       */ 
-
-    void
-    setMessageListener(MessageListener listener) throws JMSException;
-
-
+    void setMessageListener(MessageListener listener) throws JMSException;
+    
+    /** Sets the message consumer's listener to be the specified <CODE>BatchMessageListener</CODE>
+     * with the specified maximum batch size and batch timeout.
+     * <p>
+     * Messages will be delivered to the specified <CODE>BatchMessageListener</CODE> in batches
+     * whose size is no greater than the specified maximum batch size.
+     * The JMS provider may defer message delivery until the specified batch timeout has expired 
+     * in order to assemble a batch of messages that is as large as possible 
+     * but no greater than the batch size. 
+     * <p>
+     * A message consumer may only have one listener at a time. 
+     * So if a listener has already been configured 
+     * (either using this method or <code>setMessageListener</code>)
+     * the new new listener replaces the old one, 
+     * <p>
+     * Setting a value of null will unset any existing listener.
+     * <p>
+     * The effect of calling this method
+     * while messages are being consumed by an existing listener
+     * or the consumer is being used to consume messages synchronously
+     * is undefined.
+     *  
+     * @param listener the listener to which the messages are to be 
+     *                 delivered
+     * @param maxBatchSize the maximum batch size that should be used. Must be greater than zero.
+     * @param batchTimeout the batch timeout in milliseconds. A value of zero means no timeout is required
+     * The JMS provider may override the specified timeout with a shorter value.
+     *  
+     * @exception JMSException if the JMS provider fails to set the message
+     *                         listener due to some internal error.
+     *                         
+     * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
+     * @see javax.jms.MessageConsumer#getBatchMessageListener()
+     */
+    void setBatchMessageListener(BatchMessageListener listener, int maxBatchSize, long batchTimeout) throws JMSException;
+       
     /** Receives the next message produced for this message consumer.
       *  
       * <P>This call blocks indefinitely until a message is produced

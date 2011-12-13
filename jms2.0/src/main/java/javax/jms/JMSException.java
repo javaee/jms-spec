@@ -13,7 +13,7 @@
 package javax.jms;
 
 /**
- * <P>This is the root class of all JMS API exceptions.
+ * <P>This is the root class of all checked exceptions in the JMS API.
  *
  * <P>It provides the following information:
  * <UL>

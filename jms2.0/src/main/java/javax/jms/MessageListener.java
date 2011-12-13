@@ -15,8 +15,11 @@ package javax.jms;
 
 /** A <CODE>MessageListener</CODE> object is used to receive asynchronously 
   * delivered messages.
-  *
-  * <P>Each session must insure that it passes messages serially to the
+  * <p>
+  * If it is required that messages are received asynchronously in batches
+  * then a <code>BatchMessageListener</code> should be used instead.
+  * <p>
+  * Each session must insure that it passes messages serially to the
   * listener. This means that a listener assigned to one or more consumers
   * of the same session can assume that the <CODE>onMessage</CODE> method 
   * is not called with the next message until the session has completed the 

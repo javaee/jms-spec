@@ -398,5 +398,26 @@ public interface Connection {
                                     ServerSessionPool sessionPool,
 				    int maxMessages)
                              throws JMSException;
+          
+   /** Creates a MessagingContext using the specified session mode.
+    * 
+    * The MessagingContext will use the specified connection. A new session will be created. 
+    * This method does not start the connection. The connection will be automatically started
+    * when a SyncMessageConsumer is created or a MessageListener registered.
+    *
+    * @param sessionMode indicates whether the MessagingContext is transacted or not,
+    * and if it is not, whether the consumer or the client will acknowledge any 
+    * messages it receives. Legal values are <code>Session.SESSION_TRANSACTED</code>, 
+    * <code>Session.AUTO_ACKNOWLEDGE</code>, 
+    * <code>Session.CLIENT_ACKNOWLEDGE</code>, and 
+    * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+    * 
+    * @return a newly created MessagingContext
+    *
+    * @exception JMSRuntimeException if the JMS provider fails to create the
+    *            MessagingContext due to some internal error.
+    * @since 2.0 
+   */ 
+  MessagingContext createMessagingContext(int sessionMode);
 }
 

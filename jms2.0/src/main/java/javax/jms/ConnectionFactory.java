@@ -111,4 +111,99 @@ public interface ConnectionFactory {
     Connection
     createConnection(String userName, String password) 
 					     throws JMSException;
+    
+    /** Creates a MessagingContext with the default user identity
+     * and an unspecified sessionMode. 
+     * 
+     * Since no sessionMode is specified, this method should only
+     * be used in a Java EE application with a defined transactional context.
+     * 
+     * A connection and session are created for use by the new MessagingContext. 
+     * The connection is created in stopped mode but will be automatically started
+     * when a SyncMessageConsumer is created or a MessageListener registered.
+     *
+     * @return a newly created MessagingContext
+     *
+     * @exception JMSRuntimeException if the JMS provider fails to create the
+     *                         MessagingContext due to some internal error.
+     * @exception JMSSecurityRuntimeException  if client authentication fails due to 
+     *                         an invalid user name or password.
+     * @since 2.0 
+    */ 
+   MessagingContext createMessagingContext();
+   
+   /** Creates a MessagingContext with the specified user identity
+    * and an unspecified sessionMode. 
+    * 
+    * Since no sessionMode is specified, this method should only
+    * be used in a Java EE application with a defined transactional context.
+    * 
+    * A connection and session are created for use by the new MessagingContext. 
+    * The connection is created in stopped mode but will be automatically started
+    * when a SyncMessageConsumer is created or a MessageListener registered.
+    *  
+    * @param userName the caller's user name
+    * @param password the caller's password
+    *  
+    * @return a newly created MessagingContext
+    *
+    * @exception JMSRuntimeException if the JMS provider fails to create the 
+    *                         MessagingContext due to some internal error.
+    * @exception JMSSecurityRuntimeException  if client authentication fails due to 
+    *                         an invalid user name or password.
+    * @since 2.0  
+    */ 
+  MessagingContext createMessagingContext(String userName, String password);    
+
+   /** Creates a MessagingContext with the specified user identity 
+     * and the specified session mode. 
+     * 
+     * A connection and session are created for use by the new MessagingContext. 
+     * The MessagingContext is created in stopped mode but will be automatically started
+     * when a SyncMessageConsumer is created or a MessageListener registered.
+     *  
+     * @param userName the caller's user name
+     * @param password the caller's password
+     * @param sessionMode indicates whether the MessagingContext is transacted or not,
+     * and if it is not, whether the consumer or the client will acknowledge any 
+     * messages it receives. Legal values are <code>MessagingContext.SESSION_TRANSACTED</code>, 
+     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code>, 
+     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, and 
+     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     *  
+     * @return a newly created MessagingContext
+     *
+     * @exception JMSRuntimeException if the JMS provider fails to create the 
+     *                         MessagingContext due to some internal error.
+     * @exception JMSSecurityRuntimeException  if client authentication fails due to 
+     *                         an invalid user name or password.
+     * @since 2.0  
+     */ 
+   
+MessagingContext createMessagingContext(String userName, String password, int sessionMode);    
+   
+   /** Creates a MessagingContext with the default user identity
+    * and the specified session mode. A connection and session are created.
+    * 
+    * A connection and session are created for use by the new MessagingContext. 
+    * The MessagingContext is created in stopped mode but will be automatically started
+    * when a SyncMessageConsumer is created or a MessageListener registered.
+    *
+    * @param sessionMode indicates whether the MessagingContext is transacted or not,
+    * and if it is not, whether the consumer or the client will acknowledge any 
+    * messages it receives. Legal values are <code>MessagingContext.SESSION_TRANSACTED</code>, 
+    * <code>MessagingContext.AUTO_ACKNOWLEDGE</code>, 
+    * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, and 
+    * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+    * 
+    * @return a newly created MessagingContext
+    *
+    * @exception JMSRuntimeException if the JMS provider fails to create the
+    *                         MessagingContext due to some internal error.
+    * @exception JMSSecurityRuntimeException  if client authentication fails due to 
+    *                         an invalid user name or password.
+    * @since 2.0 
+   */ 
+  MessagingContext createMessagingContext(int sessionMode);
+      
 }
