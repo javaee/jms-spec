@@ -91,7 +91,7 @@ public interface MessageConsumer {
       *                         
       * @see javax.jms.MessageConsumer#getBatchMessageListener()
       * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
-      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       */ 
     MessageListener getMessageListener() throws JMSException;
     
@@ -110,7 +110,7 @@ public interface MessageConsumer {
       *                         
       * @see javax.jms.MessageConsumer#getMessageListener()
       * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
-      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       */ 
     BatchMessageListener getBatchMessageListener() throws JMSException;
 
@@ -135,7 +135,7 @@ public interface MessageConsumer {
       * @exception JMSException if the JMS provider fails to set the message
       *                         listener due to some internal error.
       *                         
-      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener)
+      * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       * @see javax.jms.MessageConsumer#getMessageListener()
       */ 
     void setMessageListener(MessageListener listener) throws JMSException;

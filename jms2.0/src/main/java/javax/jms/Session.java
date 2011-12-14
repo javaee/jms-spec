@@ -383,42 +383,105 @@ public interface Session extends Runnable {
     recover() throws JMSException;
 
 
-    /** Returns the session's distinguished message listener (optional).
+    /** Returns the session's distinguished message listener if it is a <code>MessageListener</code> (optional).
+      * <p>
+      * A session's distinguished message listener is configured by calling 
+      * either <code>setMessageListener</code> or <code>setBatchMessageListener</code>. 
+      * This method will only return a listener that has been set using <code>setMessageListener</code>. 
+      * To return a distinguished message listener that has been set using <code>setBatchMessageListener</code>
+      * then use <code>getBatchMessageListener()</code> instead.
       *
-      * @return the message listener associated with this session
+      * @return the session's distinguished message listener if it is a <code>MessageListener</code>
       *
-      * @exception JMSException if the JMS provider fails to get the message 
-      *                         listener due to an internal error.
+      * @exception JMSException if the JMS provider fails to get the message listener due to an internal error.
       *
       * @see javax.jms.Session#setMessageListener
+      * @see javax.jms.Session#setBatchMessageListener
+      * @see javax.jms.Session#getBatchMessageListener
       * @see javax.jms.ServerSessionPool
       * @see javax.jms.ServerSession
       */
+    MessageListener getMessageListener() throws JMSException;
 
-    MessageListener
-    getMessageListener() throws JMSException;
-
-
-    /** Sets the session's distinguished message listener (optional).
+    /** Returns the session's distinguished message listener if it is a <code>BatchMessageListener</code> (optional).
+     * <p>
+     * A session's distinguished message listener is configured by calling 
+     * either <code>setMessageListener</code> or <code>setBatchMessageListener</code>. 
+     * This method will only return a listener that has been set using <code>setBatchMessageListener</code>. 
+     * To return a distinguished message listener that has been set using <code>setMessageListener</code>
+     * then use <code>getMessageListener()</code> instead.
+     *
+     * @return the session's distinguished message listener if it is a <code>BatchMessageListener</code>
+     *
+     * @exception JMSException if the JMS provider fails to get the message listener due to an internal error.
+     *
+     * @see javax.jms.Session#setMessageListener
+     * @see javax.jms.Session#setBatchMessageListener
+     * @see javax.jms.Session#getMessageListener
+     * @see javax.jms.ServerSessionPool
+     * @see javax.jms.ServerSession
+     */
+   BatchMessageListener getBatchMessageListener() throws JMSException;    
+    
+     /** Sets the session's distinguished message listener 
+      * to be the specified <code>MessageListener</code> (optional).
+      * <p>
+      * A session may have only one distinguished message listener at a time.
+      * So if a distinguished message listener has already been configured
+      * (either using this method or <code>setBatchMessageListener</code>)
+      * then the new listener replaces the old one.  
       *
       * <P>When the distinguished message listener is set, no other form of 
       * message receipt in the session can 
       * be used; however, all forms of sending messages are still supported.
       * 
-      * <P>This is an expert facility not used by regular JMS clients.
+      * <P>This is an expert facility not used by ordinary JMS clients.
       *
       * @param listener the message listener to associate with this session
       *
       * @exception JMSException if the JMS provider fails to set the message 
       *                         listener due to an internal error.
       *
+      * @see javax.jms.Session#setBatchMessageListener
       * @see javax.jms.Session#getMessageListener
+      * @see javax.jms.Session#getBatchMessageListener
       * @see javax.jms.ServerSessionPool
       * @see javax.jms.ServerSession
       */
-
-    void
-    setMessageListener(MessageListener listener) throws JMSException;
+    void setMessageListener(MessageListener listener) throws JMSException;
+    
+    /** Sets the session's distinguished message listener 
+     * to be the specified <code>BatchMessageListener</code> (optional).
+     * <p>
+     * Messages will be delivered to the specified <code>BatchMessageListener</code>
+     * in batches whose size is no greater than the specified maximum batch size. 
+     * The JMS provider may defer message delivery until the specified batch timeout 
+     * has expired in order to assemble a batch of messages that is as large as possible 
+     * but no greater than the batch size. 
+     * <p>
+     * A session may have only one distinguished message listener at a time.
+     * So if a distinguished message listener has already been configured
+     * (either using this method or <code>setMessageListener</code>)
+     * then the new listener replaces the old one.  
+     *
+     * <P>When the distinguished message listener is set, no other form of 
+     * message receipt in the session can 
+     * be used; however, all forms of sending messages are still supported.
+     * 
+     * <P>This is an expert facility not used by ordinary JMS clients.
+     *
+     * @param listener the message listener to associate with this session
+     *
+     * @exception JMSException if the JMS provider fails to set the message 
+     *                         listener due to an internal error.
+     *
+     * @see javax.jms.Session#setMessageListener
+     * @see javax.jms.Session#getMessageListener
+     * @see javax.jms.Session#getBatchMessageListener
+     * @see javax.jms.ServerSessionPool
+     * @see javax.jms.ServerSession
+     */
+   void setBatchMessageListener(BatchMessageListener listener, int maxBatchSize, long batchTimeout) throws JMSException;    
 
     /**
      * Optional operation, intended to be used only by Application Servers,
