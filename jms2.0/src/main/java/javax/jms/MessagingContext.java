@@ -1109,7 +1109,7 @@ getTimeToLive();
      * and any confirmation has been received from a JMS server, the JMS provider calls
      * the <code>onCompletion(Message)</code> method of the specified completion listener. 
      * If an exception occurs in the separate thread 
-     * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
+     * then the JMS provider calls the <code>onException(Exception)</code> method of the specified completion listener.
      * <p>
      * JMS does not define what operations are performed in the calling thread and what operations, if any,
      * are performed in the separate thread. In particular the use of this method does not itself specify whether
@@ -1146,7 +1146,7 @@ getTimeToLive();
      * and any confirmation has been received from a JMS server, the JMS provider calls
      * the <code>onCompletion(Message)</code> method of the specified completion listener. 
      * If an exception occurs in the separate thread 
-     * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
+     * then the JMS provider calls the <code>onException(Exception)</code> method of the specified completion listener.
      * <p>
      * JMS does not define what operations are performed in the calling thread and what operations, if any,
      * are performed in the separate thread. In particular the use of this method does not itself specify whether
