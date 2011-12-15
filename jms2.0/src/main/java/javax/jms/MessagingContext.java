@@ -71,6 +71,7 @@ import java.io.Serializable;
  * may also use the new factory methods on the <code>ConnectionFactory</code> interface.
  * 
  * @version 2.0
+ * @since 2.0
  * 
  */
 
@@ -1058,48 +1059,117 @@ setTimeToLive(long timeToLive);
 long
 getTimeToLive();
 
- /**Sends a message to the specified destination, using
-  * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
-  * and time to live.
-  *  
-  * @param destination the destination to send this message to
-  * @param message the message to send
-  *  
-  * @exception JMSRuntimeException if the JMS provider fails to send the message 
-  *                         due to some internal error.
-  * @exception MessageFormatRuntimeException if an invalid message is specified.
-  * @exception InvalidDestinationRuntimeException if a client uses
-  *                         this method with an invalid destination.
-  * 
-  * @see javax.jms.MessagingContext#setDeliveryMode
-  * @see javax.jms.MessagingContext#setPriority
-  * @see javax.jms.MessagingContext#setTimeToLive
+    /** Sends a message to the specified destination, using
+     * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
+     * and time to live.
+     *
+     * @param destination the destination to send this message to
+     * @param message the message to send
+     *  
+     * @exception JMSRuntimeException if the JMS provider fails to send the message 
+     *                         due to some internal error.
+     * @exception MessageFormatRuntimeException if an invalid message is specified.
+     * @exception InvalidDestinationRuntimeException if a client uses
+     *                         this method with an invalid destination.
+     * 
+     * @see javax.jms.MessagingContext#setDeliveryMode
+     * @see javax.jms.MessagingContext#setPriority
+     * @see javax.jms.MessagingContext#setTimeToLive
+     *
+	 */
+	void send(Destination destination, Message message);
 
-  * @since 2.0 
-  */ 
+    /** Sends a message to the specified destination, 
+     * specifying delivery mode, priority and time to live.
+     *  
+     * @param destination the destination to send this message to
+     * @param message the message to send
+     * @param deliveryMode the delivery mode to use
+     * @param priority the priority for this message
+     * @param timeToLive the message's lifetime (in milliseconds)
+     *  
+     * @exception JMSRuntimeException if the JMS provider fails to send the message 
+     *                         due to some internal error.
+     * @exception MessageFormatRuntimeException if an invalid message is specified.
+     * @exception InvalidDestinationRuntimeException if a client uses
+     *                         this method with an invalid destination.
+     *
+	 */
+	void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive);
+	
+    /** Sends a message to the specified destination, using
+     * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
+     * and time to live,
+     * returning immediately and notifying the specified completion listener 
+     * when the operation has completed.
+     * <p>
+     * This method allows the JMS provider to perform the actual sending of the message,
+     * and the wait for any confirmation from a JMS server, to take place in a separate thread
+     * without blocking the calling thread. When the sending of the message is complete,
+     * and any confirmation has been received from a JMS server, the JMS provider calls
+     * the <code>onCompletion(Message)</code> method of the specified completion listener. 
+     * If an exception occurs in the separate thread 
+     * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
+     * <p>
+     * JMS does not define what operations are performed in the calling thread and what operations, if any,
+     * are performed in the separate thread. In particular the use of this method does not itself specify whether
+     * the separate thread should obtain confirmation from a JMS server. 
+     * <p>
+     * The exceptions listed below may be thrown in either thread. 
+     *
+     * @param destination the destination to send this message to
+     * @param message the message to send
+     * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
+     *  
+     * @exception JMSRuntimeException if the JMS provider fails to send the message 
+     *                         due to some internal error.
+     * @exception MessageFormatRuntimeException if an invalid message is specified.
+     * @exception InvalidDestinationRuntimeException if a client uses
+     *                         this method with an invalid destination.
+     * 
+     * @see javax.jms.MessagingContext#setDeliveryMode
+     * @see javax.jms.MessagingContext#setPriority
+     * @see javax.jms.MessagingContext#setTimeToLive
+     * @see javax.jms.CompletionListener
+     *
+	 */
+	void send(Destination destination, Message message,CompletionListener completionListener);
 
-void send(Destination destination, Message message);
-
-
-/** Sends a message to the specified destination 
-  * specifying delivery mode, priority and time to live.
-  *  
-  * @param destination the destination to send this message to
-  * @param message the message to send
-  * @param deliveryMode the delivery mode to use
-  * @param priority the priority for this message
-  * @param timeToLive the message's lifetime (in milliseconds)
-  *  
-  * @exception JMSException if the JMS provider fails to send the message 
-  *                         due to some internal error.
-  * @exception MessageFormatException if an invalid message is specified.
-  * @exception InvalidDestinationException if a client uses
-  *                         this method with an invalid destination.
-  *
-  * @since 2.0 
-  */ 
-
-void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive);
+    /** Sends a message to the specified destination, 
+     * specifying delivery mode, priority and time to live,
+     * returning immediately and notifying the specified completion listener 
+     * when the operation has completed.
+     * <p>
+     * This method allows the JMS provider to perform the actual sending of the message,
+     * and the wait for any confirmation from a JMS server, to take place in a separate thread
+     * without blocking the calling thread. When the sending of the message is complete,
+     * and any confirmation has been received from a JMS server, the JMS provider calls
+     * the <code>onCompletion(Message)</code> method of the specified completion listener. 
+     * If an exception occurs in the separate thread 
+     * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
+     * <p>
+     * JMS does not define what operations are performed in the calling thread and what operations, if any,
+     * are performed in the separate thread. In particular the use of this method does not itself specify whether
+     * the separate thread should obtain confirmation from a JMS server. 
+     * <p>
+     * The exceptions listed below may be thrown in either thread. 
+     * 
+     * @param destination the destination to send this message to
+     * @param message the message to send
+     * @param deliveryMode the delivery mode to use
+     * @param priority the priority for this message
+     * @param timeToLive the message's lifetime (in milliseconds)
+     * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
+     *  
+     * @exception JMSRuntimeException if the JMS provider fails to send the message 
+     *                         due to some internal error.
+     * @exception MessageFormatRuntimeException if an invalid message is specified.
+     * @exception InvalidDestinationRuntimeException if a client uses
+     *                         this method with an invalid destination.
+     *
+     * @see javax.jms.CompletionListener
+  	 */
+	void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive,CompletionListener completionListener);	
   
 // END OF METHODS COPIED FROM MESSAGEPRODUCER
   
