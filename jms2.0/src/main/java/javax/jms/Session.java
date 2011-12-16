@@ -110,7 +110,7 @@ import java.io.Serializable;
   * @see         javax.jms.XASession
   */ 
  
-public interface Session extends Runnable {
+public interface Session extends Runnable, AutoCloseable {
 
     /** With this acknowledgment mode, the session automatically acknowledges
       * a client's receipt of a message either when the session has successfully 

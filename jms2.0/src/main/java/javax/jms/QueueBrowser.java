@@ -31,17 +31,14 @@ import java.util.Enumeration;
   *<P>A <CODE>QueueBrowser</CODE> can be created from either a 
   * <CODE>Session</CODE> or a <CODE> QueueSession</CODE>. 
   *
-  * @version     1.1 April 9, 2002
-  * @author      Mark Hapner
-  * @author      Rich Burridge
-  * @author      Kate Stout
+  * @version     2.0
   *
-  *  @see         javax.jms.Session#createBrowser
+  * @see         javax.jms.Session#createBrowser
   * @see         javax.jms.QueueSession#createBrowser
   * @see         javax.jms.QueueReceiver
   */
 
-public interface QueueBrowser {
+public interface QueueBrowser extends AutoCloseable {
 
     /** Gets the queue associated with this queue browser.
       * 

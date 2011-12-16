@@ -46,7 +46,7 @@ package javax.jms;
   * @see         javax.jms.Session#createProducer
   */
 
-public interface MessageProducer {
+public interface MessageProducer extends AutoCloseable {
 
     /** Sets whether message IDs are disabled.
       *  

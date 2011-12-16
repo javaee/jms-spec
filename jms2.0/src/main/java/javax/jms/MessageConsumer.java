@@ -59,7 +59,7 @@ package javax.jms;
   * @see         javax.jms.BatchMessageListener
   */
 
-public interface MessageConsumer {
+public interface MessageConsumer extends AutoCloseable{
 
     /** Gets this message consumer's message selector expression.
       *  
