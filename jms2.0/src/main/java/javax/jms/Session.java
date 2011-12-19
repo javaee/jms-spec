@@ -1,15 +1,42 @@
 /*
- * @(#)Session.java	1.44 02/04/10
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2002 Sun Microsystems, Inc. All Rights Reserved.
+ * Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
  *
- *  SUN PROPRIETARY/CONFIDENTIAL.
- * This software is the proprietary information of Sun Microsystems, Inc.  
- * Use is subject to license terms.
- * 
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License.  You can
+ * obtain a copy of the License at
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * or packager/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at packager/legal/LICENSE.txt.
+ *
+ * GPL Classpath Exception:
+ * Oracle designates this particular file as subject to the "Classpath"
+ * exception as provided by Oracle in the GPL Version 2 section of the License
+ * file that accompanied this code.
+ *
+ * Modifications:
+ * If applicable, add the following below the License Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyright [year] [name of copyright owner]"
+ *
+ * Contributor(s):
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
  */
-
-
 
 package javax.jms;
 
@@ -100,10 +127,7 @@ import java.io.Serializable;
   * Support for JTA in the JMS API is targeted at systems vendors who will be 
   * integrating the JMS API into their application server products.
   *
-  * @version     1.1 February 2, 2002
-  * @author      Mark Hapner
-  * @author      Rich Burridge
-  * @author      Kate Stout
+  * @version     2.0
   *
   * @see         javax.jms.QueueSession
   * @see         javax.jms.TopicSession
@@ -158,12 +182,17 @@ public interface Session extends Runnable, AutoCloseable {
     /** Creates a <CODE>BytesMessage</CODE> object. A <CODE>BytesMessage</CODE> 
       * object is used to send a message containing a stream of uninterpreted 
       * bytes.
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
       *  
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
       */ 
-    
-
     BytesMessage 
     createBytesMessage() throws JMSException; 
 
@@ -172,6 +201,13 @@ public interface Session extends Runnable, AutoCloseable {
       * object is used to send a self-defining set of name-value pairs, where 
       * names are <CODE>String</CODE> objects and values are primitive values 
       * in the Java programming language.
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
       *  
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
@@ -186,6 +222,13 @@ public interface Session extends Runnable, AutoCloseable {
       * <CODE>Message</CODE> object holds all the 
       * standard message header information. It can be sent when a message 
       * containing only header information is sufficient.
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
       *  
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
@@ -198,6 +241,13 @@ public interface Session extends Runnable, AutoCloseable {
     /** Creates an <CODE>ObjectMessage</CODE> object. An 
       * <CODE>ObjectMessage</CODE> object is used to send a message 
       * that contains a serializable Java object.
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
       *  
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
@@ -210,6 +260,13 @@ public interface Session extends Runnable, AutoCloseable {
     /** Creates an initialized <CODE>ObjectMessage</CODE> object. An 
       * <CODE>ObjectMessage</CODE> object is used 
       * to send a message that contains a serializable Java object.
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
       *  
       * @param object the object to use to initialize this message
       *
@@ -225,7 +282,14 @@ public interface Session extends Runnable, AutoCloseable {
       * <CODE>StreamMessage</CODE> object is used to send a 
       * self-defining stream of primitive values in the Java programming 
       * language.
-      *  
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
+      * 
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
       */
@@ -237,7 +301,14 @@ public interface Session extends Runnable, AutoCloseable {
     /** Creates a <CODE>TextMessage</CODE> object. A <CODE>TextMessage</CODE> 
       * object is used to send a message containing a <CODE>String</CODE>
       * object.
-      *  
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
+      * 
       * @exception JMSException if the JMS provider fails to create this message
       *                         due to some internal error.
       */ 
@@ -249,7 +320,14 @@ public interface Session extends Runnable, AutoCloseable {
     /** Creates an initialized <CODE>TextMessage</CODE> object. A 
       * <CODE>TextMessage</CODE> object is used to send 
       * a message containing a <CODE>String</CODE>.
-      *
+      * <p>
+      * The message object returned may be sent using any session or messaging context. 
+      * It is not restricted to being sent using the session used to create it.
+      * <p>
+      * The message object returned may be optimised for use with the JMS provider
+      * used to create it. However it can be sent using any JMS provider, not just the 
+      * JMS provider used to create it.
+      * 
       * @param text the string used to initialize this message
       *
       * @exception JMSException if the JMS provider fails to create this message

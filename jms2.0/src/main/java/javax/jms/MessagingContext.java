@@ -384,7 +384,14 @@ public interface MessagingContext extends AutoCloseable {
    * object is used to send a self-defining set of name-value pairs, where 
    * names are <CODE>String</CODE> objects and values are primitive values 
    * in the Java programming language.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @exception JMSRuntimeException if the JMS provider fails to create this message
    *                         due to some internal error.
    */ 
@@ -397,7 +404,14 @@ public interface MessagingContext extends AutoCloseable {
    * <CODE>Message</CODE> object holds all the 
    * standard message header information. It can be sent when a message 
    * containing only header information is sufficient.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @exception JMSRuntimeException if the JMS provider fails to create this message
    *                         due to some internal error.
    */ 
@@ -408,7 +422,14 @@ public interface MessagingContext extends AutoCloseable {
  /** Creates an <CODE>ObjectMessage</CODE> object. An 
    * <CODE>ObjectMessage</CODE> object is used to send a message 
    * that contains a serializable Java object.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @exception JMSRuntimeException if the JMS provider fails to create this message
    *                         due to some internal error.
    */ 
@@ -419,7 +440,14 @@ public interface MessagingContext extends AutoCloseable {
  /** Creates an initialized <CODE>ObjectMessage</CODE> object. An 
    * <CODE>ObjectMessage</CODE> object is used 
    * to send a message that contains a serializable Java object.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @param object the object to use to initialize this message
    *
    * @exception JMSRuntimeException if the JMS provider fails to create this message
@@ -433,7 +461,14 @@ public interface MessagingContext extends AutoCloseable {
    * <CODE>StreamMessage</CODE> object is used to send a 
    * self-defining stream of primitive values in the Java programming 
    * language.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @exception JMSRuntimeException if the JMS provider fails to create this message
    *                         due to some internal error.
    */
@@ -444,7 +479,14 @@ public interface MessagingContext extends AutoCloseable {
  /** Creates a <CODE>TextMessage</CODE> object. A <CODE>TextMessage</CODE> 
    * object is used to send a message containing a <CODE>String</CODE>
    * object.
-   *  
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @exception JMSRuntimeException if the JMS provider fails to create this message
    *                         due to some internal error.
    */ 
@@ -455,7 +497,14 @@ public interface MessagingContext extends AutoCloseable {
  /** Creates an initialized <CODE>TextMessage</CODE> object. A 
    * <CODE>TextMessage</CODE> object is used to send 
    * a message containing a <CODE>String</CODE>.
-   *
+   * <p>
+   * The message object returned may be sent using any session or messaging context. 
+   * It is not restricted to being sent using the messaging context used to create it.
+   * <p>
+   * The message object returned may be optimised for use with the JMS provider
+   * used to create it. However it can be sent using any JMS provider, not just the 
+   * JMS provider used to create it.
+   * 
    * @param text the string used to initialize this message
    *
    * @exception JMSRuntimeException if the JMS provider fails to create this message
