@@ -1,14 +1,42 @@
 /*
- * @(#)MessageProducer.java	1.25 02/04/09
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2002 Sun Microsystems, Inc. All Rights Reserved.
+ * Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
  *
- *  SUN PROPRIETARY/CONFIDENTIAL.
- * This software is the proprietary information of Sun Microsystems, Inc.  
- * Use is subject to license terms.
- * 
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License.  You can
+ * obtain a copy of the License at
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * or packager/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at packager/legal/LICENSE.txt.
+ *
+ * GPL Classpath Exception:
+ * Oracle designates this particular file as subject to the "Classpath"
+ * exception as provided by Oracle in the GPL Version 2 section of the License
+ * file that accompanied this code.
+ *
+ * Modifications:
+ * If applicable, add the following below the License Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyright [year] [name of copyright owner]"
+ *
+ * Contributor(s):
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
  */
-
 
 package javax.jms;
 
@@ -26,7 +54,8 @@ package javax.jms;
   * to send replies to requests using the request's <CODE>JMSReplyTo</CODE> 
   * destination.
   *
-  * <P>A client can specify a default delivery mode, priority, and time to live 
+  * <P>A client can specify a default delivery mode, priority, time to live 
+  * and delivery delay
   * for messages sent by a message producer. It can also specify the delivery 
   * mode, priority, and time to live for an individual message.
   *
@@ -210,8 +239,7 @@ public interface MessageProducer extends AutoCloseable {
    
     void
     setTimeToLive(long timeToLive) throws JMSException;
-   
-   
+      
     /** Gets the default length of time in milliseconds from its dispatch time
       * that a produced message should be retained by the message system.
       *
@@ -225,6 +253,41 @@ public interface MessageProducer extends AutoCloseable {
  
     long
     getTimeToLive() throws JMSException;
+    
+    /** Sets the default minimum length of time in milliseconds from its dispatch time
+     * before a produced message becomes visible on the target destination and available
+     * for delivery to consumers.  
+     *
+     * <P>deliveryDelay is set to zero by default.
+     *
+     * @param deliveryDelay the delivery delay in milliseconds.
+     *
+     * @exception JMSException if the JMS provider fails to set the delivery
+     *                         delay due to some internal error.
+     *
+     * @see javax.jms.MessageProducer#getDeliveryDelay
+     * @see javax.jms.Message#DEFAULT_DELIVERY_DELAY
+     * 
+     * @since 2.0
+     */
+  
+   void setDeliveryDelay(long deliveryDelay) throws JMSException;      
+   
+   /** Gets the default minimum length of time in milliseconds from its dispatch time
+    * before a produced message becomes visible on the target destination and available
+    * for delivery to consumers.  
+    *
+    * @return the delivery delay in milliseconds.
+    *
+    * @exception JMSException if the JMS provider fails to get the delivery 
+    *                         delay due to some internal error.
+    *
+    * @see javax.jms.MessageProducer#setDeliveryDelay
+    * 
+    * @since 2.0
+    */ 
+
+  long getDeliveryDelay() throws JMSException;   
 
     /** Gets the destination associated with this <CODE>MessageProducer</CODE>.
       *  

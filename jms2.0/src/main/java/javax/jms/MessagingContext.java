@@ -1059,6 +1059,37 @@ setTimeToLive(long timeToLive);
 long
 getTimeToLive();
 
+/** Sets the default minimum length of time in milliseconds from its dispatch time
+ * before a produced message becomes visible on the target destination and available
+ * for delivery to consumers.  
+ *
+ * <P>deliveryDelay is set to zero by default.
+ *
+ * @param deliveryDelay the delivery delay in milliseconds.
+ *
+ * @exception JMSRuntimeException if the JMS provider fails to set the delivery
+ *                         delay due to some internal error.
+ *
+ * @see javax.jms.MessagingContext#getDeliveryDelay
+ * @see javax.jms.Message#DEFAULT_DELIVERY_DELAY
+ */
+
+void setDeliveryDelay(long deliveryDelay);      
+
+/** Gets the default minimum length of time in milliseconds from its dispatch time
+* before a produced message becomes visible on the target destination and available
+* for delivery to consumers.  
+*
+* @return the delivery delay in milliseconds.
+*
+* @exception JMSRuntimeException if the JMS provider fails to get the delivery 
+*                         delay due to some internal error.
+*
+* @see javax.jms.MessagingContext#setDeliveryDelay
+*/ 
+
+long getDeliveryDelay();   
+
     /** Sends a message to the specified destination, using
      * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
      * and time to live.

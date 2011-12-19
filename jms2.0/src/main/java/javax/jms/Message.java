@@ -1,14 +1,42 @@
 /*
- * @(#)Message.java	1.60 02/04/09
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright 1997-2002 Sun Microsystems, Inc. All Rights Reserved.
+ * Copyright (c) 1997-2012 Oracle and/or its affiliates. All rights reserved.
  *
- *  SUN PROPRIETARY/CONFIDENTIAL.
- * This software is the proprietary information of Sun Microsystems, Inc.  
- * Use is subject to license terms.
- * 
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License.  You can
+ * obtain a copy of the License at
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * or packager/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at packager/legal/LICENSE.txt.
+ *
+ * GPL Classpath Exception:
+ * Oracle designates this particular file as subject to the "Classpath"
+ * exception as provided by Oracle in the GPL Version 2 section of the License
+ * file that accompanied this code.
+ *
+ * Modifications:
+ * If applicable, add the following below the License Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyright [year] [name of copyright owner]"
+ *
+ * Contributor(s):
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
  */
-
 
 package javax.jms;
 
@@ -516,10 +544,7 @@ import java.util.Properties;
   *
   * <P>SQL comments are not supported.
   *
-  * @version     1.1 April 2, 2002
-  * @author      Mark Hapner
-  * @author      Rich Burridge
-  * @author      Kate Stout
+  * @version     2.0 April 2, 2002
   *
   * @see         javax.jms.MessageConsumer#receive()
   * @see         javax.jms.MessageConsumer#receive(long)
@@ -548,6 +573,11 @@ public interface Message {
      *  never expires. 
      */
     static final long DEFAULT_TIME_TO_LIVE = 0;
+    
+    /** The message producer's default delivery delay is zero.
+     * @since 2.0
+     */
+    static final long DEFAULT_DELIVERY_DELAY = 0;    
 
 
     /** Gets the message ID.
@@ -1047,6 +1077,54 @@ public interface Message {
  
     void
     setJMSExpiration(long expiration) throws JMSException;
+    
+    /** Gets the message's delivery time value.
+     *  
+     * <P>When a message is sent, the <CODE>JMSDeliveryTime</CODE> header field 
+     * is left unassigned. After completion of the <CODE>send</CODE> or 
+     * <CODE>publish</CODE> method, it holds the delivery time of the
+     * message. This is the sum of the deliveryDelay value specified by the
+     * client and the GMT at the time of the <CODE>send</CODE> or 
+     * <CODE>publish</CODE>.
+     *
+     * <P>A message's delivery time is the earliest time when a provider may
+     * make the message visible on the target destination and available for
+     * delivery to consumers. 
+     *
+     * <P>Clients must not receive messages before the delivery time has been reached.
+     * 
+     * @return the message's delivery time, which is the sum of the deliveryDelay 
+     * value specified by the client and the GMT at the time of the <CODE>send</CODE> or 
+     * <CODE>publish</CODE>.
+     *  
+     * @exception JMSException if the JMS provider fails to get the message 
+     *                         expiration due to some internal error.
+     *
+     * @see javax.jms.Message#setJMSDeliveryTime(long)
+     * 
+     * @since 2.0
+     */ 
+   long getJMSDeliveryTime() throws JMSException;
+
+
+   /** Sets the message's delivery time value.
+     *
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the delivery time of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
+     *  
+     * @param expiration the message's delivery time value
+     *  
+     * @exception JMSException if the JMS provider fails to set the delivery 
+     *                         time due to some internal error.
+     *
+     * @see javax.jms.Message#getJMSDeliveryTime() 
+     * 
+     * @since 2.0
+     */ 
+   void setJMSDeliveryTime(long deliveryTime) throws JMSException;    
 
 
     /** Gets the message priority level.
