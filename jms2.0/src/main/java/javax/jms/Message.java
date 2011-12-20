@@ -212,14 +212,18 @@ import java.util.Properties;
   * <P>The JMS API reserves the <CODE>JMSX</CODE> property name prefix for JMS 
   * defined properties.
   * The full set of these properties is defined in the Java Message Service
-  * specification. New JMS defined properties may be added in later versions 
-  * of the JMS API.  Support for these properties is optional. The 
+  * specification. The specification also defines whether support for each
+  * property is mandatory or optional.  
+  * New JMS defined properties may be added in later versions 
+  * of the JMS API.  The 
   * <CODE>String[] ConnectionMetaData.getJMSXPropertyNames</CODE> method 
   * returns the names of the JMSX properties supported by a connection.
   *
   * <P>JMSX properties may be referenced in message selectors whether or not
   * they are supported by a connection. If they are not present in a
   * message, they are treated like any other absent property.
+  * The effect of setting a message selector on a property 
+  * which is set by the provider on receive is undefined.
   *
   * <P>JMSX properties defined in the specification as "set by provider on 
   * send" are available to both the producer and the consumers of the message. 
