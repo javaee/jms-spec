@@ -631,8 +631,11 @@ public interface Message {
 
     /** Sets the message ID.
       *  
-      * <P>JMS providers set this field when a message is sent. This method
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the message ID. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param id the ID of the message
       *
@@ -686,8 +689,11 @@ public interface Message {
 
     /** Sets the message timestamp.
       *  
-      * <P>JMS providers set this field when a message is sent. This method
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the message timestamp. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param timestamp the timestamp for this message
       *  
@@ -896,8 +902,11 @@ public interface Message {
 
     /** Sets the <CODE>Destination</CODE> object for this message.
       *  
-      * <P>JMS providers set this field when a message is sent. This method 
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the destination of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param destination the destination for this message
       *  
@@ -928,8 +937,11 @@ public interface Message {
  
     /** Sets the <CODE>DeliveryMode</CODE> value for this message.
       *  
-      * <P>JMS providers set this field when a message is sent. This method 
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the delivery mode of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param deliveryMode the delivery mode for this message
       *  
@@ -966,9 +978,11 @@ public interface Message {
  
     /** Specifies whether this message is being redelivered.
       *  
-      * <P>This field is set at the time the message is delivered. This
-      * method can be used to change the value for a message that has
-      * been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is delivered. This message cannot be used by clients 
+     * to configure the redelivered status of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param redelivered an indication of whether this message is being
       * redelivered
@@ -1068,8 +1082,11 @@ public interface Message {
  
     /** Sets the message's expiration value.
       *
-      * <P>JMS providers set this field when a message is sent. This method 
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the expiration time of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *  
       * @param expiration the message's expiration time
       *  
@@ -1158,8 +1175,11 @@ public interface Message {
 
     /** Sets the priority level for this message.
       *  
-      * <P>JMS providers set this field when a message is sent. This method 
-      * can be used to change the value for a message that has been received.
+     * <P>This method is for use by JMS providers only to set this field 
+     * when a message is sent. This message cannot be used by clients 
+     * to configure the priority level of the message. This method is public
+     * to allow one JMS provider to set this field when sending a message
+     * whose implementation is not its own.
       *
       * @param priority the priority of this message
       *  
