@@ -751,6 +751,10 @@ public interface Session extends Runnable, AutoCloseable {
      * specified topic, and creates a <code>TopicSubscriber</code> 
      * on that durable subscription.
      * <P>
+     * This method is deprecated since the object it returns, a {@link javax.jms.TopicSubscriber}, is deprecated.
+     * The method <a href="#createDurableConsumer(javax.jms.Topic,%20java.lang.String)">
+     * <code>createDurableConsumer</code></a> should be used instead.
+     * <p>
      * If the durable subscription already exists then this method
      * creates a <code>TopicSubscriber</code> on the existing durable
      * subscription.
@@ -791,8 +795,8 @@ public interface Session extends Runnable, AutoCloseable {
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
      *  
-     * @exception JMSException if the session fails to create a subscriber
-     *                         due to some internal error.
+     * @exception JMSException if the session fails to create the durable subscription 
+     *            and <code>TopicSubscriber</code> due to some internal error.
      * @exception InvalidDestinationException if an invalid topic is specified.
      *
      * @since 2.0
@@ -809,6 +813,10 @@ public interface Session extends Runnable, AutoCloseable {
      * selector and whether messages published by its
      * own connection should be delivered to it.
      * <P>
+     * This method is deprecated since the object it returns, a {@link javax.jms.TopicSubscriber}, is deprecated.
+     * The method <a href="#createDurableSubscriber(javax.jms.Topic,%20java.lang.String,%20java.lang.String,%20boolean)">
+     * <code>createDurableConsumer</code></a> should be used instead.
+     * <p>
      * If the durable subscription already exists then this method
      * creates a <code>TopicSubscriber</code> on the existing durable
      * subscription.
@@ -855,8 +863,8 @@ public interface Session extends Runnable, AutoCloseable {
      * @param noLocal if set, inhibits the delivery of messages published
      * by its own connection
      *  
-     * @exception JMSException if the session fails to create a subscriber
-     *                         due to some internal error.
+     * @exception JMSException if the session fails to create the durable subscription 
+     *            and <code>TopicSubscriber</code> due to some internal error.
      * @exception InvalidDestinationException if an invalid topic is specified.
      * @exception InvalidSelectorException if the message selector is invalid.
      *
@@ -867,6 +875,119 @@ public interface Session extends Runnable, AutoCloseable {
                             String name, 
 			    String messageSelector,
 			    boolean noLocal) throws JMSException;
+     
+     /** Creates a durable subscription with the specified name on the
+      * specified topic, and creates a <code>MessageConsumer</code> 
+      * on that durable subscription.
+      * <P>
+      * If the durable subscription already exists then this method
+      * creates a <code>MessageConsumer</code> on the existing durable
+      * subscription.
+      * <p>
+      * A durable subscription is used by a client which needs to receive
+      * all the messages published on a topic, including the ones published 
+      * when there is no <code>MessageConsumer</code> or <code>TopicSubscriber</code> associated with it. 
+      * The JMS provider retains a record of this durable subscription 
+      * and ensures that all messages from the topic's publishers are retained 
+      * until they are delivered to, and acknowledged by,
+      * a <code>MessageConsumer</code> or <code>TopicSubscriber</code> on this durable subscription
+      * or until they have expired.
+      * <p>
+      * A durable subscription will continue to accumulate messages 
+      * until it is deleted using the <code>unsubscribe</code> method. 
+      * <p>
+      * A durable subscription which has a <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * associated with it is described as being active. 
+      * A durable subscription which has no <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * associated with it is described as being inactive. 
+      * <p>
+      * Only one session at a time can have a
+      * <code>MessageConsumer</code> or <code>TopicSubscriber</code> for a particular durable subscription.
+      * <p>
+      * A durable subscription is identified by a name specified by the client
+      * and by the client identifier if set. If the client identifier was set
+      * when the durable subscription was first created then a client which 
+      * subsequently wishes to create a <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * on that durable subscription must use the same client identifier.
+      * <p>
+      * A client can change an existing durable subscription by calling
+      * <code>createDurableConsumer</code> 
+      * with the same name and client identifier (if used),
+      * and a new topic and/or message selector. 
+      * Changing a durable subscriber is equivalent to 
+      * unsubscribing (deleting) the old one and creating a new one.
+      *
+      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
+      * @param name the name used to identify this subscription
+      *  
+      * @exception JMSException if the session fails to create the durable subscription 
+      *            and <code>MessageConsumer</code> due to some internal error.
+      * @exception InvalidDestinationException if an invalid topic is specified.
+      *
+      * @since 2.0
+      */ 
+     MessageConsumer createDurableConsumer(Topic topic, String name) throws JMSException;
+
+     /** Creates a durable subscription with the specified name on the
+      * specified topic, and creates a <code>MessageConsumer</code> 
+      * on that durable subscription, specifying a message 
+      * selector and whether messages published by its
+      * own connection should be delivered to it.
+      * <P>
+      * If the durable subscription already exists then this method
+      * creates a <code>MessageConsumer</code> on the existing durable
+      * subscription.
+      * <p>
+      * A durable subscription is used by a client which needs to receive
+      * all the messages published on a topic, including the ones published 
+      * when there is no <code>MessageConsumer</code> or <code>TopicSubscriber</code> associated with it. 
+      * The JMS provider retains a record of this durable subscription 
+      * and ensures that all messages from the topic's publishers are retained 
+      * until they are delivered to, and acknowledged by,
+      * a <code>MessageConsumer</code> or <code>TopicSubscriber</code> on this durable subscription
+      * or until they have expired.
+      * <p>
+      * A durable subscription will continue to accumulate messages 
+      * until it is deleted using the <code>unsubscribe</code> method. 
+      * <p>
+      * A durable subscription which has a <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * associated with it is described as being active. 
+      * A durable subscription which has no <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * associated with it is described as being inactive. 
+      * <p>
+      * Only one session at a time can have a
+      * <code>MessageConsumer</code> or <code>TopicSubscriber</code> for a particular durable subscription.
+      * <p>
+      * A durable subscription is identified by a name specified by the client
+      * and by the client identifier if set. If the client identifier was set
+      * when the durable subscription was first created then a client which 
+      * subsequently wishes to create a <code>MessageConsumer</code> or <code>TopicSubscriber</code>
+      * on that durable subscription must use the same client identifier.
+      * <p>
+      * A client can change an existing durable subscription by calling
+      * <code>createDurableConsumer</code> 
+      * with the same name and client identifier (if used),
+      * and a new topic and/or message selector. 
+      * Changing a durable subscriber is equivalent to 
+      * unsubscribing (deleting) the old one and creating a new one.
+      *
+      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
+      * @param name the name used to identify this subscription
+      * @param messageSelector only messages with properties matching the
+      * message selector expression are delivered.  A value of null or
+      * an empty string indicates that there is no message selector 
+      * for the message consumer.
+      * @param noLocal if set, inhibits the delivery of messages published
+      * by its own connection
+      *  
+      * @exception JMSException if the session fails to create the durable subscription 
+      *                         and <code>MessageConsumer</code> due to some internal error.
+      * @exception InvalidDestinationException if an invalid topic is specified.
+      * @exception InvalidSelectorException if the message selector is invalid.
+      *
+      * @since 2.0
+      */ 
+      MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException;     
     
   /** Creates a <CODE>QueueBrowser</CODE> object to peek at the messages on 
       * the specified queue.
