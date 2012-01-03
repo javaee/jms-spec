@@ -291,6 +291,11 @@ public interface Connection extends AutoCloseable {
       * wait until all of them have returned before it may return. While these
       * message listeners are completing, they must have the full services of the
       * connection available to them.
+      * <p>
+      * For the avoidance of doubt, if an exception listener for this connection 
+      * is running when <code>stop</code> is invoked, there is no requirement for 
+      * the <code>stop</code> call to wait until the exception listener has returned
+      * before it may return. 
       *  
       * @exception JMSException if the JMS provider fails to stop
       *                         message delivery due to some internal error.
@@ -327,7 +332,12 @@ public interface Connection extends AutoCloseable {
       * <CODE>close</CODE> is invoked, all the facilities of the connection and 
       * its sessions must remain available to those listeners until they return 
       * control to the JMS provider. 
-      *
+      * <p>
+      * For the avoidance of doubt, if an exception listener for this connection 
+      * is running when <code>close</code> is invoked, there is no requirement for 
+      * the <code>close</code> call to wait until the exception listener has returned
+      * before it may return. 
+      * 
       * <P>Closing a connection causes any of its sessions' transactions
       * in progress to be rolled back. In the case where a session's
       * work is coordinated by an external transaction manager, a session's 
@@ -348,7 +358,7 @@ public interface Connection extends AutoCloseable {
       *                         example, a failure to release resources
       *                         or to close a socket connection can cause
       *                         this exception to be thrown.
-      *
+      *                         
       */
 
     void 

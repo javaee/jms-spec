@@ -413,7 +413,12 @@ public interface Session extends Runnable, AutoCloseable {
       * listener in progress has completed. A blocked message consumer
       * <CODE>receive</CODE> call returns <CODE>null</CODE> when this session 
       * is closed.
-      *
+      * <p>
+      * For the avoidance of doubt, if an exception listener for this session's connection 
+      * is running when <code>close</code> is invoked, there is no requirement for 
+      * the <code>close</code> call to wait until the exception listener has returned
+      * before it may return. 
+      * 
       * <P>Closing a transacted session must roll back the transaction
       * in progress.
       * 
@@ -426,6 +431,7 @@ public interface Session extends Runnable, AutoCloseable {
       * 
       * @exception JMSException if the JMS provider fails to close the
       *                         session due to some internal error.
+      *                         
       */
 
     void
