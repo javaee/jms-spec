@@ -414,6 +414,10 @@ public interface Session extends Runnable, AutoCloseable {
       * <CODE>receive</CODE> call returns <CODE>null</CODE> when this session 
       * is closed.
       * <p>
+      * A message listener must not attempt to close its own session as this 
+      * would lead to deadlock. The JMS provider must detect this and throw a 
+      * javax.jms.IllegalStateException.
+      * <p>
       * For the avoidance of doubt, if an exception listener for this session's connection 
       * is running when <code>close</code> is invoked, there is no requirement for 
       * the <code>close</code> call to wait until the exception listener has returned

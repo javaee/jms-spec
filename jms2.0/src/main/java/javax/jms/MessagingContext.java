@@ -256,6 +256,10 @@ public interface MessagingContext extends AutoCloseable {
      * message listeners are completing, they must have the full services of the
      * connection available to them.
      * <p>
+     * A message listener must not attempt to stop its own MessagingContext as this 
+     * would lead to deadlock. The JMS provider must detect this and throw a 
+     * javax.jms.IllegalStateRuntimeException.
+     * <p>
      * For the avoidance of doubt, if an exception listener for the MessagingContext's connection 
      * is running when <code>stop</code> is invoked, there is no requirement for 
      * the <code>stop</code> call to wait until the exception listener has returned
@@ -300,6 +304,10 @@ public interface MessagingContext extends AutoCloseable {
      * <CODE>close</CODE> is invoked, all the facilities of the connection and 
      * its sessions must remain available to those listeners until they return 
      * control to the JMS provider. 
+     * <p>
+     * A message listener must not attempt to close its own MessagingContext as this 
+     * would lead to deadlock. The JMS provider must detect this and throw a 
+     * javax.jms.IllegalStateRuntimeException.
      * <p>
      * For the avoidance of doubt, if an exception listener for the MessagingContext's connection 
      * is running when <code>close</code> is invoked, there is no requirement for 

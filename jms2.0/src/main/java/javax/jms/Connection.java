@@ -292,6 +292,10 @@ public interface Connection extends AutoCloseable {
       * message listeners are completing, they must have the full services of the
       * connection available to them.
       * <p>
+      * A message listener must not attempt to stop its own connection as this 
+      * would lead to deadlock. The JMS provider must detect this and throw a 
+      * javax.jms.IllegalStateException.
+      * <p>
       * For the avoidance of doubt, if an exception listener for this connection 
       * is running when <code>stop</code> is invoked, there is no requirement for 
       * the <code>stop</code> call to wait until the exception listener has returned
@@ -332,6 +336,10 @@ public interface Connection extends AutoCloseable {
       * <CODE>close</CODE> is invoked, all the facilities of the connection and 
       * its sessions must remain available to those listeners until they return 
       * control to the JMS provider. 
+      * <p>
+      * A message listener must not attempt to close its own connection as this 
+      * would lead to deadlock. The JMS provider must detect this and throw a 
+      * javax.jms.IllegalStateException.
       * <p>
       * For the avoidance of doubt, if an exception listener for this connection 
       * is running when <code>close</code> is invoked, there is no requirement for 
