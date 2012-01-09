@@ -658,7 +658,7 @@ public interface MessagingContext extends AutoCloseable {
  SyncMessageConsumer createSyncConsumer(Destination destination, java.lang.String messageSelector);
   
   	/**
-	 * Creates <CODE>SyncMessageConsumer</CODE> for the specified destination, using
+	 * Creates a <CODE>SyncMessageConsumer</CODE> for the specified destination, using
 	 * a message selector. This method can specify whether messages published by
 	 * its own connection should be delivered to it, if the destination is a
 	 * topic.
@@ -666,11 +666,15 @@ public interface MessagingContext extends AutoCloseable {
 	 * A client uses a <CODE>SyncMessageConsumer</CODE> object to synchronously
 	 * receive messages that have been sent to a destination.
 	 * <P>
-	 * In some cases, a connection may both publish and subscribe to a topic.
-	 * The consumer <CODE>NoLocal</CODE> attribute allows a consumer to inhibit
-	 * the delivery of messages published by its own connection. The default
-	 * value for this attribute is False. The <CODE>noLocal</CODE> value must be
-	 * supported by destinations that are topics.
+     * The <code>NoLocal</code> argument is for use when the
+     * destination is a topic and the MessagingContext's connection
+     * is also being used to publish messages to that topic.
+     * If <code>NoLocal</code> is set to true then the
+     * <code>SyncMessageConsumer</code> will not receive messages published
+     * to the topic by its own connection. The default value of this
+     * argument is false. If the destination is a queue
+     * then the effect of setting <code>NoLocal</code>
+     * to true is not specified.
 	 * 
 	 * @param destination
 	 *            the <CODE>Destination</CODE> to access
@@ -679,11 +683,10 @@ public interface MessagingContext extends AutoCloseable {
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-	 * @param NoLocal
-	 *            - if true, and the destination is a topic, inhibits the
-	 *            delivery of messages published by its own connection. The
-	 *            behavior for <CODE>NoLocal</CODE> is not specified if the
-	 *            destination is a queue.
+     * @param NoLocal  - if true, and the destination is a topic,
+     *                   then the <code>SyncMessageConsumer</code> will
+     *                   not receive messages published to the topic
+     *                   by its own connection
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the session fails to create a SyncMessageConsumer due to some
@@ -807,7 +810,8 @@ public interface MessagingContext extends AutoCloseable {
     /** Creates a durable subscription with the specified name on the
      * specified topic, and creates a <code>SyncMessageConsumer</code> 
      * on that durable subscription, specifying a message selector and 
-     * whether messages published by its own connection should be delivered to it. 
+     * whether messages published by its own connection should be added to 
+     * the durable subscription.  
      * <P>
      * If the durable subscription already exists then this method
      * creates a <code>SyncMessageConsumer</code> on the existing durable
@@ -849,6 +853,13 @@ public interface MessagingContext extends AutoCloseable {
      * and a new topic and/or message selector. 
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
+     * <p>
+     * The <code>NoLocal</code> argument is for use when the MessagingContext's 
+     * connection is also being used to publish messages to the topic. 
+     * If <code>NoLocal</code> is set to true then messages published
+     * to the topic by its own connection will not be added to the
+     * durable subscription. The default value of this 
+     * argument is false. 
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
@@ -856,8 +867,8 @@ public interface MessagingContext extends AutoCloseable {
      * message selector expression are delivered.  A value of null or
      * an empty string indicates that there is no message selector 
      * for the message consumer.
-     * @param noLocal if set, inhibits the delivery of messages published
-     * by its own connection
+     * @param noLocal if true, messages published by its own connection
+     * will not be added to the durable subscription.
      *  
      * @exception JMSRuntimeException if the session fails to create a subscriber
      *                         due to some internal error.
@@ -1309,7 +1320,7 @@ long getDeliveryDelay();
 	 * Creates a new consumer on the specified destination that will deliver
 	 * messages to the specified <code>MessageListener</code>.
 	 * <p>
-	 * If the specified listener is null then this method does nothing
+	 * If the specified listener is null then this method does nothing.
 	 * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param listener - The listener to which the messages are to be delivered
@@ -1320,8 +1331,8 @@ long getDeliveryDelay();
 
 	/**
 	 * Creates a new consumer on the specified destination that will deliver
-	 * messages in batches to the specified <code>BatchMessageListener</code> with the
-	 * specified maximum batch size and timeout.
+	 * messages in batches to the specified <code>BatchMessageListener</code> 
+	 * using the specified maximum batch size and timeout.
 	 * <p>
 	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
 	 * in batches whose size is no greater than the specified maximum batch size. 
@@ -1330,7 +1341,7 @@ long getDeliveryDelay();
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
 	 * <p>
-	 * If the specified listener is null then this method does nothing
+	 * If the specified listener is null then this method does nothing.
 	 * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param listener - The listener to which the messages are to be delivered
@@ -1347,10 +1358,10 @@ long getDeliveryDelay();
 
     /**
      * Creates a consumer on the specified destination,
-     * using the specified message selector,
-     * that will deliver messages to the specified <code>MessageListener</code> 
+     * that will deliver messages to the specified <code>MessageListener</code>,
+     * using a message selector.
      * <p>
-     * If the specified listener is null then this method does nothing 
+     * If the specified listener is null then this method does nothing.
      * 
      * @param destination - The destination from which messages are to be consumed
      * @param messageSelector - Only messages with properties matching the message selector
@@ -1366,9 +1377,9 @@ long getDeliveryDelay();
 	
     /**
      * Creates a consumer on the specified destination,
-     * using the specified message selector,
      * that will deliver messages in batches to the specified <code>BatchMessageListener</code> 
-     * with the specified maximum batch size and timeout.
+     * using a message selector and the specified maximum batch size and timeout.
+     * and 
 	 * <p>
 	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
 	 * in batches whose size is no greater than the specified maximum batch size. 
@@ -1377,7 +1388,7 @@ long getDeliveryDelay();
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
      * <p>
-     * If the specified listener is null then this method does nothing 
+     * If the specified listener is null then this method does nothing.
      * 
      * @param destination - The destination from which messages are to be consumed
      * @param messageSelector - Only messages with properties matching the message selector
@@ -1398,23 +1409,31 @@ long getDeliveryDelay();
 
 	/**
 	 * Creates a consumer on the specified destination, 
-	 * using the specified message message selector, 
-	 * that will deliver messages to the specified <code>MessageListener</code>. 
-	 * This method can specify whether messages
-	 * published by its own connection should be delivered to it, if the
-	 * destination is a topic.
+	 * that will deliver messages to the specified <code>MessageListener</code>,
+	 * using a message selector. This method can specify whether messages 
+	 * published by its own connection should be delivered to it, if the destination is a topic.
+     * <p>
+     * The <code>NoLocal</code> argument is for use when the
+     * destination is a topic and the MessagingContext's connection
+     * is also being used to publish messages to that topic.
+     * If <code>NoLocal</code> is set to true then the
+     * consumer will not receive messages published
+     * to the topic by its own connection. The default value of this
+     * argument is false. If the destination is a queue
+     * then the effect of setting <code>NoLocal</code>
+     * to true is not specified.
 	 * <p>
-	 * If the specified listener is null then this method does nothing
-	 * 
+	 * If the specified listener is null then this method does nothing.
+     *
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param messageSelector - Only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-	 * @param NoLocal - If true, and the destination is a topic, inhibits the
-	 *            delivery of messages published by its own connection. The
-	 *            behavior for NoLocal is not specified if the destination is a
-	 *            queue.
+     * @param NoLocal  - if true, and the destination is a topic,
+     *                   then the consumer will
+     *                   not receive messages published to the topic
+     *                   by its own connection.
 	 * @param listener - The listener to which the messages are to be delivered
 	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
@@ -1424,12 +1443,10 @@ long getDeliveryDelay();
 	
 	/**
 	 * Creates a consumer on the specified destination, 
-	 * using the specified message message selector, 
-	 * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
-	 * with the specified maximum batch size and timeout.
-	 * This method can specify whether messages
-	 * published by its own connection should be delivered to it, if the
-	 * destination is a topic.
+	 * that will deliver messages in batches to the specified <code>BatchMessageListener</code>,
+	 * using a message selector and the specified maxBatchSize and timeout. 
+	 * This method can specify whether messages 
+	 * published by its own connection should be delivered to it, if the destination is a topic.
 	 * <p>
 	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
 	 * in batches whose size is no greater than the specified maximum batch size. 
@@ -1438,17 +1455,27 @@ long getDeliveryDelay();
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
 	 * <p>
-	 * If the specified listener is null then this method does nothing
+     * The <code>NoLocal</code> argument is for use when the
+     * destination is a topic and the MessagingContext's connection
+     * is also being used to publish messages to that topic.
+     * If <code>NoLocal</code> is set to true then the
+     * consumer will not receive messages published
+     * to the topic by its own connection. The default value of this
+     * argument is false. If the destination is a queue
+     * then the effect of setting <code>NoLocal</code>
+     * to true is not specified.
+	 * <p>
+	 * If the specified listener is null then this method does nothing.
 	 * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param messageSelector - Only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-	 * @param NoLocal - If true, and the destination is a topic, inhibits the
-	 *            delivery of messages published by its own connection. The
-	 *            behavior for NoLocal is not specified if the destination is a
-	 *            queue.
+     * @param NoLocal  - if true, and the destination is a topic,
+     *                   then the consumer will
+     *                   not receive messages published to the topic
+     *                   by its own connection.
 	 * @param listener - The listener to which the messages are to be delivered
 	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
@@ -1520,7 +1547,7 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * Creates a durable subscription with the specified name on the specified topic, 
      * and creates a consumer on that durable subscription 
      * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
-	 * with the specified maximum batch size and timeout.
+	 * using the specified maximum batch size and timeout.
      * <p>
      * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
      * that will deliver messages to the specified <code>MessageListener</code>. 
@@ -1588,8 +1615,8 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * Creates a durable subscription with the specified name on the specified topic, 
 	 * and creates a consumer on that durable subscription 
 	 * that will deliver messages to the specified <code>MessageListener</code>, 
-	 * specifying a message selector and whether messages published by its
-     * own connection should be delivered to it. 
+	 * using a message selector and specifying whether messages published by its
+     * own connection should be added to the durable subscription. 
 	 * <p>
 	 * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
 	 * that will deliver messages to the specified <code>MessageListener</code>. 
@@ -1631,6 +1658,13 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
 	 * <p>
+     * The <code>NoLocal</code> argument is for use when the MessagingContext's
+     * connection is also being used to publish messages to the topic.
+     * If <code>NoLocal</code> is set to true then messages published
+     * to the topic by its own connection will not be added to the
+     * durable subscription. The default value of this
+     * argument is false.
+	 * <p>
 	 * If the specified listener is null then this method does nothing.
 	 * 
 	 * @param topic - The topic from which messages are to be consumed
@@ -1639,7 +1673,8 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-	 * @param NoLocal - If true, inhibits the delivery of messages published by its own connection.
+     * @param noLocal if true, messages published by its own connection
+     *            will not be added to the durable subscription.
 	 * @param listener - The listener to which the messages are to be delivered
 	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
@@ -1650,12 +1685,11 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	
     /**
      * Creates a durable subscription with the specified name on the specified topic, 
-     * using the specified message message selector, 
      * and creates a consumer on that durable subscription 
      * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
-	 * with the specified maximum batch size and timeout.
-	 * This method can specify whether messages published by its own connection
-	 * should be delivered to the specified listener.
+     * using a message selector, the specified maximum batch size and timeout,
+	 * and specifying whether messages published by its own connection
+	 * should be added to the durable subscription.
      * <p>
      * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
      * that will deliver messages to the specified <code>MessageListener</code>. 
@@ -1704,6 +1738,13 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
 	 * <p>
+	 * The <code>NoLocal</code> argument is for use when the MessagingContext's
+     * connection is also being used to publish messages to the topic.
+     * If <code>NoLocal</code> is set to true then messages published
+     * to the topic by its own connection will not be added to the
+     * durable subscription. The default value of this
+     * argument is false.
+	 * <p>
 	 * If the specified listener is null then this method does nothing.
 	 * 
 	 * @param topic - The topic from which messages are to be consumed
@@ -1712,7 +1753,8 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-	 * @param NoLocal - If true, inhibits the delivery of messages published by its own connection.
+     * @param noLocal if true, messages published by its own connection
+     *            will not be added to the durable subscription.
 	 * @param listener - The listener to which the messages are to be delivered
 	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no

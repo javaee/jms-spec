@@ -663,11 +663,15 @@ public interface Session extends Runnable, AutoCloseable {
       * <P>A client uses a <CODE>MessageConsumer</CODE> object to receive 
       * messages that have been published to a destination. 
       *               
-      * <P>In some cases, a connection may both publish and subscribe to a 
-      * topic. The consumer <CODE>NoLocal</CODE> attribute allows a consumer
-      * to inhibit the delivery of messages published by its own connection.
-      * The default value for this attribute is False. The <CODE>noLocal</CODE> 
-      * value must be supported by destinations that are topics. 
+      * <P>The <code>NoLocal</code> argument is for use when the
+      * destination is a topic and the session's connection 
+      * is also being used to publish messages to that topic. 
+      * If <code>NoLocal</code> is set to true then the 
+      * <code>MessageConsumer</code> will not receive messages published
+      * to the topic by its own connection. The default value of this 
+      * argument is false. If the destination is a queue
+      * then the effect of setting <code>NoLocal</code>
+      * to true is not specified.
       *
       * @param destination the <CODE>Destination</CODE> to access 
       * @param messageSelector only messages with properties matching the
@@ -675,10 +679,9 @@ public interface Session extends Runnable, AutoCloseable {
       * an empty string indicates that there is no message selector 
       * for the message consumer.
       * @param NoLocal  - if true, and the destination is a topic,
-      *                   inhibits the delivery of messages published
-      *                   by its own connection.  The behavior for
-      *                   <CODE>NoLocal</CODE> is 
-      *                   not specified if the destination is a queue.
+      *                   then the <code>MessageConsumer</code> will 
+      *                   not receive messages published to the topic
+      *                   by its own connection. 
       * 
       * @exception JMSException if the session fails to create a MessageConsumer
       *                         due to some internal error.
@@ -809,7 +812,7 @@ public interface Session extends Runnable, AutoCloseable {
      *            and <code>TopicSubscriber</code> due to some internal error.
      * @exception InvalidDestinationException if an invalid topic is specified.
      *
-     * @since 2.0
+     * @since 1.1
      */ 
 
     TopicSubscriber
@@ -821,7 +824,7 @@ public interface Session extends Runnable, AutoCloseable {
      * specified topic, and creates a <code>TopicSubscriber</code> 
      * on that durable subscription, specifying a message 
      * selector and whether messages published by its
-     * own connection should be delivered to it.
+     * own connection should be added to the durable subscription.
      * <P>
      * This method is deprecated since the object it returns, a {@link javax.jms.TopicSubscriber}, is deprecated.
      * The method <a href="#createDurableSubscriber(javax.jms.Topic,%20java.lang.String,%20java.lang.String,%20boolean)">
@@ -863,6 +866,13 @@ public interface Session extends Runnable, AutoCloseable {
      * and a new topic and/or message selector. 
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
+     * 
+     * <P>The <code>NoLocal</code> argument is for use when the session's 
+     * connection is also being used to publish messages to the topic. 
+     * If <code>NoLocal</code> is set to true then messages published
+     * to the topic by its own connection will not be added to the
+     * durable subscription. The default value of this 
+     * argument is false. 
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
@@ -870,15 +880,15 @@ public interface Session extends Runnable, AutoCloseable {
      * message selector expression are delivered.  A value of null or
      * an empty string indicates that there is no message selector 
      * for the message consumer.
-     * @param noLocal if set, inhibits the delivery of messages published
-     * by its own connection
+     * @param noLocal if true, messages published by its own connection
+     * will not be added to the durable subscription.
      *  
      * @exception JMSException if the session fails to create the durable subscription 
      *            and <code>TopicSubscriber</code> due to some internal error.
      * @exception InvalidDestinationException if an invalid topic is specified.
      * @exception InvalidSelectorException if the message selector is invalid.
      *
-     * @since 2.0
+     * @since 1.1
      */ 
      TopicSubscriber
      createDurableSubscriber(Topic topic,
@@ -942,7 +952,7 @@ public interface Session extends Runnable, AutoCloseable {
       * specified topic, and creates a <code>MessageConsumer</code> 
       * on that durable subscription, specifying a message 
       * selector and whether messages published by its
-      * own connection should be delivered to it.
+      * own connection should be added to the durable subscription.
       * <P>
       * If the durable subscription already exists then this method
       * creates a <code>MessageConsumer</code> on the existing durable
@@ -980,6 +990,13 @@ public interface Session extends Runnable, AutoCloseable {
       * and a new topic and/or message selector. 
       * Changing a durable subscriber is equivalent to 
       * unsubscribing (deleting) the old one and creating a new one.
+      * 
+      * <P>The <code>NoLocal</code> argument is for use when the session's 
+      * connection is also being used to publish messages to the topic. 
+      * If <code>NoLocal</code> is set to true then messages published
+      * to the topic by its own connection will not be added to the
+      * durable subscription. The default value of this 
+      * argument is false. 
       *
       * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
       * @param name the name used to identify this subscription
@@ -987,8 +1004,8 @@ public interface Session extends Runnable, AutoCloseable {
       * message selector expression are delivered.  A value of null or
       * an empty string indicates that there is no message selector 
       * for the message consumer.
-      * @param noLocal if set, inhibits the delivery of messages published
-      * by its own connection
+      * @param noLocal if true, messages published by its own connection
+      * will not be added to the durable subscription.
       *  
       * @exception JMSException if the session fails to create the durable subscription 
       *                         and <code>MessageConsumer</code> due to some internal error.
