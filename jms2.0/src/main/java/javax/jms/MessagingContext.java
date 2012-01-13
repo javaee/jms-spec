@@ -666,14 +666,14 @@ public interface MessagingContext extends AutoCloseable {
 	 * A client uses a <CODE>SyncMessageConsumer</CODE> object to synchronously
 	 * receive messages that have been sent to a destination.
 	 * <P>
-     * The <code>NoLocal</code> argument is for use when the
+     * The <code>noLocal</code> argument is for use when the
      * destination is a topic and the MessagingContext's connection
      * is also being used to publish messages to that topic.
-     * If <code>NoLocal</code> is set to true then the
+     * If <code>noLocal</code> is set to true then the
      * <code>SyncMessageConsumer</code> will not receive messages published
      * to the topic by its own connection. The default value of this
      * argument is false. If the destination is a queue
-     * then the effect of setting <code>NoLocal</code>
+     * then the effect of setting <code>noLocal</code>
      * to true is not specified.
 	 * 
 	 * @param destination
@@ -683,7 +683,7 @@ public interface MessagingContext extends AutoCloseable {
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-     * @param NoLocal  - if true, and the destination is a topic,
+     * @param noLocal  - if true, and the destination is a topic,
      *                   then the <code>SyncMessageConsumer</code> will
      *                   not receive messages published to the topic
      *                   by its own connection
@@ -699,7 +699,7 @@ public interface MessagingContext extends AutoCloseable {
 	 * @since 2.0
 	 * 
 	 */     
- SyncMessageConsumer createSyncConsumer(Destination destination, java.lang.String messageSelector, boolean NoLocal);
+ SyncMessageConsumer createSyncConsumer(Destination destination, java.lang.String messageSelector, boolean noLocal);
  
  
    /** Creates a queue identity given a <CODE>Queue</CODE> name.
@@ -854,9 +854,9 @@ public interface MessagingContext extends AutoCloseable {
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
      * <p>
-     * The <code>NoLocal</code> argument is for use when the MessagingContext's 
+     * The <code>noLocal</code> argument is for use when the MessagingContext's 
      * connection is also being used to publish messages to the topic. 
-     * If <code>NoLocal</code> is set to true then messages published
+     * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
      * durable subscription. The default value of this 
      * argument is false. 
@@ -1413,14 +1413,14 @@ long getDeliveryDelay();
 	 * using a message selector. This method can specify whether messages 
 	 * published by its own connection should be delivered to it, if the destination is a topic.
      * <p>
-     * The <code>NoLocal</code> argument is for use when the
+     * The <code>noLocal</code> argument is for use when the
      * destination is a topic and the MessagingContext's connection
      * is also being used to publish messages to that topic.
-     * If <code>NoLocal</code> is set to true then the
+     * If <code>noLocal</code> is set to true then the
      * consumer will not receive messages published
      * to the topic by its own connection. The default value of this
      * argument is false. If the destination is a queue
-     * then the effect of setting <code>NoLocal</code>
+     * then the effect of setting <code>noLocal</code>
      * to true is not specified.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
@@ -1430,7 +1430,7 @@ long getDeliveryDelay();
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-     * @param NoLocal  - if true, and the destination is a topic,
+     * @param noLocal  - if true, and the destination is a topic,
      *                   then the consumer will
      *                   not receive messages published to the topic
      *                   by its own connection.
@@ -1439,7 +1439,7 @@ long getDeliveryDelay();
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
-	void setMessageListener(Destination destination, String messageSelector, boolean NoLocal, MessageListener listener);
+	void setMessageListener(Destination destination, String messageSelector, boolean noLocal, MessageListener listener);
 	
 	/**
 	 * Creates a consumer on the specified destination, 
@@ -1455,14 +1455,14 @@ long getDeliveryDelay();
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
 	 * <p>
-     * The <code>NoLocal</code> argument is for use when the
+     * The <code>noLocal</code> argument is for use when the
      * destination is a topic and the MessagingContext's connection
      * is also being used to publish messages to that topic.
-     * If <code>NoLocal</code> is set to true then the
+     * If <code>noLocal</code> is set to true then the
      * consumer will not receive messages published
      * to the topic by its own connection. The default value of this
      * argument is false. If the destination is a queue
-     * then the effect of setting <code>NoLocal</code>
+     * then the effect of setting <code>noLocal</code>
      * to true is not specified.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
@@ -1472,7 +1472,7 @@ long getDeliveryDelay();
 	 *            expression are delivered. A value of null or an empty string
 	 *            indicates that there is no message selector for the message
 	 *            consumer.
-     * @param NoLocal  - if true, and the destination is a topic,
+     * @param noLocal  - if true, and the destination is a topic,
      *                   then the consumer will
      *                   not receive messages published to the topic
      *                   by its own connection.
@@ -1485,7 +1485,7 @@ long getDeliveryDelay();
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
-	void setBatchMessageListener(Destination destination, String messageSelector, boolean NoLocal, BatchMessageListener listener, int maxBatchSize,
+	void setBatchMessageListener(Destination destination, String messageSelector, boolean noLocal, BatchMessageListener listener, int maxBatchSize,
 			long batchTimeout);		
 
 	/**
@@ -1658,9 +1658,9 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
 	 * <p>
-     * The <code>NoLocal</code> argument is for use when the MessagingContext's
+     * The <code>noLocal</code> argument is for use when the MessagingContext's
      * connection is also being used to publish messages to the topic.
-     * If <code>NoLocal</code> is set to true then messages published
+     * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
      * durable subscription. The default value of this
      * argument is false.
@@ -1680,7 +1680,7 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
-	void setMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean NoLocal,
+	void setMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean noLocal,
 			MessageListener listener);
 	
     /**
@@ -1738,9 +1738,9 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * assemble a batch of messages that is as large as possible but no greater
 	 * than the batch size.
 	 * <p>
-	 * The <code>NoLocal</code> argument is for use when the MessagingContext's
+	 * The <code>noLocal</code> argument is for use when the MessagingContext's
      * connection is also being used to publish messages to the topic.
-     * If <code>NoLocal</code> is set to true then messages published
+     * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
      * durable subscription. The default value of this
      * argument is false.
@@ -1764,7 +1764,7 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
-	void setBatchMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean NoLocal,
+	void setBatchMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean noLocal,
 			BatchMessageListener listener, int maxBatchSize, long batchTimeout);		
 
 // END OF NEW METHODS FOR ASYNC MESSAGE CONSUPTION
