@@ -65,10 +65,10 @@ import java.io.Serializable;
  * Java SE applications allow multiple sessions on the same connection. 
  * This allows the same physical connection to be used in multiple threads simultaneously.  
  * Java SE applications which require multiple sessions to be created on the same connection
- * will be permitted to create connections as they do now and then create <code>MessagingContext</code> objects 
- * using new factory methods on the <code>Connection</code> interface.  
- * Java SE applications for which one session per connection is adequate
- * may also use the new factory methods on the <code>ConnectionFactory</code> interface.
+ * should use the using the factory methods on the <code>ConnectionFactory</code> interface
+ * to create the first <code>MessagingContext</code> and then 
+ * use the <code>createMessagingContext</code> method on <code>MessagingContext</code>
+ * to create additional <code>MessagingContext</code> objects that use the same connection.
  * 
  * @version 2.0
  * @since 2.0
@@ -76,6 +76,36 @@ import java.io.Serializable;
  */
 
 public interface MessagingContext extends AutoCloseable {
+	
+    /** 
+     * Creates a new <code>MessagingContext</code> with the specified session mode
+	 * using the same connection as this <code>MessagingContext</code> and creating a new session.
+	 * <p>
+     * This method does not start the connection. 
+     * If the connection has not already been started then it will be automatically started
+     * when a SyncMessageConsumer is created or a MessageListener registered on  
+     * any of the <code>MessagingContext</code> objects for that connection.
+     * <p>
+     * This method is for use in a Java SE environment only. 
+     * It may not be used in a Java EE environment because this would violate
+     * the Java EE restriction that a connection may have only one session.
+	 *
+	 * @param sessionMode indicates whether the new MessagingContext is transacted or not,
+	 * and if it is not, whether the consumer or the client will acknowledge any 
+	 * messages it receives. Legal values are <code>MessagingContext.SESSION_TRANSACTED</code>, 
+	 * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
+	 * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, and 
+	 * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+	 * 
+	 * @return a newly created MessagingContext
+	 *
+	 * @exception JMSRuntimeException if the JMS provider fails to create the
+	 *                         MessagingContext due to some internal error.
+	 * @exception JMSSecurityRuntimeException  if client authentication fails due to 
+	 *                         an invalid user name or password.
+     * @since 2.0 
+     */ 
+	MessagingContext createMessagingContext(int sessionMode);
 	
 // START OF METHODS COPIED FROM CONNECTION 
    
@@ -947,6 +977,76 @@ public interface MessagingContext extends AutoCloseable {
 
  TemporaryTopic
  createTemporaryTopic();
+ 
+    /** Creates a durable subscription with the specified name on the
+     * specified topic, specifying a message selector and 
+     * whether messages published by its own connection should be added to 
+     * the durable subscription.  
+     * <p>
+     * A durable subscription is used by a client which needs to receive
+     * all the messages published on a topic, including the ones published 
+     * when there is no active consumer associated with it. 
+     * The JMS provider retains a record of this durable subscription 
+     * and ensures that all messages from the topic's publishers are retained 
+     * until they are delivered to, and acknowledged by,
+     * a consumer on this durable subscription
+     * or until they have expired.
+     * <p>
+     * A durable subscription will continue to accumulate messages 
+     * until it is deleted using the <code>unsubscribe</code> method. 
+     * <p>
+     * A consumer may be created on a durable subscription using the
+     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
+     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
+     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
+     * A durable subscription which has a consumer 
+     * associated with it is described as being active. 
+     * A durable subscription which has no consumer
+     * associated with it is described as being inactive. 
+     * <p>
+     * Only one session at a time can have a
+     * active consumer on a particular durable subscription.
+     * <p>
+     * A durable subscription is identified by a name specified by the client
+     * and by the client identifier if set. If the client identifier was set
+     * when the durable subscription was first created then a client which 
+     * subsequently wishes to create a consumer on that durable subscription
+     * or delete the durable subscription must use the same client identifier.
+     * <P>
+     * If a durable subscription already exists with the same name
+     * and client identifier (if set) and the same topic and message selector
+     * then this method does nothing.
+     * <p>
+     * A client can change an existing durable subscription by calling
+     * <code>subscribe</code> 
+     * with the same name and client identifier (if used),
+     * and a new topic and/or message selector. 
+     * Changing a durable subscriber is equivalent to 
+     * unsubscribing (deleting) the old one and creating a new one.
+     * <p>
+     * The <code>noLocal</code> argument is for use when the MessagingContext's 
+     * connection is also being used to publish messages to the topic. 
+     * If <code>noLocal</code> is set to true then messages published
+     * to the topic by its own connection will not be added to the
+     * durable subscription. The default value of this 
+     * argument is false. 
+     *
+     * @param topic the non-temporary <CODE>Topic</CODE> on which the durable subscription will be created.
+     * @param name the name used to identify this subscription
+     * @param messageSelector only messages with properties matching the
+     * message selector expression are added to the durable subscription.  
+     * A value of null or an empty string indicates that there is no message selector 
+     * for the durable subscription.
+     * @param noLocal if true, messages published by its own connection
+     * will not be added to the durable subscription.
+     *  
+     * @exception JMSRuntimeException if the session fails to create the durable subscription
+     *                         due to some internal error.
+     * @exception InvalidDestinationRuntimeException if an invalid topic is specified.
+     * @exception InvalidSelectorRuntimeException if the message selector is invalid.
+     *
+	 */
+	void subscribe(Topic topic, String name, String messageSelector, boolean noLocal);
 
 
     /** Unsubscribes a durable subscription that has been created by a client.
@@ -1802,5 +1902,37 @@ void send(Destination destination, String payload);
 void send(Destination destination, Serializable payload);
 
 // END OF NEW MESSAGE PAYLOAD CONVENIENCE METHODS
+
+// START OF METHODS COPIED FROM MESSAGE
+
+/** 
+ * Acknowledges all messages consumed by the MessagingContext's session.
+ * <p> 
+ * This method is for use when the session has an acknowledgement mode of 
+ * CLIENT_ACKNOWLEDGE. If the session is transacted or has an acknowledgement
+ * mode of AUTO_ACKNOWLEDGE or DUPS_OK_ACHNOWLEDGE calling this method has no effect.
+ * <p>
+ * This method has identical behaviour to the <code>acknowledge</code>
+ * method on <code>Message</code>. A client may individually acknowledge 
+ * each message as it is consumed, or it may choose to acknowledge messages 
+ * as an application-defined group. In both cases it makes no difference 
+ * which of these two methods is used. 
+ * <p>
+ * Messages that have been received but not acknowledged may be 
+ * redelivered.
+ *
+ * @exception JMSException if the JMS provider fails to acknowledge the
+ *                         messages due to some internal error.
+ * @exception IllegalStateException if this method is called on a closed
+ *                         session.
+ *
+ * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
+ * @see javax.jms.Message#acknowledge
+ */ 
+
+void acknowledge() throws JMSException;
+
+//END OF METHODS COPIED FROM MESSAGE
+
 
 }
