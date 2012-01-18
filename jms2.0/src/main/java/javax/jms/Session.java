@@ -768,8 +768,9 @@ public interface Session extends Runnable, AutoCloseable {
      * The method <a href="#createDurableConsumer(javax.jms.Topic,%20java.lang.String)">
      * <code>createDurableConsumer</code></a> should be used instead.
      * <p>
-     * If the durable subscription already exists then this method
-     * creates a <code>TopicSubscriber</code> on the existing durable
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>TopicSubscriber</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
@@ -830,8 +831,9 @@ public interface Session extends Runnable, AutoCloseable {
      * The method <a href="#createDurableSubscriber(javax.jms.Topic,%20java.lang.String,%20java.lang.String,%20boolean)">
      * <code>createDurableConsumer</code></a> should be used instead.
      * <p>
-     * If the durable subscription already exists then this method
-     * creates a <code>TopicSubscriber</code> on the existing durable
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>TopicSubscriber</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
@@ -899,10 +901,11 @@ public interface Session extends Runnable, AutoCloseable {
      /** Creates a durable subscription with the specified name on the
       * specified topic, and creates a <code>MessageConsumer</code> 
       * on that durable subscription.
-      * <P>
-      * If the durable subscription already exists then this method
-      * creates a <code>MessageConsumer</code> on the existing durable
-      * subscription.
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>MessageConsumer</code> on the existing durable
+     * subscription.
       * <p>
       * A durable subscription is used by a client which needs to receive
       * all the messages published on a topic, including the ones published 
@@ -953,10 +956,11 @@ public interface Session extends Runnable, AutoCloseable {
       * on that durable subscription, specifying a message 
       * selector and whether messages published by its
       * own connection should be added to the durable subscription.
-      * <P>
-      * If the durable subscription already exists then this method
-      * creates a <code>MessageConsumer</code> on the existing durable
-      * subscription.
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>MessageConsumer</code> on the existing durable
+     * subscription.
       * <p>
       * A durable subscription is used by a client which needs to receive
       * all the messages published on a topic, including the ones published 

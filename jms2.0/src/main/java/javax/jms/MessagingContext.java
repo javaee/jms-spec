@@ -785,9 +785,10 @@ public interface MessagingContext extends AutoCloseable {
     /** Creates a durable subscription with the specified name on the
      * specified topic, and creates a <code>SyncMessageConsumer</code> 
      * on that durable subscription.
-     * <P>
-     * If the durable subscription already exists then this method
-     * creates a <code>SyncMessageConsumer</code> on the existing durable
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>SyncMessageConsumer</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
@@ -842,9 +843,10 @@ public interface MessagingContext extends AutoCloseable {
      * on that durable subscription, specifying a message selector and 
      * whether messages published by its own connection should be added to 
      * the durable subscription.  
-     * <P>
-     * If the durable subscription already exists then this method
-     * creates a <code>SyncMessageConsumer</code> on the existing durable
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a <code>MessageConsumer</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
@@ -1592,8 +1594,10 @@ long getDeliveryDelay();
 	 * Creates a durable subscription with the specified name on the specified topic, 
 	 * and creates a consumer on that durable subscription 
 	 * that will deliver messages to the specified <code>MessageListener</code>. 
-	 * <p>
-	 * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a consumer on the existing durable subscription 
 	 * that will deliver messages to the specified <code>MessageListener</code>. 
 	 * <p>
      * A durable subscription is used by a client which needs to receive
@@ -1649,8 +1653,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
 	 * using the specified maximum batch size and timeout.
      * <p>
-     * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
-     * that will deliver messages to the specified <code>MessageListener</code>. 
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a consumer on the existing durable subscription 
+	 * that will deliver messages to the specified <code>BatchMessageListener</code>. 
      * <p>
      * A durable subscription is used by a client which needs to receive
      * all the messages published on a topic, including the ones published 
@@ -1717,8 +1723,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * that will deliver messages to the specified <code>MessageListener</code>, 
 	 * using a message selector and specifying whether messages published by its
      * own connection should be added to the durable subscription. 
-	 * <p>
-	 * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
+     * <p>
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a consumer on the existing durable subscription 
 	 * that will deliver messages to the specified <code>MessageListener</code>. 
 	 * <p>
      * A durable subscription is used by a client which needs to receive
@@ -1791,8 +1799,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * and specifying whether messages published by its own connection
 	 * should be added to the durable subscription.
      * <p>
-     * If the durable subscription already exists then this method creates a consumer on the existing durable subscription 
-     * that will deliver messages to the specified <code>MessageListener</code>. 
+     * If a durable subscription already exists with the same name 
+     * and client identifier (if set) and the same topic and message selector 
+     * then this method creates a consumer on the existing durable subscription 
+	 * that will deliver messages to the specified <code>BatchMessageListener</code>. 
      * <p>
      * A durable subscription is used by a client which needs to receive
      * all the messages published on a topic, including the ones published 
