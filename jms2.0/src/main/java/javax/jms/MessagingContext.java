@@ -835,7 +835,7 @@ public interface MessagingContext extends AutoCloseable {
      * @exception InvalidDestinationRuntimeException if an invalid topic is specified.
      *
 	 */
-	SyncMessageConsumer createSyncDurableSubscriber(Topic topic, String name);
+	SyncMessageConsumer createSyncDurableConsumer(Topic topic, String name);
 	
     /** Creates a durable subscription with the specified name on the
      * specified topic, and creates a <code>SyncMessageConsumer</code> 
@@ -906,7 +906,7 @@ public interface MessagingContext extends AutoCloseable {
      * @exception InvalidSelectorRuntimeException if the message selector is invalid.
      *
      */ 
-	SyncMessageConsumer createSyncDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal);
+	SyncMessageConsumer createSyncDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);
  
 /** Creates a <CODE>QueueBrowser</CODE> object to peek at the messages on 
    * the specified queue.
