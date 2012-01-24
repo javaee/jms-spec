@@ -95,32 +95,224 @@ package javax.jms;
 
 public interface Connection extends AutoCloseable {
 
- /** Creates a <CODE>Session</CODE> object.
-      *  
-      * @param transacted indicates whether the session is transacted
-      * @param acknowledgeMode indicates whether the consumer or the
-      * client will acknowledge any messages it receives; ignored if the session
-      * is transacted. Legal values are <code>Session.AUTO_ACKNOWLEDGE</code>, 
-      * <code>Session.CLIENT_ACKNOWLEDGE</code>, and 
-      * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
-      *  
-      * @return a newly created  session
-      *  
-      * @exception JMSException if the <CODE>Connection</CODE> object fails
-      *                         to create a session due to some internal error or
-      *                         lack of support for the specific transaction
-      *                         and acknowledgement mode.
-      * @since 1.1
-      *
-      * @see Session#AUTO_ACKNOWLEDGE 
-      * @see Session#CLIENT_ACKNOWLEDGE 
-      * @see Session#DUPS_OK_ACKNOWLEDGE 
-  
-      */ 
+    /** 
+     * Creates a <code>Session</code> object, 
+     * specifying <code>transacted</code> and <code>acknowledgeMode</code>.
+     * <p>
+     * This method has been superseded by the method <code>createSession(int sessionMode)</code>
+     * which specifies the same information using a single argument, 
+     * and by the method <code>createSession()</code> which is for use in a Java EE JTA transaction.
+     * Applications should consider using those methods instead of this one.
+     * <p> 
+     * The effect of setting the <code>transacted</code> and <code>acknowledgeMode</code> 
+     * arguments depends on whether this method is called in a Java SE environment, 
+     * in the Java EE application client container, or in the Java EE web or EJB container.
+     * If this method is called in the Java EE web or EJB container then the 
+     * effect of setting the transacted</code> and <code>acknowledgeMode</code> 
+     * arguments also depends on whether or not there is an active JTA transaction 
+     * in progress.  
+     * <p>
+     * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
+     * <ul>
+     * <li>If <code>transacted</code> is set to <code>true</code> then the session 
+     * will use a local transaction which may subsequently be committed or rolled back 
+     * by calling the session's <code>commit</code> or <code>rollback</code> methods. 
+     * The argument <code>acknowledgeMode</code> is ignored.
+     * <li>If <code>transacted</code> is set to <code>false</code> then the session 
+     * will be non-transacted. In this case the argument <code>acknowledgeMode</code>
+     * is used to specify how messages received by this session will be acknowledged.
+     * The permitted values are 
+     * <code>Session.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * </ul>
+     * <p>
+     * In a <b>Java EE web or EJB container, when there is an active JTA transaction in progress</b>:
+     * <ul>
+     * <li>Both arguments <code>transacted</code> and <code>acknowledgeMode</code> are ignored.
+     * The session will participate in the JTA transaction and will be committed or rolled back
+     * when that transaction is committed or rolled back, 
+     * not by calling the session's <code>commit</code> or <code>rollback</code> methods.
+     * Since both arguments are ignored, developers are recommended to use 
+     * <code>createSession()</code>, which has no arguments, instead of this method.
+     * </ul>
+     * <p>
+     * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
+     * <ul>
+     * <li>The argument <code>transacted</code> is ignored. The session will always be non-transacted,
+     * using one of the two acknowledgement modes AUTO_ACKNOWLEDGE and DUPS_OK_ACKNOWLEDGE.
+     * <li>The argument <code>acknowledgeMode</code>
+     * is used to specify how messages received by this session will be acknowledged.
+     * The only permitted values in this case are  
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * The value <code>Session.CLIENT_ACKNOWLEDGE</code> may not be used.
+     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * </ul> 
+     *  
+     * @param transacted indicates whether the session will use a local transaction.
+     * If this method is called in the Java EE web or EJB container then this argument is ignored.
+     * 
+     * @param acknowledgeMode indicates how messages received by the session will be acknowledged.
+     * <ul>
+     * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
+     * the permitted values are 
+     * <code>Session.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>. 
+     * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
+     * then this argument is ignored.
+     * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * In this case <code>Session.CLIENT_ACKNOWLEDGE</code> is not permitted.
+     * </ul>
+     * 
+     * @return a newly created  session
+     *  
+     * @exception JMSException if the <CODE>Connection</CODE> object fails
+     *                         to create a session due to some internal error or
+     *                         lack of support for the specific transaction
+     *                         and acknowledgement mode.
+     * @since 1.1
+     *
+     * @see Session#AUTO_ACKNOWLEDGE 
+     * @see Session#CLIENT_ACKNOWLEDGE 
+     * @see Session#DUPS_OK_ACKNOWLEDGE 
+     * 
+     * @see javax.jms.Connection#createSession(int) 
+     * @see javax.jms.Connection#createSession() 
+     */ 
 
-    Session
-    createSession(boolean transacted,
-                       int acknowledgeMode) throws JMSException;
+    Session createSession(boolean transacted, int acknowledgeMode) throws JMSException;
+    
+     /** 
+     * Creates a <code>Session</code> object, specifying <code>sessionMode</code>.
+     * <p>
+     * The effect of setting the <code>sessionMode</code>  
+     * argument depends on whether this method is called in a Java SE environment, 
+     * in the Java EE application client container, or in the Java EE web or EJB container.
+     * If this method is called in the Java EE web or EJB container then the 
+     * effect of setting the <code>sessionMode</code> argument also depends on 
+     * whether or not there is an active JTA transaction in progress. 
+     * <p>
+     * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
+     * <ul>
+     * <li>If <code>sessionMode</code> is set to <code>Session.SESSION_TRANSACTED</code> then the session 
+     * will use a local transaction which may subsequently be committed or rolled back 
+     * by calling the session's <code>commit</code> or <code>rollback</code> methods. 
+     * <li>If <code>sessionMode</code> is set to any of 
+     * <code>Session.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>Session.AUTO_ACKNOWLEDGE</code> or
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * then the session will be non-transacted and 
+     * messages received by this session will be acknowledged
+     * according to the value of <code>sessionMode</code>.
+     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * </ul>
+     * <p>
+     * In a <b>Java EE web or EJB container, when there is an active JTA transaction in progress</b>:
+     * <ul>
+     * <li>The argument <code>sessionMode</code> is ignored.
+     * The session will participate in the JTA transaction and will be committed or rolled back
+     * when that transaction is committed or rolled back, 
+     * not by calling the session's <code>commit</code> or <code>rollback</code> methods.
+     * Since the argument is ignored, developers are recommended to use 
+     * <code>createSession()</code>, which has no arguments, instead of this method.
+     * </ul>
+     * <p>
+     * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
+     * <ul>
+     * <li>The argument <code>acknowledgeMode</code> must be set to either of 
+     * <code>Session.AUTO_ACKNOWLEDGE</code> or
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * The session will be non-transacted and messages received by this session will be acknowledged
+     * automatically according to the value of <code>acknowledgeMode</code>.
+     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * The values <code>Session.SESSION_TRANSACTED</code> and <code>Session.CLIENT_ACKNOWLEDGE</code> may not be used.
+     * </ul> 
+     * 
+     * @param sessionMode indicates which of four possible session modes will be used.
+     * <ul>
+     * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
+     * the permitted values are 
+     * <code>Session.SESSION_TRANSACTED</code>, 
+     * <code>Session.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>. 
+     * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
+     * then this argument is ignored.
+     * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
+     * <code>Session.AUTO_ACKNOWLEDGE</code> and
+     * <code>Session.DUPS_OK_ACKNOWLEDGE</code>.
+     * In this case the values <code>Session.TRANSACTED</code> and <code>Session.CLIENT_ACKNOWLEDGE</code> are not permitted.
+     * </ul>
+     * 
+     * @return a newly created  session
+     *  
+     * @exception JMSException if the <CODE>Connection</CODE> object fails
+     *                         to create a session due to some internal error or
+     *                         lack of support for the specific transaction
+     *                         and acknowledgement mode.
+     * @since 2.0
+     *
+     * @see Session#SESSION_TRANSACTED 
+     * @see Session#AUTO_ACKNOWLEDGE 
+     * @see Session#CLIENT_ACKNOWLEDGE 
+     * @see Session#DUPS_OK_ACKNOWLEDGE 
+     * 
+     * @see javax.jms.Connection#createSession(boolean, int) 
+     * @see javax.jms.Connection#createSession() 
+     */   
+    Session createSession(int sessionMode) throws JMSException;
+                       
+    /** 
+     * Creates a <code>Session</code> object, 
+     * specifying no arguments.
+     * <p>
+     * The behaviour of the session that is created depends on 
+     * whether this method is called in a Java SE environment, 
+     * in the Java EE application client container, or in the Java EE web or EJB container.
+     * If this method is called in the Java EE web or EJB container then the 
+     * behaviour of the session also depends on whether or not 
+     * there is an active JTA transaction in progress.   
+     * <p>
+     * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
+     * <ul>
+     * <li>The session will be non-transacted and received messages will be acknowledged automatically
+     * using an acknowledgement mode of <code>Session.AUTO_ACKNOWLEDGE</code> 
+     * For a definition of the meaning of this acknowledgement mode see the link below.
+     * </ul>
+     * <p>
+     * In a <b>Java EE web or EJB container, when there is an active JTA transaction in progress</b>:
+     * <ul>
+     * <li>The session will participate in the JTA transaction and will be committed or rolled back
+     * when that transaction is committed or rolled back, 
+     * not by calling the session's <code>commit</code> or <code>rollback</code> methods.
+     * </ul>
+     * <p>
+     * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
+     * <ul>
+     * <li>The session will be non-transacted and received messages will be acknowledged automatically
+     * using an acknowledgement mode of <code>Session.AUTO_ACKNOWLEDGE</code> 
+     * For a definition of the meaning of this acknowledgement mode see the link below.
+     * </ul> 
+     *  
+     * @return a newly created  session
+     *  
+     * @exception JMSException if the <CODE>Connection</CODE> object fails
+     *                         to create a session due to some internal error.
+     *                       
+     * @since 2.0
+     *
+     * @see Session#AUTO_ACKNOWLEDGE 
+     * 
+     * @see javax.jms.Connection#createSession(boolean, int) 
+     * @see javax.jms.Connection#createSession(int) 
+     */ 
+
+    Session createSession() throws JMSException;    
     
     
     /** Gets the client identifier for this connection.

@@ -172,10 +172,16 @@ public interface Session extends Runnable, AutoCloseable {
 
     static final int DUPS_OK_ACKNOWLEDGE = 3;
     
-    /** This value is returned from the method 
-     * <CODE>getAcknowledgeMode</CODE> if the session is transacted.
-     * If a <CODE>Session</CODE> is transacted, the acknowledgement mode
-     * is ignored.
+    /** This value may be passed as the argument to the 
+     * method <code>createSession(int sessionMode)</code>
+     * on the <code>Connection</code> object
+     * to specify that the session should use a local transaction.
+     * <p>
+     * This value is returned from the method 
+     * <CODE>getAcknowledgeMode</CODE> if the session is using a local transaction,
+     * irrespective of whether the session was created by calling the
+     * method <code>createSession(int sessionMode)</code> or the 
+     * method <code>createSession(boolean transacted, int acknowledgeMode)</code>.
      */
     static final int SESSION_TRANSACTED = 0;
 

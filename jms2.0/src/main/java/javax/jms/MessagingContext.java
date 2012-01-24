@@ -83,20 +83,34 @@ public interface MessagingContext extends AutoCloseable {
 	 * <p>
      * This method does not start the connection. 
      * If the connection has not already been started then it will be automatically started
-     * when a SyncMessageConsumer is created or a MessageListener registered on  
+     * when a <code>SyncMessageConsumer</code> is created or a <code>MessageListener</code> registered on  
      * any of the <code>MessagingContext</code> objects for that connection.
      * <p>
-     * This method is for use in a Java SE environment only. 
+     * This method is for use in a Java SE environment or in the Java EE application client container only. 
      * It may not be used in a Java EE environment because this would violate
      * the Java EE restriction that a connection may have only one session.
+     * <p>
+     * <ul>
+     * <li>If <code>sessionMode</code> is set to <code>MessagingContext.SESSION_TRANSACTED</code> then the session 
+     * will use a local transaction which may subsequently be committed or rolled back 
+     * by calling the messaging context's <code>commit</code> or <code>rollback</code> methods. 
+     * <li>If <code>sessionMode</code> is set to any of 
+     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * then the session will be non-transacted and 
+     * messages received by this session will be acknowledged
+     * according to the value of <code>sessionMode</code>.
+     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * </ul>
 	 *
-	 * @param sessionMode indicates whether the new MessagingContext is transacted or not,
-	 * and if it is not, whether the consumer or the client will acknowledge any 
-	 * messages it receives. Legal values are <code>MessagingContext.SESSION_TRANSACTED</code>, 
-	 * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-	 * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, and 
-	 * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
-	 * 
+     * @param sessionMode indicates which of four possible session modes will be used. 
+     * The permitted values are 
+     * <code>MessagingContext.SESSION_TRANSACTED</code>, 
+     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>. 
+     * 
 	 * @return a newly created MessagingContext
 	 *
 	 * @exception JMSRuntimeException if the JMS provider fails to create the
@@ -104,6 +118,17 @@ public interface MessagingContext extends AutoCloseable {
 	 * @exception JMSSecurityRuntimeException  if client authentication fails due to 
 	 *                         an invalid user name or password.
      * @since 2.0 
+     * 
+     * @see MessagingContext#SESSION_TRANSACTED 
+     * @see MessagingContext#CLIENT_ACKNOWLEDGE 
+     * @see MessagingContext#AUTO_ACKNOWLEDGE 
+     * @see MessagingContext#DUPS_OK_ACKNOWLEDGE 
+     * 
+     * @see javax.jms.ConnectionFactory#createMessagingContext() 
+     * @see javax.jms.ConnectionFactory#createMessagingContext(int) 
+     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String) 
+     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String, int) 
+     * @see javax.jms.MessagingContext#createMessagingContext(int) 
      */ 
 	MessagingContext createMessagingContext(int sessionMode);
 	
