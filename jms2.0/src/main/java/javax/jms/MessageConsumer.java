@@ -91,7 +91,7 @@ package javax.jms;
 public interface MessageConsumer extends AutoCloseable{
 
     /** Gets this message consumer's message selector expression.
-      *  
+     *  
       * @return this message consumer's message selector, or null if no
       *         message selector exists for the message consumer (that is, if 
       *         the message selector was not set or was set to null or the 
@@ -112,11 +112,19 @@ public interface MessageConsumer extends AutoCloseable{
      * This method will only return a listener that has been set using <code>setMessageListener</code>.
      * To return a listener that has been set using <code>setBatchMessageListener</code>
      * then use <code>getBatchMessageListener()</code> instead.
-      *  
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @return the message consumer's <code>MessageListener</code>, or null if one was not set
       *  
       * @exception JMSException if the JMS provider fails to get the <code>MessageListener</code>
-      *                         due to some internal error.
+      *                         for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred or
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>                      
       *                         
       * @see javax.jms.MessageConsumer#getBatchMessageListener()
       * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
@@ -131,11 +139,19 @@ public interface MessageConsumer extends AutoCloseable{
      * This method will only return a listener that has been set using <code>setBatchMessageListener</code>.
      * To return a listener that has been set using <code>setMessageListener</code>
      * then use <code>getMessageListener()</code> instead.
-      *  
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @return the message consumer's <code>BatchMessageListener</code>, or null if one was not set
       *  
       * @exception JMSException if the JMS provider fails to get the <code>BatchMessageListener</code>
-      *                         due to some internal error.
+      *                         for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred or  
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>    
       *                         
       * @see javax.jms.MessageConsumer#getMessageListener()
       * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
@@ -157,12 +173,20 @@ public interface MessageConsumer extends AutoCloseable{
       * while messages are being consumed by an existing listener
       * or the consumer is being used to consume messages synchronously
       * is undefined.
-      *  
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @param listener the listener to which the messages are to be 
       *                 delivered
       *  
-      * @exception JMSException if the JMS provider fails to set the message
-      *                         listener due to some internal error.
+      * @exception JMSException if the JMS provider fails to set the message consumer's listener
+      *                         for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred or  
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>    
       *                         
       * @see javax.jms.MessageConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       * @see javax.jms.MessageConsumer#getMessageListener()
@@ -189,15 +213,22 @@ public interface MessageConsumer extends AutoCloseable{
      * while messages are being consumed by an existing listener
      * or the consumer is being used to consume messages synchronously
      * is undefined.
-     *  
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed. 
      * @param listener the listener to which the messages are to be 
      *                 delivered
      * @param maxBatchSize the maximum batch size that should be used. Must be greater than zero.
      * @param batchTimeout the batch timeout in milliseconds. A value of zero means no timeout is required
      * The JMS provider may override the specified timeout with a shorter value.
      *  
-     * @exception JMSException if the JMS provider fails to set the message
-     *                         listener due to some internal error.
+      * @exception JMSException if the JMS provider fails to set the message consumer's listener
+      *                         for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred or
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>    
      *                         
      * @see javax.jms.MessageConsumer#setMessageListener(javax.jms.MessageListener)
      * @see javax.jms.MessageConsumer#getBatchMessageListener()

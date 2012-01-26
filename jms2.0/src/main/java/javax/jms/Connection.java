@@ -150,7 +150,12 @@ public interface Connection extends AutoCloseable {
      * The value <code>Session.CLIENT_ACKNOWLEDGE</code> may not be used.
      * For a definition of the meaning of these acknowledgement modes see the links below.
      * </ul> 
-     *  
+     * <p>
+     * Applications running in the Java EE web and EJB containers must not attempt 
+     * to create more than one active (not closed) <code>Session</code> object per connection. 
+     * If this method is called in a Java EE web or EJB container when an active
+     * <code>Session</code> object already exists for this connection then a <code>JMSException</code> will be thrown.
+     * 
      * @param transacted indicates whether the session will use a local transaction.
      * If this method is called in the Java EE web or EJB container then this argument is ignored.
      * 
@@ -172,9 +177,13 @@ public interface Connection extends AutoCloseable {
      * @return a newly created  session
      *  
      * @exception JMSException if the <CODE>Connection</CODE> object fails
-     *                         to create a session due to some internal error or
-     *                         lack of support for the specific transaction
-     *                         and acknowledgement mode.
+     *                         to create a session due to 
+     *                         <ul>
+     *                         <li>some internal error, 
+     *                         <li>lack of support for the specific transaction and acknowledgement mode, or
+     *                         <li>because this method is being called in a Java EE web or EJB application 
+     *                         and an active session already exists for this connection.
+     *                         </ul>
      * @since 1.1
      *
      * @see Session#AUTO_ACKNOWLEDGE 
@@ -232,6 +241,11 @@ public interface Connection extends AutoCloseable {
      * For a definition of the meaning of these acknowledgement modes see the links below.
      * The values <code>Session.SESSION_TRANSACTED</code> and <code>Session.CLIENT_ACKNOWLEDGE</code> may not be used.
      * </ul> 
+     * <p>
+     * Applications running in the Java EE web and EJB containers must not attempt 
+     * to create more than one active (not closed) <code>Session</code> object per connection. 
+     * If this method is called in a Java EE web or EJB container when an active
+     * <code>Session</code> object already exists for this connection then a <code>JMSException</code> will be thrown.
      * 
      * @param sessionMode indicates which of four possible session modes will be used.
      * <ul>
@@ -252,9 +266,13 @@ public interface Connection extends AutoCloseable {
      * @return a newly created  session
      *  
      * @exception JMSException if the <CODE>Connection</CODE> object fails
-     *                         to create a session due to some internal error or
-     *                         lack of support for the specific transaction
-     *                         and acknowledgement mode.
+     *                         to create a session due to 
+     *                         <ul>
+     *                         <li>some internal error, 
+     *                         <li>lack of support for the specific transaction and acknowledgement mode, or
+     *                         <li>because this method is being called in a Java EE web or EJB application 
+     *                         and an active session already exists for this connection.
+     *                         </ul>
      * @since 2.0
      *
      * @see Session#SESSION_TRANSACTED 
@@ -298,11 +316,21 @@ public interface Connection extends AutoCloseable {
      * using an acknowledgement mode of <code>Session.AUTO_ACKNOWLEDGE</code> 
      * For a definition of the meaning of this acknowledgement mode see the link below.
      * </ul> 
-     *  
+     * <p>
+     * Applications running in the Java EE web and EJB containers must not attempt 
+     * to create more than one active (not closed) <code>Session</code> object per connection. 
+     * If this method is called in a Java EE web or EJB container when an active
+     * <code>Session</code> object already exists for this connection then a <code>JMSException</code> will be thrown.
+     * 
      * @return a newly created  session
      *  
      * @exception JMSException if the <CODE>Connection</CODE> object fails
-     *                         to create a session due to some internal error.
+     *                         to create a session due to 
+     *                         <ul>
+     *                         <li>some internal error or  
+     *                         <li>because this method is being called in a Java EE web or EJB application 
+     *                         and an active session already exists for this connection.
+     *                         </ul>
      *                       
      * @since 2.0
      *
@@ -335,49 +363,53 @@ public interface Connection extends AutoCloseable {
 
 
     /** Sets the client identifier for this connection.
-      *  
-      * <P>The preferred way to assign a JMS client's client identifier is for
-      * it to be configured in a client-specific <CODE>ConnectionFactory</CODE>
-      * object and transparently assigned to the <CODE>Connection</CODE> object
-      * it creates.
-      * 
-      * <P>Alternatively, a client can set a connection's client identifier
-      * using a provider-specific value. The facility to set a connection's
-      * client identifier explicitly is not a mechanism for overriding the
-      * identifier that has been administratively configured. It is provided
-      * for the case where no administratively specified identifier exists.
-      * If one does exist, an attempt to change it by setting it must throw an
-      * <CODE>IllegalStateException</CODE>. If a client sets the client identifier
-      * explicitly, it must do so immediately after it creates the connection 
-      * and before any other
-      * action on the connection is taken. After this point, setting the
-      * client identifier is a programming error that should throw an
-      * <CODE>IllegalStateException</CODE>.
-      *
-      * <P>The purpose of the client identifier is to associate a connection and
-      * its objects with a state maintained on behalf of the client by a 
-      * provider. The only such state identified by the JMS API is that required
-      * to support durable subscriptions.
-      *
-      * <P>If another connection with the same <code>clientID</code> is already running when
-      * this method is called, the JMS provider should detect the duplicate ID and throw
-      * an <CODE>InvalidClientIDException</CODE>.
-      *
-      * @param clientID the unique client identifier
-      * 
-      * @exception JMSException if the JMS provider fails to
-      *                         set the client ID for this connection due
-      *                         to some internal error.
-      *
-      * @exception InvalidClientIDException if the JMS client specifies an
-      *                         invalid or duplicate client ID.
-      * @exception IllegalStateException if the JMS client attempts to set
-      *       a connection's client ID at the wrong time or
-      *       when it has been administratively configured.
-      */
-
-    void
-    setClientID(String clientID) throws JMSException;
+     *  
+     * <P>The preferred way to assign a JMS client's client identifier is for
+     * it to be configured in a client-specific <CODE>ConnectionFactory</CODE>
+     * object and transparently assigned to the <CODE>Connection</CODE> object
+     * it creates.
+     * 
+     * <P>Alternatively, a client can set a connection's client identifier
+     * using a provider-specific value. The facility to set a connection's
+     * client identifier explicitly is not a mechanism for overriding the
+     * identifier that has been administratively configured. It is provided
+     * for the case where no administratively specified identifier exists.
+     * If one does exist, an attempt to change it by setting it must throw an
+     * <CODE>IllegalStateException</CODE>. If a client sets the client identifier
+     * explicitly, it must do so immediately after it creates the connection 
+     * and before any other
+     * action on the connection is taken. After this point, setting the
+     * client identifier is a programming error that should throw an
+     * <CODE>IllegalStateException</CODE>.
+     *
+     * <P>The purpose of the client identifier is to associate a connection and
+     * its objects with a state maintained on behalf of the client by a 
+     * provider. The only such state identified by the JMS API is that required
+     * to support durable subscriptions.
+     *
+     * <P>If another connection with the same <code>clientID</code> is already running when
+     * this method is called, the JMS provider should detect the duplicate ID and throw
+     * an <CODE>InvalidClientIDException</CODE>.
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
+     * @param clientID the unique client identifier
+     * 
+     * @exception JMSException if the JMS provider fails to set the client ID for the the connection
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul>  
+     * @exception InvalidClientIDException if the JMS client specifies an
+     *                         invalid or duplicate client ID.
+     * @exception IllegalStateException if the JMS client attempts to set
+     *       a connection's client ID at the wrong time or
+     *       when it has been administratively configured.
+     */
+    void setClientID(String clientID) throws JMSException;
 
  
     /** Gets the metadata for this connection.
@@ -430,11 +462,20 @@ public interface Connection extends AutoCloseable {
       *
       * <P>A JMS provider should attempt to resolve connection problems 
       * itself before it notifies the client of them.
-      *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @param listener the exception listener
       *
-      * @exception JMSException if the JMS provider fails to
-      *                         set the exception listener for this connection.
+     * @exception JMSException if the JMS provider fails to set the exception listener
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul> 
+      *
       *
       */
 
@@ -492,9 +533,17 @@ public interface Connection extends AutoCloseable {
       * is running when <code>stop</code> is invoked, there is no requirement for 
       * the <code>stop</code> call to wait until the exception listener has returned
       * before it may return. 
-      *  
-      * @exception JMSException if the JMS provider fails to stop
-      *                         message delivery due to some internal error.
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
+     * @exception JMSException if the JMS provider fails to stop message delivery
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul> 
       *
       * @see javax.jms.Connection#start
       */
@@ -566,7 +615,10 @@ public interface Connection extends AutoCloseable {
     
       /** Creates a connection consumer for this connection (optional operation).
       * This is an expert facility not used by regular JMS clients.
-      *  
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @param destination the destination to access
       * @param messageSelector only messages with properties matching the
       * message selector expression are delivered.  A value of null or
@@ -580,17 +632,21 @@ public interface Connection extends AutoCloseable {
       * @return the connection consumer
       *
       * @exception JMSException if the <CODE>Connection</CODE> object fails
-      *                         to create a connection consumer due to some
-      *                         internal error or invalid arguments for 
-      *                         <CODE>sessionPool</CODE> and 
-      *                         <CODE>messageSelector</CODE>.
+      *                         to create a connection consumer for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>invalid arguments for <CODE>sessionPool</CODE> and <CODE>messageSelector</CODE> or
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>
       * @exception InvalidDestinationException if an invalid destination is specified.
       * @exception InvalidSelectorException if the message selector is invalid.
+      *
       *
       * @since 1.1
       * @see javax.jms.ConnectionConsumer
       */ 
-
+    //JMSTODO Ambiguity: which exception is thrown if the message selector is bad? JMSException or InvalidSelectorException? 
     ConnectionConsumer
     createConnectionConsumer(Destination destination,
                              String messageSelector,
@@ -601,7 +657,10 @@ public interface Connection extends AutoCloseable {
 
     /** Create a durable connection consumer for this connection (optional operation). 
       * This is an expert facility not used by regular JMS clients.
-      *                
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     *               
       * @param topic topic to access
       * @param subscriptionName durable subscription name
       * @param messageSelector only messages with properties matching the
@@ -616,17 +675,20 @@ public interface Connection extends AutoCloseable {
       * @return the durable connection consumer
       *  
       * @exception JMSException if the <CODE>Connection</CODE> object fails
-      *                         to create a connection consumer due to some
-      *                         internal error or invalid arguments for 
-      *                         <CODE>sessionPool</CODE> and 
-      *                         <CODE>messageSelector</CODE>.
+      *                         to create a connection consumer for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>invalid arguments for <CODE>sessionPool</CODE> and <CODE>messageSelector</CODE> or
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>
       * @exception InvalidDestinationException if an invalid destination
       *             is specified.
       * @exception InvalidSelectorException if the message selector is invalid.
       * @since 1.1
       * @see javax.jms.ConnectionConsumer
       */
-
+    //JMSTODO Ambiguity: which exception is thrown if the message selector is bad? JMSException or InvalidSelectorException? 
     ConnectionConsumer
     createDurableConnectionConsumer(Topic topic,
 				    String subscriptionName,

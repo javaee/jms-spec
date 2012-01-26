@@ -86,10 +86,6 @@ public interface MessagingContext extends AutoCloseable {
      * when a <code>SyncMessageConsumer</code> is created or a <code>MessageListener</code> registered on  
      * any of the <code>MessagingContext</code> objects for that connection.
      * <p>
-     * This method is for use in a Java SE environment or in the Java EE application client container only. 
-     * It may not be used in a Java EE environment because this would violate
-     * the Java EE restriction that a connection may have only one session.
-     * <p>
      * <ul>
      * <li>If <code>sessionMode</code> is set to <code>MessagingContext.SESSION_TRANSACTED</code> then the session 
      * will use a local transaction which may subsequently be committed or rolled back 
@@ -103,6 +99,11 @@ public interface MessagingContext extends AutoCloseable {
      * according to the value of <code>sessionMode</code>.
      * For a definition of the meaning of these acknowledgement modes see the links below.
      * </ul>
+     * <p>
+     * This method must not be used by applications running in the Java EE web or EJB containers
+     * because doing so would violate the restriction that such an application must not attempt
+     * to create more than one active (not closed) <code>Session</code> object per connection. 
+     * If this method is called in a Java EE web or EJB container then a <code>JMSRuntimeException</code> will be thrown.
 	 *
      * @param sessionMode indicates which of four possible session modes will be used. 
      * The permitted values are 
@@ -113,8 +114,14 @@ public interface MessagingContext extends AutoCloseable {
      * 
 	 * @return a newly created MessagingContext
 	 *
-	 * @exception JMSRuntimeException if the JMS provider fails to create the
-	 *                         MessagingContext due to some internal error.
+     * @exception JMSException if the <CODE>Connection</CODE> object fails
+     *                         to create a session due to 
+
+	 * @exception JMSRuntimeException if the JMS provider fails to create the MessagingContext due to 
+     *                         <ul>
+     *                         <li>some internal error or  
+     *                         <li>because this method is being called in a Java EE web or EJB application.
+     *                         </ul>
 	 * @exception JMSSecurityRuntimeException  if client authentication fails due to 
 	 *                         an invalid user name or password.
      * @since 2.0 
@@ -183,13 +190,20 @@ public interface MessagingContext extends AutoCloseable {
 	 * If another connection with the same <code>clientID</code> is already
 	 * running when this method is called, the JMS provider should detect the
 	 * duplicate ID and throw an <CODE>InvalidClientIDException</CODE>.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param clientID
 	 *            the unique client identifier
 	 * 
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to set the client ID for the
-	 *             MessagingContext's connection due to some internal error.
+     * @exception JMSRuntimeException if the JMS provider fails to set the client ID for the the MessagingContext's connection
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul>  
 	 * 
 	 * @throws InvalidClientIDRuntimeException
 	 *             if the JMS client specifies an invalid or duplicate client
@@ -256,13 +270,20 @@ public interface MessagingContext extends AutoCloseable {
 	 * <P>
 	 * A JMS provider should attempt to resolve connection problems itself
 	 * before it notifies the client of them.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param listener
 	 *            the exception listener
 	 * 
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to set the exception listener for
-	 *             the MessagingContext's connection.
+     * @exception JMSRuntimeException if the JMS provider fails to set the exception listener
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul> 
 	 * 
 	 */
 
@@ -319,9 +340,17 @@ public interface MessagingContext extends AutoCloseable {
      * is running when <code>stop</code> is invoked, there is no requirement for 
      * the <code>stop</code> call to wait until the exception listener has returned
      * before it may return.   
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
      * 
-     * @exception JMSRuntimeException if the JMS provider fails to stop
-     *                         message delivery due to some internal error.
+     * @exception JMSRuntimeException if the JMS provider fails to stop message delivery
+     *                         for one of the following reasons:
+     *                         <ul>
+     *                         <li>an internal error has occurred or  
+     *                         <li>this method has been called in a Java EE web or EJB application 
+     *                         (though it is not guaranteed that an exception is thrown in this case)
+     *                         </ul> 
      *
      * @see javax.jms.Connection#start
      */
@@ -1238,7 +1267,7 @@ getDeliveryMode();
   *                        must be a value between 0 and 9
   * 
   *  
-  * @exception JMSException if the JMS provider fails to set the priority
+  * @exception JMSRuntimeException if the JMS provider fails to set the priority
   *                         due to some internal error.
   *
   * @see javax.jms.MessagingContext#getPriority
@@ -1448,10 +1477,18 @@ long getDeliveryDelay();
 	 * messages to the specified <code>MessageListener</code>.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param listener - The listener to which the messages are to be delivered
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
 	 */
 	void setMessageListener(Destination destination, MessageListener listener);
@@ -1469,7 +1506,10 @@ long getDeliveryDelay();
 	 * than the batch size.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param listener - The listener to which the messages are to be delivered
 	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
@@ -1477,8 +1517,13 @@ long getDeliveryDelay();
 	 *            timeout is required The JMS provider may override the
 	 *            specified timeout with a shorter value.
 	 * 
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
-	 * @throws InvalidDestinationRuntimeException - If an invalid destinaiton is specified.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	 
+      * @throws InvalidDestinationRuntimeException - If an invalid destinaiton is specified.
 	 */
 	void setBatchMessageListener(Destination destination, BatchMessageListener listener, int maxBatchSize,
 			long batchTimeout);
@@ -1489,6 +1534,9 @@ long getDeliveryDelay();
      * using a message selector.
      * <p>
      * If the specified listener is null then this method does nothing.
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
      * 
      * @param destination - The destination from which messages are to be consumed
      * @param messageSelector - Only messages with properties matching the message selector
@@ -1496,7 +1544,12 @@ long getDeliveryDelay();
      *            indicates that there is no message selector for the message
      *            consumer.
      * @param listener - the listener to which the messages are to be delivered 
-     * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
      * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
      * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
      */
@@ -1516,6 +1569,9 @@ long getDeliveryDelay();
 	 * than the batch size.
      * <p>
      * If the specified listener is null then this method does nothing.
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
      * 
      * @param destination - The destination from which messages are to be consumed
      * @param messageSelector - Only messages with properties matching the message selector
@@ -1527,7 +1583,12 @@ long getDeliveryDelay();
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
 	 *            timeout is required The JMS provider may override the
 	 *            specified timeout with a shorter value.
-     * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
      * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
      * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
      */
@@ -1551,7 +1612,10 @@ long getDeliveryDelay();
      * to true is not specified.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-     *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param messageSelector - Only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
@@ -1562,7 +1626,12 @@ long getDeliveryDelay();
      *                   not receive messages published to the topic
      *                   by its own connection.
 	 * @param listener - The listener to which the messages are to be delivered
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
@@ -1593,7 +1662,10 @@ long getDeliveryDelay();
      * to true is not specified.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param destination - The destination from which messages are to be consumed
 	 * @param messageSelector - Only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
@@ -1608,7 +1680,12 @@ long getDeliveryDelay();
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
 	 *            timeout is required The JMS provider may override the
 	 *            specified timeout with a shorter value.
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
@@ -1663,11 +1740,19 @@ long getDeliveryDelay();
      * unsubscribing (deleting) the old one and creating a new one.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param topic - The topic from which messages are to be consumed
 	 * @param subscriptionName - The name used to identify the durable subscription 
 	 * @param listener - The listener to which the messages are to be delivered 
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 */
 void setMessageListener (Topic topic, String subscriptionName, MessageListener listener);
@@ -1728,7 +1813,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * than the batch size.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param topic - The topic from which messages are to be consumed
 	 * @param subscriptionName - The name used to identify the durable subscription 
 	 * @param listener - The listener to which the messages are to be delivered 
@@ -1736,7 +1824,12 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
 	 *            timeout is required The JMS provider may override the
 	 *            specified timeout with a shorter value.
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 */
 	void setBatchMessageListener(Topic topic, String subscriptionName, BatchMessageListener listener, int maxBatchSize,
@@ -1799,7 +1892,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * argument is false.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param topic - The topic from which messages are to be consumed
 	 * @param subscriptionName - The name used to identify the durable subscription 
 	 * @param messageSelector - Only messages with properties matching the message selector
@@ -1809,7 +1905,12 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * @param noLocal if true, messages published by its own connection
      *            will not be added to the durable subscription.
 	 * @param listener - The listener to which the messages are to be delivered
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
@@ -1881,7 +1982,10 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
      * argument is false.
 	 * <p>
 	 * If the specified listener is null then this method does nothing.
-	 * 
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
 	 * @param topic - The topic from which messages are to be consumed
 	 * @param subscriptionName - The name used to identify the durable subscription 
 	 * @param messageSelector - Only messages with properties matching the message selector
@@ -1895,7 +1999,12 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
 	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
 	 *            timeout is required The JMS provider may override the
 	 *            specified timeout with a shorter value.
-	 * @throws JMSRuntimeException - If the operation fails due to some internal error.
+     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
+     *         <ul>
+     *         <li>an internal error has occurred
+     *         <li>this method has been called in a Java EE web or EJB application 
+     *             (though it is not guaranteed that an exception is thrown in this case)
+     *         </ul>	
 	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
 	 */
@@ -1956,7 +2065,7 @@ void send(Destination destination, Serializable payload);
  * Messages that have been received but not acknowledged may be 
  * redelivered.
  *
- * @exception JMSException if the JMS provider fails to acknowledge the
+ * @exception JMSRuntimeException if the JMS provider fails to acknowledge the
  *                         messages due to some internal error.
  * @exception IllegalStateException if this method is called on a closed
  *                         session.
@@ -1965,7 +2074,7 @@ void send(Destination destination, Serializable payload);
  * @see javax.jms.Message#acknowledge
  */ 
 
-void acknowledge() throws JMSException;
+void acknowledge();
 
 //END OF METHODS COPIED FROM MESSAGE
 

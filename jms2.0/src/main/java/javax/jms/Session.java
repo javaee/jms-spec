@@ -484,11 +484,20 @@ public interface Session extends Runnable, AutoCloseable {
       * This method will only return a listener that has been set using <code>setMessageListener</code>. 
       * To return a distinguished message listener that has been set using <code>setBatchMessageListener</code>
       * then use <code>getBatchMessageListener()</code> instead.
-      *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+      * 
       * @return the session's distinguished message listener if it is a <code>MessageListener</code>
       *
-      * @exception JMSException if the JMS provider fails to get the message listener due to an internal error.
-      *
+      * @exception JMSException if the JMS provider fails to get the session's distinguished message  
+      *                         listener for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>
+      *      
       * @see javax.jms.Session#setMessageListener
       * @see javax.jms.Session#setBatchMessageListener
       * @see javax.jms.Session#getBatchMessageListener
@@ -504,11 +513,19 @@ public interface Session extends Runnable, AutoCloseable {
      * This method will only return a listener that has been set using <code>setBatchMessageListener</code>. 
      * To return a distinguished message listener that has been set using <code>setMessageListener</code>
      * then use <code>getMessageListener()</code> instead.
-     *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
      * @return the session's distinguished message listener if it is a <code>BatchMessageListener</code>
      *
-     * @exception JMSException if the JMS provider fails to get the message listener due to an internal error.
-     *
+      * @exception JMSException if the JMS provider fails to get the session's distinguished message 
+      *                         listener for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>     
      * @see javax.jms.Session#setMessageListener
      * @see javax.jms.Session#setBatchMessageListener
      * @see javax.jms.Session#getMessageListener
@@ -530,11 +547,19 @@ public interface Session extends Runnable, AutoCloseable {
       * be used; however, all forms of sending messages are still supported.
       * 
       * <P>This is an expert facility not used by ordinary JMS clients.
-      *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
       * @param listener the message listener to associate with this session
       *
-      * @exception JMSException if the JMS provider fails to set the message 
-      *                         listener due to an internal error.
+      * @exception JMSException if the JMS provider fails to set the session's distinguished message  
+      *                         listener for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>
       *
       * @see javax.jms.Session#setBatchMessageListener
       * @see javax.jms.Session#getMessageListener
@@ -563,11 +588,19 @@ public interface Session extends Runnable, AutoCloseable {
      * be used; however, all forms of sending messages are still supported.
      * 
      * <P>This is an expert facility not used by ordinary JMS clients.
-     *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
+     * 
      * @param listener the message listener to associate with this session
      *
-     * @exception JMSException if the JMS provider fails to set the message 
-     *                         listener due to an internal error.
+      * @exception JMSException if the JMS provider fails to set the session's distinguished message 
+      *                         listener for one of the following reasons:
+      *                         <ul>
+      *                         <li>an internal error has occurred
+      *                         <li>this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                         </ul>    
      *
      * @see javax.jms.Session#setMessageListener
      * @see javax.jms.Session#getMessageListener
@@ -575,12 +608,18 @@ public interface Session extends Runnable, AutoCloseable {
      * @see javax.jms.ServerSessionPool
      * @see javax.jms.ServerSession
      */
-   void setBatchMessageListener(BatchMessageListener listener, int maxBatchSize, long batchTimeout) throws JMSException;    
+    void setBatchMessageListener(BatchMessageListener listener, int maxBatchSize, long batchTimeout) throws JMSException;    
 
     /**
      * Optional operation, intended to be used only by Application Servers,
      * not by ordinary JMS clients.
-     *
+     * <p>
+     * This method must not be used in a Java EE web or EJB application. 
+     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+     * 
+      * @exception JMSRuntimeException if this method has been called in a Java EE web or EJB application 
+      *                         (though it is not guaranteed that an exception is thrown in this case)
+      *                           
      * @see javax.jms.ServerSession
      */
     public void run();
