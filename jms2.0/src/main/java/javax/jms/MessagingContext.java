@@ -360,18 +360,14 @@ public interface MessagingContext extends AutoCloseable {
 
    /** Closes the MessagingContext
     * <p>
-    * If this MessagingContext was creating by calling <CODE>createMessageConsumer</CODE> on <CODE>ConnectionFactory</CODE> then
-    * this method closes the <CODE>MessagingContext</CODE>'s connection, session, producers and consumers.
-    * If this MessagingContext was created by calling <CODE>createMessageConsumer</CODE> on <CODE>Connection</CODE> then 
-    * this method closes the <CODE>MessagingContext</CODE>'s session, producers and consumers but not the connection.
+    * This closes the underlying session and any underlying producers and consumers. 
+    * If there are no other active (not closed) MessagingContext objects using 
+    * the underlying connection then this method also closes the underlying connection.
      *
      * <P>Since a provider typically allocates significant resources outside 
      * the JVM on behalf of a connection, clients should close these resources
      * when they are not needed. Relying on garbage collection to eventually 
      * reclaim these resources may not be timely enough.
-     *
-     * <P>There is no need to close the sessions, producers, and consumers
-     * of a closed connection.
      *
      * <P>Closing a connection causes all temporary destinations to be
      * deleted.
