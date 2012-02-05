@@ -39,7 +39,7 @@
  */
 
 package javax.jms;
-
+ 
 /**
  * A client using the simplified JMS API introduced for JMS 2.0 uses a 
  * <CODE>SyncMessageConsumer</CODE> object to receive messages
@@ -64,7 +64,7 @@ package javax.jms;
  * @see javax.jms.MessagingContext
  */
 
-public interface SyncMessageConsumer {
+public interface SyncMessageConsumer extends AutoCloseable {
 
     /** Gets this SyncMessageConsumer's message selector expression.
       *  
@@ -184,8 +184,7 @@ public interface SyncMessageConsumer {
 	 *             - if the next message is not of the expected type
 	 */
     <T> T receivePayload(Class<T>  c);
-    
-    
+        
 	/**
 	 * Receives the next message produced for this SyncMessageConsumer and that
 	 * arrives within the specified timeout period, and returns its payload,
