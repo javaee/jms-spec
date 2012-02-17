@@ -646,7 +646,6 @@ public interface Connection extends AutoCloseable {
       * @since 1.1
       * @see javax.jms.ConnectionConsumer
       */ 
-    //JMSTODO Ambiguity: which exception is thrown if the message selector is bad? JMSException or InvalidSelectorException? 
     ConnectionConsumer
     createConnectionConsumer(Destination destination,
                              String messageSelector,
@@ -688,7 +687,6 @@ public interface Connection extends AutoCloseable {
       * @since 1.1
       * @see javax.jms.ConnectionConsumer
       */
-    //JMSTODO Ambiguity: which exception is thrown if the message selector is bad? JMSException or InvalidSelectorException? 
     ConnectionConsumer
     createDurableConnectionConsumer(Topic topic,
 				    String subscriptionName,
