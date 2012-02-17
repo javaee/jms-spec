@@ -166,11 +166,19 @@ public interface SyncMessageConsumer extends AutoCloseable {
 	 * SyncMessageConsumer retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message. If the next
-	 *            message is a TextMessage when this should be set to
-	 *            String.class. If the next message is a ObjectMessage this
-	 *            should be set to Serializable.class. If the next message is
-	 *            not of the expected type a ClassCastException will be thrown
+	 *            The class of the payload of the next message.<br/> 
+	 *            If the next message is expected to be a <code>TextMessage</code> then 
+	 *            this should be set to <code>String.class</code>.<br/>
+	 *            If the next message is expected to be a <code>ObjectMessage</code> then 
+	 *            this should be set to <code>java.io.Serializable.class</code>. <br/>
+	 *            If the next message is expected to be a <code>MapMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>byte[].class</code>.<br/>
+	 *            If the next message is not of the expected type 
+	 *            a <code>ClassCastException</code> will be thrown
 	 *            and the message will not be delivered.
 	 * 
 	 * @return the payload of the next message produced for this
@@ -200,11 +208,19 @@ public interface SyncMessageConsumer extends AutoCloseable {
 	 * SyncMessageConsumer retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message. If the next
-	 *            message is a TextMessage when this should be set to
-	 *            String.class. If the next message is a ObjectMessage this
-	 *            should be set to Serializable.class. If the next message is
-	 *            not of the expected type a ClassCastException will be thrown
+	 *            The class of the payload of the next message.<br/> 
+	 *            If the next message is expected to be a <code>TextMessage</code> then 
+	 *            this should be set to <code>String.class</code>.<br/>
+	 *            If the next message is expected to be a <code>ObjectMessage</code> then 
+	 *            this should be set to <code>java.io.Serializable.class</code>. <br/>
+	 *            If the next message is expected to be a <code>MapMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>byte[].class</code>.<br/>
+	 *            If the next message is not of the expected type 
+	 *            a <code>ClassCastException</code> will be thrown
 	 *            and the message will not be delivered.
 	 * 
 	 * @return the payload of the next message produced for this
@@ -231,11 +247,19 @@ public interface SyncMessageConsumer extends AutoCloseable {
 	 * SyncMessageConsumer retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message. If the next
-	 *            message is a TextMessage when this should be set to
-	 *            String.class. If the next message is a ObjectMessage this
-	 *            should be set to Serializable.class. If the next message is
-	 *            not of the expected type a ClassCastException will be thrown
+	 *            The class of the payload of the next message.<br/> 
+	 *            If the next message is expected to be a <code>TextMessage</code> then 
+	 *            this should be set to <code>String.class</code>.<br/>
+	 *            If the next message is expected to be a <code>ObjectMessage</code> then 
+	 *            this should be set to <code>java.io.Serializable.class</code>. <br/>
+	 *            If the next message is expected to be a <code>MapMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>java.util.Map.class</code>.<br/>
+	 *            If the next message is expected to be a <code>BytesMessage</code> then this
+	 *            should be set to <code>byte[].class</code>.<br/>
+	 *            If the next message is not of the expected type 
+	 *            a <code>ClassCastException</code> will be thrown
 	 *            and the message will not be delivered.
 	 * 
 	 * @return the payload of the next message produced for this

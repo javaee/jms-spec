@@ -41,6 +41,7 @@
 package javax.jms;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * A <code>MessagingContext</code> is the main interface in the simplified JMS API introduced for JMS 2.0. 
@@ -356,6 +357,31 @@ public interface MessagingContext extends AutoCloseable {
      */
 
    void stop();
+   
+    /**
+     * Specifies whether the underlying connection used by this <code>MessagingContext</code>
+     * will be started automatically when a consumer is created. This is the default behaviour,
+     * and it may be disabled by calling this method with a value of <code>false</code>. 
+     * <p>
+     * This method does not itself either start or stop the connection.
+     * 
+     * @param autoStart Whether the underlying connection used by this <code>MessagingContext</code> will
+     * be automatically started when a consumer is created.
+     * 
+	 * @see javax.jms.MessagingContext#getAutoStart
+	 */
+	public void setAutoStart(boolean autoStart);
+	
+	/**
+	 * Returns whether the underlying connection used by this <code>MessagingContext</code>
+     * will be started automatically when a consumer is created. 
+	 * 
+	 * @return whether the underlying connection used by this <code>MessagingContext</code>
+     * will be started automatically when a consumer is created. 
+	 * 
+	 * @see javax.jms.MessagingContext#setAutoStart
+	 */
+	public boolean getAutoStart();
 
 
    /** Closes the MessagingContext
@@ -2025,6 +2051,36 @@ void setMessageListener (Topic topic, String subscriptionName, MessageListener l
   * @see javax.jms.MessagingContext#setTimeToLive
  */
 void send(Destination destination, String payload);
+
+/**
+ * Send a MapMessage with the specified payload to the specified destination, using
+ * the MessagingContext's default delivery mode, priority and time to live.
+ * 
+ * @param destination - the destination to send this message to
+ * @param payload - the payload of the MapMessage that will be sent.  
+ * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
+ * @throws MessageFormatRuntimeException if an invalid message is specified.
+ * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
+  * @see javax.jms.MessagingContext#setDeliveryMode
+  * @see javax.jms.MessagingContext#setPriority
+  * @see javax.jms.MessagingContext#setTimeToLive
+ */
+void send(Destination destination, Map<String,Object> payload);
+
+/**
+ * Send a BytesMessage with the specified payload to the specified destination, using
+ * the MessagingContext's default delivery mode, priority and time to live.
+ * 
+ * @param destination - the destination to send this message to
+ * @param payload - the payload of the BytesMessage that will be sent.  
+ * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
+ * @throws MessageFormatRuntimeException if an invalid message is specified.
+ * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
+  * @see javax.jms.MessagingContext#setDeliveryMode
+  * @see javax.jms.MessagingContext#setPriority
+  * @see javax.jms.MessagingContext#setTimeToLive
+ */
+void send(Destination destination, byte[] payload);
 
 /**
  * Send an ObjectMessage with the specified payload to the specified destination, using
