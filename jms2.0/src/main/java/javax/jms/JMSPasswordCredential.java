@@ -59,7 +59,14 @@ import java.lang.annotation.Target;
 @Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface JMSPasswordCredential {
 
+    /**
+     * Specifies the userName to be used when injecting a <code>javax.jms.MessagingContext</code> object
+     */
     String userName();
+    
+    /**
+     * Specifies the password to be used when injecting a <code>javax.jms.MessagingContext</code> object
+     */
     String password();
     
 }
