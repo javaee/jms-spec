@@ -113,12 +113,12 @@ public interface ConnectionFactory {
 					     throws JMSException;
     
     /** 
-     * Creates a MessagingContext with the default user identity
+     * Creates a JMSContext with the default user identity
      * and an unspecified sessionMode. 
      * <p>
-     * A connection and session are created for use by the new MessagingContext. 
+     * A connection and session are created for use by the new JMSContext. 
      * The connection is created in stopped mode but will be automatically started
-     * when a SyncMessageConsumer is created or a MessageListener registered.
+     * when a JMSConsumer is created.
      * <p>
      * The behaviour of the session that is created depends on 
      * whether this method is called in a Java SE environment, 
@@ -130,7 +130,7 @@ public interface ConnectionFactory {
      * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
      * <ul>
      * <li>The session will be non-transacted and received messages will be acknowledged automatically
-     * using an acknowledgement mode of <code>MessagingContext.AUTO_ACKNOWLEDGE</code> 
+     * using an acknowledgement mode of <code>JMSContext.AUTO_ACKNOWLEDGE</code> 
      * For a definition of the meaning of this acknowledgement mode see the link below.
      * </ul>
      * <p>
@@ -138,40 +138,40 @@ public interface ConnectionFactory {
      * <ul>
      * <li>The session will participate in the JTA transaction and will be committed or rolled back
      * when that transaction is committed or rolled back, 
-     * not by calling the messaging context's <code>commit</code> or <code>rollback</code> methods.
+     * not by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods.
      * </ul>
      * <p>
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
      * <li>The session will be non-transacted and received messages will be acknowledged automatically
-     * using an acknowledgement mode of <code>MessagingContext.AUTO_ACKNOWLEDGE</code> 
+     * using an acknowledgement mode of <code>JMSContext.AUTO_ACKNOWLEDGE</code> 
      * For a definition of the meaning of this acknowledgement mode see the link below.
      * </ul> 
      *
-     * @return a newly created MessagingContext
+     * @return a newly created JMSContext
      *
      * @exception JMSRuntimeException if the JMS provider fails to create the
-     *                         MessagingContext due to some internal error.
+     *                         JMSContext due to some internal error.
      * @exception JMSSecurityRuntimeException  if client authentication fails due to 
      *                         an invalid user name or password.
      * @since 2.0 
      * 
-     * @see MessagingContext#AUTO_ACKNOWLEDGE 
+     * @see JMSContext#AUTO_ACKNOWLEDGE 
      * 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(int) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String, int) 
-     * @see javax.jms.MessagingContext#createMessagingContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String, int) 
+     * @see javax.jms.JMSContext#createContext(int) 
      */
-    MessagingContext createMessagingContext();
+    JMSContext createContext();
    
     /** 
-     * Creates a MessagingContext with the specified user identity
+     * Creates a JMSContext with the specified user identity
      * and an unspecified sessionMode. 
      * <p>
-     * A connection and session are created for use by the new MessagingContext. 
+     * A connection and session are created for use by the new JMSContext. 
      * The connection is created in stopped mode but will be automatically started
-     * when a SyncMessageConsumer is created or a MessageListener registered.
+     * when a JMSConsumer.
      * <p>
      * The behaviour of the session that is created depends on 
      * whether this method is called in a Java SE environment, 
@@ -183,7 +183,7 @@ public interface ConnectionFactory {
      * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
      * <ul>
      * <li>The session will be non-transacted and received messages will be acknowledged automatically
-     * using an acknowledgement mode of <code>MessagingContext.AUTO_ACKNOWLEDGE</code> 
+     * using an acknowledgement mode of <code>JMSContext.AUTO_ACKNOWLEDGE</code> 
      * For a definition of the meaning of this acknowledgement mode see the link below.
      * </ul>
      * <p>
@@ -191,42 +191,42 @@ public interface ConnectionFactory {
      * <ul>
      * <li>The session will participate in the JTA transaction and will be committed or rolled back
      * when that transaction is committed or rolled back, 
-     * not by calling the messaging context's <code>commit</code> or <code>rollback</code> methods.
+     * not by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods.
      * </ul>
      * <p>
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
      * <li>The session will be non-transacted and received messages will be acknowledged automatically
-     * using an acknowledgement mode of <code>MessagingContext.AUTO_ACKNOWLEDGE</code> 
+     * using an acknowledgement mode of <code>JMSContext.AUTO_ACKNOWLEDGE</code> 
      * For a definition of the meaning of this acknowledgement mode see the link below.
      * </ul> 
      *  
      * @param userName the caller's user name
      * @param password the caller's password
      *  
-     * @return a newly created MessagingContext
+     * @return a newly created JMSContext
      *
      * @exception JMSRuntimeException if the JMS provider fails to create the 
-     *                         MessagingContext due to some internal error.
+     *                         JMSContext due to some internal error.
      * @exception JMSSecurityRuntimeException  if client authentication fails due to 
      *                         an invalid user name or password.
      * @since 2.0 
      * 
-     * @see MessagingContext#AUTO_ACKNOWLEDGE 
+     * @see JMSContext#AUTO_ACKNOWLEDGE 
      * 
-     * @see javax.jms.ConnectionFactory#createMessagingContext() 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(int) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String, int) 
-     * @see javax.jms.MessagingContext#createMessagingContext(int)
+     * @see javax.jms.ConnectionFactory#createContext() 
+     * @see javax.jms.ConnectionFactory#createContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String, int) 
+     * @see javax.jms.JMSContext#createContext(int)
      */
-    MessagingContext createMessagingContext(String userName, String password);    
+    JMSContext createContext(String userName, String password);    
 
-   /** Creates a MessagingContext with the specified user identity 
+   /** Creates a JMSContext with the specified user identity 
      * and the specified session mode. 
      * <p>
-     * A connection and session are created for use by the new MessagingContext. 
-     * The MessagingContext is created in stopped mode but will be automatically started
-     * when a SyncMessageConsumer is created or a MessageListener registered.
+     * A connection and session are created for use by the new JMSContext. 
+     * The JMSContext is created in stopped mode but will be automatically started
+     * when a JMSConsumer is created.
      * <p>
      * The effect of setting the <code>sessionMode</code>  
      * argument depends on whether this method is called in a Java SE environment, 
@@ -237,13 +237,13 @@ public interface ConnectionFactory {
      * <p>
      * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
      * <ul>
-     * <li>If <code>sessionMode</code> is set to <code>MessagingContext.SESSION_TRANSACTED</code> then the session 
+     * <li>If <code>sessionMode</code> is set to <code>JMSContext.SESSION_TRANSACTED</code> then the session 
      * will use a local transaction which may subsequently be committed or rolled back 
-     * by calling the messaging context's <code>commit</code> or <code>rollback</code> methods. 
+     * by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods. 
      * <li>If <code>sessionMode</code> is set to any of 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
      * then the session will be non-transacted and 
      * messages received by this session will be acknowledged
      * according to the value of <code>sessionMode</code>.
@@ -255,7 +255,7 @@ public interface ConnectionFactory {
      * <li>The argument <code>sessionMode</code> is ignored.
      * The session will participate in the JTA transaction and will be committed or rolled back
      * when that transaction is committed or rolled back, 
-     * not by calling the messaging context's <code>commit</code> or <code>rollback</code> methods.
+     * not by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods.
      * Since the argument is ignored, developers are recommended to use 
      * <code>createSession()</code>, which has no arguments, instead of this method.
      * </ul>
@@ -263,12 +263,12 @@ public interface ConnectionFactory {
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
      * <li>The argument <code>acknowledgeMode</code> must be set to either of 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
      * The session will be non-transacted and messages received by this session will be acknowledged
      * automatically according to the value of <code>acknowledgeMode</code>.
      * For a definition of the meaning of these acknowledgement modes see the links below.
-     * The values <code>MessagingContext.SESSION_TRANSACTED</code> and <code>MessagingContext.CLIENT_ACKNOWLEDGE</code> may not be used.
+     * The values <code>JMSContext.SESSION_TRANSACTED</code> and <code>JMSContext.CLIENT_ACKNOWLEDGE</code> may not be used.
      * </ul> 
      * @param userName the caller's user name
      * @param password the caller's password
@@ -276,43 +276,43 @@ public interface ConnectionFactory {
      * <ul>
      * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
      * the permitted values are 
-     * <code>MessagingContext.SESSION_TRANSACTED</code>, 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>. 
+     * <code>JMSContext.SESSION_TRANSACTED</code>, 
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>. 
      * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
      * then this argument is ignored.
      * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
-     * In this case the values <code>MessagingContext.TRANSACTED</code> and <code>MessagingContext.CLIENT_ACKNOWLEDGE</code> are not permitted.
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * In this case the values <code>JMSContext.TRANSACTED</code> and <code>JMSContext.CLIENT_ACKNOWLEDGE</code> are not permitted.
      * </ul>
      *  
-     * @return a newly created MessagingContext
+     * @return a newly created JMSContext
      *
      * @exception JMSRuntimeException if the JMS provider fails to create the 
-     *                         MessagingContext due to some internal error.
+     *                         JMSContext due to some internal error.
      * @exception JMSSecurityRuntimeException  if client authentication fails due to 
      *                         an invalid user name or password.
      * @since 2.0  
-     * @see MessagingContext#SESSION_TRANSACTED 
-     * @see MessagingContext#CLIENT_ACKNOWLEDGE 
-     * @see MessagingContext#AUTO_ACKNOWLEDGE 
-     * @see MessagingContext#DUPS_OK_ACKNOWLEDGE 
+     * @see JMSContext#SESSION_TRANSACTED 
+     * @see JMSContext#CLIENT_ACKNOWLEDGE 
+     * @see JMSContext#AUTO_ACKNOWLEDGE 
+     * @see JMSContext#DUPS_OK_ACKNOWLEDGE 
      * 
-     * @see javax.jms.ConnectionFactory#createMessagingContext() 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(int) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String) 
-     * @see javax.jms.MessagingContext#createMessagingContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext() 
+     * @see javax.jms.ConnectionFactory#createContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String) 
+     * @see javax.jms.JMSContext#createContext(int) 
      */ 
-    MessagingContext createMessagingContext(String userName, String password, int sessionMode);    
+    JMSContext createContext(String userName, String password, int sessionMode);    
    
-   /** Creates a MessagingContext with the default user identity
+   /** Creates a JMSContext with the default user identity
      * and the specified session mode. 
      * <p> 
-     * A connection and session are created for use by the new MessagingContext. 
-     * The MessagingContext is created in stopped mode but will be automatically started
-     * when a SyncMessageConsumer is created or a MessageListener registered.
+     * A connection and session are created for use by the new JMSContext. 
+     * The JMSContext is created in stopped mode but will be automatically started
+     * when a JMSConsumer is created.
      * <p>
      * The effect of setting the <code>sessionMode</code>  
      * argument depends on whether this method is called in a Java SE environment, 
@@ -323,13 +323,13 @@ public interface ConnectionFactory {
      * <p>
      * In a <b>Java SE environment</b> or in <b>the Java EE application client container</b>:
      * <ul>
-     * <li>If <code>sessionMode</code> is set to <code>MessagingContext.SESSION_TRANSACTED</code> then the session 
+     * <li>If <code>sessionMode</code> is set to <code>JMSContext.SESSION_TRANSACTED</code> then the session 
      * will use a local transaction which may subsequently be committed or rolled back 
-     * by calling the messaging context's <code>commit</code> or <code>rollback</code> methods. 
+     * by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods. 
      * <li>If <code>sessionMode</code> is set to any of 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
      * then the session will be non-transacted and 
      * messages received by this session will be acknowledged
      * according to the value of <code>sessionMode</code>.
@@ -341,7 +341,7 @@ public interface ConnectionFactory {
      * <li>The argument <code>sessionMode</code> is ignored.
      * The session will participate in the JTA transaction and will be committed or rolled back
      * when that transaction is committed or rolled back, 
-     * not by calling the messaging context's <code>commit</code> or <code>rollback</code> methods.
+     * not by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods.
      * Since the argument is ignored, developers are recommended to use 
      * <code>createSession()</code>, which has no arguments, instead of this method.
      * </ul>
@@ -349,48 +349,48 @@ public interface ConnectionFactory {
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
      * <li>The argument <code>acknowledgeMode</code> must be set to either of 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
      * The session will be non-transacted and messages received by this session will be acknowledged
      * automatically according to the value of <code>acknowledgeMode</code>.
      * For a definition of the meaning of these acknowledgement modes see the links below.
-     * The values <code>MessagingContext.SESSION_TRANSACTED</code> and <code>MessagingContext.CLIENT_ACKNOWLEDGE</code> may not be used.
+     * The values <code>JMSContext.SESSION_TRANSACTED</code> and <code>JMSContext.CLIENT_ACKNOWLEDGE</code> may not be used.
      * </ul> 
      *
      * @param sessionMode indicates which of four possible session modes will be used.
      * <ul>
      * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
      * the permitted values are 
-     * <code>MessagingContext.SESSION_TRANSACTED</code>, 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>. 
+     * <code>JMSContext.SESSION_TRANSACTED</code>, 
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>. 
      * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
      * then this argument is ignored.
      * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
-     * In this case the values <code>MessagingContext.TRANSACTED</code> and <code>MessagingContext.CLIENT_ACKNOWLEDGE</code> are not permitted.
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * In this case the values <code>JMSContext.TRANSACTED</code> and <code>JMSContext.CLIENT_ACKNOWLEDGE</code> are not permitted.
      * </ul>
      * 
-     * @return a newly created MessagingContext
+     * @return a newly created JMSContext
      * 
      * @exception JMSRuntimeException if the JMS provider fails to create the
-     *                         MessagingContext due to some internal error.
+     *                         JMSContext due to some internal error.
      * @exception JMSSecurityRuntimeException  if client authentication fails due to 
      *                         an invalid user name or password.
      * @since 2.0 
      * 
-     * @see MessagingContext#SESSION_TRANSACTED 
-     * @see MessagingContext#CLIENT_ACKNOWLEDGE 
-     * @see MessagingContext#AUTO_ACKNOWLEDGE 
-     * @see MessagingContext#DUPS_OK_ACKNOWLEDGE 
+     * @see JMSContext#SESSION_TRANSACTED 
+     * @see JMSContext#CLIENT_ACKNOWLEDGE 
+     * @see JMSContext#AUTO_ACKNOWLEDGE 
+     * @see JMSContext#DUPS_OK_ACKNOWLEDGE 
      * 
-     * @see javax.jms.ConnectionFactory#createMessagingContext() 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String, int) 
-     * @see javax.jms.MessagingContext#createMessagingContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext() 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String, int) 
+     * @see javax.jms.JMSContext#createContext(int) 
 	 */
-	MessagingContext createMessagingContext(int sessionMode);
+	JMSContext createContext(int sessionMode);
       
 }

@@ -51,14 +51,14 @@ import java.lang.annotation.Target;
 
 /**
  * This optional annotation may be used to specify the autostart behaviour 
- * to be used when injecting a <code>javax.jms.MessagingContext</code> object.
+ * to be used when injecting a <code>javax.jms.JMSContext</code> object.
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface JMSAutoStart {
     /**
      * (Optional) Specifies the the autostart behaviour to be used 
-     * when injecting a <code>javax.jms.MessagingContext</code> object.
+     * when injecting a <code>javax.jms.JMSContext</code> object.
      */
     boolean value() default true;
 }

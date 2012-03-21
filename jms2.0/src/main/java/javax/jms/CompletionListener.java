@@ -61,8 +61,8 @@ package javax.jms;
  * @see javax.jms.MessageProducer#send(javax.jms.Message,int,int,long,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
- * @see javax.jms.MessagingContext#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
- * @see javax.jms.MessagingContext#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
+ * @see javax.jms.JMSContext#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
+ * @see javax.jms.JMSContext#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
  * 
  * 
  */

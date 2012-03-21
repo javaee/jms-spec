@@ -44,57 +44,61 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * A <code>MessagingContext</code> is the main interface in the simplified JMS API introduced for JMS 2.0. 
- * This combines the functionality of several JMS 1.1 objects into one: a <code>Connection</code>, a <code>Session</code> 
- * and an anonymous <code>MessageProducer</code> (one with no destination specified). 
- * It also combines the functionality of <code>MessageConsumer</code>, but only for asynchronous message delivery. 
+ * A <code>JMSContext</code> is the main interface in the simplified JMS API introduced for JMS 2.0. 
+ * This combines in a single object the functionality of several separate objects from the JMS 1.1 API: 
+ * a <code>Connection</code>, a <code>Session</code> and an anonymous <code>MessageProducer</code>
+ * (one with no destination specified). 
  * <p> 
- * For synchronous delivery a separate object is still needed. 
- * This is <code>SyncMessageConsumer</code> which provides the functionality of
- * <code>MessageConsumer</code> for synchronous message delivery.
- * In terms of the old API a <code>MessagingContext</code> should be thought of as 
- * representing both a <code>Connection</code> and a <code>Session</code>. 
- * These concepts remain relevant in the new API. 
- * As described in JMS 1.1, a connection represents a physical link to the JMS server, 
- * and a session represents a single-threaded context for sending and receiving messages.
+ * For consuming messages a separate object is still needed. 
+ * This is <code>JMSConsumer</code> which provides similar functionality to
+ * <code>MessageConsumer</code>.
  * <p>
- * Java EE allows only one session to be created on each connection,
- * so combining them in a single method takes advantage of this restriction to offer a simpler API.
- * Java EE applications will create <code>MessagingContext</code> objects
+ * In terms of the JMS 1.1 API a <code>JMSContext</code> should be thought of as 
+ * representing both a <code>Connection</code> and a <code>Session</code>. 
+ * Although the simplified API does not require applications to use those objects, 
+ * the concepts of connection and session remain important. 
+ * A connection represents a physical link to the JMS server 
+ * and a session represents a single-threaded context for sending and receiving messages.  
+ * <p>
+ * Applications running in the Java EE web and EJB containers 
+ * are not permitted to create more than one active session on a connection 
+ * so combining them in a single object takes advantage of this restriction to offer a simpler API.
+ * Such applications will create <code>JMSContext</code> objects
  * using new factory methods on the <code>ConnectionFactory</code> interface.
  * <p>
- * Java SE applications allow multiple sessions on the same connection. 
- * This allows the same physical connection to be used in multiple threads simultaneously.  
- * Java SE applications which require multiple sessions to be created on the same connection
- * should use the using the factory methods on the <code>ConnectionFactory</code> interface
- * to create the first <code>MessagingContext</code> and then 
- * use the <code>createMessagingContext</code> method on <code>MessagingContext</code>
- * to create additional <code>MessagingContext</code> objects that use the same connection.
+ * Applications running in a Java SE environment or in the Java EE application client container 
+ * are permitted to create multiple active sessions on the same connection.  
+ * This allows the same physical connection to be used in multiple threads simultaneously.
+ * Such applications which require multiple sessions to be created on the same connection
+ * should use the factory methods on the <code>ConnectionFactory</code> interface
+ * to create the first <code>JMSContext</code> and then 
+ * use the <code>createContext</code> method on <code>JMSContext</code>
+ * to create additional <code>JMSContext</code> objects that use the same connection.
  * 
  * @version 2.0
  * @since 2.0
  * 
  */
 
-public interface MessagingContext extends AutoCloseable {
+public interface JMSContext extends AutoCloseable {
 	
     /** 
-     * Creates a new <code>MessagingContext</code> with the specified session mode
-	 * using the same connection as this <code>MessagingContext</code> and creating a new session.
+     * Creates a new <code>JMSContext</code> with the specified session mode
+	 * using the same connection as this <code>JMSContext</code> and creating a new session.
 	 * <p>
      * This method does not start the connection. 
      * If the connection has not already been started then it will be automatically started
-     * when a <code>SyncMessageConsumer</code> is created or a <code>MessageListener</code> registered on  
-     * any of the <code>MessagingContext</code> objects for that connection.
+     * when a <code>JMSConsumer</code> is created on  
+     * any of the <code>JMSContext</code> objects for that connection.
      * <p>
      * <ul>
-     * <li>If <code>sessionMode</code> is set to <code>MessagingContext.SESSION_TRANSACTED</code> then the session 
+     * <li>If <code>sessionMode</code> is set to <code>JMSContext.SESSION_TRANSACTED</code> then the session 
      * will use a local transaction which may subsequently be committed or rolled back 
-     * by calling the messaging context's <code>commit</code> or <code>rollback</code> methods. 
+     * by calling the <code>JMSContext</code>'s <code>commit</code> or <code>rollback</code> methods. 
      * <li>If <code>sessionMode</code> is set to any of 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> or
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>.
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> or
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>.
      * then the session will be non-transacted and 
      * messages received by this session will be acknowledged
      * according to the value of <code>sessionMode</code>.
@@ -108,17 +112,17 @@ public interface MessagingContext extends AutoCloseable {
 	 *
      * @param sessionMode indicates which of four possible session modes will be used. 
      * The permitted values are 
-     * <code>MessagingContext.SESSION_TRANSACTED</code>, 
-     * <code>MessagingContext.CLIENT_ACKNOWLEDGE</code>, 
-     * <code>MessagingContext.AUTO_ACKNOWLEDGE</code> and
-     * <code>MessagingContext.DUPS_OK_ACKNOWLEDGE</code>. 
+     * <code>JMSContext.SESSION_TRANSACTED</code>, 
+     * <code>JMSContext.CLIENT_ACKNOWLEDGE</code>, 
+     * <code>JMSContext.AUTO_ACKNOWLEDGE</code> and
+     * <code>JMSContext.DUPS_OK_ACKNOWLEDGE</code>. 
      * 
-	 * @return a newly created MessagingContext
+	 * @return a newly created JMSContext
 	 *
      * @exception JMSException if the <CODE>Connection</CODE> object fails
      *                         to create a session due to 
 
-	 * @exception JMSRuntimeException if the JMS provider fails to create the MessagingContext due to 
+	 * @exception JMSRuntimeException if the JMS provider fails to create the JMSContext due to 
      *                         <ul>
      *                         <li>some internal error or  
      *                         <li>because this method is being called in a Java EE web or EJB application.
@@ -127,22 +131,22 @@ public interface MessagingContext extends AutoCloseable {
 	 *                         an invalid user name or password.
      * @since 2.0 
      * 
-     * @see MessagingContext#SESSION_TRANSACTED 
-     * @see MessagingContext#CLIENT_ACKNOWLEDGE 
-     * @see MessagingContext#AUTO_ACKNOWLEDGE 
-     * @see MessagingContext#DUPS_OK_ACKNOWLEDGE 
+     * @see JMSContext#SESSION_TRANSACTED 
+     * @see JMSContext#CLIENT_ACKNOWLEDGE 
+     * @see JMSContext#AUTO_ACKNOWLEDGE 
+     * @see JMSContext#DUPS_OK_ACKNOWLEDGE 
      * 
-     * @see javax.jms.ConnectionFactory#createMessagingContext() 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(int) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String) 
-     * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String, int) 
-     * @see javax.jms.MessagingContext#createMessagingContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext() 
+     * @see javax.jms.ConnectionFactory#createContext(int) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String) 
+     * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String, int) 
+     * @see javax.jms.JMSContext#createContext(int) 
      */ 
-	MessagingContext createMessagingContext(int sessionMode);
+	JMSContext createContext(int sessionMode);
 	
 // START OF METHODS COPIED FROM CONNECTION 
    
-   /** Gets the client identifier for the MessagingContext's connection.
+   /** Gets the client identifier for the JMSContext's connection.
      *  
      * <P>This value is specific to the JMS provider.  It is either preconfigured 
      * by an administrator in a <CODE>ConnectionFactory</CODE> object
@@ -152,7 +156,7 @@ public interface MessagingContext extends AutoCloseable {
      * @return the unique client identifier 
      *  
      * @exception JMSRuntimeException if the JMS provider fails to return
-     *                         the client ID for the MessagingContext's connection due
+     *                         the client ID for the JMSContext's connection due
      *                         to some internal error.
      *
      **/
@@ -160,7 +164,7 @@ public interface MessagingContext extends AutoCloseable {
 
 
    	/**
-	 * Sets the client identifier for the MessagingContext's connection.
+	 * Sets the client identifier for the JMSContext's connection.
 	 * 
 	 * <P>
 	 * The preferred way to assign a JMS client's client identifier is for it to
@@ -177,13 +181,13 @@ public interface MessagingContext extends AutoCloseable {
 	 * one does exist, an attempt to change it by setting it must throw an
 	 * <CODE>IllegalStateException</CODE>. If a client sets the client
 	 * identifier explicitly, it must do so immediately after it creates the
-	 * MessagingContext and before any other action on the MessagingContext is
+	 * JMSContext and before any other action on the JMSContext is
 	 * taken. After this point, setting the client identifier is a programming
 	 * error that should throw an <CODE>IllegalStateException</CODE>.
 	 * 
 	 * <P>
 	 * The purpose of the client identifier is to associate the
-	 * MessagingContext's connection and its objects with a state maintained on
+	 * JMSContext's connection and its objects with a state maintained on
 	 * behalf of the client by a provider. The only such state identified by the
 	 * JMS API is that required to support durable subscriptions.
 	 * 
@@ -198,7 +202,7 @@ public interface MessagingContext extends AutoCloseable {
 	 * @param clientID
 	 *            the unique client identifier
 	 * 
-     * @exception JMSRuntimeException if the JMS provider fails to set the client ID for the the MessagingContext's connection
+     * @exception JMSRuntimeException if the JMS provider fails to set the client ID for the the JMSContext's connection
      *                         for one of the following reasons:
      *                         <ul>
      *                         <li>an internal error has occurred or  
@@ -211,7 +215,7 @@ public interface MessagingContext extends AutoCloseable {
 	 *             ID.
 	 * @throws IllegalStateRuntimeException
 	 *             if the JMS client attempts to set the client ID for the
-	 *             MessagingContext's connection at the wrong time or when it
+	 *             JMSContext's connection at the wrong time or when it
 	 *             has been administratively configured.
 	 */
 
@@ -219,7 +223,7 @@ public interface MessagingContext extends AutoCloseable {
 
 
    	/**
-	 * Gets the connection metadata for the MessagingContext's connection.
+	 * Gets the connection metadata for the JMSContext's connection.
 	 * 
 	 * @return the connection metadata
 	 * 
@@ -232,17 +236,17 @@ public interface MessagingContext extends AutoCloseable {
    ConnectionMetaData getMetaData();
 
    	/**
-	 * Gets the <CODE>ExceptionListener</CODE> object for the MessagingContext's
+	 * Gets the <CODE>ExceptionListener</CODE> object for the JMSContext's
 	 * connection. Not every <CODE>Connection</CODE> has an
 	 * <CODE>ExceptionListener</CODE> associated with it.
 	 * 
-	 * @return the <CODE>ExceptionListener</CODE> for the MessagingContext's
+	 * @return the <CODE>ExceptionListener</CODE> for the JMSContext's
 	 *         connection, or null if no <CODE>ExceptionListener</CODE> is
 	 *         associated with that connection.
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the
-	 *             <CODE>ExceptionListener</CODE> for the MessagingContext's
+	 *             <CODE>ExceptionListener</CODE> for the JMSContext's
 	 *             connection.
 	 * @see javax.jms.Connection#setExceptionListener
 	 */
@@ -251,7 +255,7 @@ public interface MessagingContext extends AutoCloseable {
 
 
    	/**
-	 * Sets an exception listener for the MessagingContext's connection.
+	 * Sets an exception listener for the JMSContext's connection.
 	 * 
 	 * <P>
 	 * If a JMS provider detects a serious problem with a connection, it informs
@@ -292,7 +296,7 @@ public interface MessagingContext extends AutoCloseable {
 
 	/**
 	 * Starts (or restarts) delivery of incoming messages by the
-	 * MessagingContext's connection. A call to <CODE>start</CODE> on a
+	 * JMSContext's connection. A call to <CODE>start</CODE> on a
 	 * connection that has already been started is ignored.
 	 * 
 	 * @exception JMSRuntimeException
@@ -304,7 +308,7 @@ public interface MessagingContext extends AutoCloseable {
    void start();
 
 
-   /** Temporarily stops the delivery of incoming messages by the MessagingContext's connection.
+   /** Temporarily stops the delivery of incoming messages by the JMSContext's connection.
      * Delivery can be restarted using the <CODE>start</CODE>
      * method. When the connection is stopped,
      * delivery to all the connection's message consumers is inhibited:
@@ -333,11 +337,11 @@ public interface MessagingContext extends AutoCloseable {
      * message listeners are completing, they must have the full services of the
      * connection available to them.
      * <p>
-     * A message listener must not attempt to stop its own MessagingContext as this 
+     * A message listener must not attempt to stop its own JMSContext as this 
      * would lead to deadlock. The JMS provider must detect this and throw a 
      * javax.jms.IllegalStateRuntimeException.
      * <p>
-     * For the avoidance of doubt, if an exception listener for the MessagingContext's connection 
+     * For the avoidance of doubt, if an exception listener for the JMSContext's connection 
      * is running when <code>stop</code> is invoked, there is no requirement for 
      * the <code>stop</code> call to wait until the exception listener has returned
      * before it may return.   
@@ -359,35 +363,35 @@ public interface MessagingContext extends AutoCloseable {
    void stop();
    
     /**
-     * Specifies whether the underlying connection used by this <code>MessagingContext</code>
+     * Specifies whether the underlying connection used by this <code>JMSContext</code>
      * will be started automatically when a consumer is created. This is the default behaviour,
      * and it may be disabled by calling this method with a value of <code>false</code>. 
      * <p>
      * This method does not itself either start or stop the connection.
      * 
-     * @param autoStart Whether the underlying connection used by this <code>MessagingContext</code> will
+     * @param autoStart Whether the underlying connection used by this <code>JMSContext</code> will
      * be automatically started when a consumer is created.
      * 
-	 * @see javax.jms.MessagingContext#getAutoStart
+	 * @see javax.jms.JMSContext#getAutoStart
 	 */
 	public void setAutoStart(boolean autoStart);
 	
 	/**
-	 * Returns whether the underlying connection used by this <code>MessagingContext</code>
+	 * Returns whether the underlying connection used by this <code>JMSContext</code>
      * will be started automatically when a consumer is created. 
 	 * 
-	 * @return whether the underlying connection used by this <code>MessagingContext</code>
+	 * @return whether the underlying connection used by this <code>JMSContext</code>
      * will be started automatically when a consumer is created. 
 	 * 
-	 * @see javax.jms.MessagingContext#setAutoStart
+	 * @see javax.jms.JMSContext#setAutoStart
 	 */
 	public boolean getAutoStart();
 
 
-   /** Closes the MessagingContext
+   /** Closes the JMSContext
     * <p>
     * This closes the underlying session and any underlying producers and consumers. 
-    * If there are no other active (not closed) MessagingContext objects using 
+    * If there are no other active (not closed) JMSContext objects using 
     * the underlying connection then this method also closes the underlying connection.
      *
      * <P>Since a provider typically allocates significant resources outside 
@@ -411,11 +415,11 @@ public interface MessagingContext extends AutoCloseable {
      * its sessions must remain available to those listeners until they return 
      * control to the JMS provider. 
      * <p>
-     * A message listener must not attempt to close its own MessagingContext as this 
+     * A message listener must not attempt to close its own JMSContext as this 
      * would lead to deadlock. The JMS provider must detect this and throw a 
      * javax.jms.IllegalStateRuntimeException.
      * <p>
-     * For the avoidance of doubt, if an exception listener for the MessagingContext's connection 
+     * For the avoidance of doubt, if an exception listener for the JMSContext's connection 
      * is running when <code>close</code> is invoked, there is no requirement for 
      * the <code>close</code> call to wait until the exception listener has returned
      * before it may return.   
@@ -435,7 +439,7 @@ public interface MessagingContext extends AutoCloseable {
      * NOT throw an exception.
      *  
      * @exception JMSRuntimeException if the JMS provider fails to close the
-     *                         MessagingContext due to some internal error. For 
+     *                         JMSContext due to some internal error. For 
      *                         example, a failure to release resources
      *                         or to close a socket connection can cause
      *                         this exception to be thrown.
@@ -448,7 +452,7 @@ public interface MessagingContext extends AutoCloseable {
   
 // START OF METHODS COPIED FROM SESSION
    
-   /** With this session mode, the MessagingContext's session automatically acknowledges
+   /** With this session mode, the JMSContext's session automatically acknowledges
     * a client's receipt of a message either when the session has successfully 
     * returned from a call to <CODE>receive</CODE> or when the message 
     * listener the session has called to process the message successfully 
@@ -474,7 +478,7 @@ public interface MessagingContext extends AutoCloseable {
 
   static final int CLIENT_ACKNOWLEDGE = Session.CLIENT_ACKNOWLEDGE;
 
-  /** This session mode instructs the MessagingContext's session to lazily acknowledge 
+  /** This session mode instructs the JMSContext's session to lazily acknowledge 
     * the delivery of messages. This is likely to result in the delivery of 
     * some duplicate messages if the JMS provider fails, so it should only be 
     * used by consumers that can tolerate duplicate messages. Use of this  
@@ -484,7 +488,7 @@ public interface MessagingContext extends AutoCloseable {
 
   static final int DUPS_OK_ACKNOWLEDGE = Session.DUPS_OK_ACKNOWLEDGE;
   
-  /** This session mode instructs the MessagingContext's session to
+  /** This session mode instructs the JMSContext's session to
    * deliver and consume messages in a local transaction which 
    * will be subsequently committed by calling
    * <CODE>commit</CODE> or rolled back  by calling <CODE>rollback</CODE>.
@@ -508,8 +512,8 @@ public interface MessagingContext extends AutoCloseable {
    * names are <CODE>String</CODE> objects and values are primitive values 
    * in the Java programming language.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -528,8 +532,8 @@ public interface MessagingContext extends AutoCloseable {
    * standard message header information. It can be sent when a message 
    * containing only header information is sufficient.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -546,8 +550,8 @@ public interface MessagingContext extends AutoCloseable {
    * <CODE>ObjectMessage</CODE> object is used to send a message 
    * that contains a serializable Java object.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -564,8 +568,8 @@ public interface MessagingContext extends AutoCloseable {
    * <CODE>ObjectMessage</CODE> object is used 
    * to send a message that contains a serializable Java object.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -585,8 +589,8 @@ public interface MessagingContext extends AutoCloseable {
    * self-defining stream of primitive values in the Java programming 
    * language.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -603,8 +607,8 @@ public interface MessagingContext extends AutoCloseable {
    * object is used to send a message containing a <CODE>String</CODE>
    * object.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -621,8 +625,8 @@ public interface MessagingContext extends AutoCloseable {
    * <CODE>TextMessage</CODE> object is used to send 
    * a message containing a <CODE>String</CODE>.
    * <p>
-   * The message object returned may be sent using any session or messaging context. 
-   * It is not restricted to being sent using the messaging context used to create it.
+   * The message object returned may be sent using any <code>Session</code> or <code>JMSContext</code>. 
+   * It is not restricted to being sent using the <code>JMSContext</code> used to create it.
    * <p>
    * The message object returned may be optimised for use with the JMS provider
    * used to create it. However it can be sent using any JMS provider, not just the 
@@ -637,7 +641,7 @@ public interface MessagingContext extends AutoCloseable {
  TextMessage createTextMessage(String text);
 
 
- /** Indicates whether the MessagingContext's session is in transacted mode.
+ /** Indicates whether the JMSContext's session is in transacted mode.
    *  
    * @return true if the session is in transacted mode
    *  
@@ -647,15 +651,15 @@ public interface MessagingContext extends AutoCloseable {
 
  boolean getTransacted();
  
- /** Returns the session mode of the MessagingContext's session. 
-  * This can be set at the time that the MessagingContext is created. Possible values are
-  * MessagingContext.SESSION_TRANSACTED, MessagingContext.AUTO_ACKNOWLEDGE,
-  * MessagingContext.CLIENT_ACKNOWLEDGE and MessagingContext.DUPS_OK_ACKNOWLEDGE
+ /** Returns the session mode of the JMSContext's session. 
+  * This can be set at the time that the JMSContext is created. Possible values are
+  * JMSContext.SESSION_TRANSACTED, JMSContext.AUTO_ACKNOWLEDGE,
+  * JMSContext.CLIENT_ACKNOWLEDGE and JMSContext.DUPS_OK_ACKNOWLEDGE
   * <p>
-  * If a session mode was not specified when the MessagingContext was created
-  * a value of MessagingContext.AUTO_ACKNOWLEDGE will be returned.
+  * If a session mode was not specified when the JMSContext was created
+  * a value of JMSContext.AUTO_ACKNOWLEDGE will be returned.
   *
-  *@return the session mode of the MessagingContext's session
+  *@return the session mode of the JMSContext's session
   *
   *@exception JMSRuntimeException   if the JMS provider fails to return the 
   *                         acknowledgment mode due to some internal error.
@@ -693,7 +697,7 @@ public interface MessagingContext extends AutoCloseable {
 
  void rollback();
 
- /** Stops message delivery in the MessagingContext's session, and restarts message delivery
+ /** Stops message delivery in the JMSContext's session, and restarts message delivery
    * with the oldest unacknowledged message.
    *  
    * <P>All consumers deliver messages in a serial order.
@@ -720,63 +724,58 @@ public interface MessagingContext extends AutoCloseable {
 
  void recover();
 
- /** Creates a <CODE>SyncMessageConsumer</CODE> for the specified destination.
-  * 
-   * <P>A client uses a <CODE>SyncMessageConsumer</CODE> object to synchronously receive 
+ /** Creates a <CODE>JMSConsumer</CODE> for the specified destination.
+   * 
+   * <P>A client uses a <CODE>JMSConsumer</CODE> object to receive 
    * messages that have been sent to a destination.
    *
    * @param destination the <CODE>Destination</CODE> to access. 
    *
-   * @exception JMSRuntimeException if the session fails to create a consumer
-   *                         due to some internal error.
+   * @exception JMSRuntimeException if the session fails to create a 
+   *            <CODE>JMSConsumer</CODE> due to some internal error.
    * @exception InvalidDestinationRuntimeException if an invalid destination 
-   *                         is specified.
-   *
-   * @since 2.0 
+   *            is specified.
    */
-
- SyncMessageConsumer createSyncConsumer(Destination destination);
+ JMSConsumer createConsumer(Destination destination);
 
     /**
-	 * Creates a <CODE>SyncMessageConsumer</CODE> for the specified destination,
+	 * Creates a <CODE>JMSConsumer</CODE> for the specified destination,
 	 * using a message selector.
 	 * <P>
-	 * A client uses a <CODE>SyncMessageConsumer</CODE> object to synchronously
-	 * receive messages that have been sent to a destination.
+	 * A client uses a <CODE>JMSConsumer</CODE> object to receive 
+	 * messages that have been sent to a destination.
 	 * 
-	 * @param destination
-	 *            the <CODE>Destination</CODE> to access
+	 * @param destination the <CODE>Destination</CODE> to access
 	 * @param messageSelector
 	 *            only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
+	 *            indicates that there is no message selector for the 
+	 *            <code>JMSConsumer</code>.
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the session fails to create a SyncMessageConsumer due to
+	 *             if the session fails to create a <code>JMSConsumer</code> due to
 	 *             some internal error.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException
 	 *             if the message selector is invalid.
-	 * @since 2.0
 	 */
- SyncMessageConsumer createSyncConsumer(Destination destination, java.lang.String messageSelector);
+ JMSConsumer createConsumer(Destination destination, java.lang.String messageSelector);
   
   	/**
-	 * Creates a <CODE>SyncMessageConsumer</CODE> for the specified destination, using
+	 * Creates a <CODE>JMSConsumer</CODE> for the specified destination, using
 	 * a message selector. This method can specify whether messages published by
 	 * its own connection should be delivered to it, if the destination is a
 	 * topic.
 	 * <P>
-	 * A client uses a <CODE>SyncMessageConsumer</CODE> object to synchronously
+	 * A client uses a <CODE>JMSConsumer</CODE> object to 
 	 * receive messages that have been sent to a destination.
 	 * <P>
      * The <code>noLocal</code> argument is for use when the
-     * destination is a topic and the MessagingContext's connection
+     * destination is a topic and the JMSContext's connection
      * is also being used to publish messages to that topic.
      * If <code>noLocal</code> is set to true then the
-     * <code>SyncMessageConsumer</code> will not receive messages published
+     * <code>JMSConsumer</code> will not receive messages published
      * to the topic by its own connection. The default value of this
      * argument is false. If the destination is a queue
      * then the effect of setting <code>noLocal</code>
@@ -787,25 +786,22 @@ public interface MessagingContext extends AutoCloseable {
 	 * @param messageSelector
 	 *            only messages with properties matching the message selector
 	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
-     * @param noLocal  - if true, and the destination is a topic,
-     *                   then the <code>SyncMessageConsumer</code> will
-     *                   not receive messages published to the topic
-     *                   by its own connection
+	 *            indicates that there is no message selector for the 
+	 *            <code>JMSConsumer</code>.
+     * @param noLocal  if true, and the destination is a topic,
+     *                 then the <code>JMSConsumer</code> will
+     *                 not receive messages published to the topic
+     *                 by its own connection
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the session fails to create a SyncMessageConsumer due to some
+	 *             if the session fails to create a <code>JMSConsumer</code> due to some
 	 *             internal error.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if an invalid destination is specified.
 	 * @throws InvalidSelectorRuntimeException
 	 *             if the message selector is invalid.
-	 * 
-	 * @since 2.0
-	 * 
 	 */     
- SyncMessageConsumer createSyncConsumer(Destination destination, java.lang.String messageSelector, boolean noLocal);
+ JMSConsumer createConsumer(Destination destination, java.lang.String messageSelector, boolean noLocal);
  
  
    /** Creates a queue identity given a <CODE>Queue</CODE> name.
@@ -827,7 +823,6 @@ public interface MessagingContext extends AutoCloseable {
    *
    * @exception JMSRuntimeException if the session fails to create a queue
    *                         due to some internal error.
-   * @since 2.0
    */ 
 
  Queue
@@ -852,24 +847,23 @@ public interface MessagingContext extends AutoCloseable {
    *
    * @exception JMSRuntimeException if the session fails to create a topic
    *                         due to some internal error.
-   * @since 2.0
    */
 
  Topic
  createTopic(String topicName);
 
     /** Creates a durable subscription with the specified name on the
-     * specified topic, and creates a <code>SyncMessageConsumer</code> 
+     * specified topic, and creates a <code>JMSConsumer</code> 
      * on that durable subscription.
      * <p>
      * If a durable subscription already exists with the same name 
      * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a <code>SyncMessageConsumer</code> on the existing durable
+     * then this method creates a <code>JMSConsumer</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
      * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
+     * when there is no consumer associated with it. 
      * The JMS provider retains a record of this durable subscription 
      * and ensures that all messages from the topic's publishers are retained 
      * until they are delivered to, and acknowledged by,
@@ -880,89 +874,90 @@ public interface MessagingContext extends AutoCloseable {
      * until it is deleted using the <code>unsubscribe</code> method. 
      * <p>
      * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
+     * <code>createDurableConsumer</code> methods on <code>JMSContext</code>,
+     * or the <code>createDurableConsumer</code> and <code>createDurableSubscriber</code>
+     * methods on <code>Session</code> or <code>TopicSession</code>.
      * A durable subscription which has a consumer 
      * associated with it is described as being active. 
      * A durable subscription which has no consumer
      * associated with it is described as being inactive. 
      * <p>
      * Only one session at a time can have a
-     * active consumer on a particular durable subscription.
+     * consumer on a particular durable subscription.
      * <p>
      * A durable subscription is identified by a name specified by the client
      * and by the client identifier if set. If the client identifier was set
      * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a <code>SyncMessageConsumer</code>
+     * subsequently wishes to create a consumer
      * on that durable subscription must use the same client identifier.
      * <p>
      * A client can change an existing durable subscription by calling
-     * <code>createSyncDurableSubscriber</code> 
+     * <code>createDurableConsumer</code> 
      * with the same name and client identifier (if used),
      * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
+     * Changing a durable subscription is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
      *  
-     * @exception JMSRuntimeException if the session fails to create a subscriber
-     *                         due to some internal error.
+     * @exception JMSRuntimeException if the session fails to create the 
+     *            durable subscription and <code>JMSConsumer</code>
+     *            due to some internal error.
      * @exception InvalidDestinationRuntimeException if an invalid topic is specified.
      *
 	 */
-	SyncMessageConsumer createSyncDurableConsumer(Topic topic, String name);
+	JMSConsumer createDurableConsumer(Topic topic, String name);
 	
     /** Creates a durable subscription with the specified name on the
-     * specified topic, and creates a <code>SyncMessageConsumer</code> 
+     * specified topic, and creates a <code>JMSConsumer</code> 
      * on that durable subscription, specifying a message selector and 
      * whether messages published by its own connection should be added to 
      * the durable subscription.  
      * <p>
      * If a durable subscription already exists with the same name 
      * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a <code>MessageConsumer</code> on the existing durable
+     * then this method creates a <code>JMSConsumer</code> on the existing durable
      * subscription.
      * <p>
      * A durable subscription is used by a client which needs to receive
      * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
+     * when there is no consumer associated with it. 
      * The JMS provider retains a record of this durable subscription 
      * and ensures that all messages from the topic's publishers are retained 
      * until they are delivered to, and acknowledged by,
      * a consumer on this durable subscription
      * or until they have expired.
      * <p>
+     * A consumer may be created on a durable subscription using the
+     * <code>createDurableConsumer</code> methods on <code>JMSContext</code>,
+     * or the <code>createDurableConsumer</code> and <code>createDurableSubscriber</code>
+     * methods on <code>Session</code> or <code>TopicSession</code>.
      * A durable subscription will continue to accumulate messages 
      * until it is deleted using the <code>unsubscribe</code> method. 
      * <p>
-     * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
      * A durable subscription which has a consumer 
      * associated with it is described as being active. 
      * A durable subscription which has no consumer
      * associated with it is described as being inactive. 
      * <p>
      * Only one session at a time can have a
-     * active consumer on a particular durable subscription.
+     * consumer on a particular durable subscription.
      * <p>
      * A durable subscription is identified by a name specified by the client
      * and by the client identifier if set. If the client identifier was set
      * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a <code>SyncMessageConsumer</code>
+     * subsequently wishes to create a consumer
      * on that durable subscription must use the same client identifier.
      * <p>
      * A client can change an existing durable subscription by calling
-     * <code>createSyncDurableSubscriber</code> 
+     * <code>createDurableConsumer</code> 
      * with the same name and client identifier (if used),
      * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
+     * Changing a durable subscription is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
      * <p>
-     * The <code>noLocal</code> argument is for use when the MessagingContext's 
+     * The <code>noLocal</code> argument is for use when the JMSContext's 
      * connection is also being used to publish messages to the topic. 
      * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
@@ -972,19 +967,20 @@ public interface MessagingContext extends AutoCloseable {
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
      * @param messageSelector only messages with properties matching the
-     * message selector expression are delivered.  A value of null or
-     * an empty string indicates that there is no message selector 
-     * for the message consumer.
+     * message selector expression are added to the durable subscription.  
+     * A value of null or an empty string indicates that there is no message selector 
+     * for the durable subscription.
      * @param noLocal if true, messages published by its own connection
      * will not be added to the durable subscription.
      *  
-     * @exception JMSRuntimeException if the session fails to create a subscriber
-     *                         due to some internal error.
+     * @exception JMSRuntimeException if the session fails to create the 
+     *            durable subscription and <code>JMSConsumer</code>
+     *            due to some internal error.
      * @exception InvalidDestinationRuntimeException if an invalid topic is specified.
      * @exception InvalidSelectorRuntimeException if the message selector is invalid.
      *
      */ 
-	SyncMessageConsumer createSyncDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);
+	JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);
  
 /** Creates a <CODE>QueueBrowser</CODE> object to peek at the messages on 
    * the specified queue.
@@ -997,7 +993,6 @@ public interface MessagingContext extends AutoCloseable {
    * @exception InvalidRuntimeDestinationException if an invalid destination
    *                         is specified 
    *
-   * @since 2.0 
    */ 
  QueueBrowser 
  createBrowser(Queue queue);
@@ -1019,7 +1014,6 @@ public interface MessagingContext extends AutoCloseable {
    *                         is specified 
    * @exception InvalidRuntimeSelectorException if the message selector is invalid.
    *
-   * @since 2.0 
    */ 
 
  QueueBrowser
@@ -1028,14 +1022,12 @@ public interface MessagingContext extends AutoCloseable {
 
  
   /** Creates a <CODE>TemporaryQueue</CODE> object. Its lifetime will be that 
-   * of the MessagingContext's <CODE>Connection</CODE> unless it is deleted earlier.
+   * of the JMSContext's <CODE>Connection</CODE> unless it is deleted earlier.
    *
    * @return a temporary queue identity
    *
    * @exception JMSRuntimeException if the session fails to create a temporary queue
    *                         due to some internal error.
-   *
-   *@since 2.0
    */
 
  TemporaryQueue
@@ -1043,14 +1035,13 @@ public interface MessagingContext extends AutoCloseable {
 
 
   /** Creates a <CODE>TemporaryTopic</CODE> object. Its lifetime will be that 
-   * of the MessagingContext's <CODE>Connection</CODE> unless it is deleted earlier.
+   * of the JMSContext's <CODE>Connection</CODE> unless it is deleted earlier.
    *
    * @return a temporary topic identity
    *
    * @exception JMSRuntimeException if the session fails to create a temporary
    *                         topic due to some internal error.
    *
-   * @since 2.0  
    */
 
  TemporaryTopic
@@ -1063,7 +1054,7 @@ public interface MessagingContext extends AutoCloseable {
      * <p>
      * A durable subscription is used by a client which needs to receive
      * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
+     * when there is no consumer associated with it. 
      * The JMS provider retains a record of this durable subscription 
      * and ensures that all messages from the topic's publishers are retained 
      * until they are delivered to, and acknowledged by,
@@ -1074,9 +1065,9 @@ public interface MessagingContext extends AutoCloseable {
      * until it is deleted using the <code>unsubscribe</code> method. 
      * <p>
      * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
+     * <code>createDurableConsumer</code> methods on <code>JMSContext</code>,
+     * or the <code>createDurableConsumer</code> and <code>createDurableSubscriber</code>
+     * methods on <code>Session</code> or <code>TopicSession</code>.
      * A durable subscription which has a consumer 
      * associated with it is described as being active. 
      * A durable subscription which has no consumer
@@ -1102,7 +1093,7 @@ public interface MessagingContext extends AutoCloseable {
      * Changing a durable subscriber is equivalent to 
      * unsubscribing (deleting) the old one and creating a new one.
      * <p>
-     * The <code>noLocal</code> argument is for use when the MessagingContext's 
+     * The <code>noLocal</code> argument is for use when the JMSContext's 
      * connection is also being used to publish messages to the topic. 
      * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
@@ -1143,12 +1134,12 @@ public interface MessagingContext extends AutoCloseable {
      * or while a consumed message is part of a pending 
      * transaction or has not been acknowledged in the session.
      * <P> 
-     * If the active consumer is represented by a <CODE>SyncMessageConsumer</CODE> then calling
-     * <CODE>close</CODE> on either that object or the <CODE>MessagingContext</CODE> used to create it
+     * If the active consumer is represented by a <CODE>JMSConsumer</CODE> then calling
+     * <CODE>close</CODE> on either that object or the <CODE>JMSContext</CODE> used to create it
      * will render the consumer inactive and allow the subscription to be deleted. 
      * <P>
-     * If the active consumer was created by calling <code>setMessageListener</code> on the <CODE>MessagingContext</CODE> 
-     * then calling <CODE>close</CODE> on the <CODE>MessagingContext</CODE>
+     * If the active consumer was created by calling <code>setMessageListener</code> on the <CODE>JMSContext</CODE> 
+     * then calling <CODE>close</CODE> on the <CODE>JMSContext</CODE>
      * will render the consumer inactive and allow the subscription to be deleted. 
      * <p>
      * If the active consumer is represented by a <code>MessageConsumer</code> or <code>TopicSubscriber</code> then calling
@@ -1177,8 +1168,8 @@ public interface MessagingContext extends AutoCloseable {
   * message's size, some JMS providers may be able to optimize message
   * overhead if they are given a hint that the message ID is not used by
   * an application. By calling the <CODE>setDisableMessageID</CODE>  
-  * method on this MessagingContext, a JMS client enables this potential 
-  * optimization for all messages sent by this MessagingContext. If the JMS 
+  * method on this JMSContext, a JMS client enables this potential 
+  * optimization for all messages sent by this JMSContext. If the JMS 
   * provider accepts this hint, 
   * these messages must have the message ID set to null; if the provider 
   * ignores the hint, the message ID must be set to its normal unique value.
@@ -1212,8 +1203,8 @@ boolean getDisableMessageID();
   * message's size, some JMS providers may be able to optimize message 
   * overhead if they are given a hint that the timestamp is not used by an 
   * application. By calling the <CODE>setDisableMessageTimestamp</CODE> 
-  * method on this MessagingContext, a JMS client enables this potential 
-  * optimization for all messages sent by this MessagingContext.  If the 
+  * method on this JMSContext, a JMS client enables this potential 
+  * optimization for all messages sent by this JMSContext.  If the 
   * JMS provider accepts this hint, 
   * these messages must have the timestamp set to zero; if the provider 
   * ignores the hint, the timestamp must be set to its normal value.
@@ -1243,18 +1234,18 @@ boolean
 getDisableMessageTimestamp();
 
 
-/** Sets the MessagingContext's default delivery mode.
+/** Sets the JMSContext's default delivery mode.
   * <p>
   * Delivery mode is set to <CODE>PERSISTENT</CODE> by default.
   *
-  * @param deliveryMode the message delivery mode for this MessagingContext;
+  * @param deliveryMode the message delivery mode for this JMSContext;
   * legal values are <code>DeliveryMode.NON_PERSISTENT</code>
   * and <code>DeliveryMode.PERSISTENT</code>
   *  
   * @exception JMSRuntimeException if the JMS provider fails to set the delivery 
   *                         mode due to some internal error.          
   *
-  * @see javax.jms.MessagingContext#getDeliveryMode
+  * @see javax.jms.JMSContext#getDeliveryMode
   * @see javax.jms.DeliveryMode#NON_PERSISTENT
   * @see javax.jms.DeliveryMode#PERSISTENT
   * @see javax.jms.Message#DEFAULT_DELIVERY_MODE
@@ -1264,35 +1255,35 @@ void
 setDeliveryMode(int deliveryMode);
 
 
-/** Gets the MessagingContext's default delivery mode.
+/** Gets the JMSContext's default delivery mode.
   *  
-  * @return the message delivery mode for this MessagingContext
+  * @return the message delivery mode for this JMSContext
   *  
   * @exception JMSRuntimeException if the JMS provider fails to get the delivery 
   *                         mode due to some internal error.
   *
-  * @see javax.jms.MessagingContext#setDeliveryMode
+  * @see javax.jms.JMSContext#setDeliveryMode
   */ 
 
 int 
 getDeliveryMode();
 
 
-/** Sets the MessagingContext's default priority.
+/** Sets the JMSContext's default priority.
   *  
   * <P>The JMS API defines ten levels of priority value, with 0 as the 
   * lowest priority and 9 as the highest. Clients should consider priorities
   * 0-4 as gradations of normal priority and priorities 5-9 as gradations 
   * of expedited priority. Priority is set to 4 by default.
   *
-  * @param defaultPriority the message priority for this MessagingContext;
+  * @param defaultPriority the message priority for this JMSContext;
   *                        must be a value between 0 and 9
   * 
   *  
   * @exception JMSRuntimeException if the JMS provider fails to set the priority
   *                         due to some internal error.
   *
-  * @see javax.jms.MessagingContext#getPriority
+  * @see javax.jms.JMSContext#getPriority
   * @see javax.jms.Message#DEFAULT_PRIORITY
   */ 
 
@@ -1300,9 +1291,9 @@ void
 setPriority(int defaultPriority);
 
 
-/** Gets the MessagingContext's default priority.
+/** Gets the JMSContext's default priority.
   *  
-  * @return the message priority for this MessagingContext
+  * @return the message priority for this JMSContext
   *  
   * @exception JMSRuntimeException if the JMS provider fails to get the priority
   *                         due to some internal error.
@@ -1325,7 +1316,7 @@ getPriority();
   * @exception JMSRuntimeException if the JMS provider fails to set the time to 
   *                         live due to some internal error.
   *
-  * @see javax.jms.MessagingContext#getTimeToLive
+  * @see javax.jms.JMSContext#getTimeToLive
   * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
   */
 
@@ -1341,7 +1332,7 @@ setTimeToLive(long timeToLive);
   * @exception JMSRuntimeException if the JMS provider fails to get the time to 
   *                         live due to some internal error.
   *
-  * @see javax.jms.MessagingContext#setTimeToLive
+  * @see javax.jms.JMSContext#setTimeToLive
   */ 
 
 long
@@ -1358,7 +1349,7 @@ getTimeToLive();
  * @exception JMSRuntimeException if the JMS provider fails to set the delivery
  *                         delay due to some internal error.
  *
- * @see javax.jms.MessagingContext#getDeliveryDelay
+ * @see javax.jms.JMSContext#getDeliveryDelay
  * @see javax.jms.Message#DEFAULT_DELIVERY_DELAY
  */
 
@@ -1373,13 +1364,13 @@ void setDeliveryDelay(long deliveryDelay);
 * @exception JMSRuntimeException if the JMS provider fails to get the delivery 
 *                         delay due to some internal error.
 *
-* @see javax.jms.MessagingContext#setDeliveryDelay
+* @see javax.jms.JMSContext#setDeliveryDelay
 */ 
 
 long getDeliveryDelay();   
 
     /** Sends a message to the specified destination, using
-     * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
+     * the <CODE>JMSContext</CODE>'s default delivery mode, priority,
      * and time to live.
      *
      * @param destination the destination to send this message to
@@ -1391,9 +1382,9 @@ long getDeliveryDelay();
      * @exception InvalidDestinationRuntimeException if a client uses
      *                         this method with an invalid destination.
      * 
-     * @see javax.jms.MessagingContext#setDeliveryMode
-     * @see javax.jms.MessagingContext#setPriority
-     * @see javax.jms.MessagingContext#setTimeToLive
+     * @see javax.jms.JMSContext#setDeliveryMode
+     * @see javax.jms.JMSContext#setPriority
+     * @see javax.jms.JMSContext#setTimeToLive
      *
 	 */
 	void send(Destination destination, Message message);
@@ -1417,7 +1408,7 @@ long getDeliveryDelay();
 	void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive);
 	
     /** Sends a message to the specified destination, using
-     * the <CODE>MessagingContext</CODE>'s default delivery mode, priority,
+     * the <CODE>JMSContext</CODE>'s default delivery mode, priority,
      * and time to live,
      * returning immediately and notifying the specified completion listener 
      * when the operation has completed.
@@ -1446,9 +1437,9 @@ long getDeliveryDelay();
      * @exception InvalidDestinationRuntimeException if a client uses
      *                         this method with an invalid destination.
      * 
-     * @see javax.jms.MessagingContext#setDeliveryMode
-     * @see javax.jms.MessagingContext#setPriority
-     * @see javax.jms.MessagingContext#setTimeToLive
+     * @see javax.jms.JMSContext#setDeliveryMode
+     * @see javax.jms.JMSContext#setPriority
+     * @see javax.jms.JMSContext#setTimeToLive
      * @see javax.jms.CompletionListener
      *
 	 */
@@ -1492,608 +1483,65 @@ long getDeliveryDelay();
   
 // END OF METHODS COPIED FROM MESSAGEPRODUCER
   
-// START OF NEW METHODS FOR ASYNC MESSAGE CONSUPTION
-
-	/**
-	 * Creates a new consumer on the specified destination that will deliver
-	 * messages to the specified <code>MessageListener</code>.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param destination - The destination from which messages are to be consumed
-	 * @param listener - The listener to which the messages are to be delivered
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
-	 */
-	void setMessageListener(Destination destination, MessageListener listener);
-
-	/**
-	 * Creates a new consumer on the specified destination that will deliver
-	 * messages in batches to the specified <code>BatchMessageListener</code> 
-	 * using the specified maximum batch size and timeout.
-	 * <p>
-	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
-	 * in batches whose size is no greater than the specified maximum batch size. 
-	 * The JMS provider may defer message
-	 * delivery until the specified batch timeout has expired in order to
-	 * assemble a batch of messages that is as large as possible but no greater
-	 * than the batch size.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param destination - The destination from which messages are to be consumed
-	 * @param listener - The listener to which the messages are to be delivered
-	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
-	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
-	 *            timeout is required The JMS provider may override the
-	 *            specified timeout with a shorter value.
-	 * 
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	 
-      * @throws InvalidDestinationRuntimeException - If an invalid destinaiton is specified.
-	 */
-	void setBatchMessageListener(Destination destination, BatchMessageListener listener, int maxBatchSize,
-			long batchTimeout);
-
-    /**
-     * Creates a consumer on the specified destination,
-     * that will deliver messages to the specified <code>MessageListener</code>,
-     * using a message selector.
-     * <p>
-     * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-     * @param destination - The destination from which messages are to be consumed
-     * @param messageSelector - Only messages with properties matching the message selector
-     *            expression are delivered. A value of null or an empty string
-     *            indicates that there is no message selector for the message
-     *            consumer.
-     * @param listener - the listener to which the messages are to be delivered 
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-     * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
-     * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-     */
-	void setMessageListener(Destination destination, String messageSelector, MessageListener listener);
-	
-    /**
-     * Creates a consumer on the specified destination,
-     * that will deliver messages in batches to the specified <code>BatchMessageListener</code> 
-     * using a message selector and the specified maximum batch size and timeout.
-     * and 
-	 * <p>
-	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
-	 * in batches whose size is no greater than the specified maximum batch size. 
-	 * The JMS provider may defer message
-	 * delivery until the specified batch timeout has expired in order to
-	 * assemble a batch of messages that is as large as possible but no greater
-	 * than the batch size.
-     * <p>
-     * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-     * @param destination - The destination from which messages are to be consumed
-     * @param messageSelector - Only messages with properties matching the message selector
-     *            expression are delivered. A value of null or an empty string
-     *            indicates that there is no message selector for the message
-     *            consumer.
-     * @param listener - the listener to which the messages are to be delivered 
-	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
-	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
-	 *            timeout is required The JMS provider may override the
-	 *            specified timeout with a shorter value.
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-     * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
-     * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-     */
-	void setBatchMessageListener(Destination destination, String messageSelector, BatchMessageListener listener, int maxBatchSize,
-			long batchTimeout);	
-
-	/**
-	 * Creates a consumer on the specified destination, 
-	 * that will deliver messages to the specified <code>MessageListener</code>,
-	 * using a message selector. This method can specify whether messages 
-	 * published by its own connection should be delivered to it, if the destination is a topic.
-     * <p>
-     * The <code>noLocal</code> argument is for use when the
-     * destination is a topic and the MessagingContext's connection
-     * is also being used to publish messages to that topic.
-     * If <code>noLocal</code> is set to true then the
-     * consumer will not receive messages published
-     * to the topic by its own connection. The default value of this
-     * argument is false. If the destination is a queue
-     * then the effect of setting <code>noLocal</code>
-     * to true is not specified.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param destination - The destination from which messages are to be consumed
-	 * @param messageSelector - Only messages with properties matching the message selector
-	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
-     * @param noLocal  - if true, and the destination is a topic,
-     *                   then the consumer will
-     *                   not receive messages published to the topic
-     *                   by its own connection.
-	 * @param listener - The listener to which the messages are to be delivered
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
-	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-	 */
-	void setMessageListener(Destination destination, String messageSelector, boolean noLocal, MessageListener listener);
-	
-	/**
-	 * Creates a consumer on the specified destination, 
-	 * that will deliver messages in batches to the specified <code>BatchMessageListener</code>,
-	 * using a message selector and the specified maxBatchSize and timeout. 
-	 * This method can specify whether messages 
-	 * published by its own connection should be delivered to it, if the destination is a topic.
-	 * <p>
-	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
-	 * in batches whose size is no greater than the specified maximum batch size. 
-	 * The JMS provider may defer message
-	 * delivery until the specified batch timeout has expired in order to
-	 * assemble a batch of messages that is as large as possible but no greater
-	 * than the batch size.
-	 * <p>
-     * The <code>noLocal</code> argument is for use when the
-     * destination is a topic and the MessagingContext's connection
-     * is also being used to publish messages to that topic.
-     * If <code>noLocal</code> is set to true then the
-     * consumer will not receive messages published
-     * to the topic by its own connection. The default value of this
-     * argument is false. If the destination is a queue
-     * then the effect of setting <code>noLocal</code>
-     * to true is not specified.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param destination - The destination from which messages are to be consumed
-	 * @param messageSelector - Only messages with properties matching the message selector
-	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
-     * @param noLocal  - if true, and the destination is a topic,
-     *                   then the consumer will
-     *                   not receive messages published to the topic
-     *                   by its own connection.
-	 * @param listener - The listener to which the messages are to be delivered
-	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
-	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
-	 *            timeout is required The JMS provider may override the
-	 *            specified timeout with a shorter value.
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid destination is specified.
-	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-	 */
-	void setBatchMessageListener(Destination destination, String messageSelector, boolean noLocal, BatchMessageListener listener, int maxBatchSize,
-			long batchTimeout);		
-
-	/**
-	 * Creates a durable subscription with the specified name on the specified topic, 
-	 * and creates a consumer on that durable subscription 
-	 * that will deliver messages to the specified <code>MessageListener</code>. 
-     * <p>
-     * If a durable subscription already exists with the same name 
-     * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a consumer on the existing durable subscription 
-	 * that will deliver messages to the specified <code>MessageListener</code>. 
-	 * <p>
-     * A durable subscription is used by a client which needs to receive
-     * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
-     * The JMS provider retains a record of this durable subscription 
-     * and ensures that all messages from the topic's publishers are retained 
-     * until they are delivered to, and acknowledged by,
-     * a consumer on this durable subscription
-     * or until they have expired.
-     * <p>
-     * A durable subscription will continue to accumulate messages 
-     * until it is deleted using the <code>unsubscribe</code> method. 
-     * <p>
-     * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
-     * A durable subscription which has a consumer 
-     * associated with it is described as being active. 
-     * A durable subscription which has no consumer
-     * associated with it is described as being inactive. 
-     * <p>
-     * Only one session or messaging context at a time can have a
-     * active consumer on a particular durable subscription.
-     * <p>
-     * A durable subscription is identified by a name specified by the client
-     * and by the client identifier if set. If the client identifier was set
-     * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a consumer
-     * on that durable subscription must use the same client identifier.
-     * <p>
-     * A client can change an existing durable subscription by calling
-     * this or any of the other methods listed above
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param topic - The topic from which messages are to be consumed
-	 * @param subscriptionName - The name used to identify the durable subscription 
-	 * @param listener - The listener to which the messages are to be delivered 
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
-	 */
-void setMessageListener (Topic topic, String subscriptionName, MessageListener listener);
-
-    /**
-     * Creates a durable subscription with the specified name on the specified topic, 
-     * and creates a consumer on that durable subscription 
-     * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
-	 * using the specified maximum batch size and timeout.
-     * <p>
-     * If a durable subscription already exists with the same name 
-     * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a consumer on the existing durable subscription 
-	 * that will deliver messages to the specified <code>BatchMessageListener</code>. 
-     * <p>
-     * A durable subscription is used by a client which needs to receive
-     * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
-     * The JMS provider retains a record of this durable subscription 
-     * and ensures that all messages from the topic's publishers are retained 
-     * until they are delivered to, and acknowledged by,
-     * a consumer on this durable subscription
-     * or until they have expired.
-     * <p>
-     * A durable subscription will continue to accumulate messages 
-     * until it is deleted using the <code>unsubscribe</code> method. 
-     * <p>
-     * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
-     * A durable subscription which has a consumer 
-     * associated with it is described as being active. 
-     * A durable subscription which has no consumer
-     * associated with it is described as being inactive. 
-     * <p>
-     * Only one session or messaging context at a time can have a
-     * active consumer on a particular durable subscription.
-     * <p>
-     * A durable subscription is identified by a name specified by the client
-     * and by the client identifier if set. If the client identifier was set
-     * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a consumer
-     * on that durable subscription must use the same client identifier.
-     * <p>
-     * A client can change an existing durable subscription by calling
-     * this or any of the other methods listed above
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
-	 * <p>
-	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
-	 * in batches whose size is no greater than the specified maximum batch size. 
-	 * The JMS provider may defer message
-	 * delivery until the specified batch timeout has expired in order to
-	 * assemble a batch of messages that is as large as possible but no greater
-	 * than the batch size.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param topic - The topic from which messages are to be consumed
-	 * @param subscriptionName - The name used to identify the durable subscription 
-	 * @param listener - The listener to which the messages are to be delivered 
-	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
-	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
-	 *            timeout is required The JMS provider may override the
-	 *            specified timeout with a shorter value.
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
-	 */
-	void setBatchMessageListener(Topic topic, String subscriptionName, BatchMessageListener listener, int maxBatchSize,
-			long batchTimeout);
-
-	/**
-	 * Creates a durable subscription with the specified name on the specified topic, 
-	 * and creates a consumer on that durable subscription 
-	 * that will deliver messages to the specified <code>MessageListener</code>, 
-	 * using a message selector and specifying whether messages published by its
-     * own connection should be added to the durable subscription. 
-     * <p>
-     * If a durable subscription already exists with the same name 
-     * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a consumer on the existing durable subscription 
-	 * that will deliver messages to the specified <code>MessageListener</code>. 
-	 * <p>
-     * A durable subscription is used by a client which needs to receive
-     * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
-     * The JMS provider retains a record of this durable subscription 
-     * and ensures that all messages from the topic's publishers are retained 
-     * until they are delivered to, and acknowledged by,
-     * a consumer on this durable subscription
-     * or until they have expired.
-     * <p>
-     * A durable subscription will continue to accumulate messages 
-     * until it is deleted using the <code>unsubscribe</code> method. 
-     * <p>
-     * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
-     * A durable subscription which has a consumer 
-     * associated with it is described as being active. 
-     * A durable subscription which has no consumer
-     * associated with it is described as being inactive. 
-     * <p>
-     * Only one session or messaging context at a time can have a
-     * active consumer on a particular durable subscription.
-     * <p>
-     * A durable subscription is identified by a name specified by the client
-     * and by the client identifier if set. If the client identifier was set
-     * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a consumer
-     * on that durable subscription must use the same client identifier.
-     * <p>
-     * A client can change an existing durable subscription by calling
-     * this or any of the other methods listed above
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
-	 * <p>
-     * The <code>noLocal</code> argument is for use when the MessagingContext's
-     * connection is also being used to publish messages to the topic.
-     * If <code>noLocal</code> is set to true then messages published
-     * to the topic by its own connection will not be added to the
-     * durable subscription. The default value of this
-     * argument is false.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param topic - The topic from which messages are to be consumed
-	 * @param subscriptionName - The name used to identify the durable subscription 
-	 * @param messageSelector - Only messages with properties matching the message selector
-	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
-     * @param noLocal if true, messages published by its own connection
-     *            will not be added to the durable subscription.
-	 * @param listener - The listener to which the messages are to be delivered
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
-	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-	 */
-	void setMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean noLocal,
-			MessageListener listener);
-	
-    /**
-     * Creates a durable subscription with the specified name on the specified topic, 
-     * and creates a consumer on that durable subscription 
-     * that will deliver messages in batches to the specified <code>BatchMessageListener</code>
-     * using a message selector, the specified maximum batch size and timeout,
-	 * and specifying whether messages published by its own connection
-	 * should be added to the durable subscription.
-     * <p>
-     * If a durable subscription already exists with the same name 
-     * and client identifier (if set) and the same topic and message selector 
-     * then this method creates a consumer on the existing durable subscription 
-	 * that will deliver messages to the specified <code>BatchMessageListener</code>. 
-     * <p>
-     * A durable subscription is used by a client which needs to receive
-     * all the messages published on a topic, including the ones published 
-     * when there is no active consumer associated with it. 
-     * The JMS provider retains a record of this durable subscription 
-     * and ensures that all messages from the topic's publishers are retained 
-     * until they are delivered to, and acknowledged by,
-     * a consumer on this durable subscription
-     * or until they have expired.
-     * <p>
-     * A durable subscription will continue to accumulate messages 
-     * until it is deleted using the <code>unsubscribe</code> method. 
-     * <p>
-     * A consumer may be created on a durable subscription using the
-     * <code>createSyncDurableSubscriber</code> methods on <code>MessagingContext</code>,
-     * the appropriate <code>setMessageListener</code> methods on <code>MessagingContext</code>
-     * or the <code>createDurableSubscriber</code> methods on <code>Session</code> or <code>TopicSession</code>
-     * A durable subscription which has a consumer 
-     * associated with it is described as being active. 
-     * A durable subscription which has no consumer
-     * associated with it is described as being inactive. 
-     * <p>
-     * Only one session or messaging context at a time can have a
-     * active consumer on a particular durable subscription.
-     * <p>
-     * A durable subscription is identified by a name specified by the client
-     * and by the client identifier if set. If the client identifier was set
-     * when the durable subscription was first created then a client which 
-     * subsequently wishes to create a consumer
-     * on that durable subscription must use the same client identifier.
-     * <p>
-     * A client can change an existing durable subscription by calling
-     * this or any of the other methods listed above
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscriber is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
-	 * <p>
-	 * Messages will be delivered to the specified <code>BatchMessageListener</code> 
-	 * in batches whose size is no greater than the specified maximum batch size. 
-	 * The JMS provider may defer message
-	 * delivery until the specified batch timeout has expired in order to
-	 * assemble a batch of messages that is as large as possible but no greater
-	 * than the batch size.
-	 * <p>
-	 * The <code>noLocal</code> argument is for use when the MessagingContext's
-     * connection is also being used to publish messages to the topic.
-     * If <code>noLocal</code> is set to true then messages published
-     * to the topic by its own connection will not be added to the
-     * durable subscription. The default value of this
-     * argument is false.
-	 * <p>
-	 * If the specified listener is null then this method does nothing.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-	 * @param topic - The topic from which messages are to be consumed
-	 * @param subscriptionName - The name used to identify the durable subscription 
-	 * @param messageSelector - Only messages with properties matching the message selector
-	 *            expression are delivered. A value of null or an empty string
-	 *            indicates that there is no message selector for the message
-	 *            consumer.
-     * @param noLocal if true, messages published by its own connection
-     *            will not be added to the durable subscription.
-	 * @param listener - The listener to which the messages are to be delivered
-	 * @param maxBatchSize - The maximum batch size that should be used. Must be greater than zero.
-	 * @param batchTimeout - The batch timeout in milliseconds. A value of zero means no
-	 *            timeout is required The JMS provider may override the
-	 *            specified timeout with a shorter value.
-     * @throws JMSRuntimeException if the operation fails for one of the following reasons:
-     *         <ul>
-     *         <li>an internal error has occurred
-     *         <li>this method has been called in a Java EE web or EJB application 
-     *             (though it is not guaranteed that an exception is thrown in this case)
-     *         </ul>	
-	 * @throws InvalidDestinationRuntimeException - If an invalid topic is specified.
-	 * @throws InvalidSelectorRuntimeException - If the message selector is invalid.
-	 */
-	void setBatchMessageListener(Topic topic, String subscriptionName, String messageSelector, boolean noLocal,
-			BatchMessageListener listener, int maxBatchSize, long batchTimeout);		
-
-// END OF NEW METHODS FOR ASYNC MESSAGE CONSUPTION
-
 // START OF NEW MESSAGE PAYLOAD CONVENIENCE METHODS
 
 /**
  * Send a TextMessage with the specified payload to the specified destination, using
- * the MessagingContext's default delivery mode, priority and time to live.
+ * the JMSContext's default delivery mode, priority and time to live.
  * 
  * @param destination - the destination to send this message to
  * @param payload - the payload of the TextMessage that will be sent.  
  * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
  * @throws MessageFormatRuntimeException if an invalid message is specified.
  * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
-  * @see javax.jms.MessagingContext#setDeliveryMode
-  * @see javax.jms.MessagingContext#setPriority
-  * @see javax.jms.MessagingContext#setTimeToLive
+  * @see javax.jms.JMSContext#setDeliveryMode
+  * @see javax.jms.JMSContext#setPriority
+  * @see javax.jms.JMSContext#setTimeToLive
  */
 void send(Destination destination, String payload);
 
 /**
  * Send a MapMessage with the specified payload to the specified destination, using
- * the MessagingContext's default delivery mode, priority and time to live.
+ * the JMSContext's default delivery mode, priority and time to live.
  * 
  * @param destination - the destination to send this message to
  * @param payload - the payload of the MapMessage that will be sent.  
  * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
  * @throws MessageFormatRuntimeException if an invalid message is specified.
  * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
-  * @see javax.jms.MessagingContext#setDeliveryMode
-  * @see javax.jms.MessagingContext#setPriority
-  * @see javax.jms.MessagingContext#setTimeToLive
+  * @see javax.jms.JMSContext#setDeliveryMode
+  * @see javax.jms.JMSContext#setPriority
+  * @see javax.jms.JMSContext#setTimeToLive
  */
 void send(Destination destination, Map<String,Object> payload);
 
 /**
  * Send a BytesMessage with the specified payload to the specified destination, using
- * the MessagingContext's default delivery mode, priority and time to live.
+ * the JMSContext's default delivery mode, priority and time to live.
  * 
  * @param destination - the destination to send this message to
  * @param payload - the payload of the BytesMessage that will be sent.  
  * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
  * @throws MessageFormatRuntimeException if an invalid message is specified.
  * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
-  * @see javax.jms.MessagingContext#setDeliveryMode
-  * @see javax.jms.MessagingContext#setPriority
-  * @see javax.jms.MessagingContext#setTimeToLive
+  * @see javax.jms.JMSContext#setDeliveryMode
+  * @see javax.jms.JMSContext#setPriority
+  * @see javax.jms.JMSContext#setTimeToLive
  */
 void send(Destination destination, byte[] payload);
 
 /**
  * Send an ObjectMessage with the specified payload to the specified destination, using
- * the MessagingContext's default delivery mode, priority and time to live.
+ * the JMSContext's default delivery mode, priority and time to live.
  * 
  * @param destination - the destination to send this message to
  * @param payload - the payload of the ObjectMessage that will be sent.  
  * @throws JMSRuntimeException if the JMS provider fails to send the message due to some internal error.
  * @throws MessageFormatRuntimeException if an invalid message is specified.
  * @throws InvalidDestinationRuntimeException if a client uses this method with an invalid destination.
-  * @see javax.jms.MessagingContext#setDeliveryMode
-  * @see javax.jms.MessagingContext#setPriority
-  * @see javax.jms.MessagingContext#setTimeToLive
+  * @see javax.jms.JMSContext#setDeliveryMode
+  * @see javax.jms.JMSContext#setPriority
+  * @see javax.jms.JMSContext#setTimeToLive
  */
 void send(Destination destination, Serializable payload);
 
@@ -2102,7 +1550,7 @@ void send(Destination destination, Serializable payload);
 // START OF METHODS COPIED FROM MESSAGE
 
 /** 
- * Acknowledges all messages consumed by the MessagingContext's session.
+ * Acknowledges all messages consumed by the JMSContext's session.
  * <p> 
  * This method is for use when the session has an acknowledgement mode of 
  * CLIENT_ACKNOWLEDGE. If the session is transacted or has an acknowledgement

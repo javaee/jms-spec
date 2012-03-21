@@ -51,21 +51,21 @@ import java.lang.annotation.Target;
 
 /**
  * This optional annotation may be used to specify the userName and password
- * to be used when injecting a <code>javax.jms.MessagingContext</code> object.
+ * to be used when injecting a <code>javax.jms.JMSContext</code> object.
  * 
- * @see javax.jms.ConnectionFactory#createMessagingContext(java.lang.String, java.lang.String)
+ * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String)
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface JMSPasswordCredential {
 
     /**
-     * Specifies the userName to be used when injecting a <code>javax.jms.MessagingContext</code> object
+     * Specifies the userName to be used when injecting a <code>javax.jms.JMSContext</code> object
      */
     String userName();
     
     /**
-     * Specifies the password to be used when injecting a <code>javax.jms.MessagingContext</code> object
+     * Specifies the password to be used when injecting a <code>javax.jms.JMSContext</code> object
      */
     String password();
     
