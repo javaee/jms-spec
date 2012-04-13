@@ -839,8 +839,9 @@ public interface Session extends Runnable, AutoCloseable {
      * A durable subscription which has no consumer
      * associated with it is described as being inactive. 
      * <p>
-     * Only one session at a time can have a
-     * consumer for a particular durable subscription.
+     * A durable subscription may have more than one active consumer
+     * (this was not permitted prior to JMS 2.0).
+     * Each message from the subscription will be delivered to only one of the consumers on that subscription.
      * <p>
      * A durable subscription is identified by a name specified by the client
      * and by the client identifier if set. If the client identifier was set
@@ -848,12 +849,20 @@ public interface Session extends Runnable, AutoCloseable {
      * subsequently wishes to create a consumer 
      * on that durable subscription must use the same client identifier.
      * <p>
-     * A client can change an existing durable subscription by calling
-     * <code>createDurableSubscriber</code> 
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscription is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
+     * If there are no active consumers on the durable subscription 
+     * (and no consumed messages from that subscription are still part of a pending transaction 
+     * or are not yet acknowledged in the session),
+     * and this method is used to create a new consumer on that durable subscription,
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector,
+     * then the durable subscription will be deleted and a new one created.   
+     * However if there is an active consumer on the durable subscription
+     * (or a consumed message from that subscription is still part of a pending transaction 
+     * or is not yet acknowledged in the session),
+     * and an attempt is made to create an additional consumer, 
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector, 
+     * then a <code>JMSException</code> will be thrown.
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
@@ -869,7 +878,7 @@ public interface Session extends Runnable, AutoCloseable {
 			    String name) throws JMSException;
 
     /** Creates a durable subscription with the specified name on the
-     * specified topic, and creates a <code>TopicSubscriber</code> 
+     * specified topic (if one does not already exist), and creates a <code>TopicSubscriber</code> 
      * on that durable subscription, specifying a message 
      * selector and whether messages published by its
      * own connection should be added to the durable subscription.
@@ -906,8 +915,9 @@ public interface Session extends Runnable, AutoCloseable {
      * A durable subscription which has no consumer
      * associated with it is described as being inactive. 
      * <p>
-     * Only one session at a time can have a
-     * consumer for a particular durable subscription.
+     * A durable subscription may have more than one active consumer
+     * (this was not permitted prior to JMS 2.0).
+     * Each message from the subscription will be delivered to only one of the consumers on that subscription.
      * <p>
      * A durable subscription is identified by a name specified by the client
      * and by the client identifier if set. If the client identifier was set
@@ -915,12 +925,20 @@ public interface Session extends Runnable, AutoCloseable {
      * subsequently wishes to create a consumer
      * on that durable subscription must use the same client identifier.
      * <p>
-     * A client can change an existing durable subscription by calling
-     * <code>createDurableSubscriber</code> 
-     * with the same name and client identifier (if used),
-     * and a new topic and/or message selector. 
-     * Changing a durable subscription is equivalent to 
-     * unsubscribing (deleting) the old one and creating a new one.
+     * If there are no active consumers on the durable subscription 
+     * (and no consumed messages from that subscription are still part of a pending transaction 
+     * or are not yet acknowledged in the session),
+     * and this method is used to create a new consumer on that durable subscription,
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector,
+     * then the durable subscription will be deleted and a new one created.   
+     * However if there is an active consumer on the durable subscription
+     * (or a consumed message from that subscription is still part of a pending transaction 
+     * or is not yet acknowledged in the session),
+     * and an attempt is made to create an additional consumer, 
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector, 
+     * then a <code>JMSException</code> will be thrown.
      * 
      * <P>The <code>NoLocal</code> argument is for use when the session's 
      * connection is also being used to publish messages to the topic. 
@@ -982,21 +1000,30 @@ public interface Session extends Runnable, AutoCloseable {
       * A durable subscription which has no consumer
       * associated with it is described as being inactive. 
       * <p>
-      * Only one session at a time can have a
-      * consumer for a particular durable subscription.
+      * A durable subscription may have more than one active consumer
+      * (this was not permitted prior to JMS 2.0).
+      * Each message from the subscription will be delivered to only one of the consumers on that subscription.
       * <p>
       * A durable subscription is identified by a name specified by the client
       * and by the client identifier if set. If the client identifier was set
       * when the durable subscription was first created then a client which 
       * subsequently wishes to create a consumer 
       * on that durable subscription must use the same client identifier.
-      * <p>
-      * A client can change an existing durable subscription by calling
-      * <code>createDurableConsumer</code> 
-      * with the same name and client identifier (if used),
-      * and a new topic and/or message selector. 
-      * Changing a durable subscription is equivalent to 
-      * unsubscribing (deleting) the old one and creating a new one.
+     * <p>
+     * If there are no active consumers on the durable subscription 
+     * (and no consumed messages from that subscription are still part of a pending transaction 
+     * or are not yet acknowledged in the session),
+     * and this method is used to create a new consumer on that durable subscription,
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector,
+     * then the durable subscription will be deleted and a new one created.   
+     * However if there is an active consumer on the durable subscription
+     * (or a consumed message from that subscription is still part of a pending transaction 
+     * or is not yet acknowledged in the session),
+     * and an attempt is made to create an additional consumer, 
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector, 
+     * then a <code>JMSException</code> will be thrown.
       *
       * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
       * @param name the name used to identify this subscription
@@ -1040,22 +1067,31 @@ public interface Session extends Runnable, AutoCloseable {
       * associated with it is described as being active. 
       * A durable subscription which has no consumer
       * associated with it is described as being inactive. 
-      * <p>
-      * Only one session at a time can have a
-      * consumer for a particular durable subscription.
+     * <p>
+     * A durable subscription may have more than one active consumer
+     * (this was not permitted prior to JMS 2.0).
+     * Each message from the subscription will be delivered to only one of the consumers on that subscription.
       * <p>
       * A durable subscription is identified by a name specified by the client
       * and by the client identifier if set. If the client identifier was set
       * when the durable subscription was first created then a client which 
       * subsequently wishes to create a consumer
       * on that durable subscription must use the same client identifier.
-      * <p>
-      * A client can change an existing durable subscription by calling
-      * <code>createDurableConsumer</code> 
-      * with the same name and client identifier (if used),
-      * and a new topic and/or message selector. 
-      * Changing a durable subscription is equivalent to 
-      * unsubscribing (deleting) the old one and creating a new one.
+     * <p>
+     * If there are no active consumers on the durable subscription 
+     * (and no consumed messages from that subscription are still part of a pending transaction 
+     * or are not yet acknowledged in the session),
+     * and this method is used to create a new consumer on that durable subscription,
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector,
+     * then the durable subscription will be deleted and a new one created.   
+     * However if there is an active consumer on the durable subscription
+     * (or a consumed message from that subscription is still part of a pending transaction 
+     * or is not yet acknowledged in the session),
+     * and an attempt is made to create an additional consumer, 
+     * specifying the same name and client identifier (if set)
+     * but a different topic or message selector, 
+     * then a <code>JMSException</code> will be thrown.
       * 
       * <P>The <code>NoLocal</code> argument is for use when the session's 
       * connection is also being used to publish messages to the topic. 
