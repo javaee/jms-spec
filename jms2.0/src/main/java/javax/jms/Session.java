@@ -708,14 +708,14 @@ public interface Session extends Runnable, AutoCloseable {
       * <P>A client uses a <CODE>MessageConsumer</CODE> object to receive 
       * messages that have been published to a destination. 
       *               
-      * <P>The <code>NoLocal</code> argument is for use when the
+      * <P>The <code>noLocal</code> argument is for use when the
       * destination is a topic and the session's connection 
       * is also being used to publish messages to that topic. 
-      * If <code>NoLocal</code> is set to true then the 
+      * If <code>noLocal</code> is set to true then the 
       * <code>MessageConsumer</code> will not receive messages published
       * to the topic by its own connection. The default value of this 
       * argument is false. If the destination is a queue
-      * then the effect of setting <code>NoLocal</code>
+      * then the effect of setting <code>noLocal</code>
       * to true is not specified.
       *
       * @param destination the <CODE>Destination</CODE> to access 
@@ -723,7 +723,7 @@ public interface Session extends Runnable, AutoCloseable {
       * message selector expression are delivered. A value of null or
       * an empty string indicates that there is no message selector 
       * for the message consumer.
-      * @param NoLocal  - if true, and the destination is a topic,
+      * @param noLocal  - if true, and the destination is a topic,
       *                   then the <code>MessageConsumer</code> will 
       *                   not receive messages published to the topic
       *                   by its own connection. 
@@ -740,8 +740,170 @@ public interface Session extends Runnable, AutoCloseable {
       */
     MessageConsumer     
     createConsumer(Destination destination, java.lang.String messageSelector, 
-    boolean NoLocal)   throws JMSException;
+    boolean noLocal)   throws JMSException;
     
+	/**
+	 * Creates a shared non-durable subscription with the specified name on the
+	 * specified topic, and creates a <code>MessageConsumer</code> on that
+	 * subscription.
+	 * <p>
+	 * If a shared non-durable subscription already exists with the same name
+	 * and the same topic, and without a message selector, then this method
+	 * creates a <code>MessageConsumer</code> on the existing subscription.
+	 * <p>
+	 * A non-durable shared subscription is used by a client which needs to be
+	 * able to share the work of receiving messages from a topic subscription
+	 * amongst multiple consumers. A non-durable shared subscription may
+	 * therefore have more than one consumer. Each message from the subscription
+	 * will be delivered to only one of the consumers on that subscription. Such
+	 * a subscription is not persisted and will be deleted (together with any 
+	 * undelivered messages associated with it) when there are no consumers on it.
+	 * <p>
+	 * A consumer may be created on a non-durable shared subscription using the
+	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
+	 * <code>Session</code> or <code>TopicSession</code>.
+	 * <p>
+	 * If there is an active consumer on the non-durable shared subscription (or
+	 * a consumed message from that subscription is still part of a pending
+	 * transaction or is not yet acknowledged in the session), and an attempt is
+	 * made to create an additional consumer, specifying the same name but a
+	 * different topic or message selector, then a <code>JMSException</code>
+	 * will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a shared non-durable subscription and
+	 * a durable subscription having the same name. Such subscriptions would be
+	 * completely separate.
+	 * 
+	 * @param topic
+	 *            the <code>Topic</code> to subscribe to
+	 * @param sharedSubscriptionName
+	 *            the name used to identify the shared non-durable subscription
+	 * 
+	 * @throws JMSException
+	 *             if the session fails to create the non-durable subscription
+	 *             and <code>MessageConsumer</code> due to some internal error.
+	 * @throws InvalidDestinationException
+	 *             if an invalid topic is specified.
+	 * @throws InvalidSelectorException
+	 *             if the message selector is invalid.
+	 */
+	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) throws JMSException;
+
+	/**
+	 * Creates a shared non-durable subscription with the specified name on the
+	 * specified topic, and creates a <code>MessageConsumer</code> on that
+	 * subscription, specifying a message selector.
+	 * <p>
+	 * If a shared non-durable subscription already exists with the same name
+	 * and the same topic and message selector then this method creates a
+	 * <code>MessageConsumer</code> on the existing subscription.
+	 * <p>
+	 * A non-durable shared subscription is used by a client which needs to be
+	 * able to share the work of receiving messages from a topic subscription
+	 * amongst multiple consumers. A non-durable shared subscription may
+	 * therefore have more than one consumer. Each message from the subscription
+	 * will be delivered to only one of the consumers on that subscription. Such
+	 * a subscription is not persisted and will be deleted (together with any 
+	 * undelivered messages associated with it) when there are no consumers on it.
+	 * <p>
+	 * A consumer may be created on a non-durable shared subscription using the
+	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
+	 * <code>Session</code> or <code>TopicSession</code>.
+	 * <p>
+	 * If there is an active consumer on the non-durable shared subscription (or
+	 * a consumed message from that subscription is still part of a pending
+	 * transaction or is not yet acknowledged in the session), and an attempt is
+	 * made to create an additional consumer, specifying the same name but a
+	 * different topic or message selector, then a <code>JMSException</code>
+	 * will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a shared non-durable subscription and
+	 * a durable subscription having the same name. Such subscriptions would be
+	 * completely separate.
+	 * 
+	 * @param topic
+	 *            the <code>Topic</code> to subscribe to
+	 * @param sharedSubscriptionName
+	 *            the name used to identify the shared non-durable subscription
+	 * @param messageSelector
+	 *            only messages with properties matching the message selector
+	 *            expression are added to the non-durable subscription. A value
+	 *            of null or an empty string indicates that there is no message
+	 *            selector for the non-durable subscription.
+	 * 
+	 * @throws JMSException
+	 *             if the session fails to create the non-durable subscription
+	 *             and <code>MessageConsumer</code> due to some internal error.
+	 * @throws InvalidDestinationException
+	 *             if an invalid topic is specified.
+	 * @throws InvalidSelectorException
+	 *             if the message selector is invalid.
+	 */
+	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector)
+			throws JMSException;
+
+	/**
+	 * Creates a shared non-durable subscription with the specified name on the
+	 * specified topic, and creates a <code>MessageConsumer</code> on that
+	 * subscription, specifying a message selector and whether messages
+	 * published by its own connection should be added to the subscription.
+	 * <p>
+	 * If a shared non-durable subscription already exists with the same name
+	 * and the same topic and message selector then this method creates a
+	 * <code>MessageConsumer</code> on the existing subscription.
+	 * <p>
+	 * A non-durable shared subscription is used by a client which needs to be
+	 * able to share the work of receiving messages from a topic subscription
+	 * amongst multiple consumers. A non-durable shared subscription may
+	 * therefore have more than one consumer. Each message from the subscription
+	 * will be delivered to only one of the consumers on that subscription. Such
+	 * a subscription is not persisted and will be deleted (together with any 
+	 * undelivered messages associated with it) when there are no consumers on it.
+	 * <p>
+	 * A consumer may be created on a non-durable shared subscription using the
+	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
+	 * <code>Session</code> or <code>TopicSession</code>.
+	 * <p>
+	 * If there is an active consumer on the non-durable shared subscription (or
+	 * a consumed message from that subscription is still part of a pending
+	 * transaction or is not yet acknowledged in the session), and an attempt is
+	 * made to create an additional consumer, specifying the same name but a
+	 * different topic or message selector, then a <code>JMSException</code>
+	 * will be thrown.
+	 * <p>
+	 * The <code>noLocal</code> argument is for use when the session's connection is also
+	 * being used to publish messages to the topic. If noLocal is set to true
+	 * then messages published to the topic by its own connection will not be
+	 * added to the non-durable shared subscription. The default value of this
+	 * argument is false.
+	 * <p>
+	 * There is no restriction to prevent a shared non-durable subscription and
+	 * a durable subscription having the same name. Such subscriptions would be
+	 * completely separate.
+	 * 
+	 * @param topic
+	 *            the <code>Topic</code> to subscribe to
+	 * @param sharedSubscriptionName
+	 *            the name used to identify the shared non-durable subscription
+	 * @param messageSelector
+	 *            only messages with properties matching the message selector
+	 *            expression are added to the non-durable subscription. A value
+	 *            of null or an empty string indicates that there is no message
+	 *            selector for the non-durable subscription.
+	 * @param noLocal
+	 *            if true, messages published by its own connection will not be
+	 *            added to the non-durable subscription.
+	 * 
+	 * @throws JMSException
+	 *             if the session fails to create the non-durable subscription
+	 *             and <code>MessageConsumer</code> due to some internal error.
+	 * @throws InvalidDestinationException
+	 *             if an invalid topic is specified.
+	 * @throws InvalidSelectorException
+	 *             if the message selector is invalid.
+	 */
+	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector,
+			boolean noLocal) throws JMSException;   
     
       /** Creates a queue identity given a <CODE>Queue</CODE> name.
       *
@@ -814,7 +976,7 @@ public interface Session extends Runnable, AutoCloseable {
      * The term "consumer" applies to both <code>TopicSubscriber</code> and <code>MessageConsumer</code> objects.
      * <p>
      * If a durable subscription already exists with the same name 
-     * and client identifier (if set) and the same topic and message selector 
+     * and client identifier (if set) and the same topic, and without a message selector,
      * then this method creates a <code>TopicSubscriber</code> on the existing durable
      * subscription.
      * <p>
@@ -940,9 +1102,9 @@ public interface Session extends Runnable, AutoCloseable {
      * but a different topic or message selector, 
      * then a <code>JMSException</code> will be thrown.
      * 
-     * <P>The <code>NoLocal</code> argument is for use when the session's 
+     * <P>The <code>noLocal</code> argument is for use when the session's 
      * connection is also being used to publish messages to the topic. 
-     * If <code>NoLocal</code> is set to true then messages published
+     * If <code>noLocal</code> is set to true then messages published
      * to the topic by its own connection will not be added to the
      * durable subscription. The default value of this 
      * argument is false. 
@@ -975,7 +1137,8 @@ public interface Session extends Runnable, AutoCloseable {
       * on that durable subscription.
       * <p>
       * If a durable subscription already exists with the same name 
-      * and client identifier (if set) and the same topic and message selector 
+      * and client identifier (if set) and the same topic,
+      * and without a message selector,
       * then this method creates a <code>MessageConsumer</code> on the existing durable
       * subscription.
       * <p>
@@ -1093,9 +1256,9 @@ public interface Session extends Runnable, AutoCloseable {
      * but a different topic or message selector, 
      * then a <code>JMSException</code> will be thrown.
       * 
-      * <P>The <code>NoLocal</code> argument is for use when the session's 
+      * <P>The <code>noLocal</code> argument is for use when the session's 
       * connection is also being used to publish messages to the topic. 
-      * If <code>NoLocal</code> is set to true then messages published
+      * If <code>noLocal</code> is set to true then messages published
       * to the topic by its own connection will not be added to the
       * durable subscription. The default value of this 
       * argument is false. 
