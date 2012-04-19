@@ -67,7 +67,7 @@ public class JMSRuntimeException extends RuntimeException {
 	  private Exception linkedException;
 
 
-	  /** Constructs a <CODE>JMSException</CODE> with the specified reason and 
+	  /** Constructs a <code>JMSRuntimeException</code> with the specified reason and 
 	   *  error code.
 	   *
 	   *  @param  reason        a description of the exception
@@ -81,7 +81,7 @@ public class JMSRuntimeException extends RuntimeException {
 	    linkedException = null;
 	  }
 
-	  /** Constructs a <CODE>JMSException</CODE> with the specified reason and with
+	  /** Constructs a <code>JMSRuntimeException</code> with the specified reason and with
 	   *  the error code defaulting to null.
 	   *
 	   *  @param  reason        a description of the exception
