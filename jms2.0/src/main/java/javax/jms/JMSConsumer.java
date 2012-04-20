@@ -59,23 +59,12 @@ package javax.jms;
  * <CODE>JMSConsumer</CODE> using one of its <code>receive</code> methods. There are several 
  * variations of <code>receive</code> that allow a client to poll or wait for the next message. 
  * <p>
- * For asynchronous delivery, a client can register a single listener object 
- * with a <CODE>JMSConsumer</CODE> which may be either a 
- * <code>MessageListener</code> or a <code>BatchMessageListener</code>.
- * <ul>
- * <li>
- * A <code>MessageListener</code> is used to receive messages individually. 
+ * For asynchronous delivery, a client can register a <code>MessageListener</code> object 
+ * with a <CODE>JMSConsumer</CODE>.
  * As messages arrive at the <CODE>JMSConsumer</CODE>, it delivers them by calling 
  * the <code>MessageListener</code>'s <code>onMessage</code> method.
  * <p>
- * <li>
- * A <code>BatchMessageListener</code> is used to receive messages in batches. 
- * Messages which arrive at the <CODE>JMSConsumer</CODE> will be delivered 
- * in batches by calling the <code>BatchMessageListener</code>'s <code>onMessages</code> method.
- * </ul>
- * <p>
- * It is a client programming error for a <code>MessageListener</code> or 
- * <code>BatchMessageListener</code> to throw an exception.
+ * It is a client programming error for a <code>MessageListener</code> to throw an exception.
  * 
  * @version 2.0
  * 
@@ -99,12 +88,6 @@ public interface JMSConsumer extends AutoCloseable {
     
     /** Gets the <code>JMSConsumer</code>'s <code>MessageListener</code>. 
      * <p>
-     * A <code>JMSConsumer</code>'s listener is configured by calling either
-     * <code>setMessageListener</code> or <code>setBatchMessageListener</code>.
-     * This method will only return a listener that has been set using <code>setMessageListener</code>.
-     * To return a listener that has been set using <code>setBatchMessageListener</code>
-     * then use <code>getBatchMessageListener()</code> instead.
-     * <p>
      * This method must not be used in a Java EE web or EJB application. 
      * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
      * 
@@ -118,61 +101,27 @@ public interface JMSConsumer extends AutoCloseable {
       *                         (though it is not guaranteed that an exception is thrown in this case)
       *                         </ul>                      
       *                         
-      * @see javax.jms.JMSConsumer#getBatchMessageListener()
       * @see javax.jms.JMSConsumer#setMessageListener(javax.jms.MessageListener)
-      * @see javax.jms.JMSConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       */ 
     MessageListener getMessageListener() throws JMSRuntimeException;
     
-    /** Gets the <code>JMSConsumer</code>'s <code>BatchMessageListener</code>. 
-     * <p>
-     * A <code>JMSConsumer</code>'s listener is configured by calling either
-     * <code>setMessageListener</code> or <code>setBatchMessageListener</code>.
-     * This method will only return a listener that has been set using <code>setBatchMessageListener</code>.
-     * To return a listener that has been set using <code>setMessageListener</code>
-     * then use <code>getMessageListener()</code> instead.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
-      * @return the <code>JMSConsumer</code>'s <code>BatchMessageListener</code>, or null if one was not set
-      *  
-      * @exception JMSRuntimeException if the JMS provider fails to get the <code>BatchMessageListener</code>
-      *                         for one of the following reasons:
-      *                         <ul>
-      *                         <li>an internal error has occurred or  
-      *                         <li>this method has been called in a Java EE web or EJB application 
-      *                         (though it is not guaranteed that an exception is thrown in this case)
-      *                         </ul>    
-      *                         
-      * @see javax.jms.JMSConsumer#getMessageListener()
-      * @see javax.jms.JMSConsumer#setMessageListener(javax.jms.MessageListener)
-      * @see javax.jms.JMSConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
-      */ 
-    BatchMessageListener getBatchMessageListener() throws JMSRuntimeException;
-
-
-    /** Sets the <code>JMSConsumer</code>'s listener to be the specified <CODE>MessageListener</CODE>.
+    /** Sets the <code>JMSConsumer</code>'s <CODE>MessageListener</CODE>.
       * <p>
-      * A <code>JMSConsumer</code> may only have one listener at a time. 
-      * So if a listener has already been configured 
-      * (either using this method or <code>setBatchMessageListener</code>)
-      * the new new listener replaces the old one, 
-      * <p>
-      * Setting a value of null will unset any existing listener.
+      * Setting the <CODE>MessageListener</CODE> to null is the equivalent of 
+      * unsetting the <CODE>MessageListener</CODE> for the <code>JMSConsumer</code>. 
       * <p>
       * The effect of calling this method
       * while messages are being consumed by an existing listener
       * or the <code>JMSConsumer</code> is being used to consume messages synchronously
       * is undefined.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
-     * 
+      * <p>
+      * This method must not be used in a Java EE web or EJB application. 
+      * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed.
+      * 
       * @param listener the listener to which the messages are to be 
       *                 delivered
       *  
-      * @exception JMSRuntimeException if the JMS provider fails to set the <code>JMSConsumer</code>'s listener
+      * @exception JMSRuntimeException if the JMS provider fails to set the <code>JMSConsumer</code>'s <CODE>MessageListener</CODE>
       *                         for one of the following reasons:
       *                         <ul>
       *                         <li>an internal error has occurred or  
@@ -180,52 +129,10 @@ public interface JMSConsumer extends AutoCloseable {
       *                         (though it is not guaranteed that an exception is thrown in this case)
       *                         </ul>    
       *                         
-      * @see javax.jms.JMSConsumer#setBatchMessageListener(javax.jms.BatchMessageListener,int,long)
       * @see javax.jms.JMSConsumer#getMessageListener()
       */ 
     void setMessageListener(MessageListener listener) throws JMSRuntimeException;
     
-    /** Sets the <code>JMSConsumer</code>'s listener to be the specified <CODE>BatchMessageListener</CODE>
-     * with the specified maximum batch size and batch timeout.
-     * <p>
-     * Messages will be delivered to the specified <CODE>BatchMessageListener</CODE> in batches
-     * whose size is no greater than the specified maximum batch size.
-     * The JMS provider may defer message delivery until the specified batch timeout has expired 
-     * in order to assemble a batch of messages that is as large as possible 
-     * but no greater than the batch size. 
-     * <p>
-     * A <code>JMSConsumer</code> may only have one listener at a time. 
-     * So if a listener has already been configured 
-     * (either using this method or <code>setMessageListener</code>)
-     * the new new listener replaces the old one, 
-     * <p>
-     * Setting a value of null will unset any existing listener.
-     * <p>
-     * The effect of calling this method
-     * while messages are being consumed by an existing listener
-     * or the <code>JMSConsumer</code> is being used to consume messages synchronously
-     * is undefined.
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSRuntimeException</code> to be thrown though this is not guaranteed. 
-     * @param listener the listener to which the messages are to be 
-     *                 delivered
-     * @param maxBatchSize the maximum batch size that should be used. Must be greater than zero.
-     * @param batchTimeout the batch timeout in milliseconds. A value of zero means no timeout is required
-     * The JMS provider may override the specified timeout with a shorter value.
-     *  
-      * @exception JMSRuntimeException if the JMS provider fails to set the <code>JMSConsumer</code>'s listener
-      *                         for one of the following reasons:
-      *                         <ul>
-      *                         <li>an internal error has occurred or
-      *                         <li>this method has been called in a Java EE web or EJB application 
-      *                         (though it is not guaranteed that an exception is thrown in this case)
-      *                         </ul>    
-     *                         
-     * @see javax.jms.JMSConsumer#setMessageListener(javax.jms.MessageListener)
-     * @see javax.jms.JMSConsumer#getBatchMessageListener()
-     */
-    void setBatchMessageListener(BatchMessageListener listener, int maxBatchSize, long batchTimeout) throws JMSRuntimeException;    
 
     /** Receives the next message produced for this <code>JMSConsumer</code>.
       *  
