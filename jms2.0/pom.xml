@@ -37,8 +37,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <!-- javadoc:jar uses outputDirectory -->
-          <outputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-SNAPSHOT</outputDirectory>
+          <!-- javadoc:jar uses outputDirectory - but disabled since it doesn't create the jar for some reason -->
+          <!-- outputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-SNAPSHOT</outputDirectory -->
           <!-- javadoc:javadoc uses reportOutputDirectory -->
           <reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-SNAPSHOT</reportOutputDirectory>
           <destDir>apidocs</destDir>
