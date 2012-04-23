@@ -820,55 +820,59 @@ public interface Session extends Runnable, AutoCloseable {
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector,
 			boolean noLocal) throws JMSException;   
     
-      /** Creates a queue identity given a <CODE>Queue</CODE> name.
-      *
-      * <P>This facility is provided for the rare cases where clients need to
-      * dynamically manipulate queue identity. It allows the creation of a
-      * queue identity with a provider-specific name. Clients that depend 
-      * on this ability are not portable.
-      *
-      * <P>Note that this method is not for creating the physical queue. 
-      * The physical creation of queues is an administrative task and is not
-      * to be initiated by the JMS API. The one exception is the
-      * creation of temporary queues, which is accomplished with the 
-      * <CODE>createTemporaryQueue</CODE> method.
-      *
-      * @param queueName the name of this <CODE>Queue</CODE>
-      *
-      * @return a <CODE>Queue</CODE> with the given name
-      *
-      * @exception JMSException if the session fails to create a queue
-      *                         due to some internal error.
-      * @since 1.1
-      */ 
- 
-    Queue
-    createQueue(String queueName) throws JMSException;
-    
-      /** Creates a topic identity given a <CODE>Topic</CODE> name.
-      *
-      * <P>This facility is provided for the rare cases where clients need to
-      * dynamically manipulate topic identity. This allows the creation of a
-      * topic identity with a provider-specific name. Clients that depend 
-      * on this ability are not portable.
-      *
-      * <P>Note that this method is not for creating the physical topic. 
-      * The physical creation of topics is an administrative task and is not
-      * to be initiated by the JMS API. The one exception is the
-      * creation of temporary topics, which is accomplished with the 
-      * <CODE>createTemporaryTopic</CODE> method.
-      *  
-      * @param topicName the name of this <CODE>Topic</CODE>
-      *
-      * @return a <CODE>Topic</CODE> with the given name
-      *
-      * @exception JMSException if the session fails to create a topic
-      *                         due to some internal error.
-      * @since 1.1
-      */
+	/**
+	 * Creates a <code>Queue</code> object which encapsulates a specified
+	 * provider-specific queue name.
+	 * <p>
+	 * The use of provider-specific queue names in an application may render the
+	 * application non-portable. Portable applications are recommended to not
+	 * use this method but instead look up an administratively-defined
+	 * <code>Queue</code> object using JNDI.
+	 * <p>
+	 * Note that this method simply creates an object that encapsulates the name
+	 * of a queue. It does not create the physical queue in the JMS provider.
+	 * JMS does not provide a method to create the physical queue, since this
+	 * would be specific to a given JMS provider. Creating a physical queue is
+	 * typically an administrative task performed by an administrator, though
+	 * some providers may create them automatically when needed. In all cases
+	 * the way that a physical queue is created is provider-specific.
+	 * 
+	 * @param queueName
+	 *            A provider-specific queue name
+	 * @return a Queue object which encapsulates the specified name
+	 * 
+	 * @throws JMSException
+	 *             if a Queue object cannot be created due to some internal
+	 *             error
+	 */
+	Queue createQueue(String queueName) throws JMSException;
 
-    Topic
-    createTopic(String topicName) throws JMSException;
+	/**
+	 * Creates a <code>Topic</code> object which encapsulates a specified
+	 * provider-specific topic name.
+	 * <p>
+	 * The use of provider-specific topic names in an application may render the
+	 * application non-portable. Portable applications are recommended to not
+	 * use this method but instead look up an administratively-defined
+	 * <code>Topic</code> object using JNDI.
+	 * <p>
+	 * Note that this method simply creates an object that encapsulates the name
+	 * of a topic. It does not create the physical topic in the JMS provider.
+	 * JMS does not provide a method to create the physical topic, since this
+	 * would be specific to a given JMS provider. Creating a physical topic is
+	 * typically an administrative task performed by an administrator, though
+	 * some providers may create them automatically when needed. In all cases
+	 * the way that a physical topic is created is provider-specific.
+	 * 
+	 * @param topicName
+	 *            A provider-specific topic name
+	 * @return a Topic object which encapsulates the specified name
+	 * 
+	 * @throws JMSException
+	 *             if a Topic object cannot be created due to some internal
+	 *             error
+	 */
+	Topic createTopic(String topicName) throws JMSException;
 
      /** Creates a <CODE>QueueBrowser</CODE> object to peek at the messages on 
       * the specified queue.
