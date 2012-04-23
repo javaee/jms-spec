@@ -814,9 +814,10 @@ public interface JMSContext extends AutoCloseable {
 	 * of a queue. It does not create the physical queue in the JMS provider.
 	 * JMS does not provide a method to create the physical queue, since this
 	 * would be specific to a given JMS provider. Creating a physical queue is
-	 * typically an administrative task performed by an administrator, though
-	 * some providers may create them automatically when needed. In all cases
-	 * the way that a physical queue is created is provider-specific.
+	 * provider-specific and is typically an administrative task performed by an
+	 * administrator, though some providers may create them automatically when
+	 * needed. The one exception to this is the creation of a temporary queue,
+	 * which is done using the <code>createTemporaryQueue</code> method.
 	 * 
 	 * @param queueName
 	 *            A provider-specific queue name
@@ -841,9 +842,10 @@ public interface JMSContext extends AutoCloseable {
 	 * of a topic. It does not create the physical topic in the JMS provider.
 	 * JMS does not provide a method to create the physical topic, since this
 	 * would be specific to a given JMS provider. Creating a physical topic is
-	 * typically an administrative task performed by an administrator, though
-	 * some providers may create them automatically when needed. In all cases
-	 * the way that a physical topic is created is provider-specific.
+	 * provider-specific and is typically an administrative task performed by an
+	 * administrator, though some providers may create them automatically when
+	 * needed. The one exception to this is the creation of a temporary topic,
+	 * which is done using the <code>createTemporaryTopic</code> method.
 	 * 
 	 * @param topicName
 	 *            A provider-specific topic name
