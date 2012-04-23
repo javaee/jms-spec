@@ -833,7 +833,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * of a queue. It does not create the physical queue in the JMS provider.
 	 * JMS does not provide a method to create the physical queue, since this
 	 * would be specific to a given JMS provider. Creating a physical queue is
-	 * provider-specific and is typically an administrative task performed by an
+	 * provider-specific and is typically an administrative task performed by an 
 	 * administrator, though some providers may create them automatically when
 	 * needed. The one exception to this is the creation of a temporary queue,
 	 * which is done using the <code>createTemporaryQueue</code> method.
@@ -843,8 +843,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @return a Queue object which encapsulates the specified name
 	 * 
 	 * @throws JMSException
-	 *             if a Queue object cannot be created due to some internal
-	 *             error
+	 *             if a Queue object cannot be created due to some internal error 
 	 */
 	Queue createQueue(String queueName) throws JMSException;
 
