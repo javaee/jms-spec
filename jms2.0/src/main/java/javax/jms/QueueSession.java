@@ -34,16 +34,13 @@ package javax.jms;
   * <CODE>IllegalStateException</CODE> 
   * if they are used from <CODE>QueueSession</CODE>:
   *<UL>
+  *   <LI><CODE>createDurableConsumer</CODE>
+  *   <LI><CODE>createSharedConsumer</CODE>
   *   <LI><CODE>createDurableSubscriber</CODE>
   *   <LI><CODE>createTemporaryTopic</CODE>
   *   <LI><CODE>createTopic</CODE>
   *   <LI><CODE>unsubscribe</CODE>
   * </UL>
-  *
-  * @version     1.1 - April 2, 2002
-  * @author      Mark Hapner
-  * @author      Rich Burridge
-  * @author      Kate Stout
   *
   * @see         javax.jms.Session
   * @see         javax.jms.QueueConnection#createQueueSession(boolean, int)
