@@ -894,21 +894,23 @@ public interface JMSContext extends AutoCloseable {
      * when the durable subscription was first created then a client which 
      * subsequently wishes to create a consumer
      * on that durable subscription must use the same client identifier.
-     * <p>
-     * If there are no active consumers on the durable subscription 
-     * (and no consumed messages from that subscription are still part of a pending transaction 
-     * or are not yet acknowledged in the session),
-     * and this method is used to create a new consumer on that durable subscription,
-     * specifying the same name and client identifier (if set)
-     * but a different topic or message selector,
-     * then the durable subscription will be deleted and a new one created.   
-     * However if there is an active consumer on the durable subscription
-     * (or a consumed message from that subscription is still part of a pending transaction 
-     * or is not yet acknowledged in the session),
-     * and an attempt is made to create an additional consumer, 
-     * specifying the same name and client identifier (if set)
-     * but a different topic or message selector, 
-     * then a <code>JMSRuntimeException</code> will be thrown.
+	 * <p>
+	 * If there are no active consumers on the durable subscription (and no
+	 * consumed messages from that subscription are still part of a pending
+	 * transaction or are not yet acknowledged in the session), and this method
+	 * is used to create a new consumer on that durable subscription, specifying
+	 * the same name and client identifier (if set) but a different topic or
+	 * message selector, or, if the client identifier is set, a different
+	 * noLocal argument, then the durable subscription will be deleted and a new
+	 * one created. 
+	 * <p>
+	 * However if there is an active consumer on the durable
+	 * subscription (or a consumed message from that subscription is still part
+	 * of a pending transaction or is not yet acknowledged in the session), and
+	 * an attempt is made to create an additional consumer, specifying the same
+	 * name and client identifier (if set) but a different topic or message
+	 * selector, or, if the client identifier is set, a different noLocal
+	 * argument, then a <code>JMSException</code> will be thrown.
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
@@ -966,13 +968,17 @@ public interface JMSContext extends AutoCloseable {
 	 * transaction or are not yet acknowledged in the session), and this method
 	 * is used to create a new consumer on that durable subscription, specifying
 	 * the same name and client identifier (if set) but a different topic or
-	 * message selector, then the durable subscription will be deleted and a new
-	 * one created. However if there is an active consumer on the durable
+	 * message selector, or, if the client identifier is set, a different
+	 * noLocal argument, then the durable subscription will be deleted and a new
+	 * one created. 
+	 * <p>
+	 * However if there is an active consumer on the durable
 	 * subscription (or a consumed message from that subscription is still part
 	 * of a pending transaction or is not yet acknowledged in the session), and
 	 * an attempt is made to create an additional consumer, specifying the same
 	 * name and client identifier (if set) but a different topic or message
-	 * selector, then a <code>JMSRuntimeException</code> will be thrown.
+	 * selector, or, if the client identifier is set, a different noLocal
+	 * argument, then a <code>JMSException</code> will be thrown.
 	 * <p>
 	 * If <code>noLocal</code> is set to true, and the client identifier is set,
 	 * then any messages published using this <code>JMSContext</code>, or any
@@ -1021,8 +1027,9 @@ public interface JMSContext extends AutoCloseable {
 	 * amongst multiple consumers. A non-durable shared subscription may
 	 * therefore have more than one consumer. Each message from the subscription
 	 * will be delivered to only one of the consumers on that subscription. Such
-	 * a subscription is not persisted and will be deleted (together with any 
-	 * undelivered messages associated with it) when there are no consumers on it.
+	 * a subscription is not persisted and will be deleted (together with any
+	 * undelivered messages associated with it) when there are no consumers on
+	 * it.
 	 * <p>
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
@@ -1032,8 +1039,8 @@ public interface JMSContext extends AutoCloseable {
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
 	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSRuntimeException</code>
-	 * will be thrown.
+	 * different topic or message selector, then a
+	 * <code>JMSRuntimeException</code> will be thrown.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -1045,8 +1052,9 @@ public interface JMSContext extends AutoCloseable {
 	 *            the name used to identify the shared non-durable subscription
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the session fails to create the non-durable subscription
-	 *             and <code>JMSContext</code> due to some internal error.
+	 *             if the session fails to create the shared non-durable
+	 *             subscription and <code>JMSContext</code> due to some internal
+	 *             error.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException
@@ -1056,7 +1064,7 @@ public interface JMSContext extends AutoCloseable {
 
 	/**
 	 * Creates a shared non-durable subscription with the specified name on the
-	 * specified topic, specifying a message selector, and creates a 
+	 * specified topic, specifying a message selector, and creates a
 	 * <code>JMSConsumer</code> on that subscription
 	 * <p>
 	 * If a shared non-durable subscription already exists with the same name
@@ -1068,8 +1076,9 @@ public interface JMSContext extends AutoCloseable {
 	 * amongst multiple consumers. A non-durable shared subscription may
 	 * therefore have more than one consumer. Each message from the subscription
 	 * will be delivered to only one of the consumers on that subscription. Such
-	 * a subscription is not persisted and will be deleted (together with any 
-	 * undelivered messages associated with it) when there are no consumers on it.
+	 * a subscription is not persisted and will be deleted (together with any
+	 * undelivered messages associated with it) when there are no consumers on
+	 * it.
 	 * <p>
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
@@ -1079,8 +1088,8 @@ public interface JMSContext extends AutoCloseable {
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
 	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSRuntimeException</code>
-	 * will be thrown.
+	 * different topic or message selector, then a
+	 * <code>JMSRuntimeException</code> will be thrown.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -1092,13 +1101,14 @@ public interface JMSContext extends AutoCloseable {
 	 *            the name used to identify the shared non-durable subscription
 	 * @param messageSelector
 	 *            only messages with properties matching the message selector
-	 *            expression are added to the non-durable subscription. A value
-	 *            of null or an empty string indicates that there is no message
-	 *            selector for the non-durable subscription.
+	 *            expression are added to the shared non-durable subscription. A
+	 *            value of null or an empty string indicates that there is no
+	 *            message selector for the shared non-durable subscription.
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the session fails to create the non-durable subscription
-	 *             and <code>JMSConsumer</code> due to some internal error.
+	 *             if the session fails to create the shared non-durable
+	 *             subscription and <code>JMSConsumer</code> due to some
+	 *             internal error.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException
@@ -1108,8 +1118,9 @@ public interface JMSContext extends AutoCloseable {
 
 	/**
 	 * Creates a shared non-durable subscription with the specified name on the
-	 * specified topic, specifying a message selector and the <code>noLocal</code> parameter,
-	 * and creates a <code>JMSConsumer</code> on that subscription.
+	 * specified topic, specifying a message selector and the
+	 * <code>noLocal</code> parameter, and creates a <code>JMSConsumer</code> on
+	 * that subscription.
 	 * <p>
 	 * If a shared non-durable subscription already exists with the same name
 	 * and the same topic and message selector then this method creates a
@@ -1120,8 +1131,9 @@ public interface JMSContext extends AutoCloseable {
 	 * amongst multiple consumers. A non-durable shared subscription may
 	 * therefore have more than one consumer. Each message from the subscription
 	 * will be delivered to only one of the consumers on that subscription. Such
-	 * a subscription is not persisted and will be deleted (together with any 
-	 * undelivered messages associated with it) when there are no consumers on it.
+	 * a subscription is not persisted and will be deleted (together with any
+	 * undelivered messages associated with it) when there are no consumers on
+	 * it.
 	 * <p>
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
@@ -1131,14 +1143,12 @@ public interface JMSContext extends AutoCloseable {
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
 	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSRuntimeException</code>
-	 * will be thrown.
+	 * different topic or message selector, then a
+	 * <code>JMSRuntimeException</code> will be thrown.
 	 * <p>
-	 * The noLocal argument is for use when the session's connection is also
-	 * being used to publish messages to the topic. If noLocal is set to true
-	 * then messages published to the topic by its own connection will not be
-	 * added to the non-durable shared subscription. The default value of this
-	 * argument is false.
+	 * If <code>noLocal</code> is set to true then messages published to the
+	 * topic by its own connection will not be added to the non-durable shared
+	 * subscription. The default value of this argument is false.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -1150,16 +1160,17 @@ public interface JMSContext extends AutoCloseable {
 	 *            the name used to identify the shared non-durable subscription
 	 * @param messageSelector
 	 *            only messages with properties matching the message selector
-	 *            expression are added to the non-durable subscription. A value
-	 *            of null or an empty string indicates that there is no message
-	 *            selector for the non-durable subscription.
+	 *            expression are added to the shared non-durable subscription. A
+	 *            value of null or an empty string indicates that there is no
+	 *            message selector for the shared non-durable subscription.
 	 * @param noLocal
 	 *            if true, messages published by its own connection will not be
 	 *            added to the non-durable subscription.
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the session fails to create the non-durable subscription
-	 *             and <code>JMSConsumer</code> due to some internal error.
+	 *             if the session fails to create the shared non-durable
+	 *             subscription and <code>JMSConsumer</code> due to some
+	 *             internal error.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorRuntimeException
