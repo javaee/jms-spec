@@ -76,9 +76,11 @@ public interface CompletionListener {
 	void onCompletion(Message message);
 
 	/**
-	 * Notifies user that the specified exception was thrown while attempting to send the message
+	 * Notifies user that the specified exception was thrown while attempting to send the specified message
 	 * 
+	 * @param message the message that was sent.
 	 * @param exception the exception
+	 * 
 	 */
-	void onException(Exception exception);
+	void onException(Message message, Exception exception);
 }

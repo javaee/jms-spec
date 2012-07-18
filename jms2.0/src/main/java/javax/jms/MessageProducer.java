@@ -40,574 +40,1043 @@
 
 package javax.jms;
 
-/** A client uses a <CODE>MessageProducer</CODE> object to send messages to a 
-  * destination. A <CODE>MessageProducer</CODE> object is created by passing a 
-  * <CODE>Destination</CODE> object to a message-producer creation method 
-  * supplied by a session.
-  *
-  * <P><CODE>MessageProducer</CODE> is the parent interface for all message 
-  * producers.
-  *
-  * <P>A client also has the option of creating a message producer without 
-  * supplying a destination. In this case, a destination must be provided with 
-  * every send operation. A typical use for this kind of message producer is
-  * to send replies to requests using the request's <CODE>JMSReplyTo</CODE> 
-  * destination.
-  *
-  * <P>A client can specify a default delivery mode, priority, time to live 
-  * and delivery delay
-  * for messages sent by a message producer. It can also specify the delivery 
-  * mode, priority, and time to live for an individual message.
-  *
-  * <P>A client can specify a time-to-live value in milliseconds for each
-  * message it sends. This value defines a message expiration time that
-  * is the sum of the message's time-to-live and the GMT when it is sent (for
-  * transacted sends, this is the time the client sends the message, not
-  * the time the transaction is committed).
-  *
-  * <P>A JMS provider should do its best to expire messages accurately;
-  * however, the JMS API does not define the accuracy provided.
-  *
-  * @version     2.0
-  *
-  * @see         javax.jms.TopicPublisher
-  * @see         javax.jms.QueueSender
-  * @see         javax.jms.Session#createProducer
-  */
+/**
+ * A client uses a <CODE>MessageProducer</CODE> object to send messages to a
+ * destination. A <CODE>MessageProducer</CODE> object is created by passing a
+ * <CODE>Destination</CODE> object to a message-producer creation method
+ * supplied by a session.
+ * 
+ * <P>
+ * <CODE>MessageProducer</CODE> is the parent interface for all message
+ * producers.
+ * 
+ * <P>
+ * A client also has the option of creating a message producer without supplying
+ * a destination. In this case, a destination must be provided with every send
+ * operation. A typical use for this kind of message producer is to send replies
+ * to requests using the request's <CODE>JMSReplyTo</CODE> destination.
+ * 
+ * <P>
+ * A client can specify a default delivery mode, priority, time to live and
+ * delivery delay for messages sent by a message producer. It can also specify
+ * the delivery mode, priority, and time to live for an individual message.
+ * 
+ * <P>
+ * A client can specify a time-to-live value in milliseconds for each message it
+ * sends. This value defines a message expiration time that is the sum of the
+ * message's time-to-live and the GMT when it is sent (for transacted sends,
+ * this is the time the client sends the message, not the time the transaction
+ * is committed).
+ * 
+ * <P>
+ * A JMS provider should do its best to expire messages accurately; however, the
+ * JMS API does not define the accuracy provided.
+ * 
+ * @version 2.0
+ * 
+ * @see javax.jms.TopicPublisher
+ * @see javax.jms.QueueSender
+ * @see javax.jms.Session#createProducer
+ */
 
 public interface MessageProducer extends AutoCloseable {
 
-    /** Sets whether message IDs are disabled.
-      *  
-      * <P>Since message IDs take some effort to create and increase a
-      * message's size, some JMS providers may be able to optimize message
-      * overhead if they are given a hint that the message ID is not used by
-      * an application. By calling the <CODE>setDisableMessageID</CODE>  
-      * method on this message producer, a JMS client enables this potential 
-      * optimization for all messages sent by this message producer. If the JMS 
-      * provider accepts this hint, 
-      * these messages must have the message ID set to null; if the provider 
-      * ignores the hint, the message ID must be set to its normal unique value.
-      *
-      * <P>Message IDs are enabled by default.
-      *
-      * @param value indicates if message IDs are disabled
-      *  
-      * @exception JMSException if the JMS provider fails to set message ID to
-      *                         disabled due to some internal error.
-      */ 
+	/**
+	 * Sets whether message IDs are disabled.
+	 * 
+	 * <P>
+	 * Since message IDs take some effort to create and increase a message's
+	 * size, some JMS providers may be able to optimize message overhead if they
+	 * are given a hint that the message ID is not used by an application. By
+	 * calling the <CODE>setDisableMessageID</CODE> method on this message
+	 * producer, a JMS client enables this potential optimization for all
+	 * messages sent by this message producer. If the JMS provider accepts this
+	 * hint, these messages must have the message ID set to null; if the
+	 * provider ignores the hint, the message ID must be set to its normal
+	 * unique value.
+	 * 
+	 * <P>
+	 * Message IDs are enabled by default.
+	 * 
+	 * @param value
+	 *            indicates if message IDs are disabled
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set message ID to disabled
+	 *                due to some internal error.
+	 */
 
-    void
-    setDisableMessageID(boolean value) throws JMSException;
+	void setDisableMessageID(boolean value) throws JMSException;
 
+	/**
+	 * Gets an indication of whether message IDs are disabled.
+	 * 
+	 * @return an indication of whether message IDs are disabled
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to determine if message IDs are
+	 *                disabled due to some internal error.
+	 */
 
-    /** Gets an indication of whether message IDs are disabled.
-      *  
-      * @return an indication of whether message IDs are disabled
-      *  
-      * @exception JMSException if the JMS provider fails to determine if 
-      *                         message IDs are disabled due to some internal 
-      *                         error.
-      */ 
+	boolean getDisableMessageID() throws JMSException;
 
-    boolean 
-    getDisableMessageID() throws JMSException;
+	/**
+	 * Sets whether message timestamps are disabled.
+	 * 
+	 * <P>
+	 * Since timestamps take some effort to create and increase a message's
+	 * size, some JMS providers may be able to optimize message overhead if they
+	 * are given a hint that the timestamp is not used by an application. By
+	 * calling the <CODE>setDisableMessageTimestamp</CODE> method on this
+	 * message producer, a JMS client enables this potential optimization for
+	 * all messages sent by this message producer. If the JMS provider accepts
+	 * this hint, these messages must have the timestamp set to zero; if the
+	 * provider ignores the hint, the timestamp must be set to its normal value.
+	 * 
+	 * <P>
+	 * Message timestamps are enabled by default.
+	 * 
+	 * @param value
+	 *            indicates if message timestamps are disabled
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set timestamps to disabled
+	 *                due to some internal error.
+	 */
 
+	void setDisableMessageTimestamp(boolean value) throws JMSException;
 
-    /** Sets whether message timestamps are disabled.
-      *  
-      * <P>Since timestamps take some effort to create and increase a 
-      * message's size, some JMS providers may be able to optimize message 
-      * overhead if they are given a hint that the timestamp is not used by an 
-      * application. By calling the <CODE>setDisableMessageTimestamp</CODE> 
-      * method on this message producer, a JMS client enables this potential 
-      * optimization for all messages sent by this message producer.  If the 
-      * JMS provider accepts this hint, 
-      * these messages must have the timestamp set to zero; if the provider 
-      * ignores the hint, the timestamp must be set to its normal value.
-      *  
-      * <P>Message timestamps are enabled by default.
-      *
-      * @param value indicates if message timestamps are disabled
-      *  
-      * @exception JMSException if the JMS provider fails to set timestamps to
-      *                         disabled due to some internal error.
-      */ 
+	/**
+	 * Gets an indication of whether message timestamps are disabled.
+	 * 
+	 * @return an indication of whether message timestamps are disabled
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to determine if timestamps are
+	 *                disabled due to some internal error.
+	 */
 
-    void
-    setDisableMessageTimestamp(boolean value) throws JMSException;
+	boolean getDisableMessageTimestamp() throws JMSException;
 
+	/**
+	 * Sets the producer's default delivery mode.
+	 * 
+	 * <P>
+	 * Delivery mode is set to <CODE>PERSISTENT</CODE> by default.
+	 * 
+	 * @param deliveryMode
+	 *            the message delivery mode for this message producer; legal
+	 *            values are <code>DeliveryMode.NON_PERSISTENT</code> and
+	 *            <code>DeliveryMode.PERSISTENT</code>
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set the delivery mode due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#getDeliveryMode
+	 * @see javax.jms.DeliveryMode#NON_PERSISTENT
+	 * @see javax.jms.DeliveryMode#PERSISTENT
+	 * @see javax.jms.Message#DEFAULT_DELIVERY_MODE
+	 */
 
-    /** Gets an indication of whether message timestamps are disabled.
-      *  
-      * @return an indication of whether message timestamps are disabled
-      *  
-      * @exception JMSException if the JMS provider fails to determine if 
-      *                         timestamps are disabled due to some internal 
-      *                         error.
-      */ 
+	void setDeliveryMode(int deliveryMode) throws JMSException;
 
-    boolean
-    getDisableMessageTimestamp() throws JMSException;
+	/**
+	 * Gets the producer's default delivery mode.
+	 * 
+	 * @return the message delivery mode for this message producer
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the delivery mode due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#setDeliveryMode
+	 */
 
+	int getDeliveryMode() throws JMSException;
 
-    /** Sets the producer's default delivery mode.
-      *  
-      * <P>Delivery mode is set to <CODE>PERSISTENT</CODE> by default.
-      *
-      * @param deliveryMode the message delivery mode for this message
-      * producer; legal values are <code>DeliveryMode.NON_PERSISTENT</code>
-      * and <code>DeliveryMode.PERSISTENT</code>
-      *  
-      * @exception JMSException if the JMS provider fails to set the delivery 
-      *                         mode due to some internal error.          
-      *
-      * @see javax.jms.MessageProducer#getDeliveryMode
-      * @see javax.jms.DeliveryMode#NON_PERSISTENT
-      * @see javax.jms.DeliveryMode#PERSISTENT
-      * @see javax.jms.Message#DEFAULT_DELIVERY_MODE
-      */ 
+	/**
+	 * Sets the producer's default priority.
+	 * 
+	 * <P>
+	 * The JMS API defines ten levels of priority value, with 0 as the lowest
+	 * priority and 9 as the highest. Clients should consider priorities 0-4 as
+	 * gradations of normal priority and priorities 5-9 as gradations of
+	 * expedited priority. Priority is set to 4 by default.
+	 * 
+	 * @param defaultPriority
+	 *            the message priority for this message producer; must be a
+	 *            value between 0 and 9
+	 * 
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set the priority due to some
+	 *                internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#getPriority
+	 * @see javax.jms.Message#DEFAULT_PRIORITY
+	 */
 
-    void
-    setDeliveryMode(int deliveryMode) throws JMSException;
+	void setPriority(int defaultPriority) throws JMSException;
 
+	/**
+	 * Gets the producer's default priority.
+	 * 
+	 * @return the message priority for this message producer
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the priority due to some
+	 *                internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#setPriority
+	 */
 
-    /** Gets the producer's default delivery mode.
-      *  
-      * @return the message delivery mode for this message producer
-      *  
-      * @exception JMSException if the JMS provider fails to get the delivery 
-      *                         mode due to some internal error.
-      *
-      * @see javax.jms.MessageProducer#setDeliveryMode
-      */ 
+	int getPriority() throws JMSException;
 
-    int 
-    getDeliveryMode() throws JMSException;
+	/**
+	 * Sets the default length of time in milliseconds from its dispatch time
+	 * that a produced message should be retained by the message system.
+	 * 
+	 * <P>
+	 * Time to live is set to zero by default.
+	 * 
+	 * @param timeToLive
+	 *            the message time to live in milliseconds; zero is unlimited
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set the time to live due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#getTimeToLive
+	 * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
+	 */
 
+	void setTimeToLive(long timeToLive) throws JMSException;
 
-    /** Sets the producer's default priority.
-      *  
-      * <P>The JMS API defines ten levels of priority value, with 0 as the 
-      * lowest priority and 9 as the highest. Clients should consider priorities
-      * 0-4 as gradations of normal priority and priorities 5-9 as gradations 
-      * of expedited priority. Priority is set to 4 by default.
-      *
-      * @param defaultPriority the message priority for this message producer;
-      *                        must be a value between 0 and 9
-      * 
-      *  
-      * @exception JMSException if the JMS provider fails to set the priority
-      *                         due to some internal error.
-      *
-      * @see javax.jms.MessageProducer#getPriority
-      * @see javax.jms.Message#DEFAULT_PRIORITY
-      */ 
+	/**
+	 * Gets the default length of time in milliseconds from its dispatch time
+	 * that a produced message should be retained by the message system.
+	 * 
+	 * @return the message time to live in milliseconds; zero is unlimited
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the time to live due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#setTimeToLive
+	 */
 
-    void
-    setPriority(int defaultPriority) throws JMSException;
+	long getTimeToLive() throws JMSException;
 
+	/**
+	 * Sets the default minimum length of time in milliseconds from its dispatch
+	 * time before a produced message becomes visible on the target destination
+	 * and available for delivery to consumers.
+	 * 
+	 * <P>
+	 * deliveryDelay is set to zero by default.
+	 * 
+	 * @param deliveryDelay
+	 *            the delivery delay in milliseconds.
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set the delivery delay due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#getDeliveryDelay
+	 * @see javax.jms.Message#DEFAULT_DELIVERY_DELAY
+	 * 
+	 * @since 2.0
+	 */
 
-    /** Gets the producer's default priority.
-      *  
-      * @return the message priority for this message producer
-      *  
-      * @exception JMSException if the JMS provider fails to get the priority
-      *                         due to some internal error.
-      *
-      * @see javax.jms.MessageProducer#setPriority
-      */ 
+	void setDeliveryDelay(long deliveryDelay) throws JMSException;
 
-    int 
-    getPriority() throws JMSException;
+	/**
+	 * Gets the default minimum length of time in milliseconds from its dispatch
+	 * time before a produced message becomes visible on the target destination
+	 * and available for delivery to consumers.
+	 * 
+	 * @return the delivery delay in milliseconds.
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the delivery delay due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.MessageProducer#setDeliveryDelay
+	 * 
+	 * @since 2.0
+	 */
 
+	long getDeliveryDelay() throws JMSException;
 
-    /** Sets the default length of time in milliseconds from its dispatch time
-      * that a produced message should be retained by the message system.
-      *
-      * <P>Time to live is set to zero by default.
-      *
-      * @param timeToLive the message time to live in milliseconds; zero is
-      * unlimited
-      *
-      * @exception JMSException if the JMS provider fails to set the time to 
-      *                         live due to some internal error.
-      *
-      * @see javax.jms.MessageProducer#getTimeToLive
-      * @see javax.jms.Message#DEFAULT_TIME_TO_LIVE
-      */
-   
-    void
-    setTimeToLive(long timeToLive) throws JMSException;
-      
-    /** Gets the default length of time in milliseconds from its dispatch time
-      * that a produced message should be retained by the message system.
-      *
-      * @return the message time to live in milliseconds; zero is unlimited
-      *
-      * @exception JMSException if the JMS provider fails to get the time to 
-      *                         live due to some internal error.
-      *
-      * @see javax.jms.MessageProducer#setTimeToLive
-      */ 
- 
-    long
-    getTimeToLive() throws JMSException;
-    
-    /** Sets the default minimum length of time in milliseconds from its dispatch time
-     * before a produced message becomes visible on the target destination and available
-     * for delivery to consumers.  
-     *
-     * <P>deliveryDelay is set to zero by default.
-     *
-     * @param deliveryDelay the delivery delay in milliseconds.
-     *
-     * @exception JMSException if the JMS provider fails to set the delivery
-     *                         delay due to some internal error.
-     *
-     * @see javax.jms.MessageProducer#getDeliveryDelay
-     * @see javax.jms.Message#DEFAULT_DELIVERY_DELAY
-     * 
-     * @since 2.0
-     */
-  
-   void setDeliveryDelay(long deliveryDelay) throws JMSException;      
-   
-   /** Gets the default minimum length of time in milliseconds from its dispatch time
-    * before a produced message becomes visible on the target destination and available
-    * for delivery to consumers.  
-    *
-    * @return the delivery delay in milliseconds.
-    *
-    * @exception JMSException if the JMS provider fails to get the delivery 
-    *                         delay due to some internal error.
-    *
-    * @see javax.jms.MessageProducer#setDeliveryDelay
-    * 
-    * @since 2.0
-    */ 
+	/**
+	 * Gets the destination associated with this <CODE>MessageProducer</CODE>.
+	 * 
+	 * @return this producer's <CODE>Destination</CODE>
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the destination for this
+	 *                <CODE>MessageProducer</CODE> due to some internal error.
+	 * @since 1.1
+	 */
 
-  long getDeliveryDelay() throws JMSException;   
+	Destination getDestination() throws JMSException;
 
-    /** Gets the destination associated with this <CODE>MessageProducer</CODE>.
-      *  
-      * @return this producer's <CODE>Destination</CODE>
-      *  
-      * @exception JMSException if the JMS provider fails to get the destination for
-      *                         this <CODE>MessageProducer</CODE>
-      *                         due to some internal error.
-      *@since 1.1 
-      */ 
-    
-    Destination 
-    getDestination() throws JMSException;
-    
-    /** Closes the message producer.
-      *
-      * <P>Since a provider may allocate some resources on behalf of a
-      * <CODE>MessageProducer</CODE> outside the Java virtual machine, clients 
-      * should close them when they
-      * are not needed. Relying on garbage collection to eventually reclaim
-      * these resources may not be timely enough.
-      *  
-      * @exception JMSException if the JMS provider fails to close the producer
-      *                         due to some internal error.
-      */ 
+	/**
+	 * Closes the message producer.
+	 * 
+	 * <P>
+	 * Since a provider may allocate some resources on behalf of a
+	 * <CODE>MessageProducer</CODE> outside the Java virtual machine, clients
+	 * should close them when they are not needed. Relying on garbage collection
+	 * to eventually reclaim these resources may not be timely enough.
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to close the producer due to
+	 *                some internal error.
+	 */
 
-    void
-    close() throws JMSException;
-    
-     
-      /** Sends a message using the <CODE>MessageProducer</CODE>'s 
-      * default delivery mode, priority, and time to live.
-      *
-      * @param message the message to send 
-      *  
-      * @exception JMSException if the JMS provider fails to send the message 
-      *                         due to some internal error.
-      * @exception MessageFormatException if an invalid message is specified.
-      * @exception InvalidDestinationException if a client uses
-      *                         this method with a <CODE>MessageProducer</CODE> with
-      *                         an invalid destination.
-      * @exception java.lang.UnsupportedOperationException if a client uses this
-      *                         method with a <CODE>MessageProducer</CODE> that did
-      *                         not specify a destination at creation time.
-      * 
-      * @see javax.jms.Session#createProducer 
-      *
-      * @since 1.1 
-      */
+	void close() throws JMSException;
 
-    void 
-    send(Message message) throws JMSException;
-    
-      /** Sends a message, specifying delivery mode, priority, and time to live.
-      *
-      * @param message the message to send
-      * @param deliveryMode the delivery mode to use
-      * @param priority the priority for this message
-      * @param timeToLive the message's lifetime (in milliseconds)
-      *  
-      * @exception JMSException if the JMS provider fails to send the message 
-      *                         due to some internal error.
-      * @exception MessageFormatException if an invalid message is specified.
-      * @exception InvalidDestinationException if a client uses
-      *                         this method with a <CODE>MessageProducer</CODE> with
-      *                         an invalid destination.
-      * @exception java.lang.UnsupportedOperationException if a client uses this
-      *                         method with a <CODE>MessageProducer</CODE> that did
-      *                         not specify a destination at creation time.
-      *
-      * @see javax.jms.Session#createProducer
-      * @since 1.1 
-      */
+	/**
+	 * Sends a message using the <CODE>MessageProducer</CODE>'s default delivery
+	 * mode, priority, and time to live.
+	 * 
+	 * @param message
+	 *            the message to send
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                destination at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * 
+	 * @since 1.1
+	 */
 
-    void 
-    send(Message message, 
-	 int deliveryMode, 
-	 int priority,
-	 long timeToLive) throws JMSException;
-    
-    
-     /**Sends a message to a destination for an unidentified message producer 
-      * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
-      * and time to live.
-      *
-      * <P>Typically, a message producer is assigned a destination at creation 
-      * time; however, the JMS API also supports unidentified message producers,
-      * which require that the destination be supplied every time a message is
-      * sent. 
-      *  
-      * @param destination the destination to send this message to
-      * @param message the message to send
-      *  
-      * @exception JMSException if the JMS provider fails to send the message 
-      *                         due to some internal error.
-      * @exception MessageFormatException if an invalid message is specified.
-      * @exception InvalidDestinationException if a client uses
-      *                         this method with an invalid destination.
-      * @exception java.lang.UnsupportedOperationException if a client uses this
-      *                         method with a <CODE>MessageProducer</CODE> that 
-      *                         specified a destination at creation time.
-      * 
-      * @see javax.jms.Session#createProducer
-      * @since 1.1 
-      */ 
- 
-    void
-    send(Destination destination, Message message) throws JMSException;
- 
- 
-    /** Sends a message to a destination for an unidentified message producer, 
-      * specifying delivery mode, priority and time to live.
-      *  
-      * <P>Typically, a message producer is assigned a destination at creation 
-      * time; however, the JMS API also supports unidentified message producers,
-      * which require that the destination be supplied every time a message is
-      * sent. 
-      *  
-      * @param destination the destination to send this message to
-      * @param message the message to send
-      * @param deliveryMode the delivery mode to use
-      * @param priority the priority for this message
-      * @param timeToLive the message's lifetime (in milliseconds)
-      *  
-      * @exception JMSException if the JMS provider fails to send the message 
-      *                         due to some internal error.
-      * @exception MessageFormatException if an invalid message is specified.
-      * @exception InvalidDestinationException if a client uses
-      *                         this method with an invalid destination.
-      *
-      * @see javax.jms.Session#createProducer
-      * @since 1.1 
-      */ 
+	void send(Message message) throws JMSException;
 
-    void
-    send(Destination destination, 
-	 Message message, 
-	 int deliveryMode, 
-	 int priority,
-	 long timeToLive) throws JMSException;
-    
-    /** Sends a message using the <CODE>MessageProducer</CODE>'s 
-    * default delivery mode, priority, and time to live, 
-    * returning immediately and notifying the specified completion listener 
-    * when the operation has completed.
-    * <p>
-    * This method allows the JMS provider to perform the actual sending of the message,
-    * and the wait for any confirmation from a JMS server, to take place in a separate thread
-    * without blocking the calling thread. When the sending of the message is complete,
-    * and any confirmation has been received from a JMS server, the JMS provider calls
-    * the <code>onCompletion(Message)</code> method of the specified completion listener. 
-    * If an exception occurs in the separate thread 
-    * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
-    * <p>
-    * JMS does not define what operations are performed in the calling thread and what operations, if any,
-    * are performed in the separate thread. In particular the use of this method does not itself specify whether
-    * the separate thread should obtain confirmation from a JMS server. 
-    * <p>
-    * The exceptions listed below may be thrown in either thread. 
-    *
-    * @param message the message to send 
-    * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
-    *  
-    * @exception JMSException if the JMS provider fails to send the message 
-    *                         due to some internal error.
-    * @exception MessageFormatException if an invalid message is specified.
-    * @exception InvalidDestinationException if a client uses
-    *                         this method with a <CODE>MessageProducer</CODE> with
-    *                         an invalid destination.
-    * @exception java.lang.UnsupportedOperationException if a client uses this
-    *                         method with a <CODE>MessageProducer</CODE> that did
-    *                         not specify a destination at creation time.
-    * 
-    * @see javax.jms.Session#createProducer 
-    * @see javax.jms.CompletionListener 
-    *
-    * @since 2.0 
-    */
-void send(Message message, CompletionListener completionListener) throws JMSException;
-  
-    /** Sends a message, specifying delivery mode, priority, and time to live, 
-    * returning immediately and notifying the specified completion listener 
-    * when the operation has completed.
-    * <p>
-    * This method allows the JMS provider to perform the actual sending of the message,
-    * and the wait for any confirmation from a JMS server, to take place in a separate thread
-    * without blocking the calling thread. When the sending of the message is complete,
-    * and any confirmation has been received from a JMS server, the JMS provider calls
-    * the <code>onCompletion(Message)</code> method of the specified completion listener. 
-    * If an exception occurs in the separate thread 
-    * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
-    * <p>
-    * JMS does not define what operations are performed in the calling thread and what operations, if any,
-    * are performed in the separate thread. In particular the use of this method does not itself specify whether
-    * the separate thread should obtain confirmation from a JMS server. 
-    * <p>
-    * The exceptions listed below may be thrown in either thread. 
-    *
-    * @param message the message to send
-    * @param deliveryMode the delivery mode to use
-    * @param priority the priority for this message
-    * @param timeToLive the message's lifetime (in milliseconds)
-    * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
-    *  
-    * @exception JMSException if the JMS provider fails to send the message 
-    *                         due to some internal error.
-    * @exception MessageFormatException if an invalid message is specified.
-    * @exception InvalidDestinationException if a client uses
-    *                         this method with a <CODE>MessageProducer</CODE> with
-    *                         an invalid destination.
-    * @exception java.lang.UnsupportedOperationException if a client uses this
-    *                         method with a <CODE>MessageProducer</CODE> that did
-    *                         not specify a destination at creation time.
-    *
-    * @see javax.jms.Session#createProducer
-    * @see javax.jms.CompletionListener 
-    * @since 2.0 
-    */
+	/**
+	 * Sends a message, specifying delivery mode, priority, and time to live.
+	 * 
+	 * @param message
+	 *            the message to send
+	 * @param deliveryMode
+	 *            the delivery mode to use
+	 * @param priority
+	 *            the priority for this message
+	 * @param timeToLive
+	 *            the message's lifetime (in milliseconds)
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                destination at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @since 1.1
+	 */
 
-  void 
-  send(Message message, 
-	 int deliveryMode, 
-	 int priority,
-	 long timeToLive, CompletionListener completionListener) throws JMSException;
-  
-  
-   /** Sends a message to a destination for an unidentified message producer,
-    * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
-    * and time to live,
-    * returning immediately and notifying the specified completion listener 
-    * when the operation has completed.
-    *
-    * <P>Typically, a message producer is assigned a destination at creation 
-    * time; however, the JMS API also supports unidentified message producers,
-    * which require that the destination be supplied every time a message is
-    * sent. 
-    * <p>
-    * This method allows the JMS provider to perform the actual sending of the message,
-    * and the wait for any confirmation from a JMS server, to take place in a separate thread
-    * without blocking the calling thread. When the sending of the message is complete,
-    * and any confirmation has been received from a JMS server, the JMS provider calls
-    * the <code>onCompletion(Message)</code> method of the specified completion listener. 
-    * If an exception occurs in the separate thread 
-    * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
-    * <p>
-    * JMS does not define what operations are performed in the calling thread and what operations, if any,
-    * are performed in the separate thread. In particular the use of this method does not itself specify whether
-    * the separate thread should obtain confirmation from a JMS server. 
-    * <p>
-    * The exceptions listed below may be thrown in either thread. 
-    *
-    * @param destination the destination to send this message to
-    * @param message the message to send
-    * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
-    *  
-    * @exception JMSException if the JMS provider fails to send the message 
-    *                         due to some internal error.
-    * @exception MessageFormatException if an invalid message is specified.
-    * @exception InvalidDestinationException if a client uses
-    *                         this method with an invalid destination.
-    * @exception java.lang.UnsupportedOperationException if a client uses this
-    *                         method with a <CODE>MessageProducer</CODE> that 
-    *                         specified a destination at creation time.
-    * 
-    * @see javax.jms.Session#createProducer
-    * @see javax.jms.CompletionListener 
-    * @since 2.0 
-    */ 
+	void send(Message message, int deliveryMode, int priority, long timeToLive) throws JMSException;
 
-  void
-  send(Destination destination, Message message, CompletionListener completionListener) throws JMSException;
+	/**
+	 * Sends a message to a destination for an unidentified message producer
+	 * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
+	 * and time to live.
+	 * 
+	 * <P>
+	 * Typically, a message producer is assigned a destination at creation time;
+	 * however, the JMS API also supports unidentified message producers, which
+	 * require that the destination be supplied every time a message is sent.
+	 * 
+	 * @param destination
+	 *            the destination to send this message to
+	 * @param message
+	 *            the message to send
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @since 1.1
+	 */
 
+	void send(Destination destination, Message message) throws JMSException;
 
-  /** Sends a message to a destination for an unidentified message producer, 
-    * specifying delivery mode, priority and time to live,
-    * returning immediately and notifying the specified completion listener 
-    * when the operation has completed. 
-    *  
-    * <P>Typically, a message producer is assigned a destination at creation 
-    * time; however, the JMS API also supports unidentified message producers,
-    * which require that the destination be supplied every time a message is
-    * sent. 
-    * <p>
-    * This method allows the JMS provider to perform the actual sending of the message,
-    * and the wait for any confirmation from a JMS server, to take place in a separate thread
-    * without blocking the calling thread. When the sending of the message is complete,
-    * and any confirmation has been received from a JMS server, the JMS provider calls
-    * the <code>onCompletion(Message)</code> method of the specified completion listener. 
-    * If an exception occurs in the separate thread 
-    * then the JMS provider calls the <code>onException(JMSException)</code> method of the specified completion listener.
-    * <p>
-    * JMS does not define what operations are performed in the calling thread and what operations, if any,
-    * are performed in the separate thread. In particular the use of this method does not itself specify whether
-    * the separate thread should obtain confirmation from a JMS server. 
-    * <p>
-    * The exceptions listed below may be thrown in either thread. 
-    *
-    * @param destination the destination to send this message to
-    * @param message the message to send
-    * @param deliveryMode the delivery mode to use
-    * @param priority the priority for this message
-    * @param timeToLive the message's lifetime (in milliseconds)
-    * @param completionListener a <code>CompletionListener</code> to be notified when the send has completed
-    *  
-    * @exception JMSException if the JMS provider fails to send the message 
-    *                         due to some internal error.
-    * @exception MessageFormatException if an invalid message is specified.
-    * @exception InvalidDestinationException if a client uses
-    *                         this method with an invalid destination.
-    *
-    * @see javax.jms.Session#createProducer
-    * @see javax.jms.CompletionListener 
-    * @since 2.0 
-    */ 
+	/**
+	 * Sends a message to a destination for an unidentified message producer,
+	 * specifying delivery mode, priority and time to live.
+	 * 
+	 * <P>
+	 * Typically, a message producer is assigned a destination at creation time;
+	 * however, the JMS API also supports unidentified message producers, which
+	 * require that the destination be supplied every time a message is sent.
+	 * 
+	 * @param destination
+	 *            the destination to send this message to
+	 * @param message
+	 *            the message to send
+	 * @param deliveryMode
+	 *            the delivery mode to use
+	 * @param priority
+	 *            the priority for this message
+	 * @param timeToLive
+	 *            the message's lifetime (in milliseconds)
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with an invalid destination.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @since 1.1
+	 */
 
-  void
-  send(Destination destination, 
-	 Message message, 
-	 int deliveryMode, 
-	 int priority,
-	 long timeToLive, CompletionListener completionListener) throws JMSException;    
+	void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive)
+			throws JMSException;
+
+	/**
+	 * Sends a message using the <CODE>MessageProducer</CODE>'s default delivery
+	 * mode, priority, and time to live, performing part of the work involved in
+	 * sending the message in a separate thread and notifying the specified
+	 * <tt>CompletionListener</tt> when the operation has completed. JMS refers
+	 * to this as an "asynchronous send".
+	 * <p>
+	 * When the message has been successfully sent the JMS provider invokes the
+	 * callback method <tt>onCompletion</tt> on an application-specified
+	 * <tt>CompletionListener</tt> object. Only when that callback has been
+	 * invoked can the application be sure that the message has been
+	 * successfully sent with the same degree of confidence as if a normal
+	 * synchronous send had been performed. An application which requires this
+	 * degree of confidence must therefore wait for the callback to be invoked
+	 * before continuing.
+	 * <p>
+	 * The following information is intended to give an indication of how an
+	 * asynchronous send would typically be implemented.
+	 * <p>
+	 * In some JMS providers, a normal synchronous send involves sending the
+	 * message to a remote JMS server and then waiting for an acknowledgement to
+	 * be received before returning. It is expected that such a provider would
+	 * implement an asynchronous send by sending the message to the remote JMS
+	 * server and then returning without waiting for an acknowledgement. When
+	 * the acknowledgement is received, the JMS provider would notify the
+	 * application by invoking the <tt>onCompletion</tt> method on the
+	 * application-specified <tt>CompletionListener</tt> object. If for some
+	 * reason the acknowledgement is not received the JMS provider would notify
+	 * the application by invoking the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method.
+	 * <p>
+	 * In those cases where the JMS specification permits a lower level of
+	 * reliability, a normal synchronous send might not wait for an
+	 * acknowledgement. In that case it is expected that an asynchronous send
+	 * would be similar to a synchronous send: the JMS provider would send the
+	 * message to the remote JMS server and then return without waiting for an
+	 * acknowledgement. However the JMS provider would still notify the
+	 * application that the send had completed by invoking the
+	 * <tt>onCompletion</tt> method on the application-specified
+	 * <tt>CompletionListener</tt> object.
+	 * <p>
+	 * It is up to the JMS provider to decide exactly what is performed in the
+	 * calling thread and what, if anything, is performed asynchronously, so
+	 * long as it satisfies the requirements given below:
+	 * <p>
+	 * <b>Quality of service</b>: After the send operation is complete, which
+	 * means that the message has been successfully sent with the same degree of
+	 * confidence as if a normal synchronous send had been performed, the JMS
+	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
+	 * send multiple messages then JMS message ordering requirements must be
+	 * satisfied. This applies even if a combination of synchronous and
+	 * asynchronous sends has been performed. The application is not required to
+	 * wait for an asynchronous send to complete before sending the next
+	 * message.
+	 * <p>
+	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
+	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <tt>rollback</tt> method is called the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before performing the commit or rollback. If the <tt>close</tt>
+	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
+	 * or <tt>Connection</tt> then the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before closing the object and returning.
+	 * <p>
+	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
+	 * permitted in a Java EE EJB or web container. If the application component
+	 * violates this restriction this method may throw a JMSException.
+	 * <p>
+	 * <b>Message headers</b> JMS defines a number of message header fields and
+	 * message properties which must be set by the "JMS provider on send". If
+	 * the send is asynchronous these fields and properties may be accessed on
+	 * the sending client only after the <tt>CompletionListener</tt> has been
+	 * invoked. If the <tt>CompletionListener</tt>'s <tt>onException</tt> method
+	 * is called then the state of these message header fields and properties is
+	 * undefined.
+	 * <p>
+	 * <b>Restrictions on threading</b>: Applications that perform an
+	 * asynchronous send must confirm to the threading restrictions defined in
+	 * JMS. This means that the session may be used by only one thread at a
+	 * time.
+	 * <p>
+	 * Setting a <tt>CompletionListener</tt> does not cause the session to be
+	 * dedicated to the thread of control which calls the
+	 * <tt>CompletionListener</tt>. The application thread may therefore
+	 * continue to use the session after performing an asynchronous send.
+	 * However the <tt>CompletionListener</tt>'s callback methods must not use
+	 * the session if an application thread might be using the session at the
+	 * same time.
+	 * <p>
+	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
+	 * session will only invoke one <tt>CompletionListener</tt> callback method
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
+	 * performed in the same order as the corresponding calls to the
+	 * asynchronous send method.
+	 * <p>
+	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
+	 * thread that is calling the asynchronous send method.
+	 * <p>
+	 * An application which does not need to receive notifications when the send
+	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
+	 * . This does not remove the requirement for the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
+	 * incomplete send operations have been completed.
+	 * <p>
+	 * <b>Restrictions on the use of the Message object</b>: Applications which
+	 * perform an asynchronous send must take account of the restriction that a
+	 * <tt>Message</tt> object is designed to be accessed by one logical thread
+	 * of control at a time and does not support concurrent use.
+	 * <p>
+	 * After the <tt>send</tt> method has returned, the application must not
+	 * attempt to read the headers, properties or payload of the
+	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
+	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
+	 * This is because the JMS provider may be modifying the <tt>Message</tt>
+	 * object in another thread during this time. A <tt>JMSException</tt> may be
+	 * thrown if the application attempts to access or modify the
+	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
+	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * 
+	 * @param message
+	 *            the message to send
+	 * @param completionListener
+	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            has completed
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                destination at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @see javax.jms.CompletionListener
+	 * 
+	 * @since 2.0
+	 */
+	void send(Message message, CompletionListener completionListener) throws JMSException;
+	
+	/**
+	 * Sends a message, specifying delivery mode, priority and time to live,
+	 * performing part of the work involved in sending the message in a separate
+	 * thread and notifying the specified <tt>CompletionListener</tt> when the
+	 * operation has completed. JMS refers to this as an "asynchronous send".
+	 * <p>
+	 * When the message has been successfully sent the JMS provider invokes the
+	 * callback method <tt>onCompletion</tt> on an application-specified
+	 * <tt>CompletionListener</tt> object. Only when that callback has been
+	 * invoked can the application be sure that the message has been
+	 * successfully sent with the same degree of confidence as if a normal
+	 * synchronous send had been performed. An application which requires this
+	 * degree of confidence must therefore wait for the callback to be invoked
+	 * before continuing.
+	 * <p>
+	 * The following information is intended to give an indication of how an
+	 * asynchronous send would typically be implemented.
+	 * <p>
+	 * In some JMS providers, a normal synchronous send involves sending the
+	 * message to a remote JMS server and then waiting for an acknowledgement to
+	 * be received before returning. It is expected that such a provider would
+	 * implement an asynchronous send by sending the message to the remote JMS
+	 * server and then returning without waiting for an acknowledgement. When
+	 * the acknowledgement is received, the JMS provider would notify the
+	 * application by invoking the <tt>onCompletion</tt> method on the
+	 * application-specified <tt>CompletionListener</tt> object. If for some
+	 * reason the acknowledgement is not received the JMS provider would notify
+	 * the application by invoking the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method.
+	 * <p>
+	 * In those cases where the JMS specification permits a lower level of
+	 * reliability, a normal synchronous send might not wait for an
+	 * acknowledgement. In that case it is expected that an asynchronous send
+	 * would be similar to a synchronous send: the JMS provider would send the
+	 * message to the remote JMS server and then return without waiting for an
+	 * acknowledgement. However the JMS provider would still notify the
+	 * application that the send had completed by invoking the
+	 * <tt>onCompletion</tt> method on the application-specified
+	 * <tt>CompletionListener</tt> object.
+	 * <p>
+	 * It is up to the JMS provider to decide exactly what is performed in the
+	 * calling thread and what, if anything, is performed asynchronously, so
+	 * long as it satisfies the requirements given below:
+	 * <p>
+	 * <b>Quality of service</b>: After the send operation is complete, which
+	 * means that the message has been successfully sent with the same degree of
+	 * confidence as if a normal synchronous send had been performed, the JMS
+	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
+	 * send multiple messages then JMS message ordering requirements must be
+	 * satisfied. This applies even if a combination of synchronous and
+	 * asynchronous sends has been performed. The application is not required to
+	 * wait for an asynchronous send to complete before sending the next
+	 * message.
+	 * <p>
+	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
+	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <tt>rollback</tt> method is called the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before performing the commit or rollback. If the <tt>close</tt>
+	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
+	 * or <tt>Connection</tt> then the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before closing the object and returning.
+	 * <p>
+	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
+	 * permitted in a Java EE EJB or web container. If the application component
+	 * violates this restriction this method may throw a JMSException.
+	 * <p>
+	 * <b>Message headers</b> JMS defines a number of message header fields and
+	 * message properties which must be set by the "JMS provider on send". If
+	 * the send is asynchronous these fields and properties may be accessed on
+	 * the sending client only after the <tt>CompletionListener</tt> has been
+	 * invoked. If the <tt>CompletionListener</tt>'s <tt>onException</tt> method
+	 * is called then the state of these message header fields and properties is
+	 * undefined.
+	 * <p>
+	 * <b>Restrictions on threading</b>: Applications that perform an
+	 * asynchronous send must confirm to the threading restrictions defined in
+	 * JMS. This means that the session may be used by only one thread at a
+	 * time.
+	 * <p>
+	 * Setting a <tt>CompletionListener</tt> does not cause the session to be
+	 * dedicated to the thread of control which calls the
+	 * <tt>CompletionListener</tt>. The application thread may therefore
+	 * continue to use the session after performing an asynchronous send.
+	 * However the <tt>CompletionListener</tt>'s callback methods must not use
+	 * the session if an application thread might be using the session at the
+	 * same time.
+	 * <p>
+	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
+	 * session will only invoke one <tt>CompletionListener</tt> callback method
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
+	 * performed in the same order as the corresponding calls to the
+	 * asynchronous send method.
+	 * <p>
+	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
+	 * thread that is calling the asynchronous send method.
+	 * <p>
+	 * An application which does not need to receive notifications when the send
+	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
+	 * . This does not remove the requirement for the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
+	 * incomplete send operations have been completed.
+	 * <p>
+	 * <b>Restrictions on the use of the Message object</b>: Applications which
+	 * perform an asynchronous send must take account of the restriction that a
+	 * <tt>Message</tt> object is designed to be accessed by one logical thread
+	 * of control at a time and does not support concurrent use.
+	 * <p>
+	 * After the <tt>send</tt> method has returned, the application must not
+	 * attempt to read the headers, properties or payload of the
+	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
+	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
+	 * This is because the JMS provider may be modifying the <tt>Message</tt>
+	 * object in another thread during this time. A <tt>JMSException</tt> may be
+	 * thrown if the application attempts to access or modify the
+	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
+	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * 
+	 * @param message
+	 *            the message to send
+	 * @param deliveryMode
+	 *            the delivery mode to use
+	 * @param priority
+	 *            the priority for this message
+	 * @param timeToLive
+	 *            the message's lifetime (in milliseconds)
+	 * @param completionListener
+	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            has completed
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                destination at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @see javax.jms.CompletionListener
+	 * @since 2.0
+	 */
+
+	void send(Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener)
+			throws JMSException;
+
+	/**
+	 * Sends a message to a destination for an unidentified message producer,
+	 * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
+	 * and time to live, performing part of the work involved in sending the
+	 * message in a separate thread and notifying the specified
+	 * <tt>CompletionListener</tt> when the operation has completed. JMS refers
+	 * to this as an "asynchronous send".
+	 * <p>
+	 * Typically, a message producer is assigned a destination at creation time;
+	 * however, the JMS API also supports unidentified message producers, which
+	 * require that the destination be supplied every time a message is sent.
+	 * <p>
+	 * When the message has been successfully sent the JMS provider invokes the
+	 * callback method <tt>onCompletion</tt> on an application-specified
+	 * <tt>CompletionListener</tt> object. Only when that callback has been
+	 * invoked can the application be sure that the message has been
+	 * successfully sent with the same degree of confidence as if a normal
+	 * synchronous send had been performed. An application which requires this
+	 * degree of confidence must therefore wait for the callback to be invoked
+	 * before continuing.
+	 * <p>
+	 * The following information is intended to give an indication of how an
+	 * asynchronous send would typically be implemented.
+	 * <p>
+	 * In some JMS providers, a normal synchronous send involves sending the
+	 * message to a remote JMS server and then waiting for an acknowledgement to
+	 * be received before returning. It is expected that such a provider would
+	 * implement an asynchronous send by sending the message to the remote JMS
+	 * server and then returning without waiting for an acknowledgement. When
+	 * the acknowledgement is received, the JMS provider would notify the
+	 * application by invoking the <tt>onCompletion</tt> method on the
+	 * application-specified <tt>CompletionListener</tt> object. If for some
+	 * reason the acknowledgement is not received the JMS provider would notify
+	 * the application by invoking the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method.
+	 * <p>
+	 * In those cases where the JMS specification permits a lower level of
+	 * reliability, a normal synchronous send might not wait for an
+	 * acknowledgement. In that case it is expected that an asynchronous send
+	 * would be similar to a synchronous send: the JMS provider would send the
+	 * message to the remote JMS server and then return without waiting for an
+	 * acknowledgement. However the JMS provider would still notify the
+	 * application that the send had completed by invoking the
+	 * <tt>onCompletion</tt> method on the application-specified
+	 * <tt>CompletionListener</tt> object.
+	 * <p>
+	 * It is up to the JMS provider to decide exactly what is performed in the
+	 * calling thread and what, if anything, is performed asynchronously, so
+	 * long as it satisfies the requirements given below:
+	 * <p>
+	 * <b>Quality of service</b>: After the send operation is complete, which
+	 * means that the message has been successfully sent with the same degree of
+	 * confidence as if a normal synchronous send had been performed, the JMS
+	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
+	 * send multiple messages then JMS message ordering requirements must be
+	 * satisfied. This applies even if a combination of synchronous and
+	 * asynchronous sends has been performed. The application is not required to
+	 * wait for an asynchronous send to complete before sending the next
+	 * message.
+	 * <p>
+	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
+	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <tt>rollback</tt> method is called the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before performing the commit or rollback. If the <tt>close</tt>
+	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
+	 * or <tt>Connection</tt> then the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before closing the object and returning.
+	 * <p>
+	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
+	 * permitted in a Java EE EJB or web container. If the application component
+	 * violates this restriction this method may throw a JMSException.
+	 * <p>
+	 * <b>Message headers</b> JMS defines a number of message header fields and
+	 * message properties which must be set by the "JMS provider on send". If
+	 * the send is asynchronous these fields and properties may be accessed on
+	 * the sending client only after the <tt>CompletionListener</tt> has been
+	 * invoked. If the <tt>CompletionListener</tt>'s <tt>onException</tt> method
+	 * is called then the state of these message header fields and properties is
+	 * undefined.
+	 * <p>
+	 * <b>Restrictions on threading</b>: Applications that perform an
+	 * asynchronous send must confirm to the threading restrictions defined in
+	 * JMS. This means that the session may be used by only one thread at a
+	 * time.
+	 * <p>
+	 * Setting a <tt>CompletionListener</tt> does not cause the session to be
+	 * dedicated to the thread of control which calls the
+	 * <tt>CompletionListener</tt>. The application thread may therefore
+	 * continue to use the session after performing an asynchronous send.
+	 * However the <tt>CompletionListener</tt>'s callback methods must not use
+	 * the session if an application thread might be using the session at the
+	 * same time.
+	 * <p>
+	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
+	 * session will only invoke one <tt>CompletionListener</tt> callback method
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
+	 * performed in the same order as the corresponding calls to the
+	 * asynchronous send method.
+	 * <p>
+	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
+	 * thread that is calling the asynchronous send method.
+	 * <p>
+	 * An application which does not need to receive notifications when the send
+	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
+	 * . This does not remove the requirement for the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
+	 * incomplete send operations have been completed.
+	 * <p>
+	 * <b>Restrictions on the use of the Message object</b>: Applications which
+	 * perform an asynchronous send must take account of the restriction that a
+	 * <tt>Message</tt> object is designed to be accessed by one logical thread
+	 * of control at a time and does not support concurrent use.
+	 * <p>
+	 * After the <tt>send</tt> method has returned, the application must not
+	 * attempt to read the headers, properties or payload of the
+	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
+	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
+	 * This is because the JMS provider may be modifying the <tt>Message</tt>
+	 * object in another thread during this time. A <tt>JMSException</tt> may be
+	 * thrown if the application attempts to access or modify the
+	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
+	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * 
+	 * @param destination
+	 *            the destination to send this message to
+	 * @param message
+	 *            the message to send
+	 * @param completionListener
+	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            has completed
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with an invalid destination.
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                at creation time.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @see javax.jms.CompletionListener
+	 * @since 2.0
+	 */
+
+	void send(Destination destination, Message message, CompletionListener completionListener) throws JMSException;
+	/**
+	 * Sends a message to a destination for an unidentified message producer,
+	 * specifying delivery mode, priority and time to live, performing part of
+	 * the work involved in sending the message in a separate thread and
+	 * notifying the specified <tt>CompletionListener</tt> when the operation
+	 * has completed. JMS refers to this as an "asynchronous send".
+	 * <p>
+	 * Typically, a message producer is assigned a destination at creation time;
+	 * however, the JMS API also supports unidentified message producers, which
+	 * require that the destination be supplied every time a message is sent.
+	 * <p>
+	 * When the message has been successfully sent the JMS provider invokes the
+	 * callback method <tt>onCompletion</tt> on an application-specified
+	 * <tt>CompletionListener</tt> object. Only when that callback has been
+	 * invoked can the application be sure that the message has been
+	 * successfully sent with the same degree of confidence as if a normal
+	 * synchronous send had been performed. An application which requires this
+	 * degree of confidence must therefore wait for the callback to be invoked
+	 * before continuing.
+	 * <p>
+	 * The following information is intended to give an indication of how an
+	 * asynchronous send would typically be implemented.
+	 * <p>
+	 * In some JMS providers, a normal synchronous send involves sending the
+	 * message to a remote JMS server and then waiting for an acknowledgement to
+	 * be received before returning. It is expected that such a provider would
+	 * implement an asynchronous send by sending the message to the remote JMS
+	 * server and then returning without waiting for an acknowledgement. When
+	 * the acknowledgement is received, the JMS provider would notify the
+	 * application by invoking the <tt>onCompletion</tt> method on the
+	 * application-specified <tt>CompletionListener</tt> object. If for some
+	 * reason the acknowledgement is not received the JMS provider would notify
+	 * the application by invoking the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method.
+	 * <p>
+	 * In those cases where the JMS specification permits a lower level of
+	 * reliability, a normal synchronous send might not wait for an
+	 * acknowledgement. In that case it is expected that an asynchronous send
+	 * would be similar to a synchronous send: the JMS provider would send the
+	 * message to the remote JMS server and then return without waiting for an
+	 * acknowledgement. However the JMS provider would still notify the
+	 * application that the send had completed by invoking the
+	 * <tt>onCompletion</tt> method on the application-specified
+	 * <tt>CompletionListener</tt> object.
+	 * <p>
+	 * It is up to the JMS provider to decide exactly what is performed in the
+	 * calling thread and what, if anything, is performed asynchronously, so
+	 * long as it satisfies the requirements given below:
+	 * <p>
+	 * <b>Quality of service</b>: After the send operation is complete, which
+	 * means that the message has been successfully sent with the same degree of
+	 * confidence as if a normal synchronous send had been performed, the JMS
+	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
+	 * send multiple messages then JMS message ordering requirements must be
+	 * satisfied. This applies even if a combination of synchronous and
+	 * asynchronous sends has been performed. The application is not required to
+	 * wait for an asynchronous send to complete before sending the next
+	 * message.
+	 * <p>
+	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
+	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <tt>rollback</tt> method is called the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before performing the commit or rollback. If the <tt>close</tt>
+	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
+	 * or <tt>Connection</tt> then the JMS provider must block until any
+	 * incomplete send operations have been completed and all callbacks have
+	 * returned before closing the object and returning.
+	 * <p>
+	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
+	 * permitted in a Java EE EJB or web container. If the application component
+	 * violates this restriction this method may throw a JMSException.
+	 * <p>
+	 * <b>Message headers</b> JMS defines a number of message header fields and
+	 * message properties which must be set by the "JMS provider on send". If
+	 * the send is asynchronous these fields and properties may be accessed on
+	 * the sending client only after the <tt>CompletionListener</tt> has been
+	 * invoked. If the <tt>CompletionListener</tt>'s <tt>onException</tt> method
+	 * is called then the state of these message header fields and properties is
+	 * undefined.
+	 * <p>
+	 * <b>Restrictions on threading</b>: Applications that perform an
+	 * asynchronous send must confirm to the threading restrictions defined in
+	 * JMS. This means that the session may be used by only one thread at a
+	 * time.
+	 * <p>
+	 * Setting a <tt>CompletionListener</tt> does not cause the session to be
+	 * dedicated to the thread of control which calls the
+	 * <tt>CompletionListener</tt>. The application thread may therefore
+	 * continue to use the session after performing an asynchronous send.
+	 * However the <tt>CompletionListener</tt>'s callback methods must not use
+	 * the session if an application thread might be using the session at the
+	 * same time.
+	 * <p>
+	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
+	 * session will only invoke one <tt>CompletionListener</tt> callback method
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
+	 * performed in the same order as the corresponding calls to the
+	 * asynchronous send method.
+	 * <p>
+	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
+	 * thread that is calling the asynchronous send method.
+	 * <p>
+	 * An application which does not need to receive notifications when the send
+	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
+	 * . This does not remove the requirement for the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
+	 * incomplete send operations have been completed.
+	 * <p>
+	 * <b>Restrictions on the use of the Message object</b>: Applications which
+	 * perform an asynchronous send must take account of the restriction that a
+	 * <tt>Message</tt> object is designed to be accessed by one logical thread
+	 * of control at a time and does not support concurrent use.
+	 * <p>
+	 * After the <tt>send</tt> method has returned, the application must not
+	 * attempt to read the headers, properties or payload of the
+	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
+	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
+	 * This is because the JMS provider may be modifying the <tt>Message</tt>
+	 * object in another thread during this time. A <tt>JMSException</tt> may be
+	 * thrown if the application attempts to access or modify the
+	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
+	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * 
+	 * @param destination
+	 *            the destination to send this message to
+	 * @param message
+	 *            the message to send
+	 * @param deliveryMode
+	 *            the delivery mode to use
+	 * @param priority
+	 *            the priority for this message
+	 * @param timeToLive
+	 *            the message's lifetime (in milliseconds)
+	 * @param completionListener
+	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            has completed
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to send the message due to some
+	 *                internal error.
+	 * @exception MessageFormatException
+	 *                if an invalid message is specified.
+	 * @exception InvalidDestinationException
+	 *                if a client uses this method with an invalid destination.
+	 * 
+	 * @see javax.jms.Session#createProducer
+	 * @see javax.jms.CompletionListener
+	 * @since 2.0
+	 */
+
+	void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive,
+			CompletionListener completionListener) throws JMSException;
 
 }
