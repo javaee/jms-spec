@@ -40,23 +40,21 @@
 
 package javax.jms;
 
-/** 
- * A <code>CompletionListener</code> is used in conjunction with methods used to send messages
- * which return immediately, perform the actual send in a separate thread,
- * and notify the specified completion listener when the operation has completed.
+/**
+ * A <code>CompletionListener</code> is used in conjunction with methods used to
+ * send messages which perform part of the work in sending a message in a
+ * separate thread, and notify the specified completion listener when the
+ * operation has completed.
  * <p>
- * This allows the JMS provider to perform the actual sending of the message,
- * and the wait for any confirmation from a JMS server, to take place in a separate thread
- * without blocking the calling thread. When the sending of the message is complete,
- * and any confirmation has been received from a JMS server, the JMS provider calls
- * the <code>onCompletion(Message)</code> method of the specified completion listener. 
- * If an exception occurs in the separate thread 
- * then the JMS provider calls the <code>onException(Exception)</code> 
- * method of the specified completion listener.
+ * When the sending of the message is complete, the JMS provider calls the
+ * <code>onCompletion(Message)</code> method of the specified completion
+ * listener. If an exception occurs in the separate thread then the JMS provider
+ * calls the <code>onException(Exception)</code> method of the specified
+ * completion listener.
  * 
- * @version     2.0
- * @since       2.0
- *
+ * @version 2.0
+ * @since 2.0
+ * 
  * @see javax.jms.MessageProducer#send(javax.jms.Message,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Message,int,int,long,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
