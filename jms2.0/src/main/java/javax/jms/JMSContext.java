@@ -1664,10 +1664,11 @@ long getDeliveryDelay();
 	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
 	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
 	 * This is because the JMS provider may be modifying the <tt>Message</tt>
-	 * object in another thread during this time. A <tt>JMSException</tt> may be
-	 * thrown if the application attempts to access or modify the
+	 * object in another thread during this time. The JMS provider may throw an
+	 * <tt>JMSException</tt> if the application attempts to access or modify the
 	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
-	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * before the <tt>CompletionListener</tt> has been invoked. If the JMS
+	 * provider does not throw an exception then the behaviour is undefined.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
@@ -1810,10 +1811,11 @@ long getDeliveryDelay();
 	 * <tt>Message</tt> object until the <tt>CompletionListener</tt>'s
 	 * <tt>onCompletion</tt> or <tt>onException</tt> method has been called.
 	 * This is because the JMS provider may be modifying the <tt>Message</tt>
-	 * object in another thread during this time. A <tt>JMSException</tt> may be
-	 * thrown if the application attempts to access or modify the
+	 * object in another thread during this time. The JMS provider may throw an
+	 * <tt>JMSException</tt> if the application attempts to access or modify the
 	 * <tt>Message</tt> object after the <tt>send</tt> method has returned and
-	 * before the <tt>CompletionListener</tt> has been invoked.
+	 * before the <tt>CompletionListener</tt> has been invoked. If the JMS
+	 * provider does not throw an exception then the behaviour is undefined.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
