@@ -41,27 +41,23 @@
 package javax.jms;
 
 /**
- * A <code>CompletionListener</code> is used in conjunction with methods used to
- * send messages which perform part of the work in sending a message in a
- * separate thread, and notify the specified completion listener when the
- * operation has completed.
+ * A <code>CompletionListener</code> is implemented by the application and may
+ * be specified when a message is sent asynchronously.
  * <p>
- * When the sending of the message is complete, the JMS provider calls the
- * <code>onCompletion(Message)</code> method of the specified completion
- * listener. If an exception occurs in the separate thread then the JMS provider
- * calls the <code>onException(Exception)</code> method of the specified
- * completion listener.
+ * When the sending of the message is complete, the JMS provider notifies the
+ * application by calling the <code>onCompletion(Message)</code> method of the
+ * specified completion listener. If the sending if the message fails for any
+ * reason, and an exception cannot be thrown by the <code>send</code> method,
+ * then the JMS provider calls the <code>onException(Exception)</code> method of
+ * the specified completion listener.
  * 
  * @version 2.0
  * @since 2.0
  * 
- * @see javax.jms.MessageProducer#send(javax.jms.Message,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Message,int,int,long,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
- * @see javax.jms.JMSContext#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
- * @see javax.jms.JMSContext#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
- * 
+ * @see javax.jms.JMSProducer#setCompletionListener(javax.jms.CompletionListener)
  * 
  */
 public interface CompletionListener {
@@ -69,15 +65,19 @@ public interface CompletionListener {
 	/**
 	 * Notifies the application that the message has been successfully sent
 	 * 
-	 * @param message the message that was sent.
+	 * @param message
+	 *            the message that was sent.
 	 */
 	void onCompletion(Message message);
 
 	/**
-	 * Notifies user that the specified exception was thrown while attempting to send the specified message
+	 * Notifies user that the specified exception was thrown while attempting to
+	 * send the specified message
 	 * 
-	 * @param message the message that was sent.
-	 * @param exception the exception
+	 * @param message
+	 *            the message that was sent.
+	 * @param exception
+	 *            the exception
 	 * 
 	 */
 	void onException(Message message, Exception exception);
