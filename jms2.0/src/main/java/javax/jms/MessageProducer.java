@@ -82,30 +82,26 @@ package javax.jms;
 public interface MessageProducer extends AutoCloseable {
 
 	/**
-	 * Sets whether message IDs are disabled.
-	 * 
-	 * <P>
+	 * Specify whether message IDs may be disabled.
+	 * <p>
 	 * Since message IDs take some effort to create and increase a message's
-	 * size, some JMS providers may be able to optimize message overhead if they
+	 * size, some JMS providers may be able to optimise message overhead if they
 	 * are given a hint that the message ID is not used by an application. By
-	 * calling the <CODE>setDisableMessageID</CODE> method on this message
-	 * producer, a JMS client enables this potential optimization for all
-	 * messages sent by this message producer. If the JMS provider accepts this
+	 * calling this method, a JMS application enables this potential optimisation for all
+	 * messages sent using this <code>MessageProducer</code>. If the JMS provider accepts this
 	 * hint, these messages must have the message ID set to null; if the
 	 * provider ignores the hint, the message ID must be set to its normal
 	 * unique value.
-	 * 
-	 * <P>
+	 * <p>
 	 * Message IDs are enabled by default.
 	 * 
 	 * @param value
-	 *            indicates if message IDs are disabled
+	 *            indicates if message IDs may be disabled
 	 * 
 	 * @exception JMSException
 	 *                if the JMS provider fails to set message ID to disabled
 	 *                due to some internal error.
 	 */
-
 	void setDisableMessageID(boolean value) throws JMSException;
 
 	/**
@@ -117,33 +113,28 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if the JMS provider fails to determine if message IDs are
 	 *                disabled due to some internal error.
 	 */
-
 	boolean getDisableMessageID() throws JMSException;
 
 	/**
-	 * Sets whether message timestamps are disabled.
-	 * 
-	 * <P>
+	 * Specify whether message timestamps may be disabled.
+	 * <p>
 	 * Since timestamps take some effort to create and increase a message's
-	 * size, some JMS providers may be able to optimize message overhead if they
+	 * size, some JMS providers may be able to optimise message overhead if they
 	 * are given a hint that the timestamp is not used by an application. By
-	 * calling the <CODE>setDisableMessageTimestamp</CODE> method on this
-	 * message producer, a JMS client enables this potential optimization for
-	 * all messages sent by this message producer. If the JMS provider accepts
+	 * calling this method, a JMS application enables this potential optimisation for
+	 * all messages sent using this <code>MessageProducer</code>. If the JMS provider accepts
 	 * this hint, these messages must have the timestamp set to zero; if the
 	 * provider ignores the hint, the timestamp must be set to its normal value.
-	 * 
-	 * <P>
+	 * <p>
 	 * Message timestamps are enabled by default.
 	 * 
 	 * @param value
-	 *            indicates if message timestamps are disabled
+	 *            indicates whether message timestamps may be disabled
 	 * 
 	 * @exception JMSException
 	 *                if the JMS provider fails to set timestamps to disabled
 	 *                due to some internal error.
 	 */
-
 	void setDisableMessageTimestamp(boolean value) throws JMSException;
 
 	/**
@@ -155,7 +146,6 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if the JMS provider fails to determine if timestamps are
 	 *                disabled due to some internal error.
 	 */
-
 	boolean getDisableMessageTimestamp() throws JMSException;
 
 	/**
