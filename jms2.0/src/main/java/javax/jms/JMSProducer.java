@@ -57,7 +57,7 @@ import java.util.Map;
  * methods: <code>setDeliveryMode</code>, <code>setPriority</code>,
  * <code>setTimeToLive</code>, <code>setDeliveryDelay</code>,
  * <code>setDisableMessageTimestamp</code>, <code>setDisableMessageID</code> and
- * <code>setCompletionListener</code>.
+ * <code>setAsync</code>.
  * <p>
  * Message properties may be may be specified using one or more of nine
  * <code>setProperty</code> methods. Any message properties set using these
