@@ -57,7 +57,8 @@ package javax.jms;
  * @see javax.jms.MessageProducer#send(javax.jms.Message,int,int,long,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,javax.jms.CompletionListener)
  * @see javax.jms.MessageProducer#send(javax.jms.Destination,javax.jms.Message,int,int,long,javax.jms.CompletionListener)
- * @see javax.jms.JMSProducer#setCompletionListener(javax.jms.CompletionListener)
+ * @see javax.jms.JMSProducer#setAsync(javax.jms.CompletionListener)
+ * @see javax.jms.JMSProducer#getAsync()
  * 
  */
 public interface CompletionListener {

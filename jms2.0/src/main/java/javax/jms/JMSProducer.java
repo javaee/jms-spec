@@ -430,11 +430,18 @@ public interface JMSProducer {
 	long getDeliveryDelay();
 
 	/**
-	 * Specifies that subsequent calls to <code>send</code> on this
-	 * <code>JMSProducer</code> object should be asynchronous. This means that
-	 * part of the work involved in sending the message will be performed in a
-	 * separate thread and that the specified <tt>CompletionListener</tt> will
-	 * be notified when the operation has completed.
+	 * Specifies whether subsequent calls to <code>send</code> on this
+	 * <code>JMSProducer</code> object should be synchronous or asynchronous. If
+	 * the specified <code>CompletionListener</code> is not null then subsequent
+	 * calls to <code>send</code> will be asynchronous. If the specified
+	 * <code>CompletionListener</code> is null then subsequent calls to
+	 * <code>send</code> will be synchronous. Calls to <code>send</code> are
+	 * synchronous by default.
+	 * <p>
+	 * If a call to <code>send</code> is asynchronous then part of the work
+	 * involved in sending the message will be performed in a separate thread
+	 * and the specified <tt>CompletionListener</tt> will be notified when
+	 * the operation has completed.
 	 * <p>
 	 * When the message has been successfully sent the JMS provider invokes the
 	 * callback method <tt>onCompletion</tt> on the <tt>CompletionListener</tt>
@@ -528,12 +535,6 @@ public interface JMSProducer {
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the send method.
 	 * <p>
-	 * An application which does not need to receive notifications when the send
-	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
-	 * . This does not remove the requirement for the <tt>close</tt>,
-	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
-	 * incomplete send operations have been completed.
-	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
 	 * <tt>Message</tt> object is designed to be accessed by one logical thread
@@ -551,32 +552,36 @@ public interface JMSProducer {
 	 * provider does not throw an exception then the behaviour is undefined.
 	 * 
 	 * @param completionListener
-	 *            a <code>CompletionListener</code> to be notified when the send
-	 *            has completed
+	 *            If asynchronous send behaviour is required, this should be set to a <code>CompletionListener</code> to be notified when the send
+	 *            has completed. If synchronous send behaviour is required, this should be set to <code>null</code>.
 	 * @return this <code>JMSProducer</code>
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to set the completion listener due
-	 *             to some internal error.
+	 *             if an internal error occurs
 	 * 
+	 * @see javax.jms.JMSProducer#getAsync
 	 * @see javax.jms.CompletionListener
 	 * 
 	 */
-	JMSProducer setCompletionListener(CompletionListener completionListener);
+	JMSProducer setAsync(CompletionListener completionListener);
 
 	/**
-	 * Returns the <code>CompletionListener</code> for this
-	 * <code>JMSProducer</code>.
+	 * If subsequent calls to <code>send</code> on this
+	 * <code>JMSProducer</code> object have been configured to be asynchronous 
+	 * then this method returns the <code>CompletionListener</code>
+	 * that has previously been configured.
+	 * If subsequent calls to <code>send</code> have been configured to be synchronous
+	 * thenm this method returns <code>null</code>.
 	 * 
-	 * @return the <code>CompletionListener</code>
+	 * @return the <code>CompletionListener</code> or <code>null</code>
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to get the CompletionListener due
+	 *             if the JMS provider fails to get the required information due
 	 *             to some internal error.
 	 * 
-	 * @see javax.jms.JMSProducer#setCompletionListener
+	 * @see javax.jms.JMSProducer#setAsync
 	 */
-	CompletionListener getCompletionListener();
+	CompletionListener getAsync();
 
 	/**
 	 * Specifies that messages sent using this <code>JMSProducer</code> should
