@@ -571,7 +571,7 @@ public interface JMSProducer {
 	 * then this method returns the <code>CompletionListener</code>
 	 * that has previously been configured.
 	 * If subsequent calls to <code>send</code> have been configured to be synchronous
-	 * thenm this method returns <code>null</code>.
+	 * then this method returns <code>null</code>.
 	 * 
 	 * @return the <code>CompletionListener</code> or <code>null</code>
 	 * 

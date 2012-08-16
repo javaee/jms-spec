@@ -123,8 +123,7 @@ public class JMSRuntimeException extends RuntimeException {
 	   *
 	   * @param ex       the linked <CODE>Exception</CODE>
 	  **/
-	  public 
-	  synchronized void setLinkedException(Exception ex) {
+	  public void setLinkedException(Exception ex) {
 	      linkedException = ex;
 	  }
 }
