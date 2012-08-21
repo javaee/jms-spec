@@ -229,8 +229,6 @@ public interface JMSConsumer extends AutoCloseable {
 	 *            If the next message is expected to be a <code>MapMessage</code> then this
 	 *            should be set to <code>java.util.Map.class</code>.<br/>
 	 *            If the next message is expected to be a <code>BytesMessage</code> then this
-	 *            should be set to <code>java.util.Map.class</code>.<br/>
-	 *            If the next message is expected to be a <code>BytesMessage</code> then this
 	 *            should be set to <code>byte[].class</code>.<br/>
 	 *            If the next message is not of the expected type 
 	 *            a <code>ClassCastException</code> will be thrown
@@ -271,8 +269,6 @@ public interface JMSConsumer extends AutoCloseable {
 	 *            If the next message is expected to be a <code>MapMessage</code> then this
 	 *            should be set to <code>java.util.Map.class</code>.<br/>
 	 *            If the next message is expected to be a <code>BytesMessage</code> then this
-	 *            should be set to <code>java.util.Map.class</code>.<br/>
-	 *            If the next message is expected to be a <code>BytesMessage</code> then this
 	 *            should be set to <code>byte[].class</code>.<br/>
 	 *            If the next message is not of the expected type 
 	 *            a <code>ClassCastException</code> will be thrown
@@ -308,8 +304,6 @@ public interface JMSConsumer extends AutoCloseable {
 	 *            If the next message is expected to be a <code>ObjectMessage</code> then 
 	 *            this should be set to <code>java.io.Serializable.class</code>. <br/>
 	 *            If the next message is expected to be a <code>MapMessage</code> then this
-	 *            should be set to <code>java.util.Map.class</code>.<br/>
-	 *            If the next message is expected to be a <code>BytesMessage</code> then this
 	 *            should be set to <code>java.util.Map.class</code>.<br/>
 	 *            If the next message is expected to be a <code>BytesMessage</code> then this
 	 *            should be set to <code>byte[].class</code>.<br/>

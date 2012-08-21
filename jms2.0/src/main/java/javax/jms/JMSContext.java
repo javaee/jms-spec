@@ -149,9 +149,6 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li>some internal error or <li>because this method is
 	 *                being called in a Java EE web or EJB application.
 	 *                </ul>
-	 * @exception JMSSecurityRuntimeException
-	 *                if client authentication fails due to an invalid user name
-	 *                or password.
 	 * @since 2.0
 	 * 
 	 * @see JMSContext#SESSION_TRANSACTED
