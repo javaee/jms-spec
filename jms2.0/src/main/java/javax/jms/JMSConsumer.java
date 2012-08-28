@@ -217,7 +217,7 @@ public interface JMSConsumer extends AutoCloseable {
 	 * <code>JMSConsumer</code> is closed.
 	 * 
 	 * <P>
-	 * If this <CODE>receivePayload</CODE> is done within a transaction, the
+	 * If <CODE>receivePayload</CODE> is called within a transaction, the
 	 * <code>JMSConsumer</code> retains the message until the transaction commits.
 	 * 
 	 * @param c
@@ -247,7 +247,7 @@ public interface JMSConsumer extends AutoCloseable {
     <T> T receivePayload(Class<T>  c);
         
 	/**
-	 * Receives the next message produced for this <code>JMSConsumer</code> and that
+	 * Receives the next message produced for this <code>JMSConsumer</code>  that
 	 * arrives within the specified timeout period, and returns its payload,
 	 * which must be of the specified type
 	 * 
@@ -257,7 +257,7 @@ public interface JMSConsumer extends AutoCloseable {
 	 * call blocks indefinitely.
 	 * 
 	 * <P>
-	 * If this <CODE>receivePayload</CODE> is done within a transaction, the
+	 * If <CODE>receivePayload</CODE> is called within a transaction, the
 	 * <code>JMSConsumer</code> retains the message until the transaction commits.
 	 * 
 	 * @param c
@@ -275,7 +275,7 @@ public interface JMSConsumer extends AutoCloseable {
 	 *            and the message will not be delivered.
 	 * 
 	 * @return the payload of the next message produced for this
-	 *         <code>JMSConsumer</code>, or null if this <code>JMSConsumer</code> is
+	 *         <code>JMSConsumer</code>, or null if the timeout expires or this <code>JMSConsumer</code> is
 	 *         concurrently closed
 	 * 
 	 * @throws JMSRuntimeException
@@ -287,14 +287,12 @@ public interface JMSConsumer extends AutoCloseable {
     <T> T receivePayload(Class<T> c, long timeout);
     
 	/**
-	 * Receives the next message produced for this <code>JMSConsumer</code> and
-	 * returns its payload, which must be of the specified type
-	 * 
+	 * Receives the next message produced for this <code>JMSConsumer</code> if one is immediately available 
+	 * and returns its payload, which must be of the specified type. 
+	 * <p>
+	 * If a message is not immediately available null is returned. 
 	 * <P>
-	 * Returns null if a message is not available.
-	 * 
-	 * <P>
-	 * If this <CODE>receivePayload</CODE> is done within a transaction, the
+	 * If <CODE>receivePayloadNoWait</CODE> is called within a transaction, the
 	 * <code>JMSConsumer</code> retains the message until the transaction commits.
 	 * 
 	 * @param c
@@ -312,8 +310,8 @@ public interface JMSConsumer extends AutoCloseable {
 	 *            and the message will not be delivered.
 	 * 
 	 * @return the payload of the next message produced for this
-	 *         <code>JMSConsumer</code>, or null if this <code>JMSConsumer</code> is
-	 *         concurrently closed
+	 *         <code>JMSConsumer</code>, or null if one is not immediately available 
+	 *         or this <code>JMSConsumer</code> is concurrently closed
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due

@@ -1442,7 +1442,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method is for use when the session has an acknowledgement mode of
 	 * CLIENT_ACKNOWLEDGE. If the session is transacted or has an
-	 * acknowledgement mode of AUTO_ACKNOWLEDGE or DUPS_OK_ACHNOWLEDGE calling
+	 * acknowledgement mode of AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE calling
 	 * this method has no effect.
 	 * <p>
 	 * This method has identical behaviour to the <code>acknowledge</code>
@@ -1458,10 +1458,6 @@ public interface JMSContext extends AutoCloseable {
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
 	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to acknowledge the messages due
-	 *                to some internal error.
-	 * 
-	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to acknowledge the messages for
 	 *                one of the following reasons:
 	 *                <ul>
@@ -1470,7 +1466,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                </ul>
 	 * 
 	 * @exception IllegalStateException
-	 *                if this method is called on a closed session.
+	 *                if the <code>JMSContext</code> is closed.
 	 * 
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Message#acknowledge
