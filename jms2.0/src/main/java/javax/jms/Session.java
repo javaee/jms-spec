@@ -701,7 +701,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
-	 */
+	 * 
+	 * @since 2.0
+	 */ 
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) throws JMSException;
 
 	/**
@@ -755,7 +757,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
-	 */
+	 * 
+	 * @since 2.0
+	 */ 
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector)
 			throws JMSException;
 
@@ -818,7 +822,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
-	 */
+	 * 
+	 * @since 2.0
+	 */ 
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector,
 			boolean noLocal) throws JMSException;   
     
