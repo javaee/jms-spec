@@ -556,12 +556,6 @@ public interface MessageProducer extends AutoCloseable {
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the asynchronous send method.
 	 * <p>
-	 * An application which does not need to receive notifications when the send
-	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
-	 * . This does not remove the requirement for the <tt>close</tt>,
-	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
-	 * incomplete send operations have been completed.
-	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
 	 * <tt>Message</tt> object is designed to be accessed by one logical thread
@@ -585,8 +579,11 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message due to some
-	 *                internal error.
+	 *                if the JMS provider fails to send the message for one of the following reasons:
+     *                <ul>
+     *                <li>the specified <code>CompletionListener</code> is null or 
+     *                <li>an internal error has occurred 
+     *                </ul> 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
@@ -705,12 +702,6 @@ public interface MessageProducer extends AutoCloseable {
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the asynchronous send method.
 	 * <p>
-	 * An application which does not need to receive notifications when the send
-	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
-	 * . This does not remove the requirement for the <tt>close</tt>,
-	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
-	 * incomplete send operations have been completed.
-	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
 	 * <tt>Message</tt> object is designed to be accessed by one logical thread
@@ -740,8 +731,11 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message due to some
-	 *                internal error.
+	 *                if the JMS provider fails to send the message for one of the following reasons:
+     *                <ul>
+     *                <li>the specified <code>CompletionListener</code> is null or 
+     *                <li>an internal error has occurred 
+     *                </ul> 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
@@ -867,12 +861,6 @@ public interface MessageProducer extends AutoCloseable {
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the asynchronous send method.
 	 * <p>
-	 * An application which does not need to receive notifications when the send
-	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
-	 * . This does not remove the requirement for the <tt>close</tt>,
-	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
-	 * incomplete send operations have been completed.
-	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
 	 * <tt>Message</tt> object is designed to be accessed by one logical thread
@@ -898,8 +886,11 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message due to some
-	 *                internal error.
+	 *                if the JMS provider fails to send the message for one of the following reasons:
+     *                <ul>
+     *                <li>the specified <code>CompletionListener</code> is null or 
+     *                <li>an internal error has occurred 
+     *                </ul>  
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
@@ -1022,12 +1013,6 @@ public interface MessageProducer extends AutoCloseable {
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the asynchronous send method.
 	 * <p>
-	 * An application which does not need to receive notifications when the send
-	 * has completed or has failed may supply a null <tt>CompletionListener</tt>
-	 * . This does not remove the requirement for the <tt>close</tt>,
-	 * <tt>commit</tt> or <tt>rollback</tt> methods to block until any
-	 * incomplete send operations have been completed.
-	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
 	 * <tt>Message</tt> object is designed to be accessed by one logical thread
@@ -1060,8 +1045,11 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message due to some
-	 *                internal error.
+	 *                if the JMS provider fails to send the message for one of the following reasons:
+     *                <ul>
+     *                <li>the specified <code>CompletionListener</code> is null or 
+     *                <li>an internal error has occurred 
+     *                </ul> 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
