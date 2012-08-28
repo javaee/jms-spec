@@ -73,8 +73,4 @@ public class InvalidClientIDRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public InvalidClientIDRuntimeException(InvalidClientIDException e){
-	  super(e);
-  }
-
 }

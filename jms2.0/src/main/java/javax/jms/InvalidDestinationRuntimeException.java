@@ -73,8 +73,4 @@ public class InvalidDestinationRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public InvalidDestinationRuntimeException(InvalidDestinationException e){
-	  super(e);
-  }
-
 }

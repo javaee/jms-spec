@@ -73,8 +73,4 @@ public class JMSSecurityRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public JMSSecurityRuntimeException(JMSSecurityException e){
-	  super(e);
-  }
-
 }

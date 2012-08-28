@@ -81,8 +81,4 @@ public class MessageFormatRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public MessageFormatRuntimeException(MessageFormatException e){
-	  super(e);
-  }
-
 }

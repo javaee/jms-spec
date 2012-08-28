@@ -93,12 +93,6 @@ public class JMSRuntimeException extends RuntimeException {
 	    linkedException = null;
 	  }
 	  
-	  public JMSRuntimeException(JMSException jmsException){
-		  super(jmsException);
-		  this.setLinkedException(jmsException.getLinkedException());
-		  this.errorCode = jmsException.getErrorCode();
-	  }
-
 	/** Gets the vendor-specific error code.
 	   *  @return   a string specifying the vendor-specific
 	   *                        error code

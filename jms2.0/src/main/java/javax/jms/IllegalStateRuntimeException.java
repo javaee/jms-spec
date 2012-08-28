@@ -77,8 +77,4 @@ public class IllegalStateRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public IllegalStateRuntimeException(IllegalStateException exception){
-	  super(exception);
-  }
-
 }

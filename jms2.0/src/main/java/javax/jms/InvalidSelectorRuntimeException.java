@@ -73,8 +73,4 @@ public class InvalidSelectorRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public InvalidSelectorRuntimeException(InvalidSelectorException e){
-	  super(e);
-  }
-
 }

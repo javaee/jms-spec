@@ -73,8 +73,4 @@ public class TransactionRolledBackRuntimeException extends JMSRuntimeException {
     super(reason);
   }
   
-  public TransactionRolledBackRuntimeException(TransactionRolledBackException e){
-	  super(e);
-  }
-
 }
