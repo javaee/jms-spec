@@ -118,7 +118,9 @@ public interface JMSProducer {
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param payload
-	 *            the payload of the <code>TextMessage</code> that will be sent.
+	 *            the payload of the <code>TextMessage</code> that will be sent. 
+	 *            If a null value is specified then a <code>TextMessage</code> 
+	 *            with no payload will be sent.
 	 * @return this <code>JMSProducer</code>
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
@@ -139,6 +141,8 @@ public interface JMSProducer {
 	 *            the destination to send this message to
 	 * @param payload
 	 *            the payload of the <code>MapMessage</code> that will be sent.
+	 *            If a null value is specified then a <code>MapMessage</code> 
+	 *            with no map entries will be sent.
 	 * @return this <code>JMSProducer</code>
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
@@ -160,6 +164,8 @@ public interface JMSProducer {
 	 * @param payload
 	 *            the payload of the <code>BytesMessage</code> that will be
 	 *            sent.
+	 *            If a null value is specified then a <code>BytesMessage</code> 
+	 *            with no payload will be sent.
 	 * @return this <code>JMSProducer</code>
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
@@ -180,6 +186,8 @@ public interface JMSProducer {
 	 *            the destination to send this message to
 	 * @param payload
 	 *            the payload of the ObjectMessage that will be sent.
+	 *            If a null value is specified then an <code>ObjectMessage</code> 
+	 *            with no payload will be sent.
 	 * @return this <code>JMSProducer</code>
 	 * @throws JMSRuntimeException
 	 *             if JMS provider fails to send the message due to some
@@ -315,7 +323,7 @@ public interface JMSProducer {
 	 * expedited priority. Priority is set to 4 by default.
 	 * <p>
 	 * 
-	 * @param defaultPriority
+	 * @param priority
 	 *            the message priority to be used; must be a value between 0 and
 	 *            9
 	 * @return this <code>JMSProducer</code>
@@ -327,7 +335,7 @@ public interface JMSProducer {
 	 * @see javax.jms.Message#DEFAULT_PRIORITY
 	 */
 
-	JMSProducer setPriority(int defaultPriority);
+	JMSProducer setPriority(int priority);
 
 	/**
 	 * Return the priority of messages that are sent using this
@@ -798,12 +806,12 @@ public interface JMSProducer {
 	/**
 	 * Clears any message properties set on this <code>JMSProducer</code>
 	 * 
+	 * @return this <code>JMSProducer</code>
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to clear the message properties due
 	 *             to some internal error.
 	 */
-
-	void clearProperties();
+	JMSProducer clearProperties();
 
 	/**
 	 * Indicates whether a message property with the specified name has been set
