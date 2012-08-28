@@ -41,11 +41,11 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception must be thrown when a 
- *     call to <CODE>Session.commit</CODE> results in a rollback of the current 
- *     transaction.
- *
- * @version     2.0
+ * This unchecked exception must be thrown when a call to
+ * <CODE>JMSContext.commit</CODE> results in a rollback of the current
+ * transaction.
+ * 
+ * @version 2.0
  **/
 
 public class TransactionRolledBackRuntimeException extends JMSRuntimeException {

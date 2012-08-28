@@ -41,11 +41,11 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception must be thrown when a 
- *     destination either is not understood by a provider or is no 
- *     longer valid.
- *
- * @version     2.0
+ * This unchecked exception must be thrown when a destination either is not
+ * understood by a provider or is no longer valid, and the method signature does
+ * not permit a <code>InvalidDestinationException</code> to be thrown.
+ * 
+ * @version 2.0
  **/
 
 public class InvalidDestinationRuntimeException extends JMSRuntimeException {

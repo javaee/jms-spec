@@ -41,19 +41,16 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception must be thrown when a JMS client 
- *     attempts to use a data type not supported by a message or attempts to 
- *     read data in a message as the wrong type. It must also be thrown when 
- *     equivalent type errors are made with message property values. For 
- *     example, this exception must be thrown if 
- *     <CODE>StreamMessage.writeObject</CODE> is given an unsupported class or 
- *     if <CODE>StreamMessage.readShort</CODE> is used to read a 
- *     <CODE>boolean</CODE> value. Note that the special case of a failure 
- *     caused by an attempt to read improperly formatted <CODE>String</CODE> 
- *     data as numeric values must throw the 
- *     <CODE>java.lang.NumberFormatException</CODE>.
- *
- * @version     2.0
+ * This unchecked exception must be thrown when a JMS application attempts to
+ * use a data type not supported by a message or attempts to read data in a
+ * message as the wrong type, and the method signature does not permit a
+ * <code>MessageFormatException</code> to be thrown. It must also be thrown when
+ * equivalent type errors are made with message property values. Note that the
+ * special case of a failure caused by an attempt to read improperly formatted
+ * <code>String</code> data as numeric values must throw the
+ * <code>java.lang.NumberFormatException</code>.
+ * 
+ * @version 2.0
  **/
 
 public class MessageFormatRuntimeException extends JMSRuntimeException {

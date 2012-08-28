@@ -41,11 +41,11 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception must be thrown when a 
- *     JMS client attempts to give a provider a message selector with 
- *     invalid syntax.
- *
- * @version     2.0
+ * This unchecked exception must be thrown when a JMS client attempts to give a
+ * provider a message selector with invalid syntax, and the method signature
+ * does not permit a <code>InvalidSelectorException</code> to be thrown.
+ * 
+ * @version 2.0
  **/
 
 public class InvalidSelectorRuntimeException extends JMSRuntimeException {

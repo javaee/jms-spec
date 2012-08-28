@@ -41,15 +41,14 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception is thrown when a method is 
- *     invoked at an illegal or inappropriate time or if the provider is 
- *     not in an appropriate state for the requested operation. For example, 
- *     this exception must be thrown if <CODE>Session.commit</CODE> is 
- *     called on a non-transacted session. This exception is also called when
- *     a domain inappropriate method is called, such as calling 
- *     <CODE>TopicSession.CreateQueueBrowser</CODE>.
- *
- * @version     2.0
+ * This unchecked exception is thrown when a method is invoked at an illegal or
+ * inappropriate time or if the provider is not in an appropriate state for the
+ * requested operation, and the method signature does not permit a
+ * <code>IllegalStateRuntimeException</code> to be thrown. For example, this
+ * exception must be thrown if <code>JMSContext.commit</code> is called on a
+ * non-transacted session.
+ * 
+ * @version 2.0
  **/
 
 public class IllegalStateRuntimeException extends JMSRuntimeException {

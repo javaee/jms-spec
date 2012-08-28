@@ -41,13 +41,13 @@
 package javax.jms;
 
 /**
- * <P> This unchecked exception must be thrown when a provider rejects a user 
- *     name/password submitted by a client. It may also be thrown for any case 
- *     where a security restriction prevents a method from completing.
- *
- * @version     2.0
+ * This unchecked exception must be thrown when a provider rejects a user
+ * name/password submitted by a client, or for any case where a security
+ * restriction prevents a method from completing, and the method signature does
+ * not permit a <code>JMSSecurityException</code> to be thrown.
+ * 
+ * @version 2.0
  **/
-
 public class JMSSecurityRuntimeException extends JMSRuntimeException {
 
   /** Constructs a <CODE>JMSSecurityException</CODE> with the specified 
