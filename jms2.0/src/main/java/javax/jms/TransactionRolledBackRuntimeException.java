@@ -83,8 +83,8 @@ public class TransactionRolledBackRuntimeException extends JMSRuntimeException {
 	 * @param cause
 	 *            the underlying cause of this exception
 	 */
-	public TransactionRolledBackRuntimeException(String reason, String errorCode, Throwable cause) {
-		super(reason, errorCode, cause);
+	public TransactionRolledBackRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage, errorCode, cause);
 	}
 
 }

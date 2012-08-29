@@ -92,8 +92,8 @@ public class JMSRuntimeException extends RuntimeException {
 	 * @param cause
 	 *            the underlying cause of this exception
 	 */
-	public JMSRuntimeException(String reason, String errorCode, Throwable cause) {
-		super(reason, cause);
+	public JMSRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage, cause);
 		this.errorCode = errorCode;
 	}
 

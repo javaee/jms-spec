@@ -86,7 +86,7 @@ public class InvalidClientIDRuntimeException extends JMSRuntimeException {
 	 * @param cause
 	 *            the underlying cause of this exception
 	 */
-	public InvalidClientIDRuntimeException(String reason, String errorCode, Throwable cause) {
-		super(reason, errorCode, cause);
+	public InvalidClientIDRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage, errorCode, cause);
 	}
 }

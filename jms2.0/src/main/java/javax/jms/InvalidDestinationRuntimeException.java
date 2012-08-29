@@ -83,8 +83,8 @@ public class InvalidDestinationRuntimeException extends JMSRuntimeException {
 	 * @param cause
 	 *            the underlying cause of this exception
 	 */
-	public InvalidDestinationRuntimeException(String reason, String errorCode, Throwable cause) {
-		super(reason, errorCode, cause);
+	public InvalidDestinationRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage, errorCode, cause);
 	}
   
 }
