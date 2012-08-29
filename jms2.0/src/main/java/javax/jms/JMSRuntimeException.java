@@ -41,83 +41,68 @@
 package javax.jms;
 
 /**
- * <P>This is the root class of all unchecked exceptions in the JMS API  
- *
- * <P>It provides the following information:
- * <UL>
- *   <LI> A provider-specific string describing the error. This string is 
- *        the standard exception message and is available via the
- *        <CODE>getMessage</CODE> method.
- *   <LI> A provider-specific string error code 
- *   <LI> A reference to another exception. Often a JMS API exception will 
- *        be the result of a lower-level problem. If appropriate, this 
- *        lower-level exception can be linked to the JMS API exception.
- * </UL>
- * @version     2.0
+ * This is the root class of all unchecked exceptions in the JMS API.
+ * <p>
+ * In additional to the detailMessage and cause fields inherited from
+ * <code>Throwable</code>, this class also allows a provider-specific errorCode
+ * to be set.
+ * 
+ * @version 2.0
  **/
 
 public class JMSRuntimeException extends RuntimeException {
 
-	  /** Vendor-specific error code.
-	  **/
-	  private String errorCode;
+	/**
+	 * Provider-specific error code.
+	 **/
+	private String errorCode=null;
 
-	  /** <CODE>Exception</CODE> reference.
-	  **/
-	  private Exception linkedException;
+	/**
+	 * Constructs a <code>JMSRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public JMSRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage);
+		this.errorCode = errorCode;
+	}
 
+	/**
+	 * Constructs a <code>JMSRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public JMSRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
 
-	  /** Constructs a <code>JMSRuntimeException</code> with the specified reason and 
-	   *  error code.
-	   *
-	   *  @param  reason        a description of the exception
-	   *  @param  errorCode     a string specifying the vendor-specific
-	   *                        error code
-	   **/
-	  public 
-	  JMSRuntimeException(String reason, String errorCode) {
-	    super(reason);
-	    this.errorCode = errorCode;
-	    linkedException = null;
-	  }
+	/**
+	 * Constructs a <code>JMSRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public JMSRuntimeException(String reason, String errorCode, Throwable cause) {
+		super(reason, cause);
+		this.errorCode = errorCode;
+	}
 
-	  /** Constructs a <code>JMSRuntimeException</code> with the specified reason and with
-	   *  the error code defaulting to null.
-	   *
-	   *  @param  reason        a description of the exception
-	   **/
-	  public 
-	  JMSRuntimeException(String reason) {
-	    super(reason);
-	    this.errorCode = null;
-	    linkedException = null;
-	  }
-	  
-	/** Gets the vendor-specific error code.
-	   *  @return   a string specifying the vendor-specific
-	   *                        error code
-	  **/
-	  public 
-	  String getErrorCode() {
-	    return this.errorCode;
-	  }
-
-	  /**
-	   * Gets the exception linked to this one.
-	   *
-	   * @return the linked <CODE>Exception</CODE>, null if none
-	  **/
-	  public 
-	  Exception getLinkedException() {
-	    return (linkedException);
-	  }
-
-	  /**
-	   * Adds a linked <CODE>Exception</CODE>.
-	   *
-	   * @param ex       the linked <CODE>Exception</CODE>
-	  **/
-	  public void setLinkedException(Exception ex) {
-	      linkedException = ex;
-	  }
+	/**
+	 * Returns the vendor-specific error code.
+	 * 
+	 * @return the provider-specific error code
+	 **/
+	public String getErrorCode() {
+		return this.errorCode;
+	}
 }

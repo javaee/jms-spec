@@ -37,7 +37,6 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
 /**
@@ -47,33 +46,47 @@ package javax.jms;
  * <code>IllegalStateRuntimeException</code> to be thrown. For example, this
  * exception must be thrown if <code>JMSContext.commit</code> is called on a
  * non-transacted session.
- * 
- * @version 2.0
+ *
+ * @version     2.0
  **/
-
 public class IllegalStateRuntimeException extends JMSRuntimeException {
 
-  /** Constructs an <CODE>IllegalStateException</CODE> with the specified reason
-   *  and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  IllegalStateRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>IllegalStateRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public IllegalStateRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
 
-  /** Constructs an <CODE>IllegalStateException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  IllegalStateRuntimeException(String reason) {
-    super(reason);
-  }
-  
+	/**
+	 * Constructs a <code>IllegalStateRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public IllegalStateRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage,errorCode);
+	}
+
+	/**
+	 * Constructs a <code>IllegalStateRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public IllegalStateRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage, errorCode, cause);
+	}
+	
 }

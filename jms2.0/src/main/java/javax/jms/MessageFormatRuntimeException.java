@@ -49,33 +49,47 @@ package javax.jms;
  * special case of a failure caused by an attempt to read improperly formatted
  * <code>String</code> data as numeric values must throw the
  * <code>java.lang.NumberFormatException</code>.
- * 
- * @version 2.0
+ *
+ * @version     2.0
  **/
 
 public class MessageFormatRuntimeException extends JMSRuntimeException {
 
-  /** Constructs a <CODE>MessageFormatException</CODE> with the specified 
-   *  reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  MessageFormatRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>MessageFormatRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public MessageFormatRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
+	
+	/**
+	 * Constructs a <code>MessageFormatRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public MessageFormatRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage, errorCode);
+	}
 
-  /** Constructs a <CODE>MessageFormatException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  MessageFormatRuntimeException(String reason) {
-    super(reason);
-  }
-  
+	/**
+	 * Constructs a <code>MessageFormatRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public MessageFormatRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage,errorCode,cause);
+	}
 }

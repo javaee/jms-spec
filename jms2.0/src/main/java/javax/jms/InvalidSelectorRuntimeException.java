@@ -44,33 +44,48 @@ package javax.jms;
  * This unchecked exception must be thrown when a JMS client attempts to give a
  * provider a message selector with invalid syntax, and the method signature
  * does not permit a <code>InvalidSelectorException</code> to be thrown.
- * 
- * @version 2.0
+ *
+ * @version     2.0
  **/
 
 public class InvalidSelectorRuntimeException extends JMSRuntimeException {
 
-  /** Constructs an <CODE>InvalidSelectorException</CODE> with the specified 
-   *  reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  InvalidSelectorRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>InvalidSelectorRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public InvalidSelectorRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
+	
+	/**
+	 * Constructs a <code>InvalidSelectorRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public InvalidSelectorRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage,errorCode);
+	}
 
-  /** Constructs an <CODE>InvalidSelectorException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  InvalidSelectorRuntimeException(String reason) {
-    super(reason);
-  }
+	/**
+	 * Constructs a <code>InvalidSelectorRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public InvalidSelectorRuntimeException(String reason, String errorCode, Throwable cause) {
+		super(reason,errorCode,cause);
+	}
   
 }

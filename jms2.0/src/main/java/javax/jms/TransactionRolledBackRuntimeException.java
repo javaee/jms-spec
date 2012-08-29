@@ -37,40 +37,54 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
 /**
  * This unchecked exception must be thrown when a call to
- * <CODE>JMSContext.commit</CODE> results in a rollback of the current
+ * <code>JMSContext.commit</code> results in a rollback of the current
  * transaction.
  * 
  * @version 2.0
  **/
-
 public class TransactionRolledBackRuntimeException extends JMSRuntimeException {
 
-  /** Constructs a <CODE>TransactionRolledBackException</CODE> with the 
-   *  specified reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  TransactionRolledBackRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>TransactionRolledBackRuntimeException</code> with the
+	 * specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public TransactionRolledBackRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
 
-  /** Constructs a <CODE>TransactionRolledBackException</CODE> with the 
-   *  specified reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  TransactionRolledBackRuntimeException(String reason) {
-    super(reason);
-  }
-  
+	/**
+	 * Constructs a <code>TransactionRolledBackRuntimeException</code> with the
+	 * specified detail message and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public TransactionRolledBackRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage, errorCode);
+	}
+	
+	/**
+	 * Constructs a <code>TransactionRolledBackRuntimeException</code> with the
+	 * specified detail message, error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public TransactionRolledBackRuntimeException(String reason, String errorCode, Throwable cause) {
+		super(reason, errorCode, cause);
+	}
+
 }

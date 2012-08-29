@@ -45,32 +45,49 @@ package javax.jms;
  * name/password submitted by a client, or for any case where a security
  * restriction prevents a method from completing, and the method signature does
  * not permit a <code>JMSSecurityException</code> to be thrown.
- * 
- * @version 2.0
+ *
+ * @version     2.0
  **/
+
 public class JMSSecurityRuntimeException extends JMSRuntimeException {
+	
+	/**
+	 * Constructs a <code>JMSSecurityRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public JMSSecurityRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
 
-  /** Constructs a <CODE>JMSSecurityException</CODE> with the specified 
-   *  reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  JMSSecurityRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>JMSSecurityRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public JMSSecurityRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage,errorCode);
+	}
 
-  /** Constructs a <CODE>JMSSecurityException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  JMSSecurityRuntimeException(String reason) {
-    super(reason);
-  }
+
+	/**
+	 * Constructs a <code>JMSSecurityRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public JMSSecurityRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage,errorCode,cause);
+	}
   
 }

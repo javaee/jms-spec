@@ -37,40 +37,54 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
 /**
  * This unchecked exception must be thrown when a destination either is not
  * understood by a provider or is no longer valid, and the method signature does
  * not permit a <code>InvalidDestinationException</code> to be thrown.
- * 
- * @version 2.0
+ *
+ * @version     2.0
  **/
 
 public class InvalidDestinationRuntimeException extends JMSRuntimeException {
 
-  /** Constructs an <CODE>InvalidDestinationException</CODE> with the specified 
-   *  reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific 
-   *                        error code
-   *                        
-   **/
-  public 
-  InvalidDestinationRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>InvalidDestinationRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public InvalidDestinationRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
+	
+	/**
+	 * Constructs a <code>InvalidDestinationRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public InvalidDestinationRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage,errorCode);
+	}
 
-  /** Constructs an <CODE>InvalidDestinationException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  InvalidDestinationRuntimeException(String reason) {
-    super(reason);
-  }
+	/**
+	 * Constructs a <code>InvalidDestinationRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public InvalidDestinationRuntimeException(String reason, String errorCode, Throwable cause) {
+		super(reason, errorCode, cause);
+	}
   
 }

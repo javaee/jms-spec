@@ -50,28 +50,43 @@ package javax.jms;
  **/
 
 public class InvalidClientIDRuntimeException extends JMSRuntimeException {
+	
+	/**
+	 * Constructs a <code>InvalidClientIDRuntimeException</code> with the specified detail message
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 **/
+	public InvalidClientIDRuntimeException(String detailMessage) {
+		super(detailMessage);
+	}
 
-  /** Constructs an <CODE>InvalidClientIDException</CODE> with the specified 
-   *  reason and error code.
-   *
-   *  @param  reason        a description of the exception
-   *  @param  errorCode     a string specifying the vendor-specific
-   *                        error code
-   *                        
-   **/
-  public 
-  InvalidClientIDRuntimeException(String reason, String errorCode) {
-    super(reason, errorCode);
-  }
+	/**
+	 * Constructs a <code>InvalidClientIDRuntimeException</code> with the specified detail message
+	 * and error code.
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 **/
+	public InvalidClientIDRuntimeException(String detailMessage, String errorCode) {
+		super(detailMessage,errorCode);
+	}
 
-  /** Constructs an <CODE>InvalidClientIDException</CODE> with the specified 
-   *  reason. The error code defaults to null.
-   *
-   *  @param  reason        a description of the exception
-   **/
-  public 
-  InvalidClientIDRuntimeException(String reason) {
-    super(reason);
-  }
-  
+
+	/**
+	 * Constructs a <code>InvalidClientIDRuntimeException</code> with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public InvalidClientIDRuntimeException(String reason, String errorCode, Throwable cause) {
+		super(reason, errorCode, cause);
+	}
 }
