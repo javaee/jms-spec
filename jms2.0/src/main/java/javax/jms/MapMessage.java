@@ -473,7 +473,7 @@ public interface MapMessage extends Message {
       *
       * @exception JMSException if the JMS provider fails to write the message
       *                         due to some internal error.
-      * @exception NullPointerException if the name is null, or if the name is
+      * @exception IllegalArgumentException if the name is null, or if the name is
       *                          an empty string.
       * @exception MessageNotWriteableException if the message is in read-only 
       *                                         mode.
