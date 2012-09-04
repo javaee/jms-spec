@@ -85,6 +85,9 @@ public class TopicRequestor {
 
     public 
     TopicRequestor(TopicSession session, Topic topic) throws JMSException {
+    	
+    	if (topic==null) throw new InvalidDestinationException("topic==null");
+
 	    this.session = session;
         tempTopic    = session.createTemporaryTopic();
         publisher    = session.createPublisher(topic);

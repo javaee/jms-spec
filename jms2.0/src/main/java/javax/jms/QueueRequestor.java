@@ -82,6 +82,9 @@ public class QueueRequestor {
 
     public
     QueueRequestor(QueueSession session, Queue queue) throws JMSException {
+    	
+    	if (queue==null) throw new InvalidDestinationException("queue==null");
+    	
         this.session = session;
         tempQueue    = session.createTemporaryQueue();
         sender       = session.createSender(queue);
