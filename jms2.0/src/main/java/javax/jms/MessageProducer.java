@@ -446,7 +446,11 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with an invalid destination.
-	 * 
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                at creation time.
+	 *                
 	 * @see javax.jms.Session#createProducer
 	 * @since 1.1
 	 */
@@ -579,16 +583,14 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message for one of the following reasons:
-     *                <ul>
-     *                <li>the specified <code>CompletionListener</code> is null or 
-     *                <li>an internal error has occurred 
-     *                </ul> 
+	 *                if an internal error occurs 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.IllegalArgumentException
+	 *                if the specified <code>CompletionListener</code> is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> that did not specify a
@@ -731,16 +733,14 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message for one of the following reasons:
-     *                <ul>
-     *                <li>the specified <code>CompletionListener</code> is null or 
-     *                <li>an internal error has occurred 
-     *                </ul> 
+	 *                if an internal error occurs 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 * @exception java.lang.IllegalArgumentException
+	 *                if the specified <code>CompletionListener</code> is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> that did not specify a
@@ -886,15 +886,13 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message for one of the following reasons:
-     *                <ul>
-     *                <li>the specified <code>CompletionListener</code> is null or 
-     *                <li>an internal error has occurred 
-     *                </ul>  
+	 *                if an internal error occurs 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
-	 *                if a client uses this method with an invalid destination.
+	 *                if a client uses this method with an invalid destination
+	 * @exception java.lang.IllegalArgumentException
+	 * 				  if the specified <code>CompletionListener</code> is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> that specified a destination
@@ -1045,16 +1043,18 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if the JMS provider fails to send the message for one of the following reasons:
-     *                <ul>
-     *                <li>the specified <code>CompletionListener</code> is null or 
-     *                <li>an internal error has occurred 
-     *                </ul> 
+	 *                if an internal error occurs 
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with an invalid destination.
-	 * 
+	 * @exception java.lang.IllegalArgumentException
+	 *                if the specified <code>CompletionListener</code> is null
+	 * @exception java.lang.UnsupportedOperationException
+	 *                if a client uses this method with a
+	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                at creation time.
+	 *                
 	 * @see javax.jms.Session#createProducer
 	 * @see javax.jms.CompletionListener
 	 * @since 2.0
