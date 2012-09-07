@@ -259,11 +259,13 @@ public interface MessageProducer extends AutoCloseable {
 	long getTimeToLive() throws JMSException;
 
 	/**
-	 * Sets the default minimum length of time in milliseconds from its dispatch
-	 * time before a produced message becomes visible on the target destination
-	 * and available for delivery to consumers.
-	 * 
-	 * <P>
+	 * Sets the minimum length of time in milliseconds that must elapse after a
+	 * message is sent before the JMS provider may deliver the message to a
+	 * consumer.
+	 * <p>
+	 * For transacted sends, this time starts when the client sends the message,
+	 * not when the transaction is committed.
+	 * <p>
 	 * deliveryDelay is set to zero by default.
 	 * 
 	 * @param deliveryDelay
@@ -282,9 +284,9 @@ public interface MessageProducer extends AutoCloseable {
 	void setDeliveryDelay(long deliveryDelay) throws JMSException;
 
 	/**
-	 * Gets the default minimum length of time in milliseconds from its dispatch
-	 * time before a produced message becomes visible on the target destination
-	 * and available for delivery to consumers.
+	 * Gets the minimum length of time in milliseconds that must elapse after a
+	 * message is sent before the JMS provider may deliver the message to a
+	 * consumer.
 	 * 
 	 * @return the delivery delay in milliseconds.
 	 * 

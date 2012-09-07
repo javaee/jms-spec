@@ -634,7 +634,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the message ID. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param id the ID of the message
@@ -692,7 +692,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the message timestamp. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param timestamp the timestamp for this message
@@ -905,7 +905,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the destination of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param destination the destination for this message
@@ -940,7 +940,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the delivery mode of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param deliveryMode the delivery mode for this message
@@ -981,7 +981,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is delivered. This message cannot be used by clients 
      * to configure the redelivered status of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param redelivered an indication of whether this message is being
@@ -1085,7 +1085,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the expiration time of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *  
       * @param expiration the message's expiration time
@@ -1099,52 +1099,53 @@ public interface Message {
     void
     setJMSExpiration(long expiration) throws JMSException;
     
-    /** Gets the message's delivery time value.
-     *  
-     * <P>When a message is sent, the <CODE>JMSDeliveryTime</CODE> header field 
-     * is left unassigned. After completion of the <CODE>send</CODE> or 
-     * <CODE>publish</CODE> method, it holds the delivery time of the
-     * message. This is the sum of the deliveryDelay value specified by the
-     * client and the GMT at the time of the <CODE>send</CODE> or 
-     * <CODE>publish</CODE>.
-     *
-     * <P>A message's delivery time is the earliest time when a provider may
-     * make the message visible on the target destination and available for
-     * delivery to consumers. 
-     *
-     * <P>Clients must not receive messages before the delivery time has been reached.
-     * 
-     * @return the message's delivery time, which is the sum of the deliveryDelay 
-     * value specified by the client and the GMT at the time of the <CODE>send</CODE> or 
-     * <CODE>publish</CODE>.
-     *  
-     * @exception JMSException if the JMS provider fails to get the message 
-     *                         expiration due to some internal error.
-     *
-     * @see javax.jms.Message#setJMSDeliveryTime(long)
-     * 
-     * @since 2.0
-     */ 
+    /**
+	 * Gets the message's delivery time value.
+	 * 
+	 * <P>
+	 * When a message is sent, the <CODE>JMSDeliveryTime</CODE> header field is
+	 * left unassigned. After completion of the <CODE>send</CODE> or
+	 * <CODE>publish</CODE> method, it holds the delivery time of the message.
+	 * This is the sum of the <code>deliveryDelay</code> value specified by the
+	 * client and the GMT at the time of the <CODE>send</CODE> or
+	 * <CODE>publish</CODE>.
+	 * <p>
+	 * A message's delivery time is the earliest time when a JMS provider may
+	 * deliver the message to a consumer. The provider must not deliver messages
+	 * before the delivery time has been reached.
+	 * 
+	 * @return the message's delivery time value
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the delivery time due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.Message#setJMSDeliveryTime(long)
+	 * 
+	 * @since 2.0
+	 */ 
    long getJMSDeliveryTime() throws JMSException;
 
-
-   /** Sets the message's delivery time value.
-     *
-     * <P>This method is for use by JMS providers only to set this field 
-     * when a message is sent. This message cannot be used by clients 
-     * to configure the delivery time of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
-     * whose implementation is not its own.
-     *  
-     * @param deliveryTime the message's delivery time value
-     *  
-     * @exception JMSException if the JMS provider fails to set the delivery 
-     *                         time due to some internal error.
-     *
-     * @see javax.jms.Message#getJMSDeliveryTime() 
-     * 
-     * @since 2.0
-     */ 
+   	/**
+	 * Sets the message's delivery time value.
+	 * <P>
+	 * This method is for use by JMS providers only to set this field when a
+	 * message is sent. This message cannot be used by clients to configure the
+	 * delivery time of the message. This method is public to allow a JMS
+	 * provider to set this field when sending a message whose implementation is
+	 * not its own.
+	 * 
+	 * @param deliveryTime
+	 *            the message's delivery time value
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to set the delivery time due to
+	 *                some internal error.
+	 * 
+	 * @see javax.jms.Message#getJMSDeliveryTime()
+	 * 
+	 * @since 2.0
+	 */ 
    void setJMSDeliveryTime(long deliveryTime) throws JMSException;    
 
 
@@ -1178,7 +1179,7 @@ public interface Message {
      * <P>This method is for use by JMS providers only to set this field 
      * when a message is sent. This message cannot be used by clients 
      * to configure the priority level of the message. This method is public
-     * to allow one JMS provider to set this field when sending a message
+     * to allow a JMS provider to set this field when sending a message
      * whose implementation is not its own.
       *
       * @param priority the priority of this message

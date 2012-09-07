@@ -401,13 +401,14 @@ public interface JMSProducer {
 	long getTimeToLive();
 
 	/**
-	 * Specifies the delivery delay of messages that are sent using this
-	 * <code>JMSProducer</code>. This is the minimum length of time in
-	 * milliseconds from the time the message was sent before a produced message
-	 * becomes visible on the target destination and available for delivery to
-	 * consumers.
+	 * Sets the minimum length of time in milliseconds that must elapse after a
+	 * message is sent before the JMS provider may deliver the message to a
+	 * consumer.
 	 * <p>
-	 * Delivery delay is set to zero by default.
+	 * For transacted sends, this time starts when the client sends the message,
+	 * not when the transaction is committed.
+	 * <p>
+	 * deliveryDelay is set to zero by default.
 	 * 
 	 * @param deliveryDelay
 	 *            the delivery delay in milliseconds.
@@ -424,8 +425,9 @@ public interface JMSProducer {
 	JMSProducer setDeliveryDelay(long deliveryDelay);
 
 	/**
-	 * Returns the delivery delay of messages that are sent using this
-	 * <code>JMSProducer</code>.
+	 * Gets the minimum length of time in milliseconds that must elapse after a
+	 * message is sent before the JMS provider may deliver the message to a
+	 * consumer.
 	 * 
 	 * @return the delivery delay in milliseconds.
 	 * 
