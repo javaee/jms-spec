@@ -55,6 +55,8 @@ import java.util.Enumeration;
   * not require the content of an enumeration to be a static snapshot of queue 
   * content. Whether these changes are visible or not depends on the JMS 
   * provider.
+  * <p>
+  * A message must not be returned by a <code>QueueBrowser</code> before its delivery time has been reached.
   *
   *<P>A <CODE>QueueBrowser</CODE> can be created from either a 
   * <CODE>Session</CODE> or a <CODE> QueueSession</CODE>. 
