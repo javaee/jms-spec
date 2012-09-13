@@ -1121,11 +1121,12 @@ public interface JMSContext extends AutoCloseable {
 	 * <code>JMSException</code> will be thrown.
 	 * <p>
 	 * If <code>noLocal</code> is set to true, and the client identifier is set,
-	 * then any messages published using this <code>JMSContext</code>, or any
-	 * other <code>JMSContext</code> or connection with the same client
+	 * then any messages published to the topic using this JMSContext's connection,
+	 * or any other connection or <code>JMSContext</code> with the same client
 	 * identifier, will not be added to the durable subscription. If the client
-	 * identifier is unset then setting <code>noLocal</code> to true has no
-	 * effect. The default value of <code>noLocal</code> is false.
+	 * identifier is unset then setting <code>noLocal</code> to true will cause a
+	 * <code>IllegalStateException</code> to be thrown. 
+	 * The default value of  <code>noLocal</code> is false.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1149,6 +1150,9 @@ public interface JMSContext extends AutoCloseable {
 	 *                if an invalid topic is specified.
 	 * @exception InvalidSelectorRuntimeException
 	 *                if the message selector is invalid.
+	 * @exception IllegalStateRuntimeException
+	 *                if <code>noLocal</code> is set to <code>true</code>
+	 *                but the client identifier is unset
 	 * 
 	 */
 	JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);

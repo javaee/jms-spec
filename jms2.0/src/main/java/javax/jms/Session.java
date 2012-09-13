@@ -1036,8 +1036,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 * then any messages published to the topic using this session's connection,
 	 * or any other connection or <code>JMSContext</code> with the same client
 	 * identifier, will not be added to the durable subscription. If the client
-	 * identifier is unset then setting <code>noLocal</code> to true has no
-	 * effect. The default value of <code>noLocal</code> is false.
+	 * identifier is unset then setting <code>noLocal</code> to true will cause a
+	 * <code>IllegalStateException</code> to be thrown. 
+	 * The default value of  <code>noLocal</code> is false.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1062,6 +1063,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                if an invalid topic is specified.
 	 * @exception InvalidSelectorException
 	 *                if the message selector is invalid.
+	 * @exception IllegalStateException
+	 *                if <code>noLocal</code> is set to <code>true</code>
+	 *                but the client identifier is unset
 	 * 
 	 * @since 1.1
 	 */ 
@@ -1197,8 +1201,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 * then any messages published to the topic using this session's connection,
 	 * or any other connection or <code>JMSContext</code> with the same client
 	 * identifier, will not be added to the durable subscription. If the client
-	 * identifier is unset then setting <code>noLocal</code> to true has no
-	 * effect. The default value of <code>noLocal</code> is false.
+	 * identifier is unset then setting <code>noLocal</code> to true will cause a
+	 * <code>IllegalStateException</code> to be thrown. 
+	 * The default value of  <code>noLocal</code> is false.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1220,9 +1225,12 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                and <code>MessageConsumer</code> due to some internal
 	 *                error.
 	 * @exception InvalidDestinationException
-	 *                if an invalid topic is specified.
+	 *                if an invalid topic is specified
 	 * @exception InvalidSelectorException
-	 *                if the message selector is invalid.
+	 *                if the message selector is invalid
+	 * @exception IllegalStateException
+	 *                if <code>noLocal</code> is set to <code>true</code>
+	 *                but the client identifier is unset
 	 * 
 	 * @since 2.0
 	 */ 
