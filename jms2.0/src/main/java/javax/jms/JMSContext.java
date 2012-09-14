@@ -520,12 +520,6 @@ public interface JMSContext extends AutoCloseable {
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
 	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to close the JMSContext due to
-	 *                some internal error. For example, a failure to release
-	 *                resources or to close a socket connection can cause this
-	 *                exception to be thrown.
-	 * 
-	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to close the
 	 *                <code>JMSContext</code> for one of the following reasons:
 	 *                <ul>
@@ -1469,7 +1463,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                JMSContext</code> is container-managed (injected)
 	 *                </ul>
 	 * 
-	 * @exception IllegalStateException
+	 * @exception IllegalStateRuntimeException
 	 *                if the <code>JMSContext</code> is closed.
 	 * 
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
