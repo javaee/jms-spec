@@ -103,7 +103,7 @@ public @interface JMSConnectionFactoryDefinition {
 	 * this property is used, and what it should be set to, is defined by the
 	 * JMS provider
 	 */
-	String URL() default "";
+	String url() default "";
 
 	/**
 	 * JMS connection factory property. This may be a vendor-specific property
