@@ -594,11 +594,11 @@ public interface JMSProducer {
 	CompletionListener getAsync();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>boolean</code>
 	 * value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -618,10 +618,10 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, boolean value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>byte</code> value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -640,11 +640,11 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, byte value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>short</code>
 	 * value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -664,10 +664,10 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, short value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>int</code> value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -687,10 +687,10 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, int value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>long</code> value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -709,11 +709,11 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, long value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>float</code>
 	 * value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -732,11 +732,11 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, float value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>double</code>
 	 * value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -755,11 +755,11 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, double value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified <code>String</code>
 	 * value.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -778,14 +778,14 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, String value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have the specified property set to the specified Java object value.
 	 * <p>
 	 * Note that this method works only for the objectified primitive object
 	 * types (<code>Integer</code>, <code>Double</code>, <code>Long</code> ...)
 	 * and <code>String</code> objects.
 	 * <p>
-	 * This will override any property of the same name that is already set on
+	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
 	 * 
 	 * @param name
@@ -1026,7 +1026,7 @@ public interface JMSProducer {
 	Enumeration getPropertyNames();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have their <code>JMSCorrelationID</code> header value set to the
 	 * specified correlation ID, where correlation ID is specified as an array
 	 * of bytes.
@@ -1081,7 +1081,7 @@ public interface JMSProducer {
 	byte[] getJMSCorrelationIDAsBytes();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have their <code>JMSCorrelationID</code> header value set to the
 	 * specified correlation ID, where correlation ID is specified as a
 	 * <code>String</code>.
@@ -1153,7 +1153,7 @@ public interface JMSProducer {
 	String getJMSCorrelationID();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have their <code>JMSType</code> header value set to the specified message
 	 * type.
 	 * <p>
@@ -1206,7 +1206,7 @@ public interface JMSProducer {
 	String getJMSType();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> should
+	 * Specifies that messages sent using this <code>JMSProducer</code> will
 	 * have their <code>JMSReplyTo</code> header value set to the specified
 	 * <code>Destination</code> object.
 	 * <p>

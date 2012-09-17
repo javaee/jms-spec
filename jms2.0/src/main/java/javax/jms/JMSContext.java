@@ -1026,22 +1026,25 @@ public interface JMSContext extends AutoCloseable {
 	 * subsequently wishes to create a consumer on that durable subscription
 	 * must use the same client identifier.
 	 * <p>
+	 * This method creates the durable subscription without a message selector 
+	 * and with a <code>noLocal</code> value of <code>false</code>. 
+	 * <p>
 	 * If there are no active consumers on the durable subscription (and no
 	 * consumed messages from that subscription are still part of a pending
 	 * transaction or are not yet acknowledged in the session), and this method
 	 * is used to create a new consumer on that durable subscription, specifying
 	 * the same name and client identifier (if set) but a different topic or
-	 * message selector, or, if the client identifier is set, a different
-	 * noLocal argument, then the durable subscription will be deleted and a new
-	 * one created.
+	 * message selector or, if the client identifier is set, a different
+	 * <code>noLocal</code> value, then the durable subscription will be deleted
+	 * and a new one created.
 	 * <p>
 	 * However if there is an active consumer on the durable subscription (or a
 	 * consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
 	 * made to create an additional consumer, specifying the same name and
-	 * client identifier (if set) but a different topic or message selector, or,
-	 * if the client identifier is set, a different noLocal argument, then a
-	 * <code>JMSException</code> will be thrown.
+	 * client identifier (if set) but a different topic or message selector or,
+	 * if the client identifier is set, a different <code>noLocal</code> value,
+	 * then a <code>JMSException</code> will be thrown.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1102,25 +1105,17 @@ public interface JMSContext extends AutoCloseable {
 	 * transaction or are not yet acknowledged in the session), and this method
 	 * is used to create a new consumer on that durable subscription, specifying
 	 * the same name and client identifier (if set) but a different topic or
-	 * message selector, or, if the client identifier is set, a different
-	 * noLocal argument, then the durable subscription will be deleted and a new
-	 * one created.
+	 * message selector or, if the client identifier is set, a different
+	 * <code>noLocal</code> value, then the durable subscription will be deleted
+	 * and a new one created.
 	 * <p>
 	 * However if there is an active consumer on the durable subscription (or a
 	 * consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
 	 * made to create an additional consumer, specifying the same name and
-	 * client identifier (if set) but a different topic or message selector, or,
-	 * if the client identifier is set, a different noLocal argument, then a
-	 * <code>JMSException</code> will be thrown.
-	 * <p>
-	 * If <code>noLocal</code> is set to true, and the client identifier is set,
-	 * then any messages published to the topic using this JMSContext's connection,
-	 * or any other connection or <code>JMSContext</code> with the same client
-	 * identifier, will not be added to the durable subscription. If the client
-	 * identifier is unset then setting <code>noLocal</code> to true will cause a
-	 * <code>IllegalStateException</code> to be thrown. 
-	 * The default value of  <code>noLocal</code> is false.
+	 * client identifier (if set) but a different topic or message selector or,
+	 * if the client identifier is set, a different <code>noLocal</code> value,
+	 * then a <code>JMSException</code> will be thrown.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
