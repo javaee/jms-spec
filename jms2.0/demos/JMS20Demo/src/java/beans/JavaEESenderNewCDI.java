@@ -52,7 +52,7 @@ import javax.jms.Queue;
 public class JavaEESenderNewCDI {
 
     @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
+    @JMSConnectionFactory("jms/connectionFactory") // <== could omit this and use the default
     private JMSContext context;
     
     @Resource(mappedName = "jms/inboundQueue")

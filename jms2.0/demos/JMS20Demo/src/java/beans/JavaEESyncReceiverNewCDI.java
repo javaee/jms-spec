@@ -57,7 +57,7 @@ import javax.jms.Queue;
 public class JavaEESyncReceiverNewCDI {
 
     @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
+    @JMSConnectionFactory("jms/connectionFactory") // <== could omit this and use the default
     private JMSContext context;
     
     @Resource(lookup = "jms/inboundQueue")
