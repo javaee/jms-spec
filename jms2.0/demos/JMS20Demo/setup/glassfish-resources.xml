@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+<admin-object-resource enabled="true" jndi-name="jms/inboundQueue" object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="inboundQueue"/>
+</admin-object-resource>
+
+<admin-object-resource enabled="true" jndi-name="jms/requestQueue" object-type="user" res-adapter="jmsra" res-type="javax.jms.Queue">
+    <description/>
+    <property name="Name" value="requestQueue"/>
+</admin-object-resource>
+
+<admin-object-resource enabled="true" jndi-name="jms/inboundTopic" object-type="user" res-adapter="jmsra" res-type="javax.jms.Topic">
+    <description/>
+    <property name="Name" value="inboundTopic"/>
+</admin-object-resource>
+
+<connector-resource enabled="true" jndi-name="jms/connectionFactory" object-type="user" pool-name="jms/connectionFactoryPool">
+</connector-resource>
+
+<connector-connection-pool associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-definition-name="javax.jms.QueueConnectionFactory" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="true" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="jms/connectionFactoryPool" pool-resize-quantity="2" resource-adapter-name="jmsra" steady-pool-size="8" validate-atmost-once-period-in-seconds="0">
+</connector-connection-pool>
+
+<!-- Connection with clientID set -->
+
+<connector-resource enabled="true" jndi-name="jms/connectionFactory2" object-type="user" pool-name="jms/connectionFactoryPool2">
+    <description/>
+</connector-resource>
+<connector-connection-pool associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-definition-name="javax.jms.QueueConnectionFactory" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="true" max-connection-usage-count="0" max-pool-size="1" max-wait-time-in-millis="60000" name="jms/connectionFactoryPool2" pool-resize-quantity="1" resource-adapter-name="jmsra" steady-pool-size="1" validate-atmost-once-period-in-seconds="0">
+   <property name="ClientID" value="someClientID"/>
+</connector-connection-pool>
+
+</resources>
