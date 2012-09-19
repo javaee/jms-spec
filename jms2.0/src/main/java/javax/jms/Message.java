@@ -1047,14 +1047,13 @@ public interface Message {
     setJMSType(String type) throws JMSException;
 
 
-    /** Gets the message's expiration value.
+    /** Gets the message's expiration time.
       *  
       * <P>When a message is sent, the <CODE>JMSExpiration</CODE> header field 
       * is left unassigned. After completion of the <CODE>send</CODE> or 
       * <CODE>publish</CODE> method, it holds the expiration time of the
-      * message. This is the sum of the time-to-live value specified by the
-      * client and the GMT at the time of the <CODE>send</CODE> or 
-      * <CODE>publish</CODE>.
+      * message. This is the the difference, measured in milliseconds, 
+      * between the expiration time and midnight, January 1, 1970 UTC.
       *
       * <P>If the time-to-live is specified as zero, <CODE>JMSExpiration</CODE> 
       * is set to zero to indicate that the message does not expire.
@@ -1066,9 +1065,7 @@ public interface Message {
       * <P>Clients should not receive messages that have expired; however,
       * the JMS API does not guarantee that this will not happen.
       *
-      * @return the time the message expires, which is the sum of the
-      * time-to-live value specified by the client and the GMT at the
-      * time of the send
+      * @return the message's expiration time value
       *  
       * @exception JMSException if the JMS provider fails to get the message 
       *                         expiration due to some internal error.
@@ -1106,9 +1103,8 @@ public interface Message {
 	 * When a message is sent, the <CODE>JMSDeliveryTime</CODE> header field is
 	 * left unassigned. After completion of the <CODE>send</CODE> or
 	 * <CODE>publish</CODE> method, it holds the delivery time of the message.
-	 * This is the sum of the <code>deliveryDelay</code> value specified by the
-	 * client and the GMT at the time of the <CODE>send</CODE> or
-	 * <CODE>publish</CODE>.
+	 * This is the the difference, measured in milliseconds, 
+     * between the delivery time and midnight, January 1, 1970 UTC.
 	 * <p>
 	 * A message's delivery time is the earliest time when a JMS provider may
 	 * deliver the message to a consumer. The provider must not deliver messages
