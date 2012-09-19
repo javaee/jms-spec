@@ -1100,6 +1100,14 @@ public interface JMSContext extends AutoCloseable {
 	 * subsequently wishes to create a consumer on that durable subscription
 	 * must use the same client identifier.
 	 * <p>
+	 * If <code>noLocal</code> is set to true, and the client identifier is set,
+	 * then any messages published to the topic using this JMSContext's connection,
+	 * or any other connection or <code>JMSContext</code> with the same client
+	 * identifier, will not be added to the durable subscription. If the client
+	 * identifier is unset then setting <code>noLocal</code> to true will cause a
+	 * <code>IllegalStateRuntimeException</code> to be thrown. 
+	 * The default value of  <code>noLocal</code> is false.
+	 * <p>
 	 * If there are no active consumers on the durable subscription (and no
 	 * consumed messages from that subscription are still part of a pending
 	 * transaction or are not yet acknowledged in the session), and this method
