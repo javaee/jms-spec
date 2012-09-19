@@ -51,15 +51,16 @@ import javax.jms.Queue;
 @LocalBean
 public class JavaEESyncReceiverNew {
 
-    @Resource(lookup = "jms/connectionFactory")
+    @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-    @Resource(lookup = "jms/inboundQueue")
-    Queue inboundQueue;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     public String receiveMessageNew() {
         JMSContext context = connectionFactory.createContext();
         try {
-            JMSConsumer consumer = context.createConsumer(inboundQueue);
+            JMSConsumer consumer = context.createConsumer(demoQueue);
             return "Received " + consumer.receivePayload(String.class,1000);
         } finally {
             context.close();

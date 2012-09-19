@@ -33,7 +33,7 @@ How to run it
 * In the wizard, navigate to the JMS20Demo project and open it
 
 * In the "Projects" view, select the new "JMS20Demo" note
-* Open the context view and choose "resolve server configuration problem"
+* Open the context view and choose "Resolve missing server problem"
 * Follow the wizard to specify the version of GlassFish you just added
 
 * In the "Projects" view, select the new "JMS20Demo" note

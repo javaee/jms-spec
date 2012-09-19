@@ -52,12 +52,12 @@ import javax.jms.Queue;
 public class JavaEESenderNewCDI {
 
     @Inject
-    @JMSConnectionFactory("jms/connectionFactory") // <== could omit this and use the default
+    @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
     private JMSContext context;
     
-    @Resource(mappedName = "jms/inboundQueue")
-    private Queue inboundQueue;
-
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue inboundQueue;
+           
     public void sendMessageNew(String payload) {
         context.createProducer().send(inboundQueue, payload);
     }

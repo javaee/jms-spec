@@ -50,10 +50,10 @@ import javax.jms.*;
 public class JavaEESyncReceiverNewCDIWithProperties {
 
     @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
+    @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
     private JMSContext context;
     
-    @Resource(lookup = "jms/inboundQueue")
+    @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
 
     public String receiveMessageNew() {

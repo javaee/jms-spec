@@ -52,17 +52,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Resource definitions (not currently used)
+ * Resource definitions for this application 
  */
 @JMSDestinationDefinition(className = "javax.jms.Queue", 
-        description = "Queue to use in demonstration", 
-        resourceAdapterName = "jmsra", 
-        name = "jms/jms20DemoQueue")
+    description = "Queue to use in demonstration", 
+    resourceAdapterName = "jmsra", 
+    name = "java:global/jms/demoQueue",
+    destinationName="demoQueue")
 
 @JMSConnectionFactoryDefinition(className="javax.jms.ConnectionFactory",
-        description = "ConnectionFactory to use in demonstration", 
-        resourceAdapterName="jmsra",
-        name="jms/jms20DemoConnectionFactory")
+    description = "ConnectionFactory to use in demonstration", 
+    resourceAdapterName="jmsra",
+    name="java:global/jms/demoConnectionFactory")
 
 @WebServlet(name = "Servlet1", urlPatterns = {"/Servlet1"})
 public class Servlet1 extends HttpServlet {

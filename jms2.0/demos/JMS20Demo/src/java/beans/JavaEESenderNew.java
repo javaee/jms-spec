@@ -41,6 +41,8 @@
 package beans;
 
 import javax.annotation.Resource;
+import javax.annotation.jms.JMSConnectionFactoryDefinition;
+import javax.annotation.jms.JMSDestinationDefinition;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.jms.ConnectionFactory;
@@ -50,18 +52,18 @@ import javax.jms.Queue;
 @Stateless
 @LocalBean
 public class JavaEESenderNew {
-
-    @Resource(lookup = "jms/connectionFactory")
+    
+    @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
     
-    @Resource(lookup = "jms/inboundQueue")
-    Queue inboundQueue;
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     public void sendMessageNew(String payload) {
 
         JMSContext context = connectionFactory.createContext();
         try {
-            context.createProducer().send(inboundQueue, payload);
+            context.createProducer().send(demoQueue, payload);
         } finally {
             context.close();
         }

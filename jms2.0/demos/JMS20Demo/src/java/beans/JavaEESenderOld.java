@@ -50,18 +50,18 @@ import javax.jms.*;
 @LocalBean
 public class JavaEESenderOld {
    
-    @Resource(lookup = "jms/connectionFactory")
+    @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-	
-    @Resource(lookup="jms/inboundQueue")
-    Queue inboundQueue;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     public void sendMessageOld(String payload) {
         Connection connection=null;
         try {
             connection = connectionFactory.createConnection();
             Session session = connection.createSession();
-            MessageProducer messageProducer = session.createProducer(inboundQueue);
+            MessageProducer messageProducer = session.createProducer(demoQueue);
             TextMessage textMessage = session.createTextMessage(payload);
             messageProducer.send(textMessage);
         } catch (JMSException ex) {

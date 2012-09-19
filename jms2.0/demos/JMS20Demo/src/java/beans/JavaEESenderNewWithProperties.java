@@ -50,16 +50,17 @@ import javax.jms.Queue;
 @LocalBean
 public class JavaEESenderNewWithProperties {
 
-    @Resource(lookup = "jms/connectionFactory")
+    @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-    @Resource(lookup = "jms/inboundQueue")
-    Queue inboundQueue;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     public void sendMessageNew(String payload) {
 
         JMSContext context = connectionFactory.createContext();
         try {
-            context.createProducer().setPriority(1).setProperty("foo", "bar").send(inboundQueue, payload);
+            context.createProducer().setPriority(1).setProperty("foo", "bar").send(demoQueue, payload);
         } finally {
             context.close();
         }

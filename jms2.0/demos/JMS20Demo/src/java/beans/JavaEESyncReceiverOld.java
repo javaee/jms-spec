@@ -50,10 +50,11 @@ import javax.jms.*;
 @LocalBean
 public class JavaEESyncReceiverOld {
 
-    @Resource(lookup = "jms/connectionFactory")
+    @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-    @Resource(lookup = "jms/inboundQueue")
-    Queue inboundQueue;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     public String receiveMessageOld() {
         Connection connection = null;
@@ -61,7 +62,7 @@ public class JavaEESyncReceiverOld {
             connection = connectionFactory.createConnection();
             connection.start();
             Session session = connection.createSession();
-            MessageConsumer messageConsumer = session.createConsumer(inboundQueue);
+            MessageConsumer messageConsumer = session.createConsumer(demoQueue);
             TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
             if (textMessage==null){
                 return "Received null";
