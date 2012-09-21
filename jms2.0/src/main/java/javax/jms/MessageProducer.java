@@ -322,7 +322,21 @@ public interface MessageProducer extends AutoCloseable {
 	 * <CODE>MessageProducer</CODE> outside the Java virtual machine, clients
 	 * should close them when they are not needed. Relying on garbage collection
 	 * to eventually reclaim these resources may not be timely enough.
+	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>MessageProducer</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>MessageProducer</tt>. Doing so will cause an
+	 * <tt>IllegalStateException</tt> to be thrown.
+	 * <p>
 	 * 
+	 * @exception IllegalStateException
+	 *                this method has
+	 *                been called by a <tt>CompletionListener</tt> callback
+	 *                method on its own <tt>MessageProducer</tt>
 	 * @exception JMSException
 	 *                if the JMS provider fails to close the producer due to
 	 *                some internal error.
@@ -505,11 +519,22 @@ public interface MessageProducer extends AutoCloseable {
 	 * calling thread and what, if anything, is performed asynchronously, so
 	 * long as it satisfies the requirements given below:
 	 * <p>
-	 * <b>Quality of service</b>: After the send operation is complete, which
-	 * means that the message has been successfully sent with the same degree of
-	 * confidence as if a normal synchronous send had been performed, the JMS
-	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <b>Quality of service</b>: After the send operation has completed
+	 * successfully, which means that the message has been successfully sent
+	 * with the same degree of confidence as if a normal synchronous send had
+	 * been performed, the JMS provider must invoke the
+	 * <tt>CompletionListener</tt>'s <tt>onCompletion</tt> method. The
 	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Exceptions</b>: If an exception is encountered during the call to the
+	 * <tt>send</tt> method then an appropriate exception should be thrown in
+	 * the thread that is calling the <tt>send</tt> method. In this case the JMS provider
+	 * must not invoke the <tt>CompletionListener</tt>'s <tt>onCompletion</tt>
+	 * or <tt>onException</tt> method. If an exception is encountered which
+	 * cannot be thrown in the thread that is calling the <tt>send</tt> method then the
+	 * JMS provider must call the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method. In both cases if an exception occurs it is
+	 * undefined whether or not the message was successfully sent.
 	 * <p>
 	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
 	 * send multiple messages then JMS message ordering requirements must be
@@ -518,15 +543,25 @@ public interface MessageProducer extends AutoCloseable {
 	 * wait for an asynchronous send to complete before sending the next
 	 * message.
 	 * <p>
-	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
-	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <b>Close, commit or rollback</b>: If the <tt>close</tt> method is called
+	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
+	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
+	 * send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * the object and returning. If the session is transacted (uses a local
+	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before performing the commit or rollback. If the <tt>close</tt>
-	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
-	 * or <tt>Connection</tt> then the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before closing the object and returning.
+	 * incomplete send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * the commit or rollback. Incomplete sends should be allowed to complete
+	 * normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>Connection</tt>, <tt>Session</tt> or
+	 * <tt>MessageProducer</tt> or call <tt>commit</tt> or <tt>rollback</tt> on
+	 * its own <tt>Session</tt>. Doing so will cause the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
+	 * <tt>IllegalStateException</tt>.
 	 * <p>
 	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
 	 * permitted in a Java EE EJB or web container. If the application component
@@ -555,12 +590,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * <p>
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
-	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
-	 * performed in the same order as the corresponding calls to the
-	 * asynchronous send method.
-	 * <p>
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
+	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * in the same order as the corresponding calls to the asynchronous send
+	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
-	 * thread that is calling the asynchronous send method.
+	 * thread that is calling the asynchronous <tt>send</tt> method.
 	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
@@ -649,11 +684,22 @@ public interface MessageProducer extends AutoCloseable {
 	 * calling thread and what, if anything, is performed asynchronously, so
 	 * long as it satisfies the requirements given below:
 	 * <p>
-	 * <b>Quality of service</b>: After the send operation is complete, which
-	 * means that the message has been successfully sent with the same degree of
-	 * confidence as if a normal synchronous send had been performed, the JMS
-	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <b>Quality of service</b>: After the send operation has completed
+	 * successfully, which means that the message has been successfully sent
+	 * with the same degree of confidence as if a normal synchronous send had
+	 * been performed, the JMS provider must invoke the
+	 * <tt>CompletionListener</tt>'s <tt>onCompletion</tt> method. The
 	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Exceptions</b>: If an exception is encountered during the call to the
+	 * <tt>send</tt> method then an appropriate exception should be thrown in
+	 * the thread that is calling the <tt>send</tt> method. In this case the JMS provider
+	 * must not invoke the <tt>CompletionListener</tt>'s <tt>onCompletion</tt>
+	 * or <tt>onException</tt> method. If an exception is encountered which
+	 * cannot be thrown in the thread that is calling the <tt>send</tt> method then the
+	 * JMS provider must call the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method. In both cases if an exception occurs it is
+	 * undefined whether or not the message was successfully sent.
 	 * <p>
 	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
 	 * send multiple messages then JMS message ordering requirements must be
@@ -662,16 +708,26 @@ public interface MessageProducer extends AutoCloseable {
 	 * wait for an asynchronous send to complete before sending the next
 	 * message.
 	 * <p>
-	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
-	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <b>Close, commit or rollback</b>: If the <tt>close</tt> method is called
+	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
+	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
+	 * send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * the object and returning. If the session is transacted (uses a local
+	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before performing the commit or rollback. If the <tt>close</tt>
-	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
-	 * or <tt>Connection</tt> then the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before closing the object and returning.
+	 * incomplete send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * the commit or rollback. Incomplete sends should be allowed to complete
+	 * normally unless an error occurs.
 	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>Connection</tt>, <tt>Session</tt> or
+	 * <tt>MessageProducer</tt> or call <tt>commit</tt> or <tt>rollback</tt> on
+	 * its own <tt>Session</tt>. Doing so will cause the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
+	 * <tt>IllegalStateException</tt>.
+	 * <p> 
 	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
 	 * permitted in a Java EE EJB or web container. If the application component
 	 * violates this restriction this method may throw a JMSException.
@@ -699,12 +755,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * <p>
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
-	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
-	 * performed in the same order as the corresponding calls to the
-	 * asynchronous send method.
-	 * <p>
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
+	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * in the same order as the corresponding calls to the asynchronous send
+	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
-	 * thread that is calling the asynchronous send method.
+	 * thread that is calling the asynchronous <tt>send</tt> method.
 	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
@@ -806,11 +862,23 @@ public interface MessageProducer extends AutoCloseable {
 	 * calling thread and what, if anything, is performed asynchronously, so
 	 * long as it satisfies the requirements given below:
 	 * <p>
-	 * <b>Quality of service</b>: After the send operation is complete, which
-	 * means that the message has been successfully sent with the same degree of
-	 * confidence as if a normal synchronous send had been performed, the JMS
-	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <b>Quality of service</b>: After the send operation has completed
+	 * successfully, which means that the message has been successfully sent
+	 * with the same degree of confidence as if a normal synchronous send had
+	 * been performed, the JMS provider must invoke the
+	 * <tt>CompletionListener</tt>'s <tt>onCompletion</tt> method. The
 	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Exceptions</b>: If an exception is encountered during the call to the
+	 * <tt>send</tt> method then an appropriate exception should be thrown in
+	 * the thread that is calling the <tt>send</tt> method. In this case the JMS
+	 * provider must not invoke the <tt>CompletionListener</tt>'s
+	 * <tt>onCompletion</tt> or <tt>onException</tt> method. If an exception is
+	 * encountered which cannot be thrown in the thread that is calling the
+	 * <tt>send</tt> method then the JMS provider must call the
+	 * <tt>CompletionListener</tt>'s <tt>onException</tt> method. In both cases
+	 * if an exception occurs it is undefined whether or not the message was
+	 * successfully sent.
 	 * <p>
 	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
 	 * send multiple messages then JMS message ordering requirements must be
@@ -819,15 +887,25 @@ public interface MessageProducer extends AutoCloseable {
 	 * wait for an asynchronous send to complete before sending the next
 	 * message.
 	 * <p>
-	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
-	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <b>Close, commit or rollback</b>: If the <tt>close</tt> method is called
+	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
+	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
+	 * send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * the object and returning. If the session is transacted (uses a local
+	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before performing the commit or rollback. If the <tt>close</tt>
-	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
-	 * or <tt>Connection</tt> then the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before closing the object and returning.
+	 * incomplete send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * the commit or rollback. Incomplete sends should be allowed to complete
+	 * normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>Connection</tt>, <tt>Session</tt> or
+	 * <tt>MessageProducer</tt> or call <tt>commit</tt> or <tt>rollback</tt> on
+	 * its own <tt>Session</tt>. Doing so will cause the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
+	 * <tt>IllegalStateException</tt>.
 	 * <p>
 	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
 	 * permitted in a Java EE EJB or web container. If the application component
@@ -856,12 +934,11 @@ public interface MessageProducer extends AutoCloseable {
 	 * <p>
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
-	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
-	 * performed in the same order as the corresponding calls to the
-	 * asynchronous send method.
-	 * <p>
-	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
-	 * thread that is calling the asynchronous send method.
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
+	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * in the same order as the corresponding calls to the asynchronous send
+	 * method. A JMS provider must not invoke the <tt>CompletionListener</tt>
+	 * from the thread that is calling the asynchronous <tt>send</tt> method.
 	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
@@ -888,13 +965,13 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if an internal error occurs 
+	 *                if an internal error occurs
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with an invalid destination
 	 * @exception java.lang.IllegalArgumentException
-	 * 				  if the specified <code>CompletionListener</code> is null
+	 *                if the specified <code>CompletionListener</code> is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> that specified a destination
@@ -956,11 +1033,22 @@ public interface MessageProducer extends AutoCloseable {
 	 * calling thread and what, if anything, is performed asynchronously, so
 	 * long as it satisfies the requirements given below:
 	 * <p>
-	 * <b>Quality of service</b>: After the send operation is complete, which
-	 * means that the message has been successfully sent with the same degree of
-	 * confidence as if a normal synchronous send had been performed, the JMS
-	 * provider must invoke the <tt>CompletionListener</tt>. The
+	 * <b>Quality of service</b>: After the send operation has completed
+	 * successfully, which means that the message has been successfully sent
+	 * with the same degree of confidence as if a normal synchronous send had
+	 * been performed, the JMS provider must invoke the
+	 * <tt>CompletionListener</tt>'s <tt>onCompletion</tt> method. The
 	 * <tt>CompletionListener</tt> must not be invoked earlier than this.
+	 * <p>
+	 * <b>Exceptions</b>: If an exception is encountered during the call to the
+	 * <tt>send</tt> method then an appropriate exception should be thrown in
+	 * the thread that is calling the <tt>send</tt> method. In this case the JMS provider
+	 * must not invoke the <tt>CompletionListener</tt>'s <tt>onCompletion</tt>
+	 * or <tt>onException</tt> method. If an exception is encountered which
+	 * cannot be thrown in the thread that is calling the <tt>send</tt> method then the
+	 * JMS provider must call the <tt>CompletionListener</tt>'s
+	 * <tt>onException</tt> method. In both cases if an exception occurs it is
+	 * undefined whether or not the message was successfully sent.
 	 * <p>
 	 * <b>Message order</b>: If the same <tt>MessageProducer</tt> is used to
 	 * send multiple messages then JMS message ordering requirements must be
@@ -969,15 +1057,25 @@ public interface MessageProducer extends AutoCloseable {
 	 * wait for an asynchronous send to complete before sending the next
 	 * message.
 	 * <p>
-	 * <b>Close, commit or rollback</b>: If the session is transacted (uses a
-	 * local transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
+	 * <b>Close, commit or rollback</b>: If the <tt>close</tt> method is called
+	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
+	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
+	 * send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * the object and returning. If the session is transacted (uses a local
+	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before performing the commit or rollback. If the <tt>close</tt>
-	 * method is called on the <tt>MessageProducer</tt> or its <tt>Session</tt>
-	 * or <tt>Connection</tt> then the JMS provider must block until any
-	 * incomplete send operations have been completed and all callbacks have
-	 * returned before closing the object and returning.
+	 * incomplete send operations have been completed and all
+	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * the commit or rollback. Incomplete sends should be allowed to complete
+	 * normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>Connection</tt>, <tt>Session</tt> or
+	 * <tt>MessageProducer</tt> or call <tt>commit</tt> or <tt>rollback</tt> on
+	 * its own <tt>Session</tt>. Doing so will cause the <tt>close</tt>,
+	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
+	 * <tt>IllegalStateException</tt>.
 	 * <p>
 	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
 	 * permitted in a Java EE EJB or web container. If the application component
@@ -1006,12 +1104,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * <p>
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
-	 * at a time. For a given <tt>MessageProducer</tt>, callbacks will be
-	 * performed in the same order as the corresponding calls to the
-	 * asynchronous send method.
-	 * <p>
+	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
+	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * in the same order as the corresponding calls to the asynchronous send
+	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
-	 * thread that is calling the asynchronous send method.
+	 * thread that is calling the asynchronous <tt>send</tt> method.
 	 * <p>
 	 * <b>Restrictions on the use of the Message object</b>: Applications which
 	 * perform an asynchronous send must take account of the restriction that a
@@ -1045,7 +1143,7 @@ public interface MessageProducer extends AutoCloseable {
 	 *            has completed
 	 * 
 	 * @exception JMSException
-	 *                if an internal error occurs 
+	 *                if an internal error occurs
 	 * @exception MessageFormatException
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
@@ -1056,7 +1154,7 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if a client uses this method with a
 	 *                <CODE>MessageProducer</CODE> that specified a destination
 	 *                at creation time.
-	 *                
+	 * 
 	 * @see javax.jms.Session#createProducer
 	 * @see javax.jms.CompletionListener
 	 * @since 2.0

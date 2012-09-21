@@ -73,7 +73,8 @@ public interface CompletionListener {
 
 	/**
 	 * Notifies user that the specified exception was thrown while attempting to
-	 * send the specified message
+	 * send the specified message. If an exception occurs it is undefined
+	 * whether or not the message was successfully sent.
 	 * 
 	 * @param message
 	 *            the message that was sent.

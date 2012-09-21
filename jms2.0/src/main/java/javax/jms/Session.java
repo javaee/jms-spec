@@ -374,17 +374,32 @@ public interface Session extends Runnable, AutoCloseable {
     getAcknowledgeMode() throws JMSException;
 
 
-    /** Commits all messages done in this transaction and releases any locks
-      * currently held.
-      *
-      * @exception JMSException if the JMS provider fails to commit the
-      *                         transaction due to some internal error.
-      * @exception TransactionRolledBackException if the transaction
-      *                         is rolled back due to some internal error
-      *                         during commit.
-      * @exception IllegalStateException if the method is not called by a 
-      *                         transacted session.
-      */
+    /**
+	 * Commits all messages done in this transaction and releases any locks
+	 * currently held.
+	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>Session</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>commit</tt> on its own <tt>Session</tt>. Doing so will cause an
+	 * <tt>IllegalStateException</tt> to be thrown.
+	 * <p>
+	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                <ul>
+	 *                <li>the session is not using a local transaction
+	 *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>Session</tt></li>
+	 *                </ul>
+	 * @exception JMSException
+	 *                if the JMS provider fails to commit the transaction due to
+	 *                some internal error.
+	 * @exception TransactionRolledBackException
+	 *                if the transaction is rolled back due to some internal
+	 *                error during commit.
+	 */
 
     void
     commit() throws JMSException;
@@ -392,11 +407,24 @@ public interface Session extends Runnable, AutoCloseable {
 
     /** Rolls back any messages done in this transaction and releases any locks 
       * currently held.
-      *
+	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>Session</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	  * A <tt>CompletionListener</tt> callback method must not call
+	  * <tt>commit</tt> on its own <tt>Session</tt>. Doing so will cause an
+	  * <tt>IllegalStateException</tt> to be thrown.
+	  * <p>
+	  * 
+	  * @exception IllegalStateRuntimeException
+	  *                <ul>
+	  *                <li>the session is not using a local transaction
+	  *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>Session</tt></li>
+	  *                </ul>
       * @exception JMSException if the JMS provider fails to roll back the
       *                         transaction due to some internal error.
-      * @exception IllegalStateException if the method is not called by a 
-      *                         transacted session.
       *                                     
       */
 
@@ -404,45 +432,67 @@ public interface Session extends Runnable, AutoCloseable {
     rollback() throws JMSException;
 
 
-    /** Closes the session.
-      *
-      * <P>Since a provider may allocate some resources on behalf of a session 
-      * outside the JVM, clients should close the resources when they are not 
-      * needed. 
-      * Relying on garbage collection to eventually reclaim these resources 
-      * may not be timely enough.
-      *
-      * <P>There is no need to close the producers and consumers
-      * of a closed session. 
-      *
-      * <P> This call will block until a <CODE>receive</CODE> call or message 
-      * listener in progress has completed. A blocked message consumer
-      * <CODE>receive</CODE> call returns <CODE>null</CODE> when this session 
-      * is closed.
-      * <p>
-      * A message listener must not attempt to close its own session as this 
-      * would lead to deadlock. The JMS provider must detect this and throw a 
-      * javax.jms.IllegalStateException.
-      * <p>
-      * For the avoidance of doubt, if an exception listener for this session's connection 
-      * is running when <code>close</code> is invoked, there is no requirement for 
-      * the <code>close</code> call to wait until the exception listener has returned
-      * before it may return. 
-      * 
-      * <P>Closing a transacted session must roll back the transaction
-      * in progress.
-      * 
-      * <P>This method is the only <CODE>Session</CODE> method that can 
-      * be called concurrently. 
-      *
-      * <P>Invoking any other <CODE>Session</CODE> method on a closed session 
-      * must throw a <CODE>JMSException.IllegalStateException</CODE>. Closing a 
-      * closed session must <I>not</I> throw an exception.
-      * 
-      * @exception JMSException if the JMS provider fails to close the
-      *                         session due to some internal error.
-      *                         
-      */
+    /**
+	 * Closes the session.
+	 * 
+	 * <P>
+	 * Since a provider may allocate some resources on behalf of a session
+	 * outside the JVM, clients should close the resources when they are not
+	 * needed. Relying on garbage collection to eventually reclaim these
+	 * resources may not be timely enough.
+	 * 
+	 * <P>
+	 * There is no need to close the producers and consumers of a closed
+	 * session.
+	 * 
+	 * <P>
+	 * This call will block until a <CODE>receive</CODE> call or message
+	 * listener in progress has completed. A blocked message consumer
+	 * <CODE>receive</CODE> call returns <CODE>null</CODE> when this session is
+	 * closed.
+	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>Session</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	 * For the avoidance of doubt, if an exception listener for this session's
+	 * connection is running when <code>close</code> is invoked, there is no
+	 * requirement for the <code>close</code> call to wait until the exception
+	 * listener has returned before it may return.
+	 * 
+	 * <P>
+	 * Closing a transacted session must roll back the transaction in progress.
+	 * 
+	 * <P>
+	 * This method is the only <CODE>Session</CODE> method that can be called
+	 * concurrently.
+	 * <p>
+	 * A <tt>MessageListener</tt> must not attempt to close its own
+	 * <tt>Session</tt> as this would lead to deadlock. The JMS provider must
+	 * detect this and throw a <tt>IllegalStateException</tt>.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>Session</tt>. Doing so will cause an
+	 * <tt>IllegalStateException</tt> to be thrown.
+	 * <p>
+	 * Invoking any other <CODE>Session</CODE> method on a closed session must
+	 * throw a <CODE>IllegalStateException</CODE>. Closing a closed
+	 * session must <I>not</I> throw an exception.
+	 * 
+	 * @exception IllegalStateException
+	 *                <ul>
+	 *                <li>this method has been called by a <tt>MessageListener
+	 *                </tt> on its own <tt>Session</tt></li> 
+	 *                <li>this method has
+	 *                been called by a <tt>CompletionListener</tt> callback
+	 *                method on its own <tt>Session</tt></li>
+	 *                </ul>
+	 * @exception JMSException
+	 *                if the JMS provider fails to close the session due to some
+	 *                internal error.
+	 * 
+	 */
 
     void
     close() throws JMSException;

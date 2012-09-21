@@ -394,7 +394,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * A message listener must not attempt to stop its own JMSContext as this
 	 * would lead to deadlock. The JMS provider must detect this and throw a
-	 * javax.jms.IllegalStateRuntimeException.
+	 * <tt>IllegalStateRuntimeException</tt>
 	 * <p>
 	 * For the avoidance of doubt, if an exception listener for the JMSContext's
 	 * connection is running when <code>stop</code> is invoked, there is no
@@ -409,6 +409,9 @@ public interface JMSContext extends AutoCloseable {
 	 * container-managed (injected). Doing so will cause a
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                this method has been called by a <tt>MessageListener</tt>
+	 *                on its own <tt>JMSContext</tt>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to stop message delivery for one
 	 *                of the following reasons:
@@ -491,9 +494,10 @@ public interface JMSContext extends AutoCloseable {
 	 * connection and its sessions must remain available to those listeners
 	 * until they return control to the JMS provider.
 	 * <p>
-	 * A message listener must not attempt to close its own JMSContext as this
-	 * would lead to deadlock. The JMS provider must detect this and throw a
-	 * javax.jms.IllegalStateRuntimeException.
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>JMSContext</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
 	 * <p>
 	 * For the avoidance of doubt, if an exception listener for the JMSContext's
 	 * connection is running when <code>close</code> is invoked, there is no
@@ -508,17 +512,31 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * Closing a connection does NOT force an acknowledgment of
 	 * client-acknowledged sessions.
-	 * 
 	 * <P>
 	 * Invoking the <CODE>acknowledge</CODE> method of a received message from a
 	 * closed connection's session must throw an
 	 * <CODE>IllegalStateException</CODE>. Closing a closed connection must NOT
 	 * throw an exception.
 	 * <p>
+	 * A <tt>MessageListener</tt> must not attempt to close its own
+	 * <tt>JMSContext</tt> as this would lead to deadlock. The JMS provider must
+	 * detect this and throw a <tt>IllegalStateRuntimeException</tt>.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>close</tt> on its own <tt>JMSContext</tt>. Doing so will cause an
+	 * <tt>IllegalStateRuntimeException</tt> to be thrown.
+	 * <p>
 	 * This method must not be used if the <code>JMSContext</code> is
 	 * container-managed (injected). Doing so will cause a
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                <ul>
+	 *                <li>this method has been called by a <tt>MessageListener
+	 *                </tt> on its own <tt>JMSContext</tt></li> <li>this method
+	 *                has been called by a <tt>CompletionListener</tt> callback
+	 *                method on its own <tt>JMSContext</tt></li>
+	 *                </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to close the
 	 *                <code>JMSContext</code> for one of the following reasons:
@@ -772,10 +790,28 @@ public interface JMSContext extends AutoCloseable {
 	 * Commits all messages done in this transaction and releases any locks
 	 * currently held.
 	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>JMSContext</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>commit</tt> on its own <tt>JMSContext</tt>. Doing so will cause an
+	 * <tt>IllegalStateRuntimeException</tt> to be thrown.
+	 * <p>
 	 * This method must not be used if the <code>JMSContext</code> is
 	 * container-managed (injected). Doing so will cause a
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                <ul>
+	 *                <li>the <tt>JMSContext</tt>'s session is not using a local
+	 *                transaction <li>this method has been called by a <tt>
+	 *                MessageListener</tt> on its own <tt>JMSContext</tt></li>
+	 *                <li>this method has been called by a <tt>
+	 *                CompletionListener</tt> callback method on its own <tt>
+	 *                JMSContext</tt></li>
+	 *                </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to commit the transaction for
 	 *                one of the following reasons:
@@ -786,8 +822,6 @@ public interface JMSContext extends AutoCloseable {
 	 * @exception TransactionRolledBackRuntimeException
 	 *                if the transaction is rolled back due to some internal
 	 *                error during commit.
-	 * @exception IllegalStateRuntimeException
-	 *                if the method is not called by a transacted session.
 	 * 
 	 */
 
@@ -797,10 +831,25 @@ public interface JMSContext extends AutoCloseable {
 	 * Rolls back any messages done in this transaction and releases any locks
 	 * currently held.
 	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>JMSContext</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
+	 * A <tt>CompletionListener</tt> callback method must not call
+	 * <tt>rollback</tt> on its own <tt>JMSContext</tt>. Doing so will cause an
+	 * <tt>IllegalStateRuntimeException</tt> to be thrown.
+	 * <p>
 	 * This method must not be used if the <code>JMSContext</code> is
 	 * container-managed (injected). Doing so will cause a
 	 * <code>JMSRuntimeException</code> to be thrown.
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                <ul>
+	 *                <li>the <tt>JMSContext</tt>'s session is not using a local transaction
+	 *                <li>this method has been called by a <tt>MessageListener</tt> on its own <tt>JMSContext</tt></li>
+	 *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>JMSContext</tt></li>
+	 *                </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to roll back the transaction for
 	 *                one of the following reasons:
@@ -808,8 +857,6 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li> an internal error has occurred. <li> the <code>
 	 *                JMSContext</code> is container-managed (injected)
 	 *                </ul>
-	 * @exception IllegalStateRuntimeException
-	 *                if the method is not called by a transacted session.
 	 * 
 	 */
 	void rollback();

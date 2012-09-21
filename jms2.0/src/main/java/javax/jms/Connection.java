@@ -496,57 +496,65 @@ public interface Connection extends AutoCloseable {
     start() throws JMSException;
 
  
-    /** Temporarily stops a connection's delivery of incoming messages.
-      * Delivery can be restarted using the connection's <CODE>start</CODE>
-      * method. When the connection is stopped,
-      * delivery to all the connection's message consumers is inhibited:
-      * synchronous receives block, and messages are not delivered to message
-      * listeners.
-      *
-      * <P>This call blocks until receives and/or message listeners in progress
-      * have completed.
-      *
-      * <P>Stopping a connection has no effect on its ability to send messages.
-      * A call to <CODE>stop</CODE> on a connection that has already been
-      * stopped is ignored.
-      *
-      * <P>A call to <CODE>stop</CODE> must not return until delivery of messages
-      * has paused. This means that a client can rely on the fact that none of 
-      * its message listeners will be called and that all threads of control 
-      * waiting for <CODE>receive</CODE> calls to return will not return with a 
-      * message until the
-      * connection is restarted. The receive timers for a stopped connection
-      * continue to advance, so receives may time out while the connection is
-      * stopped.
-      * 
-      * <P>If message listeners are running when <CODE>stop</CODE> is invoked, 
-      * the <CODE>stop</CODE> call must
-      * wait until all of them have returned before it may return. While these
-      * message listeners are completing, they must have the full services of the
-      * connection available to them.
-      * <p>
-      * A message listener must not attempt to stop its own connection as this 
-      * would lead to deadlock. The JMS provider must detect this and throw a 
-      * javax.jms.IllegalStateException.
-      * <p>
-      * For the avoidance of doubt, if an exception listener for this connection 
-      * is running when <code>stop</code> is invoked, there is no requirement for 
-      * the <code>stop</code> call to wait until the exception listener has returned
-      * before it may return. 
-     * <p>
-     * This method must not be used in a Java EE web or EJB application. 
-     * Doing so may cause a <code>JMSException</code> to be thrown though this is not guaranteed.
-     * 
-     * @exception JMSException if the JMS provider fails to stop message delivery
-     *                         for one of the following reasons:
-     *                         <ul>
-     *                         <li>an internal error has occurred or  
-     *                         <li>this method has been called in a Java EE web or EJB application 
-     *                         (though it is not guaranteed that an exception is thrown in this case)
-     *                         </ul> 
-      *
-      * @see javax.jms.Connection#start
-      */
+    /**
+	 * Temporarily stops a connection's delivery of incoming messages. Delivery
+	 * can be restarted using the connection's <CODE>start</CODE> method. When
+	 * the connection is stopped, delivery to all the connection's message
+	 * consumers is inhibited: synchronous receives block, and messages are not
+	 * delivered to message listeners.
+	 * 
+	 * <P>
+	 * This call blocks until receives and/or message listeners in progress have
+	 * completed.
+	 * 
+	 * <P>
+	 * Stopping a connection has no effect on its ability to send messages. A
+	 * call to <CODE>stop</CODE> on a connection that has already been stopped
+	 * is ignored.
+	 * 
+	 * <P>
+	 * A call to <CODE>stop</CODE> must not return until delivery of messages
+	 * has paused. This means that a client can rely on the fact that none of
+	 * its message listeners will be called and that all threads of control
+	 * waiting for <CODE>receive</CODE> calls to return will not return with a
+	 * message until the connection is restarted. The receive timers for a
+	 * stopped connection continue to advance, so receives may time out while
+	 * the connection is stopped.
+	 * 
+	 * <P>
+	 * If message listeners are running when <CODE>stop</CODE> is invoked, the
+	 * <CODE>stop</CODE> call must wait until all of them have returned before
+	 * it may return. While these message listeners are completing, they must
+	 * have the full services of the connection available to them.
+	 * <p>
+	 * A message listener must not attempt to stop its own connection as this
+	 * would lead to deadlock. The JMS provider must detect this and throw a
+	 * <tt>IllegalStateException</tt>.
+	 * <p>
+	 * For the avoidance of doubt, if an exception listener for this connection
+	 * is running when <code>stop</code> is invoked, there is no requirement for
+	 * the <code>stop</code> call to wait until the exception listener has
+	 * returned before it may return.
+	 * <p>
+	 * This method must not be used in a Java EE web or EJB application. Doing
+	 * so may cause a <code>JMSException</code> to be thrown though this is not
+	 * guaranteed.
+	 * 
+	 * @exception IllegalStateException
+	 *                this method has been called by a <tt>MessageListener</tt>
+	 *                on its own <tt>Connection</tt>
+	 * @exception JMSException
+	 *                if the JMS provider fails to stop message delivery for one
+	 *                of the following reasons:
+	 *                <ul>
+	 *                <li>an internal error has occurred or <li>this method has
+	 *                been called in a Java EE web or EJB application (though it
+	 *                is not guaranteed that an exception is thrown in this
+	 *                case)
+	 *                </ul>
+	 * 
+	 * @see javax.jms.Connection#start
+	 */
 
     void
     stop() throws JMSException;
@@ -577,11 +585,12 @@ public interface Connection extends AutoCloseable {
       * <CODE>close</CODE> is invoked, all the facilities of the connection and 
       * its sessions must remain available to those listeners until they return 
       * control to the JMS provider. 
-      * <p>
-      * A message listener must not attempt to close its own connection as this 
-      * would lead to deadlock. The JMS provider must detect this and throw a 
-      * javax.jms.IllegalStateException.
-      * <p>
+	 * <p>
+	 * This method must not return until any incomplete asynchronous send
+	 * operations for this <tt>Connection</tt> have been completed and any
+	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
+	 * should be allowed to complete normally unless an error occurs.
+	 * <p>
       * For the avoidance of doubt, if an exception listener for this connection 
       * is running when <code>close</code> is invoked, there is no requirement for 
       * the <code>close</code> call to wait until the exception listener has returned
@@ -593,15 +602,30 @@ public interface Connection extends AutoCloseable {
       * <CODE>commit</CODE> and <CODE>rollback</CODE> methods are
       * not used and the result of a closed session's work is determined
       * later by the transaction manager.
-      *
       * Closing a connection does NOT force an 
-      * acknowledgment of client-acknowledged sessions. 
-      * 
-      * <P>Invoking the <CODE>acknowledge</CODE> method of a received message 
+      * acknowledgment of client-acknowledged sessions.  
+      * <p>
+      * A message listener must not attempt to close its own connection as this 
+      * would lead to deadlock. The JMS provider must detect this and throw a 
+      * <tt>IllegalStateException</tt>.
+	  * <p>
+ 	  * A <tt>CompletionListener</tt> callback method must not call
+ 	  * <tt>close</tt> on its own <tt>Connection</tt>. Doing so will cause an
+  	  * <tt>IllegalStateException</tt> to be thrown.
+	  * <p>
+      * Invoking the <CODE>acknowledge</CODE> method of a received message 
       * from a closed connection's session must throw an 
       * <CODE>IllegalStateException</CODE>.  Closing a closed connection must 
       * NOT throw an exception.
-      *  
+      * 
+	  * @exception IllegalStateException
+	  *                <ul>
+	  *                <li>this method has been called by a <tt>MessageListener
+	  *                </tt> on its own <tt>Connection</tt></li> 
+	  *                <li>this method has
+	  *                been called by a <tt>CompletionListener</tt> callback
+	  *                method on its own <tt>Connection</tt></li>
+	  *                </ul>
       * @exception JMSException if the JMS provider fails to close the
       *                         connection due to some internal error. For 
       *                         example, a failure to release resources
