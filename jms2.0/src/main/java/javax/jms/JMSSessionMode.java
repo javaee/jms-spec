@@ -50,7 +50,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * This optional annotation may be used to specify the session mode
+ * This annotation may be used to specify the session mode
  * to be used when injecting a <code>javax.jms.JMSContext</code> object.
  * The meaning and possible values of session mode are the same as for the 
  * <code>ConnectionFactory</code> method <code>createContext(int sessionMode)</code>.
@@ -61,7 +61,7 @@ import java.lang.annotation.Target;
 @Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface JMSSessionMode {
     /**
-     * (Optional) Specifies the session mode used when injecting a <code>javax.jms.JMSContext</code> object.
+     * Specifies the session mode used when injecting a <code>javax.jms.JMSContext</code> object.
      */
     int value() default JMSContext.AUTO_ACKNOWLEDGE;
 }

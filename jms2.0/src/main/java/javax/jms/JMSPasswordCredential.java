@@ -50,7 +50,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * This optional annotation may be used to specify the userName and password
+ * This annotation may be used to specify the userName and password
  * to be used when injecting a <code>javax.jms.JMSContext</code> object.
  * 
  * @see javax.jms.ConnectionFactory#createContext(java.lang.String, java.lang.String)

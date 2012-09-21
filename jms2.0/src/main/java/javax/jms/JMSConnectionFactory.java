@@ -50,14 +50,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * This optional annotation may be used to specify the JNDI lookup name of a <code>javax.jms.ConnectionFactory</code>
+ * This annotation may be used to specify the JNDI lookup name of a <code>javax.jms.ConnectionFactory</code>
  * to be used when injecting a <code>javax.jms.JMSContext</code> object.
  */
 @Retention(RUNTIME)
 @Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface JMSConnectionFactory {
     /**
-     * (Optional) Specifies the JNDI lookup name of a <code>javax.jms.ConnectionFactory</code>
+     * Specifies the JNDI lookup name of a <code>javax.jms.ConnectionFactory</code>
      * to be used when injecting a <code>javax.jms.JMSContext</code> object.
      */
     String value() default "";
