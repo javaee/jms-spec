@@ -388,7 +388,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <tt>IllegalStateException</tt> to be thrown.
 	 * <p>
 	 * 
-	 * @exception IllegalStateRuntimeException
+	 * @exception IllegalStateException
 	 *                <ul>
 	 *                <li>the session is not using a local transaction
 	 *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>Session</tt></li>
@@ -418,7 +418,7 @@ public interface Session extends Runnable, AutoCloseable {
 	  * <tt>IllegalStateException</tt> to be thrown.
 	  * <p>
 	  * 
-	  * @exception IllegalStateRuntimeException
+	  * @exception IllegalStateException
 	  *                <ul>
 	  *                <li>the session is not using a local transaction
 	  *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>Session</tt></li>
