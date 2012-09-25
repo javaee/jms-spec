@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Using the JMS 2.0 simplified API and injection<br> to send a message (JavaEESenderNewCDI)</h1>
+        <p>Here is a simple Java EE session bean which demonstrates how to use the JMS 2.0 simplified API and an injected <tt>JMSContext</tt> to send a message.
+        <pre>
+@Stateless
+@LocalBean
+public class JavaEESenderNewCDI {
+
+    @Inject private JMSContext context;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue inboundQueue;
+               
+    public void sendMessageNewCDI(String payload) {
+        try {
+            context.createProducer().send(inboundQueue, payload);
+        } catch (JMSRuntimeException ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+        </pre>
+        <p>This example shows:
+        <ul>
+        <li>Use of an injected <tt>JMSContext</tt> for sending a message instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
+        <li>No need to create the <tt>JMSContext</tt> - it is injected automatically by the container</li>
+        <li>No need to call <tt>close</tt> on the <tt>JMSContext</tt> (or use a a <tt>try...finally</tt> block) - it is closed automatically by the container (at end of transaction)</li>
+        <li>No need to create a <tt>TextMessage</tt> object: message payload is passed directly to the <tt>send</tt> method</li>
+        <li>Injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container</li>
+        </ul>
+        <p><a href="JavaEESyncReceiverOld.html">Now examine using the JMS 1.1-style API to <i>receive</i> a message</a>
+        <p><a href="Servlet1?option=JavaEESenderNewCDI">Run this example</a>
+        <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
+    </body>
+</html>

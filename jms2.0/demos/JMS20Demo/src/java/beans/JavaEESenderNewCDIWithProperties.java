@@ -57,8 +57,10 @@ public class JavaEESenderNewCDIWithProperties {
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
+    
+    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
 
-    public void sendMessageNew(String payload) {
+    public void sendMessageNewCDIWithProperties(String payload) {
         context.createProducer().setPriority(1).setProperty("foo","987654").send(inboundQueue, payload);
     }
 }

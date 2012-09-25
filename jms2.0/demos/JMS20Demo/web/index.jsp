@@ -9,21 +9,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JMS 2.0 in Java EE 7 demonstration</title>
     </head>
     <body>
-        <h1>Sending a message (Java EE)</h1>
-        <p><a href="Servlet1?option=JavaEESenderOld">Example using the standard API (JavaEESenderOld) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESenderNew">Example using the simplified API (JavaEESenderNew) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESenderNewCDI">Example using the simplified API and injection (JavaEESenderNewCDI)</a>
-        <h1>Sending a message with delivery options and properties(Java EE)</h1>
-        <p><a href="Servlet1?option=JavaEESenderOldWithProperties">Example using the standard API (JavaEESenderOldWithProperties) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESenderNewWithProperties">Example using the simplified API (JavaEESenderNewWithProperties) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESenderNewCDIWithProperties">Example using the simplified API and injection (JavaEESenderNewCDIWithProperties)</a>
-        <h1>Receiving a message synchronously (Java EE)</h1>
-        <p><a href="Servlet1?option=JavaEESyncReceiverOld">Example using the standard API (JavaEESyncReceiverOld) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNew">Example using the simplified API (JavaEESyncReceiverNew) - Java EE 6 only</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNewCDI">Example using the simplified API and injection (JavaEESyncReceiverNewCDI)</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNewCDIWithProperties">Example using the simplified API and injection (JavaEESyncReceiverNewCDIWithProperties)</a>
-    </body>
+        <h1>JMS 2.0 in Java EE 7 demonstration</h1>
+        <p>This demonstration allows you to examine the new JMS 2.0 API for sending and receiving messages
+            and see how it compares with the existing JMS 1.1 API.
+        <h2>Sending a message (Java EE)</h1>
+        <p>Here are three very simple examples of Java EE applications which send a message.<br> 
+            Follow the links to view and run code examples.
+        <p><a href="JavaEESenderOld.html">Using the JMS 1.1-style API to send a message (JavaEESenderOld)</a>
+        <p><a href="JavaEESenderNew.html">Using the JMS 2.0 simplified API to send a message (JavaEESenderNew)</a>
+        <p><a href="JavaEESenderNewCDI.html">Using the JMS 2.0 simplified API and injection to send a message (JavaEESenderNewCDI)</a>
+        <h2>Receiving a message synchronously (Java EE)</h1>
+        <p>Here are three very simple examples of Java EE applications which synchronously receive a message. <br>
+            Follow the links to view and run code examples.<br>
+            Before running them, use the previous examples to put a few messages on the queue first.
+        <p><a href="JavaEESyncReceiverOld.html">Using the JMS 1.1-style API to receive a message (JavaEESyncReceiverOld)</a>
+        <p><a href="JavaEESyncReceiverNew.html">Using the JMS 2.0 simplified API to receive a message (JavaEESyncReceiverNew)</a>
+        <p><a href="JavaEESyncReceiverNewCDI.html">Using the JMS 2.0 simplified API and injection to receive a message  (JavaEESyncReceiverNewCDI)</a>
+        <br>
+        <h2>Sending a message, setting delivery options and message properties(Java EE)</h1>
+        <p>Here are two slightly more complex examples of Java EE applications which
+            set message delivery options and message properties before sending the message.<br> 
+            Follow the links to view and run code examples.
+        <p><a href="JavaEESenderOldWithProperties.html">Using the JMS 1.1-style API to send a message, setting delivery options and message properties  (JavaEESenderOldWithProperties)</a>
+        <p><a href="JavaEESenderNewCDIWithProperties.html">Using the JMS 2.0 simplified API with injection to send a message, setting delivery options and message properties (JavaEESenderNewCDIWithProperties)</a>
+        <h2>Receiving a message synchronously, displaying delivery options and message properties (Java EE)</h1>
+        <p>Here is an example which demonstrates how to extract message delivery options and message proprtties from the received message.<br>
+            Follow the links to view and run code it.<br>
+            Before running it, use the previous examples to put a few messages on the queue first.            
+        <p><a href="JavaEESyncReceiverNewCDIWithProperties.html">Using the JMS 2.0 simplified API and injection to receive a message, displaying delivery options and message properties (JavaEESyncReceiverNewCDIWithProperties)</a>
+        <br>
+        <h2>Note</h2>
+        <p>
+        GlassFish 4.0 currently uses Java SE 6, so these examples do not make use of the Java SE 7 AutoCloseable API.
+        </body>
 </html>

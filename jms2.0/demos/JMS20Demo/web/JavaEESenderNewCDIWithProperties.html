@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Using the JMS 2.0 simplified API with injection<br> to send a message,<br>setting delivery options and message properties (JavaEESenderNewCDIWithProperties)</h1>
+        <p>Here is a simple Java EE session bean which extends the earlier example to demonstrate how to use the JMS 2.0 simplified API and an injected <tt>JMSContext</tt> to send a message
+        whilst setting message delivery options and message properties.        
+        <pre>
+@Stateless
+@LocalBean
+public class JavaEESenderNewCDIWithProperties {
+
+    @Inject
+    @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
+    private JMSContext context;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue inboundQueue;
+    
+    public void sendMessageNewCDIWithProperties(String payload) {
+        context.createProducer().setPriority(1).setProperty("foo","987654").send(inboundQueue, payload);
+    }
+}
+        </pre>
+        <p>This example additionally shows:
+        <ul>
+        <li>Setting message priority to 1 and a message property <tt>foo</tt> to <tt>bar</tt>
+        <li>Set message priority using the <tt>setPriority</tt> on the <tt>JMSProducer</tt></li>
+        <li>Set message property <tt>foo</tt> using the <tt>setProperty</tt> method on the <tt>JMSProducer</tt> (not the <tt>TextMessage</tt>)</li>
+        <li>API allows method calls on the <tt>JMSProducer</tt> to be chained together</li> 
+        <li>Injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container</li>
+        <li>API for setting delivery and message options on a non-injected <tt>JMSContext</tt> is identical (not shown)</li>
+        </ul>
+        <p><a href="JavaEESyncReceiverNewCDIWithProperties.html">Finally examine the JMS 2.0 simplified API and injection to <tt>receive</tt> a message, displaying delivery options and message properties</a>
+        <p><a href="Servlet1?option=JavaEESenderNewCDIWithProperties">Run this example</a>
+        <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
+    </body>
+</html>

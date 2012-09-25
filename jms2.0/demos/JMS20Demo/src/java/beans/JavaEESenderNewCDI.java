@@ -39,26 +39,41 @@
  */
 package beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.jms.JMSConnectionFactory;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+import javax.jms.*;
+
+@JMSDestinationDefinition(className = "javax.jms.Queue", 
+description = "Queue to use in demonstration", 
+resourceAdapterName = "jmsra", 
+name = "java:global/jms/demoQueue",
+destinationName="demoQueue")
+
+@JMSConnectionFactoryDefinition(className="javax.jms.ConnectionFactory",
+description = "ConnectionFactory to use in demonstration", 
+resourceAdapterName="jmsra",
+name="java:global/jms/demoConnectionFactory")
 
 @Stateless
 @LocalBean
 public class JavaEESenderNewCDI {
 
-    @Inject
-    @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
-    private JMSContext context;
+    @Inject private JMSContext context;
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
+    
+    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
            
-    public void sendMessageNew(String payload) {
-        context.createProducer().send(inboundQueue, payload);
+    public void sendMessageNewCDI(String payload) {
+        try {
+            context.createProducer().send(inboundQueue, payload);
+        } catch (JMSRuntimeException ex){
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

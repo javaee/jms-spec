@@ -56,14 +56,16 @@ public class JavaEESyncReceiverNewCDIWithProperties {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
 
-    public String receiveMessageNew() {
+    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
+    
+    public String receiveMessageNewCDIWithProperties() {
         JMSConsumer consumer = context.createConsumer(inboundQueue);
         TextMessage textMessage = (TextMessage) consumer.receive(1000);
         if (textMessage==null){
             return "Received null";
         } else {
             try {
-                return "Received "+textMessage.getText()+" with foo="+textMessage.getStringProperty("foo");
+                return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
             } catch (JMSException ex) {
                 return ex.getMessage();
             }

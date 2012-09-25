@@ -42,28 +42,27 @@ package servlets;
 import beans.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.annotation.jms.JMSConnectionFactoryDefinition;
-import javax.annotation.jms.JMSDestinationDefinition;
+import java.util.Enumeration;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.jms.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Resource definitions for this application 
- */
 @JMSDestinationDefinition(className = "javax.jms.Queue", 
     description = "Queue to use in demonstration", 
     resourceAdapterName = "jmsra", 
     name = "java:global/jms/demoQueue",
     destinationName="demoQueue")
 
-@JMSConnectionFactoryDefinition(className="javax.jms.ConnectionFactory",
-    description = "ConnectionFactory to use in demonstration", 
-    resourceAdapterName="jmsra",
-    name="java:global/jms/demoConnectionFactory")
+@JMSConnectionFactoryDefinition(className= "javax.jms.ConnectionFactory",
+        description="ConnectionFactory to use in demonstration",
+        resourceAdapterName="jmsra",
+        name="java:global/jms/demoConnectionFactory")       
 
 @WebServlet(name = "Servlet1", urlPatterns = {"/Servlet1"})
 public class Servlet1 extends HttpServlet {
@@ -73,7 +72,6 @@ public class Servlet1 extends HttpServlet {
     @EJB private JavaEESenderNewCDI javaEESenderNewCDI;
     
     @EJB private JavaEESenderOldWithProperties javaEESenderOldWithProperties;
-    @EJB private JavaEESenderNewWithProperties javaEESenderNewWithProperties;   
     @EJB private JavaEESenderNewCDIWithProperties javaEESenderNewCDIWithProperties;
     
     @EJB private JavaEESyncReceiverOld javaEESyncReceiverOld;
@@ -81,6 +79,12 @@ public class Servlet1 extends HttpServlet {
     @EJB private JavaEESyncReceiverNewCDI javaEESyncReceiverNewCDI;
     @EJB private JavaEESyncReceiverNewCDIWithProperties javaEESyncReceiverNewCDIWithProperties;
 
+    // Inject a JMSContext to use - this will use the platform default connection factory
+    @Inject JMSContext context;
+    
+    // Inject a Queue object to use
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue demoQueue;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -104,7 +108,7 @@ public class Servlet1 extends HttpServlet {
             out.println("<body>");
             
             option = request.getParameter("option");
-            out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + " with option="+option+"</h1>");
+            out.println("<p>Servlet Servlet1 at " + request.getContextPath () + " with option="+option+"</h1>");
             handle(option,out);
         } catch (Exception e){
             e.printStackTrace(out);
@@ -155,48 +159,82 @@ public class Servlet1 extends HttpServlet {
         String result = "";
         switch(option) {
             case "JavaEESenderOld":
-                javaEESenderOld.sendMessageOld("Hello world: this is JavaEESenderOld");
-                out.println("Message successfully sent");
+                out.println("<h1>Using the JMS 1.1-style API<br> to send a message (JavaEESenderOld)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                javaEESenderOld.sendMessageOld("JavaEESenderOld");
+                out.println("Message successfully sent using JavaEESenderOld<br/>");
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             case "JavaEESenderNew":
-                javaEESenderNew.sendMessageNew("Hello world: this is JavaEESenderNew");
-                out.println("Message successfully sent");
+                out.println("<h1>Using the JMS 2.0 simplified API<br> to send a message (JavaEESenderNew)</h1>");
+                out.println("Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                javaEESenderNew.sendMessageNew("JavaEESenderNew");
+                out.println("Message successfully sent<br/>");
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             case "JavaEESenderNewCDI":
-                javaEESenderNewCDI.sendMessageNew("Hello world: this is JavaEESenderNewCDI");
-                out.println("Message successfully sent");                
+                out.println("<h1>Using the JMS 2.0 simplified API and injection<br> to send a message (JavaEESenderNewCDI)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                javaEESenderNewCDI.sendMessageNewCDI("JavaEESenderNewCDI");
+                out.println("Message successfully sent<br/>");    
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;   
             case "JavaEESenderOldWithProperties":
-                javaEESenderOldWithProperties.sendMessageOld("Hello world: this is JavaEESenderOldWithProperties");
-                out.println("Message successfully sent");
-                break;
-            case "JavaEESenderNewWithProperties":
-                javaEESenderNewWithProperties.sendMessageNew("Hello world: this is JavaEESenderNewWithProperties");
-                out.println("Message successfully sent");
+                out.println("<h1>Using the JMS 1.1-style API<br> to send a message,<br>setting delivery options and message properties (JavaEESenderOldWithProperties)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                javaEESenderOldWithProperties.sendMessageOldWithProperties("JavaEESenderOldWithProperties");
+                out.println("Message successfully sent<br/>");
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             case "JavaEESenderNewCDIWithProperties":
-                javaEESenderNewCDIWithProperties.sendMessageNew("Hello world:: this is JavaEESenderNewCDIWithProperties");
-                out.println("Message successfully sent");                
+                out.println("<h1>Using the JMS 2.0 simplified API with injection<br> to send a message,<br>setting delivery options and message properties (JavaEESenderNewCDIWithProperties)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                javaEESenderNewCDIWithProperties.sendMessageNewCDIWithProperties("JavaEESenderNewCDIWithProperties");
+                out.println("Message sent<br/>");     
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;                 
             case "JavaEESyncReceiverOld":
+                out.println("<h1>Using the JMS 1.1-style API<br> to receive a message (JavaEESyncReceiverOld)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
                 result = javaEESyncReceiverOld.receiveMessageOld();
-                out.println("<p> "+result);
+                out.println("Message received: "+result+"<br/>"); 
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             case "JavaEESyncReceiverNew":
+                out.println("<h1>Using the JMS 2.0 simplified API<br> to receive a message (JavaEESyncReceiverNew)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
                 result = javaEESyncReceiverNew.receiveMessageNew();
-                out.println("<p> "+result);
+                out.println("Message received: "+result+"<br/>"); 
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             case "JavaEESyncReceiverNewCDI":
-                result = javaEESyncReceiverNewCDI.receiveMessageNew();
-                out.println("<p> "+result);
+                out.println("<h1>Using the JMS 2.0 simplified API and injection<br> to receive a message (JavaEESyncReceiverNewCDI)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                result = javaEESyncReceiverNewCDI.receiveMessageNewCDI();
+                out.println("Message received: "+result+"<br/>"); 
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
            case "JavaEESyncReceiverNewCDIWithProperties":
-                result = javaEESyncReceiverNewCDIWithProperties.receiveMessageNew();
-                out.println("<p> "+result);
+                out.println("<h1>Using the JMS 2.0 simplified API and injection<br> to receive a message,<br>displaying message properties (JavaEESyncReceiverNewCDIWithProperties)</h1>");
+                out.println("<p>Number of messages on queue before: "+ getQueueDepth()+"<br/>");
+                result = javaEESyncReceiverNewCDIWithProperties.receiveMessageNewCDIWithProperties();
+                out.println("Message received: "+result+"<br/>"); 
+                out.println("Number of messages on queue after: "+ getQueueDepth()+"<br/>");
                 break;
             default:
                 throw new Exception("Unexpected option "+option);
         }
+        out.println("<br/><br/><a href='/JMS20Demo/"+option+".html'>Now go back to the example to continue</a>");    
+        out.println("<br/><br/><a href='/JMS20Demo/'>JMS 2.0 examples home</a>");    
+    }
     
+    String getQueueDepth() throws JMSException{
+        int numMessages=0;
+        for (Enumeration queueEnumeration = context.createBrowser(demoQueue).getEnumeration(); queueEnumeration.hasMoreElements();) {
+            queueEnumeration.nextElement();
+            numMessages++;
+        } 
+        return "<b>"+numMessages+"</b>";
+
     }
 }

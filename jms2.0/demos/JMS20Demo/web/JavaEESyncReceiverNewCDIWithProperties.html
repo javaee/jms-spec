@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Using the JMS 2.0 simplified API and injection<br> to receive a message,<br>displaying delivery options and message properties (JavaEESyncReceiverNewCDIWithProperties)</h1>
+        <p>Here is a simple Java EE session bean which extends the earlier example 
+            to demonstrate how to use the JMS 2.0 simplified API and an injected <tt>JMSContext</tt> 
+            to synchronously receive a message
+            and extract the message delivery options and message properties we set earlier       
+        <pre>
+@Stateless
+@LocalBean
+public class JavaEESyncReceiverNewCDIWithProperties {
+
+    @Inject
+    @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
+    private JMSContext context;
+    
+    @Resource(lookup = "java:global/jms/demoQueue")
+    Queue inboundQueue;
+    
+    public String receiveMessageNewCDIWithProperties() {
+        JMSConsumer consumer = context.createConsumer(inboundQueue);
+        TextMessage textMessage = (TextMessage) consumer.receive(1000);
+        if (textMessage==null){
+            return "Received null";
+        } else {
+            try {
+                return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
+            } catch (JMSException ex) {
+                return ex.getMessage();
+            }
+        }
+    }
+}
+        </pre>
+        <p>This example shows:
+        <ul>
+            <li>Extracting the message priority and the message property <tt>foo</tt> from the received message
+            <li>Need to obtain the <tt>TextMessage</tt> and use the JMS 1.1 <tt>getJMSPriority</tt> and <tt>getStringProperty</tt> methods
+            <li>Cannot use the new JMS 2.0 method which returns the message payload directly as that doesn't provide access to message options and properties</tt>
+            <li>Same applies to a non-injected <tt>JMSContext</tt> (not shown)
+        </ul>
+        <p>You have reached the last example</p>
+        <p><a href="Servlet1?option=JavaEESyncReceiverNewCDIWithProperties">Run this example</a>
+        <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
+    </body>
+</html>
