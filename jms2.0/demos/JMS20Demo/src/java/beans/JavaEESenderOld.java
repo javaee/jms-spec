@@ -46,23 +46,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.jms.*;
 
-    
-@JMSDestinationDefinition(className = "javax.jms.Queue", 
-description = "Queue to use in demonstration", 
-resourceAdapterName = "jmsra", 
-name = "java:global/jms/demoQueue",
-destinationName="demoQueue")
-
-@JMSConnectionFactoryDefinition(className="javax.jms.ConnectionFactory",
-description = "ConnectionFactory to use in demonstration", 
-resourceAdapterName="jmsra",
-name="java:global/jms/demoConnectionFactory")
-
 @Stateless
 @LocalBean
 public class JavaEESenderOld {
 
-   
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
     

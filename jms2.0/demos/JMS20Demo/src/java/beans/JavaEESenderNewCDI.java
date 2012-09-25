@@ -45,18 +45,9 @@ import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.jms.*;
-
-@JMSDestinationDefinition(className = "javax.jms.Queue", 
-description = "Queue to use in demonstration", 
-resourceAdapterName = "jmsra", 
-name = "java:global/jms/demoQueue",
-destinationName="demoQueue")
-
-@JMSConnectionFactoryDefinition(className="javax.jms.ConnectionFactory",
-description = "ConnectionFactory to use in demonstration", 
-resourceAdapterName="jmsra",
-name="java:global/jms/demoConnectionFactory")
+import javax.jms.JMSContext;
+import javax.jms.JMSRuntimeException;
+import javax.jms.Queue;
 
 @Stateless
 @LocalBean
