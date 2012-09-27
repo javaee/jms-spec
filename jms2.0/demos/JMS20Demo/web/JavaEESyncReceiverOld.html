@@ -21,31 +21,26 @@ public class JavaEESyncReceiverOld {
     public String receiveMessageOld() {
         Connection connection = null;
         try {
-            connection = connectionFactory.createConnection();
-            connection.start();
-            Session session = connection.createSession();
-            MessageConsumer messageConsumer = session.createConsumer(demoQueue);
-            TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
-            if (textMessage==null){
-                return "Received null";
-            } else {
-                return "Received "+textMessage.getText();
+            try {
+                connection = connectionFactory.createConnection();
+                connection.start();
+                Session session = connection.createSession();
+                MessageConsumer messageConsumer = session.createConsumer(demoQueue);
+                TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
+                if (textMessage==null){
+                    return "Received null";
+                } else {
+                    return "Received "+textMessage.getText();
+                }
+            } finally {
+                connection.close();
             }
         } catch (JMSException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (JMSException ex) {
-                Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return null;
     }
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
         <li>Use of the JMS 1.1-style API for synchronously receiving a message (<tt>Connection</tt>, <tt>Session</tt>, <tt>MessageConsumer</tt>)</li>
@@ -56,10 +51,10 @@ public class JavaEESyncReceiverOld {
         plus at least one more <tt>try</tt> block to handle exceptions.<br>
         (This will get simpler in JMS 2.0 as the Java 7 try-with-resources syntax can be used to avoid an explicit <tt>close()</tt>,
         but this cannot be demonstrated yet as GlassFish 4.0 still requires Java 6)
-        <li>This example is for Java EE but the API for Java SE is similar</li>
         </ul>
-        <p><a href="JavaEESyncReceiverNew.html">Now compare this with using the JMS 2.0 simplified API to do the same thing</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverOld">Run this example</a>
+<p>This example is for Java EE but the API for Java SE is similar
+        <p><img src="arrow.gif">&nbsp;<a href="JavaEESyncReceiverNew.html">Now compare this with using the JMS 2.0 simplified API to do the same thing</a>
+        <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESyncReceiverOld">Run this example</a>
         <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

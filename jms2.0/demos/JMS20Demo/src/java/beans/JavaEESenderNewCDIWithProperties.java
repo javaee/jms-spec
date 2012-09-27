@@ -39,13 +39,13 @@
  */
 package beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.jms.JMSConnectionFactory;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+import javax.jms.*;
 
 @Stateless
 @LocalBean
@@ -57,10 +57,12 @@ public class JavaEESenderNewCDIWithProperties {
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
-    
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
 
     public void sendMessageNewCDIWithProperties(String payload) {
-        context.createProducer().setPriority(1).setProperty("foo","987654").send(inboundQueue, payload);
+        try {
+            context.createProducer().setPriority(1).setProperty("foo", "987654").send(inboundQueue, payload);
+        } catch (JMSRuntimeException ex) {
+            Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

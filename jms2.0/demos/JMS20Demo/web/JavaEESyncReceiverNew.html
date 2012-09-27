@@ -15,35 +15,39 @@ public class JavaEESyncReceiverNew {
 
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-    
+
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
-    
+
     public String receiveMessageNew() {
-        JMSContext context = connectionFactory.createContext();
         try {
-            JMSConsumer consumer = context.createConsumer(demoQueue);
-            return "Received " + consumer.receivePayload(String.class,1000);
-        } finally {
-            context.close();
+            JMSContext context = connectionFactory.createContext();
+            try {
+                JMSConsumer consumer = context.createConsumer(demoQueue);
+                return "Received " + consumer.receivePayload(String.class, 1000);
+            } finally {
+                context.close();
+            }
+        } catch (JMSRuntimeException ex) {
+            Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
         <li>Use of a <tt>JMSContext</tt> for receiving a message instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
         <li><tt>JMSContext</tt> is created explicitly and then closed after use</li>
         <li>No need to specify <tt>transacted</tt> and <tt>acknowledgeMode</tt> parameters (unlike with <tt>createSession</tt>) in Java EE </li>
         <li>No need to cast the received message to a <tt>TextMessage</tt>  and extract its payload:  message payload is returned directly by the <tt>receive</tt> method</li>
-        <li>Need a <tt>try...finally</tt> block to ensure <tt>close</tt> is called, 
+        <li>Still need a <tt>try...finally</tt> block to ensure <tt>close</tt> is called, 
         plus at least one more <tt>try</tt> block to handle exceptions.<br>
         (This will get simpler in JMS 2.0 as the Java 7 try-with-resources syntax can be used to avoid an explicit <tt>close()</tt>,
         but this cannot be demonstrated yet as GlassFish 4.0 still requires Java 6)
-        <li>This example is for Java EE but the API for Java SE is similar</li>
         </ul>
-        <p><a href="JavaEESyncReceiverNewCDI.html">Now compare this with using the JMS 2.0 simplified API and injection to do the same thing</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNew">Run this example</a>
+        <p>This example is for Java EE but the API for Java SE is similar
+        <p><img src="arrow.gif">&nbsp;<a href="JavaEESyncReceiverNewCDI.html">Now compare this with using the JMS 2.0 simplified API and injection to do the same thing</a>
+        <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESyncReceiverNew">Run this example</a>
         <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

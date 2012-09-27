@@ -61,26 +61,22 @@ public class JavaEESyncReceiverOld {
     public String receiveMessageOld() {
         Connection connection = null;
         try {
-            connection = connectionFactory.createConnection();
-            connection.start();
-            Session session = connection.createSession();
-            MessageConsumer messageConsumer = session.createConsumer(demoQueue);
-            TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
-            if (textMessage==null){
-                return "Received null";
-            } else {
-                return "Received "+textMessage.getText();
+            try {
+                connection = connectionFactory.createConnection();
+                connection.start();
+                Session session = connection.createSession();
+                MessageConsumer messageConsumer = session.createConsumer(demoQueue);
+                TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
+                if (textMessage==null){
+                    return "Received null";
+                } else {
+                    return "Received "+textMessage.getText();
+                }
+            } finally {
+                connection.close();
             }
         } catch (JMSException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (JMSException ex) {
-                Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return null;
     }

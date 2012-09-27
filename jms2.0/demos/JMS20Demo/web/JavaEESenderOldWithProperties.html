@@ -12,44 +12,40 @@
 @Stateless
 @LocalBean
 public class JavaEESenderOldWithProperties {
-   
+
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
-    
+
     public void sendMessageOldWithProperties(String payload) {
-        Connection connection=null;
         try {
-            connection = connectionFactory.createConnection();
-            Session session = connection.createSession();
-            MessageProducer messageProducer = session.createProducer(demoQueue);
-            messageProducer.setPriority(1);
-            TextMessage textMessage = session.createTextMessage(payload);
-            textMessage.setStringProperty("foo", "bar");        
-            messageProducer.send(textMessage);
+            Connection connection = connectionFactory.createConnection();
+            try {
+                Session session = connection.createSession();
+                MessageProducer messageProducer = session.createProducer(demoQueue);
+                messageProducer.setPriority(1);
+                TextMessage textMessage = session.createTextMessage(payload);
+                textMessage.setStringProperty("foo", "bar");
+                messageProducer.send(textMessage);
+            } finally {
+                connection.close();
+            }
         } catch (JMSException ex) {
             Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (connection!=null) try {
-                connection.close();
-            } catch (JMSException ex) {
-                Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-    } 
-}
-        </pre>
+    }
+}</pre>
         <p>This example additionally shows:
         <ul>
         <li>Setting message priority to 1 and a message property <tt>foo</tt> to <tt>bar</tt>
         <li>Set message priority using the <tt>setPriority</tt> on the <tt>MessageProducer</tt></li>
         <li>Set message property <tt>foo</tt> using the <tt>setStringProperty</tt> method on the <tt>TextMessage</tt></li>
-        <li>This example is for Java EE but the API for Java SE is similar</li>
         </ul>
-        <p><a href="JavaEESenderNewCDIWithProperties.html">Now compare this with using the JMS 2.0 simplified API with injection to do the same thing</a>
-        <p><a href="Servlet1?option=JavaEESenderOldWithProperties">Run this example</a>
+        <p>This example is for Java EE but the API for Java SE is similar
+        <p><img src="arrow.gif">&nbsp;<a href="JavaEESenderNewCDIWithProperties.html">Now compare this with using the JMS 2.0 simplified API with injection to do the same thing</a>
+        <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESenderOldWithProperties">Run this example</a>
         <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

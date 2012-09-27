@@ -10,15 +10,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JMS 2.0 in Java EE 7 demonstration</title>
-    </head>
+    </head> 
     <body>
-        <h1>JMS 2.0 in Java EE 7 demonstration</h1>
-        <p>This demonstration allows you to examine the new JMS 2.0 API for sending and receiving messages
-            and see how it compares with the existing JMS 1.1 API.
+        <h1>JMS 2.0 means less code to send or receive a message</h1>
+        This demonstration allows you to examine the new JMS 2.0 API for sending and receiving messages
+        and see how it compares with the existing JMS 1.1 API. <br>
+        Follow the links labelled <img src="arrow.gif">&nbsp; to go through the demonstration, or simply explore the links.
         <h2>Sending a message (Java EE)</h1>
         <p>Here are three very simple examples of Java EE applications which send a message.<br> 
             Follow the links to view and run code examples.
-        <p><a href="JavaEESenderOld.html">Using the JMS 1.1-style API to send a message (JavaEESenderOld)</a>
+        <p><img src="arrow.gif">&nbsp;<a href="JavaEESenderOld.html">Using the JMS 1.1-style API to send a message (JavaEESenderOld)</a>
         <p><a href="JavaEESenderNew.html">Using the JMS 2.0 simplified API to send a message (JavaEESenderNew)</a>
         <p><a href="JavaEESenderNewCDI.html">Using the JMS 2.0 simplified API and injection to send a message (JavaEESenderNewCDI)</a>
         <h2>Receiving a message synchronously (Java EE)</h1>

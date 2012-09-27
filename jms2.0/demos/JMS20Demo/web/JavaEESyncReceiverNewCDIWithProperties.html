@@ -23,20 +23,20 @@ public class JavaEESyncReceiverNewCDIWithProperties {
     Queue inboundQueue;
     
     public String receiveMessageNewCDIWithProperties() {
-        JMSConsumer consumer = context.createConsumer(inboundQueue);
-        TextMessage textMessage = (TextMessage) consumer.receive(1000);
-        if (textMessage==null){
-            return "Received null";
-        } else {
-            try {
-                return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
-            } catch (JMSException ex) {
-                return ex.getMessage();
+                try {
+            JMSConsumer consumer = context.createConsumer(inboundQueue);
+            TextMessage textMessage = (TextMessage) consumer.receive(1000);
+            if (textMessage==null){
+                return "Received null";
+            } else {
+               return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
             }
+        } catch (Exception ex) {
+            Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
             <li>Extracting the message priority and the message property <tt>foo</tt> from the received message
@@ -45,7 +45,7 @@ public class JavaEESyncReceiverNewCDIWithProperties {
             <li>Same applies to a non-injected <tt>JMSContext</tt> (not shown)
         </ul>
         <p>You have reached the last example</p>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNewCDIWithProperties">Run this example</a>
-        <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
+        <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESyncReceiverNewCDIWithProperties">Run this example</a>
+        <p><img src="arrow.gif">&nbsp;<a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

@@ -15,26 +15,30 @@ public class JavaEESyncReceiverNewCDI {
     @Inject
     @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
     private JMSContext context;
-    
+
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
-    
+
     public String receiveMessageNewCDI() {
-        JMSConsumer consumer = context.createConsumer(inboundQueue);
-        return "Received "+consumer.receivePayload(String.class,1000);
+        try {
+            JMSConsumer consumer = context.createConsumer(inboundQueue);
+            return "Received " + consumer.receivePayload(String.class, 1000);
+        } catch (JMSRuntimeException ex) {
+            Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
         <li>Use of an injected <tt>JMSContext</tt> for receiving a message synchronously instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
         <li>No need to create the <tt>JMSContext</tt> - it is injected automatically by the container</li>
         <li>No need to call <tt>close</tt> on the <tt>JMSContext</tt> (or use a a <tt>try...finally</tt> block) - it is closed automatically by the container (at end of transaction)</li>
         <li>No need to cast the received message to a <tt>TextMessage</tt>  and extract its payload:  message payload is returned directly by the <tt>receive</tt> method</li>
-        <li>Note: Injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container</li>
         </ul>
-        <p>You can stop here, or carry on and <a href="JavaEESenderOldWithProperties.html">examine using the JMS 1.1-style API to send a message, setting delivery options and message properties</a>
-        <p><a href="Servlet1?option=JavaEESyncReceiverNewCDI">Run this example</a>
+        <p>Note that injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container
+        <p>You can stop here, or carry on and <img src="arrow.gif"><a href="JavaEESenderOldWithProperties.html">examine using the JMS 1.1-style API to send a message, setting delivery options and message properties</a>
+        <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESyncReceiverNewCDI">Run this example</a>
         <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

@@ -35,11 +35,11 @@ public class JavaEESenderOld {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     } 
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
         <li>Use of the JMS 1.1-style API for sending a message (<tt>Connection</tt>, <tt>Session</tt>, <tt>MessageProducer</tt>)</li>
+        <li><b>9 lines of code to send a message</b> (excluding exception handling)</li>
         <li>Need to create all three objects explicitly and then call close after use</li>
         <li>Parameters to <tt>createSession</tt> are required but are ignored in a JTA transaction</li>
         <li>Need to explicitly create a <tt>Message</tt> of the appropriate type (i.e. <tt>TextMessage</tt>) and set its payload</li>
@@ -47,10 +47,10 @@ public class JavaEESenderOld {
         plus at least one more <tt>try</tt> block to handle exceptions.<br>
         (This will get simpler in JMS 2.0 as the Java 7 try-with-resources syntax can be used to avoid an explicit <tt>close()</tt>,
         but this cannot be demonstrated yet as GlassFish 4.0 still requires Java 6)
-        <li>This example is for Java EE but the API for Java SE is similar</li>
         </ul>
-<p><a href="JavaEESenderNew.html">Now compare this with using the JMS 2.0 simplified API to do the same thing</a>
-<p><a href="Servlet1?option=JavaEESenderOld">Run this example</a>
+<p>This example is for Java EE but the API for Java SE is similar
+<p><img src="arrow.gif">&nbsp;<a href="JavaEESenderNew.html">Now compare this with using the JMS 2.0 simplified API to do the same thing</a>
+<p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESenderOld">Run this example</a>
 <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
 </body>
 </html>

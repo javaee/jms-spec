@@ -53,16 +53,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@JMSDestinationDefinition(className = "javax.jms.Queue", 
-    description = "Queue to use in demonstration", 
-    resourceAdapterName = "jmsra", 
+@JMSDestinationDefinition(
     name = "java:global/jms/demoQueue",
+    description = "Queue to use in demonstration", 
+    className = "javax.jms.Queue", 
     destinationName="demoQueue")
 
-@JMSConnectionFactoryDefinition(className= "javax.jms.ConnectionFactory",
-        description="ConnectionFactory to use in demonstration",
-        resourceAdapterName="jmsra",
-        name="java:global/jms/demoConnectionFactory")       
+@JMSConnectionFactoryDefinition(
+    name="java:global/jms/demoConnectionFactory",
+    className= "javax.jms.ConnectionFactory",
+    description="ConnectionFactory to use in demonstration"
+)       
 
 @WebServlet(name = "Servlet1", urlPatterns = {"/Servlet1"})
 public class Servlet1 extends HttpServlet {
@@ -224,7 +225,7 @@ public class Servlet1 extends HttpServlet {
             default:
                 throw new Exception("Unexpected option "+option);
         }
-        out.println("<br/><br/><a href='/JMS20Demo/"+option+".html'>Now go back to the example to continue</a>");    
+        out.println("<br/><br/><img src='arrow.gif'>&nbsp;<a href='/JMS20Demo/"+option+".html'>Now go back to the example to continue</a>");    
         out.println("<br/><br/><a href='/JMS20Demo/'>JMS 2.0 examples home</a>");    
     }
     

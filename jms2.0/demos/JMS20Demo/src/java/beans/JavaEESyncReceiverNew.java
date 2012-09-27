@@ -39,13 +39,12 @@
  */
 package beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSConsumer;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+import javax.jms.*;
 
 @Stateless
 @LocalBean
@@ -53,19 +52,22 @@ public class JavaEESyncReceiverNew {
 
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-    
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
-    
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
 
+    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
     public String receiveMessageNew() {
-        JMSContext context = connectionFactory.createContext();
         try {
-            JMSConsumer consumer = context.createConsumer(demoQueue);
-            return "Received " + consumer.receivePayload(String.class,1000);
-        } finally {
-            context.close();
+            JMSContext context = connectionFactory.createContext();
+            try {
+                JMSConsumer consumer = context.createConsumer(demoQueue);
+                return "Received " + consumer.receivePayload(String.class, 1000);
+            } finally {
+                context.close();
+            }
+        } catch (JMSRuntimeException ex) {
+            Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 }

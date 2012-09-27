@@ -39,6 +39,8 @@
  */
 package beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -55,20 +57,19 @@ public class JavaEESyncReceiverNewCDIWithProperties {
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
-
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
     
     public String receiveMessageNewCDIWithProperties() {
-        JMSConsumer consumer = context.createConsumer(inboundQueue);
-        TextMessage textMessage = (TextMessage) consumer.receive(1000);
-        if (textMessage==null){
-            return "Received null";
-        } else {
-            try {
-                return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
-            } catch (JMSException ex) {
-                return ex.getMessage();
+                try {
+            JMSConsumer consumer = context.createConsumer(inboundQueue);
+            TextMessage textMessage = (TextMessage) consumer.receive(1000);
+            if (textMessage==null){
+                return "Received null";
+            } else {
+               return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
             }
+        } catch (Exception ex) {
+            Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return null;
     }
 }

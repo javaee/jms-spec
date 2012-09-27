@@ -24,18 +24,18 @@ public class JavaEESenderNewCDI {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
-        </pre>
+}</pre>
         <p>This example shows:
         <ul>
-        <li>Use of an injected <tt>JMSContext</tt> for sending a message instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
+        <li>Use of a JMS 2.0 <b>injected</b> <tt>JMSContext</tt> for sending a message instead of separate <tt>Connection</tt> and <tt>Session</tt> objects        
+        <li><b>1 line of code to send a message</b> (excluding exception handling)</li>
         <li>No need to create the <tt>JMSContext</tt> - it is injected automatically by the container</li>
         <li>No need to call <tt>close</tt> on the <tt>JMSContext</tt> (or use a a <tt>try...finally</tt> block) - it is closed automatically by the container (at end of transaction)</li>
         <li>No need to create a <tt>TextMessage</tt> object: message payload is passed directly to the <tt>send</tt> method</li>
-        <li>Injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container</li>
         </ul>
-        <p><a href="JavaEESyncReceiverOld.html">Now examine using the JMS 1.1-style API to <i>receive</i> a message</a>
-        <p><a href="Servlet1?option=JavaEESenderNewCDI">Run this example</a>
+        <p>Note that injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container
+        <p><img src="arrow.gif"><a href="JavaEESyncReceiverOld.html">Now examine using the JMS 1.1-style API to <i>receive</i> a message</a>
+        <p><img src="arrow.gif"><a href="Servlet1?option=JavaEESenderNewCDI">Run this example</a>
         <p><a href="/JMS20Demo/">JMS 2.0 examples home</a>
     </body>
 </html>

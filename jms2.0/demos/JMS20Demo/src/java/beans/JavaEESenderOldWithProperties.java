@@ -49,33 +49,28 @@ import javax.jms.*;
 @Stateless
 @LocalBean
 public class JavaEESenderOldWithProperties {
-   
+
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
     
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
-    
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
 
     public void sendMessageOldWithProperties(String payload) {
-        Connection connection=null;
         try {
-            connection = connectionFactory.createConnection();
-            Session session = connection.createSession();
-            MessageProducer messageProducer = session.createProducer(demoQueue);
-            messageProducer.setPriority(1);
-            TextMessage textMessage = session.createTextMessage(payload);
-            textMessage.setStringProperty("foo", "bar");        
-            messageProducer.send(textMessage);
+            Connection connection = connectionFactory.createConnection();
+            try {
+                Session session = connection.createSession();
+                MessageProducer messageProducer = session.createProducer(demoQueue);
+                messageProducer.setPriority(1);
+                TextMessage textMessage = session.createTextMessage(payload);
+                textMessage.setStringProperty("foo", "bar");
+                messageProducer.send(textMessage);
+            } finally {
+                connection.close();
+            }
         } catch (JMSException ex) {
             Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (connection!=null) try {
-                connection.close();
-            } catch (JMSException ex) {
-                Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-    } 
+    }
 }
