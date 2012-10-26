@@ -1595,4 +1595,82 @@ public interface Message {
 
     void
     clearBody() throws JMSException;
+    
+	/**
+	 * Returns the message body as an object of the specified type. The message
+	 * body must be capable of being assigned to the specified type. This means
+	 * that the specified class or interface must be either the same as, or a
+	 * superclass or superinterface of, the class of the message body. This
+	 * method may be used to obtain the body of any type of message except for
+	 * <tt>StreamMessage</tt>. If the message has no body then null is returned.
+	 * 
+	 * @param c
+	 *            The type to which the message body should be assigned. <br/>
+	 *            If the message is a <code>TextMessage</code> then this should
+	 *            be set to <code>String.class</code> or another class to which
+	 *            a String is assignable. <br/>
+	 *            If the message is a <code>ObjectMessage</code> then this
+	 *            should be set to <code>java.io.Serializable.class</code> or
+	 *            another class to which the payload is assignable. <br/>
+	 *            If the message is a <code>MapMessage</code> then this should
+	 *            be set to <code>java.util.Map.class</code>. <br/>
+	 *            If the message is a <code>BytesMessage</code> then this should
+	 *            be set to <code>byte[].class</code>. The
+	 *            <code>BytesMessage</code> must not be in write-only mode.
+	 * 
+	 * @return the message body
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to get the message body due to
+	 *                some internal error.
+	 * @exception MessageFormatException
+	 *                if the message is a <code>StreamMessage</code>, or the
+	 *                message body cannot be assigned to the specified type, or
+	 *                the message is an <code>ObjectMessage</code> and object
+	 *                deserialization fails.
+	 * @exception MessageNotReadableException
+	 *                if the message is a <code>BytesMessage</code> and the
+	 *                message is in write-only mode.
+	 */
+	<T> T getBody(Class<T> c) throws JMSException;
+
+	/**
+	 * Returns whether the message body is capable of being assigned to the
+	 * specified type. If this method returns true then a subsequent call to the
+	 * method <code>getBody</code> with the same type argument would not throw a
+	 * MessageFormatException.
+	 * <p>
+	 * If the message is a <code>StreamMessage</code> then false is returned. If
+	 * the message is a <code>ObjectMessage</code> and object deserialization
+	 * fails then false is returned. If the message has no body then true is
+	 * returned.
+	 * 
+	 * @param c
+	 *            The specified type <br/>
+	 *            If the message is a <code>TextMessage</code> then method will
+	 *            only return true if this parameter is set to
+	 *            <code>String.class</code> or another class to which a String
+	 *            is assignable. <br/>
+	 *            If the message is a <code>ObjectMessage</code> then this
+	 *            method will only return true if this parameter is set to
+	 *            <code>java.io.Serializable.class</code> or another class to
+	 *            which the payload is assignable. <br/>
+	 *            If the message is a <code>MapMessage</code> then this method
+	 *            will only return true if this parameter is set to
+	 *            <code>java.util.Map.class</code>. <br/>
+	 *            If the message is a <code>BytesMessage</code> then this this
+	 *            method will only return true if this parameter is set to
+	 *            <code>byte[].class</code>.
+	 * 
+	 * @return whether the message body is capable of being assigned to the
+	 *         specified type
+	 * 
+	 * @exception JMSException
+	 *                if the JMS provider fails to return a value due to some
+	 *                internal error.
+	 * @exception MessageNotReadableException
+	 *                if the message is a <code>BytesMessage</code> and the
+	 *                message is in write-only mode.
+	 */
+	boolean isBodyAssignableTo(Class c) throws JMSException;    
 }
