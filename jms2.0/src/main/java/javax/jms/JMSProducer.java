@@ -45,40 +45,40 @@ import java.util.Enumeration;
 import java.util.Map;
 
 /**
- * A <code>JMSProducer</code> is a simple object used to send messages on behalf
- * of a <code>JMSContext</code>. An instance of <code>JMSProducer</code> is
- * created by calling the <code>createProducer</code> method on a
- * <code>JMSContext</code>. It provides various <code>send</code> methods to
+ * A {@code JMSProducer} is a simple object used to send messages on behalf
+ * of a {@code JMSContext}. An instance of {@code JMSProducer} is
+ * created by calling the {@code createProducer} method on a
+ * {@code JMSContext}. It provides various {@code send} methods to
  * send a message to a specified destination. It also provides methods to allow
  * message send options, message properties and message headers to be specified
  * prior to sending a message or set of messages.
  * <p>
  * Message send options may be specified using one or more of the following
- * methods: <code>setDeliveryMode</code>, <code>setPriority</code>,
- * <code>setTimeToLive</code>, <code>setDeliveryDelay</code>,
- * <code>setDisableMessageTimestamp</code>, <code>setDisableMessageID</code> and
- * <code>setAsync</code>.
+ * methods: {@code setDeliveryMode}, {@code setPriority},
+ * {@code setTimeToLive}, {@code setDeliveryDelay},
+ * {@code setDisableMessageTimestamp}, {@code setDisableMessageID} and
+ * {@code setAsync}.
  * <p>
  * Message properties may be may be specified using one or more of nine
- * <code>setProperty</code> methods. Any message properties set using these
+ * {@code setProperty} methods. Any message properties set using these
  * methods will override any message properties that have been set directly on
  * the message.
  * <p>
  * Message headers may be specified using one or more of the following methods:
- * <code>setJMSCorrelationID</code>, <code>setJMSCorrelationIDAsBytes</code>,
- * <code>setJMSType</code> or <code>setJMSReplyTo</code>. Any message headers
+ * {@code setJMSCorrelationID}, {@code setJMSCorrelationIDAsBytes},
+ * {@code setJMSType} or {@code setJMSReplyTo}. Any message headers
  * set using these methods will override any message headers that have been set
  * directly on the message.
  * <p>
- * All the above methods return the <code>JMSProducer</code> to allow method
+ * All the above methods return the {@code JMSProducer} to allow method
  * calls to be chained together, allowing a fluid programming style. For
  * example:
  * <p>
  * <tt>context.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).setTimeToLive(1000).send(destination, message);</tt>
  * <p>
- * Instances of <code>JMSProducer</code> are intended to be lightweight objects
+ * Instances of {@code JMSProducer} are intended to be lightweight objects
  * which can be created freely and which do not consume significant resources.
- * This interface therefore does not provide a <code>close</code> method.
+ * This interface therefore does not provide a {@code close} method.
  * 
  * @version 2.0
  * @since 2.0
@@ -90,13 +90,13 @@ public interface JMSProducer {
 	/**
 	 * Sends a message to the specified destination, using any send options,
 	 * message properties and message headers that have been defined on this
-	 * <code>JMSProducer</code>.
+	 * {@code JMSProducer}.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param message
 	 *            the message to send
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -105,23 +105,23 @@ public interface JMSProducer {
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
 	 * @throws MessageNotWriteableException
-	 *             if this <code>JMSProducer</code> has been configured to set a
+	 *             if this {@code JMSProducer} has been configured to set a
 	 *             message property, but the message's properties are read-only
 	 */
 	JMSProducer send(Destination destination, Message message);
 
 	/**
-	 * Send a <code>TextMessage</code> with the specified payload to the
+	 * Send a {@code TextMessage} with the specified payload to the
 	 * specified destination, using any send options, message properties and
-	 * message headers that have been defined on this <code>JMSProducer</code>.
+	 * message headers that have been defined on this {@code JMSProducer}.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param payload
-	 *            the payload of the <code>TextMessage</code> that will be sent. 
-	 *            If a null value is specified then a <code>TextMessage</code> 
+	 *            the payload of the {@code TextMessage} that will be sent. 
+	 *            If a null value is specified then a {@code TextMessage} 
 	 *            with no payload will be sent.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -133,17 +133,17 @@ public interface JMSProducer {
 	JMSProducer send(Destination destination, String payload);
 
 	/**
-	 * Send a <code>MapMessage</code> with the specified payload to the
+	 * Send a {@code MapMessage} with the specified payload to the
 	 * specified destination, using any send options, message properties and
-	 * message headers that have been defined on this <code>JMSProducer</code>.
+	 * message headers that have been defined on this {@code JMSProducer}.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param payload
-	 *            the payload of the <code>MapMessage</code> that will be sent.
-	 *            If a null value is specified then a <code>MapMessage</code> 
+	 *            the payload of the {@code MapMessage} that will be sent.
+	 *            If a null value is specified then a {@code MapMessage} 
 	 *            with no map entries will be sent.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -155,18 +155,18 @@ public interface JMSProducer {
 	JMSProducer send(Destination destination, Map<String, Object> payload);
 
 	/**
-	 * Send a <code>BytesMessage</code> with the specified payload to the
+	 * Send a {@code BytesMessage} with the specified payload to the
 	 * specified destination, using any send options, message properties and
-	 * message headers that have been defined on this <code>JMSProducer</code>.
+	 * message headers that have been defined on this {@code JMSProducer}.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param payload
-	 *            the payload of the <code>BytesMessage</code> that will be
+	 *            the payload of the {@code BytesMessage} that will be
 	 *            sent.
-	 *            If a null value is specified then a <code>BytesMessage</code> 
+	 *            If a null value is specified then a {@code BytesMessage} 
 	 *            with no payload will be sent.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -178,17 +178,17 @@ public interface JMSProducer {
 	JMSProducer send(Destination destination, byte[] payload);
 
 	/**
-	 * Send an <code>ObjectMessage</code> with the specified payload to the
+	 * Send an {@code ObjectMessage} with the specified payload to the
 	 * specified destination, using any send options, message properties and
-	 * message headers that have been defined on this <code>JMSProducer</code>.
+	 * message headers that have been defined on this {@code JMSProducer}.
 	 * 
 	 * @param destination
 	 *            the destination to send this message to
 	 * @param payload
 	 *            the payload of the ObjectMessage that will be sent.
-	 *            If a null value is specified then an <code>ObjectMessage</code> 
+	 *            If a null value is specified then an {@code ObjectMessage} 
 	 *            with no payload will be sent.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if JMS provider fails to send the message due to some
 	 *             internal error.
@@ -201,13 +201,13 @@ public interface JMSProducer {
 
 	/**
 	 * Specifies whether message IDs may be disabled for messages that are sent
-	 * using this <code>JMSProducer</code>
+	 * using this {@code JMSProducer}
 	 * <p>
 	 * Since message IDs take some effort to create and increase a message's
 	 * size, some JMS providers may be able to optimise message overhead if they
 	 * are given a hint that the message ID is not used by an application. By
 	 * calling this method, a JMS application enables this potential
-	 * optimisation for all messages sent using this <code>JMSProducer</code>.
+	 * optimisation for all messages sent using this {@code JMSProducer}.
 	 * If the JMS provider accepts this hint, these messages must have the
 	 * message ID set to null; if the provider ignores the hint, the message ID
 	 * must be set to its normal unique value.
@@ -217,7 +217,7 @@ public interface JMSProducer {
 	 * 
 	 * @param value
 	 *            indicates whether message IDs may be disabled
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set message ID to disabled due
 	 *             to some internal error.
@@ -242,12 +242,12 @@ public interface JMSProducer {
 
 	/**
 	 * Specifies whether message timestamps may be disabled for messages that
-	 * are sent using this <code>JMSProducer</code>. <pP> Since timestamps take
+	 * are sent using this {@code JMSProducer}. <pP> Since timestamps take
 	 * some effort to create and increase a message's size, some JMS providers
 	 * may be able to optimise message overhead if they are given a hint that
 	 * the timestamp is not used by an application. By calling this method, a
 	 * JMS application enables this potential optimisation for all messages sent
-	 * using this <code>JMSProducer</code>. If the JMS provider accepts this
+	 * using this {@code JMSProducer}. If the JMS provider accepts this
 	 * hint, these messages must have the timestamp set to zero; if the provider
 	 * ignores the hint, the timestamp must be set to its normal value.
 	 * <p>
@@ -255,7 +255,7 @@ public interface JMSProducer {
 	 * 
 	 * @param value
 	 *            indicates whether message timestamps may be disabled
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set timestamps to disabled due
 	 *             to some internal error.
@@ -278,15 +278,15 @@ public interface JMSProducer {
 
 	/**
 	 * Specifies the delivery mode of messages that are sent using this
-	 * <code>JMSProducer</code>
+	 * {@code JMSProducer}
 	 * <p>
-	 * Delivery mode is set to <code>PERSISTENT</code> by default.
+	 * Delivery mode is set to {@code PERSISTENT} by default.
 	 * 
 	 * @param deliveryMode
 	 *            the message delivery mode to be used; legal values are
-	 *            <code>DeliveryMode.NON_PERSISTENT</code> and
-	 *            <code>DeliveryMode.PERSISTENT</code>
-	 * @return this <code>JMSProducer</code>
+	 *            {@code DeliveryMode.NON_PERSISTENT} and
+	 *            {@code DeliveryMode.PERSISTENT}
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the delivery mode due to
 	 *             some internal error.
@@ -300,7 +300,7 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the delivery mode of messages that are sent using this
-	 * <code>JMSProducer</code>
+	 * {@code JMSProducer}
 	 * 
 	 * @return the message delivery mode
 	 * 
@@ -315,7 +315,7 @@ public interface JMSProducer {
 
 	/**
 	 * Specifies the priority of messages that are sent using this
-	 * <code>JMSProducer</code>
+	 * {@code JMSProducer}
 	 * <p>
 	 * The JMS API defines ten levels of priority value, with 0 as the lowest
 	 * priority and 9 as the highest. Clients should consider priorities 0-4 as
@@ -326,7 +326,7 @@ public interface JMSProducer {
 	 * @param priority
 	 *            the message priority to be used; must be a value between 0 and
 	 *            9
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the priority due to some
 	 *             internal error.
@@ -339,7 +339,7 @@ public interface JMSProducer {
 
 	/**
 	 * Return the priority of messages that are sent using this
-	 * <code>JMSProducer</code>
+	 * {@code JMSProducer}
 	 * <p>
 	 * 
 	 * @return the message priority
@@ -355,7 +355,7 @@ public interface JMSProducer {
 
 	/**
 	 * Specifies the time to live of messages that are sent using this
-	 * <code>JMSProducer</code>. This is used to determine the expiration time
+	 * {@code JMSProducer}. This is used to determine the expiration time
 	 * of a message.
 	 * <p>
 	 * The expiration time of a message is the sum of the message's time to live
@@ -375,7 +375,7 @@ public interface JMSProducer {
 	 * @param timeToLive
 	 *            the message time to live to be used, in milliseconds; a value
 	 *            of zero means that a message never expires.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the time to live due to some
 	 *             internal error.
@@ -387,7 +387,7 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the time to live of messages that are sent using this
-	 * <code>JMSProducer</code>.
+	 * {@code JMSProducer}.
 	 * 
 	 * @return the message time to live in milliseconds; a value of zero means
 	 *         that a message never expires.
@@ -412,7 +412,7 @@ public interface JMSProducer {
 	 * 
 	 * @param deliveryDelay
 	 *            the delivery delay in milliseconds.
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the delivery delay due to
@@ -440,15 +440,15 @@ public interface JMSProducer {
 	long getDeliveryDelay();
 
 	/**
-	 * Specifies whether subsequent calls to <code>send</code> on this
-	 * <code>JMSProducer</code> object should be synchronous or asynchronous. If
-	 * the specified <code>CompletionListener</code> is not null then subsequent
-	 * calls to <code>send</code> will be asynchronous. If the specified
-	 * <code>CompletionListener</code> is null then subsequent calls to
-	 * <code>send</code> will be synchronous. Calls to <code>send</code> are
+	 * Specifies whether subsequent calls to {@code send} on this
+	 * {@code JMSProducer} object should be synchronous or asynchronous. If
+	 * the specified {@code CompletionListener} is not null then subsequent
+	 * calls to {@code send} will be asynchronous. If the specified
+	 * {@code CompletionListener} is null then subsequent calls to
+	 * {@code send} will be synchronous. Calls to {@code send} are
 	 * synchronous by default.
 	 * <p>
-	 * If a call to <code>send</code> is asynchronous then part of the work
+	 * If a call to {@code send} is asynchronous then part of the work
 	 * involved in sending the message will be performed in a separate thread
 	 * and the specified <tt>CompletionListener</tt> will be notified when the
 	 * operation has completed.
@@ -518,12 +518,12 @@ public interface JMSProducer {
 	 * <b>Close, commit or rollback</b>: If the <tt>close</tt> method is called
 	 * on the <tt>JMSContext</tt> then the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * {@code CompletionListener} callbacks have returned before closing
 	 * the object and returning. If the session is transacted (uses a local
 	 * transaction) then when the <tt>JMSContext</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * {@code CompletionListener} callbacks have returned before performing
 	 * the commit or rollback. Incomplete sends should be allowed to complete
 	 * normally unless an error occurs.
 	 * <p>
@@ -561,7 +561,7 @@ public interface JMSProducer {
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
 	 * at a time. For a given <tt>JMSContext</tt>, callbacks (both
-	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * {@code onCompletion} and {@code onException}) will be performed
 	 * in the same order as the corresponding calls to the <tt>send</tt> method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
 	 * thread that is calling the <tt>send</tt> method.
@@ -584,10 +584,10 @@ public interface JMSProducer {
 	 * 
 	 * @param completionListener
 	 *            If asynchronous send behaviour is required, this should be set
-	 *            to a <code>CompletionListener</code> to be notified when the
+	 *            to a {@code CompletionListener} to be notified when the
 	 *            send has completed. If synchronous send behaviour is required,
-	 *            this should be set to <code>null</code>.
-	 * @return this <code>JMSProducer</code>
+	 *            this should be set to {@code null}.
+	 * @return this {@code JMSProducer}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if an internal error occurs
@@ -599,14 +599,14 @@ public interface JMSProducer {
 	JMSProducer setAsync(CompletionListener completionListener);
 
 	/**
-	 * If subsequent calls to <code>send</code> on this
-	 * <code>JMSProducer</code> object have been configured to be asynchronous 
-	 * then this method returns the <code>CompletionListener</code>
+	 * If subsequent calls to {@code send} on this
+	 * {@code JMSProducer} object have been configured to be asynchronous 
+	 * then this method returns the {@code CompletionListener}
 	 * that has previously been configured.
-	 * If subsequent calls to <code>send</code> have been configured to be synchronous
-	 * then this method returns <code>null</code>.
+	 * If subsequent calls to {@code send} have been configured to be synchronous
+	 * then this method returns {@code null}.
 	 * 
-	 * @return the <code>CompletionListener</code> or <code>null</code>
+	 * @return the {@code CompletionListener} or {@code null}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the required information due
@@ -617,8 +617,8 @@ public interface JMSProducer {
 	CompletionListener getAsync();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>boolean</code>
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code boolean}
 	 * value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
@@ -627,8 +627,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>boolean</code> value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code boolean} value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -641,8 +641,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, boolean value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>byte</code> value.
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code byte} value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
@@ -650,8 +650,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>byte</code> value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code byte} value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -663,8 +663,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, byte value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>short</code>
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code short}
 	 * value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
@@ -673,8 +673,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>short</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code short} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -687,8 +687,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, short value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>int</code> value.
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code int} value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
@@ -696,8 +696,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>int</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code int} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -710,8 +710,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, int value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>long</code> value.
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code long} value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
@@ -719,8 +719,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>long</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code long} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -732,8 +732,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, long value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>float</code>
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code float}
 	 * value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
@@ -742,8 +742,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>float</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code float} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -755,8 +755,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, float value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>double</code>
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code double}
 	 * value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
@@ -765,8 +765,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>double</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code double} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -778,8 +778,8 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, double value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have the specified property set to the specified <code>String</code>
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have the specified property set to the specified {@code String}
 	 * value.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
@@ -788,8 +788,8 @@ public interface JMSProducer {
 	 * @param name
 	 *            the name of the property
 	 * @param value
-	 *            the <code>String</code> property value to set
-	 * @return this <code>JMSProducer</code>
+	 *            the {@code String} property value to set
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -801,12 +801,12 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, String value);
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
+	 * Specifies that messages sent using this {@code JMSProducer} will
 	 * have the specified property set to the specified Java object value.
 	 * <p>
 	 * Note that this method works only for the objectified primitive object
-	 * types (<code>Integer</code>, <code>Double</code>, <code>Long</code> ...)
-	 * and <code>String</code> objects.
+	 * types ({@code Integer}, {@code Double}, {@code Long} ...)
+	 * and {@code String} objects.
 	 * <p>
 	 * This will replace any property of the same name that is already set on
 	 * the message being sent.
@@ -815,7 +815,7 @@ public interface JMSProducer {
 	 *            the name of the property
 	 * @param value
 	 *            the Java object property value to set
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the property due to some
 	 *             internal error.
@@ -829,9 +829,9 @@ public interface JMSProducer {
 	JMSProducer setProperty(String name, Object value);
 
 	/**
-	 * Clears any message properties set on this <code>JMSProducer</code>
+	 * Clears any message properties set on this {@code JMSProducer}
 	 * 
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to clear the message properties due
 	 *             to some internal error.
@@ -840,7 +840,7 @@ public interface JMSProducer {
 
 	/**
 	 * Indicates whether a message property with the specified name has been set
-	 * on this <code>JMSProducer</code>
+	 * on this {@code JMSProducer}
 	 * 
 	 * @param name
 	 *            the name of the property
@@ -855,12 +855,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>boolean</code>.
+	 * this {@code JMSProducer}, converted to a {@code boolean}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>boolean</code>
+	 * @return the property value, converted to a {@code boolean}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -875,12 +875,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>String</code>.
+	 * this {@code JMSProducer}, converted to a {@code String}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>byte</code>
+	 * @return the property value, converted to a {@code byte}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -895,12 +895,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>short</code>.
+	 * this {@code JMSProducer}, converted to a {@code short}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>short</code>
+	 * @return the property value, converted to a {@code short}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -914,12 +914,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>int</code>.
+	 * this {@code JMSProducer}, converted to a {@code int}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>int</code>
+	 * @return the property value, converted to a {@code int}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -933,12 +933,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>long</code>.
+	 * this {@code JMSProducer}, converted to a {@code long}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>long</code>
+	 * @return the property value, converted to a {@code long}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -952,12 +952,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>float</code>.
+	 * this {@code JMSProducer}, converted to a {@code float}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>float</code>
+	 * @return the property value, converted to a {@code float}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -971,12 +971,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>double</code>.
+	 * this {@code JMSProducer}, converted to a {@code double}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>double</code>
+	 * @return the property value, converted to a {@code double}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property value due to
@@ -990,12 +990,12 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to a <code>String</code>.
+	 * this {@code JMSProducer}, converted to a {@code String}.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
-	 * @return the property value, converted to a <code>boolean</code>; if there
+	 * @return the property value, converted to a {@code boolean}; if there
 	 *         is no property by this name, a null value is returned
 	 * 
 	 * @throws JMSRuntimeException
@@ -1010,19 +1010,19 @@ public interface JMSProducer {
 
 	/**
 	 * Returns the message property with the specified name that has been set on
-	 * this <code>JMSProducer</code>, converted to objectified format.
+	 * this {@code JMSProducer}, converted to objectified format.
 	 * <p>
 	 * This method can be used to return, in objectified format, an object that
 	 * has been stored as a property in the message with the equivalent
-	 * <code>setObjectProperty</code> method call, or its equivalent primitive
-	 * <code>set<I>type</I>Property</code> method.
+	 * {@code setObjectProperty} method call, or its equivalent primitive
+	 * {@code set<I>type</I>Property} method.
 	 * 
 	 * @param name
 	 *            the name of the property
 	 * 
 	 * @return the Java object property value with the specified name, in
 	 *         objectified format (for example, if the property was set as an
-	 *         <code>int</code>, an <code>Integer</code> is returned); if there
+	 *         {@code int}, an {@code Integer} is returned); if there
 	 *         is no property by this name, a null value is returned
 	 * 
 	 * @throws JMSRuntimeException
@@ -1034,8 +1034,8 @@ public interface JMSProducer {
 	Object getObjectProperty(String name);
 
 	/**
-	 * Returns an <code>Enumeration</code> of the names of all the message
-	 * properties that have been set on this <code>JMSProducer</code>.
+	 * Returns an {@code Enumeration} of the names of all the message
+	 * properties that have been set on this {@code JMSProducer}.
 	 * <p>
 	 * Note that JMS standard header fields are not considered properties and
 	 * are not returned in this enumeration.
@@ -1049,30 +1049,30 @@ public interface JMSProducer {
 	Enumeration getPropertyNames();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have their <code>JMSCorrelationID</code> header value set to the
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have their {@code JMSCorrelationID} header value set to the
 	 * specified correlation ID, where correlation ID is specified as an array
 	 * of bytes.
 	 * <p>
-	 * This will override any <code>JMSCorrelationID</code> header value that is
+	 * This will override any {@code JMSCorrelationID} header value that is
 	 * already set on the message being sent.
 	 * <p>
 	 * The array is copied before the method returns, so future modifications to
-	 * the array will not alter the value in this <code>JMSProducer</code>.
+	 * the array will not alter the value in this {@code JMSProducer}.
 	 * <p>
 	 * If a provider supports the native concept of correlation ID, a JMS client
-	 * may need to assign specific <code>JMSCorrelationID</code> values to match
+	 * may need to assign specific {@code JMSCorrelationID} values to match
 	 * those expected by native messaging clients. JMS providers without native
 	 * correlation ID values are not required to support this method and its
 	 * corresponding get method; their implementation may throw a
-	 * <code>java.lang.UnsupportedOperationException</code>.
+	 * {@code java.lang.UnsupportedOperationException}.
 	 * <p>
-	 * The use of a <code>byte[]</code> value for <code>JMSCorrelationID</code>
+	 * The use of a {@code byte[]} value for {@code JMSCorrelationID}
 	 * is non-portable.
 	 * 
 	 * @param correlationID
 	 *            the correlation ID value as an array of bytes
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the correlation ID due to
 	 *             some internal error.
@@ -1084,10 +1084,10 @@ public interface JMSProducer {
 	JMSProducer setJMSCorrelationIDAsBytes(byte[] correlationID);
 
 	/**
-	 * Returns the <code>JMSCorrelationID</code> header value that has been set
-	 * on this <code>JMSProducer</code>, as an array of bytes.
+	 * Returns the {@code JMSCorrelationID} header value that has been set
+	 * on this {@code JMSProducer}, as an array of bytes.
 	 * <p>
-	 * The use of a <code>byte[]</code> value for <code>JMSCorrelationID</code>
+	 * The use of a {@code byte[]} value for {@code JMSCorrelationID}
 	 * is non-portable.
 	 * 
 	 * @return the correlation ID as an array of bytes
@@ -1104,47 +1104,47 @@ public interface JMSProducer {
 	byte[] getJMSCorrelationIDAsBytes();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have their <code>JMSCorrelationID</code> header value set to the
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have their {@code JMSCorrelationID} header value set to the
 	 * specified correlation ID, where correlation ID is specified as a
-	 * <code>String</code>.
+	 * {@code String}.
 	 * <p>
-	 * This will override any <code>JMSCorrelationID</code> header value that is
+	 * This will override any {@code JMSCorrelationID} header value that is
 	 * already set on the message being sent.
 	 * <p>
-	 * A client can use the <code>JMSCorrelationID</code> header field to link
+	 * A client can use the {@code JMSCorrelationID} header field to link
 	 * one message with another. A typical use is to link a response message
 	 * with its request message.
 	 * <p>
-	 * <code>JMSCorrelationID</code> can hold one of the following:
+	 * {@code JMSCorrelationID} can hold one of the following:
 	 * <UL>
 	 * <LI>A provider-specific message ID
-	 * <LI>An application-specific <code>String</code>
-	 * <LI>A provider-native <code>byte[]</code> value
+	 * <LI>An application-specific {@code String}
+	 * <LI>A provider-native {@code byte[]} value
 	 * </UL>
 	 * <p>
 	 * Since each message sent by a JMS provider is assigned a message ID value,
 	 * it is convenient to link messages via message ID. All message ID values
-	 * must start with the <code>'ID:'</code> prefix.
+	 * must start with the {@code 'ID:'} prefix.
 	 * <p>
 	 * In some cases, an application (made up of several clients) needs to use
 	 * an application-specific value for linking messages. For instance, an
-	 * application may use <code>JMSCorrelationID</code> to hold a value
+	 * application may use {@code JMSCorrelationID} to hold a value
 	 * referencing some external information. Application-specified values must
-	 * not start with the <code>'ID:'</code> prefix; this is reserved for
+	 * not start with the {@code 'ID:'} prefix; this is reserved for
 	 * provider-generated message ID values.
 	 * <p>
 	 * If a provider supports the native concept of correlation ID, a JMS client
-	 * may need to assign specific <code>JMSCorrelationID</code> values to match
+	 * may need to assign specific {@code JMSCorrelationID} values to match
 	 * those expected by clients that do not use the JMS API. A
-	 * <code>byte[]</code> value is used for this purpose. JMS providers without
+	 * {@code byte[]} value is used for this purpose. JMS providers without
 	 * native correlation ID values are not required to support
-	 * <code>byte[]</code> values. The use of a <code>byte[]</code> value for
-	 * <code>JMSCorrelationID</code> is non-portable.
+	 * {@code byte[]} values. The use of a {@code byte[]} value for
+	 * {@code JMSCorrelationID} is non-portable.
 	 * 
 	 * @param correlationID
 	 *            the message ID of a message being referred to
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the correlation ID due to
 	 *             some internal error.
@@ -1156,14 +1156,14 @@ public interface JMSProducer {
 	JMSProducer setJMSCorrelationID(String correlationID);
 
 	/**
-	 * Returns the <code>JMSCorrelationID</code> header value that has been set
-	 * on this <code>JMSProducer</code>, as a <code>String</code>.
+	 * Returns the {@code JMSCorrelationID} header value that has been set
+	 * on this {@code JMSProducer}, as a {@code String}.
 	 * <p>
 	 * This method is used to return correlation ID values that are either
-	 * provider-specific message IDs or application-specific <code>String</code>
+	 * provider-specific message IDs or application-specific {@code String}
 	 * values.
 	 * 
-	 * @return the correlation ID of a message as a <code>String</code>
+	 * @return the correlation ID of a message as a {@code String}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the correlation ID due to
@@ -1176,15 +1176,15 @@ public interface JMSProducer {
 	String getJMSCorrelationID();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have their <code>JMSType</code> header value set to the specified message
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have their {@code JMSType} header value set to the specified message
 	 * type.
 	 * <p>
-	 * This will override any <code>JMSType</code> header value that is already
+	 * This will override any {@code JMSType} header value that is already
 	 * set on the message being sent.
 	 * <p>
 	 * Some JMS providers use a message repository that contains the definitions
-	 * of messages sent by applications. The <code>JMSType</code> header field
+	 * of messages sent by applications. The {@code JMSType} header field
 	 * may reference a message's definition in the provider's repository.
 	 * <p>
 	 * The JMS API does not define a standard message definition repository, nor
@@ -1193,19 +1193,19 @@ public interface JMSProducer {
 	 * Some messaging systems require that a message type definition for each
 	 * application message be created and that each message specify its type. In
 	 * order to work with such JMS providers, JMS clients should assign a value
-	 * to <code>JMSType</code>, whether the application makes use of it or not.
+	 * to {@code JMSType}, whether the application makes use of it or not.
 	 * This ensures that the field is properly set for those providers that
 	 * require it.
 	 * <p>
 	 * To ensure portability, JMS clients should use symbolic values for
-	 * <code>JMSType</code> that can be configured at installation time to the
+	 * {@code JMSType} that can be configured at installation time to the
 	 * values defined in the current provider's message repository. If string
 	 * literals are used, they may not be valid type names for some JMS
 	 * providers.
 	 * 
 	 * @param type
 	 *            the message type
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to set the message type due to some
 	 *             internal error.
@@ -1215,8 +1215,8 @@ public interface JMSProducer {
 	JMSProducer setJMSType(String type);
 
 	/**
-	 * Returns the <code>JMSType</code> header value that has been set on this
-	 * <code>JMSProducer</code>.
+	 * Returns the {@code JMSType} header value that has been set on this
+	 * {@code JMSProducer}.
 	 * 
 	 * @return the message type
 	 * 
@@ -1229,37 +1229,37 @@ public interface JMSProducer {
 	String getJMSType();
 
 	/**
-	 * Specifies that messages sent using this <code>JMSProducer</code> will
-	 * have their <code>JMSReplyTo</code> header value set to the specified
-	 * <code>Destination</code> object.
+	 * Specifies that messages sent using this {@code JMSProducer} will
+	 * have their {@code JMSReplyTo} header value set to the specified
+	 * {@code Destination} object.
 	 * <p>
-	 * This will override any <code>JMSReplyTo</code> header value that is
+	 * This will override any {@code JMSReplyTo} header value that is
 	 * already set on the message being sent.
 	 * <p>
-	 * The <code>JMSReplyTo</code> header field contains the destination where a
+	 * The {@code JMSReplyTo} header field contains the destination where a
 	 * reply to the current message should be sent. If it is null, no reply is
-	 * expected. The destination may be either a <code>Queue</code> object or a
-	 * <code>Topic</code> object.
+	 * expected. The destination may be either a {@code Queue} object or a
+	 * {@code Topic} object.
 	 * <p>
-	 * Messages sent with a null <code>JMSReplyTo</code> value may be a
+	 * Messages sent with a null {@code JMSReplyTo} value may be a
 	 * notification of some event, or they may just be some data the sender
 	 * thinks is of interest.
 	 * <p>
-	 * Messages with a <code>JMSReplyTo</code> value typically expect a
+	 * Messages with a {@code JMSReplyTo} value typically expect a
 	 * response. A response is optional; it is up to the client to decide. These
 	 * messages are called requests. A message sent in response to a request is
 	 * called a reply.
 	 * <p>
 	 * In some cases a client may wish to match a request it sent earlier with a
 	 * reply it has just received. The client can use the
-	 * <code>JMSCorrelationID</code> header field for this purpose.
+	 * {@code JMSCorrelationID} header field for this purpose.
 	 * 
 	 * @param replyTo
-	 *            <code>Destination</code> to which to send a response to this
+	 *            {@code Destination} to which to send a response to this
 	 *            message
-	 * @return this <code>JMSProducer</code>
+	 * @return this {@code JMSProducer}
 	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to set the <code>JMSReplyTo</code>
+	 *             if the JMS provider fails to set the {@code JMSReplyTo}
 	 *             destination due to some internal error.
 	 * 
 	 * @see javax.jms.JMSProducer#getJMSReplyTo()
@@ -1267,14 +1267,14 @@ public interface JMSProducer {
 	JMSProducer setJMSReplyTo(Destination replyTo);
 
 	/**
-	 * Returns the <code>JMSReplyTo</code> header value that has been set on
-	 * this <code>JMSProducer</code>.
+	 * Returns the {@code JMSReplyTo} header value that has been set on
+	 * this {@code JMSProducer}.
 	 * <p>
 	 * 
-	 * @return <code>Destination</code> the <code>JMSReplyTo</code> header value
+	 * @return {@code Destination} the {@code JMSReplyTo} header value
 	 * 
 	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to get the <code>JMSReplyTo</code>
+	 *             if the JMS provider fails to get the {@code JMSReplyTo}
 	 *             destination due to some internal error.
 	 * 
 	 * @see javax.jms.JMSProducer#setJMSReplyTo(Destination)

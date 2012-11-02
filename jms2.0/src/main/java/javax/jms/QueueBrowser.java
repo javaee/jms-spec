@@ -42,11 +42,11 @@ package javax.jms;
 
 import java.util.Enumeration;
 
-/** A client uses a <CODE>QueueBrowser</CODE> object to look at messages on a 
+/** A client uses a {@code QueueBrowser} object to look at messages on a 
   * queue without removing them.
   *
-  * <P>The <CODE>getEnumeration</CODE> method returns a 
-  * <CODE>java.util.Enumeration</CODE> that is used to scan 
+  * <P>The {@code getEnumeration} method returns a 
+  * {@code java.util.Enumeration} that is used to scan 
   * the queue's messages. It may be an enumeration of the entire content of a 
   * queue, or it may contain only the messages matching a message selector.
   *
@@ -56,10 +56,10 @@ import java.util.Enumeration;
   * content. Whether these changes are visible or not depends on the JMS 
   * provider.
   * <p>
-  * A message must not be returned by a <code>QueueBrowser</code> before its delivery time has been reached.
+  * A message must not be returned by a {@code QueueBrowser} before its delivery time has been reached.
   *
-  *<P>A <CODE>QueueBrowser</CODE> can be created from either a 
-  * <CODE>Session</CODE> or a <CODE> QueueSession</CODE>. 
+  *<P>A {@code QueueBrowser} can be created from either a 
+  * {@code Session} or a {@code  QueueSession}. 
   *
   * @version     2.0
   *
@@ -113,7 +113,7 @@ public interface QueueBrowser extends AutoCloseable {
     getEnumeration() throws JMSException;
 
 
-    /** Closes the <CODE>QueueBrowser</CODE>.
+    /** Closes the {@code QueueBrowser}.
       *
       * <P>Since a provider may allocate some resources on behalf of a 
       * QueueBrowser outside the Java virtual machine, clients should close them

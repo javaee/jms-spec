@@ -41,20 +41,20 @@
 package javax.jms;
 
 /**
- * A client uses a <CODE>MessageProducer</CODE> object to send messages to a
- * destination. A <CODE>MessageProducer</CODE> object is created by passing a
- * <CODE>Destination</CODE> object to a message-producer creation method
+ * A client uses a {@code MessageProducer} object to send messages to a
+ * destination. A {@code MessageProducer} object is created by passing a
+ * {@code Destination} object to a message-producer creation method
  * supplied by a session.
  * 
  * <P>
- * <CODE>MessageProducer</CODE> is the parent interface for all message
+ * {@code MessageProducer} is the parent interface for all message
  * producers.
  * 
  * <P>
  * A client also has the option of creating a message producer without supplying
  * a destination. In this case, a destination must be provided with every send
  * operation. A typical use for this kind of message producer is to send replies
- * to requests using the request's <CODE>JMSReplyTo</CODE> destination.
+ * to requests using the request's {@code JMSReplyTo} destination.
  * 
  * <P>
  * A client can specify a default delivery mode, priority, time to live and
@@ -88,7 +88,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * size, some JMS providers may be able to optimise message overhead if they
 	 * are given a hint that the message ID is not used by an application. By
 	 * calling this method, a JMS application enables this potential optimisation for all
-	 * messages sent using this <code>MessageProducer</code>. If the JMS provider accepts this
+	 * messages sent using this {@code MessageProducer}. If the JMS provider accepts this
 	 * hint, these messages must have the message ID set to null; if the
 	 * provider ignores the hint, the message ID must be set to its normal
 	 * unique value.
@@ -122,7 +122,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * size, some JMS providers may be able to optimise message overhead if they
 	 * are given a hint that the timestamp is not used by an application. By
 	 * calling this method, a JMS application enables this potential optimisation for
-	 * all messages sent using this <code>MessageProducer</code>. If the JMS provider accepts
+	 * all messages sent using this {@code MessageProducer}. If the JMS provider accepts
 	 * this hint, these messages must have the timestamp set to zero; if the
 	 * provider ignores the hint, the timestamp must be set to its normal value.
 	 * <p>
@@ -152,12 +152,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * Sets the producer's default delivery mode.
 	 * 
 	 * <P>
-	 * Delivery mode is set to <CODE>PERSISTENT</CODE> by default.
+	 * Delivery mode is set to {@code PERSISTENT} by default.
 	 * 
 	 * @param deliveryMode
 	 *            the message delivery mode for this message producer; legal
-	 *            values are <code>DeliveryMode.NON_PERSISTENT</code> and
-	 *            <code>DeliveryMode.PERSISTENT</code>
+	 *            values are {@code DeliveryMode.NON_PERSISTENT} and
+	 *            {@code DeliveryMode.PERSISTENT}
 	 * 
 	 * @exception JMSException
 	 *                if the JMS provider fails to set the delivery mode due to
@@ -302,13 +302,13 @@ public interface MessageProducer extends AutoCloseable {
 	long getDeliveryDelay() throws JMSException;
 
 	/**
-	 * Gets the destination associated with this <CODE>MessageProducer</CODE>.
+	 * Gets the destination associated with this {@code MessageProducer}.
 	 * 
-	 * @return this producer's <CODE>Destination</CODE>
+	 * @return this producer's {@code Destination}
 	 * 
 	 * @exception JMSException
 	 *                if the JMS provider fails to get the destination for this
-	 *                <CODE>MessageProducer</CODE> due to some internal error.
+	 *                {@code MessageProducer} due to some internal error.
 	 * @since 1.1
 	 */
 
@@ -319,7 +319,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * 
 	 * <P>
 	 * Since a provider may allocate some resources on behalf of a
-	 * <CODE>MessageProducer</CODE> outside the Java virtual machine, clients
+	 * {@code MessageProducer} outside the Java virtual machine, clients
 	 * should close them when they are not needed. Relying on garbage collection
 	 * to eventually reclaim these resources may not be timely enough.
 	 * <p>
@@ -345,7 +345,7 @@ public interface MessageProducer extends AutoCloseable {
 	void close() throws JMSException;
 
 	/**
-	 * Sends a message using the <CODE>MessageProducer</CODE>'s default delivery
+	 * Sends a message using the {@code MessageProducer}'s default delivery
 	 * mode, priority, and time to live.
 	 * 
 	 * @param message
@@ -358,10 +358,10 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 *                {@code MessageProducer} with an invalid destination.
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                {@code MessageProducer} that did not specify a
 	 *                destination at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -390,10 +390,10 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 *                {@code MessageProducer} with an invalid destination.
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                {@code MessageProducer} that did not specify a
 	 *                destination at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -404,7 +404,7 @@ public interface MessageProducer extends AutoCloseable {
 
 	/**
 	 * Sends a message to a destination for an unidentified message producer
-	 * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
+	 * using the {@code MessageProducer}'s default delivery mode, priority,
 	 * and time to live.
 	 * 
 	 * <P>
@@ -426,7 +426,7 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if a client uses this method with an invalid destination.
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                {@code MessageProducer} that specified a destination
 	 *                at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -464,7 +464,7 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if a client uses this method with an invalid destination.
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                {@code MessageProducer} that specified a destination
 	 *                at creation time.
 	 *                
 	 * @see javax.jms.Session#createProducer
@@ -475,7 +475,7 @@ public interface MessageProducer extends AutoCloseable {
 			throws JMSException;
 
 	/**
-	 * Sends a message using the <CODE>MessageProducer</CODE>'s default delivery
+	 * Sends a message using the {@code MessageProducer}'s default delivery
 	 * mode, priority, and time to live, performing part of the work involved in
 	 * sending the message in a separate thread and notifying the specified
 	 * <tt>CompletionListener</tt> when the operation has completed. JMS refers
@@ -547,12 +547,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
 	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
 	 * send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * {@code CompletionListener} callbacks have returned before closing
 	 * the object and returning. If the session is transacted (uses a local
 	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * {@code CompletionListener} callbacks have returned before performing
 	 * the commit or rollback. Incomplete sends should be allowed to complete
 	 * normally unless an error occurs.
 	 * <p>
@@ -591,7 +591,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
 	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
-	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * {@code onCompletion} and {@code onException}) will be performed
 	 * in the same order as the corresponding calls to the asynchronous send
 	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
@@ -616,7 +616,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * @param message
 	 *            the message to send
 	 * @param completionListener
-	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            a {@code CompletionListener} to be notified when the send
 	 *            has completed
 	 * 
 	 * @exception JMSException
@@ -625,12 +625,12 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 *                {@code MessageProducer} with an invalid destination.
 	 * @exception java.lang.IllegalArgumentException
-	 *                if the specified <code>CompletionListener</code> is null
+	 *                if the specified {@code CompletionListener} is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                {@code MessageProducer} that did not specify a
 	 *                destination at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -712,12 +712,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
 	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
 	 * send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * {@code CompletionListener} callbacks have returned before closing
 	 * the object and returning. If the session is transacted (uses a local
 	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * {@code CompletionListener} callbacks have returned before performing
 	 * the commit or rollback. Incomplete sends should be allowed to complete
 	 * normally unless an error occurs.
 	 * <p>
@@ -756,7 +756,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
 	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
-	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * {@code onCompletion} and {@code onException}) will be performed
 	 * in the same order as the corresponding calls to the asynchronous send
 	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
@@ -787,7 +787,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * @param timeToLive
 	 *            the message's lifetime (in milliseconds)
 	 * @param completionListener
-	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            a {@code CompletionListener} to be notified when the send
 	 *            has completed
 	 * 
 	 * @exception JMSException
@@ -796,12 +796,12 @@ public interface MessageProducer extends AutoCloseable {
 	 *                if an invalid message is specified.
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> with an invalid destination.
+	 *                {@code MessageProducer} with an invalid destination.
 	 * @exception java.lang.IllegalArgumentException
-	 *                if the specified <code>CompletionListener</code> is null
+	 *                if the specified {@code CompletionListener} is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that did not specify a
+	 *                {@code MessageProducer} that did not specify a
 	 *                destination at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -814,7 +814,7 @@ public interface MessageProducer extends AutoCloseable {
 
 	/**
 	 * Sends a message to a destination for an unidentified message producer,
-	 * using the <CODE>MessageProducer</CODE>'s default delivery mode, priority,
+	 * using the {@code MessageProducer}'s default delivery mode, priority,
 	 * and time to live, performing part of the work involved in sending the
 	 * message in a separate thread and notifying the specified
 	 * <tt>CompletionListener</tt> when the operation has completed. JMS refers
@@ -891,12 +891,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
 	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
 	 * send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * {@code CompletionListener} callbacks have returned before closing
 	 * the object and returning. If the session is transacted (uses a local
 	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * {@code CompletionListener} callbacks have returned before performing
 	 * the commit or rollback. Incomplete sends should be allowed to complete
 	 * normally unless an error occurs.
 	 * <p>
@@ -935,7 +935,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
 	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
-	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * {@code onCompletion} and {@code onException}) will be performed
 	 * in the same order as the corresponding calls to the asynchronous send
 	 * method. A JMS provider must not invoke the <tt>CompletionListener</tt>
 	 * from the thread that is calling the asynchronous <tt>send</tt> method.
@@ -961,7 +961,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * @param message
 	 *            the message to send
 	 * @param completionListener
-	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            a {@code CompletionListener} to be notified when the send
 	 *            has completed
 	 * 
 	 * @exception JMSException
@@ -971,10 +971,10 @@ public interface MessageProducer extends AutoCloseable {
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with an invalid destination
 	 * @exception java.lang.IllegalArgumentException
-	 *                if the specified <code>CompletionListener</code> is null
+	 *                if the specified {@code CompletionListener} is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                {@code MessageProducer} that specified a destination
 	 *                at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
@@ -1061,12 +1061,12 @@ public interface MessageProducer extends AutoCloseable {
 	 * on the <tt>MessageProducer</tt> or its <tt>Session</tt> or
 	 * <tt>Connection</tt> then the JMS provider must block until any incomplete
 	 * send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before closing
+	 * {@code CompletionListener} callbacks have returned before closing
 	 * the object and returning. If the session is transacted (uses a local
 	 * transaction) then when the <tt>Session</tt>'s <tt>commit</tt> or
 	 * <tt>rollback</tt> method is called the JMS provider must block until any
 	 * incomplete send operations have been completed and all
-	 * <code>CompletionListener</code> callbacks have returned before performing
+	 * {@code CompletionListener} callbacks have returned before performing
 	 * the commit or rollback. Incomplete sends should be allowed to complete
 	 * normally unless an error occurs.
 	 * <p>
@@ -1105,7 +1105,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * <b>Use of the <tt>CompletionListener</tt> by the JMS provider</b>: A
 	 * session will only invoke one <tt>CompletionListener</tt> callback method
 	 * at a time. For a given <tt>MessageProducer</tt>, callbacks (both
-	 * <code>onCompletion</code> and <code>onException</code>) will be performed
+	 * {@code onCompletion} and {@code onException}) will be performed
 	 * in the same order as the corresponding calls to the asynchronous send
 	 * method.
 	 * A JMS provider must not invoke the <tt>CompletionListener</tt> from the
@@ -1139,7 +1139,7 @@ public interface MessageProducer extends AutoCloseable {
 	 * @param timeToLive
 	 *            the message's lifetime (in milliseconds)
 	 * @param completionListener
-	 *            a <code>CompletionListener</code> to be notified when the send
+	 *            a {@code CompletionListener} to be notified when the send
 	 *            has completed
 	 * 
 	 * @exception JMSException
@@ -1149,10 +1149,10 @@ public interface MessageProducer extends AutoCloseable {
 	 * @exception InvalidDestinationException
 	 *                if a client uses this method with an invalid destination.
 	 * @exception java.lang.IllegalArgumentException
-	 *                if the specified <code>CompletionListener</code> is null
+	 *                if the specified {@code CompletionListener} is null
 	 * @exception java.lang.UnsupportedOperationException
 	 *                if a client uses this method with a
-	 *                <CODE>MessageProducer</CODE> that specified a destination
+	 *                {@code MessageProducer} that specified a destination
 	 *                at creation time.
 	 * 
 	 * @see javax.jms.Session#createProducer
