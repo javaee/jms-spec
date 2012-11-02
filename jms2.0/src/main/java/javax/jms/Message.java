@@ -1605,16 +1605,16 @@ public interface Message {
 	 * <tt>StreamMessage</tt>. If the message has no body then null is returned.
 	 * 
 	 * @param c
-	 *            The type to which the message body should be assigned. <br/>
-	 *            If the message is a <code>TextMessage</code> then this should
+	 *            The type to which the message body will be assigned. <br/>
+	 *            If the message is a <code>TextMessage</code> then this must 
 	 *            be set to <code>String.class</code> or another class to which
 	 *            a String is assignable. <br/>
 	 *            If the message is a <code>ObjectMessage</code> then this
-	 *            should be set to <code>java.io.Serializable.class</code> or
+	 *            must be set to <code>java.io.Serializable.class</code> or
 	 *            another class to which the payload is assignable. <br/>
-	 *            If the message is a <code>MapMessage</code> then this should
+	 *            If the message is a <code>MapMessage</code> then this must
 	 *            be set to <code>java.util.Map.class</code>. <br/>
-	 *            If the message is a <code>BytesMessage</code> then this should
+	 *            If the message is a <code>BytesMessage</code> then this must
 	 *            be set to <code>byte[].class</code>. The
 	 *            <code>BytesMessage</code> must not be in write-only mode.
 	 * 
