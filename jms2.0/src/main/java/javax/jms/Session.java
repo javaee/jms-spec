@@ -711,8 +711,9 @@ public interface Session extends Runnable, AutoCloseable {
 	 * subscription.
 	 * <p>
 	 * If a shared non-durable subscription already exists with the same name
-	 * and the same topic, and without a message selector, then this method
-	 * creates a <code>MessageConsumer</code> on the existing subscription.
+	 * and client identifier (if set) and the same topic, and without a message
+	 * selector, then this method creates a <code>MessageConsumer</code> on the
+	 * existing subscription.
 	 * <p>
 	 * A non-durable shared subscription is used by a client which needs to be
 	 * able to share the work of receiving messages from a topic subscription
@@ -726,13 +727,20 @@ public interface Session extends Runnable, AutoCloseable {
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
 	 * <code>Session</code> or <code>TopicSession</code>.
+     * <p>
+     * A shared non-durable subscription is identified by a name specified by the client
+     * and by the client identifier if set. If the client identifier was set
+     * when the shared non-durable subscription was first created then a client which 
+     * subsequently wishes to create a consumer 
+     * on that shared non-durable subscription must use the same client identifier.
 	 * <p>
 	 * If there is an active consumer on the non-durable shared subscription (or
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
-	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSException</code>
-	 * will be thrown.
+	 * made to create an additional consumer, specifying the same name and
+	 * client identifier (if set) but a different topic or message selector, or,
+	 * if the client identifier is set, a different noLocal value, then a
+	 * <code>JMSException</code> will be thrown.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -762,6 +770,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <code>MessageConsumer</code> on that subscription.
 	 * <p>
 	 * If a shared non-durable subscription already exists with the same name
+	 * and client identifier (if set)
 	 * and the same topic and message selector then this method creates a
 	 * <code>MessageConsumer</code> on the existing subscription.
 	 * <p>
@@ -777,13 +786,20 @@ public interface Session extends Runnable, AutoCloseable {
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
 	 * <code>Session</code> or <code>TopicSession</code>.
+     * <p>
+     * A shared non-durable subscription is identified by a name specified by the client
+     * and by the client identifier if set. If the client identifier was set
+     * when the shared non-durable subscription was first created then a client which 
+     * subsequently wishes to create a consumer 
+     * on that shared non-durable subscription must use the same client identifier.
 	 * <p>
 	 * If there is an active consumer on the non-durable shared subscription (or
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
-	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSException</code>
-	 * will be thrown.
+	 * made to create an additional consumer, specifying the same name and
+	 * client identifier (if set) but a different topic or message selector, or,
+	 * if the client identifier is set, a different noLocal value, then a
+	 * <code>JMSException</code> will be thrown.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -820,6 +836,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <code>MessageConsumer</code> on that subscription,
 	 * <p>
 	 * If a shared non-durable subscription already exists with the same name
+	 * and client identifier (if set)
 	 * and the same topic and message selector then this method creates a
 	 * <code>MessageConsumer</code> on the existing subscription.
 	 * <p>
@@ -835,17 +852,27 @@ public interface Session extends Runnable, AutoCloseable {
 	 * A consumer may be created on a non-durable shared subscription using the
 	 * <code>createSharedConsumer</code> methods on <code>JMSContext</code>,
 	 * <code>Session</code> or <code>TopicSession</code>.
+     * <p>
+     * A shared non-durable subscription is identified by a name specified by the client
+     * and by the client identifier if set. If the client identifier was set
+     * when the shared non-durable subscription was first created then a client which 
+     * subsequently wishes to create a consumer 
+     * on that shared non-durable subscription must use the same client identifier.
+	 * <p>
+	 * If <code>noLocal</code> is set to true, and the client identifier is set,
+	 * then any messages published to the topic using this session's connection,
+	 * or any other connection with the same client
+	 * identifier, will not be added to the shared non-durable subscription. If the client
+	 * identifier is unset then setting <code>noLocal</code> to true will cause
+	 * an <code>IllegalStateException</code> to be thrown. 
 	 * <p>
 	 * If there is an active consumer on the non-durable shared subscription (or
 	 * a consumed message from that subscription is still part of a pending
 	 * transaction or is not yet acknowledged in the session), and an attempt is
-	 * made to create an additional consumer, specifying the same name but a
-	 * different topic or message selector, then a <code>JMSException</code>
-	 * will be thrown.
-	 * <p>
-	 * If <code>noLocal</code> is set to true then messages published to the
-	 * topic by its own connection will not be added to the shared non-durable
-	 * subscription. The default value of this argument is false.
+	 * made to create an additional consumer, specifying the same name and
+	 * client identifier (if set) but a different topic or message selector, or,
+	 * if the client identifier is set, a different noLocal value, then a
+	 * <code>JMSException</code> will be thrown.
 	 * <p>
 	 * There is no restriction to prevent a shared non-durable subscription and
 	 * a durable subscription having the same name. Such subscriptions would be
@@ -861,8 +888,11 @@ public interface Session extends Runnable, AutoCloseable {
 	 *            value of null or an empty string indicates that there is no
 	 *            message selector for the non-durable subscription.
 	 * @param noLocal
-	 *            if true, messages published by its own connection will not be
-	 *            added to the shared non-durable subscription.
+	 *            if true, and the client identifier is set, then any messages
+	 *            published to the topic using this session's connection, or any
+	 *            other connection with the same
+	 *            client identifier, will not be added to the shared non-durable
+	 *            subscription.
 	 * 
 	 * @throws JMSException
 	 *             if the session fails to create the shared non-durable
@@ -872,7 +902,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 *             if an invalid topic is specified.
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
-	 * 
+	 * @throws IllegalStateException
+	 *             if <code>noLocal</code> is set to <code>true</code> but
+	 *             the client identifier is unset
+	 *                
 	 * @since 2.0
 	 */ 
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector,
@@ -1008,6 +1041,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * client identifier (if set) but a different topic or message selector or,
 	 * if the client identifier is set, a different <code>noLocal</code> value,
 	 * then a <code>JMSException</code> will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a durable subscription and
+	 * a shared non-durable subscription having the same name. Such subscriptions
+	 * would be completely separate.
      *
      * @param topic the non-temporary <CODE>Topic</CODE> to subscribe to
      * @param name the name used to identify this subscription
@@ -1070,10 +1107,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <p>
 	 * If <code>noLocal</code> is set to true, and the client identifier is set,
 	 * then any messages published to the topic using this session's connection,
-	 * or any other connection or <code>JMSContext</code> with the same client
+	 * or any other connection with the same client
 	 * identifier, will not be added to the durable subscription. If the client
 	 * identifier is unset then setting <code>noLocal</code> to true will cause
-	 * a <code>IllegalStateException</code> to be thrown.
+	 * an <code>IllegalStateException</code> to be thrown.
 	 * <p>
 	 * If there are no active consumers on the durable subscription (and no
 	 * consumed messages from that subscription are still part of a pending
@@ -1091,6 +1128,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * client identifier (if set) but a different topic or message selector or,
 	 * if the client identifier is set, a different <code>noLocal</code> value,
 	 * then a <code>JMSException</code> will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a durable subscription and
+	 * a shared non-durable subscription having the same name. Such subscriptions
+	 * would be completely separate.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1104,7 +1145,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @param noLocal
 	 *            if true, and the client identifier is set, then any messages
 	 *            published to the topic using this session's connection, or any
-	 *            other connection or <code>JMSContext</code> with the same
+	 *            other connection with the same
 	 *            client identifier, will not be added to the durable
 	 *            subscription.
 	 * @exception JMSException
@@ -1119,7 +1160,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                if <code>noLocal</code> is set to <code>true</code> but
 	 *                the client identifier is unset
 	 * 
-	 * @since 1.1
+	 * @since 2.0
 	 */ 
 	TopicSubscriber createDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal)
 			throws JMSException;
@@ -1181,6 +1222,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * client identifier (if set) but a different topic or message selector or,
 	 * if the client identifier is set, a different <code>noLocal</code> value,
 	 * then a <code>JMSException</code> will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a durable subscription and
+	 * a shared non-durable subscription having the same name. Such subscriptions
+	 * would be completely separate.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1239,10 +1284,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <P>
 	 * If <code>noLocal</code> is set to true, and the client identifier is set,
 	 * then any messages published to the topic using this session's connection,
-	 * or any other connection or <code>JMSContext</code> with the same client
+	 * or any other connection with the same client
 	 * identifier, will not be added to the durable subscription. If the client
 	 * identifier is unset then setting <code>noLocal</code> to true will cause
-	 * a <code>IllegalStateException</code> to be thrown. 
+	 * an <code>IllegalStateException</code> to be thrown. 
 	 * <p>
 	 * If there are no active consumers on the durable subscription (and no
 	 * consumed messages from that subscription are still part of a pending
@@ -1260,6 +1305,10 @@ public interface Session extends Runnable, AutoCloseable {
 	 * client identifier (if set) but a different topic or message selector or,
 	 * if the client identifier is set, a different <code>noLocal</code> value,
 	 * then a <code>JMSException</code> will be thrown.
+	 * <p>
+	 * There is no restriction to prevent a durable subscription and
+	 * a shared non-durable subscription having the same name. Such subscriptions
+	 * would be completely separate.
 	 * 
 	 * @param topic
 	 *            the non-temporary <CODE>Topic</CODE> to subscribe to
@@ -1273,7 +1322,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @param noLocal
 	 *            if true, and the client identifier is set, then any messages
 	 *            published to the topic using this session's connection, or any
-	 *            other connection or <code>JMSContext</code> with the same
+	 *            other connection with the same
 	 *            client identifier, will not be added to the durable
 	 *            subscription.
 	 * @exception JMSException
