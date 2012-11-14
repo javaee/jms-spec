@@ -49,8 +49,8 @@ import java.util.Properties;
   *
   * <P>Most message-oriented middleware (MOM) products treat messages as 
   * lightweight entities that consist
-  * of a header and a payload. The header contains fields used for message
-  * routing and identification; the payload contains the application data
+  * of a header and a body. The header contains fields used for message
+  * routing and identification; the body contains the application data
   * being sent.
   *
   * <P>Within this general form, the definition of a message varies
@@ -1611,12 +1611,15 @@ public interface Message {
 	 *            a String is assignable. <br/>
 	 *            If the message is a {@code ObjectMessage} then this
 	 *            must be set to {@code java.io.Serializable.class} or
-	 *            another class to which the payload is assignable. <br/>
+	 *            another class to which the body is assignable. <br/>
 	 *            If the message is a {@code MapMessage} then this must
 	 *            be set to {@code java.util.Map.class}. <br/>
 	 *            If the message is a {@code BytesMessage} then this must
 	 *            be set to {@code byte[].class}. The
 	 *            {@code BytesMessage} must not be in write-only mode.
+	 *            If the message is a {@code Message} (but not one of
+	 *            its subtypes) then this may be set to any class:
+	 *            the returned value will always be null.
 	 * 
 	 * @return the message body
 	 * 
@@ -1654,13 +1657,16 @@ public interface Message {
 	 *            If the message is a {@code ObjectMessage} then this
 	 *            method will only return true if this parameter is set to
 	 *            {@code java.io.Serializable.class} or another class to
-	 *            which the payload is assignable. <br/>
+	 *            which the body is assignable. <br/>
 	 *            If the message is a {@code MapMessage} then this method
 	 *            will only return true if this parameter is set to
 	 *            {@code java.util.Map.class}. <br/>
 	 *            If the message is a {@code BytesMessage} then this this
 	 *            method will only return true if this parameter is set to
 	 *            {@code byte[].class}.
+	 *            If the message is a {@code Message} (but not one of
+	 *            its subtypes) then this may be set to any class:
+	 *            the returned value will always be true.
 	 * 
 	 * @return whether the message body is capable of being assigned to the
 	 *         specified type
