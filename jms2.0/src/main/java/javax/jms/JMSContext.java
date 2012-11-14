@@ -75,9 +75,9 @@ import java.io.Serializable;
  * Applications running in the Java EE web and EJB containers may alternatively
  * inject a {@code JMSContext} into their application using the
  * {@code @Inject} annotation. A {@code JMSContext} that is created in
- * this way is described as being <i>container-managed</i>. An
- * application-managed {@code JMSContext} will be closed automatically by
- * the container. Applications must not call its {@code close} method.
+ * this way is described as being <i>container-managed</i>. A 
+ * container-managed {@code JMSContext} will be closed automatically by
+ * the container. 
  * <p>
  * Applications running in the Java EE web and EJB containers are not permitted
  * to create more than one active session on a connection so combining them in a
@@ -238,6 +238,17 @@ public interface JMSContext extends AutoCloseable {
 	 * @param clientID
 	 *            the unique client identifier
 	 * 
+	 * 
+	 * @throws InvalidClientIDRuntimeException
+	 *             if the JMS client specifies an invalid or duplicate client
+	 *             ID.
+	 * @throws IllegalStateRuntimeException
+	 *             <ul>
+	 *             <li>if the JMS client attempts to set the client ID for the
+	 *             JMSContext's connection at the wrong time or 
+	 *             <li>if the client ID has been administratively configured or
+	 *             <li>if the {@code JMSContext} is container-managed (injected).
+	 *             </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to set the client ID for the the
 	 *                JMSContext's connection for one of the following reasons:
@@ -245,17 +256,8 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li>an internal error has occurred or <li>this method has
 	 *                been called in a Java EE web or EJB application (though it
 	 *                is not guaranteed that an exception is thrown in this
-	 *                case) <li>the {@code JMSContext} is container-managed
-	 *                (injected).
+	 *                case) 
 	 *                </ul>
-	 * 
-	 * @throws InvalidClientIDRuntimeException
-	 *             if the JMS client specifies an invalid or duplicate client
-	 *             ID.
-	 * @throws IllegalStateRuntimeException
-	 *             if the JMS client attempts to set the client ID for the
-	 *             JMSContext's connection at the wrong time or when it has been
-	 *             administratively configured.
 	 */
 
 	void setClientID(String clientID);
@@ -324,6 +326,9 @@ public interface JMSContext extends AutoCloseable {
 	 * @param listener
 	 *            the exception listener
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                if the {@code JMSContext} is container-managed (injected).
+	 *                
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to set the exception listener
 	 *                for one of the following reasons:
@@ -331,8 +336,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li>an internal error has occurred or <li>this method has
 	 *                been called in a Java EE web or EJB application (though it
 	 *                is not guaranteed that an exception is thrown in this
-	 *                case) <li>the {@code JMSContext} is container-managed
-	 *                (injected).
+	 *                case) 
 	 *                </ul>
 	 */
 	void setExceptionListener(ExceptionListener listener);
@@ -346,16 +350,12 @@ public interface JMSContext extends AutoCloseable {
 	 * container-managed (injected). Doing so will cause a
 	 * {@code JMSRuntimeException} to be thrown.
 	 * 
+	 * @exception IllegalStateRuntimeException
+	 *                if the {@code JMSContext} is container-managed (injected).
+	 *                
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to start message delivery due to
 	 *                some internal error.
-	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to start message delivery due to
-	 *                one of the following reasons:
-	 *                <ul>
-	 *                <li>an internal error has occurred or <li>the {@code 
-	 *                JMSContext} is container-managed (injected).
-	 *                </ul>
 	 * 
 	 * @see javax.jms.JMSContext#stop
 	 */
@@ -410,8 +410,11 @@ public interface JMSContext extends AutoCloseable {
 	 * {@code JMSRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
-	 *                this method has been called by a <tt>MessageListener</tt>
+	 *                <ul>
+	 *                <li>if this method has been called by a <tt>MessageListener</tt>
 	 *                on its own <tt>JMSContext</tt>
+	 *                <li>if the {@code JMSContext} is container-managed (injected).
+	 *                </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to stop message delivery for one
 	 *                of the following reasons:
@@ -419,10 +422,9 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li>an internal error has occurred or <li>this method has
 	 *                been called in a Java EE web or EJB application (though it
 	 *                is not guaranteed that an exception is thrown in this
-	 *                case) <li>the {@code JMSContext} is container-managed
-	 *                (injected)
+	 *                case) 
 	 *                </ul>
-	 * 
+	 *                
 	 * @see javax.jms.JMSContext#start
 	 */
 	void stop();
@@ -443,9 +445,8 @@ public interface JMSContext extends AutoCloseable {
 	 *            Whether the underlying connection used by this
 	 *            {@code JMSContext} will be automatically started when a
 	 *            consumer is created.
-	 * @exception JMSRuntimeException
-	 *                the {@code JMSContext} is container-managed
-	 *                (injected)
+	 * @exception IllegalStateRuntimeException
+	 *                if the {@code JMSContext} is container-managed (injected)
 	 * 
 	 * @see javax.jms.JMSContext#getAutoStart
 	 */
@@ -532,20 +533,17 @@ public interface JMSContext extends AutoCloseable {
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
-	 *                <li>this method has been called by a <tt>MessageListener
-	 *                </tt> on its own <tt>JMSContext</tt></li> <li>this method
+	 *                <li>if this method has been called by a <tt>MessageListener
+	 *                </tt> on its own <tt>JMSContext</tt></li> <li>if this method
 	 *                has been called by a <tt>CompletionListener</tt> callback
 	 *                method on its own <tt>JMSContext</tt></li>
+	 *                <li>if the {@code JMSContext} is container-managed (injected)</li>
 	 *                </ul>
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to close the
-	 *                {@code JMSContext} for one of the following reasons:
-	 *                <ul>
-	 *                <li> an internal error has occurred. For example, a
+	 *                {@code JMSContext} due to some internal error. For example, a
 	 *                failure to release resources or to close a socket
-	 *                connection can cause this exception to be thrown. <li> the
-	 *                {@code JMSContext} is container-managed (injected)
-	 *                </ul>
+	 *                connection can cause this exception to be thrown. 
 	 */
 	void close();
 
@@ -805,23 +803,19 @@ public interface JMSContext extends AutoCloseable {
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
-	 *                <li>the <tt>JMSContext</tt>'s session is not using a local
-	 *                transaction <li>this method has been called by a <tt>
+	 *                <li>if the <tt>JMSContext</tt>'s session is not using a local
+	 *                transaction <li>if this method has been called by a <tt>
 	 *                MessageListener</tt> on its own <tt>JMSContext</tt></li>
-	 *                <li>this method has been called by a <tt>
+	 *                <li>if this method has been called by a <tt>
 	 *                CompletionListener</tt> callback method on its own <tt>
 	 *                JMSContext</tt></li>
-	 *                </ul>
-	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to commit the transaction for
-	 *                one of the following reasons:
-	 *                <ul>
-	 *                <li> an internal error has occurred. <li> the {@code 
-	 *                JMSContext} is container-managed (injected)
+	 *                <li>if the {@code JMSContext} is container-managed (injected)
 	 *                </ul>
 	 * @exception TransactionRolledBackRuntimeException
 	 *                if the transaction is rolled back due to some internal
 	 *                error during commit.
+	 * @exception JMSRuntimeException
+	 *                if the JMS provider fails to commit the transaction due to some internal error                
 	 * 
 	 */
 
@@ -846,17 +840,13 @@ public interface JMSContext extends AutoCloseable {
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
-	 *                <li>the <tt>JMSContext</tt>'s session is not using a local transaction
-	 *                <li>this method has been called by a <tt>MessageListener</tt> on its own <tt>JMSContext</tt></li>
-	 *                <li>this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>JMSContext</tt></li>
+	 *                <li>if the <tt>JMSContext</tt>'s session is not using a local transaction
+	 *                <li>if this method has been called by a <tt>MessageListener</tt> on its own <tt>JMSContext</tt></li>
+	 *                <li>if this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>JMSContext</tt></li>
+	 *                <li>if the {@code JMSContext} is container-managed (injected)
 	 *                </ul>
 	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to roll back the transaction for
-	 *                one of the following reasons:
-	 *                <ul>
-	 *                <li> an internal error has occurred. <li> the {@code 
-	 *                JMSContext} is container-managed (injected)
-	 *                </ul>
+	 *                if the JMS provider fails to roll back the transaction due to some internal error 
 	 * 
 	 */
 	void rollback();
@@ -886,15 +876,13 @@ public interface JMSContext extends AutoCloseable {
 	 * container-managed (injected). Doing so will cause a
 	 * {@code JMSRuntimeException} to be thrown.
 	 * 
-	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to stop and restart message
-	 *                delivery for one of the following reasons:
-	 *                <ul>
-	 *                <li> an internal error has occurred. <li> the {@code 
-	 *                JMSContext} is container-managed (injected)
-	 *                </ul>
 	 * @exception IllegalStateRuntimeException
-	 *                if the method is called by a transacted session.
+	 *                <ul>
+	 *                <li>if the <tt>JMSContext</tt>'s session is using a transaction
+	 *                <li>if the {@code JMSContext} is container-managed (injected)
+	 *                </ul>
+	 * @exception JMSRuntimeException
+	 *                 if the JMS provider fails to stop and restart message delivery due to some internal error
 	 */
 
 	void recover();
@@ -1546,16 +1534,14 @@ public interface JMSContext extends AutoCloseable {
 	 * container-managed (injected). Doing so will cause a
 	 * {@code JMSRuntimeException} to be thrown.
 	 * 
-	 * @exception JMSRuntimeException
-	 *                if the JMS provider fails to acknowledge the messages for
-	 *                one of the following reasons:
-	 *                <ul>
-	 *                <li> an internal error has occurred. <li> the {@code 
-	 *                JMSContext} is container-managed (injected)
-	 *                </ul>
-	 * 
 	 * @exception IllegalStateRuntimeException
-	 *                if the {@code JMSContext} is closed.
+	 *                <ul>
+	 *                <li>if the {@code JMSContext} is closed.
+	 *                <li>if the {@code JMSContext} is container-managed (injected)
+	 *                </ul>
+	 *                
+	 * @exception JMSRuntimeException
+	 *                if the JMS provider fails to acknowledge the messages due to some internal error 
 	 * 
 	 * @see javax.jms.Session#CLIENT_ACKNOWLEDGE
 	 * @see javax.jms.Message#acknowledge
