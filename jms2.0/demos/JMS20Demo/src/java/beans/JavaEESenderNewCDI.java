@@ -58,9 +58,9 @@ public class JavaEESenderNewCDI {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
                
-    public void sendMessageNewCDI(String payload) {
+    public void sendMessageNewCDI(String body) {
         try {
-            context.createProducer().send(inboundQueue, payload);
+            context.createProducer().send(inboundQueue, body);
         } catch (JMSRuntimeException ex){
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }

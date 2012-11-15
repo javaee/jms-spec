@@ -61,7 +61,7 @@ public class JavaEESyncReceiverNewCDI {
     public String receiveMessageNewCDI() {
         try {
             JMSConsumer consumer = context.createConsumer(inboundQueue);
-            return "Received " + consumer.receivePayload(String.class, 1000);
+            return "Received " + consumer.receiveBody(String.class, 1000);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -58,13 +58,13 @@ public class JavaEESenderOld {
     
     // GlassFish 4.0 currently uses Java SE 6, so these examples do not make use of the Java SE 7 AutoCloseable API. 
 
-    public void sendMessageOld(String payload) {
+    public void sendMessageOld(String body) {
         try {
             Connection connection = connectionFactory.createConnection();
             try {
                 Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
                 MessageProducer messageProducer = session.createProducer(demoQueue);
-                TextMessage textMessage = session.createTextMessage(payload);
+                TextMessage textMessage = session.createTextMessage(body);
                 messageProducer.send(textMessage);
             } finally {
                 connection.close();

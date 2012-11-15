@@ -65,7 +65,7 @@ public class JavaEESyncReceiverNewCDIWithProperties {
             if (textMessage==null){
                 return "Received null";
             } else {
-               return "Payload="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
+               return "Body="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
             }
         } catch (Exception ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);

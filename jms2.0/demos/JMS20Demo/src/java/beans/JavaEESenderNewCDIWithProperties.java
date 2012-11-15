@@ -45,7 +45,10 @@ import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.jms.*;
+import javax.jms.JMSConnectionFactory;
+import javax.jms.JMSContext;
+import javax.jms.JMSRuntimeException;
+import javax.jms.Queue;
 
 @Stateless
 @LocalBean
@@ -58,9 +61,9 @@ public class JavaEESenderNewCDIWithProperties {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
 
-    public void sendMessageNewCDIWithProperties(String payload) {
+    public void sendMessageNewCDIWithProperties(String body) {
         try {
-            context.createProducer().setPriority(1).setProperty("foo", "987654").send(inboundQueue, payload);
+            context.createProducer().setPriority(1).setProperty("foo", "987654").send(inboundQueue, body);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(JavaEESenderOldWithProperties.class.getName()).log(Level.SEVERE, null, ex);
         }

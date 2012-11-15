@@ -61,7 +61,7 @@ public class JavaEESyncReceiverNew {
             JMSContext context = connectionFactory.createContext();
             try {
                 JMSConsumer consumer = context.createConsumer(demoQueue);
-                return "Received " + consumer.receivePayload(String.class, 1000);
+                return "Received " + consumer.receiveBody(String.class, 1000);
             } finally {
                 context.close();
             }

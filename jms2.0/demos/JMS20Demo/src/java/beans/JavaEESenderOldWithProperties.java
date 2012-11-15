@@ -56,14 +56,14 @@ public class JavaEESenderOldWithProperties {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
 
-    public void sendMessageOldWithProperties(String payload) {
+    public void sendMessageOldWithProperties(String body) {
         try {
             Connection connection = connectionFactory.createConnection();
             try {
                 Session session = connection.createSession();
                 MessageProducer messageProducer = session.createProducer(demoQueue);
                 messageProducer.setPriority(1);
-                TextMessage textMessage = session.createTextMessage(payload);
+                TextMessage textMessage = session.createTextMessage(body);
                 textMessage.setStringProperty("foo", "bar");
                 messageProducer.send(textMessage);
             } finally {
