@@ -213,115 +213,134 @@ public interface JMSConsumer extends AutoCloseable {
     
 	/**
 	 * Receives the next message produced for this {@code JMSConsumer} and
-	 * returns its payload, which must be of the specified type
-	 * 
+	 * returns its body as an object of the specified type. 
+	 * The message body must be capable of being assigned to the specified type. 
+	 * This means that the specified class or interface must either be the same as, 
+	 * or a superclass or superinterface of, the class of the message body.
+	 * This method may be used for messages of type
+	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
+	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
+	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
+	 * will not be delivered.
 	 * <P>
 	 * This call blocks indefinitely until a message is produced or until this
 	 * {@code JMSConsumer} is closed.
-	 * 
+	 * <p>
 	 * <P>
-	 * If {@code receivePayload} is called within a transaction, the
+	 * If {@code receiveBody} is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message.<br/> 
+	 *            The type to which the body of the next message should be assigned.<br/> 
 	 *            If the next message is expected to be a {@code TextMessage} then 
-	 *            this should be set to {@code String.class}.<br/>
+	 *            this should be set to {@code String.class} or another class to which a {@code String} is assignable.<br/>
 	 *            If the next message is expected to be a {@code ObjectMessage} then 
-	 *            this should be set to {@code java.io.Serializable.class}. <br/>
+	 *            this should be set to {@code java.io.Serializable.class} or another class to which the body is assignable. <br/>
 	 *            If the next message is expected to be a {@code MapMessage} then this
 	 *            should be set to {@code java.util.Map.class}.<br/>
 	 *            If the next message is expected to be a {@code BytesMessage} then this
 	 *            should be set to {@code byte[].class}.<br/>
-	 *            If the next message is not of the expected type 
-	 *            a {@code ClassCastException} will be thrown
-	 *            and the message will not be delivered.
 	 * 
-	 * @return the payload of the next message produced for this
+	 * @return the body of the next message produced for this
 	 *         {@code JMSConsumer}, or null if this {@code JMSConsumer} is
 	 *         concurrently closed
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due
 	 *             to some internal error
-	 * @throws ClassCastException
-	 *             if the next message is not of the expected type
+	 * @throws MessageFormatRuntimeException 
+	 *             if the message is not one of the supported types listed above, 
+	 *             or the message body cannot be assigned to the specified type,
+	 *             or the message has no body,
+	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
 	 */
-    <T> T receivePayload(Class<T>  c);
+    <T> T receiveBody(Class<T>  c);
         
 	/**
-	 * Receives the next message produced for this {@code JMSConsumer}  that
-	 * arrives within the specified timeout period, and returns its payload,
-	 * which must be of the specified type
-	 * 
-	 * <P>
+	 * Receives the next message produced for this {@code JMSConsumer} that
+	 * arrives within the specified timeout period and returns its body
+	 * as an object of the specified type.
+	 * The message body must be capable of being assigned to the specified type. 
+	 * This means that the specified class or interface must either be the same as, 
+	 * or a superclass or superinterface of, the class of the message body.
+	 * This method may be used for messages of type
+	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
+	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
+	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
+	 * will not be delivered.
+     * <p>
 	 * This call blocks until a message arrives, the timeout expires, or this
 	 * {@code JMSConsumer} is closed. A timeout of zero never expires, and the
 	 * call blocks indefinitely.
-	 * 
-	 * <P>
-	 * If {@code receivePayload} is called within a transaction, the
+	 * <p>
+	 * If {@code receiveBody} is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message.<br/> 
+	 *            The type to which the body of the next message should be assigned.<br/> 
 	 *            If the next message is expected to be a {@code TextMessage} then 
-	 *            this should be set to {@code String.class}.<br/>
+	 *            this should be set to {@code String.class} or another class to which a {@code String} is assignable.<br/>
 	 *            If the next message is expected to be a {@code ObjectMessage} then 
-	 *            this should be set to {@code java.io.Serializable.class}. <br/>
+	 *            this should be set to {@code java.io.Serializable.class} or another class to which the body is assignable. <br/>
 	 *            If the next message is expected to be a {@code MapMessage} then this
 	 *            should be set to {@code java.util.Map.class}.<br/>
 	 *            If the next message is expected to be a {@code BytesMessage} then this
 	 *            should be set to {@code byte[].class}.<br/>
-	 *            If the next message is not of the expected type 
-	 *            a {@code ClassCastException} will be thrown
-	 *            and the message will not be delivered.
 	 * 
-	 * @return the payload of the next message produced for this
-	 *         {@code JMSConsumer}, or null if the timeout expires or this {@code JMSConsumer} is
-	 *         concurrently closed
+	 * @return the body of the next message produced for this {@code JMSConsumer},
+	 *         or null if the timeout expires or this {@code JMSConsumer} is concurrently closed
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due
 	 *             to some internal error
-	 * @throws ClassCastException
-	 *             if the next message is not of the expected type
+	 * @throws MessageFormatRuntimeException 
+	 *             if the message is not one of the supported types listed above, 
+	 *             or the message body cannot be assigned to the specified type,
+	 *             or the message has no body,
+	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
 	 */
-    <T> T receivePayload(Class<T> c, long timeout);
+    <T> T receiveBody(Class<T> c, long timeout);
     
 	/**
 	 * Receives the next message produced for this {@code JMSConsumer} if one is immediately available 
-	 * and returns its payload, which must be of the specified type. 
+	 * and returns its body as an object of the specified type. 
+	 * The message body must be capable of being assigned to the specified type. 
+	 * This means that the specified class or interface must either be the same as, 
+	 * or a superclass or superinterface of, the class of the message body.
+	 * This method may be used for messages of type
+	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
+	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
+	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
+	 * will not be delivered.
 	 * <p>
 	 * If a message is not immediately available null is returned. 
 	 * <P>
-	 * If {@code receivePayloadNoWait} is called within a transaction, the
+	 * If {@code receiveBodyNoWait} is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
 	 * 
 	 * @param c
-	 *            The class of the payload of the next message.<br/> 
+	 *            The type to which the body of the next message should be assigned.<br/> 
 	 *            If the next message is expected to be a {@code TextMessage} then 
-	 *            this should be set to {@code String.class}.<br/>
+	 *            this should be set to {@code String.class} or another class to which a {@code String} is assignable.<br/>
 	 *            If the next message is expected to be a {@code ObjectMessage} then 
-	 *            this should be set to {@code java.io.Serializable.class}. <br/>
+	 *            this should be set to {@code java.io.Serializable.class} or another class to which the body is assignable. <br/>
 	 *            If the next message is expected to be a {@code MapMessage} then this
 	 *            should be set to {@code java.util.Map.class}.<br/>
 	 *            If the next message is expected to be a {@code BytesMessage} then this
 	 *            should be set to {@code byte[].class}.<br/>
-	 *            If the next message is not of the expected type 
-	 *            a {@code ClassCastException} will be thrown
-	 *            and the message will not be delivered.
 	 * 
-	 * @return the payload of the next message produced for this
-	 *         {@code JMSConsumer}, or null if one is not immediately available 
-	 *         or this {@code JMSConsumer} is concurrently closed
+	 * @return the body of the next message produced for this {@code JMSConsumer},
+	 *         or null if one is not immediately available or this {@code JMSConsumer} is concurrently closed
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due
 	 *             to some internal error
-	 * @throws ClassCastException
-	 *             if the next message is not of the expected type
+	 * @throws MessageFormatRuntimeException 
+	 *             if the message is not one of the supported types listed above, 
+	 *             or the message body cannot be assigned to the specified type,
+	 *             or the message has no body,
+	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
 	 */
-    <T> T receivePayloadNoWait(Class<T> c);
+    <T> T receiveBodyNoWait(Class<T> c);
     
 }
