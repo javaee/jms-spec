@@ -88,7 +88,7 @@ public class Servlet1 extends HttpServlet {
     Queue demoQueue;
 
     /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * Processes requests for both HTTP {@code GET} and {@code POST} methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -122,7 +122,7 @@ public class Servlet1 extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP {@code GET} method.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -135,7 +135,7 @@ public class Servlet1 extends HttpServlet {
     }
 
     /** 
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP {@code POST} method.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
