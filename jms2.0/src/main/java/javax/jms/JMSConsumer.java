@@ -213,68 +213,154 @@ public interface JMSConsumer extends AutoCloseable {
     
 	/**
 	 * Receives the next message produced for this {@code JMSConsumer} and
-	 * returns its body as an object of the specified type. 
-	 * The message body must be capable of being assigned to the specified type. 
-	 * This means that the specified class or interface must either be the same as, 
-	 * or a superclass or superinterface of, the class of the message body.
-	 * This method may be used for messages of type
-	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
-	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
-	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
-	 * will not be delivered.
+	 * returns its body as an object of the specified type. The message body
+	 * must be capable of being assigned to the specified type. This means that
+	 * the specified class or interface must either be the same as, or a
+	 * superclass or superinterface of, the class of the message body. This
+	 * method may be used for messages of type {@code TextMessage},
+	 * {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}. If
+	 * the message is not one of these types, or its body cannot be assigned to
+	 * the specified type, or it has no body, then a
+	 * {@code MessageFormatRuntimeException} is thrown.
+	 * <p>
+	 * This method does not give access to the message headers or properties
+	 * (such as the {@code JMSRedelivered} message header field or the
+	 * {@code JMSXDeliveryCount} message property) and should only be used if
+	 * the application has no need to access them.
 	 * <P>
 	 * This call blocks indefinitely until a message is produced or until this
 	 * {@code JMSConsumer} is closed.
 	 * <p>
-	 * <P>
-	 * If {@code receiveBody} is called within a transaction, the
+	 * If this method is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
+	 * <p>
+	 * The result of this method throwing a
+	 * {@code MessageFormatRuntimeException} depends on the session mode:
+	 * <ul>
+	 * <li>{@code AUTO_ACKNOWLEDGE} or {@code DUPS_OK_ACKNOWLEDGE}: The JMS
+	 * provider will behave as if the unsuccessful call to {@code receiveBody} had
+	 * not occurred. The message will be delivered again before any subsequent
+	 * messages.
+	 * <p>
+	 * This is not considered to be redelivery and does not cause the
+	 * {@code JMSRedelivered} message header field to be set or the
+	 * {@code JMSXDeliveryCount} message property to be incremented.</li>
+	 * <li>{@code CLIENT_ACKNOWLEDGE}: The JMS provider will behave as if the
+	 * call to {@code receiveBody} had been successful and will not deliver the
+	 * message again.
+	 * <p>
+	 * As with any message that is delivered with a session mode of
+	 * {@code CLIENT_ACKNOWLEDGE}, the message will not be acknowledged until
+	 * {@code acknowledge} is called on the {@code JMSContext}. If an
+	 * application wishes to have the failed message redelivered, it must call
+	 * {@code recover} on the {@code JMSContext}. The redelivered message's
+	 * {@code JMSRedelivered} message header field will be set and its
+	 * {@code JMSXDeliveryCount} message property will be incremented.</li>
+	 * 
+	 * <li>Transacted session: The JMS provider will behave as if the call to
+	 * {@code receiveBody} had been successful and will not deliver the message
+	 * again.
+	 * <p>
+	 * As with any message that is delivered in a transacted session, the
+	 * transaction will remain uncommitted until the transaction is committed or
+	 * rolled back by the application. If an application wishes to have the
+	 * failed message redelivered, it must roll back the transaction. The
+	 * redelivered message's {@code JMSRedelivered} message header field will be
+	 * set and its {@code JMSXDeliveryCount} message property will be
+	 * incremented.</li>
+	 * </ul>
 	 * 
 	 * @param c
-	 *            The type to which the body of the next message should be assigned.<br/> 
-	 *            If the next message is expected to be a {@code TextMessage} then 
-	 *            this should be set to {@code String.class} or another class to which a {@code String} is assignable.<br/>
-	 *            If the next message is expected to be a {@code ObjectMessage} then 
-	 *            this should be set to {@code java.io.Serializable.class} or another class to which the body is assignable. <br/>
-	 *            If the next message is expected to be a {@code MapMessage} then this
-	 *            should be set to {@code java.util.Map.class}.<br/>
-	 *            If the next message is expected to be a {@code BytesMessage} then this
-	 *            should be set to {@code byte[].class}.<br/>
+	 *            The type to which the body of the next message should be
+	 *            assigned.<br/>
+	 *            If the next message is expected to be a {@code TextMessage}
+	 *            then this should be set to {@code String.class} or another
+	 *            class to which a {@code String} is assignable.<br/>
+	 *            If the next message is expected to be a {@code ObjectMessage}
+	 *            then this should be set to {@code java.io.Serializable.class}
+	 *            or another class to which the body is assignable. <br/>
+	 *            If the next message is expected to be a {@code MapMessage}
+	 *            then this should be set to {@code java.util.Map.class}.<br/>
+	 *            If the next message is expected to be a {@code BytesMessage}
+	 *            then this should be set to {@code byte[].class}.<br/>
 	 * 
 	 * @return the body of the next message produced for this
 	 *         {@code JMSConsumer}, or null if this {@code JMSConsumer} is
 	 *         concurrently closed
 	 * 
+	 * @throws MessageFormatRuntimeException
+	 *             <ul>
+	 *             <li>if the message is not one of the supported types listed above
+	 *             <li>if the message body cannot be assigned to the specified type
+	 *             <li>if the message has no body
+	 *             <li>if the message is an {@code ObjectMessage} and object deserialization fails.
+	 *             </ul>
 	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to receive the next message due
-	 *             to some internal error
-	 * @throws MessageFormatRuntimeException 
-	 *             if the message is not one of the supported types listed above, 
-	 *             or the message body cannot be assigned to the specified type,
-	 *             or the message has no body,
-	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
+	 *             if the JMS provider fails to receive the next message due to
+	 *             some internal error
 	 */
-    <T> T receiveBody(Class<T>  c);
-        
+	<T> T receiveBody(Class<T> c);
+	
 	/**
 	 * Receives the next message produced for this {@code JMSConsumer} that
 	 * arrives within the specified timeout period and returns its body
-	 * as an object of the specified type.
-	 * The message body must be capable of being assigned to the specified type. 
-	 * This means that the specified class or interface must either be the same as, 
-	 * or a superclass or superinterface of, the class of the message body.
-	 * This method may be used for messages of type
-	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
-	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
-	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
-	 * will not be delivered.
-     * <p>
+	 * as an object of the specified type. The message body
+	 * must be capable of being assigned to the specified type. This means that
+	 * the specified class or interface must either be the same as, or a
+	 * superclass or superinterface of, the class of the message body. This
+	 * method may be used for messages of type {@code TextMessage},
+	 * {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}. If
+	 * the message is not one of these types, or its body cannot be assigned to
+	 * the specified type, or it has no body, then a
+	 * {@code MessageFormatRuntimeException} is thrown.
+	 * <p>
+	 * This method does not give access to the message headers or properties
+	 * (such as the {@code JMSRedelivered} message header field or the
+	 * {@code JMSXDeliveryCount} message property) and should only be used if
+	 * the application has no need to access them.
+	 * <P>
 	 * This call blocks until a message arrives, the timeout expires, or this
 	 * {@code JMSConsumer} is closed. A timeout of zero never expires, and the
 	 * call blocks indefinitely.
 	 * <p>
-	 * If {@code receiveBody} is called within a transaction, the
+	 * If this method is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
+	 * <p>
+	 * The result of this method throwing a
+	 * {@code MessageFormatRuntimeException} depends on the session mode:
+	 * <ul>
+	 * <li>{@code AUTO_ACKNOWLEDGE} or {@code DUPS_OK_ACKNOWLEDGE}: The JMS
+	 * provider will behave as if the unsuccessful call to {@code receiveBody} had
+	 * not occurred. The message will be delivered again before any subsequent
+	 * messages.
+	 * <p>
+	 * This is not considered to be redelivery and does not cause the
+	 * {@code JMSRedelivered} message header field to be set or the
+	 * {@code JMSXDeliveryCount} message property to be incremented.</li>
+	 * <li>{@code CLIENT_ACKNOWLEDGE}: The JMS provider will behave as if the
+	 * call to {@code receiveBody} had been successful and will not deliver the
+	 * message again.
+	 * <p>
+	 * As with any message that is delivered with a session mode of
+	 * {@code CLIENT_ACKNOWLEDGE}, the message will not be acknowledged until
+	 * {@code acknowledge} is called on the {@code JMSContext}. If an
+	 * application wishes to have the failed message redelivered, it must call
+	 * {@code recover} on the {@code JMSContext}. The redelivered message's
+	 * {@code JMSRedelivered} message header field will be set and its
+	 * {@code JMSXDeliveryCount} message property will be incremented.</li>
+	 * 
+	 * <li>Transacted session: The JMS provider will behave as if the call to
+	 * {@code receiveBody} had been successful and will not deliver the message
+	 * again.
+	 * <p>
+	 * As with any message that is delivered in a transacted session, the
+	 * transaction will remain uncommitted until the transaction is committed or
+	 * rolled back by the application. If an application wishes to have the
+	 * failed message redelivered, it must roll back the transaction. The
+	 * redelivered message's {@code JMSRedelivered} message header field will be
+	 * set and its {@code JMSXDeliveryCount} message property will be
+	 * incremented.</li>
+	 * </ul>
 	 * 
 	 * @param c
 	 *            The type to which the body of the next message should be assigned.<br/> 
@@ -290,33 +376,77 @@ public interface JMSConsumer extends AutoCloseable {
 	 * @return the body of the next message produced for this {@code JMSConsumer},
 	 *         or null if the timeout expires or this {@code JMSConsumer} is concurrently closed
 	 * 
+	 * @throws MessageFormatRuntimeException
+	 *             <ul>
+	 *             <li>if the message is not one of the supported types listed above
+	 *             <li>if the message body cannot be assigned to the specified type
+	 *             <li>if the message has no body
+	 *             <li>if the message is an {@code ObjectMessage} and object deserialization fails.
+	 *             </ul>
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due
 	 *             to some internal error
-	 * @throws MessageFormatRuntimeException 
-	 *             if the message is not one of the supported types listed above, 
-	 *             or the message body cannot be assigned to the specified type,
-	 *             or the message has no body,
-	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
 	 */
     <T> T receiveBody(Class<T> c, long timeout);
     
+    
 	/**
 	 * Receives the next message produced for this {@code JMSConsumer} if one is immediately available 
-	 * and returns its body as an object of the specified type. 
-	 * The message body must be capable of being assigned to the specified type. 
-	 * This means that the specified class or interface must either be the same as, 
-	 * or a superclass or superinterface of, the class of the message body.
-	 * This method may be used for messages of type
-	 * {@code TextMessage}, {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}.
-	 * If the message is not one of these types, or its body cannot be assigned to the specified type,
-	 * or it has no body, then a {@code MessageFormatRuntimeException} is thrown and the message
-	 * will not be delivered.
+	 * and returns its body as an object of the specified type. The message body
+	 * must be capable of being assigned to the specified type. This means that
+	 * the specified class or interface must either be the same as, or a
+	 * superclass or superinterface of, the class of the message body. This
+	 * method may be used for messages of type {@code TextMessage},
+	 * {@code BytesMessage}, {@code MapMessage} and {@code ObjectMessage}. If
+	 * the message is not one of these types, or its body cannot be assigned to
+	 * the specified type, or it has no body, then a
+	 * {@code MessageFormatRuntimeException} is thrown.
 	 * <p>
-	 * If a message is not immediately available null is returned. 
+	 * This method does not give access to the message headers or properties
+	 * (such as the {@code JMSRedelivered} message header field or the
+	 * {@code JMSXDeliveryCount} message property) and should only be used if
+	 * the application has no need to access them.
 	 * <P>
-	 * If {@code receiveBodyNoWait} is called within a transaction, the
+	 * If a message is not immediately available null is returned. 
+	 * <p>
+	 * If this method is called within a transaction, the
 	 * {@code JMSConsumer} retains the message until the transaction commits.
+	 * <p>
+	 * The result of this method throwing a
+	 * {@code MessageFormatRuntimeException} depends on the session mode:
+	 * <ul>
+	 * <li>{@code AUTO_ACKNOWLEDGE} or {@code DUPS_OK_ACKNOWLEDGE}: The JMS
+	 * provider will behave as if the unsuccessful call to {@code receiveBodyNoWait} had
+	 * not occurred. The message will be delivered again before any subsequent
+	 * messages.
+	 * <p>
+	 * This is not considered to be redelivery and does not cause the
+	 * {@code JMSRedelivered} message header field to be set or the
+	 * {@code JMSXDeliveryCount} message property to be incremented.</li>
+	 * <li>{@code CLIENT_ACKNOWLEDGE}: The JMS provider will behave as if the
+	 * call to {@code receiveBodyNoWait} had been successful and will not deliver the
+	 * message again.
+	 * <p>
+	 * As with any message that is delivered with a session mode of
+	 * {@code CLIENT_ACKNOWLEDGE}, the message will not be acknowledged until
+	 * {@code acknowledge} is called on the {@code JMSContext}. If an
+	 * application wishes to have the failed message redelivered, it must call
+	 * {@code recover} on the {@code JMSContext}. The redelivered message's
+	 * {@code JMSRedelivered} message header field will be set and its
+	 * {@code JMSXDeliveryCount} message property will be incremented.</li>
+	 * 
+	 * <li>Transacted session: The JMS provider will behave as if the call to
+	 * {@code receiveBodyNoWait} had been successful and will not deliver the message
+	 * again.
+	 * <p>
+	 * As with any message that is delivered in a transacted session, the
+	 * transaction will remain uncommitted until the transaction is committed or
+	 * rolled back by the application. If an application wishes to have the
+	 * failed message redelivered, it must roll back the transaction. The
+	 * redelivered message's {@code JMSRedelivered} message header field will be
+	 * set and its {@code JMSXDeliveryCount} message property will be
+	 * incremented.</li>
+	 * </ul>
 	 * 
 	 * @param c
 	 *            The type to which the body of the next message should be assigned.<br/> 
@@ -332,14 +462,18 @@ public interface JMSConsumer extends AutoCloseable {
 	 * @return the body of the next message produced for this {@code JMSConsumer},
 	 *         or null if one is not immediately available or this {@code JMSConsumer} is concurrently closed
 	 * 
+	 * @throws MessageFormatRuntimeException
+	 *             <ul>
+	 *             <li>if the message is not one of the supported types listed above
+	 *             <li>if the message body cannot be assigned to the specified type
+	 *             <li>if the message has no body
+	 *             <li>if the message is an {@code ObjectMessage} and object deserialization fails.
+	 *             </ul>
+	 *             
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to receive the next message due
 	 *             to some internal error
-	 * @throws MessageFormatRuntimeException 
-	 *             if the message is not one of the supported types listed above, 
-	 *             or the message body cannot be assigned to the specified type,
-	 *             or the message has no body,
-	 *             or the message is an {@code ObjectMessage} and object deserialization fails.
+
 	 */
     <T> T receiveBodyNoWait(Class<T> c);
     
