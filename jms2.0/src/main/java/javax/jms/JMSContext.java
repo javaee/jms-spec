@@ -1024,179 +1024,382 @@ public interface JMSContext extends AutoCloseable {
 	Topic createTopic(String topicName);
 
 	/**
-	 * Creates a durable subscription with the specified name on the specified
-	 * topic, and creates a {@code JMSConsumer} on that durable
-	 * subscription.
+	 * Creates an unshared durable subscription on the specified topic (if one
+	 * does not already exist) and creates a consumer on that durable
+	 * subscription. 
+  	 * This method creates the durable subscription without a message selector 
+  	 * and with a {@code noLocal} value of {@code false}. 
 	 * <p>
-	 * If a durable subscription already exists with the same name and client
-	 * identifier (if set) and the same topic and message selector then this
-	 * method creates a {@code JMSConsumer} on the existing durable
-	 * subscription.
-	 * <p>
-	 * A durable subscription is used by a client which needs to receive all the
-	 * messages published on a topic, including the ones published when there is
-	 * no consumer associated with it. The JMS provider retains a record of this
-	 * durable subscription and ensures that all messages from the topic's
-	 * publishers are retained until they are delivered to, and acknowledged by,
-	 * a consumer on this durable subscription or until they have expired.
+	 * A durable subscription is used by an application which needs to receive
+	 * all the messages published on a topic, including the ones published when
+	 * there is no active consumer associated with it. The JMS provider retains
+	 * a record of this durable subscription and ensures that all messages from
+	 * the topic's publishers are retained until they are delivered to, and
+	 * acknowledged by, a consumer on this durable subscription or until they
+	 * have expired.
 	 * <p>
 	 * A durable subscription will continue to accumulate messages until it is
 	 * deleted using the {@code unsubscribe} method.
 	 * <p>
-	 * A consumer may be created on a durable subscription using the
-	 * {@code createDurableConsumer} methods on {@code JMSContext}, or
-	 * the {@code createDurableConsumer} and
-	 * {@code createDurableSubscriber} methods on {@code Session} or
-	 * {@code TopicSession}. A durable subscription which has a consumer
-	 * associated with it is described as being active. A durable subscription
-	 * which has no consumer associated with it is described as being inactive.
+	 * This method may only be used with non-shared durable subscriptions. Any
+	 * durable subscription created using this method will be non-shared. This
+	 * means that only one active (i.e. not closed) consumer on the subscription
+	 * may exist at a time. The term "consumer" here means a
+	 * {@code TopicSubscriber}, {@code  MessageConsumer} or {@code JMSConsumer}
+	 * object in any client.
 	 * <p>
-	 * A durable subscription may have more than one active consumer (this was
-	 * not permitted prior to JMS 2.0). Each message from the subscription will
-	 * be delivered to only one of the consumers on that subscription.
+	 * An unshared durable subscription is identified by a name specified by
+	 * the client and by the client identifier, which must be set. An
+	 * application which subsequently wishes to create a consumer on that
+	 * non-shared durable subscription must use the same client identifier.
 	 * <p>
-	 * A durable subscription is identified by a name specified by the client
-	 * and by the client identifier if set. If the client identifier was set
-	 * when the durable subscription was first created then a client which
-	 * subsequently wishes to create a consumer on that durable subscription
-	 * must use the same client identifier.
+	 * If an unshared durable subscription already exists with the same name
+	 * and client identifier and the same topic and message selector, and there
+	 * is no consumer already active (i.e. not closed) on the durable
+	 * subscription, and no consumed messages from that subscription are still
+	 * part of a pending transaction or are not yet acknowledged in the session,
+	 * then this method creates a {@code JMSConsumer} on the existing
+	 * durable subscription.
 	 * <p>
-	 * This method creates the durable subscription without a message selector 
-	 * and with a {@code noLocal} value of {@code false}. 
+	 * If an unshared durable subscription already exists with the same name
+	 * and client identifier, and there is a consumer already active (i.e. not
+	 * closed) on the durable subscription, or consumed messages from that
+	 * subscription are still part of a pending transaction or are not yet
+	 * acknowledged in the session, then a {@code JMSRuntimeException} will be thrown.
 	 * <p>
-	 * If there are no active consumers on the durable subscription (and no
-	 * consumed messages from that subscription are still part of a pending
-	 * transaction or are not yet acknowledged in the session), and this method
-	 * is used to create a new consumer on that durable subscription, specifying
-	 * the same name and client identifier (if set) but a different topic or
-	 * message selector or, if the client identifier is set, a different
-	 * {@code noLocal} value, then the durable subscription will be deleted
-	 * and a new one created.
+	 * If an unshared durable subscription already exists with the same name
+	 * and client identifier but a different topic, message selector or {@code noLocal}
+	 * value has been specified, and there is no consumer already active (i.e.
+	 * not closed) on the durable subscription, and no consumed messages from
+	 * that subscription are still part of a pending transaction or are not yet
+	 * acknowledged in the session, then the durable subscription will be
+	 * deleted and a new one created.
 	 * <p>
-	 * However if there is an active consumer on the durable subscription (or a
-	 * consumed message from that subscription is still part of a pending
-	 * transaction or is not yet acknowledged in the session), and an attempt is
-	 * made to create an additional consumer, specifying the same name and
-	 * client identifier (if set) but a different topic or message selector or,
-	 * if the client identifier is set, a different {@code noLocal} value,
-	 * then a {@code JMSException} will be thrown.
+	 * A shared durable subscription and an unshared durable subscription may
+	 * not have the same name and client identifier. If a shared durable
+	 * subscription already exists with the same name and client identifier then
+	 * a {@code JMSRuntimeException} is thrown.
 	 * <p>
-	 * There is no restriction to prevent a durable subscription and
-	 * a shared non-durable subscription having the same name. Such subscriptions
-	 * would be completely separate.
+	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+	 * the same name and clientId. Such subscriptions would be completely
+	 * separate.
 	 * 
 	 * @param topic
 	 *            the non-temporary {@code Topic} to subscribe to
 	 * @param name
 	 *            the name used to identify this subscription
-	 * 
-	 * @exception JMSRuntimeException
-	 *                if the session fails to create the durable subscription
-	 *                and {@code JMSConsumer} due to some internal error.
 	 * @exception InvalidDestinationRuntimeException
 	 *                if an invalid topic is specified.
-	 * 
-	 */
-	JMSConsumer createDurableConsumer(Topic topic, String name);
-
-	/**
-	 * Creates a durable subscription with the specified name on the specified
-	 * topic, specifying a message selector and the {@code noLocal}
-	 * parameter, and creates a {@code JMSConsumer} on that durable
-	 * subscription.
-	 * <p>
-	 * If a durable subscription already exists with the same name and client
-	 * identifier (if set) and the same topic and message selector then this
-	 * method creates a {@code JMSConsumer} on the existing durable
-	 * subscription.
-	 * <p>
-	 * A durable subscription is used by a client which needs to receive all the
-	 * messages published on a topic, including the ones published when there is
-	 * no consumer associated with it. The JMS provider retains a record of this
-	 * durable subscription and ensures that all messages from the topic's
-	 * publishers are retained until they are delivered to, and acknowledged by,
-	 * a consumer on this durable subscription or until they have expired.
-	 * <p>
-	 * A consumer may be created on a durable subscription using the
-	 * {@code createDurableConsumer} methods on {@code JMSContext}, or
-	 * the {@code createDurableConsumer} and
-	 * {@code createDurableSubscriber} methods on {@code Session} or
-	 * {@code TopicSession}. A durable subscription will continue to
-	 * accumulate messages until it is deleted using the
-	 * {@code unsubscribe} method.
-	 * <p>
-	 * A durable subscription which has a consumer associated with it is
-	 * described as being active. A durable subscription which has no consumer
-	 * associated with it is described as being inactive.
-	 * <p>
-	 * A durable subscription may have more than one active consumer (this was
-	 * not permitted prior to JMS 2.0). Each message from the subscription will
-	 * be delivered to only one of the consumers on that subscription.
-	 * <p>
-	 * A durable subscription is identified by a name specified by the client
-	 * and by the client identifier if set. If the client identifier was set
-	 * when the durable subscription was first created then a client which
-	 * subsequently wishes to create a consumer on that durable subscription
-	 * must use the same client identifier.
-	 * <p>
-	 * If {@code noLocal} is set to true, and the client identifier is set,
-	 * then any messages published to the topic using this JMSContext's connection,
-	 * or any other connection or {@code JMSContext} with the same client
-	 * identifier, will not be added to the durable subscription. If the client
-	 * identifier is unset then setting {@code noLocal} to true will cause a
-	 * {@code IllegalStateRuntimeException} to be thrown. 
-	 * The default value of  {@code noLocal} is false.
-	 * <p>
-	 * If there are no active consumers on the durable subscription (and no
-	 * consumed messages from that subscription are still part of a pending
-	 * transaction or are not yet acknowledged in the session), and this method
-	 * is used to create a new consumer on that durable subscription, specifying
-	 * the same name and client identifier (if set) but a different topic or
-	 * message selector or, if the client identifier is set, a different
-	 * {@code noLocal} value, then the durable subscription will be deleted
-	 * and a new one created.
-	 * <p>
-	 * However if there is an active consumer on the durable subscription (or a
-	 * consumed message from that subscription is still part of a pending
-	 * transaction or is not yet acknowledged in the session), and an attempt is
-	 * made to create an additional consumer, specifying the same name and
-	 * client identifier (if set) but a different topic or message selector or,
-	 * if the client identifier is set, a different {@code noLocal} value,
-	 * then a {@code JMSException} will be thrown.
-	 * <p>
-	 * There is no restriction to prevent a durable subscription and
-	 * a shared non-durable subscription having the same name. Such subscriptions
-	 * would be completely separate.
-	 * 
-	 * @param topic
-	 *            the non-temporary {@code Topic} to subscribe to
-	 * @param name
-	 *            the name used to identify this subscription
-	 * @param messageSelector
-	 *            only messages with properties matching the message selector
-	 *            expression are added to the durable subscription. A value of
-	 *            null or an empty string indicates that there is no message
-	 *            selector for the durable subscription.
-	 * @param noLocal
-	 *            if true, and the client identifier is set, then any messages
-	 *            published to the topic using this JMSContext's connection, or any
-	 *            other connection with the same
-	 *            client identifier, will not be added to the durable
-	 *            subscription.
 	 * @exception JMSRuntimeException
-	 *                if the session fails to create the durable subscription
-	 *                and {@code JMSConsumer} due to some internal error.
-	 * @exception InvalidDestinationRuntimeException
-	 *                if an invalid topic is specified.
-	 * @exception InvalidSelectorRuntimeException
-	 *                if the message selector is invalid.
-	 * @exception IllegalStateRuntimeException
-	 *                if {@code noLocal} is set to {@code true}
-	 *                but the client identifier is unset
-	 * 
+	 *                <ul>
+	 *                <li>if the session fails to create the non-shared durable
+	 *                subscription and {@code JMSConsumer} due to some
+	 *                internal error 
+	 *                <li>if the client identifier is unset 
+	 *                <li>
+	 *                if an unshared durable subscription already exists with
+	 *                the same name and client identifier, and there is a
+	 *                consumer already active 
+	 *                <li>if a shared durable subscription already exists 
+	 *                with the same name and client identifier
+	 *                </ul>
+	 *
+ 	 * @since 2.0
 	 */
-	JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);
+     JMSConsumer createDurableConsumer(Topic topic, String name);
 
+ 	/**
+ 	 * Creates an unshared durable subscription on the specified topic (if one
+ 	 * does not already exist), specifying a message selector and the
+ 	 * {@code noLocal} parameter, and creates a consumer on that durable
+ 	 * subscription.
+ 	 * <p>
+ 	 * A durable subscription is used by an application which needs to receive
+ 	 * all the messages published on a topic, including the ones published when
+ 	 * there is no active consumer associated with it. The JMS provider retains
+ 	 * a record of this durable subscription and ensures that all messages from
+ 	 * the topic's publishers are retained until they are delivered to, and
+ 	 * acknowledged by, a consumer on this durable subscription or until they
+ 	 * have expired.
+ 	 * <p>
+ 	 * A durable subscription will continue to accumulate messages until it is
+ 	 * deleted using the {@code unsubscribe} method.
+ 	 * <p>
+ 	 * This method may only be used with non-shared durable subscriptions. Any
+ 	 * durable subscription created using this method will be non-shared. This
+ 	 * means that only one active (i.e. not closed) consumer on the subscription
+ 	 * may exist at a time. The term "consumer" here means a
+ 	 * {@code TopicSubscriber}, {@code  MessageConsumer} or {@code JMSConsumer}
+ 	 * object in any client.
+ 	 * <p>
+ 	 * An unshared durable subscription is identified by a name specified by
+ 	 * the client and by the client identifier, which must be set. An
+ 	 * application which subsequently wishes to create a consumer on that
+ 	 * non-shared durable subscription must use the same client identifier.
+ 	 * <p>
+ 	 * If an unshared durable subscription already exists with the same name
+ 	 * and client identifier and the same topic and message selector, and there
+ 	 * is no consumer already active (i.e. not closed) on the durable
+ 	 * subscription, and no consumed messages from that subscription are still
+ 	 * part of a pending transaction or are not yet acknowledged in the session,
+ 	 * then this method creates a {@code JMSConsumer} on the existing
+ 	 * durable subscription.
+ 	 * <p>
+ 	 * If an unshared durable subscription already exists with the same name
+ 	 * and client identifier, and there is a consumer already active (i.e. not
+ 	 * closed) on the durable subscription, or consumed messages from that
+ 	 * subscription are still part of a pending transaction or are not yet
+ 	 * acknowledged in the session, then a {@code JMSRuntimeException} will be thrown.
+ 	 * <p>
+ 	 * If an unshared durable subscription already exists with the same name
+ 	 * and client identifier but a different topic, message selector or {@code noLocal}
+ 	 * value has been specified, and there is no consumer already active (i.e.
+ 	 * not closed) on the durable subscription, and no consumed messages from
+ 	 * that subscription are still part of a pending transaction or are not yet
+ 	 * acknowledged in the session, then the durable subscription will be
+ 	 * deleted and a new one created.
+ 	 * <p>
+ 	 * A shared durable subscription and an unshared durable subscription may
+ 	 * not have the same name and client identifier. If a shared durable
+ 	 * subscription already exists with the same name and client identifier then
+ 	 * a {@code JMSRuntimeException} is thrown.
+ 	 * <p>
+ 	 * If {@code noLocal} is set to true then any messages published to the
+ 	 * topic using this session's connection, or any other connection with the
+ 	 * same client identifier, will not be added to the durable subscription.
+ 	 * <p>
+ 	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+ 	 * the same name and clientId. Such subscriptions would be completely
+ 	 * separate.
+ 	 * 
+ 	 * @param topic
+ 	 *            the non-temporary {@code Topic} to subscribe to
+ 	 * @param name
+ 	 *            the name used to identify this subscription
+ 	 * @param messageSelector
+ 	 *            only messages with properties matching the message selector
+ 	 *            expression are added to the durable subscription. A value of
+ 	 *            null or an empty string indicates that there is no message
+ 	 *            selector for the durable subscription.
+ 	 * @param noLocal
+ 	 *            if true then any messages published to the topic using this
+ 	 *            session's connection, or any other connection with the same
+ 	 *            client identifier, will not be added to the durable
+ 	 *            subscription.
+ 	 *            
+ 	 * @exception InvalidDestinationException
+ 	 *                if an invalid topic is specified.
+ 	 * @exception InvalidSelectorException
+ 	 *                if the message selector is invalid.
+ 	 * @exception JMSRuntimeException
+ 	 *                <ul>
+ 	 *                <li>if the session fails to create the non-shared durable
+ 	 *                subscription and {@code JMSConsumer} due to some
+ 	 *                internal error 
+ 	 *                <li>if the client identifier is unset 
+ 	 *                <li>
+ 	 *                if an unshared durable subscription already exists with
+ 	 *                the same name and client identifier, and there is a
+ 	 *                consumer already active 
+ 	 *                <li>if a shared durable
+ 	 *                subscription already exists with the same name and client
+ 	 *                identifier
+ 	 *                </ul>
+ 	 * 
+	 * @since 2.0
+	 */ 
+      JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);     
+
+   	/**
+   	 * Creates a shared durable subscription on the specified topic (if one
+   	 * does not already exist), specifying a message selector and the
+   	 * {@code noLocal} parameter, and creates a consumer on that durable
+   	 * subscription.
+   	 * This method creates the durable subscription without a message selector 
+   	 * and with a {@code noLocal} value of {@code false}. 
+   	 * <p>
+   	 * A durable subscription is used by an application which needs to receive
+   	 * all the messages published on a topic, including the ones published when
+   	 * there is no active consumer associated with it. The JMS provider retains
+   	 * a record of this durable subscription and ensures that all messages from
+   	 * the topic's publishers are retained until they are delivered to, and
+   	 * acknowledged by, a consumer on this durable subscription or until they
+   	 * have expired.
+   	 * <p>
+   	 * A durable subscription will continue to accumulate messages until it is
+   	 * deleted using the {@code unsubscribe} method.
+   	 * <p>
+   	 * This method may only be used with shared durable subscriptions. Any
+   	 * durable subscription created using this method will be shared. This
+   	 * means that multiple active (i.e. not closed) consumers on the subscription
+   	 * may exist at the same time. The term "consumer" here means a
+   	 * {@code  MessageConsumer} or {@code JMSConsumer}
+   	 * object in any client.
+   	 * <p>
+   	 * A shared durable subscription is identified by a name specified by
+   	 * the client and by the client identifier (which may be unset). An
+   	 * application which subsequently wishes to create a consumer on that
+   	 * shared durable subscription must use the same client identifier.
+   	 * <p>
+   	 * If a shared durable subscription already exists with the same name
+   	 * and client identifier (if set) 
+   	 * then this method creates a {@code JMSConsumer} on the existing
+   	 * shared durable subscription.
+   	 * <p>
+   	 * If a shared durable subscription already exists with the same name
+   	 * and client identifier (if set) but a different topic, message selector or {@code noLocal}
+   	 * value has been specified, and there is no consumer already active (i.e.
+   	 * not closed) on the durable subscription, and no consumed messages from
+   	 * that subscription are still part of a pending transaction or are not yet
+   	 * acknowledged in the session, then the durable subscription will be
+   	 * deleted and a new one created.
+   	 * <p>
+   	 * If a shared durable subscription already exists with the same name
+   	 * and client identifier (if set) but a different topic, message selector or {@code noLocal}
+   	 * value has been specified, and there is a consumer already active (i.e.
+   	 * not closed) on the durable subscription, or consumed messages from
+   	 * that subscription are still part of a pending transaction or are not yet
+   	 * acknowledged in the session, then a {@code JMSRuntimeException} will be thrown.
+   	 * <p>
+   	 * A shared durable subscription and an unshared durable subscription may
+   	 * not have the same name and client identifier (if set). If an unshared durable
+   	 * subscription already exists with the same name and client identifier (if set) then
+   	 * a {@code JMSRuntimeException} is thrown.
+   	 * <p>
+   	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+   	 * the same name and clientId (which may be unset). Such subscriptions would be completely
+   	 * separate.
+   	 * <p>
+   	 * 
+   	 * @param topic
+   	 *            the non-temporary {@code Topic} to subscribe to
+   	 * @param name
+   	 *            the name used to identify this subscription
+   	 * @exception InvalidDestinationRuntimeException
+   	 *                if an invalid topic is specified.
+   	 * @exception JMSRuntimeException
+   	 *                <ul>
+   	 *                <li>if the session fails to create the shared durable
+   	 *                subscription and {@code MessageConsumer} due to some
+   	 *                internal error 
+   	 *                <li>
+   	 *                if a shared durable subscription already exists with
+   	 *                the same name and client identifier, but a different topic,
+   	 *                message selector or {@code noLocal} value,
+   	 *                and there is a consumer already active 
+   	 *                <li>if an unshared durable
+   	 *                subscription already exists with the same name and client
+   	 *                identifier
+   	 *                </ul>
+   	 *
+     * @since 2.0
+   	 */
+     JMSConsumer createSharedDurableConsumer(Topic topic, String name);
+
+ 	/**
+ 	 * Creates a shared durable subscription on the specified topic (if one
+ 	 * does not already exist), specifying a message selector and the
+ 	 * {@code noLocal} parameter, and creates a consumer on that durable
+ 	 * subscription.
+ 	 * <p>
+ 	 * A durable subscription is used by an application which needs to receive
+ 	 * all the messages published on a topic, including the ones published when
+ 	 * there is no active consumer associated with it. The JMS provider retains
+ 	 * a record of this durable subscription and ensures that all messages from
+ 	 * the topic's publishers are retained until they are delivered to, and
+ 	 * acknowledged by, a consumer on this durable subscription or until they
+ 	 * have expired.
+ 	 * <p>
+ 	 * A durable subscription will continue to accumulate messages until it is
+ 	 * deleted using the {@code unsubscribe} method.
+ 	 * <p>
+ 	 * This method may only be used with shared durable subscriptions. Any
+ 	 * durable subscription created using this method will be shared. This
+ 	 * means that multiple active (i.e. not closed) consumers on the subscription
+ 	 * may exist at the same time. The term "consumer" here means a
+ 	 * {@code  MessageConsumer} or {@code JMSConsumer}
+ 	 * object in any client.
+ 	 * <p>
+ 	 * A shared durable subscription is identified by a name specified by
+ 	 * the client and by the client identifier (which may be unset). An
+ 	 * application which subsequently wishes to create a consumer on that
+ 	 * shared durable subscription must use the same client identifier.
+ 	 * <p>
+ 	 * If a shared durable subscription already exists with the same name
+ 	 * and client identifier (if set) 
+ 	 * then this method creates a {@code JMSConsumer} on the existing
+ 	 * shared durable subscription.
+ 	 * <p>
+ 	 * If a shared durable subscription already exists with the same name
+ 	 * and client identifier (if set) but a different topic, message selector or {@code noLocal}
+ 	 * value has been specified, and there is no consumer already active (i.e.
+ 	 * not closed) on the durable subscription, and no consumed messages from
+ 	 * that subscription are still part of a pending transaction or are not yet
+ 	 * acknowledged in the session, then the durable subscription will be
+ 	 * deleted and a new one created.
+ 	 * <p>
+ 	 * If a shared durable subscription already exists with the same name
+ 	 * and client identifier (if set) but a different topic, message selector or {@code noLocal}
+ 	 * value has been specified, and there is a consumer already active (i.e.
+ 	 * not closed) on the durable subscription, or consumed messages from
+ 	 * that subscription are still part of a pending transaction or are not yet
+ 	 * acknowledged in the session, then a {@code JMSRuntimeException} will be thrown.
+ 	 * <p>
+ 	 * A shared durable subscription and an unshared durable subscription may
+ 	 * not have the same name and client identifier (if set). If an unshared durable
+ 	 * subscription already exists with the same name and client identifier (if set) then
+ 	 * a {@code JMSRuntimeException} is thrown.
+ 	 * <p>
+ 	 * If {@code noLocal} is set to true, and the client identifier is set, then any messages published to the
+ 	 * topic using this session's connection, or any other connection with the
+ 	 * same client identifier, will not be added to the durable subscription.
+ 	 * If the client identifier is unset then setting {@code noLocal} to true will cause an {@code IllegalStateRuntimeException} to be thrown. 
+ 	 * <p>
+ 	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+ 	 * the same name and clientId (which may be unset). Such subscriptions would be completely
+ 	 * separate.
+ 	 * <p>
+ 	 * 
+ 	 * @param topic
+ 	 *            the non-temporary {@code Topic} to subscribe to
+ 	 * @param name
+ 	 *            the name used to identify this subscription
+ 	 * @param messageSelector
+ 	 *            only messages with properties matching the message selector
+ 	 *            expression are added to the durable subscription. A value of
+ 	 *            null or an empty string indicates that there is no message
+ 	 *            selector for the durable subscription.
+ 	 * @param noLocal
+ 	 *            if true then any messages published to the topic using this
+ 	 *            session's connection, or any other connection with the same
+ 	 *            client identifier, will not be added to the durable
+ 	 *            subscription.
+ 	 * @exception InvalidDestinationRuntimeException
+ 	 *                if an invalid topic is specified.
+ 	 * @exception InvalidSelectorRuntimeException
+ 	 *                if the message selector is invalid.
+ 	 * @exception IllegalStateRuntimeException 
+ 	 *                if {@code noLocal} is set to true but the client identifier is unset
+ 	 * @exception JMSRuntimeException
+ 	 *                <ul>
+ 	 *                <li>if the session fails to create the shared durable
+ 	 *                subscription and {@code JMSConsumer} due to some
+ 	 *                internal error 
+ 	 *                <li>
+ 	 *                if a shared durable subscription already exists with
+ 	 *                the same name and client identifier, but a different topic,
+ 	 *                message selector or {@code noLocal} value,
+ 	 *                and there is a consumer already active 
+ 	 *                <li>if an unshared durable
+ 	 *                subscription already exists with the same name and client
+ 	 *                identifier
+ 	 *                </ul>
+
+ 	 *
+   * @since 2.0
+ 	 */
+      JMSConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);         
+      
 	/**
 	 * Creates a shared non-durable subscription with the specified name on the
 	 * specified topic, and creates a {@code JMSConsumer} on that
@@ -1234,9 +1437,9 @@ public interface JMSContext extends AutoCloseable {
 	 * if the client identifier is set, a different noLocal value, then a
 	 * {@code JMSRuntimeException} will be thrown.
 	 * <p>
-	 * There is no restriction to prevent a shared non-durable subscription and
-	 * a durable subscription having the same name. Such subscriptions would be
-	 * completely separate.
+	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+	 * the same name and clientId. Such subscriptions would be completely
+	 * separate.
 	 * 
 	 * @param topic
 	 *            the {@code Topic} to subscribe to
@@ -1291,9 +1494,9 @@ public interface JMSContext extends AutoCloseable {
 	 * if the client identifier is set, a different noLocal value, then a
 	 * {@code JMSRuntimeException} will be thrown.
 	 * <p>
-	 * There is no restriction to prevent a shared non-durable subscription and
-	 * a durable subscription having the same name. Such subscriptions would be
-	 * completely separate.
+	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+	 * the same name and clientId. Such subscriptions would be completely
+	 * separate.
 	 * 
 	 * @param topic
 	 *            the {@code Topic} to subscribe to
@@ -1361,9 +1564,9 @@ public interface JMSContext extends AutoCloseable {
 	 * if the client identifier is set, a different noLocal value, then a
 	 * {@code JMSRuntimeException} will be thrown.
 	 * <p>
-	 * There is no restriction to prevent a shared non-durable subscription and
-	 * a durable subscription having the same name. Such subscriptions would be
-	 * completely separate.
+	 * There is no restriction on durable subscriptions and shared non-durable subscriptions having
+	 * the same name and clientId. Such subscriptions would be completely
+	 * separate.
 	 * 
 	 * @param topic
 	 *            the {@code Topic} to subscribe to
