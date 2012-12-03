@@ -74,5 +74,20 @@ public class MessageNotWriteableRuntimeException extends JMSRuntimeException {
 	public MessageNotWriteableRuntimeException(String reason) {
 		super(reason);
 	}
+	
+	/**
+	 * Constructs a {@code MessageNotWriteableRuntimeException} with the specified detail message,
+	 * error code and cause
+	 * 
+	 * @param detailMessage
+	 *            a description of the exception
+	 * @param errorCode
+	 *            a provider-specific error code
+	 * @param cause
+	 *            the underlying cause of this exception
+	 */
+	public MessageNotWriteableRuntimeException(String detailMessage, String errorCode, Throwable cause) {
+		super(detailMessage,errorCode,cause);
+	}
 
 }
