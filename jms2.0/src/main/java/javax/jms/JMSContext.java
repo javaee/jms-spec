@@ -1184,9 +1184,9 @@ public interface JMSContext extends AutoCloseable {
  	 *            client identifier, will not be added to the durable
  	 *            subscription.
  	 *            
- 	 * @exception InvalidDestinationException
+ 	 * @exception InvalidDestinationRuntimeException
  	 *                if an invalid topic is specified.
- 	 * @exception InvalidSelectorException
+ 	 * @exception InvalidSelectorRuntimeException
  	 *                if the message selector is invalid.
 	 * @exception IllegalStateRuntimeException
 	 *                if the client identifier is unset 

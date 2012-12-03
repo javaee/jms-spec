@@ -1041,8 +1041,6 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                <li>if a shared durable subscription already exists 
 	 *                with the same name and client identifier
 	 *                </ul>
-	 * @exception InvalidDestinationException
-	 *                if an invalid topic is specified.
 	 *
  	 * @since 2.0
 	 */
