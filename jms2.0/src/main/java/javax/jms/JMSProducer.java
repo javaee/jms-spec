@@ -97,16 +97,16 @@ public interface JMSProducer {
 	 * @param message
 	 *            the message to send
 	 * @return this {@code JMSProducer}
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to send the message due to some
-	 *             internal error.
 	 * @throws MessageFormatRuntimeException
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
-	 * @throws MessageNotWriteableException
+	 * @throws MessageNotWriteableRuntimeException
 	 *             if this {@code JMSProducer} has been configured to set a
 	 *             message property, but the message's properties are read-only
+	 * @throws JMSRuntimeException
+	 *             if the JMS provider fails to send the message due to some
+	 *             internal error.
 	 */
 	JMSProducer send(Destination destination, Message message);
 
@@ -122,13 +122,16 @@ public interface JMSProducer {
 	 *            If a null value is specified then a {@code TextMessage} 
 	 *            with no body will be sent.
 	 * @return this {@code JMSProducer}
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to send the message due to some
-	 *             internal error.
 	 * @throws MessageFormatRuntimeException
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
+	 * @throws MessageNotWriteableRuntimeException
+	 *             if this {@code JMSProducer} has been configured to set a
+	 *             message property, but the message's properties are read-only
+	 * @throws JMSRuntimeException
+	 *             if the JMS provider fails to send the message due to some
+	 *             internal error.
 	 */
 	JMSProducer send(Destination destination, String body);
 
@@ -144,13 +147,16 @@ public interface JMSProducer {
 	 *            If a null value is specified then a {@code MapMessage} 
 	 *            with no map entries will be sent.
 	 * @return this {@code JMSProducer}
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to send the message due to some
-	 *             internal error.
 	 * @throws MessageFormatRuntimeException
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
+	 * @throws MessageNotWriteableRuntimeException
+	 *             if this {@code JMSProducer} has been configured to set a
+	 *             message property, but the message's properties are read-only
+	 * @throws JMSRuntimeException
+	 *             if the JMS provider fails to send the message due to some
+	 *             internal error.
 	 */
 	JMSProducer send(Destination destination, Map<String, Object> body);
 
@@ -167,13 +173,16 @@ public interface JMSProducer {
 	 *            If a null value is specified then a {@code BytesMessage} 
 	 *            with no body will be sent.
 	 * @return this {@code JMSProducer}
-	 * @throws JMSRuntimeException
-	 *             if the JMS provider fails to send the message due to some
-	 *             internal error.
 	 * @throws MessageFormatRuntimeException
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
+	 * @throws MessageNotWriteableRuntimeException
+	 *             if this {@code JMSProducer} has been configured to set a
+	 *             message property, but the message's properties are read-only
+	 * @throws JMSRuntimeException
+	 *             if the JMS provider fails to send the message due to some
+	 *             internal error.
 	 */
 	JMSProducer send(Destination destination, byte[] body);
 
@@ -189,13 +198,16 @@ public interface JMSProducer {
 	 *            If a null value is specified then an {@code ObjectMessage} 
 	 *            with no body will be sent.
 	 * @return this {@code JMSProducer}
-	 * @throws JMSRuntimeException
-	 *             if JMS provider fails to send the message due to some
-	 *             internal error.
 	 * @throws MessageFormatRuntimeException
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
+	 * @throws MessageNotWriteableRuntimeException
+	 *             if this {@code JMSProducer} has been configured to set a
+	 *             message property, but the message's properties are read-only
+	 * @throws JMSRuntimeException
+	 *             if JMS provider fails to send the message due to some
+	 *             internal error.
 	 */
 	JMSProducer send(Destination destination, Serializable body);
 
