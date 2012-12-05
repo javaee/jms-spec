@@ -198,12 +198,18 @@ public interface JMSConsumer extends AutoCloseable {
 	 * clients should close them when they are not needed. Relying on garbage
 	 * collection to eventually reclaim these resources may not be timely
 	 * enough.
-	 * 
 	 * <P>
-	 * This call blocks until a {@code receive} in progress has completed.
-	 * A blocked message consumer {@code receive} call returns null when
+	 * This call blocks until a {@code receive} or message listener in progress has completed.
+	 * A blocked {@code receive} call returns null when
 	 * this {@code JMSConsumer} is closed.
+	 * <p>
+	 * A {@code MessageListener} must not attempt to close its own
+	 * {@code JMSConsumer} as this would lead to deadlock. The JMS provider
+	 * must detect this and throw a {@code IllegalStateRuntimeException}.
 	 * 
+ 	 * @exception IllegalStateRuntimeException
+	 *                this method has been called by a {@code MessageListener}
+	 *                on its own {@code JMSConsumer}
 	 * @exception JMSRuntimeException
 	 *                if the JMS provider fails to close the {@code JMSConsumer}
 	 *                due to some internal error.
