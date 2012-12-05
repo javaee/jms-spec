@@ -126,9 +126,6 @@ public interface JMSProducer {
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
-	 * @throws MessageNotWriteableRuntimeException
-	 *             if this {@code JMSProducer} has been configured to set a
-	 *             message property, but the message's properties are read-only
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -151,9 +148,6 @@ public interface JMSProducer {
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
-	 * @throws MessageNotWriteableRuntimeException
-	 *             if this {@code JMSProducer} has been configured to set a
-	 *             message property, but the message's properties are read-only
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -177,9 +171,6 @@ public interface JMSProducer {
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
-	 * @throws MessageNotWriteableRuntimeException
-	 *             if this {@code JMSProducer} has been configured to set a
-	 *             message property, but the message's properties are read-only
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to send the message due to some
 	 *             internal error.
@@ -202,9 +193,6 @@ public interface JMSProducer {
 	 *             if an invalid message is specified.
 	 * @throws InvalidDestinationRuntimeException
 	 *             if a client uses this method with an invalid destination.
-	 * @throws MessageNotWriteableRuntimeException
-	 *             if this {@code JMSProducer} has been configured to set a
-	 *             message property, but the message's properties are read-only
 	 * @throws JMSRuntimeException
 	 *             if JMS provider fails to send the message due to some
 	 *             internal error.
