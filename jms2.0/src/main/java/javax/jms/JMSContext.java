@@ -233,7 +233,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @param clientID
 	 *            the unique client identifier
@@ -321,7 +321,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @param listener
 	 *            the exception listener
@@ -348,7 +348,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                if the {@code JMSContext} is container-managed (injected).
@@ -407,7 +407,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
@@ -439,7 +439,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @param autoStart
 	 *            Whether the underlying connection used by this
@@ -529,7 +529,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
@@ -799,7 +799,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
@@ -836,7 +836,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
@@ -874,7 +874,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
@@ -1714,7 +1714,7 @@ public interface JMSContext extends AutoCloseable {
 	 * <p>
 	 * This method must not be used if the {@code JMSContext} is
 	 * container-managed (injected). Doing so will cause a
-	 * {@code JMSRuntimeException} to be thrown.
+	 * {@code IllegalStateRuntimeException} to be thrown.
 	 * 
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
