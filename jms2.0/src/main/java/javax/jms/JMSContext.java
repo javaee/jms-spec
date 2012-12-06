@@ -804,8 +804,7 @@ public interface JMSContext extends AutoCloseable {
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
 	 *                <li>if the <tt>JMSContext</tt>'s session is not using a local
-	 *                transaction <li>if this method has been called by a <tt>
-	 *                MessageListener</tt> on its own <tt>JMSContext</tt></li>
+	 *                transaction 
 	 *                <li>if this method has been called by a <tt>
 	 *                CompletionListener</tt> callback method on its own <tt>
 	 *                JMSContext</tt></li>
@@ -841,7 +840,6 @@ public interface JMSContext extends AutoCloseable {
 	 * @exception IllegalStateRuntimeException
 	 *                <ul>
 	 *                <li>if the <tt>JMSContext</tt>'s session is not using a local transaction
-	 *                <li>if this method has been called by a <tt>MessageListener</tt> on its own <tt>JMSContext</tt></li>
 	 *                <li>if this method has been called by a <tt>CompletionListener</tt> callback method on its own <tt>JMSContext</tt></li>
 	 *                <li>if the {@code JMSContext} is container-managed (injected)
 	 *                </ul>
