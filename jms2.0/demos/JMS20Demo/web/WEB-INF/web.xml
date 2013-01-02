@@ -14,12 +14,13 @@
         <description>ConnectionFactory to use in demonstration</description>
         <name>java:global/jms/demoConnectionFactory</name>
         <resource-adapter-name>jmsra</resource-adapter-name>
-
+        <user>guest</user>
+        <password>guest</password>
         <property>
             <name>addressList</name>
             <value>mq://localhost:7676</value>
         </property>
-
+       
         <max-pool-size>30</max-pool-size>
         <min-pool-size>20</min-pool-size>
         <max-idle-time>5</max-idle-time>
