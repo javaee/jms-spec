@@ -15,19 +15,13 @@ public class JavaEESyncReceiverNew {
 
     @Resource(lookup = "java:global/jms/demoConnectionFactory")
     ConnectionFactory connectionFactory;
-
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
 
     public String receiveMessageNew() {
-        try {
-            JMSContext context = connectionFactory.createContext();
-            try {
-                JMSConsumer consumer = context.createConsumer(demoQueue);
-                return "Received " + consumer.receivePayload(String.class, 1000);
-            } finally {
-                context.close();
-            }
+        try (JMSContext context = connectionFactory.createContext();){
+            JMSConsumer consumer = context.createConsumer(demoQueue);
+            return "Received " + consumer.receiveBody(String.class, 1000);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,10 +34,8 @@ public class JavaEESyncReceiverNew {
         <li><tt>JMSContext</tt> is created explicitly and then closed after use</li>
         <li>No need to specify <tt>transacted</tt> and <tt>acknowledgeMode</tt> parameters (unlike with <tt>createSession</tt>) in Java EE </li>
         <li>No need to cast the received message to a <tt>TextMessage</tt>  and extract its payload:  message payload is returned directly by the <tt>receive</tt> method</li>
-        <li>Still need a <tt>try...finally</tt> block to ensure <tt>close</tt> is called, 
-        plus at least one more <tt>try</tt> block to handle exceptions.<br>
-        (This will get simpler in JMS 2.0 as the Java 7 try-with-resources syntax can be used to avoid an explicit <tt>close()</tt>,
-        but this cannot be demonstrated yet as GlassFish 4.0 still requires Java 6)
+        <li>No need to call <tt>context.close()</tt> as the use of a "try-with-resources" block means the <tt>JMSContext</tt> is automatically closed at the end of the block</li>
+        <li>Includes a <tt>catch</tt> block to catch and log exceptions.<br>
         </ul>
         <p>This example is for Java EE but the API for Java SE is similar
         <p><img src="arrow.gif">&nbsp;<a href="JavaEESyncReceiverNewCDI.html">Now compare this with using the JMS 2.0 simplified API and injection to do the same thing</a>

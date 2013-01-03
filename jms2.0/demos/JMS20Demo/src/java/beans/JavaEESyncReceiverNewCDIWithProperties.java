@@ -61,11 +61,11 @@ public class JavaEESyncReceiverNewCDIWithProperties {
     public String receiveMessageNewCDIWithProperties() {
                 try {
             JMSConsumer consumer = context.createConsumer(inboundQueue);
-            TextMessage textMessage = (TextMessage) consumer.receive(1000);
-            if (textMessage==null){
+            Message message = consumer.receive(1000);
+            if (message==null){
                 return "Received null";
             } else {
-               return "Body="+textMessage.getText()+", JMSPriority="+textMessage.getJMSPriority()+", foo="+textMessage.getStringProperty("foo");
+               return "Body="+message.getBody(String.class) +", JMSPriority="+message.getJMSPriority()+", foo="+message.getStringProperty("foo");
             }
         } catch (Exception ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);

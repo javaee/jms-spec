@@ -55,16 +55,10 @@ public class JavaEESyncReceiverNew {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
 
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
     public String receiveMessageNew() {
-        try {
-            JMSContext context = connectionFactory.createContext();
-            try {
-                JMSConsumer consumer = context.createConsumer(demoQueue);
-                return "Received " + consumer.receiveBody(String.class, 1000);
-            } finally {
-                context.close();
-            }
+        try (JMSContext context = connectionFactory.createContext();){
+            JMSConsumer consumer = context.createConsumer(demoQueue);
+            return "Received " + consumer.receiveBody(String.class, 1000);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }

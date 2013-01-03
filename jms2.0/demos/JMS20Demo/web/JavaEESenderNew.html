@@ -18,30 +18,24 @@ public class JavaEESenderNew {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
     
-    public void sendMessageNew(String payload) {
-        try {
-            JMSContext context = connectionFactory.createContext();
-            try {
-                context.createProducer().send(demoQueue, payload);
-            } finally {
-                context.close();
-            }
+    public void sendMessageNew(String body) {
+        try (JMSContext context = connectionFactory.createContext();){
+            context.createProducer().send(demoQueue, body);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
+}
 }</pre>
         <p>This example shows:
         <ul>
         <li>Use of a JMS 2.0 <tt>JMSContext</tt> for sending a message instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
-        <li><b>6 lines of code to send a message</b> (excluding exception handling)</li>
-        <li><tt>JMSContext</tt> is created explicitly and then closed after use</li>
+        <li><b>2 lines of code to send a message</b> (excluding exception handling)</li>
+        <li><tt>JMSContext</tt> is created explicitly (in a "try-with-resources" block)
         <li>No need to specify <tt>transacted</tt> and <tt>acknowledgeMode</tt> parameters (unlike with <tt>createSession</tt>) in Java EE </li>
         <li>No need to create a <tt>TextMessage</tt> object: message payload is passed directly to the <tt>send</tt> method</li>
-        <li>Still need a <tt>try...finally</tt> block to ensure <tt>close</tt> is called, 
-        plus at least one more <tt>try</tt> block to handle exceptions.<br>
-        (This will get simpler in JMS 2.0 as the Java 7 try-with-resources syntax can be used to avoid an explicit <tt>close()</tt>,
-        but this cannot be demonstrated yet as GlassFish 4.0 still requires Java 6)
+        <li>No need to call <tt>context.close()</tt> as the use of a "try-with-resources" block means the <tt>JMSContext</tt> is automatically closed at the end of the block</li>
+        <li>Includes a <tt>catch</tt> block to catch and log exceptions.<br>
         </ul>
         <p>This example is for Java EE but the API for Java SE is similar
         <p><img src="arrow.gif">&nbsp;<a href="JavaEESenderNewCDI.html">Now compare this with using the JMS 2.0 simplified API and injection do the same thing</a>

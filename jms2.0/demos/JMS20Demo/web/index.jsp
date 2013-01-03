@@ -42,8 +42,5 @@
             Before running it, use the previous examples to put a few messages on the queue first.            
         <p><a href="JavaEESyncReceiverNewCDIWithProperties.html">Using the JMS 2.0 simplified API and injection to receive a message, displaying delivery options and message properties (JavaEESyncReceiverNewCDIWithProperties)</a>
         <br>
-        <h2>Note</h2>
-        <p>
-        GlassFish 4.0 currently uses Java SE 6, so these examples do not make use of the Java SE 7 AutoCloseable API.
         </body>
 </html>

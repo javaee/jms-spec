@@ -59,16 +59,9 @@ public class JavaEESenderNew {
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue demoQueue;
     
-    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
-
     public void sendMessageNew(String body) {
-        try {
-            JMSContext context = connectionFactory.createContext();
-            try {
-                context.createProducer().send(demoQueue, body);
-            } finally {
-                context.close();
-            }
+        try (JMSContext context = connectionFactory.createContext();){
+            context.createProducer().send(demoQueue, body);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }

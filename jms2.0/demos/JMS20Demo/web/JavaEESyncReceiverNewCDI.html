@@ -15,14 +15,14 @@ public class JavaEESyncReceiverNewCDI {
     @Inject
     @JMSConnectionFactory("java:global/jms/demoConnectionFactory") // <== could omit this and use the default
     private JMSContext context;
-
     @Resource(lookup = "java:global/jms/demoQueue")
     Queue inboundQueue;
 
+    // GlassFish 4.0 currently uses Java SE 6, so this example does not make use of the Java SE 7 AutoCloseable API. 
     public String receiveMessageNewCDI() {
         try {
             JMSConsumer consumer = context.createConsumer(inboundQueue);
-            return "Received " + consumer.receivePayload(String.class, 1000);
+            return "Received " + consumer.receiveBody(String.class, 1000);
         } catch (JMSRuntimeException ex) {
             Logger.getLogger(JavaEESyncReceiverOld.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -33,9 +33,10 @@ public class JavaEESyncReceiverNewCDI {
         <ul>
         <li>Use of an injected <tt>JMSContext</tt> for receiving a message synchronously instead of separate <tt>Connection</tt> and <tt>Session</tt> objects
         <li>No need to create the <tt>JMSContext</tt> - it is injected automatically by the container</li>
-        <li>No need to call <tt>close</tt> on the <tt>JMSContext</tt> (or use a a <tt>try...finally</tt> block) - it is closed automatically by the container (at end of transaction)</li>
+        <li>No need to call <tt>close</tt> on the <tt>JMSContext</tt> (or use a "try-with-resources" block) - it is closed automatically by the container at the of the transaction</li>
         <li>No need to cast the received message to a <tt>TextMessage</tt>  and extract its payload:  message payload is returned directly by the <tt>receive</tt> method</li>
-        </ul>
+        <li>Includes a <tt>try...catch</tt> block to catch and log exceptions.<br>
+</ul>
         <p>Note that injection of <tt>JMSContext</tt> is only available in the Java EE web or EJB container
         <p>You can stop here, or carry on and <img src="arrow.gif"><a href="JavaEESenderOldWithProperties.html">examine using the JMS 1.1-style API to send a message, setting delivery options and message properties</a>
         <p><img src="arrow.gif">&nbsp;<a href="Servlet1?option=JavaEESyncReceiverNewCDI">Run this example</a>
