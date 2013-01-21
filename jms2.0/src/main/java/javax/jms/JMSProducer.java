@@ -43,6 +43,7 @@ package javax.jms;
 import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A {@code JMSProducer} is a simple object used to send messages on behalf
@@ -1034,19 +1035,22 @@ public interface JMSProducer {
 	Object getObjectProperty(String name);
 
 	/**
-	 * Returns an {@code Enumeration} of the names of all the message
+	 * Returns an {@code Set} containing the names of all the message
 	 * properties that have been set on this {@code JMSProducer}.
 	 * <p>
 	 * Note that JMS standard header fields are not considered properties and
-	 * are not returned in this enumeration.
+	 * are not returned in this {@code Set}. 
+	 * <p>
+	 * The returned {@code Set} is a copy. Changes to the {@code JMSProducer} 
+	 * will not be reflected in the  {@code Set}, nor vice-versa.
 	 * 
-	 * @return an enumeration of all the names of property values
+	 * @return a {@code Set} containing the names of property values
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property names due to
 	 *             some internal error.
 	 */
-	Enumeration getPropertyNames();
+	Set <String> getPropertyNames();
 
 	/**
 	 * Specifies that messages sent using this {@code JMSProducer} will
