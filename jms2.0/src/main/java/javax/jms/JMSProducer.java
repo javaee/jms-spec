@@ -1044,7 +1044,8 @@ public interface JMSProducer {
 	 * The returned {@code Set} is a copy. Changes to the {@code JMSProducer} 
 	 * will not be reflected in the  {@code Set}, nor vice-versa.
 	 * 
-	 * @return a {@code Set} containing the names of property values
+	 * @return a {@code Set} containing the names of all the message
+	 * properties that have been set on this {@code JMSProducer}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property names due to
