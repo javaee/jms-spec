@@ -1035,24 +1035,30 @@ public interface JMSProducer {
 	Object getObjectProperty(String name);
 
 	/**
-	 * Returns an {@code Set} containing the names of all the message
-	 * properties that have been set on this {@code JMSProducer}.
+	 * Returns an unmodifiable {@code Set} view of the names of all the message
+	 * properties that have been set on this JMSProducer.
 	 * <p>
 	 * Note that JMS standard header fields are not considered properties and
-	 * are not returned in this {@code Set}. 
+	 * are not returned in this Set.
 	 * <p>
-	 * The returned {@code Set} is a copy. Changes to the {@code JMSProducer} 
-	 * will not be reflected in the  {@code Set}, nor vice-versa.
+	 * The set is backed by the {@code JMSProducer}, so changes to the map are
+	 * reflected in the set. However the set may not be modified. Attempts to
+	 * modify the returned collection, whether directly or via its iterator,
+	 * will result in an UnsupportedOperationException. Its behaviour matches
+	 * that defined in the {@code java.util.Collections} method
+	 * {@code unmodifiableSet}.
 	 * 
-	 * @return a {@code Set} containing the names of all the message
-	 * properties that have been set on this {@code JMSProducer}
+	 * @return a {@code Set} containing the names of all the message properties
+	 *         that have been set on this {@code JMSProducer}
 	 * 
 	 * @throws JMSRuntimeException
 	 *             if the JMS provider fails to get the property names due to
 	 *             some internal error.
+	 * 
+	 * @see Map.keySet()
 	 */
-	Set <String> getPropertyNames();
-
+	Set<String> getPropertyNames();
+ 
 	/**
 	 * Specifies that messages sent using this {@code JMSProducer} will
 	 * have their {@code JMSCorrelationID} header value set to the
