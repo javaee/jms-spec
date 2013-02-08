@@ -1607,8 +1607,7 @@ public interface Session extends Runnable, AutoCloseable {
       * delete a durable subscription must use the same client identifier.
       *
       * <P>It is erroneous for a client to delete a durable subscription
-      * while there is an active {@code MessageConsumer}
-      * or {@code TopicSubscriber} for the 
+      * while there is an active (not closed) consumer for the 
       * subscription, or while a consumed message is part of a pending 
       * transaction or has not been acknowledged in the session.
       *

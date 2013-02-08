@@ -1660,7 +1660,7 @@ public interface JMSContext extends AutoCloseable {
 	 * 
 	 * <P>
 	 * It is erroneous for a client to delete a durable subscription while there
-	 * is an active consumer on that subscription, or while a consumed message
+	 * is an active (not closed) consumer on that subscription, or while a consumed message
 	 * is part of a pending transaction or has not been acknowledged in the
 	 * session.
 	 * <P>
