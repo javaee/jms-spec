@@ -55,6 +55,7 @@ package javax.jms;
   * less basic implementations.
   *
   * @version 2.0
+  * @since 1.0
   * @see javax.jms.TopicRequestor
   */
 
