@@ -87,7 +87,7 @@ public @interface JMSConnectionFactoryDefinition {
 	/**
 	 * Resource adapter name.
 	 */
-	String resourceAdapterName() default "";
+	String resourceAdapter() default "";
 
 	/**
 	 * User name to use for connection authentication.
