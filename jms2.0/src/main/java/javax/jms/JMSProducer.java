@@ -1044,7 +1044,7 @@ public interface JMSProducer {
 	 * The set is backed by the {@code JMSProducer}, so changes to the map are
 	 * reflected in the set. However the set may not be modified. Attempts to
 	 * modify the returned collection, whether directly or via its iterator,
-	 * will result in an UnsupportedOperationException. Its behaviour matches
+	 * will result in an {@code java.lang.UnsupportedOperationException}. Its behaviour matches
 	 * that defined in the {@code java.util.Collections} method
 	 * {@code unmodifiableSet}.
 	 * 
@@ -1055,7 +1055,7 @@ public interface JMSProducer {
 	 *             if the JMS provider fails to get the property names due to
 	 *             some internal error.
 	 * 
-	 * @see Map.keySet()
+	 * @see java.util.Collections#unmodifiableSet
 	 */
 	Set<String> getPropertyNames();
  
