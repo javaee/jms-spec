@@ -72,7 +72,7 @@ public interface XAQueueConnection extends XAConnection, QueueConnection {
 	XAQueueSession createXAQueueSession() throws JMSException;
 
 	/**
-	 * Creates an {@code QueueSession} object.
+	 * Creates a {@code QueueSession} object.
 	 * 
 	 * @param transacted
 	 *            usage undefined
