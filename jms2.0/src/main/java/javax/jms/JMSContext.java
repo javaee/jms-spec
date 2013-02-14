@@ -95,8 +95,8 @@ import java.io.Serializable;
  * these {@code JMSContext} objects are application-managed and must be
  * closed when no longer needed by calling their {@code close} method.
  * 
- * @version 2.0
- * @since 2.0
+ * @version JMS 2.0
+ * @since JMS 2.0
  * 
  */
 public interface JMSContext extends AutoCloseable {
@@ -149,7 +149,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                <li>some internal error or <li>because this method is
 	 *                being called in a Java EE web or EJB application.
 	 *                </ul>
-	 * @since 2.0
+	 * @since JMS 2.0
 	 * 
 	 * @see JMSContext#SESSION_TRANSACTED
 	 * @see JMSContext#CLIENT_ACKNOWLEDGE
@@ -780,7 +780,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                mode due to some internal error.
 	 * 
 	 * @see Connection#createSession
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */
 	int getSessionMode();
 
@@ -1098,7 +1098,7 @@ public interface JMSContext extends AutoCloseable {
 	 *                with the same name and client identifier
 	 *                </ul>
 	 *
- 	 * @since 2.0
+ 	 * @since JMS 2.0
 	 */
      JMSConsumer createDurableConsumer(Topic topic, String name);
 
@@ -1202,7 +1202,7 @@ public interface JMSContext extends AutoCloseable {
  	 *                identifier
  	 *                </ul>
  	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */ 
       JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal);     
 
@@ -1286,7 +1286,7 @@ public interface JMSContext extends AutoCloseable {
    	 *                identifier
    	 *                </ul>
    	 *
-     * @since 2.0
+     * @since JMS 2.0
    	 */
      JMSConsumer createSharedDurableConsumer(Topic topic, String name);
 
@@ -1374,7 +1374,7 @@ public interface JMSContext extends AutoCloseable {
  	 *                </ul>
 
  	 *
-   * @since 2.0
+   * @since JMS 2.0
  	 */
       JMSConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector);         
       

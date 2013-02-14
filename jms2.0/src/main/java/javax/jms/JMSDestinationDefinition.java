@@ -61,6 +61,10 @@ import java.lang.annotation.Target;
  * annotation.
  * 
  * @see javax.annotation.Resource
+ * 
+ * @version JMS 2.0
+ * @since JMS 2.0
+ * 
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

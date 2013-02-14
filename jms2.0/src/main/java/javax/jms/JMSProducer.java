@@ -41,7 +41,6 @@
 package javax.jms;
 
 import java.io.Serializable;
-import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
 
@@ -81,8 +80,8 @@ import java.util.Set;
  * which can be created freely and which do not consume significant resources.
  * This interface therefore does not provide a {@code close} method.
  * 
- * @version 2.0
- * @since 2.0
+ * @version JMS 2.0
+ * @since JMS 2.0
  * 
  */
 

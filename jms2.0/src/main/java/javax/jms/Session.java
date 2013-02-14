@@ -126,12 +126,14 @@ import java.io.Serializable;
   * transactions directly, it is unlikely that many JMS clients will do this.
   * Support for JTA in the JMS API is targeted at systems vendors who will be 
   * integrating the JMS API into their application server products.
-  *
-  * @version     2.0
-  *
+  * 
   * @see         javax.jms.QueueSession
   * @see         javax.jms.TopicSession
   * @see         javax.jms.XASession
+  *
+  * @version JMS 2.0
+  * @since JMS 1.0
+  * 
   */ 
  
 public interface Session extends Runnable, AutoCloseable {
@@ -182,6 +184,8 @@ public interface Session extends Runnable, AutoCloseable {
      * irrespective of whether the session was created by calling the
      * method {@code createSession(int sessionMode)} or the 
      * method {@code createSession(boolean transacted, int acknowledgeMode)}.
+     * 
+     * @since JMS 1.1
      */
     static final int SESSION_TRANSACTED = 0;
 
@@ -359,16 +363,18 @@ public interface Session extends Runnable, AutoCloseable {
      * mode is set at the time that the session is created. If the session is
      * transacted, the acknowledgement mode is ignored.
      *
-     *@return            If the session is not transacted, returns the 
+     * @return          If the session is not transacted, returns the 
      *                  current acknowledgement mode for the session.
      *                  If the session
      *                  is transacted, returns SESSION_TRANSACTED.
      *
-     *@exception JMSException   if the JMS provider fails to return the 
+     * @exception JMSException   if the JMS provider fails to return the 
      *                         acknowledgment mode due to some internal error.
      *
-     *@see Connection#createSession
-     *@since 1.1
+     * @see Connection#createSession
+     * 
+     * @since JMS 1.1
+     * 
      */
     int 
     getAcknowledgeMode() throws JMSException;
@@ -606,7 +612,7 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception InvalidDestinationException if an invalid destination
       * is specified.
       *
-      * @since 1.1 
+      * @since JMS 1.1 
       * 
      */
 
@@ -626,7 +632,7 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception InvalidDestinationException if an invalid destination 
       *                         is specified.
       *
-      * @since 1.1 
+      * @since JMS 1.1 
       */
 
     MessageConsumer
@@ -656,7 +662,8 @@ public interface Session extends Runnable, AutoCloseable {
      
       * @exception InvalidSelectorException if the message selector is invalid.
       *
-      * @since 1.1 
+      * @since JMS 1.1 
+      * 
       */
     MessageConsumer     
     createConsumer(Destination destination, java.lang.String messageSelector) 
@@ -698,7 +705,7 @@ public interface Session extends Runnable, AutoCloseable {
       *     
       * @exception InvalidSelectorException if the message selector is invalid.
       *
-      * @since 1.1 
+      * @since JMS 1.1 
       *
       */
     MessageConsumer     
@@ -755,7 +762,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
 	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) throws JMSException;
 
@@ -813,7 +820,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @throws InvalidSelectorException
 	 *             if the message selector is invalid.
 	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */ 
 	MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, java.lang.String messageSelector)
 			throws JMSException;
@@ -872,17 +879,6 @@ public interface Session extends Runnable, AutoCloseable {
 	 *             error
 	 */
 	Topic createTopic(String topicName) throws JMSException;
-
-     /** Creates a {@code QueueBrowser} object to peek at the messages on 
-      * the specified queue.
-      *
-      * @param queue the {@code queue} to access
-      *
-      * @exception InvalidDestinationException if an invalid destination
-      *                         is specified 
-      *
-      * @since 1.1 
-      */
     
 	/**
 	 * Creates an unshared durable subscription on the specified topic (if one
@@ -966,7 +962,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                with the same name and client identifier
 	 *                </ul>
 	 *
- 	 * @since 2.0
+ 	 * @since JMS 1.1
 	 */
     TopicSubscriber createDurableSubscriber(Topic topic, 
 			    String name) throws JMSException;
@@ -1070,7 +1066,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                identifier
 	 *                </ul>
 	 *
- 	 * @since 2.0
+ 	 * @since JMS 1.1
 	 */
 	TopicSubscriber createDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal)
 			throws JMSException;
@@ -1158,7 +1154,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 *                identifier
 	 *                </ul>
 	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */
 	MessageConsumer createDurableConsumer(Topic topic, String name) throws JMSException;
 
@@ -1261,7 +1257,7 @@ public interface Session extends Runnable, AutoCloseable {
  	 *                identifier
  	 *                </ul>
  	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */ 
       MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException;     
       
@@ -1341,7 +1337,7 @@ public interface Session extends Runnable, AutoCloseable {
 	 * @exception InvalidDestinationException
 	 *                if an invalid topic is specified.
 	 * 
-	 * @since 2.0
+	 * @since JMS 2.0
 	 */
 	MessageConsumer createSharedDurableConsumer(Topic topic, String name) throws JMSException;
 
@@ -1428,7 +1424,7 @@ public interface Session extends Runnable, AutoCloseable {
    	 * @exception InvalidSelectorException
    	 *                if the message selector is invalid.
    	 *
-     * @since 2.0
+     * @since JMS 2.0
    	 */
         MessageConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector) throws JMSException;           
     
@@ -1443,34 +1439,38 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception InvalidDestinationException if an invalid destination
       *                         is specified 
       *
-      * @since 1.1 
+      * @since JMS 1.1 
       */ 
     QueueBrowser 
     createBrowser(Queue queue) throws JMSException;
 
 
-    /** Creates a {@code QueueBrowser} object to peek at the messages on 
-      * the specified queue using a message selector.
-      *  
-      * @param queue the {@code queue} to access
-      *
-      * @param messageSelector only messages with properties matching the
-      * message selector expression are delivered. A value of null or
-      * an empty string indicates that there is no message selector 
-      * for the message consumer.
-      *  
-      * @exception JMSException if the session fails to create a browser
-      *                         due to some internal error.
-      * @exception InvalidDestinationException if an invalid destination
-      *                         is specified 
-      * @exception InvalidSelectorException if the message selector is invalid.
-      *
-      * @since 1.1 
-      */ 
-
-    QueueBrowser
-    createBrowser(Queue queue,
-		  String messageSelector) throws JMSException;
+	/**
+	 * Creates a {@code QueueBrowser} object to peek at the messages on the
+	 * specified queue using a message selector.
+	 * 
+	 * @param queue
+	 *            the {@code queue} to access
+	 * 
+	 * @param messageSelector
+	 *            only messages with properties matching the message selector
+	 *            expression are delivered. A value of null or an empty string
+	 *            indicates that there is no message selector for the message
+	 *            consumer.
+	 * 
+	 * @exception JMSException
+	 *                if the session fails to create a browser due to some
+	 *                internal error.
+	 * @exception InvalidDestinationException
+	 *                if an invalid destination is specified
+	 * @exception InvalidSelectorException
+	 *                if the message selector is invalid.
+	 * 
+	 * @since JMS 1.1
+	 * 
+	 */
+	QueueBrowser createBrowser(Queue queue, String messageSelector)
+			throws JMSException;
 
     
      /** Creates a {@code TemporaryQueue} object. Its lifetime will be that 
@@ -1481,7 +1481,7 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception JMSException if the session fails to create a temporary queue
       *                         due to some internal error.
       *
-      *@since 1.1
+      * @since JMS 1.1
       */
 
     TemporaryQueue
@@ -1496,7 +1496,7 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception JMSException if the session fails to create a temporary
       *                         topic due to some internal error.
       *
-      * @since 1.1  
+      * @since JMS 1.1  
       */
  
     TemporaryTopic
@@ -1526,7 +1526,7 @@ public interface Session extends Runnable, AutoCloseable {
       * @exception InvalidDestinationException if an invalid subscription name
       *                                        is specified.
       *
-      * @since 1.1
+      * @since JMS 1.1
       */
 
     void

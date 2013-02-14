@@ -51,10 +51,12 @@ package javax.jms;
  * to use the transactional support available in their environment, rather than
  * use these XA interfaces directly.
  * 
- * @version 2.0
- * 
  * @see javax.jms.XAQueueConnection
  * @see javax.jms.XATopicConnection
+ * 
+ * @version JMS 2.0
+ * @since JMS 1.0
+ * 
  */
 
 public interface XAConnection extends Connection {
@@ -68,7 +70,8 @@ public interface XAConnection extends Connection {
 	 *                if the {@code XAConnection} object fails to create an
 	 *                {@code XASession} due to some internal error.
 	 * 
-	 * @since 1.1
+	 * @since JMS 1.1
+	 * 
 	 */
 
 	XASession createXASession() throws JMSException;
@@ -87,7 +90,8 @@ public interface XAConnection extends Connection {
 	 *                if the {@code XAConnection} object fails to create a
 	 *                {@code Session} due to some internal error.
 	 * 
-	 * @since 1.1
+	 * @since JMS 1.1
+	 * 
 	 */
 	Session createSession(boolean transacted, int acknowledgeMode)
 			throws JMSException;

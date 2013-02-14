@@ -60,6 +60,9 @@ import java.lang.annotation.Target;
  * for example by using the {@code lookup} element of the {@code Resource}
  * annotation.
  * 
+ * @version JMS 2.0
+ * @since JMS 2.0
+ * 
  * @see javax.annotation.Resource
  */
 @Target({ ElementType.TYPE })

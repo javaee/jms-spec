@@ -53,10 +53,12 @@ package javax.jms;
   * is non-transacted with a delivery mode of either AUTO_ACKNOWLEDGE or 
   * DUPS_OK_ACKNOWLEDGE. It is expected that most applications will create 
   * less basic implementations.
-  *
-  * @version 2.0
-  * @since 1.0
+  * 
   * @see javax.jms.QueueRequestor
+  * 
+  * @version JMS 2.0
+  * @since JMS 1.0
+  * 
   */
 
 public class TopicRequestor {

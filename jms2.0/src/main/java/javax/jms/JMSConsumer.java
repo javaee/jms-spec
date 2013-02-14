@@ -69,9 +69,11 @@ package javax.jms;
  * It is a client programming error for a {@code MessageListener} to throw an
  * exception.
  * 
- * @version 2.0
- * 
  * @see javax.jms.JMSContext
+ * 
+ * @version JMS 2.0
+ * @since JMS 2.0
+ * 
  */
 
 public interface JMSConsumer extends AutoCloseable {

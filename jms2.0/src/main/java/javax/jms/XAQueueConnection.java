@@ -52,9 +52,11 @@ package javax.jms;
  * encouraged to use the transactional support available in their environment,
  * rather than use these XA interfaces directly.
  * 
- * @version 2.0
- * 
  * @see javax.jms.XAConnection
+ * 
+ * @version JMS 2.0
+ * @since JMS 1.0
+ * 
  */
 
 public interface XAQueueConnection extends XAConnection, QueueConnection {

@@ -54,9 +54,11 @@ package javax.jms;
   * DUPS_OK_ACKNOWLEDGE. It is expected that most applications will create 
   * less basic implementations.
   *
-  * @version 2.0
-  * @since 1.0
   * @see javax.jms.TopicRequestor
+  * 
+  * @version JMS 2.0
+  * @since JMS 1.0
+  * 
   */
 
 public class QueueRequestor {
