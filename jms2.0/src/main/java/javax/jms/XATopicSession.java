@@ -51,13 +51,10 @@ package javax.jms;
   * available in their environment, rather than using these XA
   * interfaces directly. 
   *
-  * @version     1.1 February 2, 2002
-  * @author      Mark Hapner
-  * @author      Rich Burridge
-  * @author      Kate Stout
+  * @version 2.0
   *
-  * @see         javax.jms.XASession
-  * @see         javax.jms.TopicSession
+  * @see javax.jms.XASession
+  * @see javax.jms.TopicSession
   */
 
 public interface XATopicSession extends XASession {
