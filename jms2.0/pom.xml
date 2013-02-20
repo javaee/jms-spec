@@ -22,9 +22,12 @@
           <!--  Specifies the text to be placed at the bottom of each output file.  -->
           <bottom>Copyright 1997-2013 Oracle America Inc. All rights reserved. Use is subject to &lt;a href="../../doc-files/eval-spec-license.html" target="_top"&gt;licence terms&lt;/a&gt;</bottom>
           <!-- Specifies the header text to be placed at the top of each output file, to the right of the upper navigation bar. -->
-          <header>JMS 2.0 - SNAPSHOT</header>          
+          <!-- header>JMS 2.0 - SNAPSHOT</header -->      
+          <header>JMS 2.0 - Proposed final draft (20 Feb 2013)</header>          
+              
           <!-- Specifies the footer text to be placed at the top of each output file, to the right of the lower navigation bar. -->
-          <footer>JMS 2.0 - SNAPSHOT</footer>
+          <!-- footer>JMS 2.0 - SNAPSHOT</footer -->
+          <footer>JMS 2.0 - Proposed final draft (20 Feb 2013)</footer>
         </configuration>
       </plugin>
       <plugin>
@@ -44,7 +47,7 @@
           <!-- javadoc:jar uses outputDirectory - but disabled since it doesn't create the jar for some reason -->
           <!-- outputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-SNAPSHOT</outputDirectory -->
           <!-- javadoc:javadoc uses reportOutputDirectory -->
-          <reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-SNAPSHOT</reportOutputDirectory>
+          <reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0-ProposedFinalDraft</reportOutputDirectory>
           <destDir>apidocs</destDir>
         </configuration>
       </plugin>      
