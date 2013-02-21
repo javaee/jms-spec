@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"    
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"    
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-app_3_1.xsd"    
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee web-app_3_1.xsd"    
     version="3.1">
-
-    <jms-destination>
+       
+    <!-- Removed temporarily as GlassFish doesn't support the latest schema yet -->
+    
+    <!-- jms-destination>
         <name>java:global/jms/demoQueue</name>
-        <resource-adapter-name>jmsra</resource-adapter-name>
+        <resource-adapter>jmsra</resource-adapter>
     </jms-destination>
 
     <jms-connection-factory>
         <description>ConnectionFactory to use in demonstration</description>
         <name>java:global/jms/demoConnectionFactory</name>
-        <resource-adapter-name>jmsra</resource-adapter-name>
+        <resource-adapter>jmsra</resource-adapter>
         <user>guest</user>
         <password>guest</password>
         <property>
@@ -23,7 +25,6 @@
        
         <max-pool-size>30</max-pool-size>
         <min-pool-size>20</min-pool-size>
-        <max-idle-time>5</max-idle-time>
-    </jms-connection-factory>
+    </jms-connection-factory -->
     
 </web-app>
