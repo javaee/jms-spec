@@ -3,7 +3,7 @@ This folder contains a NetBeans project which demonstrates some features of JMS 
 How to get this project
 -----------------------
 
-This folder be be checked out from the jms-spec.java.net source code repository at
+This folder may be checked out from the jms-spec.java.net source code repository at
 https://svn.java.net/svn/jms-spec~repository/jms2.0/demos/JMS20Demo
 (Use your java.net user name and password. 
 You need to be a member of the jms-spec.java.net project.)
