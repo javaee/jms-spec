@@ -16,6 +16,8 @@ You will need to download and unzip an appropriate version of GlassFish 4.
 You can download GlassFish 4 nightly builds from 
 http://dlc.sun.com.edgesuite.net/glassfish/4.0/nightly/
 
+This version was tested with glassfish-4.0-b78-02_21_2013
+
 How to run it
 -------------
 
