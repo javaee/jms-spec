@@ -565,9 +565,9 @@ public interface MessageProducer extends AutoCloseable {
 	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
 	 * <tt>IllegalStateException</tt>.
 	 * <p>
-	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
-	 * permitted in a Java EE EJB or web container. If the application component
-	 * violates this restriction this method may throw a JMSException.
+	 * <b>Restrictions on usage in Java EE</b> This method must not be used in a
+	 * Java EE EJB or web container. Doing so may cause a {@code JMSException} 
+	 * to be thrown though this is not guaranteed.
 	 * <p>
 	 * <b>Message headers</b> JMS defines a number of message header fields and
 	 * message properties which must be set by the "JMS provider on send". If
@@ -730,9 +730,9 @@ public interface MessageProducer extends AutoCloseable {
 	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
 	 * <tt>IllegalStateException</tt>.
 	 * <p> 
-	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
-	 * permitted in a Java EE EJB or web container. If the application component
-	 * violates this restriction this method may throw a JMSException.
+	 * <b>Restrictions on usage in Java EE</b> This method must not be used in a
+	 * Java EE EJB or web container. Doing so may cause a {@code JMSException} 
+	 * to be thrown though this is not guaranteed.
 	 * <p>
 	 * <b>Message headers</b> JMS defines a number of message header fields and
 	 * message properties which must be set by the "JMS provider on send". If
@@ -910,9 +910,9 @@ public interface MessageProducer extends AutoCloseable {
 	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
 	 * <tt>IllegalStateException</tt>.
 	 * <p>
-	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
-	 * permitted in a Java EE EJB or web container. If the application component
-	 * violates this restriction this method may throw a JMSException.
+	 * <b>Restrictions on usage in Java EE</b> This method must not be used in a
+	 * Java EE EJB or web container. Doing so may cause a {@code JMSException} 
+	 * to be thrown though this is not guaranteed.
 	 * <p>
 	 * <b>Message headers</b> JMS defines a number of message header fields and
 	 * message properties which must be set by the "JMS provider on send". If
@@ -1081,9 +1081,9 @@ public interface MessageProducer extends AutoCloseable {
 	 * <tt>commit</tt> or <tt>rollback</tt> to throw an
 	 * <tt>IllegalStateException</tt>.
 	 * <p>
-	 * <b>Restrictions on usage in Java EE</b> An asynchronous send is not
-	 * permitted in a Java EE EJB or web container. If the application component
-	 * violates this restriction this method may throw a JMSException.
+	 * <b>Restrictions on usage in Java EE</b> This method must not be used in a
+	 * Java EE EJB or web container. Doing so may cause a {@code JMSException} 
+	 * to be thrown though this is not guaranteed.
 	 * <p>
 	 * <b>Message headers</b> JMS defines a number of message header fields and
 	 * message properties which must be set by the "JMS provider on send". If
