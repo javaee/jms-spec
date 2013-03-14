@@ -4,12 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee web-app_3_1.xsd"    
     version="3.1">
-       
-    <!-- Removed temporarily as GlassFish doesn't support the latest schema yet -->
-    
-    <!-- jms-destination>
+         
+    <jms-destination>
         <name>java:global/jms/demoQueue</name>
         <resource-adapter>jmsra</resource-adapter>
+        <destination-name>demoQueue</destination-name>
     </jms-destination>
 
     <jms-connection-factory>
@@ -25,6 +24,6 @@
        
         <max-pool-size>30</max-pool-size>
         <min-pool-size>20</min-pool-size>
-    </jms-connection-factory -->
+    </jms-connection-factory>
     
 </web-app>

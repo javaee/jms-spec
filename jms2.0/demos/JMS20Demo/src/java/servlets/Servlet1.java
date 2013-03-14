@@ -55,14 +55,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @JMSDestinationDefinition(
     name = "java:global/jms/demoQueue",
-    resourceAdapterName= "jmsra",
+    // resourceAdapter is set (by the deployer) in web.xml
     description = "Queue to use in demonstration", 
-    className = "javax.jms.Queue", 
-    destinationName="demoQueue")
+    className = "javax.jms.Queue"
+    // destinationName is set (by the deployer) in web.xml
+  )
 
 @JMSConnectionFactoryDefinition(
     name="java:global/jms/demoConnectionFactory",
-    resourceAdapterName= "jmsra",
+    // resourceAdapter is set (by the deployer) in web.xml
     className= "javax.jms.ConnectionFactory",
     description="ConnectionFactory to use in demonstration"
 )       
