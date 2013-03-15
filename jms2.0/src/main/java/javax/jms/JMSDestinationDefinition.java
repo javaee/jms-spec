@@ -91,7 +91,7 @@ public @interface JMSDestinationDefinition {
 	/**
 	 * Fully-qualified name of the JMS destination implementation class.
 	 * Ignored if a resource adapter is used unless the resource adapter 
-	 * defines more than one connection factory class for the specified interface
+	 * defines more than one JMS destination implementation class for the specified interface
 	 */
 	String className() default "";
 
