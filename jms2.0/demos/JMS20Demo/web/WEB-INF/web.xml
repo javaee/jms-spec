@@ -7,14 +7,13 @@
          
     <jms-destination>
         <name>java:global/jms/demoQueue</name>
-        <resource-adapter>jmsra</resource-adapter>
+        <interface-name>javax.jms.Queue</interface-name>
         <destination-name>demoQueue</destination-name>
     </jms-destination>
 
     <jms-connection-factory>
         <description>ConnectionFactory to use in demonstration</description>
         <name>java:global/jms/demoConnectionFactory</name>
-        <resource-adapter>jmsra</resource-adapter>
         <user>guest</user>
         <password>guest</password>
         <property>
