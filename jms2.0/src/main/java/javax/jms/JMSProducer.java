@@ -1015,7 +1015,7 @@ public interface JMSProducer {
 	 * This method can be used to return, in objectified format, an object that
 	 * has been stored as a property in the message with the equivalent
 	 * {@code setObjectProperty} method call, or its equivalent primitive
-	 * {@code set<I>type</I>Property} method.
+	 * <code>set<I>type</I>Property</code> method.
 	 * 
 	 * @param name
 	 *            the name of the property

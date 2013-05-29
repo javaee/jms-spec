@@ -331,7 +331,7 @@ public interface StreamMessage extends Message {
       * an object in the Java programming language ("Java object") that has 
       * been written to the stream with the equivalent
       * {@code writeObject} method call, or its equivalent primitive
-      * {@code write<I>type</I>} method.
+      * <code>write<I>type</I></code> method.
       *  
       * <P>Note that byte values are returned as {@code byte[]}, not 
       * {@code Byte[]}.

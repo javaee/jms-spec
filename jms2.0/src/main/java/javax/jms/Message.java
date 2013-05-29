@@ -235,9 +235,9 @@ import java.util.Enumeration;
   * Unless specifically noted, the values and semantics of the JMSX properties 
   * are undefined.
   *
-  * <P>The JMS API reserves the {@code JMS_<I>vendor_name</I>} property 
+  * <P>The JMS API reserves the <CODE>JMS_<I>vendor_name</I></CODE> property 
   * name prefix for provider-specific properties. Each provider defines its own 
-  * value for {@code <I>vendor_name</I>}. This is the mechanism a JMS 
+  * value for <CODE><I>vendor_name</I></CODE>. This is the mechanism a JMS 
   * provider uses to make its special per-message services available to a JMS 
   * client.
   *
@@ -399,70 +399,70 @@ import java.util.Enumeration;
   *     <LI>Arithmetic operations must use numeric promotion in the Java 
   *         programming language.
   *   </UL>
-  *   <LI>{@code <I>arithmetic-expr1</I> [NOT] BETWEEN <I>arithmetic-expr2</I> 
-  *       AND <I>arithmetic-expr3</I>} (comparison operator)
+  *   <LI><CODE><I>arithmetic-expr1</I> [NOT] BETWEEN <I>arithmetic-expr2</I> 
+  *       AND <I>arithmetic-expr3</I></CODE> (comparison operator)
   *   <UL>
-  *     <LI>{@code "age&nbsp;BETWEEN&nbsp;15&nbsp;AND&nbsp;19"} is 
+  *     <LI><CODE>"age&nbsp;BETWEEN&nbsp;15&nbsp;AND&nbsp;19"</CODE> is 
   *         equivalent to 
-  *         {@code "age&nbsp;>=&nbsp;15&nbsp;AND&nbsp;age&nbsp;<=&nbsp;19"}
-  *     <LI>{@code "age&nbsp;NOT&nbsp;BETWEEN&nbsp;15&nbsp;AND&nbsp;19"} 
+  *         <CODE>"age&nbsp;>=&nbsp;15&nbsp;AND&nbsp;age&nbsp;<=&nbsp;19"</CODE>
+  *     <LI><CODE>"age&nbsp;NOT&nbsp;BETWEEN&nbsp;15&nbsp;AND&nbsp;19"</CODE> 
   *         is equivalent to 
-  *         {@code "age&nbsp;<&nbsp;15&nbsp;OR&nbsp;age&nbsp;>&nbsp;19"}
+  *         <CODE>"age&nbsp;<&nbsp;15&nbsp;OR&nbsp;age&nbsp;>&nbsp;19"</CODE>
   *   </UL>
-  *   <LI>{@code <I>identifier</I> [NOT] IN (<I>string-literal1</I>, 
-  *       <I>string-literal2</I>,...)} (comparison operator where 
-  *       {@code <I>identifier</I>} has a {@code String} or 
-  *       {@code NULL} value)
+  *   <LI><CODE><I>identifier</I> [NOT] IN (<I>string-literal1</I>, 
+  *       <I>string-literal2</I>,...)</CODE> (comparison operator where 
+  *       <CODE><I>identifier</I></CODE> has a <CODE>String</CODE> or 
+  *       <CODE>NULL</CODE> value)
   *   <UL>
-  *     <LI>{@code "Country&nbsp;IN&nbsp;('&nbsp;UK',&nbsp;'US',&nbsp;'France')"}
+  *     <LI><CODE>"Country&nbsp;IN&nbsp;('&nbsp;UK',&nbsp;'US',&nbsp;'France')"</CODE>
   *         is true for 
-  *         {@code 'UK'} and false for {@code 'Peru'}; it is 
+  *         <CODE>'UK'</CODE> and false for <CODE>'Peru'</CODE>; it is 
   *         equivalent to the expression 
-  *         {@code "(Country&nbsp;=&nbsp;'&nbsp;UK')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;US')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;France')"}
-  *     <LI>{@code "Country&nbsp;NOT&nbsp;IN&nbsp;('&nbsp;UK',&nbsp;'US',&nbsp;'France')"} 
-  *         is false for {@code 'UK'} and true for {@code 'Peru'}; it 
+  *         <CODE>"(Country&nbsp;=&nbsp;'&nbsp;UK')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;US')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;France')"</CODE>
+  *     <LI><CODE>"Country&nbsp;NOT&nbsp;IN&nbsp;('&nbsp;UK',&nbsp;'US',&nbsp;'France')"</CODE> 
+  *         is false for <CODE>'UK'</CODE> and true for <CODE>'Peru'</CODE>; it 
   *         is equivalent to the expression 
-  *         {@code "NOT&nbsp;((Country&nbsp;=&nbsp;'&nbsp;UK')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;US')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;France'))"}
-  *     <LI>If identifier of an {@code IN} or {@code NOT IN} 
-  *         operation is {@code NULL}, the value of the operation is 
+  *         <CODE>"NOT&nbsp;((Country&nbsp;=&nbsp;'&nbsp;UK')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;US')&nbsp;OR&nbsp;(Country&nbsp;=&nbsp;'&nbsp;France'))"</CODE>
+  *     <LI>If identifier of an <CODE>IN</CODE> or <CODE>NOT IN</CODE> 
+  *         operation is <CODE>NULL</CODE>, the value of the operation is 
   *         unknown.
   *   </UL>
-  *   <LI>{@code <I>identifier</I> [NOT] LIKE <I>pattern-value</I> [ESCAPE 
-  *       <I>escape-character</I>]} (comparison operator, where 
-  *       {@code <I>identifier</I>} has a {@code String} value; 
-  *       {@code <I>pattern-value</I>} is a string literal where 
-  *       {@code '_'} stands for any single character; {@code '%'} 
+  *   <LI><CODE><I>identifier</I> [NOT] LIKE <I>pattern-value</I> [ESCAPE 
+  *       <I>escape-character</I>]</CODE> (comparison operator, where 
+  *       <CODE><I>identifier</I></CODE> has a <CODE>String</CODE> value; 
+  *       <CODE><I>pattern-value</I></CODE> is a string literal where 
+  *       <CODE>'_'</CODE> stands for any single character; <CODE>'%'</CODE> 
   *       stands for any sequence of characters, including the empty sequence; 
   *       and all other characters stand for themselves. The optional 
-  *       {@code <I>escape-character</I>} is a single-character string 
+  *       <CODE><I>escape-character</I></CODE> is a single-character string 
   *       literal whose character is used to escape the special meaning of the 
-  *       {@code '_'} and {@code '%'} in 
-  *       {@code <I>pattern-value</I>}.)
+  *       <CODE>'_'</CODE> and <CODE>'%'</CODE> in 
+  *       <CODE><I>pattern-value</I></CODE>.)
   *   <UL>
-  *     <LI>{@code "phone&nbsp;LIKE&nbsp;'12%3'"} is true for 
-  *         {@code '123'} or {@code '12993'} and false for 
-  *         {@code '1234'}
-  *     <LI>{@code "word&nbsp;LIKE&nbsp;'l_se'"} is true for 
-  *         {@code 'lose'} and false for {@code 'loose'}
-  *     <LI>{@code "underscored&nbsp;LIKE&nbsp;'\_%'&nbsp;ESCAPE&nbsp;'\'"}
-  *          is true for {@code '_foo'} and false for {@code 'bar'}
-  *     <LI>{@code "phone&nbsp;NOT&nbsp;LIKE&nbsp;'12%3'"} is false for 
-  *         {@code '123'} or {@code '12993'} and true for 
-  *         {@code '1234'}
-  *     <LI>If {@code <I>identifier</I>} of a {@code LIKE} or 
-  *         {@code NOT LIKE} operation is {@code NULL}, the value 
+  *     <LI><CODE>"phone&nbsp;LIKE&nbsp;'12%3'"</CODE> is true for 
+  *         <CODE>'123'</CODE> or <CODE>'12993'</CODE> and false for 
+  *         <CODE>'1234'</CODE>
+  *     <LI><CODE>"word&nbsp;LIKE&nbsp;'l_se'"</CODE> is true for 
+  *         <CODE>'lose'</CODE> and false for <CODE>'loose'</CODE>
+  *     <LI><CODE>"underscored&nbsp;LIKE&nbsp;'\_%'&nbsp;ESCAPE&nbsp;'\'"</CODE>
+  *          is true for <CODE>'_foo'</CODE> and false for <CODE>'bar'</CODE>
+  *     <LI><CODE>"phone&nbsp;NOT&nbsp;LIKE&nbsp;'12%3'"</CODE> is false for 
+  *         <CODE>'123'</CODE> or <CODE>'12993'</CODE> and true for 
+  *         <CODE>'1234'</CODE>
+  *     <LI>If <CODE><I>identifier</I></CODE> of a <CODE>LIKE</CODE> or 
+  *         <CODE>NOT LIKE</CODE> operation is <CODE>NULL</CODE>, the value 
   *         of the operation is unknown.
   *   </UL>
-  *   <LI>{@code <I>identifier</I> IS NULL} (comparison operator that tests
+  *   <LI><CODE><I>identifier</I> IS NULL</CODE> (comparison operator that tests
   *       for a null header field value or a missing property value)
   *   <UL>
-  *     <LI>{@code "prop_name&nbsp;IS&nbsp;NULL"}
+  *     <LI><CODE>"prop_name&nbsp;IS&nbsp;NULL"</CODE>
   *   </UL>
-  *   <LI>{@code <I>identifier</I> IS NOT NULL} (comparison operator that
+  *   <LI><CODE><I>identifier</I> IS NOT NULL</CODE> (comparison operator that
   *       tests for the existence of a non-null header field value or a property
   *       value)
   *   <UL>
-  *     <LI>{@code "prop_name&nbsp;IS&nbsp;NOT&nbsp;NULL"}
+  *     <LI><CODE>"prop_name&nbsp;IS&nbsp;NOT&nbsp;NULL"</CODE>
   *   </UL>
   *
   * <P>JMS providers are required to verify the syntactic correctness of a 
@@ -1349,8 +1349,8 @@ public interface Message {
       *  
       * <P>This method can be used to return, in objectified format,
       * an object that has been stored as a property in the message with the 
-      * equivalent {@code setObjectProperty} method call, or its equivalent
-      * primitive {@code set<I>type</I>Property} method.
+      * equivalent <CODE>setObjectProperty</CODE> method call, or its equivalent
+      * primitive <CODE>set<I>type</I>Property</CODE> method.
       *  
       * @param name the name of the Java object property
       *  

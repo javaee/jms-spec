@@ -269,7 +269,7 @@ public interface MapMessage extends Message {
       * an object in the Java programming language ("Java object") that had 
       * been stored in the Map with the equivalent
       * {@code setObject} method call, or its equivalent primitive
-      * {@code set<I>type</I>} method.
+      * <code>set<I>type</I></code> method.
       *
       * <P>Note that byte values are returned as {@code byte[]}, not 
       * {@code Byte[]}.
