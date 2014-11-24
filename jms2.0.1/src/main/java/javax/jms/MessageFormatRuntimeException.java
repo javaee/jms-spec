@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011-2014 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -56,6 +56,11 @@ package javax.jms;
  **/
 
 public class MessageFormatRuntimeException extends JMSRuntimeException {
+  
+  /**
+   * Explicitly set serialVersionUID to be the same as the implicit serialVersionUID of the JMS 2.0 version
+   */
+  private static final long serialVersionUID = 416918643772467720L;
 
 	/**
 	 * Constructs a {@code MessageFormatRuntimeException} with the specified detail message

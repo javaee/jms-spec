@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -51,6 +51,11 @@ package javax.jms;
  **/
 
 public class InvalidDestinationException extends JMSException {
+  
+  /**
+   * Explicitly set serialVersionUID to be the same as the implicit serialVersionUID of the JMS 1.1 version
+   */
+  private static final long serialVersionUID = -8588063794606036755L;
 
   /** Constructs an {@code InvalidDestinationException} with the specified 
    *  reason and error code.

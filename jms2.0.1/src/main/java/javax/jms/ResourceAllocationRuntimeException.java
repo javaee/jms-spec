@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -53,6 +53,11 @@ package javax.jms;
  **/
 
 public class ResourceAllocationRuntimeException extends JMSRuntimeException {
+  
+  /**
+   * Explicitly set serialVersionUID to be the same as the implicit serialVersionUID of the JMS 2.0 version
+   */
+  private static final long serialVersionUID = -1306897975610715374L;
 
   /** Constructs a {@code ResourceAllocationRuntimeException} with the specified 
    *  reason and error code.
