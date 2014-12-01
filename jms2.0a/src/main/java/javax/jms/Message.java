@@ -1607,23 +1607,23 @@ public interface Message {
 	 * <p>
 	 * 
 	 * @param c
-	 *            The type to which the message body will be assigned. <br/>
+	 *            The type to which the message body will be assigned. <br>
 	 *            If the message is a {@code TextMessage} then this parameter must 
 	 *            be set to {@code String.class} or another type to which
-	 *            a {@code String} is assignable. <br/>
+	 *            a {@code String} is assignable. <br>
 	 *            If the message is a {@code ObjectMessage} then parameter must 
 	 *            must be set to {@code java.io.Serializable.class} or
-	 *            another type to which the body is assignable. <br/>
+	 *            another type to which the body is assignable. <br>
 	 *            If the message is a {@code MapMessage} then this parameter must 
-	 *            be set to {@code java.util.Map.class} (or {@code java.lang.Object.class}). <br/>
+	 *            be set to {@code java.util.Map.class} (or {@code java.lang.Object.class}). <br>
 	 *            If the message is a {@code BytesMessage} then this parameter must 
 	 *            be set to {@code byte[].class} (or {@code java.lang.Object.class}). This method
-	 *            will reset the {@code BytesMessage} before and after use.<br/>
+	 *            will reset the {@code BytesMessage} before and after use.<br>
 	 *            If the message is a 
 	 *            {@code TextMessage}, {@code ObjectMessage}, {@code MapMessage} 
 	 *            or {@code BytesMessage} and the message has no body, 
 	 *            then the above does not apply and this parameter may be set to any type;
-	 *            the returned value will always be null.<br/>
+	 *            the returned value will always be null.<br>
 	 *            If the message is a {@code Message} (but not one of its subtypes)
 	 *            then this parameter may be set to any type;
 	 *            the returned value will always be null.
@@ -1659,26 +1659,26 @@ public interface Message {
 	 * returned.
 	 * 
 	 * @param c
-	 *            The specified type <br/>
+	 *            The specified type <br>
 	 *            If the message is a {@code TextMessage} then this method will
 	 *            only return true if this parameter is set to
 	 *            {@code String.class} or another type to which a {@code String}
-	 *            is assignable. <br/>
+	 *            is assignable. <br>
 	 *            If the message is a {@code ObjectMessage} then this
 	 *            method will only return true if this parameter is set to
 	 *            {@code java.io.Serializable.class} or another class to
-	 *            which the body is assignable. <br/>
+	 *            which the body is assignable. <br>
 	 *            If the message is a {@code MapMessage} then this method
 	 *            will only return true if this parameter is set to
-	 *            {@code java.util.Map.class} (or {@code java.lang.Object.class}). <br/>
+	 *            {@code java.util.Map.class} (or {@code java.lang.Object.class}). <br>
 	 *            If the message is a {@code BytesMessage} then this this
 	 *            method will only return true if this parameter is set to
-	 *            {@code byte[].class} (or {@code java.lang.Object.class}). <br/>
+	 *            {@code byte[].class} (or {@code java.lang.Object.class}). <br>
 	 *            If the message is a 
 	 *            {@code TextMessage}, {@code ObjectMessage}, {@code MapMessage} 
 	 *            or {@code BytesMessage} and the message has no body, 
 	 *            then the above does not apply and this method will return true
-	 *            irrespective of the value of this parameter.<br/>
+	 *            irrespective of the value of this parameter.<br>
 	 *            If the message is a 
 	 *            {@code Message} (but not one of its subtypes)
 	 *            then this method will return true

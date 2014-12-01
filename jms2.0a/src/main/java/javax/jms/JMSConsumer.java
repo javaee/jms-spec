@@ -282,19 +282,19 @@ public interface JMSConsumer extends AutoCloseable {
 	 * 
 	 * @param c
 	 *            The type to which the body of the next message should be
-	 *            assigned.<br/>
+	 *            assigned.<br>
 	 *            If the next message is expected to be a {@code TextMessage}
 	 *            then this should be set to {@code String.class} or another
-	 *            class to which a {@code String} is assignable.<br/>
+	 *            class to which a {@code String} is assignable.<br>
 	 *            If the next message is expected to be a {@code ObjectMessage}
 	 *            then this should be set to {@code java.io.Serializable.class}
-	 *            or another class to which the body is assignable. <br/>
+	 *            or another class to which the body is assignable. <br>
 	 *            If the next message is expected to be a {@code MapMessage}
 	 *            then this should be set to {@code java.util.Map.class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 *            If the next message is expected to be a {@code BytesMessage}
 	 *            then this should be set to {@code byte[].class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 * 
 	 * @return the body of the next message produced for this
 	 *         {@code JMSConsumer}, or null if this {@code JMSConsumer} is
@@ -376,19 +376,19 @@ public interface JMSConsumer extends AutoCloseable {
 	 * 
 	 * @param c
 	 *            The type to which the body of the next message should be
-	 *            assigned.<br/>
+	 *            assigned.<br>
 	 *            If the next message is expected to be a {@code TextMessage}
 	 *            then this should be set to {@code String.class} or another
-	 *            class to which a {@code String} is assignable.<br/>
+	 *            class to which a {@code String} is assignable.<br>
 	 *            If the next message is expected to be a {@code ObjectMessage}
 	 *            then this should be set to {@code java.io.Serializable.class}
-	 *            or another class to which the body is assignable. <br/>
+	 *            or another class to which the body is assignable. <br>
 	 *            If the next message is expected to be a {@code MapMessage}
 	 *            then this should be set to {@code java.util.Map.class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 *            If the next message is expected to be a {@code BytesMessage}
 	 *            then this should be set to {@code byte[].class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 * 
 	 * @return the body of the next message produced for this {@code JMSConsumer},
 	 *         or null if the timeout expires or this {@code JMSConsumer} is concurrently closed
@@ -468,19 +468,19 @@ public interface JMSConsumer extends AutoCloseable {
 	 * 
 	 * @param c
 	 *            The type to which the body of the next message should be
-	 *            assigned.<br/>
+	 *            assigned.<br>
 	 *            If the next message is expected to be a {@code TextMessage}
 	 *            then this should be set to {@code String.class} or another
-	 *            class to which a {@code String} is assignable.<br/>
+	 *            class to which a {@code String} is assignable.<br>
 	 *            If the next message is expected to be a {@code ObjectMessage}
 	 *            then this should be set to {@code java.io.Serializable.class}
-	 *            or another class to which the body is assignable. <br/>
+	 *            or another class to which the body is assignable. <br>
 	 *            If the next message is expected to be a {@code MapMessage}
 	 *            then this should be set to {@code java.util.Map.class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 *            If the next message is expected to be a {@code BytesMessage}
 	 *            then this should be set to {@code byte[].class}
-	 *            (or {@code java.lang.Object.class}).<br/>
+	 *            (or {@code java.lang.Object.class}).<br>
 	 * 
 	 * @return the body of the next message produced for this {@code JMSConsumer},
 	 *         or null if one is not immediately available or this {@code JMSConsumer} is concurrently closed
