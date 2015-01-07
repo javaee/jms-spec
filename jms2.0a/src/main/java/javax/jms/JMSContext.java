@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -205,7 +205,7 @@ public interface JMSContext extends AutoCloseable {
 	 * 
 	 * <P>
 	 * Alternatively, a client can set the client identifier for the
-	 * MessageContext's connection using a provider-specific value. The facility
+	 * JMSContext's connection using a provider-specific value. The facility
 	 * to set its client identifier explicitly is not a mechanism for overriding
 	 * the identifier that has been administratively configured. It is provided
 	 * for the case where no administratively specified identifier exists. If
