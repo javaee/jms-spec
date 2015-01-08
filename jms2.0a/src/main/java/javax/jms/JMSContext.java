@@ -392,9 +392,16 @@ public interface JMSContext extends AutoCloseable {
 	 * it may return. While these message listeners are completing, they must
 	 * have the full services of the connection available to them.
 	 * <p>
-	 * A message listener must not attempt to stop its own JMSContext as this
-	 * would lead to deadlock. The JMS provider must detect this and throw a
-	 * <tt>IllegalStateRuntimeException</tt>
+	 * However if the stop method is called from a message listener on its own
+	 * {@code JMSContext}, or any other {@code JMSContext} that uses the same connection,
+	 * then it will either fail and throw a {@code javax.jms.IllegalStateRuntimeException},
+	 * or it will succeed and stop the connection, blocking until all other message
+	 * listeners that may have been running have returned.
+	 * <p>
+	 * Since two alternative behaviors are permitted in this case, applications
+	 * should avoid calling {@code stop} from a message listener on its own {@code JMSContext}, or
+	 * any other {@code JMSContext} that uses the same connection, because this is not
+	 * portable.
 	 * <p>
 	 * For the avoidance of doubt, if an exception listener for the JMSContext's
 	 * connection is running when {@code stop} is invoked, there is no
@@ -495,6 +502,17 @@ public interface JMSContext extends AutoCloseable {
 	 * connection and its sessions must remain available to those listeners
 	 * until they return control to the JMS provider.
 	 * <p>
+	 * However if the close method is called from a message listener on its own
+	 * {@code JMSContext}, then it will either fail and throw a
+	 * {@code javax.jms.IllegalStateRuntimeException}, or it will succeed and close the
+	 * {@code JMSContext}. If {@code close} succeeds and the session mode of the 
+	 * {@code JMSContext} is set to {@code AUTO_ACKNOWLEDGE}, the current message
+	 * will still be acknowledged automatically when the onMessage call completes.
+	 * <p>
+	 * Since two alternative behaviors are permitted in this case, applications
+	 * should avoid calling close from a message listener on its own
+	 * {@code JMSContext} because this is not portable.
+	 * <p>
 	 * This method must not return until any incomplete asynchronous send
 	 * operations for this <tt>JMSContext</tt> have been completed and any
 	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
@@ -518,10 +536,6 @@ public interface JMSContext extends AutoCloseable {
 	 * closed connection's session must throw an
 	 * {@code IllegalStateRuntimeException}. Closing a closed connection must NOT
 	 * throw an exception.
-	 * <p>
-	 * A <tt>MessageListener</tt> must not attempt to close its own
-	 * <tt>JMSContext</tt> as this would lead to deadlock. The JMS provider must
-	 * detect this and throw a <tt>IllegalStateRuntimeException</tt>.
 	 * <p>
 	 * A <tt>CompletionListener</tt> callback method must not call
 	 * <tt>close</tt> on its own <tt>JMSContext</tt>. Doing so will cause an

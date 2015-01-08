@@ -457,6 +457,18 @@ public interface Session extends Runnable, AutoCloseable {
 	 * {@code receive} call returns {@code null} when this session is
 	 * closed.
 	 * <p>
+	 * However if the close method is called from a message listener 
+	 * on its own {@code Session}, then it will either fail and throw a 
+	 * {@code javax.jms.IllegalStateException}, or it will succeed and 
+	 * close the {@code Session}, blocking until any pending receive call in progress
+	 * has completed. If close succeeds and the acknowledge mode of the
+	 * {@code Session} is set to {@code AUTO_ACKNOWLEDGE}, the current message will still
+	 * be acknowledged automatically when the {@code onMessage} call completes.
+	 * <p>
+	 * Since two alternative behaviors are permitted in this case, 
+	 * applications should avoid calling close from a message listener on 
+	 * its own {@code Session} because this is not portable.
+	 * <p>
 	 * This method must not return until any incomplete asynchronous send
 	 * operations for this <tt>Session</tt> have been completed and any
 	 * <tt>CompletionListener</tt> callbacks have returned. Incomplete sends
@@ -473,10 +485,6 @@ public interface Session extends Runnable, AutoCloseable {
 	 * <P>
 	 * This method is the only {@code Session} method that can be called
 	 * concurrently.
-	 * <p>
-	 * A <tt>MessageListener</tt> must not attempt to close its own
-	 * <tt>Session</tt> as this would lead to deadlock. The JMS provider must
-	 * detect this and throw a <tt>IllegalStateException</tt>.
 	 * <p>
 	 * A <tt>CompletionListener</tt> callback method must not call
 	 * <tt>close</tt> on its own <tt>Session</tt>. Doing so will cause an

@@ -529,9 +529,15 @@ public interface Connection extends AutoCloseable {
 	 * it may return. While these message listeners are completing, they must
 	 * have the full services of the connection available to them.
 	 * <p>
-	 * A message listener must not attempt to stop its own connection as this
-	 * would lead to deadlock. The JMS provider must detect this and throw a
-	 * <tt>IllegalStateException</tt>.
+	 * However if the {@code stop} method is called from a message listener on its own
+	 * connection, then it will either fail and throw a
+	 * {@code javax.jms.IllegalStateException}, or it will succeed and stop the connection,
+	 * blocking until all other message listeners that may have been running have
+	 * returned.
+	 * <p>
+	 * Since two alternative behaviors are permitted in this case, applications
+	 * should avoid calling {@code stop} from a message listener on its own
+	 * Connection because this is not portable.
 	 * <p>
 	 * For the avoidance of doubt, if an exception listener for this connection
 	 * is running when {@code stop} is invoked, there is no requirement for
@@ -579,7 +585,21 @@ public interface Connection extends AutoCloseable {
       * processing has been shut down in an orderly fashion. This means that all
       * message 
       * listeners that may have been running have returned, and that all pending 
-      * receives have returned. A close terminates all pending message receives 
+      * receives have returned. 
+      * 
+      * <p>However if the close method is called from a message listener on its own
+      * connection, then it will either fail and throw a
+      * {@code javax.jms.IllegalStateException}, or it will succeed and close the connection,
+      * blocking until all other message listeners that may have been running have
+      * returned, and all pending receive calls have completed. If close succeeds and
+      * the acknowledge mode of the session is set to {@code AUTO_ACKNOWLEDGE}, the current
+      * message will still be acknowledged automatically when the {@code onMessage} call
+      * completes.
+      * Since two alternative behaviors are permitted in this case, applications
+      * should avoid calling close from a message listener on its own
+      * connection because this is not portable.
+      * 
+      * <p>A close terminates all pending message receives 
       * on the connection's sessions' consumers. The receives may return with a 
       * message or with null, depending on whether there was a message available 
       * at the time of the close. If one or more of the connection's sessions' 
@@ -606,10 +626,6 @@ public interface Connection extends AutoCloseable {
       * later by the transaction manager.
       * Closing a connection does NOT force an 
       * acknowledgment of client-acknowledged sessions.  
-      * <p>
-      * A message listener must not attempt to close its own connection as this 
-      * would lead to deadlock. The JMS provider must detect this and throw a 
-      * <tt>IllegalStateException</tt>.
 	  * <p>
  	  * A <tt>CompletionListener</tt> callback method must not call
  	  * <tt>close</tt> on its own <tt>Connection</tt>. Doing so will cause an
