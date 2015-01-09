@@ -156,7 +156,7 @@ public interface Connection extends AutoCloseable {
      * Applications running in the Java EE web and EJB containers must not attempt 
      * to create more than one active (not closed) {@code Session} object per connection. 
      * If this method is called in a Java EE web or EJB container when an active
-     * {@code Session} object already exists for this connection then a {@code JMSException} will be thrown.
+     * {@code Session} object already exists for this connection then a {@code JMSException} may be thrown.
      * 
      * @param transacted indicates whether the session will use a local transaction.
      * If this method is called in the Java EE web or EJB container then this argument is ignored.
@@ -247,7 +247,7 @@ public interface Connection extends AutoCloseable {
      * Applications running in the Java EE web and EJB containers must not attempt 
      * to create more than one active (not closed) {@code Session} object per connection. 
      * If this method is called in a Java EE web or EJB container when an active
-     * {@code Session} object already exists for this connection then a {@code JMSException} will be thrown.
+     * {@code Session} object already exists for this connection then a {@code JMSException} may be thrown.
      * 
      * @param sessionMode indicates which of four possible session modes will be used.
      * <ul>
@@ -322,7 +322,7 @@ public interface Connection extends AutoCloseable {
      * Applications running in the Java EE web and EJB containers must not attempt 
      * to create more than one active (not closed) {@code Session} object per connection. 
      * If this method is called in a Java EE web or EJB container when an active
-     * {@code Session} object already exists for this connection then a {@code JMSException} will be thrown.
+     * {@code Session} object already exists for this connection then a {@code JMSException} may be thrown.
      * 
      * @return a newly created  session
      *  
