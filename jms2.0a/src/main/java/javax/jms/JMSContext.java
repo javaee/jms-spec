@@ -369,10 +369,6 @@ public interface JMSContext extends AutoCloseable {
 	 * are not delivered to message listeners.
 	 * 
 	 * <P>
-	 * This call blocks until receives and/or message listeners in progress have
-	 * completed.
-	 * 
-	 * <P>
 	 * Stopping a connection has no effect on its ability to send messages. A
 	 * call to {@code stop} on a connection that has already been stopped
 	 * is ignored.
