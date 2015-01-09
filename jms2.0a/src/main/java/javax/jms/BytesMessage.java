@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -71,6 +71,11 @@ package javax.jms;
   * is called, the body of the message is in write-only mode. After the 
   * first call to {@code reset} has been made, the message body is in 
   * read-only mode. 
+  * When a {@code BytesMessage} is sent asynchronously, the provider 
+  * must call {@code reset} on the {@code BytesMessage} passed to 
+  * the {@code CompletionListener}. This means that the 
+  * {@code CompletionListener} can read the message body without 
+  * needing to call {@code reset}. 
   * After a message has been sent, the client that sent it can retain and 
   * modify it without affecting the message that has been sent. The same message
   * object can be sent multiple times.
