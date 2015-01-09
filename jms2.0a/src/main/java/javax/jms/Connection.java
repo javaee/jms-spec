@@ -142,15 +142,29 @@ public interface Connection extends AutoCloseable {
      * <p>
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
-     * <li>The argument {@code transacted} is ignored. The session will always be non-transacted,
-     * using one of the two acknowledgement modes AUTO_ACKNOWLEDGE and DUPS_OK_ACKNOWLEDGE.
-     * <li>The argument {@code acknowledgeMode}
-     * is used to specify how messages received by this session will be acknowledged.
-     * The only permitted values in this case are  
-     * {@code Session.AUTO_ACKNOWLEDGE} and
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}.
-     * The value {@code Session.CLIENT_ACKNOWLEDGE} may not be used.
-     * For a definition of the meaning of these acknowledgement modes see the links below.
+     * <li>
+     * If {@code transacted} is set to false and {@code acknowledgeMode} is set to
+     * {@code JMSContext.AUTO_ACKNOWLEDGE} or {@code Session.DUPS_OK_ACKNOWLEDGE} then the
+     * session will be non-transacted and messages will be acknowledged according
+     * to the value of {@code acknowledgeMode}.
+     * <li>
+     * If {@code transacted} is set to false and {@code acknowledgeMode} is set to
+     * {@code JMSContext.CLIENT_ACKNOWLEDGE} then the JMS provider is recommended to
+     * ignore the specified parameters and instead provide a non-transacted,
+     * auto-acknowledged session. However the JMS provider may alternatively
+     * provide a non-transacted session with client acknowledgement.
+     * <li>
+     * If {@code transacted} is set to true, then the JMS provider is recommended to
+     * ignore the specified parameters and instead provide a non-transacted,
+     * auto-acknowledged session. However the JMS provider may alternatively
+     * provide a local transacted session.
+     * <li>
+     * Applications are recommended to set {@code transacted} to false and
+     * {@code acknowledgeMode} to {@code JMSContext.AUTO_ACKNOWLEDGE} or
+     * {@code Session.DUPS_OK_ACKNOWLEDGE} since since applications which set
+     * {@code transacted} to false and set {@code acknowledgeMode} to
+     * {@code JMSContext.CLIENT_ACKNOWLEDGE}, or which set {@code transacted} 
+     * to true, may not be portable. 
      * </ul> 
      * <p>
      * Applications running in the Java EE web and EJB containers must not attempt 
@@ -158,23 +172,12 @@ public interface Connection extends AutoCloseable {
      * If this method is called in a Java EE web or EJB container when an active
      * {@code Session} object already exists for this connection then a {@code JMSException} may be thrown.
      * 
-     * @param transacted indicates whether the session will use a local transaction.
-     * If this method is called in the Java EE web or EJB container then this argument is ignored.
+     * @param transacted indicates whether the session will use a local transaction,
+     * except in the cases described above when this value is ignored..
      * 
-     * @param acknowledgeMode indicates how messages received by the session will be acknowledged.
-     * <ul>
-     * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
-     * the permitted values are 
-     * {@code Session.CLIENT_ACKNOWLEDGE}, 
-     * {@code Session.AUTO_ACKNOWLEDGE} and
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}. 
-     * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
-     * then this argument is ignored.
-     * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
-     * {@code Session.AUTO_ACKNOWLEDGE} and
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}.
-     * In this case {@code Session.CLIENT_ACKNOWLEDGE} is not permitted.
-     * </ul>
+     * @param acknowledgeMode when transacted is false, indicates how messages received
+     * by the session will be acknowledged, except in the cases described above
+     * when this value is ignored.
      * 
      * @return a newly created  session
      *  
@@ -235,13 +238,27 @@ public interface Connection extends AutoCloseable {
      * <p>
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
      * <ul>
-     * <li>The argument {@code acknowledgeMode} must be set to either of 
-     * {@code Session.AUTO_ACKNOWLEDGE} or
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}.
-     * The session will be non-transacted and messages received by this session will be acknowledged
-     * automatically according to the value of {@code acknowledgeMode}.
-     * For a definition of the meaning of these acknowledgement modes see the links below.
-     * The values {@code Session.SESSION_TRANSACTED} and {@code Session.CLIENT_ACKNOWLEDGE} may not be used.
+     * <li>
+     * If {@code sessionMode} is set to {@code Session.AUTO_ACKNOWLEDGE} or
+     * {@code Session.DUPS_OK_ACKNOWLEDGE} then the session will be
+     * non-transacted and messages will be acknowledged according to the value
+     * of {@code sessionMode}. 
+     * <li>
+     * If {@code sessionMode} is set to {@code Session.CLIENT_ACKNOWLEDGE} then the JMS
+     * provider is recommended to ignore the specified parameter and instead
+     * provide a non-transacted, auto-acknowledged session. However the JMS
+     * provider may alternatively provide a non-transacted session with
+     * client acknowledgement.
+     * <li>
+     * If {@code sessionMode} is set to {@code Session.SESSION_TRANSACTED}, then the JMS
+     * provider is recommended to ignore the specified parameter and instead
+     * provide a non-transacted, auto-acknowledged session. However the JMS
+     * provider may alternatively provide a local transacted session. 
+     * <li>
+     * Applications are recommended to use only the values
+     * {@code Session.AUTO_ACKNOWLEDGE} and {@code Session.DUPS_OK_ACKNOWLEDGE}
+     * since applications which use {@code Session.CLIENT_ACKNOWLEDGE} or
+     * {@code Session.SESSION_TRANSACTED} may not be portable.
      * </ul> 
      * <p>
      * Applications running in the Java EE web and EJB containers must not attempt 
@@ -249,21 +266,10 @@ public interface Connection extends AutoCloseable {
      * If this method is called in a Java EE web or EJB container when an active
      * {@code Session} object already exists for this connection then a {@code JMSException} may be thrown.
      * 
-     * @param sessionMode indicates which of four possible session modes will be used.
-     * <ul>
-     * <li>If this method is called in a Java SE environment or in the Java EE application client container, 
-     * the permitted values are 
-     * {@code Session.SESSION_TRANSACTED}, 
-     * {@code Session.CLIENT_ACKNOWLEDGE}, 
-     * {@code Session.AUTO_ACKNOWLEDGE} and
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}. 
-     * <li> If this method is called in the Java EE web or EJB container when there is an active JTA transaction in progress 
-     * then this argument is ignored.
-     * <li>If this method is called in the Java EE web or EJB container when there is no active JTA transaction in progress, the permitted values are
-     * {@code Session.AUTO_ACKNOWLEDGE} and
-     * {@code Session.DUPS_OK_ACKNOWLEDGE}.
-     * In this case the values {@code Session.TRANSACTED} and {@code Session.CLIENT_ACKNOWLEDGE} are not permitted.
-     * </ul>
+     * @param sessionMode specifies the session mode that will be used, except in the
+     * cases described above when this value is ignored. Legal values are
+     * {@code JMSContext.SESSION_TRANSACTED}, {@code JMSContext.CLIENT_ACKNOWLEDGE},
+     * {@code JMSContext.AUTO_ACKNOWLEDGE} and {@code JMSContext.DUPS_OK_ACKNOWLEDGE}.
      * 
      * @return a newly created  session
      *  
