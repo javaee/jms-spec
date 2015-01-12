@@ -372,7 +372,7 @@ public interface ConnectionFactory {
      * when that transaction is committed or rolled back, 
      * not by calling the {@code JMSContext}'s {@code commit} or {@code rollback} methods.
      * Since the argument is ignored, developers are recommended to use 
-     * {@code createSession()} instead of this method.
+     * {@code createContext()} instead of this method.
      * </ul>
      * <p>
      * In the <b>Java EE web or EJB container, when there is no active JTA transaction in progress</b>:
