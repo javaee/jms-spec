@@ -82,7 +82,7 @@ import java.io.Serializable;
   * registered message listeners is dedicated to the thread of control that 
   * delivers messages to it. It is erroneous for client code to use this session
   * or any of its constituent objects from another thread of control. The
-  * only exception to this rule is the use of the session or connection 
+  * only exception to this rule is the use of the session or message consumer 
   * {@code close} method.
   *
   * <P>It should be easy for most clients to partition their work naturally
