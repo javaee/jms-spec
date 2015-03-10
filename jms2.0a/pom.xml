@@ -22,10 +22,10 @@
           <!-- Specifies the text to be placed at the bottom of each output file -->
           <bottom>Copyright 1997-2015 Oracle America Inc. All rights reserved. Use is subject to &lt;a href="doc-files/speclicense.html" target="_top"&gt;licence terms&lt;/a&gt;</bottom>
           <!-- Specifies the header text to be placed at the top of each output file, to the right of the upper navigation bar. -->
-          <header>JMS 2.0 Rev A</header>      
+          <header>JMS 2.0 revision a</header>      
               
           <!-- Specifies the footer text to be placed at the top of each output file, to the right of the lower navigation bar. -->
-          <footer>JMS 2.0 Rev A</footer>
+          <footer>JMS 2.0 revision a</footer>
           
           <links>
             <link>http://docs.oracle.com/javaee/7/api/</link>
@@ -52,7 +52,7 @@
           <!-- javadoc:javadoc uses reportOutputDirectory -->
           <!--  reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0</reportOutputDirectory -->
           <!--  Change to 2.0 after errata MR is released (and delete snapshot javadocs from svn) -->
-          <reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0RevA-SNAPSHOT</reportOutputDirectory>
+          <reportOutputDirectory>${project.reporting.outputDirectory}/../../../www/2.0</reportOutputDirectory>
           <destDir>apidocs</destDir>
         </configuration>
       </plugin>      
