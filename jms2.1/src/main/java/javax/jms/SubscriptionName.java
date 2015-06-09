@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2015 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,40 +37,37 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be used to specify the JNDI lookup name of a
- * {@code javax.jms.ConnectionFactory} to be used when injecting a
- * {@code javax.jms.JMSContext} object.
+ * This annotation may be applied to the callback method on a JMS message-driven
+ * bean to specify the name of the durable subscription that will be used if the
+ * subscription durability is configured to be durable.
  * 
- * This annotation may also be applied to the callback method on a JMS
- * message-driven bean to specify the connection factory that should be used
- * when connecting to the JMS provider to receive messages. It can only be used
- * for this purpose if the JMS message-driven bean implements the
- * JMSMessageDrivenBean marker interface. It cannot be used for this purpose if
- * the JMS message-driven bean implements the MessageListener interface. In that
- * case this annotation will be ignored.
+ * If the subscription durability is not configured, or is configured to
+ * be durable, then this annotation will be ignored.
  * 
+ * This annotation may only be used if JMS message-driven bean implements the
+ * JMSMessageDrivenBean marker interface. If the JMS message-driven bean
+ * implements the MessageListener interface then this annotation will be
+ * ignored.
+
  * @version JMS 2.1
- * @since JMS 2.0
+ * @since JMS 2.1
  * 
  */
-@Retention(RUNTIME)
-@Target({ METHOD, FIELD, PARAMETER, TYPE })
-public @interface JMSConnectionFactory {
+@Target({ ElementType.METHOD })
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SubscriptionName {
+
   /**
-   * Specifies the JNDI lookup name of a {@code javax.jms.ConnectionFactory}
+   * Subscription name
    */
   String value();
+
 }
