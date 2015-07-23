@@ -46,13 +46,12 @@ import java.lang.annotation.Target;
 
 /**
  * This annotation may be applied to parameters on the callback method on a JMS
- * message-driven bean that uses the @JMSListener annotation to specify the
- * callback method. It specifies that the parameter must be set to the specified
+ * message-driven bean (except for the {@code onMessage} method of a {@code MessageListener}).
+ * It specifies that the parameter must be set to the specified
  * message header value.
  * <p>
  * The parameter type must match the header type as shown in the following
- * table. If it does not then the parameter will be set to the default value as
- * defined in the Java Language Specification (e.g. null for objects, 0 for int etc).
+ * table. 
  * <pre>
  * +-------------------+------------------------------------------------+
  * | Parameter         | Annotation                                     |

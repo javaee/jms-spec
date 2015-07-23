@@ -56,11 +56,7 @@ import java.lang.annotation.Target;
  * 
  * This annotation may also be applied to the callback method on a JMS
  * message-driven bean to specify the connection factory that should be used
- * when connecting to the JMS provider to receive messages. It can only be used
- * for this purpose if the JMS message-driven bean implements the
- * JMSMessageDrivenBean marker interface. It cannot be used for this purpose if
- * the JMS message-driven bean implements the MessageListener interface. In that
- * case this annotation will be ignored.
+ * when connecting to the JMS provider to receive messages. 
  * 
  * @version JMS 2.1
  * @since JMS 2.0

@@ -51,12 +51,7 @@ import java.lang.annotation.Target;
  * 
  * If the subscription durability is not configured, or is configured to
  * be durable, then this annotation will be ignored.
- * 
- * This annotation may only be used if JMS message-driven bean implements the
- * JMSMessageDrivenBean marker interface. If the JMS message-driven bean
- * implements the MessageListener interface then this annotation will be
- * ignored.
-
+ *
  * @version JMS 2.1
  * @since JMS 2.1
  * 

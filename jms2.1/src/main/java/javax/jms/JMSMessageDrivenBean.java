@@ -43,9 +43,9 @@ package javax.jms;
 /**
  * This is a marker interface that may be implemented by a message-driven bean
  * class to specify that it is used to consume JMS messages. It is an
- * alternative to implementing MessageListener interface.
+ * alternative to implementing the MessageListener interface.
  * <p>
- * If the MDB implements this interface then the callback method must be
+ * If the MDB implements this interface then each callback method must be
  * designated using the @JMSListener annotation.
  * 
  * @version JMS 2.1

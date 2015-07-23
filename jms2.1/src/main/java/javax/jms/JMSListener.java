@@ -49,16 +49,7 @@ import java.lang.annotation.Target;
  * message-driven bean, the destination from which messages will be received,
  * and whether that destination is a queue or topic.
  * <p>
- * The destination may be specified using either the lookup or name attribute.
- * If both are specified then lookup is used. If neither is specified then an
- * error will occur.
- * <p>
  * The type attribute must always be specified
- * <p>
- * This annotation may only be used if JMS message-driven bean implements the
- * JMSMessageDrivenBean marker interface. If the JMS message-driven bean
- * implements the MessageListener interface then this annotation will be
- * ignored.
  * <p>
  * @version JMS 2.1
  * @since JMS 2.1
@@ -67,11 +58,6 @@ import java.lang.annotation.Target;
 @Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JMSListener {
-
-  /**
-   * Name of the queue or topic from which messages will be delivered.
-   */
-  String name() default "";
 
   /**
    * Lookup name of the queue or topic from which messages will be delivered
