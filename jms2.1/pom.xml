@@ -10,6 +10,8 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!--  Temporarily disable doclint. See JMS_SPEC-175 -->
+    <additionalparam>-Xdoclint:none</additionalparam>
   </properties>  
   
   <build>
