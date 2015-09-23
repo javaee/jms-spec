@@ -45,8 +45,19 @@ package javax.jms;
  * class to specify that it is used to consume JMS messages. It is an
  * alternative to implementing the MessageListener interface.
  * <p>
+ * A JMS message-driven bean that implements the {@code JMSMessageDrivenBean}
+ * marker interface must not also implement the {@code MessageListener}
+ * interface.
+ * <p>
  * If the MDB implements this interface then each callback method must be
- * designated using the @JMSListener annotation.
+ * annotated with one of {@code JMSQueueListener},
+ * {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}.
+ * <p>
+ * 
+ * @see JMSMessageDrivenBean
+ * @see JMSNonDurableTopicListener
+ * @see JMSDurableTopicListener
+ * @see JMSQueueListener
  * 
  * @version JMS 2.1
  * @since JMS 2.1

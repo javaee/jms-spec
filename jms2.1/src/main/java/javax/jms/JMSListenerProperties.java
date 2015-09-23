@@ -45,8 +45,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This is the containing annotation for annotations of type {@code JMSListenerProperty}
+ * This is the containing annotation for annotations of type
+ * {@code JMSListenerProperty}.
+ * <p>
+ * This annotation is used internally when a method is annotated with more than
+ * one {@code JMSListenerProperty} annotation. Applications do not need to use
+ * this annotation directly.
  * 
+ * @see JMSListenerProperty <p>
  * @version JMS 2.1
  * @since JMS 2.1
  * 
@@ -55,6 +61,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JMSListenerProperties {
 
-  JMSListenerProperty[] value();
+    JMSListenerProperty[] value();
 
 }

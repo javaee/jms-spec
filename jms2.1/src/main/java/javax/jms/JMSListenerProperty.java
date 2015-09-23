@@ -46,13 +46,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be applied to the callback method on a JMS message-driven
- * bean to specify an arbitrary activation property.
- * 
- * This annotation may only be used if JMS message-driven bean implements the
- * JMSMessageDrivenBean marker interface. If the JMS message-driven bean
- * implements the MessageListener interface then this annotation will be
- * ignored.
+ * This annotation may be used to set an arbitrary activation property on a
+ * callback method on a JMS message-driven bean that has been annotated with the
+ * {@code JMSQueueListener}, {@code JMSNonDurableTopicListener} or
+ * {@code JMSDurableTopicListener} annotation.
+ * <p>
+ * Multiple {@code JMSListenerProperty} annotations may be used to set multiple
+ * properties on the same callback method.
+ * <p>
  * 
  * @version JMS 2.1
  * @since JMS 2.1
@@ -63,14 +64,14 @@ import java.lang.annotation.Target;
 @Repeatable(JMSListenerProperties.class)
 public @interface JMSListenerProperty {
 
-  /**
-   * Name of the activation property
-   */
-  String name();
+    /**
+     * Name of the activation property
+     */
+    String name();
 
-  /**
-   * Value of the activation property
-   */
-  String value();
+    /**
+     * Value of the activation property
+     */
+    String value();
 
 }

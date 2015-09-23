@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,32 +37,57 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be used to specify the JNDI lookup name of a {@code javax.jms.ConnectionFactory}
- * to be used when injecting a {@code javax.jms.JMSContext} object.
+ * This annotation is used to designate a callback method on a JMS
+ * message-driven bean that will receive messages from a non-durable
+ * subscription on a topic.
+ * <p>
+ * This annotation may only be used if the JMS message-driven bean implements
+ * the {@code JMSMessageDrivenBean} marker interface and does not implement the
+ * {@code MessageListener} interface.
+ * <p>
+ * @see JMSMessageDrivenBean
+ * @see JMSDurableTopicListener
+ * @see JMSQueueListener
  * 
- * @version JMS 2.0
- * @since JMS 2.0
+ * @version JMS 2.1
+ * @since JMS 2.1
  * 
  */
-@Retention(RUNTIME)
-@Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface JMSConnectionFactory {
+@Target({ ElementType.METHOD })
+@Retention(RetentionPolicy.RUNTIME)
+public @interface JMSNonDurableTopicListener {
+
     /**
-     * Specifies the JNDI lookup name of a {@code javax.jms.ConnectionFactory}
-     * to be used when injecting a {@code javax.jms.JMSContext} object.
+     * Lookup name of the Topic from which messages will be received.
      */
-    String value();
+    String destinationLookup() default "";
+
+    /**
+     * Lookup name of the ConnectionFactory that will be used to connect to the
+     * JMS provider.
+     */
+    String connectionFactoryLookup() default "";
+
+    /**
+     * The message selector that will be used.
+     */
+    String messageSelector() default "";
+
+    /**
+     * The acknowledgement mode that will be used if the MDB is not configured
+     * to use container-managed transactions.
+     */
+    Mode acknowledge() default Mode.AUTO_ACKNOWLEDGE;
+
+    public enum Mode {
+        AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE
+    }
 }

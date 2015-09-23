@@ -45,13 +45,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be applied to parameters on the callback method on a JMS
- * message-driven bean (except for the {@code onMessage} method of a {@code MessageListener}).
- * It specifies that the parameter must be set to the specified
+ * This annotation may be applied to parameters on a callback method on a JMS
+ * message-driven bean that has been annotated with the {@code JMSQueueListener}
+ * , {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}
+ * annotation. It specifies that the parameter must be set to the specified
  * message header value.
  * <p>
  * The parameter type must match the header type as shown in the following
- * table. 
+ * table. If it does not then callback method will not be invoked and the
+ * message will not be delivered.
+ * 
  * <pre>
  * +-------------------+------------------------------------------------+
  * | Parameter         | Annotation                                     |
@@ -80,13 +83,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MessageHeader {
 
-  /**
-   * Specifies the header field to be used
-   */
-  Header value();
+    /**
+     * Specifies the header field to be used
+     */
+    Header value();
 
-  public enum Header {
-    JMSCorrelationID, JMSCorrelationIDAsBytes, JMSDeliveryMode, JMSDeliveryTime, JMSDestination, JMSExpiration, JMSMessageID, JMSPriority, JMSRedelivered, JMSReplyTo, JMSTimestamp, JMSType
-  }
+    public enum Header {
+        JMSCorrelationID, JMSCorrelationIDAsBytes, JMSDeliveryMode, JMSDeliveryTime, JMSDestination, JMSExpiration, JMSMessageID, JMSPriority, JMSRedelivered, JMSReplyTo, JMSTimestamp, JMSType
+    }
 
 }

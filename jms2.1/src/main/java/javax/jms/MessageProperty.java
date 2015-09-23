@@ -45,14 +45,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be applied to parameters on the callback method on a JMS
- * message-driven bean that uses the @JMSListener annotation to specify the
- * callback method. It specifies that the parameter must be set to the specified
- * message property value.
+ * This annotation may be applied to parameters on a callback method on a JMS
+ * message-driven bean that has been annotated with the {@code JMSQueueListener}
+ * , {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}
+ * annotation. It specifies that the parameter must be set to the specified
+ * message header value. It specifies that the parameter must be set to the
+ * specified message property value.
  * <p>
  * The method used to obtain the property value from the message will depend on
  * the type of the method parameter to which it is applied, as shown in the
  * following table.
+ * 
  * <PRE>
  * +--------------------+------------+------------+-----------------------------------+
  * | Parameter          | Annotation              | Set to                            |
@@ -72,8 +75,7 @@ import java.lang.annotation.Target;
  * If the specified property has not been set, or the method parameter is not
  * one of the types listed above, or the message property cannot be converted to
  * the specified type using the conversion rules defined for these methods, then
- * the parameter will be set to the default value as defined in the Java
- * Language Specification (e.g. null for objects, 0 for int etc).
+ * callback method will not be invoked and the message will not be delivered.
  * 
  * @version JMS 2.1
  * @since JMS 2.1
@@ -83,9 +85,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MessageProperty {
 
-  /**
-   * Specifies the name of the message property to be used
-   */
-  String value();
+    /**
+     * Specifies the name of the message property to be used
+     */
+    String value();
 
 }
