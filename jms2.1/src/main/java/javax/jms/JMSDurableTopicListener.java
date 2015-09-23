@@ -45,14 +45,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to designate a callback method on a JMS
- * message-driven bean that will receive messages from a durable subscription on
- * a topic.
+ * Designates a callback method on a JMS message-driven bean that will receive
+ * messages from a durable subscription on a topic.
  * <p>
  * This annotation may only be used if the JMS message-driven bean implements
  * the {@code JMSMessageDrivenBean} marker interface and does not implement the
  * {@code MessageListener} interface.
  * <p>
+ * 
  * @see JMSMessageDrivenBean
  * @see JMSNonDurableTopicListener
  * @see JMSQueueListener

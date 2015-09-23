@@ -45,8 +45,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to designate a callback method on a JMS
- * message-driven bean that will receive messages from a queue.
+ * Designates a callback method on a JMS message-driven bean that will receive
+ * messages from a queue.
  * <p>
  * This annotation may only be used if the JMS message-driven bean implements
  * the {@code JMSMessageDrivenBean} marker interface and does not implement the

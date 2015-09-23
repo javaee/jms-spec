@@ -45,12 +45,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be applied to parameters on a callback method on a JMS
- * message-driven bean that has been annotated with the {@code JMSQueueListener}
- * , {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}
- * annotation. It specifies that the parameter must be set to the specified
- * message header value. It specifies that the parameter must be set to the
- * specified message property value.
+ * Specifies that a callback method parameter must be set to the specified
+ * message property value. This annotation may be applied to parameters on a
+ * callback method on a JMS message-driven bean that has been annotated with the
+ * {@code JMSQueueListener} , {@code JMSNonDurableTopicListener} or
+ * {@code JMSDurableTopicListener} annotation. It specifies that the parameter
+ * must be set to the specified message header value.
  * <p>
  * The method used to obtain the property value from the message will depend on
  * the type of the method parameter to which it is applied, as shown in the
@@ -76,6 +76,8 @@ import java.lang.annotation.Target;
  * one of the types listed above, or the message property cannot be converted to
  * the specified type using the conversion rules defined for these methods, then
  * callback method will not be invoked and the message will not be delivered.
+ * 
+ * @see MessageHeader
  * 
  * @version JMS 2.1
  * @since JMS 2.1

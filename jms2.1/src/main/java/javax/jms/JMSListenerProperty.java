@@ -46,10 +46,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be used to set an arbitrary activation property on a
- * callback method on a JMS message-driven bean that has been annotated with the
- * {@code JMSQueueListener}, {@code JMSNonDurableTopicListener} or
- * {@code JMSDurableTopicListener} annotation.
+ * Sets an arbitrary activation property on a callback method on a JMS
+ * message-driven bean that has been annotated with the {@code JMSQueueListener}
+ * , {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}
+ * annotation.
  * <p>
  * Multiple {@code JMSListenerProperty} annotations may be used to set multiple
  * properties on the same callback method.
