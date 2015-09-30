@@ -52,6 +52,8 @@ import java.lang.annotation.Target;
  * the {@code JMSMessageDrivenBean} marker interface and does not implement the
  * {@code MessageListener} interface.
  * <p>
+ * If this annotation is used on a message-driven bean that implements the
+ * {@code MessageListener} interface then deployment will fail.
  * 
  * @see JMSMessageDrivenBean
  * @see JMSNonDurableTopicListener

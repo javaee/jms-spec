@@ -52,26 +52,25 @@ import java.lang.annotation.Target;
  * {@code JMSDurableTopicListener} annotation.
  * <p>
  * The parameter type must match the header type as shown in the following
- * table. If it does not then callback method will not be invoked and the
- * message will not be delivered.
- * 
+ * table. If it does not then deployment will fail.
+ * <p>
  * <pre>
  * +-------------------+------------------------------------------------+
- * | Parameter         | Annotation                                     |
- * | type              |                                                |
+ * | Annotation                                     | Parameter         |
+ * |                                                | type              |
  * +-------------------+------------------------------------------------+
- * | String            | @MessageHeader(Header.JMSCorrelationID)        |     
- * | byte[]            | @MessageHeader(Header.JMSCorrelationIDAsBytes) |
- * | Integer or int    | @MessageHeader(Header.JMSDeliveryMode)         |
- * | Long or long      | @MessageHeader(Header.JMSDeliveryTime)         |
- * | Destination       | @MessageHeader(Header.JMSDestination)          |
- * | Long or long      | @MessageHeader(Header.JMSExpiration)           |
- * | String            | @MessageHeader(Header.JMSMessageID)            |
- * | Integer or int    | @MessageHeader(Header.JMSPriority)             |
- * | Boolean or boolean| @MessageHeader(Header.JMSRedelivered)          |
- * | Destination       | @MessageHeader(Header.JMSReplyTo)              |
- * | Long or long      | @MessageHeader(Header.JMSTimestamp)            |
- * | String            | @MessageHeader(Header.JMSType)                 |
+ * | @MessageHeader(Header.JMSCorrelationID)        | String            |     
+ * | @MessageHeader(Header.JMSCorrelationIDAsBytes) | byte[]            | 
+ * | @MessageHeader(Header.JMSDeliveryMode)         | Integer or int    | 
+ * | @MessageHeader(Header.JMSDeliveryTime)         | Long or long      | 
+ * | @MessageHeader(Header.JMSDestination)          | Destination       | 
+ * | @MessageHeader(Header.JMSExpiration)           | Long or long      | 
+ * | @MessageHeader(Header.JMSMessageID)            | String            | 
+ * | @MessageHeader(Header.JMSPriority)             | Integer or int    |
+ * | @MessageHeader(Header.JMSRedelivered)          | Boolean or boolean| 
+ * | @MessageHeader(Header.JMSReplyTo)              | Destination       | 
+ * | @MessageHeader(Header.JMSTimestamp)            | Long or long      | 
+ * | @MessageHeader(Header.JMSType)                 | String            | 
  * +-------------------+------------------------------------------------+
  * </pre>
  * 
