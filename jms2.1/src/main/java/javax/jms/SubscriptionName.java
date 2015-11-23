@@ -39,57 +39,35 @@
  */
 package javax.jms;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Designates a callback method on a JMS message-driven bean that will receive
- * messages from a non-durable subscription on a topic.
+ * This annotation specifies that a callback method on a JMS message-driven bean
+ * that has been configured to consume messages from a topic using a durable
+ * subscription must use the specified durable subscription name.
  * <p>
- * This annotation may only be used if the JMS message-driven bean implements
- * the {@code JMSMessageDrivenBean} marker interface and does not implement the
- * {@code MessageListener} interface.
+ * The method must also be annotated with {@code TopicListener} and
+ * {@code DurableSubscription}. If it is not then deployment will fail.
  * <p>
- * If this annotation is used on a message-driven bean that implements the
- * {@code MessageListener} interface then deployment will fail.
  * 
- * @see JMSMessageDrivenBean
- * @see JMSDurableTopicListener
- * @see JMSQueueListener
+ * @see TopicListener
+ * @see DurableSubscription
  * 
  * @version JMS 2.1
  * @since JMS 2.1
  * 
  */
-@Target({ ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-public @interface JMSNonDurableTopicListener {
+@Retention(RUNTIME)
+@Target({ METHOD })
+public @interface SubscriptionName {
 
-    /**
-     * Lookup name of the Topic from which messages will be received.
-     */
-    String destinationLookup() default "";
+	/**
+	 * The subscription name that will be used.
+	 */
+	String value();
 
-    /**
-     * Lookup name of the ConnectionFactory that will be used to connect to the
-     * JMS provider.
-     */
-    String connectionFactoryLookup() default "";
-
-    /**
-     * The message selector that will be used.
-     */
-    String messageSelector() default "";
-
-    /**
-     * The acknowledgement mode that will be used if the MDB is not configured
-     * to use container-managed transactions.
-     */
-    Mode acknowledge() default Mode.AUTO_ACKNOWLEDGE;
-
-    public enum Mode {
-        AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE
-    }
 }

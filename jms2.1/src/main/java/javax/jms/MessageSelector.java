@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2011-2014 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -37,12 +37,9 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package javax.jms;
 
-import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -50,13 +47,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * This annotation may be used on a field to specify the JNDI lookup name of a
- * {@code javax.jms.ConnectionFactory} to be used when injecting a
- * {@code javax.jms.JMSContext} object.
- * <p>
- * It may also be used to specify that a callback method on a JMS message-driven
- * bean must use the specified message selector. In this case it may be
- * specified either on the callback method or on the message-driven bean class.
+ * This annotation specifies that a callback method on a JMS message-driven bean
+ * must use the specified message selector. It may be specified either on the
+ * callback method or on the message-driven bean class.
  * <p>
  * If this annotation is specified on a method of a message-driven bean class
  * then that method must also be annotated with {@code QueueListener} or
@@ -70,16 +63,20 @@ import java.lang.annotation.Target;
  * If this annotation is specified on both a method of a message-driven bean
  * class and on the message-driven bean class itself then deployment will fail.
  * 
+ * @see QueueListener
+ * @see TopicListener
+ * 
  * @version JMS 2.1
- * @since JMS 2.0
+ * @since JMS 2.1
  * 
  */
 @Retention(RUNTIME)
-@Target({ METHOD, FIELD, PARAMETER, TYPE })
-public @interface JMSConnectionFactory {
+@Target({ METHOD, TYPE })
+public @interface MessageSelector {
+
 	/**
-	 * Specifies the JNDI lookup name of a {@code javax.jms.ConnectionFactory}
-	 * to be used.
+	 * The message selector that will be used.
 	 */
 	String value();
+
 }

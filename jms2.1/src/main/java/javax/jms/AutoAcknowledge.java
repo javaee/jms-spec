@@ -39,27 +39,48 @@
  */
 package javax.jms;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Containing annotation for annotations of type {@code JMSListenerProperty}.
+ * This annotation specifies that a callback method on a JMS message-driven bean
+ * must receive messages with an acknowledgement type of auto-acknowledge. It
+ * may be specified either on the callback method or on the message-driven bean
+ * class.
  * <p>
- * This annotation is used internally when a method is annotated with more than
- * one {@code JMSListenerProperty} annotation. Applications do not need to use
- * this annotation directly.
+ * The message-driven bean must also be configured to use a transaction
+ * management type of BEAN. This may be configured by specifying the annotation
+ * {code @TransactionManagement(value=TransactionManagementType.BEAN)} on the
+ * message-driven bean. If a transaction management type of BEAN is not
+ * configured then it is recommended that deployment will fail.
+ * <p>
+ * If this annotation is specified on a method of a message-driven bean class
+ * then that method must also be annotated with {@code QueueListener} or
+ * {@code TopicListener}. If it is not then deployment will fail.
+ * <p>
+ * If this annotation is specified on the message-driven bean class then at
+ * least one method must be annotated with {@code QueueListener} or
+ * {@code TopicListener}. If no method is annotated with {@code QueueListener}
+ * or {@code TopicListener} then deployment will fail.
+ * <p>
+ * If either this annotation or {@code DupsOKAcknowledge} are specified on both
+ * a method of a message-driven bean class and on the message-driven bean class
+ * itself then deployment will fail.
  * 
- * @see JMSListenerProperty <p>
+ * @see QueueListener
+ * @see TopicListener
+ * @see DupsOKAcknowledge
+ * 
  * @version JMS 2.1
  * @since JMS 2.1
  * 
  */
-@Target({ ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-public @interface JMSListenerProperties {
-
-    JMSListenerProperty[] value();
+@Retention(RUNTIME)
+@Target({ METHOD, TYPE })
+public @interface AutoAcknowledge {
 
 }

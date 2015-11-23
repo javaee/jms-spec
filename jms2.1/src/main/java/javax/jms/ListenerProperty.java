@@ -39,39 +39,52 @@
  */
 package javax.jms;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Sets an arbitrary activation property on a callback method on a JMS
- * message-driven bean that has been annotated with the {@code JMSQueueListener}
- * , {@code JMSNonDurableTopicListener} or {@code JMSDurableTopicListener}
- * annotation.
+ * This annotation specifies an arbitrary activation property to be used by a
+ * callback method on a JMS message-driven bean must use the specified message
+ * selector. It may be specified either on the callback method or on the
+ * message-driven bean class.
+ * <p>
+ * If this annotation is specified on a method of a message-driven bean class
+ * then that method must also be annotated with {@code QueueListener} or
+ * {@code TopicListener}. If it is not then deployment will fail.
+ * <p>
+ * If this annotation is specified on the message-driven bean class then at
+ * least one method must be annotated with {@code QueueListener} or
+ * {@code TopicListener}. If no method is annotated with {@code QueueListener}
+ * or {@code TopicListener} then deployment will fail.
+ * <p>
+ * If this annotation is used to specify the same property on both a method of a
+ * message-driven bean class and on the message-driven bean class itself then
+ * deployment will fail.
  * <p>
  * Multiple {@code JMSListenerProperty} annotations may be used to set multiple
  * properties on the same callback method.
- * <p>
  * 
  * @version JMS 2.1
  * @since JMS 2.1
  * 
  */
-@Target({ ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-@Repeatable(JMSListenerProperties.class)
-public @interface JMSListenerProperty {
+@Repeatable(ListenerProperties.class)
+@Retention(RUNTIME)
+@Target({ METHOD })
+public @interface ListenerProperty {
 
-    /**
-     * Name of the activation property
-     */
-    String name();
+	/**
+	 * Name of the activation property
+	 */
+	String name();
 
-    /**
-     * Value of the activation property
-     */
-    String value();
+	/**
+	 * Value of the activation property
+	 */
+	String value();
 
 }

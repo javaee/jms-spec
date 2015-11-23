@@ -39,68 +39,46 @@
  */
 package javax.jms;
 
-import java.lang.annotation.ElementType;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Designates a callback method on a JMS message-driven bean that will receive
- * messages from a durable subscription on a topic.
+ * This annotation designates a callback method on a JMS message-driven bean
+ * that will receive messages from a topic, and specifies the topic from which
+ * messages will be received.
+ * <p>
+ * By default a non-durable subscription is used. The
+ * {@code DurableSubscription} annotation may be used in conjunction with this
+ * annotation to specify that a durable subscription is required.
  * <p>
  * This annotation may only be used if the JMS message-driven bean implements
  * the {@code JMSMessageDrivenBean} marker interface and does not implement the
- * {@code MessageListener} interface.
+ * {@code MessageListener} interface. If this annotation is used on a
+ * message-driven bean that implements the {@code MessageListener} interface
+ * then deployment will fail.
  * <p>
- * If this annotation is used on a message-driven bean that implements the
- * {@code MessageListener} interface then deployment will fail.
+ * Only one method may be designated as a callback method. If more than one
+ * method on a JMS message-driven bean is annotated with {@code QueueListener}
+ * or {@code TopicListener} then deployment will fail.
  * 
  * @see JMSMessageDrivenBean
- * @see JMSNonDurableTopicListener
- * @see JMSQueueListener
+ * @see QueueListener
+ * @see DurableSubscription
  * 
  * @version JMS 2.1
  * @since JMS 2.1
  * 
  */
-@Target({ ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-public @interface JMSDurableTopicListener {
+@Retention(RUNTIME)
+@Target({ METHOD })
+public @interface TopicListener {
 
-    /**
-     * Lookup name of the Topic from which messages will be received.
-     */
-    String destinationLookup() default "";
+	/**
+	 * Lookup name of the Topic from which messages will be received.
+	 */
+	String value() default "";
 
-    /**
-     * Lookup name of the ConnectionFactory that will be used to connect to the
-     * JMS provider.
-     */
-    String connectionFactoryLookup() default "";
-
-    /**
-     * The JMS client identifier that will be used when connecting to the JMS
-     * provider to receive messages.
-     */
-    String clientId() default "";
-
-    /**
-     * The name of the durable subscription that will be used.
-     */
-    String subscriptionName() default "";
-
-    /**
-     * The message selector that will be used.
-     */
-    String messageSelector() default "";
-
-    /**
-     * The acknowledgement mode that will be used if the MDB is not configured
-     * to use container-managed transactions.
-     */
-    Mode acknowledge() default Mode.AUTO_ACKNOWLEDGE;
-
-    public enum Mode {
-        AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE
-    }
 }

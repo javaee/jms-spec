@@ -55,9 +55,9 @@ package javax.jms;
  * <p>
  * 
  * @see JMSMessageDrivenBean
- * @see JMSNonDurableTopicListener
- * @see JMSDurableTopicListener
- * @see JMSQueueListener
+ * @see TopicListener
+ * @see DurableSubscription
+ * @see QueueListener
  * 
  * @version JMS 2.1
  * @since JMS 2.1
