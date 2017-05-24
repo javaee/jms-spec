@@ -1,4 +1,4 @@
-<h1>More flexible JMS MDBs (Updates to version 2)</h1>
+# More flexible JMS MDBs (Updates to version 2)</h1>
 
 This page contains some updates to  [[JMSListener2|version 2 of the proposals]]  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 

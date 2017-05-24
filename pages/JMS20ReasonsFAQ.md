@@ -1,4 +1,4 @@
-<h1>JMS 2.0 design FAQ</h1>
+# JMS 2.0 design FAQ</h1>
 
 This page records some of the design decisions taken during the development of the JMS 2.0 specification,
 

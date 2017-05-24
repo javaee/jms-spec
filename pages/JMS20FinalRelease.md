@@ -1,4 +1,4 @@
-<h1>JMS 2.0 Final Release</h1> 
+# JMS 2.0 Final Release</h1> 
 
 JMS 2.0 was finally released on 21 May 2013.
 

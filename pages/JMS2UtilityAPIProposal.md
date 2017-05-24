@@ -1,4 +1,4 @@
-<h1>JMS 2 Utility API Proposal</h1>
+# JMS 2 Utility API Proposal</h1>
 This is a basic proposal to add a utility API to simplify JMS synchronous operations such as sending and receiving messages. The proposal is based largely on analyzing the [http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/jms/core/JmsTemplate.html Spring JmsTemplate] API. The code/API for the proposal is [http://rahmannet.net/projects/jmsutil/src/javax/jms/util/JmsUtility.java here]. For convenience, a corresponding Javadoc is [http://rahmannet.net/projects/jmsutil/doc/javax/jms/util/JmsUtility.html here]. The actual API code is more useful in this case than the Javadocs since it contains embedded comments important to the overall analysis/proposal.
 __TOC__
 ==The Basics==

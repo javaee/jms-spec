@@ -1,4 +1,4 @@
-<h1>JMS 2.1 Planning Long List</h1>
+# JMS 2.1 Planning Long List</h1>
 
 Improvements to the JMS specification are managed using issues in JIRA. Here is a classified list of all the open issues. Only a subset of these issues will actually make it into JMS 2.1. See the actual [[JMS21Plan|JMS 2.1 plan]].
 

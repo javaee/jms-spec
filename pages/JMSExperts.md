@@ -1,4 +1,4 @@
-<h1>JMS Expert group Information</h1>
+# JMS Expert group Information</h1>
 
 This page contains administrative information for members (or prospective members) of the JMS 2.1 (JSR 368) expert group. 
 

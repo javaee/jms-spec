@@ -1,4 +1,4 @@
-<h1>JMS 2.1 Plan</h1>
+# JMS 2.1 Plan</h1>
 
 Here's the high-level list of features planned for JMS 2.1, and an approximate order in which they will be considered. 
 

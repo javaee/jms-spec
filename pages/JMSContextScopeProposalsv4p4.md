@@ -1,4 +1,4 @@
-<h1>Proposed changes to JMSContext to support injection (Option 4)</h1>
+# Proposed changes to JMSContext to support injection (Option 4)</h1>
 
 ==Summary==
 

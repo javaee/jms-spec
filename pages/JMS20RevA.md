@@ -1,4 +1,4 @@
-<h1>JMS 2.0 errata release (Rev a)</h1>
+# JMS 2.0 errata release (Rev a)</h1>
 
 This page describes the JMS 2.0 errata release (JMS 2.0 revision a)
 

@@ -1,4 +1,4 @@
-<h1>JMS Listener beans: summary of comments </h1>
+# JMS Listener beans: summary of comments </h1>
 
 This page lists and discusses some of the comments made on the proposals for JMS listener beans  [https://java.net/projects/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
 

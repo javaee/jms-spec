@@ -1,4 +1,4 @@
-<h1>Ten ways in which JMS 2.0 means writing less code</h1>
+# Ten ways in which JMS 2.0 means writing less code</h1>
 
 <p>Here are ten simple examples that demonstrate how JMS 2.0 requires less code than JMS 1.1.</p>
 

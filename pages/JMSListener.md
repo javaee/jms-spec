@@ -1,4 +1,4 @@
-<h1>More flexible JMS MDBs (Version 1)</h1>
+# More flexible JMS MDBs (Version 1)</h1>
 
 This page contains proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8.
 

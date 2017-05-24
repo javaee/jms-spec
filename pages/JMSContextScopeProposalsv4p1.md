@@ -1,4 +1,4 @@
-<h1>Injection of JMSContext objects - Proposals (version 4)</h1>
+# Injection of JMSContext objects - Proposals (version 4)</h1>
 
 ==Summary==
 

@@ -1,4 +1,4 @@
-<h1>Flexible JMS MDBs: analysis of how to implement multiple callbacks </h1>
+# Flexible JMS MDBs: analysis of how to implement multiple callbacks </h1>
 
 This page discusses the method annotations on flexible JMS MDBs
 

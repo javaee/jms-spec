@@ -1,4 +1,4 @@
-<h1>Injection of JMSContext objects - Use Cases F - K  (version 3)</h1>
+# Injection of JMSContext objects - Use Cases F - K  (version 3)</h1>
 
 ==Summary==
 

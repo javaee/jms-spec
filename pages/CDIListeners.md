@@ -1,4 +1,4 @@
-<h1>Some notes about CDI listeners (DRAFT)</h1>
+# Some notes about CDI listeners (DRAFT)</h1>
 
 ==Listener created automatically ==
 

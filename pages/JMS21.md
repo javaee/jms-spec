@@ -1,4 +1,4 @@
-<h1>JMS 2.1</h1>
+# JMS 2.1</h1>
 
 The next version of the JMS specification will be JMS 2.1, which is being developed under the Java Community Process as [https://jcp.org/en/jsr/detail?id=368 JSR 368].  
 

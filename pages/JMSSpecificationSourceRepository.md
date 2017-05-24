@@ -1,4 +1,4 @@
-<h1>JMS specification source repository</h1>
+# JMS specification source repository</h1>
 
 This page contains some notes on the [http://java.net/projects/jms-spec/sources/repository/show JMS specification source repository].
 

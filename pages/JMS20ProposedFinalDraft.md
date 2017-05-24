@@ -1,4 +1,4 @@
-<h1>JMS 2.0 Proposed Final Draft</h1>
+# JMS 2.0 Proposed Final Draft</h1>
 
 The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [ http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html here]. 
 

@@ -1,4 +1,4 @@
-<h1>JMS 2.0 Public Review Draft</h1>
+# JMS 2.0 Public Review Draft</h1>
 
 The JMS 2.0 Public Review Draft is now published. The specification and API documentation may be downloaded from the JCP website [ http://jcp.org/aboutJava/communityprocess/pr/jsr343/index.html here]. The formal review period began on 3 January 2013 and ends on 4 February 2013.  
 
