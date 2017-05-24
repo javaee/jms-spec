@@ -97,8 +97,8 @@ A top-level Java class is a managed bean if it is defined to be a managed bean b
 * It does not implement javax.enterprise.inject.spi.Extension.
 * It is not annotated @Vetoed or in a package annotated @Vetoed.
 * It has an appropriate constructor - either:
-** the class has a constructor with no parameters, or
-** the class declares a constructor annotated @Inject.
+  * the class has a constructor with no parameters, or
+  * the class declares a constructor annotated @Inject.
 
 All Java classes that meet these conditions are managed beans and thus no special declaration is required to define a managed bean.
 </td></tr></table>
@@ -310,12 +310,12 @@ The application server must support the use of a resource adapter if one is expl
 The application server will provide a CDI "portable extension" which extends the behaviour of all CDI managed beans that have one or more methods annotated with <tt>JMSListener</tt>, as follows:
 
 * It will extend the <tt>postConstruct</tt> behaviour of such beans to:
-**Determine which resource adapter to use
-**Call the <tt>ResourceAdapter</tt> method <tt>endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt>
+  *Determine which resource adapter to use
+  *Call the <tt>ResourceAdapter</tt> method <tt>endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt>
 : This will lookup the connection factory and destination specified in the callback annotations and use these and the other annotations to create a consumer which will deliver messages, one at a time, to the specified callback method, adding whatever transactional behaviour is specified. 
 
 * It will extend the <tt>postConstruct</tt> behaviour of such beans to:
-**Call the <tt>ResourceAdapter</tt> method <tt>endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt>
+  *Call the <tt>ResourceAdapter</tt> method <tt>endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt>
 :This will close the consumer so that no further messages are delivered to the bean, and clean up any other state created during the <tt>postConstruct</tt> stage.
 
 Note that the term "portable extension" used here is CDI terminology for an extension to an application server's CDI container that interacts with the CDI container using CDI's portable extension integration SPI. Although it is expected that this SPI will be sufficient, the application server may use any API that is required.
@@ -356,7 +356,7 @@ Note that a CDI bean is itself either a proxy (for normal-scoped beans) or a wra
 
 * The method <tt>release()</tt> may be called by the  by the resource adapter to indicate that it no longer needs a proxy endpoint instance. After this method has been called then the instance becomes available to be returned by a subsequent call to <tt>MessageEndpointFactory#createEndpoint</tt>.
 
-**Important note:** Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the <tt>beforeCompletion</tt> method has already started one.  
+  *Important note:** Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the <tt>beforeCompletion</tt> method has already started one.  
 
 The <tt>@javax.transaction.Transactional</tt> annotation can be used to specify which methods, when thrown by the bean method, will cause the transdaction to be marked for rollback. The application server will need to ensure that any such exception is caught by the <tt>MessageEndpoint</tt> wrapper code and used to determine whether the subsequent call to <tt>afterCompletion</tt> will commit or rollback the transaction.
 
@@ -376,13 +376,13 @@ The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>end
 * Call <tt>getEndpointClass()</tt> on the supplied <tt>MessageEndpointFactory</tt> to obtain the class of the JMS listener bean.
 * Scan the methods of the JMS listener bean class, looking for callback methods which are annotated with <tt>@JMSListener</tt> 
 * For each callback method:
-**Using the annotations on the callback method, obtain a connection to the JMS provider and create a consumer on the specified destination
-**When a message is delivered from a particular consumer, call <tt>createEndpoint</tt> on the specified <tt>MessageEndpointFactory</tt> to obtain a <tt>MessageEndpoint</tt> corresponding to the JMS listener bean.
-** Call <tt>MessageEndpoint#beforeDelivery</tt>
-** Use reflection to invoke the callback method for this consumer, setting each method parameter to the message, to the message body, or to a specified message header or property, as defined in the [[JMSListener2#Summary_of_callback_method_parameters|proposals for more flexible JMS MDBs]]
-** Acknowledge the message in the current transaction
-** Call <tt>MessageEndpoint#afterDelivery</tt>
-** Call <tt>MessageEndpoint#release</tt>
+  *Using the annotations on the callback method, obtain a connection to the JMS provider and create a consumer on the specified destination
+  *When a message is delivered from a particular consumer, call <tt>createEndpoint</tt> on the specified <tt>MessageEndpointFactory</tt> to obtain a <tt>MessageEndpoint</tt> corresponding to the JMS listener bean.
+  * Call <tt>MessageEndpoint#beforeDelivery</tt>
+  * Use reflection to invoke the callback method for this consumer, setting each method parameter to the message, to the message body, or to a specified message header or property, as defined in the [[JMSListener2#Summary_of_callback_method_parameters|proposals for more flexible JMS MDBs]]
+  * Acknowledge the message in the current transaction
+  * Call <tt>MessageEndpoint#afterDelivery</tt>
+  * Call <tt>MessageEndpoint#release</tt>
 
 Note that this is very similar behaviour to that required for activating JMS MDBs. The main difference is that there will only ever be a single instance of  <tt>MessageEndpoint</tt>. There is therefore no point in the resource adapter attempting to deliver messages from a given consumer in more than as single thread.
 
@@ -391,4 +391,4 @@ Note that this is very similar behaviour to that required for activating JMS MDB
 The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt> as follows:
 
 * For each callback method
-**Close the consumer created by <tt>endpointActivation</tt> and clean up any other state created by that method
+  * Close the consumer created by <tt>endpointActivation</tt> and clean up any other state created by that method
