@@ -15,7 +15,7 @@ These proposals are separate to the proposals for [More flexible JMS MDBs](/jms-
 
 ### In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB
 
-<br/>In the current version of Java EE the only way that an application can consume JMS messages asynchronously is to use a MDB (message-driven bean). JMS MDBs allow the container to manage a pool of MDB instances which can share the work of processing a large number of messages amongst multiple threads. This is a very useful feature allowing a large throughput of messages to be handled.
+In the current version of Java EE the only way that an application can consume JMS messages asynchronously is to use a MDB (message-driven bean). JMS MDBs allow the container to manage a pool of MDB instances which can share the work of processing a large number of messages amongst multiple threads. This is a very useful feature allowing a large throughput of messages to be handled.
 
 Here's an example of a MDB in Java EE 7:
 
@@ -81,7 +81,7 @@ As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This i
 
 However note that this object is not a MDB. It does not have the <tt>MessageDriven</tt> annotation. Instead it is a CDI managed bean which can have any CDI scope and can be injected into Java EE code just like any other CDI managed bean. When a CDI bean is injected, the lifecycle of the bean instance is managed by the CDI container. When the bean instance is created, if it is annotated with <tt>JMSListener</tt> then it will start listening for messages, and when the bean instance is destroyed (such as when its scope ends) it will stop listening for messages.
 
-For more about the lifecycle of a CDI JMS listener bean, see [[CDIBeansAsJMSListeners#Listener_lifecycles|Listener lifecycles]] below.
+For more about the lifecycle of a CDI JMS listener bean, see [Listener lifecycles](/jms-spec/pages/CDIBeansAsJMSListeners#Listener_lifecycles) below.
 
 ## JMS listener beans
 
