@@ -67,6 +67,11 @@ See [Joining the JMS expert group](JMSExperts#Joining_the_JMS_expert_group).
 
 ###  Mailing lists open to everyone
 
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+
 Email address | Purpose | Access
 ------------- | ------- | ------
 **users@jms-spec.java.net** | Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
