@@ -1,4 +1,4 @@
-# Flexible JMS MDBs: method annotations (version 4) </h1>
+# Flexible JMS MDBs: method annotations (version 4)
 
 This page discusses the method annotations on flexible JMS MDBs
 

@@ -1,4 +1,4 @@
-# CDI Managed Beans as JMS listeners (Version 1) </h1>
+# CDI Managed Beans as JMS listeners (Version 1)
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
@@ -20,7 +20,8 @@ __TOC__
 <br/>In the current version of Java EE the only way that an application can consume JMS messages asynchronously is to use a MDB (message-driven bean). JMS MDBs allow the container to manage a pool of MDB instances which can share the work of processing a large number of messages amongst multiple threads. This is a very useful feature allowing a large throughput of messages to be handled.
 
 Here's an example of a MDB in Java EE 7:
-<br/><br/>
+
+```
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(
      propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
@@ -37,6 +38,7 @@ Here's an example of a MDB in Java EE 7:
      ...
    }
  }
+```
 
 ### In Java EE 8, we're proposing that JMS MDBs will be more flexible
 
