@@ -89,7 +89,7 @@ This section describes JMS listener beans in more detail and how they relate to 
 
 The CDI 1.2 specification defines a managed bean in [section 3.1 "Managed beans"](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#managed_beans). This states:
 
-<table style=" margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td>
+<table style="text-align:left;  margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td>
 A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE specification, or if it meets all of the following conditions:
 * It is not a non-static inner class.
 * It is a concrete class, or is annotated @Decorator.

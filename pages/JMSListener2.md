@@ -158,7 +158,7 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
 
 These proposals do not change the existing threading rules for MDBs, even for MDBs with multiple callback methods. These rules are defined in the EJB 3.2 specification:
 
-<table style="margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td>
 5.4.11 Serializing message-driven bean methods
 
 The container serializes calls to each message-driven bean instance. Most containers will support many instances of a message-driven bean executing concurrently; however, each instance sees only a serialized sequence of method calls. Therefore, a message-driven bean does not have to be coded as reentrant.

@@ -102,7 +102,7 @@ Since this gives us yet another way to define activation properties we need to d
 
 Version 2 [[JMSListener2#Specifying_the_callback_method|proposed]] that callback methods will be allowed to throw exceptions as follows:
 
-<table style="margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td>
 * Callback methods will be allowed to declare and throw exceptions. Checked exceptions and <tt>RuntimeException</tt> thrown by the callback method (including those thrown by the <tt>onMessage</tt> method of a <tt>MessageListener</tt>) will be handled by the EJB container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods".  This defines whether or not any transaction in progress is committed or rolled back, depending on whether or not the exception is a "system exception" or an "application exception", whether or not the application exception is specified as causing rollback, and whether or not the application has called <tt>setRollbackOnly</tt>. It also defines whether or not the MDB instance is discarded. If the transaction is rolled back, or a transaction is not being used, then the message will be redelivered. 
 
 * The JMS provider should detect repeated attempts to redeliver the same message to a MDB. Such messages may either be discarded or delivered to a provider-specific dead message queue. (Note that this not completely new to JMS: JMS 2.1 section 8.7 refers to a JMS provider "giving up" after a message has been redelivered a certain number of times).
@@ -120,7 +120,7 @@ In deciding how old-style MDBs should handle <tt>RuntimeException</tt>s there ar
 
 * JMS 2.0 section 8.7 "Receiving messages asynchronously" (reproduced below) defines how a JMS provider should handle a <tt>RuntimeException</tt> thrown by the <tt>onMessage</tt> method  of a <tt>MessageListener</tt>. However this section only considers Java SE acknowledgement modes. That means that it is not relevant to MDBs which consume messages in a container-managed transaction. However it ''is'' relevant for MDBs which consume messages in auto-acknowledge or dups-ok-acknowledge modes - which is the case when bean-managed transactions are specified. It says that in this case the message will be "immediately redelivered", where "the number of times a JMS provider will redeliver the same message before giving up is provider-dependent".
 
-<table style="margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td>
 8.7 Receiving messages asynchronously
 
 A client can register an object that implements the JMS MessageListener interface with a consumer. As messages arrive for the consumer, the provider delivers them by calling the listener’s onMessage method.
@@ -266,7 +266,7 @@ See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_spec
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td>
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
 
@@ -299,7 +299,7 @@ Here is a proposed extended wording.
 
 The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in more detail. This chapter will have a section (arbitrarily numbered 16.5 here) devoted to exceptions thrown by callback methods and a section following it (arbitrarily numbered 16.6 here)  about message redelivery in general. Here is a suggested wording. This section will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td>
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
 
