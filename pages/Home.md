@@ -10,7 +10,7 @@ Latest news (Oct 2015)
 
 ## JMS 2.1
 
-[https://jcp.org/en/jsr/detail?id=368 JSR 368] will be the next version of JMS. For more information see the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
+(https://jcp.org/en/jsr/detail?id=368)[JSR 368] will be the next version of JMS. For more information see the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
 
 ## JMS 2.0 errata
 
