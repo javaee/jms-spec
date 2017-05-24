@@ -4,9 +4,10 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 
 ## Latest news (Oct 2015)
 
-The JMS 2.1 Early Draft is now out! Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
-See the [latest news on JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
-Find out all about (JMS 2.1)[https://java.net/projects/jms-spec/pages/JMS21]
+The JMS 2.1 Early Draft is now out! 
+* Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
+* See the [latest news on JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
+* Find out all about [JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21).
 
 ## JMS 2.1
 
@@ -50,9 +51,9 @@ The maintenance lead for JSR 343 (JMS 2.0) and the prospective specification lea
 
 Here are some ways to get involved in the development of the JMS specification:
 
-*  **Read** the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
+*  **Read** the [main JMS 2.1 page](https://java.net/projects/jms-spec/pages/JMS21).
 
-* If you'd like to **contribute** to the development of the JMS specification, or simply **observe** what is going on in the expert group, join the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. See below for instructions on how to join.
+* If you'd like to **contribute** to the development of the JMS specification, or simply **observe** what is going on in the expert group, join the [mailing list](mailto:users@jms-spec.java.net users@jms-spec.java.net). See below for instructions on how to join.
 
 * If you'd like to **submit proposals** for consideration by the expert group, log them as issues in the JIRA  [issue tracker](http://java.net/jira/browse/JMS_SPEC). Please read [How to use the issue tracker](http://java.net/projects/jms-spec/pages/Home#How_to_create_an_issue). We're interested in comments on JMS 2.0 as well as proposals for JMS 2.1.
 
@@ -82,23 +83,25 @@ and then subscribe to this list.  ([How to do this](https://java.net/projects/jm
 |-
 | **issues@jms-spec.java.net**
 | Mailing list for JIRA issue notifications. Everyone is welcome to join. <br /> <br />
-Additions and updates to the [http://java.net/jira/browse/JMS_SPEC|JIRA issue tracker] are automatically sent to this list. Please don't use this list for discussions.<br />
+Additions and updates to the [JIRA issue tracker](http://java.net/jira/browse/JMS_SPEC) are automatically sent to this list. Please don't use this list for discussions.<br />
 | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this])<br /><br />
 [http://java.net/projects/jms-spec/lists/issues/archive Online archive of past messages]
 |-
 | **commits@jms-spec.java.net**
 | Mailing list for source code repository update notifications. <br /> <br />
 Anyone by join, but there's no need to unless you are updating the source code repository yourself. Whenever there's anything new of interest an email will be sent to the user mailing list.  Please don't use this list for discussions.<br />
-| Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this])<br /><br />
-[http://java.net/projects/jms-spec/lists/commits/archive Online archive of past messages]
+| Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([How to do this](https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ))<br /><br />
+[Online archive of past messages](http://java.net/projects/jms-spec/lists/commits/archive)
 |}
 
 ###  Mailing lists FAQ
-;How do I join the [ http://jms-spec.java.net  jms-spec.java.net] project? 
-:Simply click on [https://java.net/projects/jms-spec/watch Join this project] on the left, and you'll be instantly become a member. This is sometimes referred to as an "observer role". You'll need to be logged into [http://java.net java.net]. This will also add this project to your [http://java.net/mypage My Projects] page.
+;How do I join the [jms-spec.java.net](http://jms-spec.java.net) project? 
+:Simply click on [Join this project](https://java.net/projects/jms-spec/watch) on the left, and you'll be instantly become a member. 
+This is sometimes referred to as an "observer role". You'll need to be logged into [java.net](http://java.net). 
+This will also add this project to your [My Projects](http://java.net/mypage) page.
 
 ;How to I subscribe to a mailing list?
-:After joining the project, navigate to [http://java.net/projects/jms-spec/lists java.net/projects/jms-spec/lists], find the list you want to subscribe to, and press the Subscribe button.  
+:After joining the project, navigate to (http://java.net/projects/jms-spec/lists java.net/projects/jms-spec/lists), find the list you want to subscribe to, and press the Subscribe button.  
 
 ;I tried to reply to an email but it was rejected. Why?
 : If you subscribe to users@jms-spec.java.net you'll automatically receive a copy of all emails sent to the expert group.  You're welcome to reply to any email with a comment. However if you are not a member of the expert group you'll need to change the recipient to users@jms-spec.java.net before replying, otherwise your email will be rejected. The expert group will see all emails sent to users@jms-spec.java.net.
