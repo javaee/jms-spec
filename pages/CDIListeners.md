@@ -1,4 +1,4 @@
-# Some notes about CDI listeners (DRAFT)</h1>
+# Some notes about CDI listeners (DRAFT)
 
 ## Listener created automatically
 
@@ -82,7 +82,7 @@ Prior to event being fired, forces instance creation by calling<br/><br/>
 
 This is not possible, since <tt>@Observes(notifyObserver=Reception.IF_EXISTS)</tt> is not allowed with dependent scoped listeners) 
 
-## Other aspects=### 
+## Other aspects 
 
 Can the same listener instance be called concurrently for multiple events?
 

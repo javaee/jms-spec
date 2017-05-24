@@ -1,4 +1,4 @@
-# JMS 2.1 Meetings</h1>
+# JMS 2.1 Meetings
 
 ## Meetings
 

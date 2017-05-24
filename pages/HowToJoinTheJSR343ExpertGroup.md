@@ -1,4 +1,4 @@
-# How to join the JSR 343 Expert group</h1>
+# How to join the JSR 343 Expert group
 
 This page describes the steps that need to be followed if you wish to join the JSR 343 Expert Group
 

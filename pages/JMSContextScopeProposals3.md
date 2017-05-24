@@ -1,6 +1,6 @@
-# Injection of JMSContext objects - Use Cases F - K  (version 3)</h1>
+# Injection of JMSContext objects - Use Cases F - K  (version 3)
 
-## Summary=### 
+## Summary 
 
 This page contains a number of use cases which demonstrate how the proposals in [[JMSContextScopeProposals|Injection of JMSContext objects - Proposals (version 3)]] would appear to users. Each use case is followed by an analysis for both [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]]. 
 
@@ -10,7 +10,7 @@ Before reading these, read [[JMSContextScopeProposals2|Injection of JMSContext o
 
 __TOC__
 
-## Use cases=### 
+## Use cases 
 
 ### Use case F: One bean which calls another when there is no transaction
 

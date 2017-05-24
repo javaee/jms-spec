@@ -1,10 +1,10 @@
-# JMS Expert group Information</h1>
+# JMS Expert group Information
 
 This page contains administrative information for members (or prospective members) of the JMS 2.1 (JSR 368) expert group. 
 
 __TOC__
 
-## Joining the JMS expert group=### 
+## Joining the JMS expert group 
 
 Applications to join the JSR 368 expert group are now invited. 
 

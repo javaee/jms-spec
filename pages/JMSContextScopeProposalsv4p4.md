@@ -1,6 +1,6 @@
-# Proposed changes to JMSContext to support injection (Option 4)</h1>
+# Proposed changes to JMSContext to support injection (Option 4)
 
-## Summary=### 
+## Summary 
 
 This page proposes some changes to the JMS 2.0 simplified API to support the injection of <tt>JMSContext</tt> objects.
 
@@ -8,7 +8,7 @@ It discusses the potential confusion that might be caused by the sharing of inje
 
 __TOC__
 
-## The problem=### 
+## The problem 
 
 Let's begin with a description of the problem we need to address. The example below uses the simplified API as defined in the JMS 2.0 Early Draft.
 
@@ -75,7 +75,7 @@ This is the potentially confusing situation we need to avoid. There have been se
 
 This page therefore makes a fourth proposal to address this issue.
 
-## The solution (Option 4)=### 
+## The solution (Option 4) 
 
 Although the behaviour described above is the expected CDI behaviour when injecting objects with a "normal" (non-dependent) scope, the reason this is considered to be potentially confusing in the case of <tt>JMSContext</tt> objects is that the <tt>JMSContext</tt> object is stateful: you can call a method on one bean which affects its behaviour in another bean.
 
@@ -245,7 +245,7 @@ This would allow these message headers to be set prior to sending as follows:
 
     context.createProducer().setJMSReplyTo(replyDest).send(destination,message);
 
-## Summary of changes=### 
+## Summary of changes 
 
 Here is a summary of these proposals, compared with what is in the JMS 2.0 Early Draft:
 

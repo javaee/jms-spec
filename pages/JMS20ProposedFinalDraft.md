@@ -1,4 +1,4 @@
-# JMS 2.0 Proposed Final Draft</h1>
+# JMS 2.0 Proposed Final Draft
 
 The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [ http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html here]. 
 
@@ -8,7 +8,7 @@ In addition the API documentation may be browsed online [http://jms-spec.java.ne
 
 __TOC__
 
-## Reference implementation=### 
+## Reference implementation 
 
 You are also invited to try out the current version of the JMS 2.0 reference implementation. This is still under development but is essentially feature complete. 
 * If you would like to try JMS 2.0 as part of a full Java EE 7 application server then you you need to download a recent build of GlassFish Server Open Source Edition 4.0. The promoted builds are [http://dlc.sun.com.edgesuite.net/glassfish/4.0/promoted/ here] and the less stable nightly builds are [http://dlc.sun.com.edgesuite.net/glassfish/4.0/nightly/ here]. 
@@ -16,7 +16,7 @@ You are also invited to try out the current version of the JMS 2.0 reference imp
 
 (Strictly speaking these are not actually reference implementations. They are community projects which will be used to create the reference implementation when JMS 2.0 is released.)
 
-## JMS 2.0 demonstration examples=### 
+## JMS 2.0 demonstration examples 
 
 A [http://netbeans.org NetBeans] project which demonstrates some new features of JMS 2.0 may be downloaded  [http://java.net/projects/jms-spec/downloads/download/JMS20Demo.zip as a zip] or checked out from the project's subversion repository [http://java.net/projects/jms-spec/sources/repository/show/jms2.0/demos/JMS20Demo here]. An earlier version was demonstrated at JavaOne 2012.
 
@@ -26,7 +26,7 @@ This demonstration (which has been updated to work with GlassFish build 82 (glas
 * Use of the new <tt>receiveBody</tt> method to synchronously receive a message and return its body in a single method call
 * Use of the new <tt>getBody</tt> method to return the body of a <tt>Message</tt> without the need to cast it to a more specific message type
 
-## What's new in JMS 2.0?=### 
+## What's new in JMS 2.0? 
 
 A full list of the new features, changes and clarifications introduced in JMS 2.0 is given in the specification. See section B.5 "Version 2.0" of the "Change history" appendix. Here is a summary:
 

@@ -1,6 +1,6 @@
-# Injection of JMSContext objects - Proposals (version 3)</h1>
+# Injection of JMSContext objects - Proposals (version 3)
 
-## Summary=### 
+## Summary 
 
 This page discusses that part of the JMS 2.0 Early Draft which defines how <tt>javax.jms.JMSContext</tt> objects may be injected.   In particular it discusses the scope and lifecycle of injected <tt>JMSContext</tt> objects. 
 
@@ -12,7 +12,7 @@ After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSCon
 
 __TOC__
 
-## Proposal in JMS 2.0 Early Draft (Option 1)=### 
+## Proposal in JMS 2.0 Early Draft (Option 1) 
 
 The JMS 2.0 early draft (section 11.3) specified that applications may declare a field of type <tt>javax.jms.JMSContext</tt> and annotate it with the <tt>javax.inject.Inject</tt> annotation as follows:
 
@@ -39,7 +39,7 @@ The connection factory, user, password, session mode and autoStart behaviour, wh
  @JMSPasswordCredential(userName="admin",password="mypassword")
  private JMSContext context;
 
-## Problems with the JMS 2.0 Early Draft proposal=### 
+## Problems with the JMS 2.0 Early Draft proposal 
 
 Since the Early Draft was published there has been a great deal of discussion in the JSR 343 expert group and elsewhere about how <tt>JMSContext</tt> objects should be injected. The following conclusions were drawn:
 
@@ -51,7 +51,7 @@ Since the Early Draft was published there has been a great deal of discussion in
 
 There has also been discussion as to whether the annotations for specifying the connection factory, user, password, session mode and autoStart behaviour should be changed. However this amounts to an issue of style more than anything. This document makes no proposals to change this.
 
-## New proposals for JMS 2.0 Public Draft (Options 2 and 3)=### 
+## New proposals for JMS 2.0 Public Draft (Options 2 and 3) 
 
 To address the problems with the Early Draft proposal, two possible alternatives are proposed. We call these "option 2" and "option 3".
 
@@ -100,7 +100,7 @@ The transaction context is shared between all contextual objects involved in the
 If a transaction is suspended, transactional scoped objects are not impacted. It is only the transaction active status or its final state of committed or rolledback that impacts the lifecycle of the transaction context. Similarly, managed bean method call boundaries affect the transaction scope.
 </blockquote>
 
-## Use cases=### 
+## Use cases 
 
 After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]] and [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]].
 

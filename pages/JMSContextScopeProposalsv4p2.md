@@ -1,6 +1,6 @@
-# Injection of JMSContext objects - Use Cases A - E (version 4)</h1>
+# Injection of JMSContext objects - Use Cases A - E (version 4)
 
-## Summary=### 
+## Summary 
 
 This page contains a number of use cases which demonstrate how the scope proposed in [[JMSContextScopeProposalsv4p1|Injection of JMSContext objects - Proposals (version 4)]] would appear to users. Each use case is followed by an analysis. 
 
@@ -10,7 +10,7 @@ Note that these examples do **not** use the proposed new <tt>JMSContext</tt> API
 
 __TOC__
 
-## Use cases=### 
+## Use cases 
 
 ### Use case A: Two methods on the same bean within separate transactions
 

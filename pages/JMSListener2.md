@@ -8,7 +8,7 @@ See the [[#Changes_from_version_1|summary of changes]] compared to [[JMSListener
 
 __TOC__
 
-## Changes from version 1=### 
+## Changes from version 1 
 If you haven't read version 1 then you may prefer to skip this section and go straight to the following section, <a href="#Background">Background</a>. When you've read the rest you may wish to come back here and review the list of new issues added in this section.
 
 <b>Multiple callback methods</b>
@@ -79,7 +79,7 @@ In fact if you want the MDB to consume messages without a transaction and using 
 We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be better if we could replace the existing <tt>@TransactionManagement</tt> annotation and the proposed <tt>@AcknowledgeMode</tt> annotation with a single annotation which could define both at the same time. 
 </td></tr></table>
 
-## Background=### 
+## Background 
 
 There have been several proposals to improve the ways that JMS applications can consume messages asynchronously:
 
@@ -89,7 +89,7 @@ There have been several proposals to improve the ways that JMS applications can 
 
 * In [https://java.net/jira/browse/JMS_SPEC-100 JMS_SPEC-100]  Bruno Borges proposed improving the ways that JMS MDBs were defined, though in the subsequent discussion he proposed that this could be extended to other types of Java EE class such as session beans. That makes this essentially a combination of the other two proposals.
 
-## Goals=### 
+## Goals 
 
 The proposals on this page are addressed at the first of these proposals,  [https://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116]:
 
@@ -101,7 +101,7 @@ The proposals on this page are addressed at the first of these proposals,  [http
 
 These new annotations will initially be available only on MDBs. This offers a large scope for improvement without the need to consider issues such as listener lifecycle, listener pooling and resource adapter integration. A later stage in the development of JMS 2.1 will consider extending them to other types of Java EE object such as CDI managed beans.
 
-## Specifying the callback method=### 
+## Specifying the callback method 
 <br/>
 In Java EE 7, a JMS MDB must implement the <tt>javax.jms.MessageListener</tt> interface. This means that the callback method must be called <tt>onMessage</tt>, it must return <tt>void</tt> and it must have a single parameter of type <tt>Message</tt>.<br/><br/>
 
@@ -206,7 +206,7 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 <b>Issue I6:</b> The reason why these annotations cannot be applied to the <tt>onMessage</tt> method of a <tt>MessageListener</tt> is that <tt>MessageListener</tt> is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 </td></tr></table>
 
-## Specifying what messages will be received=### 
+## Specifying what messages will be received 
 <br/>
 Before it can be used, a JMS MDB must specify where the messages will come from and how they will be received.  In Java EE 7 these are specified using "activation properties", each of which has a  String name and a String value. The name and value of each property must be hardcoded into either the application code or the deployment descriptor, and the developer gets no help from the compiler or schema to check that they are using the correct name and setting it to an appropriate value. The syntax itself is also cumbersome.
 <br/><br/>
@@ -555,7 +555,7 @@ If the callback method parameter cannot be set, either because it does not match
 <b>Issue I16:</b> Deleted
 </td></tr></table>
 
-## Summary and links to javadocs=### 
+## Summary and links to javadocs 
 
 The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html here]. Direct links to the javadocs for each class are given in the table below.
 

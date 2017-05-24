@@ -1,10 +1,10 @@
-# JMS 2.0 design FAQ</h1>
+# JMS 2.0 design FAQ
 
 This page records some of the design decisions taken during the development of the JMS 2.0 specification,
 
 __TOC__
 
-## Asynchronous send=### 
+## Asynchronous send 
 
 ### Why is asynchronous send not permitted in a Java EE web or EJB container?
 
@@ -34,7 +34,7 @@ It was not possible to resolve this issue  in the time available for JMS 2.0, th
 
 One possible solution might be to require the call to the <tt>XAResource</tt> <tt>end</tt> method (rather than the <tt>prepare</tt> or <tt>commit</tt> methods) to block until any incomplete sends have been completed.  It may be possible to require this only if the <tt>TMSUCCESS</tt> flag was set (rather than the <tt>TMSUSPEND</tt> flag) - more work is needed. 
 
-## Simplified API=### 
+## Simplified API 
 
 ### Why do we need a separate JMSConsumer object. Why can't we move all its methods onto the JMSContext?
 

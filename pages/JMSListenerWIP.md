@@ -12,13 +12,13 @@ See the [[#Changes_from_version_2|summary of changes]] compared to [[JMSListener
 
 __TOC__
 
-## Changes from version 2=### 
+## Changes from version 2 
 
 The major issues which still need to be decided are:
 
 * Issue I17: Should multiple callback methods be permitted? As issue I18 describes, there is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications (i.e. that defining multiple callbacks reduces the number of MDB instances available to process each callback unless the MDB poolsize is increased.). It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. It may also require an excessive amount of extra work for vendors which offer monitoring and management features for JMS MDBs, since they might need to be extended to allow each callback to be managed separately. Finally, it introduces an ambiguity as to how old-style activation properties relate to multiple callback methods. For example, what is the effect of setting the activation property clientId? when there are multiple callback methods, each using a separate connection?  
 
-## List of issues=### 
+## List of issues 
 
 ### Issues added in version 3
 
@@ -130,7 +130,7 @@ Deleted in version 2
 Deleted in version 2
 </td></tr></table>
 
-## Summary and links to javadocs=### 
+## Summary and links to javadocs 
 
 The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html here]. Direct links to the javadocs for each class are given in the table below.
 

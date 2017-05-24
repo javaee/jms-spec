@@ -1,4 +1,4 @@
-# More flexible JMS MDBs (Updates to version 2)</h1>
+# More flexible JMS MDBs (Updates to version 2)
 
 This page contains some updates to  [[JMSListener2|version 2 of the proposals]]  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
@@ -8,7 +8,7 @@ This page will be extended with additional changes and points for discussion. Wh
 
 __TOC__
 
-## Changes from version 2=### 
+## Changes from version 2 
 
 The major issues which still need to be decided are:
 
@@ -347,7 +347,7 @@ The proposals above will define the behaviour when none of these are specified.
 
 Adding these will be considered separately. (See also [https://java.net/jira/browse/JMS_SPEC-117 JMS_SPEC-117]).
 
-## Simplifying the method annotations: some options=### 
+## Simplifying the method annotations: some options 
 
 No changes are proposed to the method annotations (apart from the addition of <tt>JMSListenerProperty</tt>) at this stage.  
 

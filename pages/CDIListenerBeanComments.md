@@ -4,7 +4,7 @@ This page lists and discusses some of the comments made on the proposals for JMS
 
 __TOC__
 
-## Creating listener beans automatically=### 
+## Creating listener beans automatically 
 
 <h3>Comment</h3>
 
@@ -61,7 +61,7 @@ This is effectively a shorter alternative to listening for <tt>@Initialize</tt> 
 
 One possibility would be for JMS to define a similar annotation. Another is for CDI to adopt it in JMS 2.0. This is proposed in [https://issues.jboss.org/browse/CDI-473 CDI-473] but no decision has been made yet to do so.
 
-## Runtime customisation=### 
+## Runtime customisation 
 
 <h3>Comment</h3>
 
@@ -146,7 +146,7 @@ CDI provides a way to programmatically obtain an instance of the listener bean. 
 <br/>
 However since the consumer is created during the bean's @postCreate stage then we need a way for the application to specify the message selector etc before we actually create the bean. CDI allows qualifiers to be specified before calling get(), but these annotations are not qualifiers. Ideas welcome.
 
-## Listening to temporary queues and topics=### 
+## Listening to temporary queues and topics 
 
 <h3>Comment</h3>
 
@@ -195,7 +195,7 @@ The application could create the listener bean, call the <tt>getTempQueue()</tt>
 
 Note that if we allow JMS listener beans to specify more than one callback method then it might be configured to listen on more than one temporary destination. The syntax for injecting the temporary destination would need to be extended to allow the callback method to be specified. (This is another argument against allowing multiple callback methods).
 
-## Handling failures=### 
+## Handling failures 
 
 <h3>Comment</h3>
 
@@ -248,7 +248,7 @@ This might be accompanied by a callback to specify that the error previously rep
      ...
    }
 
-## What scopes are active when the callback method is invoked?=### 
+## What scopes are active when the callback method is invoked? 
 
 <h3>Comment</h3>
 
@@ -332,7 +332,7 @@ It also might cause surprising behaviour if the listener bean is request scoped,
 
 * With JMS listener beans the same applies to business methods: all accesses to a given bean instance via business methods will take place in the same thread. However callback method will always be called from a different thread to that, and may take place at the same time as a business method is being called. The listener bean needs to be designed with this in mind.
 
-## Are CDI events better?=### 
+## Are CDI events better? 
 
 <h3>Comment</h3>
 

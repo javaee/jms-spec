@@ -1,6 +1,6 @@
-# Injection of JMSContext objects - Use Cases A - E (version 3)</h1>
+# Injection of JMSContext objects - Use Cases A - E (version 3)
 
-## Summary=### 
+## Summary 
 
 This page contains a number of use cases which demonstrate how the proposals in [[JMSContextScopeProposals|Injection of JMSContext objects - Proposals (version 3)]] would appear to users. Each use case is followed by an analysis for both [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]]. 
 
@@ -12,7 +12,7 @@ After reading these, now read [[JMSContextScopeProposals3|Injection of JMSContex
 
 __TOC__
 
-## Use cases=### 
+## Use cases 
 
 ### Use case A: Two methods on the same bean within separate transactions
 

@@ -1,10 +1,10 @@
-# Flexible JMS MDBs: method annotations (version 5)</h1>
+# Flexible JMS MDBs: method annotations (version 5)
 
 This page discusses the method annotations on flexible JMS MDBs
 
 __TOC__
 
-##  Latest proposal (option H)=### 
+##  Latest proposal (option H) 
 
 **Note:** This page has been updated to reflect the discussion in the meeting on Thursday 19th November. 
 

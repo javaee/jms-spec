@@ -1,4 +1,4 @@
-# JMS 2.0 Early Draft</h1>
+# JMS 2.0 Early Draft
 
 The JMS 2.0 Early Draft is now published and may be downloaded [ http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html here]. The formal review period ended on 29 March 2012. 
 
@@ -6,7 +6,7 @@ The JMS 2.0 Early Draft is now published and may be downloaded [ http://jcp.org/
 
 __TOC__
 
-## What's new in JMS 2.0?=### 
+## What's new in JMS 2.0? 
 
 The following new messaging features have been added in JMS 2.0:
 
@@ -48,7 +48,7 @@ The following JIRA query will list all the "issues" included in the Early Draft:
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+Tags+%3D+ed20-added Issues included in the JMS 2.0 Early Draft]<br/>
 
-##  What's planned for after the early draft?=### 
+##  What's planned for after the early draft? 
 
 Quite a few issues didn't make it into the Early Draft and have been deferred until the next draft (the Public Draft): These can be listed using the JIRA query below.
 

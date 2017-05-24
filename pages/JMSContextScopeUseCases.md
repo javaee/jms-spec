@@ -1,10 +1,10 @@
 =Proposals for the injection of JMSContext objects### 
 
-## Option 1=### 
+## Option 1 
 
 This is as defined in the JMS 2.0 Early Draft, which can be downloaded [http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html here]
 
-## Options 2 and 3=### 
+## Options 2 and 3 
 
 These are described in 
 

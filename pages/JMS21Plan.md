@@ -1,4 +1,4 @@
-# JMS 2.1 Plan</h1>
+# JMS 2.1 Plan
 
 Here's the high-level list of features planned for JMS 2.1, and an approximate order in which they will be considered. 
 
@@ -8,7 +8,7 @@ For a longer list of all the open issues (many of which won't make it into JMS 2
 
 __TOC__
 
-## Major changes=### 
+## Major changes 
 
 Minor changes, which could be considered in parallel to this, are listed under [/jms-spec/pages/JMS21Plan#Minor_changes Minor changes] below.
 
@@ -45,7 +45,7 @@ Minor changes, which could be considered in parallel to this, are listed under [
 ** Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction ([http://java.net/jira/browse/JMS_SPEC-130 JMS_SPEC-130])
 ** Clarifying the existing restrictions on using client-acknowledgement and local transactions in a Java EE environment and removing these restrictions where possible ([https://java.net/jira/browse/JMS_SPEC-131 JMS_SPEC-131])
 
-## Minor changes=### 
+## Minor changes 
 
 We need have a separate "issue triage" session to discuss minor proposals in turn. The following minor issues are being actively promoted by members of the community (e.g. by recent updated to JIRA).
 
@@ -55,7 +55,7 @@ We need have a separate "issue triage" session to discuss minor proposals in tur
 
 * Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause()  ([https://java.net/jira/browse/JMS_SPEC-113 JMS_SPEC-113])
 
-## Anything else=### 
+## Anything else 
 
 There's a complete list of all currently-proposed features (too many to do all of them) on the on the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
 

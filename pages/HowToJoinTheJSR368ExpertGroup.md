@@ -1,4 +1,4 @@
-# How to join the JSR 368 (JMS 2.1) Expert group</h1>
+# How to join the JSR 368 (JMS 2.1) Expert group
 
 If you're familiar with the JMS specification and are able to devote a significant amount of time into becoming actively involved in the development of JMS 2.1, then you are invited to join the JSR 368 expert group. This page describes the steps that need to be followed if you wish to join.
 

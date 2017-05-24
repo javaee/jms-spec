@@ -4,7 +4,7 @@ This page discusses the method annotations on flexible JMS MDBs
 
 __TOC__
 
-##  Original proposal (option A)=### 
+##  Original proposal (option A) 
 
 [/jms-spec/pages/JMSListener3#Recap_of_current_proposal_%28Option_A%29 Description of option A]
 
@@ -228,7 +228,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
 
 * <tt>@ListenerProperty</tt> This annotation may be used to specify a single arbitrary activation property. The elements <tt>name</tt> and <tt>value</tt> must be specified. This is a repeatable annotation and may be specified multiple times.  
 
-##  Another proposal (option G)=### 
+##  Another proposal (option G) 
 
 Key features of this proposal
 
