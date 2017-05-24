@@ -10,6 +10,9 @@ These proposals are separate to the proposals for [[JMSListener2|More flexible J
 
 __TOC__
 
+* auto-gen TOC:
+{:toc
+
 ## Introduction
 
 ### In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB
