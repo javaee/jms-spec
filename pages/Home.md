@@ -6,8 +6,8 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 
 The JMS 2.1 Early Draft is now out! 
 * Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
-* See the [latest news on JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
-* Find out all about [JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21).
+* See the [latest news on JMS 2.1](JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
+* Find out all about [JMS 2.1](JMS21).
 
 ## JMS 2.1
 
@@ -66,20 +66,18 @@ See [Joining the JMS expert group](JMSExperts#Joining_the_JMS_expert_group).
 ## JMS community mailing lists
 
 ###  Mailing lists open to everyone
-{|- border="1"
-! Email address
-! Purpose
-! Access
-|-
-| **users@jms-spec.java.net**
-| Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
- This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.
-Discussions on the **jsr-368-experts@jms-spec.java.net** mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group.
-| Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. 
+
+Email address | Purpose | Access
+------------- | ------- | ------
+**users@jms-spec.java.net** | Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
+This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.
+Discussions on the **jsr-368-experts@jms-spec.java.net** mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group. |
+Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. 
 
 To receive messages from this list, you need to "join" the [jms-spec.java.net](http://jms-spec.java.net) project
 and then subscribe to this list.  ([How to do this](https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ).  Messages from subscribers are not moderated.
 [Online archive of past messages](http://java.net/projects/jms-spec/lists/users/archive).  
+
 |-
 | **issues@jms-spec.java.net**
 | Mailing list for JIRA issue notifications. Everyone is welcome to join. <br /> <br />
