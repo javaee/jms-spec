@@ -131,4 +131,4 @@ The [Java EE Backwards Compatibility Requirements](https://javaee.github.io/java
 
 ## Important legal statement
 
-[Safe harbor statement](/pages/SafeHarborStatement).
+[Safe harbor statement](/jms-spec/pages/SafeHarborStatement).
