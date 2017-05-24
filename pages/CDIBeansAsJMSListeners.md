@@ -379,7 +379,7 @@ The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>end
   *Using the annotations on the callback method, obtain a connection to the JMS provider and create a consumer on the specified destination
   *When a message is delivered from a particular consumer, call <tt>createEndpoint</tt> on the specified <tt>MessageEndpointFactory</tt> to obtain a <tt>MessageEndpoint</tt> corresponding to the JMS listener bean.
   * Call <tt>MessageEndpoint#beforeDelivery</tt>
-  * Use reflection to invoke the callback method for this consumer, setting each method parameter to the message, to the message body, or to a specified message header or property, as defined in the [[JMSListener2#Summary_of_callback_method_parameters|proposals for more flexible JMS MDBs]]
+  * Use reflection to invoke the callback method for this consumer, setting each method parameter to the message, to the message body, or to a specified message header or property, as defined in the [/jms-spec/pages/proposals for more flexible JMS MDBs(JMSListener2#Summary_of_callback_method_parameters)
   * Acknowledge the message in the current transaction
   * Call <tt>MessageEndpoint#afterDelivery</tt>
   * Call <tt>MessageEndpoint#release</tt>
