@@ -150,7 +150,8 @@ In a MDB the class-level annotation <tt>@javax.ejb.TransactionManagement(Transac
 With JMS listener beans it is proposed to follow the existing existing mechanism for specifying whether a business method on a managed bean is executed in a container-managed transaction. This is to use the method-level annotation <tt>@javax.transaction.Transactional(Transactional.TxType.REQUIRED)</tt> to specify that a container-managed transaction must be used. If no such annotation is provided then a container-managed transaction will ''not'' be used. Note that this default behaviour is the opposite of that of MDBs.
 
 So in the following example, each message will be received, and the callback method invoked, without the container using a transaction:
-<br/><br/>
+
+```
  public class MYListenerBean{
  
    @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
@@ -158,9 +159,11 @@ So in the following example, each message will be received, and the callback met
      ...
    }
  }
-<br/>
+```
+
 However in the following example, each message will be received, and the callback method invoked, in the same container-managed transaction:
-<br/><br/>
+
+```
  public class MYListenerBean{
  
    @Transactional 
@@ -169,7 +172,8 @@ However in the following example, each message will be received, and the callbac
      ...
    }
  }
-<br/>
+```
+
 The <tt>@Transactional</tt> annotation has an optional attribute which allows the "transaction type" to be specified. This can be set to one of the six possible values. Not all are appropriate for listener beans:
 * <tt>@Transactional(Transactional.TxType.MANDATORY)</tt>. This is not appropriate for a MDB and will be treated as an error.
 * <tt>@Transactional(Transactional.TxType.NEVER)</tt>. A container-managed transaction will not be used.
@@ -198,7 +202,8 @@ The main reason for using JMS listener beans rather than MDBs is that they give 
 By default a CDI managed bean has ''dependent scope''. This can be denoted by adding the <tt>@Dependent</tt> class annotation, though since this is the default it is not required. A bean with dependent scope will follow the lifecycle of whatever bean it is injected into. 
 
 So if we define a CDI managed bean as follows:
-<br/><br/>
+
+```
  @Dependent
  public class MyDepScopeListenerBean{
  
@@ -207,8 +212,9 @@ So if we define a CDI managed bean as follows:
      ...
    }
  }
-<br/>And inject it into, say, a Servlet as follows:
-<br/><br/>
+```
+And inject it into, say, a Servlet as follows:
+```
  @WebServlet("/myjmsservlet1")
  public class MyJMSServlet1 extends HttpServlet {
  
@@ -218,14 +224,15 @@ So if we define a CDI managed bean as follows:
       ...
    }
  }
-
-<br/>Then whenever an instance of the servlet is created (by the container) an instance of <tt>MyDepScopeListenerBean</tt> will be automatically created which will start listening for messages from the specified. Each time a message is delivered the callback method will be invoked. When the servlet instance is destroyed (by the container) the instance will cease listening for messages.
+```
+Then whenever an instance of the servlet is created (by the container) an instance of <tt>MyDepScopeListenerBean</tt> will be automatically created which will start listening for messages from the specified. Each time a message is delivered the callback method will be invoked. When the servlet instance is destroyed (by the container) the instance will cease listening for messages.
 
 Each instance of the servlet will have its own instance of <tt>MyDepScopeListenerBean</tt>, and can access its other methods directly using the <tt>myDepScopeListenerBean</tt> field. 
 
 The use of a servlet here is just an example. The <tt>MyDepScopeListenerBean</tt> could be injected into any other class that supports CDI injection. SInce it has dependent scope it would follow the same lifecycle as the object into which it was injected.
 
 ### JMS listener bean with dependent scope and explicit lifecycle management
+
 If required the application can control the lifecycle of a dependent-scoped JMS listener bean explicitly. In this case it must inject an <tt>Instance</tt> object of the required type. This will function as a factory (or "provider") of listener bean instances:
 <br/><br/>
  
@@ -233,24 +240,25 @@ If required the application can control the lifecycle of a dependent-scoped JMS 
  
 
 <br/>The application then needs to call the <tt>get</tt> method to create an instance of the listener and start it listening for messages. It can create multiple instances of required.
-<br/><br/>
- 
-      MyDepScopeJMSListener jmsListener1 = listenerProvider.get();
- 
+```
+MyDepScopeJMSListener jmsListener1 = listenerProvider.get();
+``` 
 
-<br/>Each listener will continue to listen for messages until the application explicitly destroys it by calling
-<br/><br/>
- 
-      listenerProvider.destroy(jmsListener1 );
- 
+Each listener will continue to listen for messages until the application explicitly destroys it by calling
 
+```
+listenerProvider.destroy(jmsListener1 );
+```
+ 
 ### CDI managed listener bean with request scope
+
 A JMS listener bean doesn't have to have dependent scope. It can have any scope supported by CDI, including scopes which are application-defined. 
 
 For example, the <tt>@RequestScoped</tt> class annotation can be used to specify that the listener bean should have "request" scope. This means that each request will use a separate instance of the listener. The listener will be created, and will start listening for messages,  the first time that the injected object is used within the request. It will then continue to listen for messages until the request ends.
 
 So if we define a CDI managed bean as follows:
-<br/><br/>
+
+```
  @RequestScoped
  public class MyReqScopeListenerBean{
  
@@ -259,8 +267,9 @@ So if we define a CDI managed bean as follows:
      ...
    }
  }
-<br/>And inject it into, a Servlet as follows:
-<br/><br/>
+```
+And inject it into, a Servlet as follows:
+```
  @WebServlet("/myjmsservlet1")
  public class MyJMSServlet1 extends HttpServlet {
  
@@ -272,8 +281,8 @@ So if we define a CDI managed bean as follows:
      // listener will be destroyed when scope ends
    }
  }
-
-<br/>Then each time a request is received, and the service method invoked, the call to <tt>listener.toString()</tt> will cause a new listener to be created and will start listening for messages. It will then continue to listen for messages until the request ends.
+```
+Then each time a request is received, and the service method invoked, the call to <tt>listener.toString()</tt> will cause a new listener to be created and will start listening for messages. It will then continue to listen for messages until the request ends.
 
 The call to <tt>listener.toString()</tt> is required because of the way that CDI works with non-dependent scopes (so-called "normal" scopes). The object that is injected, and saved in the <tt>listener</tt> field is just a proxy. The actual listener will only be created when a method is called.  In this case we call <tt>listener.toString()</tt>, but any other method supported by the bean may be called instead.
 
