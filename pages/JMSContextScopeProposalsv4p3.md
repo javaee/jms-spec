@@ -23,9 +23,8 @@ Consider two stateless session beans, `Bean1` and `Bean2`.
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
 
-<br/>
 This is `Bean1`
-
+```
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
  public class Bean1 {
@@ -43,10 +42,10 @@ This is `Bean1`
         bean2.method2();
     }
  }
+```
 
-<br/>
 This is `Bean2`
- 
+``` 
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
  public class Bean2 {
@@ -61,8 +60,9 @@ This is `Bean2`
         context.send(queue,"Message 2");
     }
  }
+```
 
-#### =Case F: Analysis=
+#### Case F: Analysis
 
 {|- border="1"
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
@@ -81,7 +81,7 @@ This is `Bean2`
 | Yes, since they are sent using the same `MessageProducer` object.
 |} 
 
-#### =Case F: JMSContext lifecycle=
+#### Case F: JMSContext lifecycle
 
 The `JMSContext` object will be created when `method1` uses `context` for the first time, and destroyed when method1 returns.
 
@@ -92,7 +92,7 @@ The same behaviour should apply when the bean is configured to use container-man
 Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`. `method1` starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
-<br/><br/>
+```
   @TransactionManagement(TransactionManagementType.BEAN)
   @Stateless
   public class Bean1 {
@@ -117,8 +117,9 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
        }
  
  }
+```
 
-#### =Case G: Analysis=
+#### Case G: Analysis
 
 {|- border="1"
 | Are the `context` variables in the four calls to `context.send()`  injected using identical annotations?
@@ -137,7 +138,7 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
 | The first and second messages share one `MessageProducer` object and are delivered in order, and the third and fourth messages  share a different `MessageProducer` object and are delivered in order. However there is no guarantee that the first and second messages will be delivered before the third and fourth messages.
 |} 
 
-#### =Case G: JMSContext lifecycle=
+#### Case G: JMSContext lifecycle
 
 The `JMSContext` object used by the first and second calls to  `context.send()` will be created when the first call to `context.send()` takes place, and will be destroyed when the first transaction is committed.
 
@@ -148,7 +149,7 @@ The `JMSContext` object used by the third and fourth calls to  `context.send()` 
 Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`. `method1` does not start a transaction and uses the `context` variable to send two messages. It then starts a transaction and uses the `context` variable to send a third message. It then commits the transaction and uses the `context` variable  to send a fourth and fifth more messages.
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
-<br/><br/>
+```
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
  public class Bean1 {
@@ -171,8 +172,9 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
         context.send(queue,"Message 5");
     }
  }
+```
 
-#### =Case H: Analysis=
+#### Case H: Analysis
 
 {|- border="1"
 | Are the `context` variables in the five calls to `context.send()`  injected using identical annotations?
@@ -192,7 +194,7 @@ In addition the  `context` variable used in the third call to to `context.send()
 | The first, second, fourth and fifth messages share one `MessageProducer` object and are delivered in order. However the third message uses a different `MessageProducer` object and so there is no guarantee that the third message will be delivered between the second and fourth messages.
 |} 
 
-#### =Case H: JMSContext lifecycle=
+#### Case H: JMSContext lifecycle
 
 The `JMSContext` object used by the first, second, fourth and fifth calls to   `context.send()` will be created when the first call to  `context.send()` takes place, and will be destroyed when the method returns. 
 
@@ -210,9 +212,8 @@ Consider two stateless session beans, `Bean1` and `Bean2`.
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
 
-<br/>
 This is `Bean1`
-
+```
  @TransactionManagement(TransactionManagementType.CONTAINER)
  @Stateless
  public class Bean1 {
@@ -232,10 +233,10 @@ This is `Bean1`
          context.send(queue,"Message 3");
      }
  }
+```
 
-<br/>
 This is `Bean2`
- 
+``` 
  @TransactionManagement(TransactionManagementType.CONTAINER)
  @Stateless
  public class Bean2 {
@@ -251,8 +252,9 @@ This is `Bean2`
          context.send(queue,"Message 2");
      }
  }
+```
 
-#### =Case J: Analysis=
+#### Case J: Analysis
 
 {|- border="1"
 | Are the `context` variables in the three calls to `context.send()`  injected using identical annotations?
@@ -271,7 +273,7 @@ This is `Bean2`
 | The first and third messages are sent using the same `MessageProducer` objects and are guaranteed to be delivered in order. However the second message is sent using a different `MessageProducer` object and so there is no guarantee that it will be delivered in between the first and third messages.
 |} 
 
-#### =Case J: JMSContext lifecycle=
+### Case J: JMSContext lifecycle
 
 The `JMSContext` object used by `method1` will be created when `method1` uses `context` for the first time, and destroyed when the first transaction is committed, which will be when `method1` returns.
 
@@ -289,9 +291,8 @@ Consider two stateless session beans, `Bean1` and `Bean2`
 
 A remote client obtains a reference to `Bean1` and calls `method1`
 
-<br/>
 This is `Bean1`
-
+```
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean1 {
@@ -310,11 +311,10 @@ This is `Bean1`
         bean2.method2();
     } 
  }
+```
 
-<br/>
 This is `Bean2`
-
- 
+```
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean2 {
@@ -330,8 +330,9 @@ This is `Bean2`
         context.send(queue,"Message 2");
     }
  }
+```
 
-#### =Case K: Analysis=
+#### Case K: Analysis
 
 {|- border="1"
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
@@ -350,7 +351,7 @@ This is `Bean2`
 | No, since they are sent using different `MessageProducer` objects.
 |} 
 
-#### =Case K: JMSContext lifecycle=
+#### Case K: JMSContext lifecycle
 
 The `JMSContext` object used by `method1` will be created when  `method1` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 

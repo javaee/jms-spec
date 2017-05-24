@@ -104,8 +104,8 @@ These new annotations will initially be available only on MDBs. This offers a la
 
 ## Specifying the callback method 
 <br/>
-In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.<br/><br/>
-
+In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.
+```
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
@@ -117,9 +117,10 @@ In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface
    }
  
  }
-<br/>
+```
+
 Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
-<br/><br/>
+```
  @MessageDriven
  public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
  
@@ -129,7 +130,7 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
    }
  
  }
-<br/>
+```
 
 <b>This is still a MDB</b>
 
@@ -210,7 +211,7 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 ## Specifying what messages will be received 
 <br/>
 Before it can be used, a JMS MDB must specify where the messages will come from and how they will be received.  In Java EE 7 these are specified using "activation properties", each of which has a  String name and a String value. The name and value of each property must be hardcoded into either the application code or the deployment descriptor, and the developer gets no help from the compiler or schema to check that they are using the correct name and setting it to an appropriate value. The syntax itself is also cumbersome.
-<br/><br/>
+```
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(
      propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
@@ -230,9 +231,10 @@ Before it can be used, a JMS MDB must specify where the messages will come from 
  public class MyMessageBean implements MessageListener {
    ...
  }
-<br/>
+```
+
 In Java EE 8 a JMS MDB may continue to specify activation properties, even if the MDB does not implement `javax.jms.MessageListener`. However they will be superseded by a new set of JMS-specific annotations which allow each activation property to be configured by a JMS-specific annotation on the callback method itself.
-<br/><br/>
+```
    @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
    @JMSConnectionFactory("java:global/MyCF")
    @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
@@ -243,7 +245,7 @@ In Java EE 8 a JMS MDB may continue to specify activation properties, even if th
    public void giveMeAMessage(Message message) {
      ...
    }
-<br/>
+```
 These annotations are introduced in more detail in the following sections.
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">

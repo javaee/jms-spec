@@ -221,20 +221,20 @@ Now let's consider JMS listener beans. Whereas a MDB is only initialised when th
 
 With JMS listener beans, it seems reasonable that if the bean cannot be initialised then the default behaviour should be options(1) or (2), which is to throw an exception in whatever thread was directly or indirectly attempting to create the listener bean. Exactly how long the initialisation blocks for whilst attempting to perform initialisation should be left to the application server, resource adapter or JMS provider to define.
 
-However the application should be able to specify an alternative behaviour using, say, an `@ASyncInit` annotation on the bean. This specifies that if the bean cannot be initialised then the applicaiton server should create the bean anyway without throwing an exception. In this case the application server should perform retries in the background. 
+However the application should be able to specify an alternative behaviour using, say, an `@ASyncInit` annotation on the bean. This specifies that if the bean cannot be initialised then the application server should create the bean anyway without throwing an exception. In this case the application server should perform retries in the background. 
 ```
- **@AsyncInit**
- @SessionScoped
- public class MyCDIBean21 {
+@AsyncInit
+@SessionScoped
+public class MyCDIBean21 {
   
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
- 
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
+
+}
 ```
 It is probably desirable to provide a way for the application server to notify the application that there has been an initialisation error. This could be done using a special, optional, callback on the listener bean. This callback could also be used to notify that a listener bean which had previously been successfully initialised had stopped working for some reason such as connection to the JMS server having been lost:
 ```
@@ -254,7 +254,7 @@ This might be accompanied by a callback to specify that the error previously rep
 
 ### Comment
 
-_What scopes are active when the callback method is invoked? _
+_What scopes are active when the callback method is invoked?_
 
 _Additionally, @RequestScoped is kinda assumed to be an "@ThreadScoped" thing, e.g. there's the expectation that only the current thread will
 access it. If the JMS provider will asynchronously call a method on the bean instance from another thread, then this breaks this assumption._
@@ -268,7 +268,7 @@ It would seem reasonable to apply the same rule when a message is delivered to t
 Unlike MDBs, JMS listener beans may have business methods just like any other CDI managed bean. When these methods are called, whether or not there is an active request scope will depend on the calling thread, and will be unrelated to any request scope created when a message is delivered. 
 
 This may have some unexpected consequences if the listener bean has normal-scoped fields:
-<br/><br/>
+```
  public class MyCDIBean21 {
  
    @Inject  private MyApplicationScopedBean appScopedBean; 
@@ -295,7 +295,7 @@ This may have some unexpected consequences if the listener bean has normal-scope
    }  
  
  }
-<br/>
+```
 * If the listener bean injects an application-scoped bean into a field then both message callbacks and business methods will see the **same** bean instance.
 
 * If the listener bean injects a request-scoped bean into a field then all calls to business methods within a particular request will see the same bean instance. However message callbacks will never see that bean instance and will always see a **different** bean instance. 
@@ -305,7 +305,7 @@ This may have some unexpected consequences if the listener bean has normal-scope
 * If the listener bean injects a bean of some other normal scope then the scope may be active when the business method is invoked but not be active when the message callback is invoked. In this the business method could access the injected bean but any attempt by the callback method to do so will cause a "no active context" error.
 
 It also might cause surprising behaviour if the listener bean is request scoped, since request scope essentially means thread scope:
-<br/><br/>
+```
  @RequestScoped
  public class MyCDIBean21 {
  
@@ -329,7 +329,8 @@ It also might cause surprising behaviour if the listener bean is request scoped,
    }  
  
  }
-<br/>
+```
+
 * With ordinary CDI managed beans each application thread "sees" a different instance of the bean. This has the effect of causing all accesses to a given bean instance via business methods to take place in the same thread. 
 
 * With JMS listener beans the same applies to business methods: all accesses to a given bean instance via business methods will take place in the same thread. However callback method will always be called from a different thread to that, and may take place at the same time as a business method is being called. The listener bean needs to be designed with this in mind.

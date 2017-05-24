@@ -234,12 +234,10 @@ The use of a servlet here is just an example. The `MyDepScopeListenerBean` could
 ### JMS listener bean with dependent scope and explicit lifecycle management
 
 If required the application can control the lifecycle of a dependent-scoped JMS listener bean explicitly. In this case it must inject an `Instance` object of the required type. This will function as a factory (or "provider") of listener bean instances:
-<br/><br/>
- 
-   @Inject Instance&lt;MyDepScopeListenerBean&gt; listenerProvider;
- 
-
-<br/>The application then needs to call the `get` method to create an instance of the listener and start it listening for messages. It can create multiple instances of required.
+```
+@Inject Instance&lt;MyDepScopeListenerBean&gt; listenerProvider;
+``` 
+The application then needs to call the `get` method to create an instance of the listener and start it listening for messages. It can create multiple instances of required.
 ```
 MyDepScopeJMSListener jmsListener1 = listenerProvider.get();
 ``` 

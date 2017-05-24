@@ -52,7 +52,7 @@ In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface
  }
 <br/>
 Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
-<br/><br/>
+```
  @MessageDriven
  public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
  
@@ -62,7 +62,7 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
    }
  
  }
-<br/>
+```
 
 Notes:
 
@@ -101,7 +101,8 @@ Notes:
 ## Specifying what messages will be received 
 <br/>
 Before it can be used, a JMS MDB must specify where the messages will come from and how they will be received.  In Java EE 7 these are specified using "activation properties", each of which has a  String name and a String value. The name and value of each property must be hardcoded into the either application code or the deployment descriptor, and the developer gets no help from the compiler or schema to check that they are using the correct name and setting it to an appropriate value. The syntax itself is also cumbersome.
-<br/><br/>
+
+```
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(
      propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
@@ -121,9 +122,10 @@ Before it can be used, a JMS MDB must specify where the messages will come from 
  public class MyMessageBean implements MessageListener {
    ...
  }
-<br/>
+```
+
 In Java EE 8 a MDB may continue to specify activation properties, even if the MDB does not implement `javax.jms.MessageListener`. However they will be superseded by a new set of JMS-specific annotations which allow each activation property to be configured by a JMS-specific annotation on the callback method itself.
-<br/><br/>
+```
    @JMSConnectionFactory("java:global/MyCF")
    @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
    @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
@@ -134,7 +136,7 @@ In Java EE 8 a MDB may continue to specify activation properties, even if the MD
    public void giveMeAMessage(Message message) {
      ...
    }
-<br/>
+```
 These annotations are introduced in more detail the following sections.
 
 Note:
