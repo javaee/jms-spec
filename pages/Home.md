@@ -71,9 +71,6 @@ Email address | Purpose | Access
 :------------ | :------------- | :-------------
 Content from cell 1 | Content from cell 2 | zz
 Content in the first column | Content in the second column | zz
-
-Email address | Purpose | Access
-:------------- | :------- | :------
 **users@jms-spec.java.net** | Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
 This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.
 Discussions on the **jsr-368-experts@jms-spec.java.net** mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group. |
