@@ -97,7 +97,7 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ## Issues incorporated in the public draft. 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11296 Query (filter)] (<tt>tag=pd20-added</tt>)
+[http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11296 Query (filter)] (`tag=pd20-added`)
 
 {|- border="1"
 ! ID
@@ -214,7 +214,7 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ## Minor documentation updates included in the proposed final draft 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (<tt>tag=jms20-fd20-doc-added </tt>)
+[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (`tag=jms20-fd20-doc-added `)
 
 {|- border="1"
 ! ID
@@ -251,7 +251,7 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ## Minor documentation updates included in the final release 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fr20-doc-added Query]  (<tt>tag=jms20-fr20-doc-added </tt>)
+[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fr20-doc-added Query]  (`tag=jms20-fr20-doc-added `)
 
 {|- border="1"
 ! ID
@@ -268,7 +268,7 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ## Issues incorporated in the Java EE 7 specification 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-jsr342-added  Query]  (<tt>tag=jms20-jsr342-added </tt>)
+[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-jsr342-added  Query]  (`tag=jms20-jsr342-added `)
 
 {|- border="1"
 ! ID

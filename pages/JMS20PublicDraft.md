@@ -24,10 +24,10 @@ A [http://netbeans.org NetBeans] project which demonstrates some new features of
 The latest version of this demonstration has been tested with GlassFish 4.0 nightly build 78. If you have problems running with a later version, please [mailto:nigel.deakin@oracle.com let us know]
 
 This demonstration shows
-* Use of the JMS 2.0 simplified API  using application-managed <tt>JMSContext</tt> objects
-* Use of the JMS 2.0 API using Java EE container-managed (injected) <tt>JMSContext</tt> objects
-* Use of the new <tt>receiveBody</tt> method to synchronously receive a message and return its body in a single method call
-* Use of the new <tt>getBody</tt> method to return the body of a <tt>Message</tt> without the need to cast it to a more specific message type
+* Use of the JMS 2.0 simplified API  using application-managed `JMSContext` objects
+* Use of the JMS 2.0 API using Java EE container-managed (injected) `JMSContext` objects
+* Use of the new `receiveBody` method to synchronously receive a message and return its body in a single method call
+* Use of the new `getBody` method to return the body of a `Message` without the need to cast it to a more specific message type
 
 ## What's new in JMS 2.0? 
 
@@ -44,16 +44,16 @@ The following change has been made to aid scalability:
 * Applications are now permitted to create multiple consumers on the same durable or non-durable topic subscription. In previous versions of JMS only a single consumer was permitted.
 
 Several changes have been made to the JMS API to make it simpler and easier to use:
-* <tt>Connection</tt>, <tt>Session</tt> and other objects with a <tt>close</tt> method now implement the <tt>java.jang.AutoCloseable</tt> interface to allow them to be used in a Java SE 7 try-with-resources statement. 
+* `Connection`, `Session` and other objects with a `close` method now implement the `java.jang.AutoCloseable` interface to allow them to be used in a Java SE 7 try-with-resources statement. 
 * A new "simplified API" has been added which offers a simpler alternative to the standard API, especially in Java EE applications.
 * New methods have been added to create a session without the need to supply redundant arguments.
 * Although setting client ID remains mandatory when creating an unshared durable subscription, it is optional when creating a shared durable subscription. 
-* A new method <tt>getBody</tt> has been added to allow an application to extract the body directly from a Message without the need to cast it first to an appropriate subtype. 
+* A new method `getBody` has been added to allow an application to extract the body directly from a Message without the need to cast it first to an appropriate subtype. 
 
 A new chapter has been added which describes some additional restrictions and behaviour which apply when using the JMS API in the Java EE web or EJB container. This information was previously only available in the EJB and Java EE platform specifications. 
 
 A new chapter has been added which adds a new requirement for a JMS provider to include a resource adapter, and which defines a number of standard endpoint activation properties. 
 
-New methods have been added to <tt>Session</tt> which return a <tt>MessageConsumer</tt> on a durable topic subscription. Applications could previously only obtain a domain-specific <tt>TopicSubscriber</tt>, even though its use was discouraged. 
+New methods have been added to `Session` which return a `MessageConsumer` on a durable topic subscription. Applications could previously only obtain a domain-specific `TopicSubscriber`, even though its use was discouraged. 
 
 The specification has been clarified in various places.

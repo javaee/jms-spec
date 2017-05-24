@@ -21,7 +21,7 @@ Improvements to the JMS specification are managed using issues in JIRA. Here is 
 |
 |-
 | [http://java.net/jira/browse/JMS_SPEC-173 JMS_SPEC-173] <br/>
-| Javadocs for <tt>JMSContext#start</tt> should mention that it is usually called automatically
+| Javadocs for `JMSContext#start` should mention that it is usually called automatically
 |
 |
 |-
@@ -46,7 +46,7 @@ Improvements to the JMS specification are managed using issues in JIRA. Here is 
 | Not really a bug, but may require noting in the spec
 |-    
 | [http://java.net/jira/browse/JMS_SPEC-123 JMS_SPEC-123]
-| <tt>JMSProducer#setJMSCorrelationIDAsBytes</tt> should be allowed to throw a <tt>java.lang.UnsupportedOperationException</tt>
+| `JMSProducer#setJMSCorrelationIDAsBytes` should be allowed to throw a `java.lang.UnsupportedOperationException`
 |  
 | 
 |- 

@@ -2,9 +2,9 @@
 
 ## Summary 
 
-This page discusses that part of the JMS 2.0 Early Draft which defines how <tt>javax.jms.JMSContext</tt> objects may be injected.   In particular it discusses the scope and lifecycle of injected <tt>JMSContext</tt> objects. 
+This page discusses that part of the JMS 2.0 Early Draft which defines how `javax.jms.JMSContext` objects may be injected.   In particular it discusses the scope and lifecycle of injected `JMSContext` objects. 
 
-The JMS 2.0 Early Draft proposed that injected <tt>JMSContext</tt> objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".
+The JMS 2.0 Early Draft proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".
 
 This page describes some drawbacks to that proposal and offers two alternatives, [[JMSContextScopeProposals#Option_2|Option 2]] and  [[JMSContextScopeProposals#Option_3|Option 3]]. 
 
@@ -15,20 +15,20 @@ After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSCon
 
 ## Proposal in JMS 2.0 Early Draft (Option 1) 
 
-The JMS 2.0 early draft (section 11.3) specified that applications may declare a field of type <tt>javax.jms.JMSContext</tt> and annotate it with the <tt>javax.inject.Inject</tt> annotation as follows:
+The JMS 2.0 early draft (section 11.3) specified that applications may declare a field of type `javax.jms.JMSContext` and annotate it with the `javax.inject.Inject` annotation as follows:
 
  @Inject JMSContext context;
 
-This would cause the container to inject a <tt>JMSContext</tt>. 
+This would cause the container to inject a `JMSContext`. 
 
 Injection would only be supported if the following three conditions were all satisfied:
 * the must be running in the Java EE web, EJB or application client containers  
 * the type of application was defined as supporting injection in table EE.5-1 "Component classes supporting injection" of the Java EE specification  
-* the deployed archive contained a <tt>META-INF/beans.xml</tt> descriptor to enable CDI support
+* the deployed archive contained a `META-INF/beans.xml` descriptor to enable CDI support
 
-The injected <tt>JMSContext</tt> would have a scope and lifecycle as follows:
+The injected `JMSContext` would have a scope and lifecycle as follows:
 
-*The injected <tt>JMSContext</tt> would have request scope and be automatically closed when the request ends. 
+*The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
 * However, unlike a normal CDI request-scoped object, a separate JMSContext instance would be injected for every injection point.
 
 The connection factory, user, password, session mode and autoStart behaviour, where needed, could  be specified using annotations as follows:
@@ -42,13 +42,13 @@ The connection factory, user, password, session mode and autoStart behaviour, wh
 
 ## Problems with the JMS 2.0 Early Draft proposal 
 
-Since the Early Draft was published there has been a great deal of discussion in the JSR 343 expert group and elsewhere about how <tt>JMSContext</tt> objects should be injected. The following conclusions were drawn:
+Since the Early Draft was published there has been a great deal of discussion in the JSR 343 expert group and elsewhere about how `JMSContext` objects should be injected. The following conclusions were drawn:
 
 * The requirement that a separate JMSContext instance would be injected for every injection point was endorsed as being less "surprising"  to users than if the injected object were reused at all injection points within the defined scope. 
 
-* However, although the requirement that the scope of the injected <tt>JMSContext</tt> be linked to the CDI definition of "request" would give reasonable behaviour in most cases, it would prevent the same injected <tt>JMSContext</tt> being used in the case where a transaction spans multiple requests. This would prevent prevent messages sent in those requests being guaranteed to be delivered in order, even though they were being sent in the same transaction.
+* However, although the requirement that the scope of the injected `JMSContext` be linked to the CDI definition of "request" would give reasonable behaviour in most cases, it would prevent the same injected `JMSContext` being used in the case where a transaction spans multiple requests. This would prevent prevent messages sent in those requests being guaranteed to be delivered in order, even though they were being sent in the same transaction.
 
-* In addition, the same request can cross multiple transaction boundaries in case of CMT. As a result, the resource shared across the request can reach inconsistent state if it is used by multiple active and suspended transactions (such as the resource receiving a roll-back request from the currently active transaction and subsequently receiving a commit request from a resumed transactions or vice-versa). It has been suggested that the scope of the injected  <tt>JMSContext</tt> be linked to the transaction instead. Since CDI does not define a "transaction" scope, we should work with the CDI expert group to define one for CDI 1.1. 
+* In addition, the same request can cross multiple transaction boundaries in case of CMT. As a result, the resource shared across the request can reach inconsistent state if it is used by multiple active and suspended transactions (such as the resource receiving a roll-back request from the currently active transaction and subsequently receiving a commit request from a resumed transactions or vice-versa). It has been suggested that the scope of the injected  `JMSContext` be linked to the transaction instead. Since CDI does not define a "transaction" scope, we should work with the CDI expert group to define one for CDI 1.1. 
 
 There has also been discussion as to whether the annotations for specifying the connection factory, user, password, session mode and autoStart behaviour should be changed. However this amounts to an issue of style more than anything. This document makes no proposals to change this.
 
@@ -58,34 +58,34 @@ To address the problems with the Early Draft proposal, two possible alternatives
 
 ###  Option 2 
 
-This option proposes that the JMS 2.0 public draft (section 11.3) should specify that the injected <tt>JMSContext</tt> would have a scope and lifecycle as follows:
+This option proposes that the JMS 2.0 public draft (section 11.3) should specify that the injected `JMSContext` would have a scope and lifecycle as follows:
 
-*The injected <tt>JMSContext</tt> would have a new CDI scope called "transaction". This scope would end, and the injected <tt>JMSContext</tt> automatically closed, when the transaction ends, or the method ends, whichever comes last. 
-* In addition to the functionality offered through the new scope, JMS will ensure that a separate <tt>JMSContext</tt> instance would be injected for every injection point.
+*The injected `JMSContext` would have a new CDI scope called "transaction". This scope would end, and the injected `JMSContext` automatically closed, when the transaction ends, or the method ends, whichever comes last. 
+* In addition to the functionality offered through the new scope, JMS will ensure that a separate `JMSContext` instance would be injected for every injection point.
 
 A full definition of this new "transaction" scope will be defined in CDI 1.1. 
 
 ###  Option 3 
 
-This option is a variant of option 2. Like that option, the injected <tt>JMSContext</tt> would have a new CDI scope called "transaction". This scope would end, and the injected <tt>JMSContext</tt> automatically closed, when the transaction ends, or the method ends, whichever comes last. 
+This option is a variant of option 2. Like that option, the injected `JMSContext` would have a new CDI scope called "transaction". This scope would end, and the injected `JMSContext` automatically closed, when the transaction ends, or the method ends, whichever comes last. 
 
-However this option would drop the requirement that a separate <tt>JMSContext</tt> instance be injected for every injection point. Instead, normal CDI scoping behaviour would be used. This means that the same injected <tt>JMSContext</tt> object will be used in all places where a  <tt>JMSContext</tt> is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected <tt>JMSContext</tt> object are identical.
+However this option would drop the requirement that a separate `JMSContext` instance be injected for every injection point. Instead, normal CDI scoping behaviour would be used. This means that the same injected `JMSContext` object will be used in all places where a  `JMSContext` is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected `JMSContext` object are identical.
 
-This change addresses a limitation of option 2 which is illustrated in <a href="#Use_case_C._One_bean_which_calls_another_within_the_same_transaction">Use case C</a> below. Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different <tt>JMSContext</tt> objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same <tt>JMSContext</tt> object would be used, meaning that messages sent using them will be delivered in order.
+This change addresses a limitation of option 2 which is illustrated in <a href="#Use_case_C._One_bean_which_calls_another_within_the_same_transaction">Use case C</a> below. Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different `JMSContext` objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same `JMSContext` object would be used, meaning that messages sent using them will be delivered in order.
 
-However by using the same injected <tt>JMSContext</tt> object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method [http://jms-spec.java.net/2.0-SNAPSHOT/apidocs/javax/jms/JMSContext.html#setPriority%28int%29 <tt>setPriority</tt>] (which sets the <tt>JMSContext</tt>'s default priority] in one bean affected the default priority used in another bean.
+However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method [http://jms-spec.java.net/2.0-SNAPSHOT/apidocs/javax/jms/JMSContext.html#setPriority%28int%29 `setPriority`] (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
 
-To avoid possible confusion whilst retaining the advantaged of CD scoping it is therefore proposed that different parts of the <tt>JMSContext</tt>'s state be given different priority:
+To avoid possible confusion whilst retaining the advantaged of CD scoping it is therefore proposed that different parts of the `JMSContext`'s state be given different priority:
 
-* The <tt>JMSContext</tt>'s underlying <tt>Connection</tt> object will have transaction scope. This means that the same underlying <tt>Connection</tt> object  will be used in all places where a  <tt>JMSContext</tt> is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected <tt>JMSContext</tt> object are identical. Using the same underlying <tt>Connection</tt> object will minimise the number of connections in use at any time.
+* The `JMSContext`'s underlying `Connection` object will have transaction scope. This means that the same underlying `Connection` object  will be used in all places where a  `JMSContext` is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected `JMSContext` object are identical. Using the same underlying `Connection` object will minimise the number of connections in use at any time.
 
-* The <tt>JMSContext</tt>'s underlying <tt>Session</tt> object will also have transaction scope. This means that the same underlying <tt>Session</tt> objects  will be used in all places where a  <tt>JMSContext</tt> is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected <tt>JMSContext</tt> object are identical. Using the same underlying <tt>Session</tt> object will mean that different beans within the same transaction will use the same <tt>XAResource</tt> object, thereby avoiding the need to perform two-phase commits or depend on <tt>XAResource.isSameRM()</tt> returning <tt>true</tt>. 
+* The `JMSContext`'s underlying `Session` object will also have transaction scope. This means that the same underlying `Session` objects  will be used in all places where a  `JMSContext` is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected `JMSContext` object are identical. Using the same underlying `Session` object will mean that different beans within the same transaction will use the same `XAResource` object, thereby avoiding the need to perform two-phase commits or depend on `XAResource.isSameRM()` returning `true`. 
 
-*  The <tt>JMSContext</tt>'s underlying <tt>MessageProducer</tt> will also have transaction scope, with the exception of its six JavaBean properties (see next). This means that the same underlying <tt>MessageProducer</tt> object  will be used in all places where a  <tt>JMSContext</tt> is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected <tt>JMSContext</tt> object are identical. Using the same  <tt>MessageProducer</tt> object when sending messages means that messages will be delivered in the order in which they sent, irrespective of which bean is used to send them.
+*  The `JMSContext`'s underlying `MessageProducer` will also have transaction scope, with the exception of its six JavaBean properties (see next). This means that the same underlying `MessageProducer` object  will be used in all places where a  `JMSContext` is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected `JMSContext` object are identical. Using the same  `MessageProducer` object when sending messages means that messages will be delivered in the order in which they sent, irrespective of which bean is used to send them.
 
-* However it is proposed that the  six JavaBean properties of the <tt>JMSContext</tt>'s underlying <tt>MessageProducer</tt> will have <i>dependent</i> scope. These are the <tt>deliveryMode</tt>, <tt>priority</tt>, <tt>timeToLive</tt>, <tt>deliveryDelay</tt>, <tt>disableMessageID</tt> and <tt>disableMessageTimestamp</tt> properties. Setting these properties in a particular bean will only affect the  <tt>JMSContext</tt> when it is used in that bean. This means that from the user's perspective the injected <tt>JMSContext</tt> behaves much more like an ordinary field of the bean. 
+* However it is proposed that the  six JavaBean properties of the `JMSContext`'s underlying `MessageProducer` will have <i>dependent</i> scope. These are the `deliveryMode`, `priority`, `timeToLive`, `deliveryDelay`, `disableMessageID` and `disableMessageTimestamp` properties. Setting these properties in a particular bean will only affect the  `JMSContext` when it is used in that bean. This means that from the user's perspective the injected `JMSContext` behaves much more like an ordinary field of the bean. 
 
-Since the user doesn't have direct access to the <tt>JMSContext</tt>'s underlying <tt>Connection</tt> and <tt>Session</tt>  objects the fact that these are transaction scoped is just an internal detail which improves performance and scalability and guarantees message ordering without appearing to violate the normal isolation of one bean from another.
+Since the user doesn't have direct access to the `JMSContext`'s underlying `Connection` and `Session`  objects the fact that these are transaction scoped is just an internal detail which improves performance and scalability and guarantees message ordering without appearing to violate the normal isolation of one bean from another.
 
 ## Proposed definition of TransactionScoped for CDI 1.1
 

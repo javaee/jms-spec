@@ -14,18 +14,18 @@ The following new messaging features have been added in JMS 2.0:
 * Batch delivery: new API has been added to allow a JMS provider to deliver messages to an asynchronous consumer in batches.
 * Delivery delay: a message producer can now specify that a message must not be delivered until after a specified time interval.
 * New send methods have been added to allow an application to send messages asynchronously.
-* JMS providers must now set the <tt>JMSXDeliveryCount</tt> message property.
+* JMS providers must now set the `JMSXDeliveryCount` message property.
 
 Several changes have been made to the JMS API to make it simpler and easier to use:
 
-* <tt>Connection</tt>, <tt>Session</tt> and other objects with a <tt>close()</tt> method now implement the <tt>java.jang.AutoCloseable</tt> interface to allow them to be used in a Java SE 7 try-with-resources statement.
+* `Connection`, `Session` and other objects with a `close()` method now implement the `java.jang.AutoCloseable` interface to allow them to be used in a Java SE 7 try-with-resources statement.
 * A new "simplified API" has been added which offers a simpler alternative to the standard API, especially in Java EE applications.
 * New methods have been added to create a session without the need to supply redundant arguments.
 * Client ID is now optional when creating a durable subscription
 
 A new chapter has been added which describes some additional restrictions and behaviour which apply when using the JMS API in the Java EE web or EJB container. This information was previously only available in the EJB and Java EE platform specifications.
 
-New methods have been added to <tt>Session</tt> which return a <tt>MessageConsumer</tt> on a durable topic subscription. Applications could previously only obtain a domain-specific <tt>TopicSubscriber</tt>, even though its use was discouraged.
+New methods have been added to `Session` which return a `MessageConsumer` on a durable topic subscription. Applications could previously only obtain a domain-specific `TopicSubscriber`, even though its use was discouraged.
 
 The JMS 2.0 specification now requires JMS providers to implement both P2P and Pub-Sub.
 
@@ -37,8 +37,8 @@ A full list of the new features, changes and clarifications introduced in JMS 2.
 
 The JCP process encourages the release of the Early Draft when the specification still has some unresolved issues. Although comments and suggestions are welcome on all parts of the specification, the following issues in particular are known to be unresolved:
 
-* Simplified JMS API: Should the new <tt>MessagingContext</tt> object allow multiple consumers to be created on the same session, which will require separate consumer objects to be created, or should the API restrict a session to a single consumer in order to avoid the need to create a separate object?
-* Simplified API: what is the most appropriate API, scope and behaviour for the injection of <tt>>MessagingContext</tt> objects?
+* Simplified JMS API: Should the new `MessagingContext` object allow multiple consumers to be created on the same session, which will require separate consumer objects to be created, or should the API restrict a session to a single consumer in order to avoid the need to create a separate object?
+* Simplified API: what is the most appropriate API, scope and behaviour for the injection of `>MessagingContext` objects?
 * Batch message delivery: Is the proposed API appropriate or is it getting too complicated?
 
 A more detailed discussion of these unresolved issues is given in section A.2 "Unresolved issues in the JMS 2.0 Early Draft" in the draft specification.

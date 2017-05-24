@@ -30,11 +30,11 @@ The major issues which still need to be decided are:
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I18:</b> Should we relax the requirement for each callback method (other than  the <tt>javax.jms.MessageListener</tt> method <tt>onMessage(Message m)</tt>) to be annotated with <tt>@JMSListener</tt>, and allow  the presence of <i>any</i> of the annotations <tt>@JMSConnectionFactory</tt>, <tt>@JMSListener</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt>, <tt>@MessageSelector</tt> or <tt>@Acknowledge</tt> to be sufficient to designate a callback method?
+<b>Issue I18:</b> Should we relax the requirement for each callback method (other than  the `javax.jms.MessageListener` method `onMessage(Message m)`) to be annotated with `@JMSListener`, and allow  the presence of <i>any</i> of the annotations `@JMSConnectionFactory`, `@JMSListener`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName`, `@MessageSelector` or `@Acknowledge` to be sufficient to designate a callback method?
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I19:</b> This requirement may be a cause of unexpected errors, since the resource adapter has no way to verify at deployment  time whether the MDB has been configured to specify that its listener interface is <tt>JMSMessageDrivenBean</tt>. The <tt>endpointActivation</tt> method has no access to this information. This means that the resource adapter will only discover when it tries to deliver a message that the message endpoint does not implement the callback method. Note that  although <tt>endpointActivation</tt> has access to an instance of <tt>MessageEndpointFactory</tt> this cannot be used to examine what methods are implemented by the endpoint class since  it may not be valid to call <tt>createEndpoint</tt> until after deployment has completed. Note that  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126]  would remove this issue.
+<b>Issue I19:</b> This requirement may be a cause of unexpected errors, since the resource adapter has no way to verify at deployment  time whether the MDB has been configured to specify that its listener interface is `JMSMessageDrivenBean`. The `endpointActivation` method has no access to this information. This means that the resource adapter will only discover when it tries to deliver a message that the message endpoint does not implement the callback method. Note that  although `endpointActivation` has access to an instance of `MessageEndpointFactory` this cannot be used to examine what methods are implemented by the endpoint class since  it may not be valid to call `createEndpoint` until after deployment has completed. Note that  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126]  would remove this issue.
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
@@ -46,15 +46,15 @@ The major issues which still need to be decided are:
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I22:</b> How about replacing <tt>@JMSListener</tt> with separate <tt>@JMSQueueListener</tt> and <tt>@JMSTopicListener</tt> annotations? This would remove the need for a separate "type" attribute. 
+<b>Issue I22:</b> How about replacing `@JMSListener` with separate `@JMSQueueListener` and `@JMSTopicListener` annotations? This would remove the need for a separate "type" attribute. 
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I23:</b> Currently the <tt>acknowledgeMode</tt> activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>.  The same confusion will apply if we define the new <tt>@Acknowledge</tt> annotation to work the same way as <tt>acknowledgeMode</tt>. 
+<b>Issue I23:</b> Currently the `acknowledgeMode` activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation `@TransactionManagement(TransactionManagementType.BEAN)`.  The same confusion will apply if we define the new `@Acknowledge` annotation to work the same way as `acknowledgeMode`. 
 
-In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>. You don't actually need to set the <tt>acknowledgeMode</tt> activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the <tt>acknowledgeMode</tt> activation property is if you wanted to specify <tt>DUPS_OK</tt>.  
+In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set `@TransactionManagement(TransactionManagementType.BEAN)`. You don't actually need to set the `acknowledgeMode` activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the `acknowledgeMode` activation property is if you wanted to specify `DUPS_OK`.  
 
-We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be better if we could replace the existing <tt>@TransactionManagement</tt> annotation and the proposed <tt>@AcknowledgeMode</tt> annotation with a single annotation which could define both at the same time. 
+We can't change the behaviour of `acknowledgeMode`, but it would be better if we could replace the existing `@TransactionManagement` annotation and the proposed `@AcknowledgeMode` annotation with a single annotation which could define both at the same time. 
 </td></tr></table>
 
 ### Issues added in version 1
@@ -62,17 +62,17 @@ We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be bette
 To help track comments and changes, I've listed all the known issues that have been raised below. 
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I1:</b> Any alternative proposals for <tt>JMSMessageDrivenBean</tt>?
+<b>Issue I1:</b> Any alternative proposals for `JMSMessageDrivenBean`?
 Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I2:</b>Any alternative proposals for <tt>JMSListener</tt>? 
+<b>Issue I2:</b>Any alternative proposals for `JMSListener`? 
 Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. <tt>glassfish-ejb-jar.xml</tt>) or by using a default resource adapter provided by the application server.  (Note that it is hoped that the EJB specification can be updated to define a standard way to associate a MDB with a resource adapter. See [https://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127])
+<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. `glassfish-ejb-jar.xml`) or by using a default resource adapter provided by the application server.  (Note that it is hoped that the EJB specification can be updated to define a standard way to associate a MDB with a resource adapter. See [https://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127])
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
@@ -81,15 +81,15 @@ Deleted (superseded by New Issue I17)
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  <tt>javax.jms.JMSMessageDrivenBean</tt> since this is needed purely to satisfy EJB 3.2.   [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115]  and  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] propose removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.   [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115]  and  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] propose removal of this requirement from the next version of EJB.  
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I6:</b> The reason why these annotations cannot be applied to the <tt>onMessage</tt> method of a <tt>MessageListener</tt> is that <tt>MessageListener</tt> is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
+<b>Issue I6:</b> The reason why these annotations cannot be applied to the `onMessage` method of a `MessageListener` is that `MessageListener` is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I7:</b> Any alternative proposals for the <tt>@JMSConnectionFactory</tt>, <tt>@Acknowledge</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt> or <tt>@MessageSelector</tt> annotations?
+<b>Issue I7:</b> Any alternative proposals for the `@JMSConnectionFactory`, `@Acknowledge`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName` or `@MessageSelector` annotations?
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
@@ -110,19 +110,19 @@ Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I12:</b> The EJB and Java EE specifications currently define a number of other ways of  defining the destination used by the MDB, such as by setting the <tt>mappedName</tt> attribute of the <tt>@MessageDriven</tt> annotation. The specification will need to clarify the override order used if the destination is specified in multiple ways.
+<b>Issue I12:</b> The EJB and Java EE specifications currently define a number of other ways of  defining the destination used by the MDB, such as by setting the `mappedName` attribute of the `@MessageDriven` annotation. The specification will need to clarify the override order used if the destination is specified in multiple ways.
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I13:</b> Is it right that the  <tt>@JMSListener</tt> attribute <tt>"type"</tt> is mandatory,? The existing EJB 3.2 activation property <tt>destinationType</tt> does not define a default value. Should it remain optional, in which case should the specification designate a default value when  <tt>@JMSListener</tt> is used?
+<b>Issue I13:</b> Is it right that the  `@JMSListener` attribute `"type"` is mandatory,? The existing EJB 3.2 activation property `destinationType` does not define a default value. Should it remain optional, in which case should the specification designate a default value when  `@JMSListener` is used?
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I14:</b> Should the <tt>@SubscriptionDurability</tt>, <tt>@SubscriptionName</tt> and <tt>@ClientId</tt> annotations (or perhaps the first two) be combined into a single annotation?
+<b>Issue I14:</b> Should the `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId` annotations (or perhaps the first two) be combined into a single annotation?
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I15:</b> Any alternative proposals for the <tt>@MessageProperty</tt> or <tt>MessageHeader</tt> annotations? 
+<b>Issue I15:</b> Any alternative proposals for the `@MessageProperty` or `MessageHeader` annotations? 
 Deleted in version 2
 </td></tr></table>
 
@@ -143,61 +143,61 @@ The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/
 |-
 | New
 | Marker interface
-| <tt>javax.jms.JMSMessageDrivenBean</tt>
+| `javax.jms.JMSMessageDrivenBean`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.JMSListener</tt>
+| `javax.jms.JMSListener`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html javadocs]
 |-
 | Modified
 | Method or field annotation
-| <tt>javax.jms.JMSConnectionFactory</tt>
+| `javax.jms.JMSConnectionFactory`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.Acknowledge</tt>
+| `javax.jms.Acknowledge`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html javadocs]
 |-|-
 | New
 | Method annotation
-| <tt>javax.jms.SubscriptionDurability</tt>
+| `javax.jms.SubscriptionDurability`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.SubscriptionName</tt>
+| `javax.jms.SubscriptionName`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.ClientId</tt>
+| `javax.jms.ClientId`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.JMSListenerProperty</tt>
+| `javax.jms.JMSListenerProperty`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListenerProperty.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.JMSListenerProperties</tt>
+| `javax.jms.JMSListenerProperties`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListenerProperties.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.MessageSelector</tt>
+| `javax.jms.MessageSelector`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html javadocs]
 |-
 | New
 | Parameter annotation
-| <tt>javax.jms.MessageHeader</tt>
+| `javax.jms.MessageHeader`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html javadocs]
 |-
 | New
 | Parameter annotation
-| <tt>javax.jms.MessageProperty</tt>
+| `javax.jms.MessageProperty`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html javadocs]
 |} 

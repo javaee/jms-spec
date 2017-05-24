@@ -4,7 +4,7 @@
 
 This page contains a number of use cases which demonstrate how the proposals in [[JMSContextScopeProposals|Injection of JMSContext objects - Proposals (version 3)]] would appear to users. Each use case is followed by an analysis for both [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]]. 
 
-Note that these use cases are not intended to demonstrate how <tt>@TransactionScoped</tt> beans behave in general. They are intended only to demonstrate how injected <tt>JMSContext</tt> objects behave.
+Note that these use cases are not intended to demonstrate how `@TransactionScoped` beans behave in general. They are intended only to demonstrate how injected `JMSContext` objects behave.
 
 Before reading these, read [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]]
 
@@ -15,16 +15,16 @@ Before reading these, read [[JMSContextScopeProposals2|Injection of JMSContext o
 
 ### Use case F: One bean which calls another when there is no transaction
 
-Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>.
+Consider two stateless session beans, `Bean1` and `Bean2`.
 
-<tt>Bean1</tt> is configured to use bean-managed transactions and has a business method <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction, uses this context to send a message, and then invoke <tt>method2</tt> on <tt>Bean2</tt>.
+`Bean1` is configured to use bean-managed transactions and has a business method `method1`. The bean has an injected `JMSContext`. `method1` does not start a transaction, uses this context to send a message, and then invoke `method2` on `Bean2`.
 
-<tt>Bean2</tt> is also configured to use bean-managed transactions and has a business method <tt>method2</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> does not start a transaction and simply uses this context to send a second message.
+`Bean2` is also configured to use bean-managed transactions and has a business method `method2`. The bean has an injected `JMSContext`. `method2` does not start a transaction and simply uses this context to send a second message.
 
-A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
+A remote client obtains a reference to `Bean1` and calls `method1`.
 
 <br/>
-This is <tt>Bean1</tt>
+This is `Bean1`
 
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
@@ -45,7 +45,7 @@ This is <tt>Bean1</tt>
  }
 
 <br/>
-This is <tt>Bean2</tt>
+This is `Bean2`
  
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
@@ -65,56 +65,56 @@ This is <tt>Bean2</tt>
 #### =Case F, option 2: Analysis=
 
 {|- border="1"
-| Do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  use the same injection point?
-| No, since they are in different beans and so use different <tt>context</tt> variables.
+| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
+| No, since they are in different beans and so use different `context` variables.
 |- valign="top"
-| Are the <tt>context</tt> variables in each call to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| No. There is no transaction, and the two calls to <tt>context.send()</tt> take place in different methods.
+| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
+| No. There is no transaction, and the two calls to `context.send()` take place in different methods.
 |- valign="top"
-| Do the <tt>context</tt> variables in each call to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| No, since they use different injection points and are not in the same <tt>@TransactionScope</tt>.
+| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| No, since they use different injection points and are not in the same `@TransactionScope`.
 |- valign="top"
 | Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different <tt>MessageProducer</tt> objects.
+| No, since they are sent using different `MessageProducer` objects.
 |} 
 
 #### =Case F, option 2: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
+The `JMSContext` object used by `method1` will be created when `method1` uses `context` for the first time, and destroyed when that method returns.
 
-The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when <tt>method2</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
+The `JMSContext` object used by `method2` will be created when `method2` uses `context` for the first time, and destroyed when that method returns.
 
-The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is <tt>NEVER</tt> or <tt>NOT_SUPPORTED</tt>. 
+The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`. 
 
 #### =Case F, option 3: Analysis=
 
 {|- border="1"
-| Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  injected using identical annotations?
-| Yes. Although they are in different beans and so use different <tt>context</tt> variables, they are injected using identical annotations
+| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
+| Yes. Although they are in different beans and so use different `context` variables, they are injected using identical annotations
 |- valign="top"
-| Are the <tt>context</tt> variables in each call to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| No. There is no transaction, and the two calls to <tt>context.send()</tt> take place in different methods.
+| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
+| No. There is no transaction, and the two calls to `context.send()` take place in different methods.
 |- valign="top"
-| Do the <tt>context</tt> variables in each call to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| No. Although they are injected using identical annotations they are not in the same <tt>@TransactionScope</tt>.
+| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| No. Although they are injected using identical annotations they are not in the same `@TransactionScope`.
 |- valign="top"
 | Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different <tt>MessageProducer</tt> objects.
+| No, since they are sent using different `MessageProducer` objects.
 |} 
 
 #### =Case F, option 3: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
+The `JMSContext` object used by `method1` will be created when `method1` uses `context` for the first time, and destroyed when that method returns.
 
-The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when <tt>method2</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
+The `JMSContext` object used by `method2` will be created when `method2` uses `context` for the first time, and destroyed when that method returns.
 
-The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is <tt>NEVER</tt> or <tt>NOT_SUPPORTED</tt>. 
+The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`. 
 
 ###  Use case G: One bean method which uses two transactions
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
+Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`. `method1` starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
 
-A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
+A remote client obtains a reference to `Bean1` and calls `method1`.
 <br/><br/>
   @TransactionManagement(TransactionManagementType.BEAN)
   @Stateless
@@ -144,50 +144,50 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 #### =Case G, option 2: Analysis=
 
 {|- border="1"
-| Do the <tt>context</tt> variables in the four calls to <tt>context.send()</tt>  use the same injection point?
-| Yes, since they  all use the same <tt>context</tt> variable.
+| Do the `context` variables in the four calls to `context.send()`  use the same injection point?
+| Yes, since they  all use the same `context` variable.
 |- valign="top"
-| Are the <tt>context</tt> variables in the four calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes. Although the first two and second two calls to <tt>context.send()</tt> take place in different transactions, all four calls take place in the same method. <br/>
+| Are the `context` variables in the four calls to `context.send()` in the same `@TransactionScope`?
+| Yes. Although the first two and second two calls to `context.send()` take place in different transactions, all four calls take place in the same method. <br/>
 (When the first transaction is committed the context remains in scope since the method has not yet completed. When the third and fourth message sends are performed it uses the context that is already in scope.)
 |- valign="top"
-| Do the <tt>context</tt> variables in the four calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| Yes, since they use the same injection point and are in the same <tt>@TransactionScope</tt>
+| Do the `context` variables in the four calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| Yes, since they use the same injection point and are in the same `@TransactionScope`
 |- valign="top"
 | Are the four messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same <tt>MessageProducer</tt> object.
+| Yes, since they are sent using the same `MessageProducer` object.
 |} 
 
 #### =Case G, option 2: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
+The `JMSContext` object will be created when `method1` uses the `context` variable for the first time, and destroyed when `method1` returns.
 
 #### =Case G, option 3: Analysis=
 
 {|- border="1"
-| Are the <tt>context</tt> variables in the four calls to <tt>context.send()</tt>  injected using identical annotations?
-| Yes, since they  all use the same <tt>context</tt> variable.
+| Are the `context` variables in the four calls to `context.send()`  injected using identical annotations?
+| Yes, since they  all use the same `context` variable.
 |- valign="top"
-| Are the <tt>context</tt> variables in the four calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes. Although the first two and second two calls to <tt>context.send()</tt> take place in different transactions, all four calls take place in the same method. <br/>
+| Are the `context` variables in the four calls to `context.send()` in the same `@TransactionScope`?
+| Yes. Although the first two and second two calls to `context.send()` take place in different transactions, all four calls take place in the same method. <br/>
 (When the first transaction is committed the context remains in scope since the method has not yet completed. When the third and fourth message sends are performed it uses the context that is already in scope.)
 |- valign="top"
-| Do the <tt>context</tt> variables in the four calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| Yes, since they are injected using identical annotations and are in the same <tt>@TransactionScope</tt>
+| Do the `context` variables in the four calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`
 |- valign="top"
 | Are the four messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same <tt>MessageProducer</tt> object.
+| Yes, since they are sent using the same `MessageProducer` object.
 |} 
 
 #### =Case G, option 3: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
+The `JMSContext` object will be created when `method1` uses the `context` variable for the first time, and destroyed when `method1` returns.
 
 ### Use case H. A bean which uses a context both outside and within a transaction
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
+Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`. `method1` does not start a transaction and uses the `context` variable to send two messages. It then starts a transaction and uses the `context` variable to send a third message. It then commits the transaction and uses the `context` variable  to send a fourth and fifth more messages.
 
-A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
+A remote client obtains a reference to `Bean1` and calls `method1`.
 <br/><br/>
  @TransactionManagement(TransactionManagementType.BEAN)
  @Stateless
@@ -215,57 +215,57 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 #### =Case H, option 2: Analysis=
 
 {|- border="1"
-| Do the <tt>context</tt> variables in the five calls to <tt>context.send()</tt>  use the same injection point?
-| Yes, since they  all use the same <tt>context</tt> variable.
+| Do the `context` variables in the five calls to `context.send()`  use the same injection point?
+| Yes, since they  all use the same `context` variable.
 |- valign="top"
-| Are the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes. Although the first two and last two calls to <tt>context.send()</tt> take place in different transactions, and the third call takes place without a transaction, all five calls take place in the same method.
+| Are the `context` variables in the five calls to `context.send()` in the same `@TransactionScope`?
+| Yes. Although the first two and last two calls to `context.send()` take place in different transactions, and the third call takes place without a transaction, all five calls take place in the same method.
 |- valign="top"
-| Do the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| Yes, since they use the same injection point and are in the same <tt>@TransactionScope</tt>
+| Do the `context` variables in the five calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| Yes, since they use the same injection point and are in the same `@TransactionScope`
 |- valign="top"
 | Are the five messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same <tt>MessageProducer</tt> object.
+| Yes, since they are sent using the same `MessageProducer` object.
 |} 
 
 #### =Case H, option 2: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
+The `JMSContext` object will be created when `method1` uses the `context` variable for the first time, and destroyed when `method1` returns.
 
 #### =Case H, option 3: Analysis=
 
 {|- border="1"
-| Are the <tt>context</tt> variables in the five calls to <tt>context.send()</tt>  injected using identical annotations?
-| Yes, since they  all use the same <tt>context</tt> variable.
+| Are the `context` variables in the five calls to `context.send()`  injected using identical annotations?
+| Yes, since they  all use the same `context` variable.
 |- valign="top"
-| Are the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes. Although the first two and last two calls to <tt>context.send()</tt> take place in different transactions, and the third call takes place without a transaction, all five calls take place in the same method.
+| Are the `context` variables in the five calls to `context.send()` in the same `@TransactionScope`?
+| Yes. Although the first two and last two calls to `context.send()` take place in different transactions, and the third call takes place without a transaction, all five calls take place in the same method.
 |- valign="top"
-| Do the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| Yes, since they are injected using identical annotations and are in the same <tt>@TransactionScope</tt>
+| Do the `context` variables in the five calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`
 |- valign="top"
 | Are the five messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same <tt>MessageProducer</tt> object.
+| Yes, since they are sent using the same `MessageProducer` object.
 |} 
 
 #### =Case H, option 3: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
+The `JMSContext` object will be created when `method1` uses the `context` variable for the first time, and destroyed when `method1` returns.
 
-''Important note (for both options)'': Although the scope of the injected <tt>JMSContext</tt> object is completely defined in this example, the JMS behaviour of the  <tt>JMSContext</tt> object itself is not, since JMS does not define what happens if a <tt>JMSContext</tt> object is created outside a transaction and then used with one. It is probably desirable to clarify the JMS behaviour in this case. However, exactly the same question would arise of the <tt>JMSContext</tt> was instantiated from a connection factory rather than injected, so this is a JMS issue, not a CDI or injection-related issue.
+_Important note (for both options)_: Although the scope of the injected `JMSContext` object is completely defined in this example, the JMS behaviour of the  `JMSContext` object itself is not, since JMS does not define what happens if a `JMSContext` object is created outside a transaction and then used with one. It is probably desirable to clarify the JMS behaviour in this case. However, exactly the same question would arise of the `JMSContext` was instantiated from a connection factory rather than injected, so this is a JMS issue, not a CDI or injection-related issue.
 
 ### Use case J. Two separate container-managed transactions on the same thread, one suspended before the second is started 
 
-Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>. 
+Consider two stateless session beans, `Bean1` and `Bean2`. 
 
-<tt>Bean1</tt> is configured to use container-managed transactions and has a business method <tt>method1</tt>, which is configured to require a transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> uses this context to send a message and then invokes <tt>method2</tt> on <tt>bean1</tt>. It then sends a further message.
+`Bean1` is configured to use container-managed transactions and has a business method `method1`, which is configured to require a transaction. The bean has an injected `JMSContext`. `method1` uses this context to send a message and then invokes `method2` on `bean1`. It then sends a further message.
 
-<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is configured to require a **new** transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> simply uses this context to send a message.
+`Bean2` is also configured to use container-managed transactions and has a business method `method2`, which is configured to require a **new** transaction. The bean has an injected `JMSContext`. `method2` simply uses this context to send a message.
 
-A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
+A remote client obtains a reference to `Bean1` and calls `method1`.
 
 <br/>
-This is <tt>Bean1</tt>
+This is `Bean1`
 
  @TransactionManagement(TransactionManagementType.CONTAINER)
  @Stateless
@@ -288,7 +288,7 @@ This is <tt>Bean1</tt>
  }
 
 <br/>
-This is <tt>Bean2</tt>
+This is `Bean2`
  
  @TransactionManagement(TransactionManagementType.CONTAINER)
  @Stateless
@@ -309,63 +309,63 @@ This is <tt>Bean2</tt>
 #### =Case J, option 2: Analysis=
 
 {|- border="1"
-| Do the <tt>context</tt> variables in the three calls to <tt>context.send()</tt>  use the same injection point?
-| The first and third calls use the same injection point, since they use the same <tt>context</tt> variable in <tt>Bean1</tt>. The second call uses a different injection point since it uses a different variable in <tt>Bean2</tt>.
+| Do the `context` variables in the three calls to `context.send()`  use the same injection point?
+| The first and third calls use the same injection point, since they use the same `context` variable in `Bean1`. The second call uses a different injection point since it uses a different variable in `Bean2`.
 |- valign="top"
-| Are the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| The first and third calls to <tt>context.send()</tt> take place in the same transaction, so are in the same <tt>@TransactionScope</tt>. However the third call takes place in a different transaction, so is in a different <tt>@TransactionScope</tt>.
+| Are the `context` variables in the three calls to `context.send()` in the same `@TransactionScope`?
+| The first and third calls to `context.send()` take place in the same transaction, so are in the same `@TransactionScope`. However the third call takes place in a different transaction, so is in a different `@TransactionScope`.
 |- valign="top"
-| Do the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| The first and third calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> since they use the same same injection point and are in the same <tt>@TransactionScope</tt>.
-<br/>The second call to <tt>context.send()</tt> use a different <tt>JMSContext</tt> since it uses both a different injection point and is in a different <tt>@TransactionScope</tt>.
+| Do the `context` variables in the three calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| The first and third calls to `context.send()` use the same `JMSContext` since they use the same same injection point and are in the same `@TransactionScope`.
+<br/>The second call to `context.send()` use a different `JMSContext` since it uses both a different injection point and is in a different `@TransactionScope`.
 |- valign="top"
 | Are the three messages guaranteed to be delivered in the order in which they are sent?
-| The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same <tt>MessageProducer</tt> object, but the second message is not, since it is sent using a different <tt>MessageProducer</tt> object.
+| The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same `MessageProducer` object, but the second message is not, since it is sent using a different `MessageProducer` object.
 |} 
 
 #### =Case J, option 2: JMSContext lifecycle=
 
-The <tt>JMSContext</tt>object used by <tt>method1</tt> will be created when <tt>method1</tt> uses context for the first time, and destroyed when that method returns.
+The `JMSContext`object used by `method1` will be created when `method1` uses context for the first time, and destroyed when that method returns.
 
-The <tt>JMSContext</tt>object used by <tt>method2</tt> will be created when <tt>method2</tt> uses context for the first time, and destroyed when that method returns. 
+The `JMSContext`object used by `method2` will be created when `method2` uses context for the first time, and destroyed when that method returns. 
 
 #### =Case J, option 3: Analysis=
 
 {|- border="1"
-| Are the <tt>context</tt> variables in the three calls to <tt>context.send()</tt>  injected using identical annotations?
-| Yes. The first and third calls use the same <tt>context</tt> variable in <tt>Bean1</tt>. The second call uses a different variable in <tt>Bean2</tt>, but it is injected using identical annotations to the variable used in <tt>Bean1</tt>.
+| Are the `context` variables in the three calls to `context.send()`  injected using identical annotations?
+| Yes. The first and third calls use the same `context` variable in `Bean1`. The second call uses a different variable in `Bean2`, but it is injected using identical annotations to the variable used in `Bean1`.
 |- valign="top"
-| Are the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| The first and third calls to <tt>context.send()</tt> take place in the same transaction, so are in the same <tt>@TransactionScope</tt>. However the third call takes place in a different transaction, so is in a different <tt>@TransactionScope</tt>.
+| Are the `context` variables in the three calls to `context.send()` in the same `@TransactionScope`?
+| The first and third calls to `context.send()` take place in the same transaction, so are in the same `@TransactionScope`. However the third call takes place in a different transaction, so is in a different `@TransactionScope`.
 |- valign="top"
-| Do the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| The first and third calls to <tt>context.send()</tt> (in <tt>Bean1</tt>) use the same <tt>JMSContext</tt> since they are injected using identical annotations and are in the same <tt>@TransactionScope</tt>.
-<br/>The second call to <tt>context.send()</tt> use a different <tt>JMSContext</tt> because although it is injected using identical annotations it is in a different <tt>@TransactionScope</tt>.
+| Do the `context` variables in the three calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| The first and third calls to `context.send()` (in `Bean1`) use the same `JMSContext` since they are injected using identical annotations and are in the same `@TransactionScope`.
+<br/>The second call to `context.send()` use a different `JMSContext` because although it is injected using identical annotations it is in a different `@TransactionScope`.
 |- valign="top"
 | Are the three messages guaranteed to be delivered in the order in which they are sent?
-| The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same <tt>MessageProducer</tt> object, but the second message is not, since it is sent using a different <tt>MessageProducer</tt> object.
+| The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same `MessageProducer` object, but the second message is not, since it is sent using a different `MessageProducer` object.
 |} 
 
 #### =Case J, option 3: JMSContext lifecycle=
 
-The <tt>JMSContext</tt>object used by <tt>method1</tt> will be created when <tt>method1</tt> uses context for the first time, and destroyed when that method returns.
+The `JMSContext`object used by `method1` will be created when `method1` uses context for the first time, and destroyed when that method returns.
 
-The <tt>JMSContext</tt>object used by <tt>method2</tt> will be created when <tt>method2</tt> uses context for the first time, and destroyed when that method returns. 
+The `JMSContext`object used by `method2` will be created when `method2` uses context for the first time, and destroyed when that method returns. 
 
 ### Use case K. One bean which calls another within the same transaction, but using different connection factories
 
 (Note that this use case is identical to [http://java.net/projects/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction use case C] except that the two beans specify different connection factories).
 
-Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>
+Consider two stateless session beans, `Bean1` and `Bean2`
 
-<tt>Bean1</tt> is configured to use container-managed transactions and has a business method <tt>method1</tt>, which is configured to require a transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> uses this context to send a message and then invokes <tt>method2</tt> on <tt>Bean2</tt>.
+`Bean1` is configured to use container-managed transactions and has a business method `method1`, which is configured to require a transaction. The bean has an injected `JMSContext`. `method1` uses this context to send a message and then invokes `method2` on `Bean2`.
 
-<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is also configured to require a transaction. The bean also has an injected <tt>JMSContext</tt> to <tt>Bean1</tt>, but specifies a different connection factory. <tt>method2</tt> simply uses this context to send a second message.
+`Bean2` is also configured to use container-managed transactions and has a business method `method2`, which is also configured to require a transaction. The bean also has an injected `JMSContext` to `Bean1`, but specifies a different connection factory. `method2` simply uses this context to send a second message.
 
-A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
+A remote client obtains a reference to `Bean1` and calls `method1`
 
 <br/>
-This is <tt>Bean1</tt>
+This is `Bean1`
 
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
@@ -387,7 +387,7 @@ This is <tt>Bean1</tt>
  }
 
 <br/>
-This is <tt>Bean2</tt>
+This is `Bean2`
 
  
  @TransactionManagement(TransactionManagementType.CONTAINER) 
@@ -409,45 +409,45 @@ This is <tt>Bean2</tt>
 #### =Case K, option 2: Analysis=
 
 {|- border="1"
-| Do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  use the same injection point?
-| No, since they are in different beans and so use different <tt>context</tt> variables.
+| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
+| No, since they are in different beans and so use different `context` variables.
 |- valign="top"
-| Are the <tt>context</tt> variables in each call to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes, since the two calls to <tt>context.send()</tt> take place in the same transaction.
+| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
+| Yes, since the two calls to `context.send()` take place in the same transaction.
 |- valign="top"
-| Do the <tt>context</tt> variables in each call to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| No. Although they are in the same <tt>@TransactionScope</tt>  they use different injection points. 
+| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| No. Although they are in the same `@TransactionScope`  they use different injection points. 
 |- valign="top"
 | Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different <tt>MessageProducer</tt> objects.
+| No, since they are sent using different `MessageProducer` objects.
 |} 
 
 #### =Case K, option 2: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when  <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
+The `JMSContext` object used by `method1` will be created when  `method1` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
-The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when  <tt>method2</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
+The `JMSContext` object used by `method2` will be created when  `method2` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
 #### =Case K, option 3: Analysis=
 
 {|- border="1"
-| Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  injected using identical annotations?
-| No. They are in different beans and so use different <tt>context</tt> variables, which are injected using different connection factories.
+| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
+| No. They are in different beans and so use different `context` variables, which are injected using different connection factories.
 |- valign="top"
-| Are the <tt>context</tt> variables in each call to <tt>context.send()</tt> in the same <tt>@TransactionScope</tt>?
-| Yes, since the two calls to <tt>context.send()</tt> take place in the same transaction.
+| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
+| Yes, since the two calls to `context.send()` take place in the same transaction.
 |- valign="top"
-| Do the <tt>context</tt> variables in each call to <tt>context.send()</tt> use the same <tt>JMSContext</tt> (and therefore <tt>MessageProducer</tt>) objects?
-| No, although they are in the same <tt>@TransactionScope</tt> they are injected using different annotations.
+| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
+| No, although they are in the same `@TransactionScope` they are injected using different annotations.
 |- valign="top"
 | Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different <tt>MessageProducer</tt> objects.
+| No, since they are sent using different `MessageProducer` objects.
 |} 
 
 #### =Case K, option 3: JMSContext lifecycle=
 
-The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when  <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
+The `JMSContext` object used by `method1` will be created when  `method1` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
-The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when  <tt>method2</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
+The `JMSContext` object used by `method2` will be created when  `method2` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
-''Note how specifying different connection factories means that the same injected <tt>JMSContext</tt> object cannot be used.
+_Note how specifying different connection factories means that the same injected `JMSContext` object cannot be used.

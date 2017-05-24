@@ -147,7 +147,7 @@ Both JMS MDBs and JMS listener beans can be configured so that each message is r
 
 In a MDB the class-level annotation `@javax.ejb.TransactionManagement(TransactionManagementType.CONTAINER)` is used to specify that a container-managed transaction must be used, with `@javax.ejb.TransactionManagement(TransactionManagementType.BEAN)` used to specify that a container-managed transaction must not be used. If no such annotation is provided then a container-managed transaction will be used.
 
-With JMS listener beans it is proposed to follow the existing existing mechanism for specifying whether a business method on a managed bean is executed in a container-managed transaction. This is to use the method-level annotation `@javax.transaction.Transactional(Transactional.TxType.REQUIRED)` to specify that a container-managed transaction must be used. If no such annotation is provided then a container-managed transaction will ''not'' be used. Note that this default behaviour is the opposite of that of MDBs.
+With JMS listener beans it is proposed to follow the existing existing mechanism for specifying whether a business method on a managed bean is executed in a container-managed transaction. This is to use the method-level annotation `@javax.transaction.Transactional(Transactional.TxType.REQUIRED)` to specify that a container-managed transaction must be used. If no such annotation is provided then a container-managed transaction will _not_ be used. Note that this default behaviour is the opposite of that of MDBs.
 
 So in the following example, each message will be received, and the callback method invoked, without the container using a transaction:
 
@@ -196,10 +196,10 @@ The `@Transactional` annotation has an optional attribute which allows the "tran
 
 ## Listener lifecycles
 
-The main reason for using JMS listener beans rather than MDBs is that they give the application finer-grained control over the lifecycle of the listener: when it starts listening, and when it stops listening. The lifecycle of the listener bean is controlled by CDI and depends on its ''scope'' and how it is injected into the application. 
+The main reason for using JMS listener beans rather than MDBs is that they give the application finer-grained control over the lifecycle of the listener: when it starts listening, and when it stops listening. The lifecycle of the listener bean is controlled by CDI and depends on its _scope_ and how it is injected into the application. 
 
 ### JMS listener bean with dependent scope
-By default a CDI managed bean has ''dependent scope''. This can be denoted by adding the `@Dependent` class annotation, though since this is the default it is not required. A bean with dependent scope will follow the lifecycle of whatever bean it is injected into. 
+By default a CDI managed bean has _dependent scope_. This can be denoted by adding the `@Dependent` class annotation, though since this is the default it is not required. A bean with dependent scope will follow the lifecycle of whatever bean it is injected into. 
 
 So if we define a CDI managed bean as follows:
 

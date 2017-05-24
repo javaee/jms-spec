@@ -4,7 +4,7 @@ Anyone can edit this page, please use the wiki syntax quick reference for editin
 What we'd really like to see are three things: ideas, feedback and a better way of hosting a public whiteboard than a wiki page!
 
 Bullet lists are a good way to provide messages to us for now. Could you stick to the following format:
-'' year/month/date -- your java.net name -- your message
+_ year/month/date -- your java.net name -- your message
 
 Thanks,
 Nick

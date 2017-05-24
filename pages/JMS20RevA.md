@@ -31,7 +31,7 @@ This table lists all the error reports and requests for clarification that have 
 
 This list does not include proposals for new features in JMS 2.1.
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-errata Query]  (<tt>tag=jms20-errata</tt>)
+[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-errata Query]  (`tag=jms20-errata`)
 
 {|- border="1"
 ! ID

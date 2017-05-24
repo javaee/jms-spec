@@ -21,9 +21,9 @@ There have been several proposals to improve the ways that JMS applications can 
 
 The proposals on this page are addressed at the first of these proposals,  [https://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116]:
 
-* The requirement for a MDB that consumes JMS messages to implement<tt>javax.jms.MessageListener</tt> will be removed.
+* The requirement for a MDB that consumes JMS messages to implement`javax.jms.MessageListener` will be removed.
 
-* Instead of having to provide a callback method <tt>void onMessage(Message m)</tt>, the callback method may have any name and can have multiple parameters of a variety of types. The developer can use parameter annotations to specify that a parameter must be set to the message object, to the message body, or to a specified message header or message property.
+* Instead of having to provide a callback method `void onMessage(Message m)`, the callback method may have any name and can have multiple parameters of a variety of types. The developer can use parameter annotations to specify that a parameter must be set to the message object, to the message body, or to a specified message header or message property.
 
 * Instead of having to use the general-purpose activation property mechanism to define what messages the MDB will receive, the developer can specify a set of JMS-specific annotations. This is more obvious, less verbose and allows the compiler to detect spelling errors. 
 
@@ -37,7 +37,7 @@ See [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in
 
 ## Specifying the callback method 
 <br/>
-In Java EE 7, a JMS MDB must implement the <tt>javax.jms.MessageListener</tt> interface. This means that the callback method must be called <tt>onMessage</tt>, it must return <tt>void</tt> and it must have a single parameter of type <tt>Message</tt>.<br/><br/>
+In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.<br/><br/>
 
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
@@ -51,7 +51,7 @@ In Java EE 7, a JMS MDB must implement the <tt>javax.jms.MessageListener</tt> in
  
  }
 <br/>
-Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the <tt>javax.jms.MessageListener</tt> interface. Instead the developer can use the <tt>@JMSListener</tt> annotation to designate any method to be the callback method.
+Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
 <br/><br/>
  @MessageDriven
  public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
@@ -66,19 +66,19 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
 
 Notes:
 
-* The MDB must implement the interface <tt>javax.jms.JMSMessageDrivenBean</tt>. This is purely a marker interface and defines no methods. It is required to satisfy the requirements of EJB 3.2 section 5.6.5 "Message-Driven Bean with No-Methods Listener Interface".   (Note that it is hoped that the EJB spec can be updated so that this marker interface will not actually be needed.) 
+* The MDB must implement the interface `javax.jms.JMSMessageDrivenBean`. This is purely a marker interface and defines no methods. It is required to satisfy the requirements of EJB 3.2 section 5.6.5 "Message-Driven Bean with No-Methods Listener Interface".   (Note that it is hoped that the EJB spec can be updated so that this marker interface will not actually be needed.) 
 
-* The names and package of the <tt>JMSMessageDrivenBean</tt> marker interface and the <tt>@JMSListener</tt> annotation which defines the callback method are provisional, and alternative suggestions are invited.
+* The names and package of the `JMSMessageDrivenBean` marker interface and the `@JMSListener` annotation which defines the callback method are provisional, and alternative suggestions are invited.
 
 * The details of all these annotations are discussed in the next section.
 
-* The listener class is still a message-driven bean and so must be configured as one, either by adding the <tt>@MessageDriven</tt> annotation or using the <tt>&lt;message-driven&gt;</tt> element in the deployment descriptor.
+* The listener class is still a message-driven bean and so must be configured as one, either by adding the `@MessageDriven` annotation or using the `&lt;message-driven&gt;` element in the deployment descriptor.
 
 * A JMS MDB may have only one callback method.  
 
-* These annotations cannot be applied to the <tt>onMessage</tt> method of a <tt>MessageListener</tt>. They will be ignored.
+* These annotations cannot be applied to the `onMessage` method of a `MessageListener`. They will be ignored.
 
-* Both the callback method and the <tt>JMSMessageDrivenBean</tt> interface may be inherited.
+* Both the callback method and the `JMSMessageDrivenBean` interface may be inherited.
 
 * Application servers that implement JMS MDBs using a resource adapter should be able to implement these new features by enhancing the resource adapter itself. Few changes to the EJB container itself will be required. Application servers that implement JMS MDBs directly, without using a resource adapter, will of course need to implement these features in the EJB container itself.
 
@@ -86,17 +86,17 @@ Notes:
 
 * In the JMS specification itself, chapter 13 "Resource adapter" (which contains optional recommendations for a JMS resource adapter) will be extended to cover these new features.
 
-<b>Issue I1:</b> Any alternative proposals for <tt>JMSMessageDrivenBean</tt>?
+<b>Issue I1:</b> Any alternative proposals for `JMSMessageDrivenBean`?
 
-<b>Issue I2:</b> Any alternative proposals for <tt>JMSListener</tt>?
+<b>Issue I2:</b> Any alternative proposals for `JMSListener`?
 
-<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. <tt>glassfish-ejb-jar.xml</tt>) or by using a default resource adapter provided by the application server.
+<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. `glassfish-ejb-jar.xml`) or by using a default resource adapter provided by the application server.
 
 <b>Issue I4:</b> The current proposal is that a JMS MDB has a single listener method. However EJB 3.2 section 5.4.2 and JCA 1.7 does allow a MDB to have more than one listener method, with the resource adapter deciding which method is invoked. Is this something we would want to allow? Would these be alternative callback methods for the same consumer, with the container choosing which one to call depending on the message and the method signature, or would these represent two completely different consumers, on different destinations?
 
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  <tt>javax.jms.JMSMessageDrivenBean</tt> since this is needed purely to satisfy EJB 3.2.  [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115] proposes removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.  [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115] proposes removal of this requirement from the next version of EJB.  
 
-<b>Issue I6:</b> The reason why these annotations cannot be applied to the <tt>onMessage</tt> method of a <tt>MessageListener</tt> is that <tt>MessageListener</tt> is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
+<b>Issue I6:</b> The reason why these annotations cannot be applied to the `onMessage` method of a `MessageListener` is that `MessageListener` is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 
 ## Specifying what messages will be received 
 <br/>
@@ -122,7 +122,7 @@ Before it can be used, a JMS MDB must specify where the messages will come from 
    ...
  }
 <br/>
-In Java EE 8 a MDB may continue to specify activation properties, even if the MDB does not implement <tt>javax.jms.MessageListener</tt>. However they will be superseded by a new set of JMS-specific annotations which allow each activation property to be configured by a JMS-specific annotation on the callback method itself.
+In Java EE 8 a MDB may continue to specify activation properties, even if the MDB does not implement `javax.jms.MessageListener`. However they will be superseded by a new set of JMS-specific annotations which allow each activation property to be configured by a JMS-specific annotation on the callback method itself.
 <br/><br/>
    @JMSConnectionFactory("java:global/MyCF")
    @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
@@ -143,7 +143,7 @@ Note:
 
 * The names and package of these annotations are provisional, and alternative suggestions are invited.
 
-<b>Issue I7:</b> Any alternative proposals for the <tt>@JMSConnectionFactory</tt>, <tt>@Acknowledge</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt> or <tt>@MessageSelector</tt> annotations?
+<b>Issue I7:</b> Any alternative proposals for the `@JMSConnectionFactory`, `@Acknowledge`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName` or `@MessageSelector` annotations?
 
 <b>Issue I8:</b> Should JMS define a set of deployment descriptor which correspond to these annotations, and which can be used by a deployer to override them? This would require a major change to the EJB and JCA specs since a resource adapter cannot currently access the deployment descriptor. A slightly simpler alternative might be to require the EJB container to convert these deployment descriptor elements to activation properties and pass them to the resource adapter in the activation spec.
 
@@ -153,46 +153,46 @@ Note:
 
 ### Specifying the queue or topic
 
-The <tt>@JMSListener</tt> method annotation must always be supplied. It designates (1) the method as being a listener callback method (2) the destination from which messages are to be received and (3) whether the specified destination is a queue or topic. 
+The `@JMSListener` method annotation must always be supplied. It designates (1) the method as being a listener callback method (2) the destination from which messages are to be received and (3) whether the specified destination is a queue or topic. 
 
 The destination can be specified in two ways:
 
-1. The <tt>lookup</tt> attribute can be used to specify the JNDI name of the queue or topic. This corresponds to the existing EJB 3.2 activation property <tt>destinationLookup</tt>.
+1. The `lookup` attribute can be used to specify the JNDI name of the queue or topic. This corresponds to the existing EJB 3.2 activation property `destinationLookup`.
 <br/>
  @JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)
 <br/>
-2. Alternatively the <tt>name</tt> attribute can be used to specify the "provider-specific" name of the queue or topic. The container would use the JMS methods <tt>Session#createQueue</tt> or <tt>Session#createTopic</tt>. This is a new feature which is not defined in EJB 3.2 and since these methods are provider-specific the specification would need to advise against using it in portable applications.
+2. Alternatively the `name` attribute can be used to specify the "provider-specific" name of the queue or topic. The container would use the JMS methods `Session#createQueue` or `Session#createTopic`. This is a new feature which is not defined in EJB 3.2 and since these methods are provider-specific the specification would need to advise against using it in portable applications.
 <br/>
  @JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)
 <br/>
-The <tt>@JMSListener</tt> method annotation also has a mandatory attribute <tt>type</tt>. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property <tt>destinationType</tt>, though the attribute is an enumerated type rather than a <tt>String</tt>.
+The `@JMSListener` method annotation also has a mandatory attribute `type`. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property `destinationType`, though the attribute is an enumerated type rather than a `String`.
 
 <b>Issue I11:</b> Allowing the queue or topic to be specified by destination name rather than by JNDI name is a new feature. Since it is not portable, is this actually desirable?
 
-<b>Issue I12:</b> The EJB and Java EE specifications currently define a number of other ways of  defining the destination used by the MDB, such as by setting the <tt>mappedName</tt> attribute of the <tt>@MessageDriven</tt> annotation. The specification will need to clarify the override order used if the destination is specified in multiple ways.
+<b>Issue I12:</b> The EJB and Java EE specifications currently define a number of other ways of  defining the destination used by the MDB, such as by setting the `mappedName` attribute of the `@MessageDriven` annotation. The specification will need to clarify the override order used if the destination is specified in multiple ways.
 
-<b>Issue I13:</b> Is it right that the  <tt>@JMSListener</tt> attribute <tt>type</tt> is mandatory,? The existing EJB 3.2 activation property <tt>destinationType</tt> does not define a default value. Should it remain optional, in which case should the specification designate a default value when  <tt>@JMSListener</tt> is used?
+<b>Issue I13:</b> Is it right that the  `@JMSListener` attribute `type` is mandatory,? The existing EJB 3.2 activation property `destinationType` does not define a default value. Should it remain optional, in which case should the specification designate a default value when  `@JMSListener` is used?
 
 ### Specifying the connection factory
 
-The existing <tt>@JMSConnectionFactory</tt> annotation may be used to specify the JNDI name of the connection factory used to receive messages.This corresponds to the existing EJB 3.2 activation property <tt>connectionFactoryLookup</tt>. 
+The existing `@JMSConnectionFactory` annotation may be used to specify the JNDI name of the connection factory used to receive messages.This corresponds to the existing EJB 3.2 activation property `connectionFactoryLookup`. 
 <br/>
  @JMSConnectionFactory("java:global/MyCF")
 <br/>
-Note that <tt>@JMSConnectionFactory</tt> is an existing annotation which is currently used to configure the connection factory used to create an injected <tt>JMSContext</tt> object. It better to reuse this annotation than have two very similar annotations.
+Note that `@JMSConnectionFactory` is an existing annotation which is currently used to configure the connection factory used to create an injected `JMSContext` object. It better to reuse this annotation than have two very similar annotations.
 
 ### Specifying the acknowledgement mode when using bean-managed transactions
 
-The existing <tt>@Acknowledge</tt> annotation may be used to specify acknowledge mode that will be used if bean-managed transaction demarcation is used.
-This corresponds to the existing EJB 3.2 activation property <tt>acknowledgeMode</tt>. 
+The existing `@Acknowledge` annotation may be used to specify acknowledge mode that will be used if bean-managed transaction demarcation is used.
+This corresponds to the existing EJB 3.2 activation property `acknowledgeMode`. 
 <br/>
  @Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
 <br/>
-The acknowledgement mode is specified using an enumerated type <tt>Acknowledge.Mode</tt>, which is a nested type of the <tt>Acknowledge</tt> annotation.
+The acknowledgement mode is specified using an enumerated type `Acknowledge.Mode`, which is a nested type of the `Acknowledge` annotation.
 
 ### Specifying durable topic subscriptions
 
-If the MDB is being used to consume messages from a topic, three further annotations are available: <tt>@SubscriptionDurability</tt>, <tt>@SubscriptionName</tt> and <tt>@ClientId</tt>.  These correspond to the EJB 3.2 activation properties  <tt>subscriptionDurability</tt>, <tt>subscriptionName</tt> and <tt>clientId</tt>. 
+If the MDB is being used to consume messages from a topic, three further annotations are available: `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId`.  These correspond to the EJB 3.2 activation properties  `subscriptionDurability`, `subscriptionName` and `clientId`. 
 <br/>
  @MessageDriven
  public class MyMessageBean implements JMSMessageDrivenBean {
@@ -212,13 +212,13 @@ If the MDB is being used to consume messages from a topic, three further annotat
    }
  }
 <br/>
-The subscription durability is specified using an enumerated type <tt>SubscriptionDurability.Mode</tt>, which is a nested type of the <tt>SubscriptionDurability</tt> annotation.
+The subscription durability is specified using an enumerated type `SubscriptionDurability.Mode`, which is a nested type of the `SubscriptionDurability` annotation.
 
-<b>Issue I14:</b> Should the <tt>@SubscriptionDurability</tt>, <tt>@SubscriptionName</tt> and <tt>@ClientId</tt> annotations (or perhaps the first two) be combined into a single annotation?
+<b>Issue I14:</b> Should the `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId` annotations (or perhaps the first two) be combined into a single annotation?
 
 ### Specifying a message selector
 
-The <tt>@MessageSelector</tt> annotation may be used to specify the message selector to be used. This corresponds directly to the EJB 3.2 activation property <tt>messageSelector</tt>, which may be used to override it.
+The `@MessageSelector` annotation may be used to specify the message selector to be used. This corresponds directly to the EJB 3.2 activation property `messageSelector`, which may be used to override it.
 <br/>
  @MessageDriven
  public class MyMessageBean implements JMSMessageDrivenBean {
@@ -233,11 +233,11 @@ The <tt>@MessageSelector</tt> annotation may be used to specify the message sele
 
 The callback method may have any name, it may have any return type, and may have any number of parameters of any type.
 
-When a message is delivered the container will set each method parameter to the message, the message body or to a message header or property, depending on the type of the message, the type of the parameter, and any <tt>@MessageHeader</tt> or <tt>@MessageProperty</tt> annotation.
+When a message is delivered the container will set each method parameter to the message, the message body or to a message header or property, depending on the type of the message, the type of the parameter, and any `@MessageHeader` or `@MessageProperty` annotation.
 
 ### Message parameters
 
-A parameter may be <tt>Message</tt> or one of its five subtypes <tt>TextMessage</tt>, <tt>StreamMessage</tt>, <tt>BytesMessage</tt>, <tt>MapMessage</tt>, <tt>ObjectMessage</tt>. This avoids the need for the listener method to cast the <tt>Message</tt> to the expected subtype.
+A parameter may be `Message` or one of its five subtypes `TextMessage`, `StreamMessage`, `BytesMessage`, `MapMessage`, `ObjectMessage`. This avoids the need for the listener method to cast the `Message` to the expected subtype.
 <br/>
  void processTrade(TextMessage textMessage){
    ...
@@ -245,25 +245,25 @@ A parameter may be <tt>Message</tt> or one of its five subtypes <tt>TextMessage<
 
 ### Parameters for message body
 
-If the message is a <tt>TextMessage</tt> then any parameter of type <tt>String</tt> (and which is not annotated with <tt>@MessageHeader</tt> or <tt>@MessageProperty</tt>) will be set to contain the message body.
+If the message is a `TextMessage` then any parameter of type `String` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
 <br/>
  void processTrade(String messageText){
    ...
  }
 <br/>
-If the message is a <tt>ObjectMessage</tt> then any parameter to which the message body is assignable (and which is not annotated with <tt>@MessageHeader</tt> or <tt>@MessageProperty</tt>) will be set to contain the message body.
+If the message is a `ObjectMessage` then any parameter to which the message body is assignable (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
 
  void processTrade(Trade incomingTrade){
    ...
  }
 <br/>
-If the message is a <tt>MapMessage</tt> then any parameter of type <tt>Map</tt> (and which is not annotated with <tt>@MessageHeader</tt> or <tt>@MessageProperty</tt>) will be set to contain the message body.
+If the message is a `MapMessage` then any parameter of type `Map` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
 
  void processTrade(Map tradeData){
    ...
  }
 <br/>
-If the message is a <tt>BytesMessage</tt> then any parameter of type <tt>byte[]</tt> (and which is not annotated with <tt>@MessageHeader</tt> or <tt>@MessageProperty</tt>) will be set to contain the message body.
+If the message is a `BytesMessage` then any parameter of type `byte[]` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
 
  void processTrade(byte[] tradeBytes){
    ...
@@ -271,17 +271,17 @@ If the message is a <tt>BytesMessage</tt> then any parameter of type <tt>byte[]<
 
 ### Message headers
 
-The <tt>@MessageHeader</tt> annotation may be used to specify that a parameter should be set to the specified message header.
+The `@MessageHeader` annotation may be used to specify that a parameter should be set to the specified message header.
 <br/>
  void processTrade(TextMessage messageText, @MessageHeader(Header.JMSCorrelationID) String correlationId,){
    ...
  } 
 <br/>
-The message header is specified using an enumerated type <tt>MessageHeader.Header</tt>, which is a nested type of the <tt>MessageHeader</tt> annotation.
+The message header is specified using an enumerated type `MessageHeader.Header`, which is a nested type of the `MessageHeader` annotation.
 
 ### Message properties
 
-The <tt>@MessageProperty</tt> annotation may be used to specify that a parameter should be set to the specified message property.
+The `@MessageProperty` annotation may be used to specify that a parameter should be set to the specified message property.
 <br/>
  void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
    ...
@@ -297,147 +297,147 @@ The following table lists all the options available for customising the method p
 ! Annotation
 ! Set to
 |-
-| <tt>TextMessage</tt>
-| <tt>TextMessage</tt>
+| `TextMessage`
+| `TextMessage`
 | None
-| The <tt>TextMessage</tt> object 
+| The `TextMessage` object 
 |-
-| <tt>StreamMessage</tt>
-| <tt>StreamMessage</tt>
+| `StreamMessage`
+| `StreamMessage`
 | None
-| The <tt>StreamMessage</tt> object
+| The `StreamMessage` object
 |-
-| <tt>BytesMessage</tt>
-| <tt>BytesMessage</tt>
+| `BytesMessage`
+| `BytesMessage`
 | None
-| The <tt>BytesMessage</tt> object
+| The `BytesMessage` object
 |-
-| <tt>MapMessage</tt>
-| <tt>MapMessage</tt>
+| `MapMessage`
+| `MapMessage`
 | None
-| The <tt>MapMessage</tt> object
+| The `MapMessage` object
 |-
-| <tt>ObjectMessage</tt>
-| <tt>ObjectMessage</tt>
+| `ObjectMessage`
+| `ObjectMessage`
 | None
-| The <tt>ObjectMessage</tt> object
+| The `ObjectMessage` object
 |-
-| <tt>Message</tt> 
-| <tt>Message</tt>
+| `Message` 
+| `Message`
 | None
-| The <tt>Message</tt> object
+| The `Message` object
 |-
 | Any
-| <tt>someClass</tt>
+| `someClass`
 | None
-| The message body, if it can be converted to the specified type using <tt>message.getBody(someClass)</tt> without throwing a <tt>MessageFormatException</tt>
+| The message body, if it can be converted to the specified type using `message.getBody(someClass)` without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>String</tt>
-| <tt>@MessageHeader(Header.JMSCorrelationID)</tt>
-| <tt>message.getJMSCorrelationID()</tt>.
+| `String`
+| `@MessageHeader(Header.JMSCorrelationID)`
+| `message.getJMSCorrelationID()`.
 |-
 | Any
-| <tt>byte[]</tt>
-| <tt>@MessageHeader(Header.JMSCorrelationIDAsBytes)</tt>
-| <tt>message.getJMSCorrelationIDAsBytes()</tt>.
+| `byte[]`
+| `@MessageHeader(Header.JMSCorrelationIDAsBytes)`
+| `message.getJMSCorrelationIDAsBytes()`.
 |-
 | Any
-| <tt>Integer</tt> or <tt>int</tt>
-| <tt>@MessageHeader(Header.JMSDeliveryMode)</tt>
-| <tt>message.getJMSDeliveryMode()</tt>.
+| `Integer` or `int`
+| `@MessageHeader(Header.JMSDeliveryMode)`
+| `message.getJMSDeliveryMode()`.
 |-
 | Any
-| <tt>Long</tt> or <tt>long</tt>
-| <tt>@MessageHeader(Header.JMSDeliveryTime)</tt>
-| <tt>message.getJMSDeliveryTime()</tt>.
+| `Long` or `long`
+| `@MessageHeader(Header.JMSDeliveryTime)`
+| `message.getJMSDeliveryTime()`.
 |-
 | Any
-| <tt>Destination</tt>
-| <tt>@MessageHeader(Header.JMSDestination)</tt>
-| <tt>message.getJMSDestination()</tt>.
+| `Destination`
+| `@MessageHeader(Header.JMSDestination)`
+| `message.getJMSDestination()`.
 |-
 | Any
-| <tt>Long</tt> or <tt>long</tt>
-| <tt>@MessageHeader(Header.JMSExpiration)</tt>
-| <tt>message.getJMSExpiration()</tt>.
+| `Long` or `long`
+| `@MessageHeader(Header.JMSExpiration)`
+| `message.getJMSExpiration()`.
 |-
 | Any
-| <tt>String</tt>
-| <tt>@MessageHeader(Header.JMSMessageID)</tt>
-| <tt>message.getJMSMessageID()</tt>.
+| `String`
+| `@MessageHeader(Header.JMSMessageID)`
+| `message.getJMSMessageID()`.
 |-
 | Any
-| <tt>Integer</tt> or <tt>int</tt>
-| <tt>@MessageHeader(Header.JMSPriority)</tt>
-| <tt>message.getJMSPriority()</tt>.
+| `Integer` or `int`
+| `@MessageHeader(Header.JMSPriority)`
+| `message.getJMSPriority()`.
 |-
 | Any
-| <tt>Boolean</tt> or <tt>boolean</tt>
-| <tt>@MessageHeader(Header.JMSRedelivered)</tt>
-| <tt>message.getJMSRedelivered()</tt>.
+| `Boolean` or `boolean`
+| `@MessageHeader(Header.JMSRedelivered)`
+| `message.getJMSRedelivered()`.
 |-
 | Any
-| <tt>Destination</tt>
-| <tt>@MessageHeader(Header.JMSReplyTo)</tt>
-| <tt>message.getJMSReplyTo()</tt>.
+| `Destination`
+| `@MessageHeader(Header.JMSReplyTo)`
+| `message.getJMSReplyTo()`.
 |-
 | Any
-| <tt>Long</tt> or <tt>long</tt>
-| <tt>@MessageHeader(Header.JMSTimestamp)</tt>
-| <tt>message.getJMSTimestamp()</tt>.
+| `Long` or `long`
+| `@MessageHeader(Header.JMSTimestamp)`
+| `message.getJMSTimestamp()`.
 |-
 | Any
-| <tt>String</tt>
-| <tt>@MessageHeader(Header.JMSType)</tt>
-| <tt>message.getJMSType()</tt>.
+| `String`
+| `@MessageHeader(Header.JMSType)`
+| `message.getJMSType()`.
 |-
 | Any
-| <tt>Boolean</tt> or <tt>boolean</tt>
-| <tt>@MessageProperty("foo")</tt>
-| <tt>message.getBooleanProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `Boolean` or `boolean`
+| `@MessageProperty("foo")`
+| `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>byte</tt>
+| `byte`
 | @MessageProperty("foo")
-| <tt>message.getByteProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>Short</tt> or <tt>short</tt>
+| `Short` or `short`
 | @MessageProperty("foo")
-| <tt>message.getShortProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>Integer</tt> or <tt>int</tt>
+| `Integer` or `int`
 | @MessageProperty("foo")
-| <tt>message.getIntProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>Long</tt> or <tt>long</tt>
+| `Long` or `long`
 | @MessageProperty("foo")
-| <tt>message.getLongProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>Float</tt> or <tt>float</tt>
+| `Float` or `float`
 | @MessageProperty("foo")
-| <tt>message.getFloatProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>Double</tt> or <tt>double</tt>
+| `Double` or `double`
 | @MessageProperty("foo")
-| <tt>message.getDoubleProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getDoubleProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |-
 | Any
-| <tt>String</tt>
+| `String`
 | @MessageProperty("foo")
-| <tt>message.getStringProperty("foo")</tt><br/>if this returns without throwing a <tt>MessageFormatException</tt>
+| `message.getStringProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 |} 
 
-* If none of the following applies then the parameter is set to the default value [https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.12.5 as defined in the JLS] (e.g. <tt>null</tt> for objects, 0 for int etc)
+* If none of the following applies then the parameter is set to the default value [https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.12.5 as defined in the JLS] (e.g. `null` for objects, 0 for int etc)
 
-* It is recommended that the callback method has a <tt>void</tt> return type. A non-<tt>void</tt> return type is allowed but the returned value will be ignored.
+* It is recommended that the callback method has a `void` return type. A non-`void` return type is allowed but the returned value will be ignored.
 
-<b>Issue I15:</b> Any alternative proposals for the <tt>@MessageProperty</tt> or <tt>MessageHeader</tt> annotations?
+<b>Issue I15:</b> Any alternative proposals for the `@MessageProperty` or `MessageHeader` annotations?
 
 <b>Issue I16:</b> The table above is based on the principle that if a parameter cannot be set to the required value due to it having an unsuitable type then it should simple be set to null (or a default primitive value) rather than throwing an exception and triggering message delivery. This is because there is no point in redelivering the message since it will simply fail again (and JMS does not define any dead message functionality). Is this the correct approach?
 
@@ -453,51 +453,51 @@ The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/
 |-
 | New
 | Marker interface
-| <tt>javax.jms.JMSMessageDrivenBean</tt>
+| `javax.jms.JMSMessageDrivenBean`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.JMSListener</tt>
+| `javax.jms.JMSListener`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html javadocs]
 |-
 | Modified
 | Method or field annotation
-| <tt>javax.jms.JMSConnectionFactory</tt>
+| `javax.jms.JMSConnectionFactory`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.Acknowledge</tt>
+| `javax.jms.Acknowledge`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html javadocs]
 |-|-
 | New
 | Method annotation
-| <tt>javax.jms.SubscriptionDurability</tt>
+| `javax.jms.SubscriptionDurability`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.SubscriptionName</tt>
+| `javax.jms.SubscriptionName`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.ClientId</tt>
+| `javax.jms.ClientId`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html javadocs]
 |-
 | New
 | Method annotation
-| <tt>javax.jms.MessageSelector</tt>
+| `javax.jms.MessageSelector`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html javadocs]
 |-
 | New
 | Parameter annotation
-| <tt>javax.jms.MessageHeader</tt>
+| `javax.jms.MessageHeader`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html javadocs]
 |-
 | New
 | Parameter annotation
-| <tt>javax.jms.MessageProperty</tt>
+| `javax.jms.MessageProperty`
 | [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html javadocs]
 |} 

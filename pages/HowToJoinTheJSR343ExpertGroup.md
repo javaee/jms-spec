@@ -2,11 +2,11 @@
 
 This page describes the steps that need to be followed if you wish to join the JSR 343 Expert Group
 
-<h3>Before you start</h3>
+<h3>Before you start
 
 Please note that anyone can participate in JSR 343 without formally joining the expert group. So before you start your application, please join the users@jms-spec.java.net mailing list. You can find some instructions on how to join, and how to browse the online archives, [ http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here] .  Doing so will give you full access to the expert group's deliberations and give you an opportunity to comment on its activities. In addition, please take a look at the draft spec and javadocs by following the links [http://java.net/projects/jms-spec/pages/Home#Latest_draft_specification_and_javadocs here]. You can do all this right now without waiting for any approvals from anyone. 
 
-<h3>Expert group application process</h3>
+<h3>Expert group application process
 
 * Decide whether you are applying to join the expert group as an **individual** or on behalf of an **organisation**. If you're known to be associated with an organisation with an interest in JMS (e.g. your employer is a JMS vendor) then we will expect you to apply to represent that organisation, not as an individual. 
 

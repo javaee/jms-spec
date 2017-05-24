@@ -7,8 +7,8 @@
 
 ## Single JMSContext instead of separate Connection and Session objects 
 
-The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which provides the same functionality as the separate <tt>Connection</tt> and
-<tt>Session</tt> objects in the JMS 1.1 API:
+The JMS 2.0 simplified API introduces a new object, `JMSContext`, which provides the same functionality as the separate `Connection` and
+`Session` objects in the JMS 1.1 API:
 
 **JMS 1.1**
 
@@ -21,11 +21,11 @@ The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which p
 
 ## Use of try-with-resources block means no need to call close 
 
-Failing to close a <tt>Connection</tt> after use may cause your application to run out of resources.
+Failing to close a `Connection` after use may cause your application to run out of resources.
 
 **JMS 1.1**
 
-In JMS 1.1 the best way to make sure your connection gets closed after use is to call <tt>close()</tt> in a <tt>finally</tt> block:
+In JMS 1.1 the best way to make sure your connection gets closed after use is to call `close()` in a `finally` block:
 
  try {
     Connection connection = connectionFactory.createConnection();
@@ -39,12 +39,12 @@ In JMS 1.1 the best way to make sure your connection gets closed after use is to
     ex.printStackTrace();
  }
 
-This is rather verbose. To make things worse, if you get an exception in the body of the <tt>try</tt> block, followed by an exception in <tt>close()</tt>,
+This is rather verbose. To make things worse, if you get an exception in the body of the `try` block, followed by an exception in `close()`,
 the first exception will be lost, even though the first exception is probably the root cause of the failure.
 
 **JMS 2.0**
 
-In JMS 2.0 the <tt>Connection</tt> object implements the <tt>java.lang.AutoCloseable</tt> interface. This means that if you create the <tt>Connection</tt>  object in a try-with-resources block the <tt>close</tt> method will be called automatically at the end of the block. 
+In JMS 2.0 the `Connection` object implements the `java.lang.AutoCloseable` interface. This means that if you create the `Connection`  object in a try-with-resources block the `close` method will be called automatically at the end of the block. 
 
  try (Connection connection = connectionFactory.createConnection();){
     ... etc ...
@@ -52,10 +52,10 @@ In JMS 2.0 the <tt>Connection</tt> object implements the <tt>java.lang.AutoClose
     ex.printStackTrace();
  }
 
-This requires less code. In addition it allows exceptions to be handled better: if you get an exception in the body of the try block, followed by an exception in <tt>close()</tt>, the
+This requires less code. In addition it allows exceptions to be handled better: if you get an exception in the body of the try block, followed by an exception in `close()`, the
 first exception will be nicely nested within the first, so you can easily identify the root cause.
 
-The same syntax may be used when creating a <tt>JMSContext</tt>.
+The same syntax may be used when creating a `JMSContext`.
 
 ## No need to pass in two parameters when creating a session in Java SE 
 
@@ -69,11 +69,11 @@ The same syntax may be used when creating a <tt>JMSContext</tt>.
 
  Session session = connection.createSession(Session.SESSION_TRANSACTED);
 
-There are similar methods for creating a <tt>JMSContext</tt>
+There are similar methods for creating a `JMSContext`
 
 ## No need to pass in any parameters when creating a session in a Java EE transaction 
 
-If you create a <tt>Session</tt> in a Java EE transaction, the arguments to <tt>createSession</tt> are ignored. 
+If you create a `Session` in a Java EE transaction, the arguments to `createSession` are ignored. 
 It says so in the EJB 3.1 spec.
 
 **JMS 1.1**
@@ -92,7 +92,7 @@ JMS 2.0 provides a method with no parameters:
 
 ## New JMSProducer object supports method chaining 
 
-The new <tt>JMSProducer</tt> object allows message headers, message properties and delivery options to be specified in a single line of code using method chaining
+The new `JMSProducer` object allows message headers, message properties and delivery options to be specified in a single line of code using method chaining
 
 **JMS 1.1**
 
@@ -109,11 +109,11 @@ The new <tt>JMSProducer</tt> object allows message headers, message properties a
 
 ## No need to save a JMSProducer in a variable; simply instantiate on the fly 
 
-The new <tt>JMSProducer</tt> object is a lightweight object so there's no need to save it in a variable; simply instantiate one on the fly when needed
+The new `JMSProducer` object is a lightweight object so there's no need to save it in a variable; simply instantiate one on the fly when needed
 
 **JMS 1.1**
 
-<tt>MessageProducer</tt> is expensive so need to reuse it.
+`MessageProducer` is expensive so need to reuse it.
 
  MessageProducer messageProducer = session.createProducer(demoQueue);
  messageProducer.send(message1);
@@ -121,7 +121,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
 
 **JMS 2.0**
 
-<tt>JMSProducer</tt> is cheap, no need to save in variable
+`JMSProducer` is cheap, no need to save in variable
 
  context.createProducer().send(demoQueue,message1);
  context.createProducer().send(demoQueue,message2);
@@ -164,17 +164,17 @@ Need to create a message object of the appropriate type and then set its body:
 
 **JMS 2.0**
 
-In JMS 2.0, simply pass the message body into the <tt>send</tt> method:
+In JMS 2.0, simply pass the message body into the `send` method:
 
  context.createProducer().send(demoQueue,"Hello world");
 
-Note that you can do this even when you want to set message properties since these can be set on the <tt>JMSProducer</tt>.
+Note that you can do this even when you want to set message properties since these can be set on the `JMSProducer`.
 
 ## Receiving synchronously, can receive mesage payload directly 
 
 **JMS 1.1**
 
-When receiving synchronously, so you are given a <tt>Message</tt> object and need to cast it to the appropriate subtype before you can extract its body:
+When receiving synchronously, so you are given a `Message` object and need to cast it to the appropriate subtype before you can extract its body:
 
  MessageConsumer messageConsumer = session.createConsumer(demoQueue);
  TextMessage textMessage = (TextMessage) messageConsumer.receive(1000);
@@ -197,7 +197,7 @@ Note the lack of casting, or special null handling.
 
 **JMS 1.1**
 
-When receiving a message asynchronously, the message passed to the <tt>onMessage</tt> method is a <tt>javax.jms.Message</tt> You need to cast it to the expected subtype before you can extract the body. If the message is an <tt>ObjectMessage</tt> this gives you a <tt>Serializable</tt> body which you have to cast a second time to the expected body type. 
+When receiving a message asynchronously, the message passed to the `onMessage` method is a `javax.jms.Message` You need to cast it to the expected subtype before you can extract the body. If the message is an `ObjectMessage` this gives you a `Serializable` body which you have to cast a second time to the expected body type. 
 
  public void onMessage(Message m){
     MyObject myObj = (MyObject)((ObjectMessage)m).getObject();
@@ -205,7 +205,7 @@ When receiving a message asynchronously, the message passed to the <tt>onMessage
 
 **JMS 2.0**
 
-A new method <tt>getBody</tt> allows you to extract the body from the <tt>Message</tt> without the need to cast it to the appropriate subtype first. This is particularly handy for ObjectMessages, as it avoids a double cast to extract the object payload
+A new method `getBody` allows you to extract the body from the `Message` without the need to cast it to the appropriate subtype first. This is particularly handy for ObjectMessages, as it avoids a double cast to extract the object payload
 
  public void onMessage(Message m){
     MyObject myObj = m.getBody(MyObject.class);

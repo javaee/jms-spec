@@ -13,17 +13,17 @@ The minutes of this meeting are [https://java.net/projects/jms-spec/lists/users/
 
 ## Agenda 
 
-<h3>1. Introductions</h3>
+<h3>1. Introductions
 
 Please introduce yourself. Are you a JMS developer or a JMS user? What do you use JMS for? What would you like to see in JMS2.1?
 
-<h3>2. Improving collaboration</h3>
+<h3>2. Improving collaboration
 
 How can the spec lead make it easier for people to contribute to JMS 2.1? Should we hold meetings, regular conference calls or IM sessions? What is the role of the expert group? Should we be more formal in planning the work on JMS 2.1?
 
 Email lists. Draft spec and javadocs. Reference implementation. Compatibility tests. CTS assertions in the spec.
 
-<h3>3. Proposed high-level plan for JMS 2.1</h3>
+<h3>3. Proposed high-level plan for JMS 2.1
 
 See proposed plan below
 
@@ -33,7 +33,7 @@ What proposed features would you like to see dropped?
 
 Show of hands?
 
-<h3>4. Review of EDR1: Flexible JMS MDBs</h3>
+<h3>4. Review of EDR1: Flexible JMS MDBs
 
 Review of the detailed proposals for "Flexible JMS MDBs" as described in the JMS 2.1 Early Draft. 
 
@@ -46,7 +46,7 @@ Particular issues to cover
 * Handling conversion errors
 * Handling exceptions
 
-<h3>5. CDI beans as JMS message listeners</h3>
+<h3>5. CDI beans as JMS message listeners
 
 Particular issues to cover
 * Why we need this. Whether we need this.
