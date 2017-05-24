@@ -93,24 +93,25 @@ Email address | Purpose | Access
 
 ## JMS expert group mailing lists
 
-There are two mailing lists that only JMS expert group members may subscribe. These are described in [[JMSExperts#JMS_expert_group_mailing_lists| JMS expert group mailing lists]].
+There are two mailing lists that only JMS expert group members may subscribe. These are described in [JMS expert group mailing lists](JMSExperts#JMS_expert_group_mailing_lists).
 
 
 ## Issue tracker
 
-Comments and changes to the JMS specification will be managed using  [http://java.net/jira/browse/JMS_SPEC the JIRA issue tracker].
+Comments and changes to the JMS specification will be managed using  [the JIRA issue tracker](http://java.net/jira/browse/JMS_SPEC).
 
-If you would like to propose a change to the JMS specification, please [http://java.net/jira/secure/CreateIssue!default.jspa create an issue] containing a description of the proposed change, or [http://java.net/jira/secure/IssueNavigator.jspa?mode=show&createNew=true search for an existing issue] and add a comment.  You need to sign up for a java.net account and login first. 
+If you would like to propose a change to the JMS specification, please [create an issue](http://java.net/jira/secure/CreateIssue!default.jspa)
+containing a description of the proposed change, or [search for an existing issue](http://java.net/jira/secure/IssueNavigator.jspa?mode=show&createNew=true) and add a comment.  You need to sign up for a java.net account and login first. 
 
 ### How to create an issue
 
 Here are some guidelines to follow when creating a new issue:
 * Please don't combine unrelated subjects in the same issue. Create a separate issue for each. 
 * **Issue Type**: .Choose one of Bug, New Feature, Task or Improvement from the pop-up menu. 
-** Bug: There is a problem or error in the spec, API or javadocs
-** New Feature: Use this to suggest a new feature which is not in the existing spec, API or javadocs
-** Task: Please don't use this  git push origin gh-pages
-** Improvement:  An improvement or enhancement to an existing feature of the spec, API or javadocs
+  * Bug: There is a problem or error in the spec, API or javadocs
+  * New Feature: Use this to suggest a new feature which is not in the existing spec, API or javadocs
+  * Task: Please don't use this  git push origin gh-pages
+  * Improvement:  An improvement or enhancement to an existing feature of the spec, API or javadocs
 * **Summary** Please enter a meaningful one-line summary of your issue
 * Priority: Please don't change this
 * **Component/s** We will use this in the future to allow you to categorise your issue
