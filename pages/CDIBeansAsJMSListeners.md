@@ -40,8 +40,12 @@ Here's an example of a MDB in Java EE 7:
 
 ### In Java EE 8, we're proposing that JMS MDBs will be more flexible
 
-<br/>The separate proposals for  [[JMSListener2|More flexible JMS MDBs]] in JMS 2.1 will make them even simpler by removing the need for the MDB to implement the <tt>javax.jms.MessageListener</tt> and defining some new, JMS-specific, annotations. Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
-<br/><br/>
+The separate proposals for [More flexible JMS MDBs](/jms-spec/pages/JMSListener2) in JMS 2.1 
+will make them even simpler by removing the need for the MDB to implement the 
+<tt>javax.jms.MessageListener</tt> and defining some new, JMS-specific, annotations.
+Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
+
+```
  @MessageDriven
  public class MyMDB21 {
  
@@ -52,12 +56,15 @@ Here's an example of a MDB in Java EE 7:
      ...
    }
  }
-<br/>However those proposals leave the MDB lifecycle unchanged. This means that a MDB (or pool of MDBs) will start listening for messages as soon as the application is started, and will continue to listen for messages until the application is shut down. There is no way to listen for messages for a shorter period that this, or to allow objects that are not MDBs to listen for messages.
+```
+
+However those proposals leave the MDB lifecycle unchanged. This means that a MDB (or pool of MDBs) will start listening for messages as soon as the application is started, and will continue to listen for messages until the application is shut down. There is no way to listen for messages for a shorter period that this, or to allow objects that are not MDBs to listen for messages.
 
 ### In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages
 
 To address the restrictions in the MDB lifecycle **it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages**. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
-<br/><br/>
+
+```
  @Dependent
  public class MyCDIBean21 {
  
@@ -68,7 +75,9 @@ To address the restrictions in the MDB lifecycle **it is now proposed to allow a
      ...
    }
  }
-<br/>As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This is deliberate: all the new annotations that can be used on a callback method of a JMS MDB (<tt>@JMSListener</tt> etc) can also be used on a CDI managed bean.  (Note also that these annotations are still being designed: comments are invited.)
+```
+
+As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This is deliberate: all the new annotations that can be used on a callback method of a JMS MDB (<tt>@JMSListener</tt> etc) can also be used on a CDI managed bean.  (Note also that these annotations are still being designed: comments are invited.)
 
 However note that this object is not a MDB. It does not have the <tt>MessageDriven</tt> annotation. Instead it is a CDI managed bean which can have any CDI scope and can be injected into Java EE code just like any other CDI managed bean. When a CDI bean is injected, the lifecycle of the bean instance is managed by the CDI container. When the bean instance is created, if it is annotated with <tt>JMSListener</tt> then it will start listening for messages, and when the bean instance is destroyed (such as when its scope ends) it will stop listening for messages.
 
@@ -78,7 +87,7 @@ For more about the lifecycle of a CDI JMS listener bean, see [[CDIBeansAsJMSList
 
 This section describes JMS listener beans in more detail and how they relate to CDI managed beans in general, and to JMS MDBs.
 
-The CDI 1.2 specification defines a managed bean in [http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#managed_beans section 3.1 "Managed beans"]. This states:
+The CDI 1.2 specification defines a managed bean in [section 3.1 "Managed beans"](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#managed_beans). This states:
 
 <table style=" margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td>
 A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE specification, or if it meets all of the following conditions:
