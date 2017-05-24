@@ -2,15 +2,16 @@
 
 Welcome to the website for the development of the Java Message Service (JMS) specification.
 
-Latest news (Oct 2015)
+## Latest news (Oct 2015)
 
-> The JMS 2.1 Early Draft is now out! Download it [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html here].<br/>
-> See the [https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1 latest news on JMS 2.1]<br/>
+> The JMS 2.1 Early Draft is now out! Download it [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html here].
+> See the [https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1 latest news on JMS 2.1]
 > Find out all about [https://java.net/projects/jms-spec/pages/JMS21 JMS 2.1]
 
 ## JMS 2.1
 
-(https://jcp.org/en/jsr/detail?id=368)[JSR 368] will be the next version of JMS. For more information see the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
+(https://jcp.org/en/jsr/detail?id=368)[JSR 368] will be the next version of JMS. 
+For more information see the [main JMS 2.1 page]([https://java.net/projects/jms-spec/pages/JMS21).
 
 ## JMS 2.0 errata
 
@@ -19,7 +20,7 @@ An errata for JMS 2.0 was released in March 2015. For more information see the [
 ## JMS 2.0
 
 JMS 2.0 is the latest released version of JMS and  was released on 21 May 2013. See the [[JMS20FinalRelease|JMS 2.0 Final Release page]] for information on where to find the specification and API documentation. That page also contains information on the new features in JMS 2.0, where to download the reference implementation, and provides links to various useful articles about JMS 2.0.
-<br/>
+
 
 ## About the development of the JMS specification
 
@@ -36,7 +37,7 @@ The purpose of this website is to support the continuing development of the JMS 
 This website is a project hosted by java.net. To get the best out of this website, to join the mailing lists and use the issue tracker, you need to register with java.net and log in. 
 
 The maintenance lead for JSR 343 (JMS 2.0) and the prospective specification lead for JSR 368 (JMS 2.1) is [mailto:nigel.deakin@oracle.com Nigel Deakin] (Oracle). 
-<br/>
+
 ## Getting involved
 
 Here are some ways to get involved in the development of the JMS specification:
@@ -50,9 +51,9 @@ Here are some ways to get involved in the development of the JMS specification:
 * A new expert group is being formed for JSR 368 (JMS 2.1). Applications to '''join the JSR 368 expert group''' are now invited. See [[JMSExperts#Joining_the_JMS_expert_group|Joining the JMS expert group]].
 
 * JSR 343 (JMS 2.0)  is now in maintenance mode and is administered directly by the maintenance lead. 
-<br/>
+
 ## JMS community mailing lists
-<br/>
+
 ###  Mailing lists open to everyone
 {|- border="1"
 ! Email address
@@ -60,12 +61,12 @@ Here are some ways to get involved in the development of the JMS specification:
 ! Access
 |-
 | '''users@jms-spec.java.net'''
-| Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. <br/><br/>
- This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.<br/><br/>
+| Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
+ This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.
 Discussions on the '''jsr-368-experts@jms-spec.java.net''' mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group.
-| Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. <br/><br/>
+| Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. 
 
-To receive messages from this list, you need to "join" the [ http://jms-spec.java.net  jms-spec.java.net] project and then subscribe to this list.  ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this]).  Messages from subscribers are not moderated.<br/><br/>
+To receive messages from this list, you need to "join" the [ http://jms-spec.java.net  jms-spec.java.net] project and then subscribe to this list.  ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this]).  Messages from subscribers are not moderated.
 [http://java.net/projects/jms-spec/lists/users/archive Online archive of past messages].  
 |-
 | '''issues@jms-spec.java.net'''
@@ -80,7 +81,7 @@ Anyone by join, but there's no need to unless you are updating the source code r
 | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this])<br /><br />
 [http://java.net/projects/jms-spec/lists/commits/archive Online archive of past messages]
 |}
-<br/>
+
 ###  Mailing lists FAQ
 ;How do I join the [ http://jms-spec.java.net  jms-spec.java.net] project? 
 :Simply click on [https://java.net/projects/jms-spec/watch Join this project] on the left, and you'll be instantly become a member. This is sometimes referred to as an "observer role". You'll need to be logged into [http://java.net java.net]. This will also add this project to your [http://java.net/mypage My Projects] page.
@@ -90,7 +91,7 @@ Anyone by join, but there's no need to unless you are updating the source code r
 
 ;I tried to reply to an email but it was rejected. Why?
 : If you subscribe to users@jms-spec.java.net you'll automatically receive a copy of all emails sent to the expert group.  You're welcome to reply to any email with a comment. However if you are not a member of the expert group you'll need to change the recipient to users@jms-spec.java.net before replying, otherwise your email will be rejected. The expert group will see all emails sent to users@jms-spec.java.net.
-<br/>
+
 ###  Observer mailing list (not used) 
 {|- border="1"
 ! Email address
@@ -105,12 +106,12 @@ If you wish to observe what is going on with JSR 368, join the join the '''users
 <br /><br />
 There is currently no online archive of past messages.<br />
 |}
-<br/>
+
 ## JMS expert group mailing lists
 
 There are two mailing lists that only JMS expert group members may subscribe. These are described in [[JMSExperts#JMS_expert_group_mailing_lists| JMS expert group mailing lists]].
 
-<br/>
+
 ## Issue tracker
 
 Comments and changes to the JMS specification will be managed using  [http://java.net/jira/browse/JMS_SPEC the JIRA issue tracker].
@@ -137,7 +138,7 @@ Here are some guidelines to follow when creating a new issue:
 * Issuezilla Id: Please leave blank
 * Status Whiteboard: Please leave blank. We may start using this field in the future.
 * Tags: Please leave blank. These should only be set by the project administrators, so if you set these yourself you'll confuse things. 
-<br/>
+
 ## Procedures and policies
 
 The [http://java.net/projects/javaee-spec/pages/CompatibilityRequirements Java EE Backwards Compatibility Requirements] (on the Java EE WIki) describe the requirements to make releases of JMS 2.0  backwards compatible with previous versions.
