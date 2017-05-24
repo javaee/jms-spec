@@ -81,7 +81,7 @@ As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This i
 
 However note that this object is not a MDB. It does not have the <tt>MessageDriven</tt> annotation. Instead it is a CDI managed bean which can have any CDI scope and can be injected into Java EE code just like any other CDI managed bean. When a CDI bean is injected, the lifecycle of the bean instance is managed by the CDI container. When the bean instance is created, if it is annotated with <tt>JMSListener</tt> then it will start listening for messages, and when the bean instance is destroyed (such as when its scope ends) it will stop listening for messages.
 
-For more about the lifecycle of a CDI JMS listener bean, see [Listener lifecycles](/jms-spec/pages/CDIBeansAsJMSListeners#Listener_lifecycles) below.
+For more about the lifecycle of a CDI JMS listener bean, see [Listener lifecycles](/jms-spec/pages/CDIBeansAsJMSListeners#listener-lifecycles) below.
 
 ## JMS listener beans
 
