@@ -30,7 +30,7 @@ and provides links to various useful articles about JMS 2.0.
 
 The Java Message Service (JMS) specification was first released in 1998, at the dawn of Java EE, with a major update in 2002. It then remained unchanged during the decade that followed. Meanwhile, technology evolved and many vendors pressed ahead with enhancements outside the specification. During that time, the rest of Java EE evolved significantly, with improvements and new features added. Despite the lack of development of the specification, JMS continued to be a popular and successful standard, with numerous competing implementations, both standalone and as part of complete Java EE stacks, and  open and closed source. 
 
-On 1st March 2011 a Java Specification Request (JSR) was submitted to the [http://jcp.org/en/home/index Java Community Process] which proposed the development of JMS 2.0. This is [JSR 343](http://jcp.org/en/jsr/detail?id=343).  
+On 1st March 2011 a Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.0. This is [JSR 343](http://jcp.org/en/jsr/detail?id=343).  
 
 On 21 May 2013 JMS 2.0 was released. This major update introduces a new simplified API and adds support for the injection of JMS connections into Java EE applications. It forms part of Java EE 7. Now that JMS 2.0 is released, JSR 343 moves into maintenance mode.
 
@@ -40,7 +40,8 @@ The purpose of this website is to support the continuing development of the JMS 
 Currently it is focussed on JSR 343 (JMS 2.0) and  JSR 368  (JMS 2.1) 
 by hosting their mailing lists, issue tracker, wiki and any other resources that are required. 
 It runs in conjunction with the  [official JSR 343 page on the JCP website](http://jcp.org/en/jsr/detail?id=343)
-and the  [official JSR 368 page on the JCP website](http://jcp.org/en/jsr/detail?id=368)
+and the  [official JSR 368 page on the JCP webs
+Comments and changes to the JMS specificaite](http://jcp.org/en/jsr/detail?id=368)
 which are used mainly to conduct the formal aspects of these JSRs.
 
 This website is a project hosted by java.net. To get the best out of this website, to join the mailing lists and use the issue tracker, you need to register with java.net and log in. 
