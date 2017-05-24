@@ -6,7 +6,7 @@ These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments
 
 For a summary of the comments made so far, see [JMS Listener beans: summary of comments](jms-spec/pages/CDIListenerBeanComments). 
 
-These proposals are separate to the proposals for [[JMSListener2|More flexible JMS MDBs]], though the two sets of proposals are designed to use a common set of annotations.
+These proposals are separate to the proposals for [More flexible JMS MDBs](jms-spec/pages/JMSListener2), though the two sets of proposals are designed to use a common set of annotations.
 
 * auto-gen TOC:
 {:toc}
