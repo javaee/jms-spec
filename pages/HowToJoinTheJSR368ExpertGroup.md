@@ -4,7 +4,7 @@ If you're familiar with the JMS specification and are able to devote a significa
 
 __TOC__
 
-===Expert group application process===
+### Expert group application process
 
 * Decide whether you are applying to join the expert group as an **individual** or on behalf of an **organisation**. If you're known to be associated with an organisation with an interest in JMS (e.g. your employer is a JMS vendor) then we will expect you to apply to represent that organisation, not as an individual. 
 
@@ -24,7 +24,7 @@ __TOC__
 
 * **Your application will be made public** Please note that details of your application to join the expert group, including your organizational affiliation, together with the specification lead's official response, and any substantive deliberations within the expert group about the matter, will be published on the expert group mailing list and therefore made public, and/or published on the JMS specification website. This is a requirement of the  [https://jcp.org/en/procedures/jcp2_9#1.2 JCP 2.9 section 1.2.1]. 
 
-===Participation without joining the expert group===
+### Participation without joining the expert group
 
 Please note that anyone can participate in JSR 368 without formally joining the expert group. So before you start your application, please join the users@jms-spec.java.net mailing list. You can find some instructions on how to join, and how to browse the online archives, [ http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here] .  Doing so will give you full access to the expert group's deliberations and give you an opportunity to comment on its activities. 
 

@@ -4,16 +4,16 @@ This page discusses the method annotations on flexible JMS MDBs
 
 __TOC__
 
-== Using resource adapter==
+##  Using resource adapter=### 
 
-== Using ConnectionConsumer==
+##  Using ConnectionConsumer=### 
 
-== Using synchronous loop==
+##  Using synchronous loop=### 
 
-===Two separate MDBs listening on Q1 and Q2===
+### Two separate MDBs listening on Q1 and Q2
 
 [[image:  Slide1.JPG]]
 
-===A single MDB with twice as many threads and instances, listening on both Q1 and Q2===
+### A single MDB with twice as many threads and instances, listening on both Q1 and Q2
 
 [[image:  Slide2.JPG]]

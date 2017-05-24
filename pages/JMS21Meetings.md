@@ -1,6 +1,6 @@
 # JMS 2.1 Meetings</h1>
 
-==Meetings ==
+## Meetings
 
 Open meetings, to work on the development of the JMS 2.1 specification, are held on alternate Thursdays at 0900 Pacific Time (currently 1200 Eastern Time, 1700 UK time, 1800 CET) using Zoom video conferencing. For the next meeting see below.
 
@@ -8,7 +8,7 @@ Meetings are open to all.  Participation is governed  by the [https://www.java.n
 
 Join the [https://java.net/projects/jms-spec/pages/Home#JMS_community_mailing_lists JMS spec community mailing list]. See also [https://java.net/projects/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
 
-===Agenda and minutes ===
+### Agenda and minutes 
 
 {|- border="1"
 ! Date
@@ -28,7 +28,7 @@ Join the [https://java.net/projects/jms-spec/pages/Home#JMS_community_mailing_li
 | [https://java.net/projects/jms-spec/lists/users/archive/2015-11/message/14 Minutes]
 |} 
 
-===How to join the conference===
+### How to join the conference
 
 We use Zoom for web conferencing. This supports Windows/Mac/iOS/Android and provides video, audio, and screen-sharing. It also supports access by phone as well.
 

@@ -4,7 +4,7 @@ This page contains administrative information for members (or prospective member
 
 __TOC__
 
-==Joining the JMS expert group==
+## Joining the JMS expert group=### 
 
 Applications to join the JSR 368 expert group are now invited. 
 
@@ -14,7 +14,7 @@ The application process is described in detail in [[HowToJoinTheJSR368ExpertGrou
 
 All applications, and the decision for any rejection, are recorded on the [[JSR368EGNominations|JSR 368 expert group nominations]] page. Members of the JSR 343 expert group are invited to make a new application to join the JSR 368 expert group.
 
-== JMS expert group mailing lists ==
+##  JMS expert group mailing lists
 
 This section lists the mailing lists for JSR 368 expert group members. Expert group members are also expected to join the **users@jms-spec.java.net** mailing list and may wish to join the **issues@jms-spec.java.net** and **commits@jms-spec.java.net** mailing lists. For more information see [[Home#JMS_community_mailing_lists|JMS community mailing lists]].
 

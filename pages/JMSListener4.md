@@ -4,11 +4,11 @@ This page discusses the method annotations on flexible JMS MDBs
 
 __TOC__
 
-== Original proposal (option A)==
+##  Original proposal (option A)=### 
 
 [https://java.net/projects/jms-spec/pages/JMSListener3#Recap_of_current_proposal_%28Option_A%29 Description of option A]
 
-===Queue (option A)===
+### Queue (option A)
 
  @MessageDriven
  public class MyMessageBean {
@@ -24,7 +24,7 @@ __TOC__
    }
  }
 
-===Non-Durable subscription on topic (option A)===
+### Non-Durable subscription on topic (option A)
 
  @MessageDriven
  public class MyMessageBean {
@@ -42,7 +42,7 @@ __TOC__
    }
  }
 
-===Durable subscription on topic (option A)===
+### Durable subscription on topic (option A)
 
  @MessageDriven
  public class MyMessageBean {
@@ -60,11 +60,11 @@ __TOC__
    }
  }
 
-===Option A: discussion===
+### Option A: discussion
 
-== Proposal in Early Draft (option B) ==
+##  Proposal in Early Draft (option B)
 
-===Queue (option B)===
+### Queue (option B)
 
  @MessageDriven
  public class MyMessageBean {
@@ -80,7 +80,7 @@ __TOC__
    }
  }
 
-===Non-Durable subscription on topic (option B) ===
+### Non-Durable subscription on topic (option B) 
 
  @MessageDriven
  public class MyMessageBean {
@@ -96,7 +96,7 @@ __TOC__
    }
  }
 
-===Durable subscription on topic (option B) ===
+### Durable subscription on topic (option B) 
 
  @MessageDriven
  public class MyMessageBean {
@@ -114,7 +114,7 @@ __TOC__
    }
  }
 
-===Proposals in early draft: some observations===
+### Proposals in early draft: some observations
 
 Good:
 
@@ -135,11 +135,11 @@ Bad:
 ** It is ignored unless bean-managed transactions have been explicitly configured using the class annotation <<tt>@TransactionManagement(value=TransactionManagementType.BEAN)</tt>. Ideally the two settings should be combined, but since the <tt>@TransactionManagement</tt> annotation is used for all types of EJB we can't extend it just for JMS (and it would be confusing if tried to replace it with a different annotation just for flexible JMS MDBs). SO we're probably stuck with this.
 ** There is never any need to set the <tt>acknowledge</tt> element to AUTO_ACKNOWLEDGE since this is the default. So the only time you'd ever need to set this element is to configure DUPS_OK_ACKNOWLEDGE. If we removed the ability to set auto-ack it may avoid users mistaking thinking this is all they need to do to turn off bean-managed transactions.
 
-== New option F ==
+##  New option F
 
 This option is based on the discussion at the JMS face-to-face meeting on 29th October, and marks a return to the original approach which used a larger number of simpler annotations rather than using a smaller number of larger annotations.
 
-===Queue (option F)===
+### Queue (option F)
 
  @MessageDriven
  public class MyMessageBean {
@@ -157,7 +157,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
    }
  }
 
-===Non-Durable subscription on topic (option F)===
+### Non-Durable subscription on topic (option F)
 
  @MessageDriven
  public class MyMessageBean {
@@ -175,7 +175,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
    }
  }
 
-===Durable subscription on topic (option F)===
+### Durable subscription on topic (option F)
 
  @MessageDriven
  public class MyMessageBean {
@@ -193,7 +193,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
    }
  }
 
-===New option F: discussion===
+### New option F: discussion
 
 * <tt>@OnMessage</tt> is used to define the callback method and may only be specified at method level. 
 ** The <tt>value</tt> element defines the JNDI name of the destination (i.e. the <tt>destinationLookup</tt> property) and must be provided.
@@ -228,7 +228,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
 
 * <tt>@ListenerProperty</tt> This annotation may be used to specify a single arbitrary activation property. The elements <tt>name</tt> and <tt>value</tt> must be specified. This is a repeatable annotation and may be specified multiple times.  
 
-== Another proposal (option G)==
+##  Another proposal (option G)=### 
 
 Key features of this proposal
 
@@ -238,7 +238,7 @@ Key features of this proposal
 
 * The user has the option of specifying the delivery QoS (transactional, auto-ack, dups-ok-ack) directly on the callback method. 
 
-===Queue (option G)===
+### Queue (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -256,7 +256,7 @@ Key features of this proposal
 
 Setting <tt>@DupsOKAcknowledge</tt> overrides an explicit or by-default setting of <tt>@TransactionManagement(TransactionManagementType.CONTAINER)</tt>
 
-===Non-Durable subscription on topic (option G)===
+### Non-Durable subscription on topic (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -275,7 +275,7 @@ Setting <tt>@DupsOKAcknowledge</tt> overrides an explicit or by-default setting 
 
 Setting <tt>@AutoAcknowledge</tt> overrides an explicit or by-default setting of <tt>@TransactionManagement(TransactionManagementType.CONTAINER)</tt>
 
-===Durable subscription on topic (option G)===
+### Durable subscription on topic (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -293,7 +293,7 @@ Setting <tt>@AutoAcknowledge</tt> overrides an explicit or by-default setting of
 
 Even though the <tt>@JMSDurableTopicListener</tt> has been specified, the subscription name and clientId are set using two separate annotations. This is because in practice these settings (which only became standard in EJB 3.2) are often not required. It also follows the approach of having multiple annotations rather than having a single annotation with multiple attributes.
 
-===Option G: discussion===
+### Option G: discussion
 
 * The user is required to specify the messaging semantic being used: queue, durable topic subscription, non-durable topic subscription using <tt>@JMSQueueListener</tt>, <tt>@JMSDurableTopicListener</tt>, <tt>@NonDurableTopicListener</tt>. 
 ** The idea here is that there are three messaging semantics, and that we should require the user to specify which they are using. It would be inconsistent to require the user to specify whether a topic subscription is durable or non-durable but not whether the destination is a queue or topic.

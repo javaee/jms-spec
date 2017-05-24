@@ -12,17 +12,17 @@ See the [[#Changes_from_version_2|summary of changes]] compared to [[JMSListener
 
 __TOC__
 
-==Changes from version 2==
+## Changes from version 2=### 
 
 The major issues which still need to be decided are:
 
 * Issue I17: Should multiple callback methods be permitted? As issue I18 describes, there is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications (i.e. that defining multiple callbacks reduces the number of MDB instances available to process each callback unless the MDB poolsize is increased.). It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. It may also require an excessive amount of extra work for vendors which offer monitoring and management features for JMS MDBs, since they might need to be extended to allow each callback to be managed separately. Finally, it introduces an ambiguity as to how old-style activation properties relate to multiple callback methods. For example, what is the effect of setting the activation property clientId? when there are multiple callback methods, each using a separate connection?  
 
-==List of issues==
+## List of issues=### 
 
-===Issues added in version 3===
+### Issues added in version 3
 
-===Issues added in version 2===
+### Issues added in version 2
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
 <b>Issue I17:</b> Should multiple callback methods be permitted or should MDBs be restricted to a single callback method as in the previous version?. There is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications. It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. Comments are invited.
@@ -50,23 +50,23 @@ The major issues which still need to be decided are:
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
 <b>Issue I23:</b> Currently the <tt>acknowledgeMode</tt> activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>.  The same confusion will apply if we define the new <tt>@Acknowledge</tt> annotation to work the same way as <tt>acknowledgeMode</tt>. 
-<p/>
+
 In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>. You don't actually need to set the <tt>acknowledgeMode</tt> activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the <tt>acknowledgeMode</tt> activation property is if you wanted to specify <tt>DUPS_OK</tt>.  
-<p/>
+
 We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be better if we could replace the existing <tt>@TransactionManagement</tt> annotation and the proposed <tt>@AcknowledgeMode</tt> annotation with a single annotation which could define both at the same time. 
 </td></tr></table>
 
-===Issues added in version 1===
+### Issues added in version 1
 
 To help track comments and changes, I've listed all the known issues that have been raised below. 
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I1:</b> Any alternative proposals for <tt>JMSMessageDrivenBean</tt>?<p/>
+<b>Issue I1:</b> Any alternative proposals for <tt>JMSMessageDrivenBean</tt>?
 Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I2:</b>Any alternative proposals for <tt>JMSListener</tt>?<p/> 
+<b>Issue I2:</b>Any alternative proposals for <tt>JMSListener</tt>? 
 Deleted in version 2
 </td></tr></table>
 
@@ -75,7 +75,7 @@ Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I4:</b> The current proposal is that a JMS MDB has a single listener method. However EJB 3.2 section 5.4.2 and JCA 1.7 does allow a MDB to have more than one listener method, with the resource adapter deciding which method is invoked. Is this something we would want to allow? Would these be alternative callback methods for the same consumer, with the container choosing which one to call depending on the message and the method signature, or would these represent two completely different consumers, on different destinations? <p/>
+<b>Issue I4:</b> The current proposal is that a JMS MDB has a single listener method. However EJB 3.2 section 5.4.2 and JCA 1.7 does allow a MDB to have more than one listener method, with the resource adapter deciding which method is invoked. Is this something we would want to allow? Would these be alternative callback methods for the same consumer, with the container choosing which one to call depending on the message and the method signature, or would these represent two completely different consumers, on different destinations? 
 Deleted (superseded by New Issue I17)
 </td></tr></table>
 
@@ -104,7 +104,7 @@ Deleted (superseded by New Issue I17)
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I11:</b> Allowing the queue or topic to be specified by destination name rather than by JNDI name is a new feature. Since it is not portable, is this actually desirable? <p/>
+<b>Issue I11:</b> Allowing the queue or topic to be specified by destination name rather than by JNDI name is a new feature. Since it is not portable, is this actually desirable? 
 Deleted in version 2
 </td></tr></table>
 
@@ -121,16 +121,16 @@ Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I15:</b> Any alternative proposals for the <tt>@MessageProperty</tt> or <tt>MessageHeader</tt> annotations? <p/>
+<b>Issue I15:</b> Any alternative proposals for the <tt>@MessageProperty</tt> or <tt>MessageHeader</tt> annotations? 
 Deleted in version 2
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td>
-<b>Issue I16:</b> The table above is based on the principle that if a parameter cannot be set to the required value due to it having an unsuitable type then it should simple be set to null (or a default primitive value) rather than throwing an exception and triggering message delivery. This is because there is no point in redelivering the message since it will simply fail again (and JMS does not define any dead message functionality). Is this the correct approach? <p/>
+<b>Issue I16:</b> The table above is based on the principle that if a parameter cannot be set to the required value due to it having an unsuitable type then it should simple be set to null (or a default primitive value) rather than throwing an exception and triggering message delivery. This is because there is no point in redelivering the message since it will simply fail again (and JMS does not define any dead message functionality). Is this the correct approach? 
 Deleted in version 2
 </td></tr></table>
 
-==Summary and links to javadocs==
+## Summary and links to javadocs=### 
 
 The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html here]. Direct links to the javadocs for each class are given in the table below.
 

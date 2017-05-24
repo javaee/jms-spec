@@ -4,11 +4,11 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 __TOC__
 
-==All issues incorporated in the JMS 2.0 final release==
+## All issues incorporated in the JMS 2.0 final release=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+resolution+%3D+Fixed+AND+fixVersion+%3D+%222.0%22  Query]  (All fixed issues with fix version=JMS20)
 
-==Issues incorporated in the early draft==
+## Issues incorporated in the early draft=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11293 Query (filter)]
 
@@ -94,7 +94,7 @@ __TOC__
 | Resolved
 |}
 
-==Issues incorporated in the public draft.==
+## Issues incorporated in the public draft.=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11296 Query (filter)] (<tt>tag=pd20-added</tt>)
 
@@ -211,7 +211,7 @@ __TOC__
 |-   
 |}
 
-==Minor documentation updates included in the proposed final draft==
+## Minor documentation updates included in the proposed final draft=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (<tt>tag=jms20-fd20-doc-added </tt>)
 
@@ -248,7 +248,7 @@ __TOC__
 | Resolved  
 |}
 
-==Minor documentation updates included in the final release==
+## Minor documentation updates included in the final release=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fr20-doc-added Query]  (<tt>tag=jms20-fr20-doc-added </tt>)
 
@@ -265,7 +265,7 @@ __TOC__
 |- 
 |}
 
-==Issues incorporated in the Java EE 7 specification==
+## Issues incorporated in the Java EE 7 specification=### 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-jsr342-added  Query]  (<tt>tag=jms20-jsr342-added </tt>)
 
@@ -282,7 +282,7 @@ __TOC__
 |-
 |}
 
-== Issues incorporated in the Java Connector Architecture 1.7 specification ==
+##  Issues incorporated in the Java Connector Architecture 1.7 specification
 
 {|- border="1"
 ! ID
@@ -296,7 +296,7 @@ __TOC__
 | Needed for  [http://java.net/jira/browse/JMS_SPEC-54 JMS_SPEC-54] and  [http://java.net/jira/browse/JMS_SPEC-55 JMS_SPEC-55]
 |}
 
-==Reference implementation==
+## Reference implementation=### 
 
 The following queries will list the implementation issues for the reference implementation
 

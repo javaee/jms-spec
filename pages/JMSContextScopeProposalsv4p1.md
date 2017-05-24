@@ -1,6 +1,6 @@
 # Injection of JMSContext objects - Proposals (version 4)</h1>
 
-==Summary==
+## Summary=### 
 
 This page discusses that part of the JMS 2.0 Early Draft which defines how <tt>javax.jms.JMSContext</tt> objects may be injected.   In particular it discusses the scope and lifecycle of injected <tt>JMSContext</tt> objects. 
 
@@ -14,7 +14,7 @@ The scope described here is illustrated in a series of use cases:  [[JMSContextS
 
 __TOC__
 
-==Proposal in JMS 2.0 Early Draft (Option 1)==
+## Proposal in JMS 2.0 Early Draft (Option 1)=### 
 
 The JMS 2.0 early draft (section 11.3) specified that applications may declare a field of type <tt>javax.jms.JMSContext</tt> and annotate it with the <tt>javax.inject.Inject</tt> annotation as follows:
 
@@ -41,7 +41,7 @@ The connection factory, user, password, session mode and autoStart behaviour, wh
  @JMSPasswordCredential(userName="admin",password="mypassword")
  private JMSContext context;
 
-==Problems with the JMS 2.0 Early Draft proposal==
+## Problems with the JMS 2.0 Early Draft proposal=### 
 
 Since the Early Draft was published there has been a great deal of discussion in the JSR 343 expert group and elsewhere about how <tt>JMSContext</tt> objects should be injected. The following conclusions were drawn:
 
@@ -53,9 +53,9 @@ Since the Early Draft was published there has been a great deal of discussion in
 
 There has also been discussion as to whether the annotations for specifying the connection factory, user, password, session mode and autoStart behaviour should be changed. However this amounts to an issue of style more than anything. This document makes no proposals to change this.
 
-==New proposals for JMS 2.0 Public Draft (Option 4)==
+## New proposals for JMS 2.0 Public Draft (Option 4)=### 
 
-===Scope of injected JMSContext objects
+### Scope of injected JMSContext objects
 In this proposal, the scope of an injected JMSContext object will depend on whether it is used in a transaction. Whereas  [[JMSContextScopeProposals#Option_2|Option 2]] and  [[JMSContextScopeProposals#Option_3|Option 3]] proposed a single scope which was used irrespective of whether there was a transaction or not, this option proposes that the scope used depends on whether the injected JMSContext is used in a transaction or not.
 
 * If an injected JMSContext is used in a JTA transaction (both bean-managed and container-managed), its scope will be that of the transaction. This means that:
@@ -68,7 +68,7 @@ In this proposal, the scope of an injected JMSContext object will depend on whet
 ** If, within the same request, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
 * If injected JMSContext is used both in a JTA transaction and outside a JTA transaction then separate JMSContext objects will be used, with a separate JMSContext object being used for each JTA transaction as described above.
 
-===Modified JMSContext API===
+### Modified JMSContext API
 
 If, within the same scope, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
 
@@ -76,7 +76,7 @@ Although this is normal CDI behaviour this is potentially confusing to developer
 
 To avoid this potential confusion,  some major changes are proposed to the <tt>JMSContext</tt> API for sending messages. These are described in  [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]].
 
-==Use cases==
+## Use cases=### 
 
 After reading this, please read  [[JMSContextScopeProposalsv4p2|Injection of JMSContext objects - Use Cases A - E (version 4)]] and [[JMSContextScopeProposalsv4p2|Injection of JMSContext objects - Use Cases F - K (version 4)]].
 

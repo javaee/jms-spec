@@ -1,6 +1,6 @@
 # Injection of JMSContext objects - Use Cases F - K  (version 3)</h1>
 
-==Summary==
+## Summary=### 
 
 This page contains a number of use cases which demonstrate how the proposals in [[JMSContextScopeProposals|Injection of JMSContext objects - Proposals (version 3)]] would appear to users. Each use case is followed by an analysis for both [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]]. 
 
@@ -10,9 +10,9 @@ Before reading these, read [[JMSContextScopeProposals2|Injection of JMSContext o
 
 __TOC__
 
-==Use cases==
+## Use cases=### 
 
-===Use case F: One bean which calls another when there is no transaction===
+### Use case F: One bean which calls another when there is no transaction
 
 Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>.
 
@@ -61,7 +61,7 @@ This is <tt>Bean2</tt>
     }
  }
 
-=====Case F, option 2: Analysis=====
+#### =Case F, option 2: Analysis=
 
 {|- border="1"
 | Do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  use the same injection point?
@@ -77,7 +77,7 @@ This is <tt>Bean2</tt>
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-=====Case F, option 2: JMSContext lifecycle=====
+#### =Case F, option 2: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
 
@@ -85,7 +85,7 @@ The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when <tt
 
 The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is <tt>NEVER</tt> or <tt>NOT_SUPPORTED</tt>. 
 
-=====Case F, option 3: Analysis=====
+#### =Case F, option 3: Analysis=
 
 {|- border="1"
 | Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  injected using identical annotations?
@@ -101,7 +101,7 @@ The same behaviour should apply when the bean is configured to use container-man
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-=====Case F, option 3: JMSContext lifecycle=====
+#### =Case F, option 3: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when that method returns.
 
@@ -109,7 +109,7 @@ The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when <tt
 
 The same behaviour should apply when the bean is configured to use container-managed transactions but the transaction attribute type is <tt>NEVER</tt> or <tt>NOT_SUPPORTED</tt>. 
 
-=== Use case G: One bean method which uses two transactions===
+###  Use case G: One bean method which uses two transactions
 
 Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
 
@@ -140,7 +140,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
  
  }
 
-=====Case G, option 2: Analysis=====
+#### =Case G, option 2: Analysis=
 
 {|- border="1"
 | Do the <tt>context</tt> variables in the four calls to <tt>context.send()</tt>  use the same injection point?
@@ -157,11 +157,11 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 | Yes, since they are sent using the same <tt>MessageProducer</tt> object.
 |} 
 
-=====Case G, option 2: JMSContext lifecycle=====
+#### =Case G, option 2: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
 
-=====Case G, option 3: Analysis=====
+#### =Case G, option 3: Analysis=
 
 {|- border="1"
 | Are the <tt>context</tt> variables in the four calls to <tt>context.send()</tt>  injected using identical annotations?
@@ -178,11 +178,11 @@ The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <t
 | Yes, since they are sent using the same <tt>MessageProducer</tt> object.
 |} 
 
-=====Case G, option 3: JMSContext lifecycle=====
+#### =Case G, option 3: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
 
-===Use case H. A bean which uses a context both outside and within a transaction===
+### Use case H. A bean which uses a context both outside and within a transaction
 
 Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
 
@@ -211,7 +211,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
     }
  }
 
-=====Case H, option 2: Analysis=====
+#### =Case H, option 2: Analysis=
 
 {|- border="1"
 | Do the <tt>context</tt> variables in the five calls to <tt>context.send()</tt>  use the same injection point?
@@ -227,11 +227,11 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 | Yes, since they are sent using the same <tt>MessageProducer</tt> object.
 |} 
 
-=====Case H, option 2: JMSContext lifecycle=====
+#### =Case H, option 2: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
 
-=====Case H, option 3: Analysis=====
+#### =Case H, option 3: Analysis=
 
 {|- border="1"
 | Are the <tt>context</tt> variables in the five calls to <tt>context.send()</tt>  injected using identical annotations?
@@ -247,13 +247,13 @@ The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <t
 | Yes, since they are sent using the same <tt>MessageProducer</tt> object.
 |} 
 
-=====Case H, option 3: JMSContext lifecycle=====
+#### =Case H, option 3: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <tt>context</tt> variable for the first time, and destroyed when <tt>method1</tt> returns.
 
 ''Important note (for both options)'': Although the scope of the injected <tt>JMSContext</tt> object is completely defined in this example, the JMS behaviour of the  <tt>JMSContext</tt> object itself is not, since JMS does not define what happens if a <tt>JMSContext</tt> object is created outside a transaction and then used with one. It is probably desirable to clarify the JMS behaviour in this case. However, exactly the same question would arise of the <tt>JMSContext</tt> was instantiated from a connection factory rather than injected, so this is a JMS issue, not a CDI or injection-related issue.
 
-===Use case J. Two separate container-managed transactions on the same thread, one suspended before the second is started ===
+### Use case J. Two separate container-managed transactions on the same thread, one suspended before the second is started 
 
 Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>. 
 
@@ -305,7 +305,7 @@ This is <tt>Bean2</tt>
      }
  }
 
-=====Case J, option 2: Analysis=====
+#### =Case J, option 2: Analysis=
 
 {|- border="1"
 | Do the <tt>context</tt> variables in the three calls to <tt>context.send()</tt>  use the same injection point?
@@ -322,13 +322,13 @@ This is <tt>Bean2</tt>
 | The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same <tt>MessageProducer</tt> object, but the second message is not, since it is sent using a different <tt>MessageProducer</tt> object.
 |} 
 
-=====Case J, option 2: JMSContext lifecycle=====
+#### =Case J, option 2: JMSContext lifecycle=
 
 The <tt>JMSContext</tt>object used by <tt>method1</tt> will be created when <tt>method1</tt> uses context for the first time, and destroyed when that method returns.
 
 The <tt>JMSContext</tt>object used by <tt>method2</tt> will be created when <tt>method2</tt> uses context for the first time, and destroyed when that method returns. 
 
-=====Case J, option 3: Analysis=====
+#### =Case J, option 3: Analysis=
 
 {|- border="1"
 | Are the <tt>context</tt> variables in the three calls to <tt>context.send()</tt>  injected using identical annotations?
@@ -345,13 +345,13 @@ The <tt>JMSContext</tt>object used by <tt>method2</tt> will be created when <tt>
 | The first and third messages are guaranteed to be delivered in the order in which they are sent, since they are sent using the same <tt>MessageProducer</tt> object, but the second message is not, since it is sent using a different <tt>MessageProducer</tt> object.
 |} 
 
-=====Case J, option 3: JMSContext lifecycle=====
+#### =Case J, option 3: JMSContext lifecycle=
 
 The <tt>JMSContext</tt>object used by <tt>method1</tt> will be created when <tt>method1</tt> uses context for the first time, and destroyed when that method returns.
 
 The <tt>JMSContext</tt>object used by <tt>method2</tt> will be created when <tt>method2</tt> uses context for the first time, and destroyed when that method returns. 
 
-===Use case K. One bean which calls another within the same transaction, but using different connection factories===
+### Use case K. One bean which calls another within the same transaction, but using different connection factories
 
 (Note that this use case is identical to [http://java.net/projects/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction use case C] except that the two beans specify different connection factories).
 
@@ -405,7 +405,7 @@ This is <tt>Bean2</tt>
     }
  }
 
-=====Case K, option 2: Analysis=====
+#### =Case K, option 2: Analysis=
 
 {|- border="1"
 | Do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  use the same injection point?
@@ -421,13 +421,13 @@ This is <tt>Bean2</tt>
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-=====Case K, option 2: JMSContext lifecycle=====
+#### =Case K, option 2: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when  <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
 The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when  <tt>method2</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
-=====Case K, option 3: Analysis=====
+#### =Case K, option 3: Analysis=
 
 {|- border="1"
 | Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt>  injected using identical annotations?
@@ -443,7 +443,7 @@ The <tt>JMSContext</tt> object used by <tt>method2</tt> will be created when  <t
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-=====Case K, option 3: JMSContext lifecycle=====
+#### =Case K, option 3: JMSContext lifecycle=
 
 The <tt>JMSContext</tt> object used by <tt>method1</tt> will be created when  <tt>method1</tt> uses <tt>context</tt> for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 

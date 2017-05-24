@@ -6,7 +6,7 @@ Improvements to the JMS specification are managed using issues in JIRA. Here is 
 
 __TOC__
 
-==Corrections and clarifications (minor) ==
+## Corrections and clarifications (minor)
 
 {|- border="1"
 ! ID
@@ -81,7 +81,7 @@ __TOC__
 |-  
 |}
 
-==Corrections (major)==
+## Corrections (major)=### 
 
 {|- border="1"
 ! ID
@@ -101,7 +101,7 @@ __TOC__
 |-
 |}
 
-==Messaging features (minor) ==
+## Messaging features (minor)
 
 {|- border="1"
 ! ID
@@ -235,7 +235,7 @@ __TOC__
 |-
 |}
 
-==Messaging features (major)==
+## Messaging features (major)=### 
 
 {|- border="1"
 ! ID
@@ -336,7 +336,7 @@ __TOC__
 |}
 
 
-==New acknowledgement modes==
+## New acknowledgement modes=### 
 
 This section contains various proposals for new acknowledgement modes.
 
@@ -363,7 +363,7 @@ This section contains various proposals for new acknowledgement modes.
 |-
 |}
 
-==Resource creation and configuration==
+## Resource creation and configuration=### 
 
 This section contains various proposals affecting the creation and configuration of ConnectionFactory, Queue and Topic objects. Note that the requirements for Java SE applications, Java EE applications and resource adapters are different.
 
@@ -389,7 +389,7 @@ This section contains various proposals affecting the creation and configuration
 | Discussed for JMS 2.0 but consensus not reached
 |}
 
-==Application server integration.==
+## Application server integration.=### 
 
 These issues are concerned with the API used to "plug in" a particular JMS provider into a particular application server
 
@@ -413,7 +413,7 @@ They don't affect the JMS API as used by user applications.
 |-  
 |}
 
-==Behaviour of JMS API in a Java EE application server==
+## Behaviour of JMS API in a Java EE application server=### 
 
 {|- border="1"
 ! ID
@@ -448,7 +448,7 @@ They don't affect the JMS API as used by user applications.
 |-   
 |}
 
-==API improvements for JMS MDBs==
+## API improvements for JMS MDBs=### 
 
 This section contains proposals for improvements to the whole programming model for JMS MDBs. This includes improvements to the ways JMS MDBs are configured, making JMS MDBs more flexible, and allowing objects which are not MDBs to list for JMS messages. Changes may require an update to the EJB specification as well as to JMS.
 
@@ -487,7 +487,7 @@ Specific functional improvements to JMS MDBs (rather than improvements to the AP
 |-  
 |}
 
-==Functional improvements to JMS MDBs==
+## Functional improvements to JMS MDBs=### 
 
 {|- border="1"
 ! ID
@@ -522,7 +522,7 @@ Specific functional improvements to JMS MDBs (rather than improvements to the AP
 |-
 |}
 
-==EJB spec improvements ==
+## EJB spec improvements
 
 This section lists a number of improvements to the EJB specification that have been proposed by the JMS specification lead. Since these are not specific to JMS they need to be considered by the EJB expert group.
 
@@ -543,7 +543,7 @@ This section lists a number of improvements to the EJB specification that have b
 | 
 |}
 
-==Connector spec improvements ==
+## Connector spec improvements
 
 This section lists a number of improvements to the Connector specification that have been proposed by the JMS specification lead.
 

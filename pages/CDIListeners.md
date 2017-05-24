@@ -1,8 +1,8 @@
 # Some notes about CDI listeners (DRAFT)</h1>
 
-==Listener created automatically ==
+## Listener created automatically
 
-===Normal-scoped listener===
+### Normal-scoped listener
 
 {|- border="1"
 ! Listener class declaration
@@ -29,7 +29,7 @@ Prior to event being fired, forces instance creation by calling<br/><br/>
 |-
 |}
 
-===Dependent-scoped listener===
+### Dependent-scoped listener
 
 {|- border="1"
 ! Listener class declaration
@@ -49,9 +49,9 @@ Prior to event being fired, forces instance creation by calling<br/><br/>
 |-
 |}
 
-==Listener not created automatically ==
+## Listener not created automatically
 
-===Normal-scoped listener===
+### Normal-scoped listener
 
 {|- border="1"
 ! Listener class declaration
@@ -78,11 +78,11 @@ Prior to event being fired, forces instance creation by calling<br/><br/>
 |-
 |}
 
-===Dependent-scoped listener===
+### Dependent-scoped listener
 
 This is not possible, since <tt>@Observes(notifyObserver=Reception.IF_EXISTS)</tt> is not allowed with dependent scoped listeners) 
 
-==Other aspects==
+## Other aspects=### 
 
 Can the same listener instance be called concurrently for multiple events?
 

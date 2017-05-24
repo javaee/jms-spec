@@ -4,7 +4,7 @@
 
 __TOC__
 
-==Single JMSContext instead of separate Connection and Session objects==
+## Single JMSContext instead of separate Connection and Session objects=### 
 
 The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which provides the same functionality as the separate <tt>Connection</tt> and
 <tt>Session</tt> objects in the JMS 1.1 API:
@@ -18,7 +18,7 @@ The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which p
 
  JMSContext context = connectionFactory.createContext(JMSContext.SESSION_TRANSACTED);
 
-==Use of try-with-resources block means no need to call close==
+## Use of try-with-resources block means no need to call close=### 
 
 Failing to close a <tt>Connection</tt> after use may cause your application to run out of resources.
 
@@ -56,7 +56,7 @@ first exception will be nicely nested within the first, so you can easily identi
 
 The same syntax may be used when creating a <tt>JMSContext</tt>.
 
-==No need to pass in two parameters when creating a session in Java SE==
+## No need to pass in two parameters when creating a session in Java SE=### 
 
 ...one is all you need:
 
@@ -70,7 +70,7 @@ The same syntax may be used when creating a <tt>JMSContext</tt>.
 
 There are similar methods for creating a <tt>JMSContext</tt>
 
-==No need to pass in any parameters when creating a session in a Java EE transaction==
+## No need to pass in any parameters when creating a session in a Java EE transaction=### 
 
 If you create a <tt>Session</tt> in a Java EE transaction, the arguments to <tt>createSession</tt> are ignored. 
 It says so in the EJB 3.1 spec.
@@ -89,7 +89,7 @@ JMS 2.0 provides a method with no parameters:
  // transactional behaviour is determined by the container
  Session session = connection.createSession();
 
-==New JMSProducer object supports method chaining==
+## New JMSProducer object supports method chaining=### 
 
 The new <tt>JMSProducer</tt> object allows message headers, message properties and delivery options to be specified in a single line of code using method chaining
 
@@ -106,7 +106,7 @@ The new <tt>JMSProducer</tt> object allows message headers, message properties a
  TextMessage textMessage = context.createTextMessage(body);
  context.createProducer().setPriority(1).setProperty("foo", "bar").send(demoQueue, textMessage);
 
-==No need to save a JMSProducer in a variable; simply instantiate on the fly==
+## No need to save a JMSProducer in a variable; simply instantiate on the fly=### 
 
 The new <tt>JMSProducer</tt> object is a lightweight object so there's no need to save it in a variable; simply instantiate one on the fly when needed
 
@@ -125,7 +125,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
  context.createProducer().send(demoQueue,message1);
  context.createProducer().send(demoQueue,message2);
 
-==In Java EE, injecting a JMSContext means you don't need to create or close it==
+## In Java EE, injecting a JMSContext means you don't need to create or close it=### 
 
 **JMS 1.1**
 
@@ -151,7 +151,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
     ex.printStackTrace();
  }
 
-==When sending, no need to instantiate a Message object==
+## When sending, no need to instantiate a Message object=### 
 
 **JMS 1.1**
 
@@ -169,7 +169,7 @@ In JMS 2.0, simply pass the message body into the <tt>send</tt> method:
 
 Note that you can do this even when you want to set message properties since these can be set on the <tt>JMSProducer</tt>.
 
-==Receiving synchronously, can receive mesage payload directly==
+## Receiving synchronously, can receive mesage payload directly=### 
 
 **JMS 1.1**
 
@@ -192,7 +192,7 @@ JMS 2.0 allows you to receive the message body directly.
 
 Note the lack of casting, or special null handling.
 
-==Receiving asynchronously: no need for a cast before extracting message body.==
+## Receiving asynchronously: no need for a cast before extracting message body.=### 
 
 **JMS 1.1**
 

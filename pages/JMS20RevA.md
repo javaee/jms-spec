@@ -4,7 +4,7 @@ This page describes the JMS 2.0 errata release (JMS 2.0 revision a)
 
 __TOC__
 
-==Introduction==
+## Introduction=### 
 
 A JMS 2.0 errata was needed to correct a number of errors in JMS 2.0 which couldn't wait for JMS 2.1 because they affected the ability of implementers to implement JMS 2.0 and conform to the TCK.
 
@@ -24,7 +24,7 @@ The errata was released on 16th March 2015 and may be downloaded [https://jcp.or
 
 <a name="review1IssueList"/>
 
-==Issue list==
+## Issue list=### 
 
 This table lists all the error reports and requests for clarification that have been received subsequent to the original release of JMS 2.0, and shows the disposition of each. 
 
@@ -141,7 +141,7 @@ This list does not include proposals for new features in JMS 2.1.
 
 
 <a name="review1ProposedChanges"/>
-==Change log==
+## Change log=### 
 
 This table lists all the changes in JMS 2.0 revision a.
 
@@ -237,11 +237,11 @@ This table lists all the changes in JMS 2.0 revision a.
 |-  
 |}
 
-==Feedback==
+## Feedback=### 
 
 Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. Instructions on how to join the mailing list may be found [https://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here].
 
-==Timescales==
+## Timescales=### 
 
 {|- border="1"                                                                                          
 ! Stage                                                                                                    
@@ -282,7 +282,7 @@ Comments are still invited on any of these issues. These can be made either dire
 |- 
 |}
 
-==What is the version number of this errata release?==
+## What is the version number of this errata release?=### 
 
 A Maintenance Release that includes only errata does not define a new version of the spec.  An errata update to a specification document is indicated by including a "Rev level" after the specification version number. In this case, the specification version number is "JMS 2.0 Rev a".
 

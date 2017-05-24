@@ -1,10 +1,10 @@
-=Proposals for the injection of JMSContext objects=
+=Proposals for the injection of JMSContext objects### 
 
-==Option 1==
+## Option 1=### 
 
 This is as defined in the JMS 2.0 Early Draft, which can be downloaded [http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html here]
 
-==Options 2 and 3==
+## Options 2 and 3=### 
 
 These are described in 
 
@@ -12,7 +12,7 @@ These are described in
 * [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]] 
 * [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]].
 
-==Option 4===
+## Option 4
 
 These are described in
 

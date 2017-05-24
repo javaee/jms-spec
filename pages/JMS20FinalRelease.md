@@ -12,7 +12,7 @@ JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/de
 
 __TOC__
 
-==What's new in JMS 2.0?==
+## What's new in JMS 2.0?=### 
 
 A full list of the new features, changes and clarifications introduced in JMS 2.0 is given in the specification. See section B.5 "Version 2.0" of the "Change history" appendix. Here is a summary:
 
@@ -43,7 +43,7 @@ The specification has been clarified in various places.
 
 The JMS 2.0 specification was developed by recording each proposed change in a a JIRA issue tracker. Here's a summary page of  [http://java.net/projects/jms-spec/pages/JSR343Planning all JIRA issues incorporated into JMS 2.0]<br/>
 
-==More information about JMS 2.0==
+## More information about JMS 2.0=### 
 
 Watch this [http://www.youtube.com/watch?v=itx4xjqI7yY&feature=em-share_video_in_list_user&list=PL74xrT3oGQfCCLFJ2HCTR_iN5hV4penDz 15 minute slide presentation]
 
@@ -57,7 +57,7 @@ Listen to a  [https://blogs.oracle.com/javaspotlight/entry/java_spotlight_episod
 
 If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [[JMS20ReasonsFAQ | JMS 2.0 design FAQ]].
 
-==Reference implementation==
+## Reference implementation=### 
 
 The purpose of a reference implementation is to prove that a specification can be implemented. There are two reference implementations for JMS 2.0.
 
@@ -65,11 +65,11 @@ The purpose of a reference implementation is to prove that a specification can b
 
 * The reference implementation for JMS 2.0 as part of a Java EE 7 application server is based on GlassFish Server Open Source Edition 4.0 and will available at [https://glassfish.java.net/downloads/ri/] just as soon as the Java EE  7 specification is released.  
 
-==JMS 2.0 tutorial===
+## JMS 2.0 tutorial
 
 The [http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm JMS 2.0 tutorial] (part of the [http://docs.oracle.com/javaee/7/tutorial/doc/home.htm Java EE 7 tutorial]) introduces the basics of JMS 2.0 and provides some simple examples that you can download and run.
 
-==JMS 2.0 demonstration examples==
+## JMS 2.0 demonstration examples=### 
 
 A [http://netbeans.org NetBeans] project which demonstrates some of the new features of JMS 2.0 may be downloaded  [http://java.net/projects/jms-spec/downloads/download/JMS20Demo.zip as a zip] or checked out from the project's subversion repository [http://java.net/projects/jms-spec/sources/repository/show/jms2.0/demos/JMS20Demo here]. An earlier version was demonstrated at JavaOne 2012.
 
@@ -81,7 +81,7 @@ This demonstration (which was last updated to work with GlassFish build 82) show
 
 Please report issues with this demonstration directly to [mailto:nigel.deakin@oracle.com Nigel Deakin].
 
-== JMS 2.0 schedule (historical) ==
+##  JMS 2.0 schedule (historical)
 
 <br/>Also see the [http://java.net/projects/jms-spec/pages/JSR343Planning JMS 2.0 Planning] page <br/>
 

@@ -8,7 +8,7 @@ This page will be extended with additional changes and points for discussion. Wh
 
 __TOC__
 
-==Changes from version 2==
+## Changes from version 2=### 
 
 The major issues which still need to be decided are:
 
@@ -16,15 +16,15 @@ The major issues which still need to be decided are:
 
 * Whether we should allow the new annotations to be combined with old-style activation properties. The current proposals state that activation properties may be used to override new-style annotations. However this introduces additional test scenarios. It also introduces potential ambiguity if there are multiple callback methods. However these are still MDBs, and activation properties are an intrinsic feature of both MDBs and the JCA API for message endpoints. One possible clarification is to state that activation properties *defined in the EJB spec* will override those implied by new-style annotations, and that the effect of setting any non-standard activation properties (e.g. other ways to specify the destination) is not defined by the spec - just like the way that the current spec does not define how spec-defined annotations interact with non-standard annotations.
 
-===Relationship between the old and new ways to define a JMS MDB===
+### Relationship between the old and new ways to define a JMS MDB
 
 Should these new annotations be allowed for MDBs that implement the <tt>javax.jms.MessageListener</tt> interface? 
 
 There are two possible cases we need to consider:
 
-* Allowing these new annotations to be used on the legacy <tt>onMessage</tt> method of a <tt>javax.jms.MessageListener</tt><p/>[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed any of the new annotations could be specified. However the requirement that the <tt>@JMSListener</tt> always be specified could not apply since that would break existing MDBs.
+* Allowing these new annotations to be used on the legacy <tt>onMessage</tt> method of a <tt>javax.jms.MessageListener</tt>[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed any of the new annotations could be specified. However the requirement that the <tt>@JMSListener</tt> always be specified could not apply since that would break existing MDBs.
 
-* Allowing these new annotations to be used to define additional callback methods (i.e. in addition to the <tt>onMessage</tt> method).<p/>[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed that this be allowed so long as the MDB also implemented the <tt>javax.jms.JMSMessageDrivenBean</tt> marker interface. 
+* Allowing these new annotations to be used to define additional callback methods (i.e. in addition to the <tt>onMessage</tt> method).[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed that this be allowed so long as the MDB also implemented the <tt>javax.jms.JMSMessageDrivenBean</tt> marker interface. 
 
 On reflection, this is probably introducing unnecessary complexity. It means that lots of additional use cases need to be defined in the spec, implemented, and tested, whilst bringing little benefits to users who can convert to a new-style JMS MDB easily enough.
 
@@ -38,12 +38,12 @@ It is therefore proposed to make a clear distinction between "legacy" JMS MDBs a
 
 * If the new annotations are used on a MDB which implements <tt>javax.jms.MessageListener</tt> then deployment must fail.
 
-===New JMSListenerProperty annotation===
+### New JMSListenerProperty annotation
 
 We need to define an additional annotation to allow proprietary activation properties to be specified on the callback method. Many application servers (and resource adapters) use these to offer additional non-standard features. Examples of such properties are the Glassfish-specific activation properties <tt>reconnectAttempts</tt> and <tt>reconnectInterval</tt>, though just about every other application server or resource adapter defines its own set of proprietary activation properties.
 
 Without such an annotation, applications would have to continue defining these properties in the same way as now, thereby forcing applications to mix the new JMS-specific method annotations on the callback method with the old generic class annotations:
-<p/><p/>
+
  @MessageDriven(activationConfig = {
    @ActivationConfigProperty(propertyName = "foo1", propertyValue = "bar1"),
    @ActivationConfigProperty(propertyName = "foo2", propertyValue = "bar2")
@@ -56,9 +56,9 @@ Without such an annotation, applications would have to continue defining these p
    }
  
  }
-<p/>
+
 It is therefore proposed that a new method annotation <tt>@JMSListenerProperty</tt> be defined which the application can use to specify arbitrary activation properties. This annotation would be a "repeatable annotation" so that it could be used multiple times to set multiple properties.
-<p/><p/>
+
  @MessageDriven
  public class MyMessageBean implements JMSMessageDrivenBean {
  
@@ -70,7 +70,7 @@ It is therefore proposed that a new method annotation <tt>@JMSListenerProperty</
    }
  
  }
-<p/>
+
 Since this annotation is a repeatable annotation, a composite annotation needs to be defined as well which the compiler will insert automatically when it encounters a repeatable annotation. This will be called <tt>@JMSListenerProperties</tt>.  
 
 
@@ -98,7 +98,7 @@ Since this gives us yet another way to define activation properties we need to d
 
 * If <tt>@JMSListenerProperty</tt>  is used to specify one of the JMS standard activation properties then this will override any value set using the corresponding new JMS-specific annotation. This order is chosen to be consistent with the previous rule.
 
-===Callback methods that throw exceptions===
+### Callback methods that throw exceptions
 
 Version 2 [[JMSListener2#Specifying_the_callback_method|proposed]] that callback methods will be allowed to throw exceptions as follows:
 
@@ -110,7 +110,7 @@ Version 2 [[JMSListener2#Specifying_the_callback_method|proposed]] that callback
 
 Version 3 expands on this by reviewing how exceptions thrown by old-style MDBs should be handled now, and uses this as the basis for proposals on how exceptions thrown by new-style MDBs should be handled.
 
-====A review of how <tt>RuntimeException</tt>s thrown by old-style MDBs are handled====
+#### A review of how <tt>RuntimeException</tt>s thrown by old-style MDBs are handled
 
 With old-style JMS MDBs (those that implement <tt>javax.jms.MessageListener</tt>) the <tt>onMessage</tt> callback method is prevented by the compiler from declaring or throwing checked exceptions. However the compiler does allow them to throw unchecked exceptions and the existing EJB and JMS specifications do define how <tt>RuntimeException</tt>s should be handled.
 
@@ -122,30 +122,30 @@ In deciding how old-style MDBs should handle <tt>RuntimeException</tt>s there ar
 
 <table style="margin-left:16px"> <tr> <td>
 8.7 Receiving messages asynchronously
-<p/>
+
 A client can register an object that implements the JMS MessageListener interface with a consumer. As messages arrive for the consumer, the provider delivers them by calling the listener’s onMessage method.
-<p/>
+
 It is possible for a listener to throw a RuntimeException; however, this is considered a client programming error. Well behaved listeners should catch such exceptions and attempt to divert messages causing them to some form of application-specific ‘unprocessable message’ destination.
-<p/>
+
 The result of a listener throwing a RuntimeException depends on the session’s acknowledgment mode.
-<p/>
+
 <ul>
 <li>AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE - the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.</li>
 <li>CLIENT_ACKNOWLEDGE - the next message for the listener is delivered. If a client wishes to have the previous unacknowledged message redelivered, it must manually recover the session.</li>
 <li>Transacted Session - the next message for the listener is delivered. The client can either commit or roll back the session (in other words, a RuntimeException does not automatically rollback the session).</li>
 </ul>
-<p/>
+
 JMS providers should flag clients with message listeners that are throwing RuntimeException as possibly malfunctioning.
-<p/>
+
 See Section 6.2.13 “Serial execution of client code” for information about how onMessage calls are serialized by a session.
 </td></tr></table>
 
 * EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods" describes how the EJB container should handle exceptions thrown by the MDB's callback method. It specifies whether any transaction is committed or rolled back, whether the MDB is discarded, and what exception is rethrown to the resource adapter (or JMS provider). However it does not define how the resource adapter (or JMS provider) should handle any such exception. For that we need to look at the JMS specification.
 
 * In the case where a container-managed transaction is being used, the EJB specification defines whether or not the transaction will be committed by the container or rolled back. If the transaction is committed then it is clear that the message being received will be considered to have been successfully delivered and will not be delivered again. If the transaction is rolled back then the message is clearly eligible for redelivery. JMS 2.0 section 6.2.7 "Transactions" (which mentions Java EE transactions as well as Java SE local transactions) states that  "if a transaction rollback is done, its produced messages are destroyed and its consumed messages are automatically recovered."
-<p/>
+
 Considering the EJB 3.2 specification and JMS 2.0 specifications together, here is a summary the existing requirements for handling a <tt>RuntimeException</tt> thrown by the <tt>onMessage</tt> method of a JMS MDB:
-<p/>
+
 <table border="1">
 <tr><th colspan="4">Existing rules for handling a <tt>RuntimeException</tt> thrown by old-style <tt>onMessage</tt></th></tr>
 <tr><th>Transactional mode</th><th>Type of RuntimeException</th><th>Container's action<br/> (as defined by EJB 3.2 section 9.3.4)</th><th>Resource adapter's action (as defined by JMS 2.0 specification)</th></tr>
@@ -201,7 +201,7 @@ These existing rules leave scope for clarification:
 
 * The term "give up" is not defined. The specification does not state whether this means the message is permanently deleted or whether it might be redelivered at some future time.  It also does not mention the possibility of diverting the message to a dead message queue.
 
-====Discussion of how exceptions thrown by new-style MDBs should be handled====
+#### Discussion of how exceptions thrown by new-style MDBs should be handled
 
 In a new-style JMS MDB,  it will be possible for a callback method to throw a <tt>RuntimeException</tt>. This is identical to the existing case of an old-style MDB whose <tt>onMessage</tt> method throws a  <tt>RuntimeException</tt>, and the existing rules, summarised in the previous section, can apply. We need to decide whether to state that throwing a <tt>RuntimeException</tt> is considered a programming error.
 
@@ -209,7 +209,7 @@ In addition, it is proposed that callback methods on new-style MDBs be allowed t
 
 The EJB 3.2 specification already defines how the EJB container should handle checked exceptions thrown by a MDB's callback method (although this has never previously been possible with JMS MDBs). Here's a summary of what the existing EJB and JMS specifications define when the callback method of a new-style MDB throws a checked exception.:
 
-<p/>
+
 <table border="1">
 <tr><th colspan="4">Existing rules for handling a checked exception thrown by callback method in new-style MDB</th></tr>
 <tr><th>Transactional mode</th><th>Type of checked exception</th><th>Container's action<br/> (as defined by EJB 3.2 section 9.3.4)</th><th>Resource adapter's action (as defined by JMS 2.0 specification)</th></tr>
@@ -239,7 +239,7 @@ The EJB 3.2 specification already defines how the EJB container should handle ch
 <td>Not defined in JMS 2.0</td>
 </tr>
 </table>
-<p/>
+
 (In EJB 3.2 parlance, any checked exception is considered an "application exception", irrespective of whether it is explicitly annotated with <tt>@ApplicationException</tt>. By default an application exception does not prevent the transaction being committed. The annotation <tt>@ApplicationException(rollback="true")</tt> may be used to specify transaction rollback.)
 
 As the table above shows, the existing specifications already cover the case where the message is being received in a container-managed-transaction, but not the cases where the message is being received in auto-ack or dups-ok-ack mode. So what do we need to do for JMS 2.1? 
@@ -262,28 +262,28 @@ However we may decide that we want to do more than the minimum:
 
 See [https://java.net/projects/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_specification Proposed extended new wording for JMS 2.1 specification] below.
 
-====Proposed minimum new wording for JMS 2.1 specification====
+#### Proposed minimum new wording for JMS 2.1 specification
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
 <table style="margin-left:16px"> <tr> <td>
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
-<p/>
+
 An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or <tt>RuntimeException</tt>s. 
-<p/>
+
 The <tt>onMessage</tt> method of a JMS MDB that implements <tt>MessageListener</tt> may throw <tt>RuntimeException</tt>s.
-<p/>
+
 All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
-<p/>
+
 If a resource adapter is being used it must catch any checked exceptions or <tt>RuntimeException</tt>s thrown by the callback method. 
-<p/>
+
 If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the <tt>beforeDelivery</tt> method on the <tt>javax.resource.spi.endpoint.MessageEndpoint</tt> prior to invoking the callback method then it must call the <tt>afterDelivery</tt> method afterwards even if the callback method threw a checked exception or <tt>RuntimeException</tt>. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
-<p/>
+
 If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a <tt>RuntimeException</tt> then the message will be automatically redelivered.  The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.
 
 </td></tr></table>
-<p/>
+
 
 The proposed minimum wording above essentially extends the wording already used in the JMS specification for Java SE message listeners to cover JMS MDBs:
 
@@ -293,7 +293,7 @@ The proposed minimum wording above essentially extends the wording already used 
 
 * The proposed wording above not repeat the statement in JMS 2.0 section 8.7 that "it is possible for a listener to throw a <tt>RuntimeException</tt>; however, this is considered a client programming error.". That statement remains for Java SE message listeners for reasons of backward compatibility. However we're not repeating it here for MDBs since we're explicitly allowing MDB callback methods to throw checked exceptions, and it seems arbitrary to allow checked exceptions but to discourage <tt>RuntimeException</tt>s. Especially as methods in the JMS 2.0 simplified API throw <tt>RuntimeException</tt>s.
 
-====Proposed extended new wording for JMS 2.1 specification====
+#### Proposed extended new wording for JMS 2.1 specification
 
 Here is a proposed extended wording. 
 
@@ -302,19 +302,19 @@ The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in mor
 <table style="margin-left:16px"> <tr> <td>
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
-<p/>
+
 An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or <tt>RuntimeException</tt>s. 
-<p/>
+
 The <tt>onMessage</tt> method of a JMS MDB that implements <tt>MessageListener</tt> may throw <tt>RuntimeException</tt>s.
-<p/>
+
 All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
-<p/>
+
 If a resource adapter is being used it must catch any checked exceptions or <tt>RuntimeException</tt>s thrown by the callback method. 
-<p/>
+
 If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the <tt>beforeDelivery</tt> method on the <tt>javax.resource.spi.endpoint.MessageEndpoint</tt> prior to invoking the callback method then it must call the <tt>afterDelivery</tt> method afterwards even if the callback method threw a checked exception or <tt>RuntimeException</tt>. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
-<p/>
+
 If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the transaction is rolled back, then the message will be automatically recovered. Message delivery after transaction recovery is described in more detail in section 16.6.1 "Message redelivery after transaction rollback".
-<p/>
+
 If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a <tt>RuntimeException</tt>, then the message will be automatically redelivered.  The message will not be acknowledged and will be immediately redelivered. Message redelivery after an exception in auto-acknowledge or dups-ok-acknowledge mode is described in more detail in section 16.6.2 "Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode".
 
 <h4>16.6 Message redelivery to MDBs</h4>
@@ -326,12 +326,12 @@ If a message is being delivered to the callback method of a MDB, and container-m
 If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a RuntimeException then the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
 
 </td></tr></table>
-<p/>
+
 The proposed extended wording above extends the minimum wording as follows:
 
 * There's a new section which defines how messages are redelivered after rollback. This states that redelivery may not be immediate. It also states that the redelivery flag should be set , that the redelivery count should be incremented and that the resource adapter may "give up" after repeated redelivery.
 
-====Redelivery delays, redelivery limits and dead-letter queues====
+#### Redelivery delays, redelivery limits and dead-letter queues
 
 The proposals above could be extended to include a fuller set of features which allow the user to configure
 
@@ -347,7 +347,7 @@ The proposals above will define the behaviour when none of these are specified.
 
 Adding these will be considered separately. (See also [https://java.net/jira/browse/JMS_SPEC-117 JMS_SPEC-117]).
 
-==Simplifying the method annotations: some options==
+## Simplifying the method annotations: some options=### 
 
 No changes are proposed to the method annotations (apart from the addition of <tt>JMSListenerProperty</tt>) at this stage.  
 
@@ -359,10 +359,10 @@ However the current proposals still need to be reviewed in detail. Aspects needi
 * Whether attributes are optional (e.g. have a default) or mandatory
 * The enumerated types used
 
-===Recap of current proposal (Option A) ===
+### Recap of current proposal (Option A) 
 
 The following example illustrates the annotations currently proposed:
-<p/>
+
  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
  @JMSConnectionFactory("java:global/MyCF")
  @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
@@ -375,7 +375,7 @@ The following example illustrates the annotations currently proposed:
  public void giveMeAMessage(Message message) {
    ...
  }
-<p/>
+
 Obviously, this is an extreme example which demonstrates the use of every annotation. 
 
 The most important annotation here is <tt>@JMSListener</tt>. This has two attributes, "<tt>lookup</tt>" and "<tt>type</tt>"
@@ -396,21 +396,21 @@ There are a number of things we should review here. Probably the main thing we n
 
 2. to have a smaller number of annotations, each of which set multiple attributes.
 
-<p/>
+
 <table> <tr style="background-color:#f8f8f8;"> <td>
 <b>Side discussion:</b> Should "destination type" be mandatory or have a default?
-<p/><p/>
+
 We need to decide whether the application should be required to specify whether the destination is a queue or a topic.
-<p/><p/> Currently EJB 3.2 is problematic: it defines an activation property <tt>destinationType</tt> but  does not define what should happen if it is not set: it's not described as mandatory but there's no default value. Are application server/resource adapters expected to define their own default, or are they expected to be able to work when this property is not set? If the latter, then what is the point of having this property?
-<p/><p/>
+ Currently EJB 3.2 is problematic: it defines an activation property <tt>destinationType</tt> but  does not define what should happen if it is not set: it's not described as mandatory but there's no default value. Are application server/resource adapters expected to define their own default, or are they expected to be able to work when this property is not set? If the latter, then what is the point of having this property?
+
 For new-style MDBs we have four options:
-<p/><p/>* Make it mandatory to set the destination type. This is the current proposal: the  <tt>@JMSListener</tt> attribute "<tt>type</tt>" is mandatory
-<p/><p/>* Make it optional, but define a default value (queue or topic)
-<p/><p/>* Make it optional, and leave it to application servers to choose a default (which will be non-portable)
-<p/><p/>* Make it optional, and require application servers to be able to handle the case where it is omitted (which may be non-portable)
+* Make it mandatory to set the destination type. This is the current proposal: the  <tt>@JMSListener</tt> attribute "<tt>type</tt>" is mandatory
+* Make it optional, but define a default value (queue or topic)
+* Make it optional, and leave it to application servers to choose a default (which will be non-portable)
+* Make it optional, and require application servers to be able to handle the case where it is omitted (which may be non-portable)
 </td></tr></table>
 
-===An alternative proposal (Option B)===
+### An alternative proposal (Option B)
 
 If we went for  a smaller number of annotations, each of which set multiple attributes, what might they look like? Here's a suggestion.
 
@@ -429,7 +429,7 @@ plus zero or more occurrences of the newly-proposed annotation:
 This would remove the need for the user to specify destinationType or subscriptionDurability as attributes.
 
 Here's an example of a MDB which listens for messages from a queue:
-<p/>
+
  @JMSQueueListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     messageSelector=""ticker='ORCL'",
@@ -439,9 +439,9 @@ Here's an example of a MDB which listens for messages from a queue:
  public void giveMeAMessage(Message message) {
     ...
  }
-<p/>
+
 Here's an example of a MDB which listens for messages from a durable topic subscription:
-<p/>
+
  @JMSDurableTopicListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     clientId="myClientID1",
@@ -453,9 +453,9 @@ Here's an example of a MDB which listens for messages from a durable topic subsc
  public void giveMeAMessage(Message message) {
     ...
  }
-<p/>
+
 Here's an example of a MDB which listens for messages from a non-durable topic subscription:
-<p/>
+
  @JMSNonDurableTopicListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     messageSelector=""ticker='ORCL'",
@@ -465,7 +465,7 @@ Here's an example of a MDB which listens for messages from a non-durable topic s
  public void giveMeAMessage(Message message) {
     ...
  }
-<p/>
+
 Some of these attributes would need to be specified, others would be optional.
 
 The main benefits of this option are:
@@ -474,7 +474,7 @@ The main benefits of this option are:
 
 * No need to explicitly specify destination type or subscription durability via verbose enumerated types
 
-=== Option C===
+###  Option C
 
 A third option might be to combine option B with an additional, completely generic annotation.
 
@@ -496,7 +496,7 @@ In addition to <tt>@JMSQueueListener</tt>, <tt>@JMSDurableTopicListener</tt> and
 
 This generic annotation would need  to allow the attributes <tt>destinationType</tt> and <tt>subscriptionDurability</tt> to be specified.
 
-=== Option D===
+###  Option D
 
 A fourth option would be to offer just the generic annotation <tt>@JMSDestinationListener</tt>, plus <tt>@JMSListenerProperty</tt>
 

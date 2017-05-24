@@ -1,6 +1,6 @@
 # Proposed changes to JMSContext to support injection (Option 4)</h1>
 
-==Summary==
+## Summary=### 
 
 This page proposes some changes to the JMS 2.0 simplified API to support the injection of <tt>JMSContext</tt> objects.
 
@@ -8,7 +8,7 @@ It discusses the potential confusion that might be caused by the sharing of inje
 
 __TOC__
 
-==The problem==
+## The problem=### 
 
 Let's begin with a description of the problem we need to address. The example below uses the simplified API as defined in the JMS 2.0 Early Draft.
 
@@ -75,7 +75,7 @@ This is the potentially confusing situation we need to avoid. There have been se
 
 This page therefore makes a fourth proposal to address this issue.
 
-==The solution (Option 4)==
+## The solution (Option 4)=### 
 
 Although the behaviour described above is the expected CDI behaviour when injecting objects with a "normal" (non-dependent) scope, the reason this is considered to be potentially confusing in the case of <tt>JMSContext</tt> objects is that the <tt>JMSContext</tt> object is stateful: you can call a method on one bean which affects its behaviour in another bean.
 
@@ -102,7 +102,7 @@ The following methods on <tt>JMSContext</tt> can be used to change its state:
 
 The following sections will show how all these methods can be moved to another object, prohibited, or are already illegal in the cases where confusion might arise.
 
-===Move the "message send" properties to a new JMSProducer object===
+### Move the "message send" properties to a new JMSProducer object
 
 Let's start by considering the six methods which specify behaviour when subsequent messages are sent:
 
@@ -129,7 +129,7 @@ Note that even if the <tt>JMSContext</tt> were injected, the <tt>JMSProducer</tt
 One of the goals of the simplified API was to reduce the number of objects an application needed to create in order to send or receive a message. Adding a new <tt>JMSProducer</tt> object undermines this goal. However we can take reduce the amount of code needed by making all the setter methods return the <tt>JMSProducer</tt>, in order to allow method chaining:
     context.createProducer().setPriority(1).send(destination,message);
 
-=== Other aspects of using a JMSProducer===
+###  Other aspects of using a JMSProducer
 
 A happy side-effect of introducing a <tt>JMSProducer</tt> and allowing method chaining is that it allows us to drop methods such as
     void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive)
@@ -148,7 +148,7 @@ Note that the Destination to which a message is sent is specified using a parame
 
 Although a <tt>JMSProducer</tt> looks a bit like a <tt>MessageProducer</tt> , the proposal here is that the <tt>MessageProducer</tt> is still associated with the <tt>JMSContext</tt>. This means that message order is guaranteed for all messages sent to a given destination using the same <tt>JMSContext</tt> , even if they use different <tt>JMSProducer</tt> objects. (There's actually more to JMS message order than this: see the JMS specification for a complete definition).
 
-===Prohibit all the other methods which change the state of a JMSContext===
+### Prohibit all the other methods which change the state of a JMSContext
 
 Now let's consider some of the other methods on <tt>JMSContext</tt> that make it appear stateful:
 
@@ -191,7 +191,7 @@ Finally let's consider the one remaining method that changes the state of a <tt>
 
 We don't actually want applications to call this method if the <tt>JMSContext</tt> is injected. This is because close() will be called by the container when the object falls out of scope. We can therefore define that if close() is called when the <tt>JMSContext</tt> is injected an exception is thrown.
 
-===Additional feature: setting message properties on a JMSProducer===
+### Additional feature: setting message properties on a JMSProducer
 
 Now that we have introduced the <tt>JMSProducer</tt> object there are a number of additional features we could add to improve the overall simplified API. 
 
@@ -227,7 +227,7 @@ This would then allow the properties of a <tt>Message</tt>  to be set prior to s
 or in the case of the methods which allow the application to sent the payload directly:
     context.createProducer().setProperty("foo","bar").send(destination,"This is a message");
 
-===Additional feature: setting JMS message headers on a JMSProducer===
+### Additional feature: setting JMS message headers on a JMSProducer
 
 We could also add methods to <tt>JMSProducer</tt> to allow various message headers to be set. The following methods on <tt>Message</tt> allow the application to set a message header before a message is sent:
 * <tt>void setJMSReplyTo(Destination replyTo)</tt>
@@ -245,11 +245,11 @@ This would allow these message headers to be set prior to sending as follows:
 
     context.createProducer().setJMSReplyTo(replyDest).send(destination,message);
 
-==Summary of changes==
+## Summary of changes=### 
 
 Here is a summary of these proposals, compared with what is in the JMS 2.0 Early Draft:
 
-===Changes to <tt>JMSContext</tt>===
+### Changes to <tt>JMSContext</tt>
 
 The following methods on <tt>JMSContext</tt> will be **removed**:
 
@@ -286,7 +286,7 @@ The following methods on <tt>JMSContext</tt> will **throw an exception if the <t
 We will **add a new method to <tt>JMSContext</tt>**
 * <tt>JMSProducer getProducer()</tt>
 
-===New class JMSProducer===
+### New class JMSProducer
 
 We will define a new class <tt>JMSProducer</tt>. This a simple object used to configure send-time options before sending one or more messages. It does not hold any state that would ever need a <tt>close</tt> method. Despite the name, it does not itself wrap a <tt>MessageProducer</tt>. Instead the <tt>JMSContext</tt> continues to wrap an anonymous MessageProducer (or perhaps one for each destination) in order to allow the order of message sent to a destination using the same <tt>JMSContext</tt> to be guaranteed.
 
@@ -372,6 +372,6 @@ Methods to query any previously-set message headers
 * <tt>String getJMSType()</tt>
 * <tt>String getJMSReplyTo()</tt>
 
-===Other changes===
+### Other changes
 
 We will drop the proposal to have an <tt>@AutoStart</tt> annotation.

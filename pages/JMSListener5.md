@@ -4,20 +4,20 @@ This page discusses the method annotations on flexible JMS MDBs
 
 __TOC__
 
-== Latest proposal (option H)==
+##  Latest proposal (option H)=### 
 
 **Note:** This page has been updated to reflect the discussion in the meeting on Thursday 19th November. 
 
 Key features of this proposal
 
-* The callback method is specified using <tt>@QueueListener("java:global/queueName")</tt> or <tt>@TopicListener("java:global/topicName")</tt>. <p/>
-**This means it becomes mandatory to specify the destination type, thereby removing the ambiguity with classic JMS MDBs which left it undefined whether the destination type must be specified. <p/>
-** We discussed whether we should take the opposite approach and specify that the destination type was never required. This would allow a single  <tt>@JMSListener</tt> annotation. However we decided that the destination type was so important in the design of the MDB that applications should be required to specify it.<p/>
-** We could have achieved the same result by defining a single annotation with two mandatory elements, such as <tt>@OnMessage(lookup="java@global/myQueue", type=javax.jms.Queue)</tt>. However we decided that it was less verbose to define two separate annotations, <tt>@QueueListener</tt> or <tt>@TopicListener</tt>, each of which had a single element.<p/>
-** We discussed whether there should be three annotations <tt>@QueueListener</tt>, <tt>@NonDurableTopicListener</tt> and <tt>@DurableTopicListener</tt> rather than two. However this was rejected because whether the subscription was durable or not was really a sub-classification of the topic case and so should be specified using a separate annotation. That is, the annotations should reflect the fact that there are really two options, of which one has two variants. In addition the names of the annotations were getting complicated (especially <tt>@NonDurableTopicListener</tt>).<p/>
+* The callback method is specified using <tt>@QueueListener("java:global/queueName")</tt> or <tt>@TopicListener("java:global/topicName")</tt>. 
+**This means it becomes mandatory to specify the destination type, thereby removing the ambiguity with classic JMS MDBs which left it undefined whether the destination type must be specified. 
+** We discussed whether we should take the opposite approach and specify that the destination type was never required. This would allow a single  <tt>@JMSListener</tt> annotation. However we decided that the destination type was so important in the design of the MDB that applications should be required to specify it.
+** We could have achieved the same result by defining a single annotation with two mandatory elements, such as <tt>@OnMessage(lookup="java@global/myQueue", type=javax.jms.Queue)</tt>. However we decided that it was less verbose to define two separate annotations, <tt>@QueueListener</tt> or <tt>@TopicListener</tt>, each of which had a single element.
+** We discussed whether there should be three annotations <tt>@QueueListener</tt>, <tt>@NonDurableTopicListener</tt> and <tt>@DurableTopicListener</tt> rather than two. However this was rejected because whether the subscription was durable or not was really a sub-classification of the topic case and so should be specified using a separate annotation. That is, the annotations should reflect the fact that there are really two options, of which one has two variants. In addition the names of the annotations were getting complicated (especially <tt>@NonDurableTopicListener</tt>).
 ** There wasn't a clear consensus on the best name for these annotations. Alternatives to  <tt>@QueueListener</tt> include <tt>@JMSQueueListener</tt>, which was rejected because we wanted to avoid "JMS" everywhere, and <tt>@OnMessageQueue</tt> and <tt>@OnQueue</tt>, which didn't sound right. The noun "listener" isn't ideal here since it is the object that is the listener, not the callback method, but we couldn't think of anything better. It does have the benefit of being an established noun in this context (e.g. in the <tt>MessageListener</tt> interface).
 
-* If the user has specified <tt>@TopicListener("java:global/topicName")</tt> then they may additionally specify <tt>@DurableSubscription</tt> to designate that the subscription is durable. They may additionally specify <tt>@SubscriptionName</tt> to specify the name of the durable subscription, and <tt>ClientId</tt> to specify the clientId. <p/>
+* If the user has specified <tt>@TopicListener("java:global/topicName")</tt> then they may additionally specify <tt>@DurableSubscription</tt> to designate that the subscription is durable. They may additionally specify <tt>@SubscriptionName</tt> to specify the name of the durable subscription, and <tt>ClientId</tt> to specify the clientId. 
 ** If <tt>@DurableSubscription</tt> is not supplied then a non-durable subscription will be used. There is no corresponding <tt>@NonDurableSubscription</tt> annotation. This is because there has always been a long-standing convention in JMS that a topic subscription is non-durable unless otherwise specified. For example, the methods <tt>Session#createConsumer</tt> and <tt>TopicSession#createSubscriber</tt> always create non-durable subscriptions. If the user wants a durable subscription they need to specify this by calling  <tt>Session#createDurableConsumer</tt> or <tt>TopicSession#createDurableSubscriber</tt>.
 <ul><ul><li>
 (**Resolved issue**) We discussed combining these three separate annotations into a single annotation with two elements. For example instead of 
@@ -32,7 +32,7 @@ we could have
 However we decided to define three separate annotations. Discussion and reasons [https://java.net/projects/jms-spec/lists/users/archive/2015-11/message/14 here].
 </li></ul></ul>
 
-* <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> are used to specify the corresponding non-transactional acknowledgement mode. To use these modes the MDB must also be configured to use bean-managed transaction demarcation, such as using the class-level annotation <tt>@TransactionManagement(value=TransactionManagementType.BEAN)</tt>. The application server will be recommended to fail deployment if the user specifies <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> without also configuring bean-managed transaction demarcation.<p/>
+* <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> are used to specify the corresponding non-transactional acknowledgement mode. To use these modes the MDB must also be configured to use bean-managed transaction demarcation, such as using the class-level annotation <tt>@TransactionManagement(value=TransactionManagementType.BEAN)</tt>. The application server will be recommended to fail deployment if the user specifies <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> without also configuring bean-managed transaction demarcation.
 ** The goal here is to prevent the user from setting <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> without realising that they also need to configure bean-managed transaction demarcation. Ideally the application server or resource adapter would be required to fail deployment if the user specifies <tt>@AutoAcknowledge</tt> or <tt>@DupsOKAcknowledge</tt> but leaves the MDB configured to use container-managed transactions. However there is no standard way for a resource adapter to find out whether bean-managed transaction demarcation has been configured, so this needs to be just a recommendation. 
 ** This is different to classic JMS MDBs, where the EJB 3.2 spec suggests that if <tt>acknowledgeMode</tt> is set to <tt>Auto-acknowledge</tt> or <tt>Dups-ok-acknowledge</tt> but the MDB is configured to use container-managed transactions then the value of <tt>acknowledgeMode</tt> should be ignored.
 ** We considered whether <tt>@AutoAcknowledge</tt> and <tt>@DupsOKAcknowledge</tt> should force the MDB to use bean-managed transaction demarcation, irrespective of what has been configured. However since the way that transaction demarcation is configured is an old and long-established feature of EJBs we decided that it would be confusing and inconsistent to override it.
@@ -41,7 +41,7 @@ However we decided to define three separate annotations. Discussion and reasons 
 
 * Other properties are set using individual annotations: <tt> @JMSConnectionFactory</tt> (which reuses an existing annotation) and <tt>MessageSelector</tt>.
 
-===Queue (option G)===
+### Queue (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -57,7 +57,7 @@ However we decided to define three separate annotations. Discussion and reasons 
    }
  }
 
-===Non-Durable subscription on topic (option G)===
+### Non-Durable subscription on topic (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -74,7 +74,7 @@ However we decided to define three separate annotations. Discussion and reasons 
    }
  }
 
-===Durable subscription on topic (option G)===
+### Durable subscription on topic (option G)
 
  @MessageDriven
  public class MyMessageBean {
@@ -90,7 +90,7 @@ However we decided to define three separate annotations. Discussion and reasons 
    }
  }
 
-===Other notes (option G)===
+### Other notes (option G)
 
 * These annotations will be designed to allow JMS MDBs to define multiple callback methods. However in the first instance only a single callback method will be allowed. 
 

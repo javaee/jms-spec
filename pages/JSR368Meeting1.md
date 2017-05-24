@@ -10,7 +10,7 @@ Up to the [https://java.net/projects/jms-spec/pages/JMS21#Meetings Meetings inde
 
 The minutes of this meeting are [https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47 here].
 
-==Agenda==
+## Agenda=### 
 
 <h3>1. Introductions</h3>
 
@@ -55,7 +55,7 @@ Particular issues to cover
 * Other scopes
 * Should we make the callback method single-threaded?
 
-==Proposed high-level plan==
+## Proposed high-level plan=### 
 
 [https://java.net/projects/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
 

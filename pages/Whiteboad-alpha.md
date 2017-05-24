@@ -9,7 +9,7 @@ Bullet lists are a good way to provide messages to us for now. Could you stick t
 Thanks,
 Nick
 
-== Items ==
+##  Items
 
 * 2012-11-13 --nwright -- I'd like a better whiteboard
 * 2012-11-13 --nwright -- and a uniform monitoring API for JMS vendors (but I really need to tie this to the JIRA ticket that exists and make some comments)

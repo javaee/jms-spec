@@ -1,4 +1,4 @@
-==JSR 368 Expert group nominations ==
+## JSR 368 Expert group nominations
 
 This page lists all the applications which have been made to join the JSR 368 expert group. 
 
@@ -6,7 +6,7 @@ Applications have to be approved by both the Specification Lead and by the JCP a
 
 If the sole reason for rejection is that the applicant hasn't provided the necessary legal agreements then the applicant is welcome to rectify this.
 
-===List of nominations===
+### List of nominations
 
 {|- border="1"
 ! Date of application
@@ -70,7 +70,7 @@ If the sole reason for rejection is that the applicant hasn't provided the neces
 | Accepted
 |} 
 
-===Transparency requirements===
+### Transparency requirements
 
 These nominations are recorded here in order to comply with the transparency requirements of  [https://jcp.org/en/procedures/jcp2 version 2.9 of the Java Community Process]. 
 

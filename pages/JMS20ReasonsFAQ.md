@@ -4,9 +4,9 @@ This page records some of the design decisions taken during the development of t
 
 __TOC__
 
-==Asynchronous send==
+## Asynchronous send=### 
 
-===Why is asynchronous send not permitted in a Java EE web or EJB container?===
+### Why is asynchronous send not permitted in a Java EE web or EJB container?
 
 There are a number of reasons why the use of asynchronous send is not permitted in a Java EE web or EJB container.
 
@@ -34,9 +34,9 @@ It was not possible to resolve this issue  in the time available for JMS 2.0, th
 
 One possible solution might be to require the call to the <tt>XAResource</tt> <tt>end</tt> method (rather than the <tt>prepare</tt> or <tt>commit</tt> methods) to block until any incomplete sends have been completed.  It may be possible to require this only if the <tt>TMSUCCESS</tt> flag was set (rather than the <tt>TMSUSPEND</tt> flag) - more work is needed. 
 
-==Simplified API==
+## Simplified API=### 
 
-===Why do we need a separate JMSConsumer object. Why can't we move all its methods onto the JMSContext?===
+### Why do we need a separate JMSConsumer object. Why can't we move all its methods onto the JMSContext?
 
 When JMS 2.0 was being developed, early versions of the simplified API didn't have a separate consumer object. Instead, all the methods related to consuming messages 
 were added to the <tt>JMSContext</tt> itself.
@@ -49,7 +49,7 @@ It was slightly easier to provide all the methods on the <tt>JMSConsumer</tt> fo
 
 Apart from API simplicity, a second reason for keeping a separate consumer object was to allow it to have a separate lifecycle from the JMSContext. Some existing JMS vendors "pre-send" messages to the consuming client and cache them in the <tt>MessageConsumer</tt> prior to delivery to the application. This means that if the consumer is closed these cached messages can be released back to the server without closing the connection and session. Although JMS does not specify this as a required behaviour it was thought preferable to design the simplified API in a way which would not cause difficulties for existing implementations. For this reason, the simplified API uses a separate consumer object, the <tt>JMSConsumer</tt>, which is very similar to the existing <tt>MessageConsumer</tt> object.
 
-===Why do we need a separate JMSProducer object? Why can't we move all its methods onto the JMSContext?===
+### Why do we need a separate JMSProducer object? Why can't we move all its methods onto the JMSContext?
 
 When JMS 2.0 was being developed, early versions of the simplified API didn't have a separate producer object. Instead, the <tt>JMSContext</tt> had a number of <tt>send</tt> methods for sending a message, all of which took the queue or topic as a parameter. In addition  the <tt>JMSContext</tt> had the same methods for setting delivery options as <tt>MessageProducer</tt>, namely  <tt>setDeliveryMode</tt>, <tt>set Priority</tt>, <tt>setDisableMessageID</tt>, <tt> 	setDisableMessageTimestamp</tt>, <tt>setTimeToLive</tt> and the new <tt>setDeliveryDelay</tt>.
 
@@ -147,7 +147,7 @@ Having gone this far in allowing the <tt>JMSProducer</tt> to be used in a builde
        ...
     }
 
-===Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?===
+### Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?
 
 The section 
 <a href="https://java.net/projects/jms-spec/pages/JMS20ReasonsFAQ#Why_do_we_need_a_separate_JMSProducer_object?_Why_can_t_we_move_all_its_methods_onto_the_JMSContext?">Why do we need a separate JMSProducer object?</a>
