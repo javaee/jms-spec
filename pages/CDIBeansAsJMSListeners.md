@@ -312,7 +312,7 @@ The application server will provide a CDI "portable extension" which extends the
 * It will extend the `postConstruct` behaviour of such beans to:
   * Determine which resource adapter to use
   * Call the `ResourceAdapter` method `endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)`
-: This will lookup the connection factory and destination specified in the callback annotations and use these and the other annotations to create a consumer which will deliver messages, one at a time, to the specified callback method, adding whatever transactional behaviour is specified. 
+This will lookup the connection factory and destination specified in the callback annotations and use these and the other annotations to create a consumer which will deliver messages, one at a time, to the specified callback method, adding whatever transactional behaviour is specified. 
 
 * It will extend the `postConstruct` behaviour of such beans to:
   * Call the `ResourceAdapter` method `endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)`
