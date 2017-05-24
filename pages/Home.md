@@ -114,16 +114,16 @@ Here are some guidelines to follow when creating a new issue:
   * Task: Please don't use this  git push origin gh-pages
   * Improvement:  An improvement or enhancement to an existing feature of the spec, API or javadocs
 * **Summary** Please enter a meaningful one-line summary of your issue
-* Priority: Please don't change this
+* **Priority**: Please don't change this
 * **Component/s** We will use this in the future to allow you to categorise your issue
 * **Affects version/s** Please specify which version of the JMS specification your comment relates to. Normally this will be 1.1, the latest released version.
 * Environment: Please leave blank
 * **Description**: Please describe your issue in as much detail as you wish. You can add comments later.
 * Original Estimate: Please leave blank
 * **Attachment**: There shouldn't be much need to use this, but if necessary you can upload files here
-* Issuezilla Id: Please leave blank
-* Status Whiteboard: Please leave blank. We may start using this field in the future.
-* Tags: Please leave blank. These should only be set by the project administrators, so if you set these yourself you'll confuse things. 
+* **Issuezilla Id**: Please leave blank
+* **Status Whiteboard**: Please leave blank. We may start using this field in the future.
+* **Tags**: Please leave blank. These should only be set by the project administrators, so if you set these yourself you'll confuse things. 
 
 ## Procedures and policies
 
@@ -131,4 +131,4 @@ The [Java EE Backwards Compatibility Requirements](https://javaee.github.io/java
 
 ## Important legal statement
 
-[Safe harbor statement](https://java.net/projects/jms-spec/pages/SafeHarborStatement).
+[Safe harbor statement](/pages/SafeHarborStatement).
