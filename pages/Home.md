@@ -126,8 +126,8 @@ Here are some guidelines to follow when creating a new issue:
 
 ## Procedures and policies
 
-The [http://java.net/projects/javaee-spec/pages/CompatibilityRequirements Java EE Backwards Compatibility Requirements] (on the Java EE WIki) describe the requirements to make releases of JMS 2.0  backwards compatible with previous versions.
+The [Java EE Backwards Compatibility Requirements](https://javaee.github.io/javaee-spec/CompatibilityRequirements) (on the Java EE Platform Specification website) describe the requirements to make releases of JMS 2.0  backwards compatible with previous versions.
 
 ## Important legal statement
 
-[https://java.net/projects/jms-spec/pages/SafeHarborStatement Safe harbor statement].
+[Safe harbor statement](https://java.net/projects/jms-spec/pages/SafeHarborStatement).
