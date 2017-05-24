@@ -2,13 +2,13 @@
 
 ## Summary 
 
-This page contains a number of use cases which demonstrate how the proposals in [[JMSContextScopeProposals|Injection of JMSContext objects - Proposals (version 3)]] would appear to users. Each use case is followed by an analysis for both [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]]. 
+This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option_2) and [Option 3|/jms-spec/pages/JMSContextScopeProposals#Option_3]. 
 
-If you're looking for a use case which demonstrates the differences between [[JMSContextScopeProposals#Option_2|Option 2]] and [[JMSContextScopeProposals#Option_3|Option 3]], please look at [http://java.net/projects/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction use case C].
+If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option_2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#Option_3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction).
 
 Note that these use cases are not intended to demonstrate how `@TransactionScoped` beans behave in general. They are intended only to demonstrate how injected `JMSContext` objects behave.
 
-After reading these, now read [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]]
+After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
 
 * auto-gen TOC:
 {:toc}
