@@ -245,3 +245,6 @@ blockquote {
   color: FF0000;
   width: 900px;
 }
+
+/* Overwrite the setting that is added automatically to this stylesheet to make tables centre-aligned
+td {text-align: left!important}
