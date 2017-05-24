@@ -74,31 +74,22 @@ Email address | Purpose | Access
 **commits@jms-spec.java.net** | Mailing list for source code repository update notifications. <br /> <br /> Anyone by join, but there's no need to unless you are updating the source code repository yourself. Whenever there's anything new of interest an email will be sent to the user mailing list.  Please don't use this list for discussions.<br /> | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([How to do this](https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ))<br /><br />[Online archive of past messages](http://java.net/projects/jms-spec/lists/commits/archive)
 
 ###  Mailing lists FAQ
-;How do I join the [jms-spec.java.net](http://jms-spec.java.net) project? 
-:Simply click on [Join this project](https://java.net/projects/jms-spec/watch) on the left, and you'll be instantly become a member. 
+How do I join the [jms-spec.java.net](http://jms-spec.java.net) project? 
+: Simply click on [Join this project](https://java.net/projects/jms-spec/watch) on the left, and you'll be instantly become a member. 
 This is sometimes referred to as an "observer role". You'll need to be logged into [java.net](http://java.net). 
 This will also add this project to your [My Projects](http://java.net/mypage) page.
 
-;How to I subscribe to a mailing list?
-:After joining the project, navigate to (http://java.net/projects/jms-spec/lists java.net/projects/jms-spec/lists), find the list you want to subscribe to, and press the Subscribe button.  
+How to I subscribe to a mailing list?
+: After joining the project, navigate to (http://java.net/projects/jms-spec/lists java.net/projects/jms-spec/lists), find the list you want to subscribe to, and press the Subscribe button.  
 
-;I tried to reply to an email but it was rejected. Why?
+I tried to reply to an email but it was rejected. Why?
 : If you subscribe to users@jms-spec.java.net you'll automatically receive a copy of all emails sent to the expert group.  You're welcome to reply to any email with a comment. However if you are not a member of the expert group you'll need to change the recipient to users@jms-spec.java.net before replying, otherwise your email will be rejected. The expert group will see all emails sent to users@jms-spec.java.net.
 
 ###  Observer mailing list (not used) 
-{|- border="1"
-! Email address
-! Purpose
-! Access
-|-
-| **jsr-368-observers@jcp.org**
-| Legacy mailing list for observers of JSR 368. <br /><br />
-Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br />
-If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above.
-| Registered observers of [http://jcp.org/en/jsr/summary?id=368 JSR 368] are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. 
-<br /><br />
-There is currently no online archive of past messages.<br />
-|}
+
+Email address | Purpose | Access
+:------------ | :------ | :-----
+**jsr-368-observers@jcp.org** | Legacy mailing list for observers of JSR 368. <br /><br /> Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br /> If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above. | Registered observers of [http://jcp.org/en/jsr/summary?id=368 JSR 368] are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. <br /><br />There is currently no online archive of past messages.
 
 ## JMS expert group mailing lists
 
