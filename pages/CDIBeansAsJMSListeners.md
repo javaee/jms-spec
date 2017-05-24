@@ -10,9 +10,9 @@ These proposals are separate to the proposals for [[JMSListener2|More flexible J
 
 __TOC__
 
-==Introduction==
+## Introduction
 
-===In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB===
+## =In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB=
 
 <br/>In the current version of Java EE the only way that an application can consume JMS messages asynchronously is to use a MDB (message-driven bean). JMS MDBs allow the container to manage a pool of MDB instances which can share the work of processing a large number of messages amongst multiple threads. This is a very useful feature allowing a large throughput of messages to be handled.
 
@@ -35,7 +35,7 @@ Here's an example of a MDB in Java EE 7:
    }
  }
 
-===In Java EE 8, we're proposing that JMS MDBs will be more flexible===
+## =In Java EE 8, we're proposing that JMS MDBs will be more flexible=
 
 <br/>The separate proposals for  [[JMSListener2|More flexible JMS MDBs]] in JMS 2.1 will make them even simpler by removing the need for the MDB to implement the <tt>javax.jms.MessageListener</tt> and defining some new, JMS-specific, annotations. Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
 <br/><br/>
@@ -51,7 +51,7 @@ Here's an example of a MDB in Java EE 7:
  }
 <br/>However those proposals leave the MDB lifecycle unchanged. This means that a MDB (or pool of MDBs) will start listening for messages as soon as the application is started, and will continue to listen for messages until the application is shut down. There is no way to listen for messages for a shorter period that this, or to allow objects that are not MDBs to listen for messages.
 
-===In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages===
+## =In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages=
 
 To address the restrictions in the MDB lifecycle **it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages**. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
 <br/><br/>
@@ -71,7 +71,7 @@ However note that this object is not a MDB. It does not have the <tt>MessageDriv
 
 For more about the lifecycle of a CDI JMS listener bean, see [[CDIBeansAsJMSListeners#Listener_lifecycles|Listener lifecycles]] below.
 
-==JMS listener beans==
+## JMS listener beans
 
 This section describes JMS listener beans in more detail and how they relate to CDI managed beans in general, and to JMS MDBs.
 
@@ -178,11 +178,11 @@ The <tt>@Transactional</tt> annotation has an optional attribute which allows th
 <b>Issue 3:</b> Do we need an additional annotation (either at class or method level) to allow a resource adapter to be specified?? 
 </td></tr></table>
 
-==Listener lifecycles==
+## Listener lifecycles
 
 The main reason for using JMS listener beans rather than MDBs is that they give the application finer-grained control over the lifecycle of the listener: when it starts listening, and when it stops listening. The lifecycle of the listener bean is controlled by CDI and depends on its ''scope'' and how it is injected into the application. 
 
-===JMS listener bean with dependent scope
+## =JMS listener bean with dependent scope
 By default a CDI managed bean has ''dependent scope''. This can be denoted by adding the <tt>@Dependent</tt> class annotation, though since this is the default it is not required. A bean with dependent scope will follow the lifecycle of whatever bean it is injected into. 
 
 So if we define a CDI managed bean as follows:
@@ -213,7 +213,7 @@ Each instance of the servlet will have its own instance of <tt>MyDepScopeListene
 
 The use of a servlet here is just an example. The <tt>MyDepScopeListenerBean</tt> could be injected into any other class that supports CDI injection. SInce it has dependent scope it would follow the same lifecycle as the object into which it was injected.
 
-===JMS listener bean with dependent scope and explicit lifecycle management
+## =JMS listener bean with dependent scope and explicit lifecycle management
 If required the application can control the lifecycle of a dependent-scoped JMS listener bean explicitly. In this case it must inject an <tt>Instance</tt> object of the required type. This will function as a factory (or "provider") of listener bean instances:
 <br/><br/>
  
@@ -232,7 +232,7 @@ If required the application can control the lifecycle of a dependent-scoped JMS 
       listenerProvider.destroy(jmsListener1 );
  
 
-===CDI managed listener bean with request scope
+## =CDI managed listener bean with request scope
 A JMS listener bean doesn't have to have dependent scope. It can have any scope supported by CDI, including scopes which are application-defined. 
 
 For example, the <tt>@RequestScoped</tt> class annotation can be used to specify that the listener bean should have "request" scope. This means that each request will use a separate instance of the listener. The listener will be created, and will start listening for messages,  the first time that the injected object is used within the request. It will then continue to listen for messages until the request ends.
@@ -267,7 +267,7 @@ The call to <tt>listener.toString()</tt> is required because of the way that CDI
 
 Normally an application developer does not need to be aware of this, since there is no need to instantiate an injected bean before one of its methods is called. However if the injected bean is a JMS listener, and the listener has "normal" scope. then the developer needs to be aware that they need to call a method to force it to start listening.
 
-==How will this be implemented?==
+## How will this be implemented?
 
 As with MDBs, it must be possible for application servers to implement JMS listener beans using a resource adapter. This imposes responsibilities on the application server and on the resource adapter which will be described in this section. 
 
@@ -282,9 +282,9 @@ The resource adapter will be required to provide
 
 The application server must support the use of a resource adapter if one is explicitly specified by the application. If a resource adapter is not specified then the application server must either use a default resource adapter provided by the application server or a mechanism which does not use a resource adapter.
 
-===Responsibilities of the application server===
+## =Responsibilities of the application server=
 
-====CDI portable extension====
+## CDI portable extension
 
 The application server will provide a CDI "portable extension" which extends the behaviour of all CDI managed beans that have one or more methods annotated with <tt>JMSListener</tt>, as follows:
 
@@ -309,7 +309,7 @@ However using this existing API for JMS listener beans is an awkward fit, since 
 <b>Issue 5:</b>How does the application server determine what resource adapter to use? Is this a per-bean or per-method setting? In these proposals a single call to <tt>endpointActivation</tt> is responsible for handling all the callback methods on a listener bean, which means that all callback methods must use the same resource adapter (and so probably the same JMS provider). Is this desirable, or do we want each callback method to be able to specify a different resource adapter?
 </td></tr></table>
 
-====MessageEndpointFactory====
+## MessageEndpointFactory
 
 The application server will be responsible for providing a suitable <tt>MessageEndpointFactory</tt> class which will be passed to the resource adapter in the calls to <tt>endpointActivation</tt> and <tt>endpointDeactivation</tt>. 
 
@@ -321,7 +321,7 @@ The application server will be responsible for providing a suitable <tt>MessageE
 
 * The method <tt>isDeliveryTransacted(Method method)</tt> will return whether message deliveries to the specified method are transacted or not. The application server will determine this by checking whether or not the specified method has a <tt>@javax.transaction.Transactional</tt> annotation.
 
-====MessageEndpoint====
+## MessageEndpoint
 
 The application server will be responsible for returning a suitable <tt>MessageEndpoint</tt> object when  <tt>MessageEndpointFactory#createEndpoint(XAResource xaResource)</tt> and <tt>MessageEndpointFactory#createEndpoint(XAResource xaResource, long timeout)</tt> are called.
 
@@ -344,11 +344,11 @@ The <tt>@javax.transaction.Transactional</tt> annotation can be used to specify 
 <b>Issue 6:</b> The interaction between the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method, needs to be considered carefully.
 </td></tr></table>
 
-===Responsibilities of the resource adapter===
+## =Responsibilities of the resource adapter=
 
 The main responsibility of the resource adapter is to implement the  <tt>ResourceAdapter</tt> methods <tt>endpointActivation</tt> and <tt>endpointDeactivation</tt> so that they handle JMS listener beans as follows:
 
-====endpointActivation====
+## endpointActivation
 
 The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt> as follows:
 
@@ -365,7 +365,7 @@ The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>end
 
 Note that this is very similar behaviour to that required for activating JMS MDBs. The main difference is that there will only ever be a single instance of  <tt>MessageEndpoint</tt>. There is therefore no point in the resource adapter attempting to deliver messages from a given consumer in more than as single thread.
 
-====endpointDeactivation====
+## endpointDeactivation
 
 The resource adapter must implement  the <tt>ResourceAdapter</tt> method <tt>endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)</tt> as follows:
 
