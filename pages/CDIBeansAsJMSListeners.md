@@ -12,7 +12,7 @@ __TOC__
 
 ## Introduction
 
-## =In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB=
+### In Java EE 7, the only way to consume JMS messages asynchronously is to use a MDB
 
 <br/>In the current version of Java EE the only way that an application can consume JMS messages asynchronously is to use a MDB (message-driven bean). JMS MDBs allow the container to manage a pool of MDB instances which can share the work of processing a large number of messages amongst multiple threads. This is a very useful feature allowing a large throughput of messages to be handled.
 
@@ -35,7 +35,7 @@ Here's an example of a MDB in Java EE 7:
    }
  }
 
-## =In Java EE 8, we're proposing that JMS MDBs will be more flexible=
+### In Java EE 8, we're proposing that JMS MDBs will be more flexible
 
 <br/>The separate proposals for  [[JMSListener2|More flexible JMS MDBs]] in JMS 2.1 will make them even simpler by removing the need for the MDB to implement the <tt>javax.jms.MessageListener</tt> and defining some new, JMS-specific, annotations. Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
 <br/><br/>
@@ -51,7 +51,7 @@ Here's an example of a MDB in Java EE 7:
  }
 <br/>However those proposals leave the MDB lifecycle unchanged. This means that a MDB (or pool of MDBs) will start listening for messages as soon as the application is started, and will continue to listen for messages until the application is shut down. There is no way to listen for messages for a shorter period that this, or to allow objects that are not MDBs to listen for messages.
 
-## =In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages=
+### In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages
 
 To address the restrictions in the MDB lifecycle **it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages**. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
 <br/><br/>
@@ -182,7 +182,7 @@ The <tt>@Transactional</tt> annotation has an optional attribute which allows th
 
 The main reason for using JMS listener beans rather than MDBs is that they give the application finer-grained control over the lifecycle of the listener: when it starts listening, and when it stops listening. The lifecycle of the listener bean is controlled by CDI and depends on its ''scope'' and how it is injected into the application. 
 
-## =JMS listener bean with dependent scope
+### JMS listener bean with dependent scope
 By default a CDI managed bean has ''dependent scope''. This can be denoted by adding the <tt>@Dependent</tt> class annotation, though since this is the default it is not required. A bean with dependent scope will follow the lifecycle of whatever bean it is injected into. 
 
 So if we define a CDI managed bean as follows:
@@ -213,7 +213,7 @@ Each instance of the servlet will have its own instance of <tt>MyDepScopeListene
 
 The use of a servlet here is just an example. The <tt>MyDepScopeListenerBean</tt> could be injected into any other class that supports CDI injection. SInce it has dependent scope it would follow the same lifecycle as the object into which it was injected.
 
-## =JMS listener bean with dependent scope and explicit lifecycle management
+### JMS listener bean with dependent scope and explicit lifecycle management
 If required the application can control the lifecycle of a dependent-scoped JMS listener bean explicitly. In this case it must inject an <tt>Instance</tt> object of the required type. This will function as a factory (or "provider") of listener bean instances:
 <br/><br/>
  
@@ -232,7 +232,7 @@ If required the application can control the lifecycle of a dependent-scoped JMS 
       listenerProvider.destroy(jmsListener1 );
  
 
-## =CDI managed listener bean with request scope
+### CDI managed listener bean with request scope
 A JMS listener bean doesn't have to have dependent scope. It can have any scope supported by CDI, including scopes which are application-defined. 
 
 For example, the <tt>@RequestScoped</tt> class annotation can be used to specify that the listener bean should have "request" scope. This means that each request will use a separate instance of the listener. The listener will be created, and will start listening for messages,  the first time that the injected object is used within the request. It will then continue to listen for messages until the request ends.
@@ -282,7 +282,7 @@ The resource adapter will be required to provide
 
 The application server must support the use of a resource adapter if one is explicitly specified by the application. If a resource adapter is not specified then the application server must either use a default resource adapter provided by the application server or a mechanism which does not use a resource adapter.
 
-## =Responsibilities of the application server=
+### Responsibilities of the application server
 
 ## CDI portable extension
 
@@ -344,7 +344,7 @@ The <tt>@javax.transaction.Transactional</tt> annotation can be used to specify 
 <b>Issue 6:</b> The interaction between the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method, needs to be considered carefully.
 </td></tr></table>
 
-## =Responsibilities of the resource adapter=
+### Responsibilities of the resource adapter
 
 The main responsibility of the resource adapter is to implement the  <tt>ResourceAdapter</tt> methods <tt>endpointActivation</tt> and <tt>endpointDeactivation</tt> so that they handle JMS listener beans as follows:
 
