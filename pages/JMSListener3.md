@@ -2,7 +2,7 @@
 
 This page contains some updates to  [[JMSListener2|version 2 of the proposals]]  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
-Comments are invited. See [https://java.net/projects/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
+Comments are invited. See [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
 
 This page will be extended with additional changes and points for discussion. When a reasonable degree of agreement has been received, an updated version (version 3) of the proposals will be added.
 
@@ -250,7 +250,7 @@ The minimum we need to do for JMS 2.1 is:
 
 * Define the required behaviour for when the message is being received in auto-ack or dups-ok-ack mode and the callback method throws a checked exception. We could simply define that the result is the same as when the callback throws a <tt>RuntimeException</tt>, which is already defined for the Java SE case in JMS 2.0 section 8.7. This would say that the message would be immediately redelivered, that the redelivered flag should be set, and that the JMS provider may "give up" if a message is repeatedly redelivered. For completeness we could also extend this to cover a <tt>RuntimeException</tt> thrown by a MDB.
 
-See [ https://java.net/projects/jms-spec/pages/JMSListener3#Proposed_minimum_new_wording_for_JMS_2.1_specification Proposed minimum new wording for JMS 2.1 specification] below.
+See [ /jms-spec/pages/JMSListener3#Proposed_minimum_new_wording_for_JMS_2.1_specification Proposed minimum new wording for JMS 2.1 specification] below.
 
 However we may decide that we want to do more than the minimum:
 
@@ -260,7 +260,7 @@ However we may decide that we want to do more than the minimum:
 
 * We could say more about what it means to "give up" on a message which is being repeatedly redelivered/recovered. Does this mean deleting the message? Should we mention the possibility of diverting the message to a dead message queue?
 
-See [https://java.net/projects/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_specification Proposed extended new wording for JMS 2.1 specification] below.
+See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_specification Proposed extended new wording for JMS 2.1 specification] below.
 
 #### Proposed minimum new wording for JMS 2.1 specification
 

@@ -1,6 +1,6 @@
 # JMS Listener beans: summary of comments
 
-This page lists and discusses some of the comments made on the proposals for JMS listener beans  [https://java.net/projects/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
+This page lists and discusses some of the comments made on the proposals for JMS listener beans  [/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
 
 __TOC__
 
@@ -12,7 +12,7 @@ __TOC__
 
 <h3>Summary of issue</h3>
 
-The JMS listener bean cannot start listening for messages until it has been created, and needs to be created just like any other CDI managed bean. The section on  [https://java.net/projects/jms-spec/pages/CDIBeansAsJMSListeners#Listener_lifecycles Listener lifecycles] describes some of ways a JMS listener bean could be created. They typically involve injecting the listener bean into some other bean and, if the bean is normal-scoped, calling a method (such as <tt>toString()</tt>) on it after the start of the scope. This contrasts with MDBs which can simply be defined without the need for the application to do anything to create them.
+The JMS listener bean cannot start listening for messages until it has been created, and needs to be created just like any other CDI managed bean. The section on  [/jms-spec/pages/CDIBeansAsJMSListeners#Listener_lifecycles Listener lifecycles] describes some of ways a JMS listener bean could be created. They typically involve injecting the listener bean into some other bean and, if the bean is normal-scoped, calling a method (such as <tt>toString()</tt>) on it after the start of the scope. This contrasts with MDBs which can simply be defined without the need for the application to do anything to create them.
 
 <h3>Discussion</h3>
 

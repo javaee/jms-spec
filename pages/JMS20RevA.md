@@ -239,7 +239,7 @@ This table lists all the changes in JMS 2.0 revision a.
 
 ## Feedback=### 
 
-Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. Instructions on how to join the mailing list may be found [https://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here].
+Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. Instructions on how to join the mailing list may be found [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here].
 
 ## Timescales=### 
 

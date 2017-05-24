@@ -18,19 +18,19 @@ The initial proposals for JMS 2.1 are summarised in [https://jcp.org/en/jsr/deta
 
 The current plan is described in the [[JMS21Plan|JMS 2.1 plan]]
 
-A longer list of issues proposed for JMS 2.1 may be found on the [[JMS21LongList|JMS 2.1 planning long list]]. Each issue is recorded in the [https://java.net/projects/jms-spec/pages/Home JIRA issue tracker]. Proposals for new features (or other changes to the specification) are always welcome. 
+A longer list of issues proposed for JMS 2.1 may be found on the [[JMS21LongList|JMS 2.1 planning long list]]. Each issue is recorded in the [/jms-spec/pages/Home JIRA issue tracker]. Proposals for new features (or other changes to the specification) are always welcome. 
 
 ## How to get involved in JMS 2.1=### 
 
 ### Send an email
 
-If you would like to comment on the JSR, please do so by sending an email either to the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net]. Before you can post messages to this list you need to join the [http://jms-spec.java.net jms-spec.java.net] project as an observer and then subscribe to this list. For more information about JMS mailing lists see [https://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
+If you would like to comment on the JSR, please do so by sending an email either to the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net]. Before you can post messages to this list you need to join the [http://jms-spec.java.net jms-spec.java.net] project as an observer and then subscribe to this list. For more information about JMS mailing lists see [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
 
 If you prefer you can send email directly to  [mailto:nigel.deakin@oracle.com Nigel Deakin]. Please note that your comments may be forwarded to  [mailto:users@jms-spec.java.net users@jms-spec.java.net].
 
 ### Join the community alias
 
-Even if you don't have anything to contribute at this stage, you can join the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net] and see what is going on.  See [https://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
+Even if you don't have anything to contribute at this stage, you can join the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net] and see what is going on.  See [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
 
 ### Join the JSR 368 expert group 
 
@@ -42,7 +42,7 @@ Members of the JSR 343 expert group are invited to make a new application to joi
 
 ### Log an issue or comment on an existing issue
 
-If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [https://jcp.org/en/jsr/detail?id=368 JSR 368], the [https://java.net/projects/jms-spec/pages/JMS21Planning JMS 2.1 planning page], or in the [https://java.net/projects/jms-spec/pages/Home JIRA issue tracker] then you are welcome to log a new issue in JIRA.  Pleased read  [https://java.net/projects/jms-spec/pages/Home#Issue_tracker More information about the issue tracker]. We'll then add it to the [https://java.net/projects/jms-spec/pages/JMS21Planning JMS 2.1 planning page] and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
+If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [https://jcp.org/en/jsr/detail?id=368 JSR 368], the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page], or in the [/jms-spec/pages/Home JIRA issue tracker] then you are welcome to log a new issue in JIRA.  Pleased read  [/jms-spec/pages/Home#Issue_tracker More information about the issue tracker]. We'll then add it to the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page] and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
 
 ### Attend our regular video meetings
 

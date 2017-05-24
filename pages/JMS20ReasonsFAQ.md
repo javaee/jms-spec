@@ -150,7 +150,7 @@ Having gone this far in allowing the <tt>JMSProducer</tt> to be used in a builde
 ### Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?
 
 The section 
-<a href="https://java.net/projects/jms-spec/pages/JMS20ReasonsFAQ#Why_do_we_need_a_separate_JMSProducer_object?_Why_can_t_we_move_all_its_methods_onto_the_JMSContext?">Why do we need a separate JMSProducer object?</a>
+<a href="/jms-spec/pages/JMS20ReasonsFAQ#Why_do_we_need_a_separate_JMSProducer_object?_Why_can_t_we_move_all_its_methods_onto_the_JMSContext?">Why do we need a separate JMSProducer object?</a>
 above explained that an injected <tt>JMSContext</tt> needs to be ''stateless'' to avoid users getting confused (or worse) by the same <tt>JMSContext</tt> object being used in multiple components within the same scope. 
 
 Imagine a user creates two EJBs (or other Java EE components such as a servlet or CDI bean) and injects a  <tt>JMSContext</tt>  into each, using the same annotations. If the two EJBs are used within the same transaction, or, if there is no transaction, within the same request, then the two injected  <tt>JMSContext</tt> fields will (in accordance with expected CDI behaviour) refer to the same object. This means that calling a method such as <tt>acknowledge()</tt> or <tt>commit()</tt> on one   <tt>JMSContext</tt> field would have an effect on the other   <tt>JMSContext</tt> field. It was decided that this was potentially confusing and a possible cause of errors, especially if the two EJBs were developed by different people. To avoid this confusion it was decided to simply disallow the use of client-acknowledgement or local transactions on an injected <tt>JMSContext</tt>.

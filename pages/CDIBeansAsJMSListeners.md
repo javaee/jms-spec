@@ -2,7 +2,7 @@
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
-These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments are invited. See [How to get involved in JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1).
+These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments are invited. See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1).
 
 For a summary of the comments made so far, see [JMS Listener beans: summary of comments](jms-spec/pages/CDIListenerBeanComments). 
 

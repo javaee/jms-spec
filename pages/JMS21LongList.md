@@ -2,7 +2,7 @@
 
 Improvements to the JMS specification are managed using issues in JIRA. Here is a classified list of all the open issues. Only a subset of these issues will actually make it into JMS 2.1. See the actual [[JMS21Plan|JMS 2.1 plan]].
 
-(This page was reorganised on 28 Aug 2015. The previous version is [https://java.net/projects/jms-spec/pages/JMS21Planning/revisions/88 here].)
+(This page was reorganised on 28 Aug 2015. The previous version is [/jms-spec/pages/JMS21Planning/revisions/88 here].)
 
 __TOC__
 
@@ -452,7 +452,7 @@ They don't affect the JMS API as used by user applications.
 
 This section contains proposals for improvements to the whole programming model for JMS MDBs. This includes improvements to the ways JMS MDBs are configured, making JMS MDBs more flexible, and allowing objects which are not MDBs to list for JMS messages. Changes may require an update to the EJB specification as well as to JMS.
 
-Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [https://java.net/projects/jms-spec/pages/JMS21Planning2#Functional_improvements_to_JMS_MDBs Functional improvements to JMS MDBs] below.
+Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [/jms-spec/pages/JMS21Planning2#Functional_improvements_to_JMS_MDBs Functional improvements to JMS MDBs] below.
 
 {|- border="1"
 ! ID

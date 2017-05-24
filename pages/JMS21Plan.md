@@ -2,7 +2,7 @@
 
 Here's the high-level list of features planned for JMS 2.1, and an approximate order in which they will be considered. 
 
-See also the [https://java.net/projects/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
+See also the [/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
 
 For a longer list of all the open issues (many of which won't make it into JMS 2.1), see the [[JMS21LongList|JMS 2.1 planning long list]]
 
@@ -10,7 +10,7 @@ __TOC__
 
 ## Major changes=### 
 
-Minor changes, which could be considered in parallel to this, are listed under [https://java.net/projects/jms-spec/pages/JMS21Plan#Minor_changes Minor changes] below.
+Minor changes, which could be considered in parallel to this, are listed under [/jms-spec/pages/JMS21Plan#Minor_changes Minor changes] below.
 
 * Flexible JMS MDBs ([http://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116])
 ** Latest proposals are in the [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html JMS 2.1 Early Draft 1]
@@ -57,7 +57,7 @@ We need have a separate "issue triage" session to discuss minor proposals in tur
 
 ## Anything else=### 
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [https://java.net/projects/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 

@@ -6,7 +6,7 @@ Room "Union Square 22". (JavaOne badge not required)
 
 __TOC__
 
-Up to the [https://java.net/projects/jms-spec/pages/JMS21#Meetings Meetings index].
+Up to the [/jms-spec/pages/JMS21#Meetings Meetings index].
 
 The minutes of this meeting are [https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47 here].
 
@@ -57,7 +57,7 @@ Particular issues to cover
 
 ## Proposed high-level plan=### 
 
-[https://java.net/projects/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
+[/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
 
 Here's a suggested high-level list of features for JMS 2.1, and an approximate order in which they will be considered. 
 
@@ -98,7 +98,7 @@ Minor changes are not listed here: these could be considered in parallel to this
 
 * Anything else?
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [https://java.net/projects/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 

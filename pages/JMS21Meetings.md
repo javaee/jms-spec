@@ -6,7 +6,7 @@ Open meetings, to work on the development of the JMS 2.1 specification, are held
 
 Meetings are open to all.  Participation is governed  by the [https://www.java.net/javanet-web-site-terms-use java.net terms of use]. The meeting may be recorded.
 
-Join the [https://java.net/projects/jms-spec/pages/Home#JMS_community_mailing_lists JMS spec community mailing list]. See also [https://java.net/projects/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
+Join the [/jms-spec/pages/Home#JMS_community_mailing_lists JMS spec community mailing list]. See also [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
 
 ### Agenda and minutes 
 
