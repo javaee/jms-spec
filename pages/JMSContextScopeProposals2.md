@@ -2,7 +2,7 @@
 
 ## Summary 
 
-This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option_2) and [Option 3|/jms-spec/pages/JMSContextScopeProposals#Option_3]. 
+This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option_2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#Option_3). 
 
 If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option_2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#Option_3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction).
 
