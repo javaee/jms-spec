@@ -2,24 +2,19 @@
 
 Welcome to the website for the development of the Java Message Service (JMS) specification.
 
-<table style=" margin-left: 40px;" class="tab"> <tr style="background-color:#f8f8f8;"> <td>
-<b>Latest news (Oct 2015)</b><br/>
-The JMS 2.1 Early Draft is now out! Download it [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html here].<br/>
-See the [https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1 latest news on JMS 2.1]<br/>
-Find out all about [https://java.net/projects/jms-spec/pages/JMS21 JMS 2.1]
-</td></tr></table>
+Latest news (Oct 2015)
 
-__TOC__
+> The JMS 2.1 Early Draft is now out! Download it [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html here].<br/>
+> See the [https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1 latest news on JMS 2.1]<br/>
+> Find out all about [https://java.net/projects/jms-spec/pages/JMS21 JMS 2.1]
 
 ## JMS 2.1
 
 [https://jcp.org/en/jsr/detail?id=368 JSR 368] will be the next version of JMS. For more information see the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
-<br/>
 
 ## JMS 2.0 errata
 
 An errata for JMS 2.0 was released in March 2015. For more information see the [[JMS20RevA|JMS 2.0 errata page]].
-<br/>
 
 ## JMS 2.0
 
@@ -129,7 +124,7 @@ Here are some guidelines to follow when creating a new issue:
 * '''Issue Type''': .Choose one of Bug, New Feature, Task or Improvement from the pop-up menu. 
 ** Bug: There is a problem or error in the spec, API or javadocs
 ** New Feature: Use this to suggest a new feature which is not in the existing spec, API or javadocs
-** Task: Please don't use this
+** Task: Please don't use this  git push origin gh-pages
 ** Improvement:  An improvement or enhancement to an existing feature of the spec, API or javadocs
 * '''Summary''' Please enter a meaningful one-line summary of your issue
 * Priority: Please don't change this
