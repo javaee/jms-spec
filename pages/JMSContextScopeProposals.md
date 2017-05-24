@@ -10,7 +10,8 @@ This page describes some drawbacks to that proposal and offers two alternatives,
 
 After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]] and [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]].
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Proposal in JMS 2.0 Early Draft (Option 1) 
 

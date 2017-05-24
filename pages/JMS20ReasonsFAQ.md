@@ -2,7 +2,8 @@
 
 This page records some of the design decisions taken during the development of the JMS 2.0 specification,
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Asynchronous send 
 

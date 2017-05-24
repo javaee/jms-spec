@@ -4,7 +4,8 @@ Improvements to the JMS specification are managed using issues in JIRA. Here is 
 
 (This page was reorganised on 28 Aug 2015. The previous version is [/jms-spec/pages/JMS21Planning/revisions/88 here].)
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Corrections and clarifications (minor)
 

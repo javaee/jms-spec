@@ -2,7 +2,8 @@
 
 This page contains administrative information for members (or prospective members) of the JMS 2.1 (JSR 368) expert group. 
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Joining the JMS expert group 
 

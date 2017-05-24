@@ -2,7 +2,8 @@
 
 This page discusses the method annotations on flexible JMS MDBs
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ##  Using resource adapter 
 

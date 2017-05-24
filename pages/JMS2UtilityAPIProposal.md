@@ -1,6 +1,7 @@
 # JMS 2 Utility API Proposal
 This is a basic proposal to add a utility API to simplify JMS synchronous operations such as sending and receiving messages. The proposal is based largely on analyzing the [http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/jms/core/JmsTemplate.html Spring JmsTemplate] API. The code/API for the proposal is [http://rahmannet.net/projects/jmsutil/src/javax/jms/util/JmsUtility.java here]. For convenience, a corresponding Javadoc is [http://rahmannet.net/projects/jmsutil/doc/javax/jms/util/JmsUtility.html here]. The actual API code is more useful in this case than the Javadocs since it contains embedded comments important to the overall analysis/proposal.
-__TOC__
+* auto-gen TOC:
+{:toc}
 ## The Basics 
 As we know, the raw JMS 1.x API is quite verbose and results in a lot of boilerplate code. This issue can be solved in JMS 2.x by creating a higher level abstraction that hides most of the boilerplate code and focuses on the actual task at hand (for example sending an object to a queue).
 

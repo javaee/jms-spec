@@ -2,7 +2,8 @@
 
 The next version of the JMS specification will be JMS 2.1, which is being developed under the Java Community Process as [JSR 368](https://jcp.org/en/jsr/detail?id=368).  
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Latest news on JMS 2.1 
 

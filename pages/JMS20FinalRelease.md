@@ -10,7 +10,8 @@ JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/de
 
 **Comments are invited**. You can either send email to the JMS spec  [mailto:users@jms-spec.java.net user list] (you will need to subscribe first: see [http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or directly to the maintenance lead,  [mailto:nigel.deakin@oracle.com Nigel Deakin]. Reports of possible errors or omissions are especially welcome.
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## What's new in JMS 2.0? 
 

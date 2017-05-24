@@ -6,7 +6,8 @@ Comments are invited. See [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 
 
 This page will be extended with additional changes and points for discussion. When a reasonable degree of agreement has been received, an updated version (version 3) of the proposals will be added.
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Changes from version 2 
 

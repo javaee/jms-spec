@@ -8,7 +8,8 @@ Before reading these, read [[JMSContextScopeProposalsv4p2|Injection of JMSContex
 
 Note that these examples do **not** use the proposed new <tt>JMSContext</tt> API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Use cases 
 

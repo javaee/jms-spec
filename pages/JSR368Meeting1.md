@@ -4,7 +4,8 @@
 Hilton San Francisco Union Square, 333 O'Farrell Street, San Francisco<br/>
 Room "Union Square 22". (JavaOne badge not required)
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 Up to the [/jms-spec/pages/JMS21#Meetings Meetings index].
 

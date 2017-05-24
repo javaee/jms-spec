@@ -6,7 +6,8 @@ This page proposes some changes to the JMS 2.0 simplified API to support the inj
 
 It discusses the potential confusion that might be caused by the sharing of injected <tt>JMSContext</tt> objects between different beans within the same scope, and proposes some changes to the <tt>JMSContext</tt> API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [[JMSContextScopeProposalsv4p1|Injection of <tt>JMSContext</tt> objects - Proposals (version 4)]] they would apply to earlier scoping proposals as well.
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## The problem 
 

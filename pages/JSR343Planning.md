@@ -2,7 +2,8 @@
 
 This page contains lists of issues which were incorporated into JMS 2.0. For information about JMS 2.1 (or whatever version follows JMS 2.0), see the [[JMS21Planning|JMS 2.1 planning page]].
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## All issues incorporated in the JMS 2.0 final release 
 

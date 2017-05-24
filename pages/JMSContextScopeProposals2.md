@@ -10,7 +10,8 @@ Note that these use cases are not intended to demonstrate how <tt>@TransactionSc
 
 After reading these, now read [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]]
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Use cases 
 

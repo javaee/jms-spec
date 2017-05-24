@@ -2,7 +2,8 @@
 
 <p>Here are ten simple examples that demonstrate how JMS 2.0 requires less code than JMS 1.1.</p>
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Single JMSContext instead of separate Connection and Session objects 
 

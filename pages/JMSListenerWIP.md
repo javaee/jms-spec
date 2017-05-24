@@ -10,7 +10,8 @@ See the [[#Changes_from_version_2|summary of changes]] compared to [[JMSListener
 * Issues I17 to I23 were added in version 2
 * Issues I24 to ? were added in version 3
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Changes from version 2 
 

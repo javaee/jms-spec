@@ -12,7 +12,8 @@ This page discusses that part of the JMS 2.0 Early Draft which defines how <tt>j
 
 The scope described here is illustrated in a series of use cases:  [[JMSContextScopeProposalsv4p2|Injection of JMSContext objects - Use Cases A - E (version 4)]] and [[JMSContextScopeProposalsv4p3|Injection of JMSContext objects - Use Cases F - K (version 4)]].
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Proposal in JMS 2.0 Early Draft (Option 1) 
 

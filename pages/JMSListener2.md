@@ -6,7 +6,8 @@ Comments are invited, especially to the various issues mentioned. See [/jms-spec
 
 See the [[#Changes_from_version_1|summary of changes]] compared to [[JMSListener|Version 1 of these proposals]].
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Changes from version 1 
 If you haven't read version 1 then you may prefer to skip this section and go straight to the following section, <a href="#Background">Background</a>. When you've read the rest you may wish to come back here and review the list of new issues added in this section.

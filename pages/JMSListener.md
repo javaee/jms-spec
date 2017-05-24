@@ -4,7 +4,8 @@ This page contains proposals to simplify the configuration of JMS MDBs in JMS 2.
 
 This is version 1 of these proposals. These are out of date. Please look at [[JMSListener2 | version 2]].
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Background 
 

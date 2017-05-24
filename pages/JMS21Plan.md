@@ -6,7 +6,8 @@ See also the [/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
 
 For a longer list of all the open issues (many of which won't make it into JMS 2.1), see the [[JMS21LongList|JMS 2.1 planning long list]]
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## Major changes 
 

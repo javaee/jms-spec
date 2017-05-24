@@ -4,7 +4,8 @@ The JMS 2.0 Early Draft is now published and may be downloaded [ http://jcp.org/
 
 **Comments are still welcome**. You can either send email to the  [mailto:users@jms-spec.java.net user list] ([http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or you can add a comment to the specific JIRA issue [http://java.net/projects/jms-spec/pages/Home#Issue_tracker (how]).
 
-__TOC__
+* auto-gen TOC:
+{:toc}
 
 ## What's new in JMS 2.0? 
 
