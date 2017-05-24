@@ -168,7 +168,7 @@ The CDI spec is not very clear about what scopes are available in the applicatio
 
 This means that if JMS 2.0 defines the scope of an injected <tt>JMSContext</tt> to be request scope, or transaction scope, then the same <tt>JMSContext</tt> instance might be used from different beans within the same scope, and so calling a <tt>JMSContext</tt> method such as acknowledge() in one bean would affect the behaviour of a <tt>JMSContext</tt> in another bean within the same scope (if the <tt>JMSContext</tt> is injected using the same annotations), which is the behaviour we are trying to avoid. This means that would we would need to be aware that a future application client container that allows <tt>JMSContext</tt> objects to be injected would have this potentially confusing behaviour. 
 
-The solution to this problem that is proposed here is simply to '''prohibit the use of any of these methods if the <tt>JMSContext</tt> is injected'''. If these methods are used on an injected <tt>JMSContext</tt>, an exception would be thrown. This would not not affect applications running in the Java EE web or EJB container, since these methods are not allowed anyway. However they would limit applications running in the Java EE application client container.  Application clients which needed to use these methods would need to manage the <tt>JMSContext</tt> themselves rather than inject it. This would mean creating it using the <tt>ConnectionFactory</tt> method <tt>createContext</tt> and calling <tt>close</tt> after use.
+The solution to this problem that is proposed here is simply to **prohibit the use of any of these methods if the <tt>JMSContext</tt> is injected**. If these methods are used on an injected <tt>JMSContext</tt>, an exception would be thrown. This would not not affect applications running in the Java EE web or EJB container, since these methods are not allowed anyway. However they would limit applications running in the Java EE application client container.  Application clients which needed to use these methods would need to manage the <tt>JMSContext</tt> themselves rather than inject it. This would mean creating it using the <tt>ConnectionFactory</tt> method <tt>createContext</tt> and calling <tt>close</tt> after use.
 
 Next let's consider the following two methods which can change the state of a <tt>JMSContext</tt> :
 
@@ -181,7 +181,7 @@ Both <tt>setAutoStart(false)</tt> and <tt>start</tt> change the state of an inje
 
 Although this is potentially confusing, there is in fact little reason to call these methods in a Java EE web or EJB container. This is because the main reason for wanting to defer the start of a <tt>JMSContext</tt> is when setting up an asynchronous <tt>MessageListener</tt>, which is forbidden in a Java EE web or EJB container. However they might still do it, and they might actually need to do it in the application client container. 
 
-The simplest way to avoid this confusion is to '''prohibit the use of these methods if the <tt>JMSContext</tt> is injected'''. This would not be a significant limitation in the Java EE web or EJB containers where these methods are not needed. However it would limit applications running in the Java EE application client container.  Application clients which needed to use these methods would need to manage the <tt>JMSContext</tt> themselves rather than inject it.
+The simplest way to avoid this confusion is to **prohibit the use of these methods if the <tt>JMSContext</tt> is injected**. This would not be a significant limitation in the Java EE web or EJB containers where these methods are not needed. However it would limit applications running in the Java EE application client container.  Application clients which needed to use these methods would need to manage the <tt>JMSContext</tt> themselves rather than inject it.
 
 Since the <tt>@AutoStart</tt> annotation is in practice of little use in a Java EE web or EJB container there is little reason to keep it. So it is proposed we drop this annotation.
 
@@ -251,7 +251,7 @@ Here is a summary of these proposals, compared with what is in the JMS 2.0 Early
 
 ===Changes to <tt>JMSContext</tt>===
 
-The following methods on <tt>JMSContext</tt> will be '''removed''':
+The following methods on <tt>JMSContext</tt> will be **removed**:
 
 * <tt>setDeliveryDelay, getDeliveryDelay</tt>
 * <tt>setTimeToLive, getTimeToLive</tt>
@@ -271,7 +271,7 @@ The following methods on <tt>JMSContext</tt> will be '''removed''':
 * <tt>send(Destination destination, Message message, CompletionListener completionListener)</tt>
 * <tt>send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener)</tt>
 
-The following methods on <tt>JMSContext</tt> will '''throw an exception if the <tt>JMSContext</tt> is injected'''. They will remain available for use when the <tt>JMSContext</tt> is managed by the application, though note that most of these methods are either prohibited or unnecessary in a Java EE web or EJB container.
+The following methods on <tt>JMSContext</tt> will **throw an exception if the <tt>JMSContext</tt> is injected**. They will remain available for use when the <tt>JMSContext</tt> is managed by the application, though note that most of these methods are either prohibited or unnecessary in a Java EE web or EJB container.
 *<tt>setClientID</tt>
 * <tt>setExceptionListener</tt>
 * <tt>start</tt>
@@ -283,7 +283,7 @@ The following methods on <tt>JMSContext</tt> will '''throw an exception if the <
 * <tt>rollback</tt>
 * <tt>recover</tt>
 
-We will '''add a new method to <tt>JMSContext</tt>'''
+We will **add a new method to <tt>JMSContext</tt>**
 * <tt>JMSProducer getProducer()</tt>
 
 ===New class JMSProducer===

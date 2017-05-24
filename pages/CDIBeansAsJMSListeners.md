@@ -53,7 +53,7 @@ Here's an example of a MDB in Java EE 7:
 
 ===In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages===
 
-To address the restrictions in the MDB lifecycle '''it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages'''. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
+To address the restrictions in the MDB lifecycle **it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages**. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
 <br/><br/>
  @Dependent
  public class MyCDIBean21 {
@@ -335,7 +335,7 @@ Note that a CDI bean is itself either a proxy (for normal-scoped beans) or a wra
 
 * The method <tt>release()</tt> may be called by the  by the resource adapter to indicate that it no longer needs a proxy endpoint instance. After this method has been called then the instance becomes available to be returned by a subsequent call to <tt>MessageEndpointFactory#createEndpoint</tt>.
 
-'''Important note:''' Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the <tt>beforeCompletion</tt> method has already started one.  
+**Important note:** Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the <tt>beforeCompletion</tt> method has already started one.  
 
 The <tt>@javax.transaction.Transactional</tt> annotation can be used to specify which methods, when thrown by the bean method, will cause the transdaction to be marked for rollback. The application server will need to ensure that any such exception is caught by the <tt>MessageEndpoint</tt> wrapper code and used to determine whether the subsequent call to <tt>afterCompletion</tt> will commit or rollback the transaction.
 

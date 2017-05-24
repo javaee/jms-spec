@@ -6,7 +6,7 @@ This page contains a number of use cases which demonstrate how the scope propose
 
 Before reading these, read [[JMSContextScopeProposalsv4p2|Injection of JMSContext objects - Use Cases A-E (version 4)]]
 
-Note that these examples do '''not''' use the proposed new <tt>JMSContext</tt> API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
+Note that these examples do **not** use the proposed new <tt>JMSContext</tt> API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
 
 __TOC__
 
@@ -68,7 +68,7 @@ This is <tt>Bean2</tt>
 | Yes. Although they  use separate variable declarations, both declarations use identical annotations.
 |- valign="top"
 | What scope do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt> have?
-| Both  calls to <tt>context.send()</tt> take place when there is no transaction, so they both have '''request''' scope.
+| Both  calls to <tt>context.send()</tt> take place when there is no transaction, so they both have **request** scope.
 |- valign="top"
 | Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt> in the same scope?
 | Yes, since the two calls to <tt>context.send()</tt> take place in the same request
@@ -88,7 +88,7 @@ The same behaviour should apply when the bean is configured to use container-man
 
 === Use case G: One bean method which uses two transactions===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>
@@ -144,7 +144,7 @@ The <tt>JMSContext</tt> object used by the third and fourth calls to  <tt>contex
 
 ===Use case H. A bean which uses a context both outside and within a transaction===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>
@@ -178,7 +178,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 | Yes, since they  use the same variable declaration.
 |- valign="top"
 | What scope do the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> have?
-| The first, second, fourth and fifth calls to <tt>context.send()</tt> take place without a transaction, so these <tt>context</tt> variables have '''request''' scope. The third call to <tt>context.send()</tt> take place within a transaction, and so this <tt>context</tt> variable has '''transaction''' scope.
+| The first, second, fourth and fifth calls to <tt>context.send()</tt> take place without a transaction, so these <tt>context</tt> variables have **request** scope. The third call to <tt>context.send()</tt> take place within a transaction, and so this <tt>context</tt> variable has **transaction** scope.
 |- valign="top"
 | Are the <tt>context</tt> variables in the five calls to <tt>context.send()</tt> in the same scope?
 | The first, second, fourth and fifth calls to <tt>context.send()</tt> take place in the same request and so these <tt>context</tt> variables have the same request scope.
@@ -205,7 +205,7 @@ Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>.
 
 <tt>Bean1</tt> is configured to use container-managed transactions and has a business method <tt>method1</tt>, which is configured to require a transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> uses this context to send a message and then invokes <tt>method2</tt> on <tt>bean1</tt>. It then sends a further message.
 
-<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is configured to require a '''new''' transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> simply uses this context to send a message.
+<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is configured to require a **new** transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> simply uses this context to send a message.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 
@@ -258,7 +258,7 @@ This is <tt>Bean2</tt>
 | Yes. Although the <tt>context</tt> variable used for the first and third calls has a different declaration from the <tt>context</tt> variable used for the second call, both declarations have identical annotations.
 |- valign="top"
 | What scope do the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> have?
-| All three calls to <tt>context.send()</tt> take place within transactions, so both <tt>context</tt> variables have '''transaction''' scope.
+| All three calls to <tt>context.send()</tt> take place within transactions, so both <tt>context</tt> variables have **transaction** scope.
 |- valign="top"
 | Are the <tt>context</tt> variables in the three calls to <tt>context.send()</tt> in the same scope?
 | The first and third calls to <tt>context.send()</tt> take place in one transaction whereas the second call to to <tt>context.send()</tt> take place in a separate transaction. This means the <tt>context</tt> variables used in the first and third calls are in one transaction scope, and the <tt>context</tt> variable used in the second call is in a separate transaction scope.

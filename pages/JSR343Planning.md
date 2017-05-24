@@ -277,7 +277,7 @@ __TOC__
 |-  
 | [http://java.net/jira/browse/JMS_SPEC-63 JMS_SPEC-63]
 | Introduce concept of platform default JMS connection factory in Java EE
-| Included in '''Java EE 7''' Early Draft
+| Included in **Java EE 7** Early Draft
 |  
 |-
 |}

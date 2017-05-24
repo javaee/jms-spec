@@ -13,4 +13,4 @@ Nick
 
 * 2012-11-13 --nwright -- I'd like a better whiteboard
 * 2012-11-13 --nwright -- and a uniform monitoring API for JMS vendors (but I really need to tie this to the JIRA ticket that exists and make some comments)
-* 2013-01-17 --gregorr -- I'd love to see advanced features like '''message segmentation''' (for splitting up large binary messages) and '''message grouping''' (for transparently handling multiple messages that belong to the same context/business case) make it to the JMS standard. Currently these features are only available as proprietary extensions, e.g. in IBM MQ.
+* 2013-01-17 --gregorr -- I'd love to see advanced features like **message segmentation** (for splitting up large binary messages) and **message grouping** (for transparently handling multiple messages that belong to the same context/business case) make it to the JMS standard. Currently these features are only available as proprietary extensions, e.g. in IBM MQ.

@@ -89,11 +89,11 @@ It would be desirable to allow these to be specified at runtime, for each listen
      ...
    }
  
-   '''@GetMessageSelector
+   **@GetMessageSelector
    public void returnMessageSelector(){
      // some logic to work out message selector
      return ... 
-   }'''
+   }**
  }
 <br/>
 These callbacks would be called during the bean's <tt>postConstruct</tt> phase, after the bean has been created but before the consumer is created.  This could be done either
@@ -159,7 +159,7 @@ One possible way to achieve this would be to specify that the bean should create
  @SessionScoped
  public class MyCDIBean21 {
   
-   '''@TemporaryQueueListener'''
+   **@TemporaryQueueListener**
    @JMSConnectionFactory("java:global/MyCF")
    @MessageSelector("ticker='ORCL'")
    public void processNewsItem(String newsItem) {
@@ -175,8 +175,8 @@ We could allow the application to inject the temporary queue or topic directly i
  @SessionScoped
  public class MyCDIBean21 {
  
-   '''// Inject the temporary queue this bean is listening to'''
-   '''@Inject @TemporaryQueue TemporaryQueue tempQueue;'''
+   **// Inject the temporary queue this bean is listening to**
+   **@Inject @TemporaryQueue TemporaryQueue tempQueue;**
  
    @TemporaryQueueListener
    @JMSConnectionFactory("java:global/MyCF")
@@ -185,9 +185,9 @@ We could allow the application to inject the temporary queue or topic directly i
      ...
    }
  
-   '''public TemporaryQueue getTempQueue(){
+   **public TemporaryQueue getTempQueue(){
      return tempQueue;
-   }'''
+   }**
  
  }
 
@@ -221,7 +221,7 @@ With JMS listener beans, it seems reasonable that if the bean cannot be initiali
 
 However the application should be able to specify an alternative behaviour using, say, an <tt>@ASyncInit</tt> annotation on the bean. This specifies that if the bean cannot be initialised then the applicaiton server should create the bean anyway without throwing an exception. In this case the application server should perform retries in the background. 
 
- '''@AsyncInit'''
+ **@AsyncInit**
  @SessionScoped
  public class MyCDIBean21 {
   
@@ -294,11 +294,11 @@ This may have some unexpected consequences if the listener bean has normal-scope
  
  }
 <br/>
-* If the listener bean injects an application-scoped bean into a field then both message callbacks and business methods will see the '''same''' bean instance.
+* If the listener bean injects an application-scoped bean into a field then both message callbacks and business methods will see the **same** bean instance.
 
-* If the listener bean injects a request-scoped bean into a field then all calls to business methods within a particular request will see the same bean instance. However message callbacks will never see that bean instance and will always see a '''different''' bean instance. 
+* If the listener bean injects a request-scoped bean into a field then all calls to business methods within a particular request will see the same bean instance. However message callbacks will never see that bean instance and will always see a **different** bean instance. 
 
-* If the listener bean injects a transaction-scoped bean into a field then all calls to business methods within the same transaction will see the same bean instance. However message callbacks will never see that bean instance. If the callback is using a transaction then it will always see a '''different''' bean instance.  If the callback is not using a transaction then any attempt to access the injected bean will cause a "no active context" error.  
+* If the listener bean injects a transaction-scoped bean into a field then all calls to business methods within the same transaction will see the same bean instance. However message callbacks will never see that bean instance. If the callback is using a transaction then it will always see a **different** bean instance.  If the callback is not using a transaction then any attempt to access the injected bean will cause a "no active context" error.  
 
 * If the listener bean injects a bean of some other normal scope then the scope may be active when the business method is invoked but not be active when the message callback is invoked. In this the business method could access the injected bean but any attempt by the callback method to do so will cause a "no active context" error.
 

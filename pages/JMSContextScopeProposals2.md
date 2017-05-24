@@ -57,7 +57,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls the methods <tt>
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-'''Important note:''' Note however that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. If the method invocations are serviced by different stateless session bean instances, the answer to the first question above is not necessarily 'Yes'.
+**Important note:** Note however that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. If the method invocations are serviced by different stateless session bean instances, the answer to the first question above is not necessarily 'Yes'.
 
 =====Case A, option 2: JMSContext lifecycle=====
 
@@ -153,7 +153,7 @@ This is <tt>Bean2</tt>:
 | Yes, since they are sent using the same <tt>MessageProducer</tt> object.
 |} 
 
-'''Important note:''' Note however that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. If the method invocations are serviced by different stateless session bean instances, the answer to the first question above is not necessarily 'Yes'.
+**Important note:** Note however that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. If the method invocations are serviced by different stateless session bean instances, the answer to the first question above is not necessarily 'Yes'.
 
 =====Case B, option 2: JMSContext lifecycle=====
 
@@ -341,7 +341,7 @@ The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <t
 
 ===Use case E. One bean which sends two messages when there is no transaction===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>.  <tt>method1</tt> does not start a transaction and uses the context to send two messages.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>.  <tt>method1</tt> does not start a transaction and uses the context to send two messages.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>

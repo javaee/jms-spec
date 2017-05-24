@@ -6,7 +6,7 @@ __TOC__
 
 ===Expert group application process===
 
-* Decide whether you are applying to join the expert group as an '''individual''' or on behalf of an '''organisation'''. If you're known to be associated with an organisation with an interest in JMS (e.g. your employer is a JMS vendor) then we will expect you to apply to represent that organisation, not as an individual. 
+* Decide whether you are applying to join the expert group as an **individual** or on behalf of an **organisation**. If you're known to be associated with an organisation with an interest in JMS (e.g. your employer is a JMS vendor) then we will expect you to apply to represent that organisation, not as an individual. 
 
 * If you're representing an organisation (commercial, non-profit, or user group), that organisation must be a JCP member. The organisation must sign the Java Specification Participation Agreement (JSPA) and pay the appropriate fee (US$ 5000 for commercial entities,.US$ 2000 for educational or non-profit institutions, US$ 0 for existing licensees). For more information on becoming a JCP member, see [http://jcp.org/en/participation/membership]
 
@@ -22,7 +22,7 @@ __TOC__
 
 * Once your application has been approved by the JCP administrators, the JSR 368 specification lead will consider your application and approve or reject it. 
 
-* '''Your application will be made public''' Please note that details of your application to join the expert group, including your organizational affiliation, together with the specification lead's official response, and any substantive deliberations within the expert group about the matter, will be published on the expert group mailing list and therefore made public, and/or published on the JMS specification website. This is a requirement of the  [https://jcp.org/en/procedures/jcp2_9#1.2 JCP 2.9 section 1.2.1]. 
+* **Your application will be made public** Please note that details of your application to join the expert group, including your organizational affiliation, together with the specification lead's official response, and any substantive deliberations within the expert group about the matter, will be published on the expert group mailing list and therefore made public, and/or published on the JMS specification website. This is a requirement of the  [https://jcp.org/en/procedures/jcp2_9#1.2 JCP 2.9 section 1.2.1]. 
 
 ===Participation without joining the expert group===
 

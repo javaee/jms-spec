@@ -111,7 +111,7 @@ The same behaviour should apply when the bean is configured to use container-man
 
 === Use case G: One bean method which uses two transactions===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> starts a transaction and uses the context to send two messages. It then commits the transaction and starts a second transaction. It then uses the context to send two further messages and finally commits the second transaction.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>
@@ -184,7 +184,7 @@ The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <t
 
 ===Use case H. A bean which uses a context both outside and within a transaction===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> does not start a transaction and uses the <tt>context</tt> variable to send two messages. It then starts a transaction and uses the <tt>context</tt> variable to send a third message. It then commits the transaction and uses the <tt>context</tt> variable  to send a fourth and fifth more messages.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>
@@ -259,7 +259,7 @@ Consider two stateless session beans, <tt>Bean1</tt> and <tt>Bean2</tt>.
 
 <tt>Bean1</tt> is configured to use container-managed transactions and has a business method <tt>method1</tt>, which is configured to require a transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method1</tt> uses this context to send a message and then invokes <tt>method2</tt> on <tt>bean1</tt>. It then sends a further message.
 
-<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is configured to require a '''new''' transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> simply uses this context to send a message.
+<tt>Bean2</tt> is also configured to use container-managed transactions and has a business method <tt>method2</tt>, which is configured to require a **new** transaction. The bean has an injected <tt>JMSContext</tt>. <tt>method2</tt> simply uses this context to send a message.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 

@@ -9,12 +9,12 @@ __TOC__
 The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which provides the same functionality as the separate <tt>Connection</tt> and
 <tt>Session</tt> objects in the JMS 1.1 API:
 
-'''JMS 1.1'''
+**JMS 1.1**
 
  Connection connection = connectionFactory.createConnection();
  Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
  JMSContext context = connectionFactory.createContext(JMSContext.SESSION_TRANSACTED);
 
@@ -22,7 +22,7 @@ The JMS 2.0 simplified API introduces a new object, <tt>JMSContext</tt>, which p
 
 Failing to close a <tt>Connection</tt> after use may cause your application to run out of resources.
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 In JMS 1.1 the best way to make sure your connection gets closed after use is to call <tt>close()</tt> in a <tt>finally</tt> block:
 
@@ -41,7 +41,7 @@ In JMS 1.1 the best way to make sure your connection gets closed after use is to
 This is rather verbose. To make things worse, if you get an exception in the body of the <tt>try</tt> block, followed by an exception in <tt>close()</tt>,
 the first exception will be lost, even though the first exception is probably the root cause of the failure.
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 In JMS 2.0 the <tt>Connection</tt> object implements the <tt>java.lang.AutoCloseable</tt> interface. This means that if you create the <tt>Connection</tt>  object in a try-with-resources block the <tt>close</tt> method will be called automatically at the end of the block. 
 
@@ -60,11 +60,11 @@ The same syntax may be used when creating a <tt>JMSContext</tt>.
 
 ...one is all you need:
 
-'''JMS 1.1'''
+**JMS 1.1**
 
  Session session = connection.createSession(true,Session.SESSION_TRANSACTED);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
  Session session = connection.createSession(Session.SESSION_TRANSACTED);
 
@@ -75,14 +75,14 @@ There are similar methods for creating a <tt>JMSContext</tt>
 If you create a <tt>Session</tt> in a Java EE transaction, the arguments to <tt>createSession</tt> are ignored. 
 It says so in the EJB 3.1 spec.
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 But JMS 1.1 still required you to pass in two parameters even though they will be ignored.
 
  // both parameters will be ignored; transactional behaviour is determined by the container
  Session session = connection.createSession(false,Session.CLIENT_ACKNOWLEDGE);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 JMS 2.0 provides a method with no parameters:
 
@@ -93,7 +93,7 @@ JMS 2.0 provides a method with no parameters:
 
 The new <tt>JMSProducer</tt> object allows message headers, message properties and delivery options to be specified in a single line of code using method chaining
 
-'''JMS 1.1'''
+**JMS 1.1**
 
  MessageProducer messageProducer = session.createProducer(demoQueue);
  messageProducer.setPriority(1);
@@ -101,7 +101,7 @@ The new <tt>JMSProducer</tt> object allows message headers, message properties a
  textMessage.setStringProperty("foo", "bar");
  messageProducer.send(textMessage);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
  TextMessage textMessage = context.createTextMessage(body);
  context.createProducer().setPriority(1).setProperty("foo", "bar").send(demoQueue, textMessage);
@@ -110,7 +110,7 @@ The new <tt>JMSProducer</tt> object allows message headers, message properties a
 
 The new <tt>JMSProducer</tt> object is a lightweight object so there's no need to save it in a variable; simply instantiate one on the fly when needed
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 <tt>MessageProducer</tt> is expensive so need to reuse it.
 
@@ -118,7 +118,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
  messageProducer.send(message1);
  messageProducer.send(message2);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 <tt>JMSProducer</tt> is cheap, no need to save in variable
 
@@ -127,7 +127,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
 
 ==In Java EE, injecting a JMSContext means you don't need to create or close it==
 
-'''JMS 1.1'''
+**JMS 1.1**
 
  try {
     Connection connection = connectionFactory.createConnection();
@@ -143,7 +143,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
     ex.printStackTrace();
  }
 
-'''JMS 2.0'''
+**JMS 2.0**
 
  try {
     context.createProducer().send(inboundQueue, body);
@@ -153,7 +153,7 @@ The new <tt>JMSProducer</tt> object is a lightweight object so there's no need t
 
 ==When sending, no need to instantiate a Message object==
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 Need to create a message object of the appropriate type and then set its body:
 
@@ -161,7 +161,7 @@ Need to create a message object of the appropriate type and then set its body:
    TextMessage textMessage = session.createTextMessage("Hello world");
    messageProducer.send(textMessage);
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 In JMS 2.0, simply pass the message body into the <tt>send</tt> method:
 
@@ -171,7 +171,7 @@ Note that you can do this even when you want to set message properties since the
 
 ==Receiving synchronously, can receive mesage payload directly==
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 When receiving synchronously, so you are given a <tt>Message</tt> object and need to cast it to the appropriate subtype before you can extract its body:
 
@@ -183,7 +183,7 @@ When receiving synchronously, so you are given a <tt>Message</tt> object and nee
     return "Received "+textMessage.getText();
  }
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 JMS 2.0 allows you to receive the message body directly.
 
@@ -194,7 +194,7 @@ Note the lack of casting, or special null handling.
 
 ==Receiving asynchronously: no need for a cast before extracting message body.==
 
-'''JMS 1.1'''
+**JMS 1.1**
 
 When receiving a message asynchronously, the message passed to the <tt>onMessage</tt> method is a <tt>javax.jms.Message</tt> You need to cast it to the expected subtype before you can extract the body. If the message is an <tt>ObjectMessage</tt> this gives you a <tt>Serializable</tt> body which you have to cast a second time to the expected body type. 
 
@@ -202,7 +202,7 @@ When receiving a message asynchronously, the message passed to the <tt>onMessage
     MyObject myObj = (MyObject)((ObjectMessage)m).getObject();
     ...
 
-'''JMS 2.0'''
+**JMS 2.0**
 
 A new method <tt>getBody</tt> allows you to extract the body from the <tt>Message</tt> without the need to cast it to the appropriate subtype first. This is particularly handy for ObjectMessages, as it avoids a double cast to extract the object payload
 

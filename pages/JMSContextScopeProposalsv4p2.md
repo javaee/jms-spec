@@ -6,7 +6,7 @@ This page contains a number of use cases which demonstrate how the scope propose
 
 After reading these, now read [[JMSContextScopeProposalsv4p3|Injection of JMSContext objects - Use Cases F-K (version 4)]]
 
-Note that these examples do '''not''' use the proposed new <tt>JMSContext</tt> API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
+Note that these examples do **not** use the proposed new <tt>JMSContext</tt> API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
 
 __TOC__
 
@@ -58,7 +58,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls the methods <tt>
 | No, since they are sent using different <tt>MessageProducer</tt> objects.
 |} 
 
-'''Important note:''' Note that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. However, even if the method invocations are serviced by different stateless session bean instances this does not affect whether or not the same <tt>JMSContext</tt> object is used. 
+**Important note:** Note that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. However, even if the method invocations are serviced by different stateless session bean instances this does not affect whether or not the same <tt>JMSContext</tt> object is used. 
 
 =====Case A: JMSContext lifecycle=====
 
@@ -263,7 +263,7 @@ The <tt>JMSContext</tt> object will be created when <tt>method1</tt> uses the <t
 
 ===Use case E. One bean which sends two messages when there is no transaction===
 
-Consider a stateless session bean <tt>Bean1</tt>. This is configured to use '''bean'''-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>.  <tt>method1</tt> does not start a transaction and uses the context to send two messages.
+Consider a stateless session bean <tt>Bean1</tt>. This is configured to use **bean**-managed transactions and has one business method, <tt>method1</tt>. The bean has an injected <tt>JMSContext</tt>.  <tt>method1</tt> does not start a transaction and uses the context to send two messages.
 
 A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>.
 <br/><br/>
@@ -290,7 +290,7 @@ A remote client obtains a reference to <tt>Bean1</tt> and calls <tt>method1</tt>
 | Yes, since they they use the same variable declaration.
 |- valign="top"
 | What scope do the <tt>context</tt> variables in the two calls to <tt>context.send()</tt> have?
-| Both  calls to <tt>context.send()</tt> take place when there is no transaction, so they both have '''request''' scope.
+| Both  calls to <tt>context.send()</tt> take place when there is no transaction, so they both have **request** scope.
 |- valign="top"
 | Are the <tt>context</tt> variables in the two calls to <tt>context.send()</tt> in the same scope?
 | Yes, since the two calls to <tt>context.send()</tt> take place in the same request

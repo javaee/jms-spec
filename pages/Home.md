@@ -4,9 +4,9 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 
 ## Latest news (Oct 2015)
 
-> The JMS 2.1 Early Draft is now out! Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
-> See the [latest news on JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
-> Find out all about (JMS 2.1)[https://java.net/projects/jms-spec/pages/JMS21]
+The JMS 2.1 Early Draft is now out! Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
+See the [latest news on JMS 2.1](https://java.net/projects/jms-spec/pages/JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
+Find out all about (JMS 2.1)[https://java.net/projects/jms-spec/pages/JMS21]
 
 ## JMS 2.1
 
@@ -50,13 +50,15 @@ The maintenance lead for JSR 343 (JMS 2.0) and the prospective specification lea
 
 Here are some ways to get involved in the development of the JMS specification:
 
-*  '''Read''' the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
+*  **Read** the [https://java.net/projects/jms-spec/pages/JMS21 main JMS 2.1 page].
 
-* If you'd like to '''contribute''' to the development of the JMS specification, or simply '''observe''' what is going on in the expert group, join the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. See below for instructions on how to join.
+* If you'd like to **contribute** to the development of the JMS specification, or simply **observe** what is going on in the expert group, join the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. See below for instructions on how to join.
 
-* If you'd like to '''submit proposals''' for consideration by the expert group, log them as issues in the JIRA  [http://java.net/jira/browse/JMS_SPEC issue tracker]. Please read [http://java.net/projects/jms-spec/pages/Home#How_to_create_an_issue How to use the issue tracker]. We're interested in comments on JMS 2.0 as well as proposals for JMS 2.1.
+* If you'd like to **submit proposals** for consideration by the expert group, log them as issues in the JIRA  [issue tracker](http://java.net/jira/browse/JMS_SPEC). Please read [How to use the issue tracker](http://java.net/projects/jms-spec/pages/Home#How_to_create_an_issue). We're interested in comments on JMS 2.0 as well as proposals for JMS 2.1.
 
-* A new expert group is being formed for JSR 368 (JMS 2.1). Applications to '''join the JSR 368 expert group''' are now invited. See [[JMSExperts#Joining_the_JMS_expert_group|Joining the JMS expert group]].
+* A new expert group is being formed for JSR 368 (JMS 2.1). 
+Applications to **join the JSR 368 expert group** are now invited. 
+See [Joining the JMS expert group](JMSExperts#Joining_the_JMS_expert_group).
 
 * JSR 343 (JMS 2.0)  is now in maintenance mode and is administered directly by the maintenance lead. 
 
@@ -68,22 +70,23 @@ Here are some ways to get involved in the development of the JMS specification:
 ! Purpose
 ! Access
 |-
-| '''users@jms-spec.java.net'''
+| **users@jms-spec.java.net**
 | Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. 
  This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list.
-Discussions on the '''jsr-368-experts@jms-spec.java.net''' mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group.
+Discussions on the **jsr-368-experts@jms-spec.java.net** mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group.
 | Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. 
 
-To receive messages from this list, you need to "join" the [ http://jms-spec.java.net  jms-spec.java.net] project and then subscribe to this list.  ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this]).  Messages from subscribers are not moderated.
-[http://java.net/projects/jms-spec/lists/users/archive Online archive of past messages].  
+To receive messages from this list, you need to "join" the [jms-spec.java.net](http://jms-spec.java.net) project
+and then subscribe to this list.  ([How to do this](https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ).  Messages from subscribers are not moderated.
+[Online archive of past messages](http://java.net/projects/jms-spec/lists/users/archive).  
 |-
-| '''issues@jms-spec.java.net'''
+| **issues@jms-spec.java.net**
 | Mailing list for JIRA issue notifications. Everyone is welcome to join. <br /> <br />
 Additions and updates to the [http://java.net/jira/browse/JMS_SPEC|JIRA issue tracker] are automatically sent to this list. Please don't use this list for discussions.<br />
 | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this])<br /><br />
 [http://java.net/projects/jms-spec/lists/issues/archive Online archive of past messages]
 |-
-| '''commits@jms-spec.java.net'''
+| **commits@jms-spec.java.net**
 | Mailing list for source code repository update notifications. <br /> <br />
 Anyone by join, but there's no need to unless you are updating the source code repository yourself. Whenever there's anything new of interest an email will be sent to the user mailing list.  Please don't use this list for discussions.<br />
 | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([https://java.net/projects/jms-spec/pages/Home#Mailing_lists_FAQ How to do this])<br /><br />
@@ -106,10 +109,10 @@ Anyone by join, but there's no need to unless you are updating the source code r
 ! Purpose
 ! Access
 |-
-| '''jsr-368-observers@jcp.org'''
+| **jsr-368-observers@jcp.org**
 | Legacy mailing list for observers of JSR 368. <br /><br />
 Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br />
-If you wish to observe what is going on with JSR 368, join the join the '''users@jms-spec.java.net''' mailing list using the instructions above.
+If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above.
 | Registered observers of [http://jcp.org/en/jsr/summary?id=368 JSR 368] are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. 
 <br /><br />
 There is currently no online archive of past messages.<br />
@@ -130,19 +133,19 @@ If you would like to propose a change to the JMS specification, please [http://j
 
 Here are some guidelines to follow when creating a new issue:
 * Please don't combine unrelated subjects in the same issue. Create a separate issue for each. 
-* '''Issue Type''': .Choose one of Bug, New Feature, Task or Improvement from the pop-up menu. 
+* **Issue Type**: .Choose one of Bug, New Feature, Task or Improvement from the pop-up menu. 
 ** Bug: There is a problem or error in the spec, API or javadocs
 ** New Feature: Use this to suggest a new feature which is not in the existing spec, API or javadocs
 ** Task: Please don't use this  git push origin gh-pages
 ** Improvement:  An improvement or enhancement to an existing feature of the spec, API or javadocs
-* '''Summary''' Please enter a meaningful one-line summary of your issue
+* **Summary** Please enter a meaningful one-line summary of your issue
 * Priority: Please don't change this
-* '''Component/s''' We will use this in the future to allow you to categorise your issue
-* '''Affects version/s''' Please specify which version of the JMS specification your comment relates to. Normally this will be 1.1, the latest released version.
+* **Component/s** We will use this in the future to allow you to categorise your issue
+* **Affects version/s** Please specify which version of the JMS specification your comment relates to. Normally this will be 1.1, the latest released version.
 * Environment: Please leave blank
-* '''Description''': Please describe your issue in as much detail as you wish. You can add comments later.
+* **Description**: Please describe your issue in as much detail as you wish. You can add comments later.
 * Original Estimate: Please leave blank
-* '''Attachment''': There shouldn't be much need to use this, but if necessary you can upload files here
+* **Attachment**: There shouldn't be much need to use this, but if necessary you can upload files here
 * Issuezilla Id: Please leave blank
 * Status Whiteboard: Please leave blank. We may start using this field in the future.
 * Tags: Please leave blank. These should only be set by the project administrators, so if you set these yourself you'll confuse things. 
