@@ -102,7 +102,7 @@ Since this gives us yet another way to define activation properties we need to d
 
 Version 2 [[JMSListener2#Specifying_the_callback_method|proposed]] that callback methods will be allowed to throw exceptions as follows:
 
-<table style="text-align:left; margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 * Callback methods will be allowed to declare and throw exceptions. Checked exceptions and <tt>RuntimeException</tt> thrown by the callback method (including those thrown by the <tt>onMessage</tt> method of a <tt>MessageListener</tt>) will be handled by the EJB container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods".  This defines whether or not any transaction in progress is committed or rolled back, depending on whether or not the exception is a "system exception" or an "application exception", whether or not the application exception is specified as causing rollback, and whether or not the application has called <tt>setRollbackOnly</tt>. It also defines whether or not the MDB instance is discarded. If the transaction is rolled back, or a transaction is not being used, then the message will be redelivered. 
 
 * The JMS provider should detect repeated attempts to redeliver the same message to a MDB. Such messages may either be discarded or delivered to a provider-specific dead message queue. (Note that this not completely new to JMS: JMS 2.1 section 8.7 refers to a JMS provider "giving up" after a message has been redelivered a certain number of times).
@@ -120,7 +120,7 @@ In deciding how old-style MDBs should handle <tt>RuntimeException</tt>s there ar
 
 * JMS 2.0 section 8.7 "Receiving messages asynchronously" (reproduced below) defines how a JMS provider should handle a <tt>RuntimeException</tt> thrown by the <tt>onMessage</tt> method  of a <tt>MessageListener</tt>. However this section only considers Java SE acknowledgement modes. That means that it is not relevant to MDBs which consume messages in a container-managed transaction. However it ''is'' relevant for MDBs which consume messages in auto-acknowledge or dups-ok-acknowledge modes - which is the case when bean-managed transactions are specified. It says that in this case the message will be "immediately redelivered", where "the number of times a JMS provider will redeliver the same message before giving up is provider-dependent".
 
-<table style="text-align:left; margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 8.7 Receiving messages asynchronously
 
 A client can register an object that implements the JMS MessageListener interface with a consumer. As messages arrive for the consumer, the provider delivers them by calling the listener’s onMessage method.
@@ -153,41 +153,41 @@ Considering the EJB 3.2 specification and JMS 2.0 specifications together, here 
 <tr>
 <td rowspan="4">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>Required</tt> attribute (which is also the default)<br/><br/>  (Message is received in a transaction, and callback method is called in the same transaction)</td>
 
-<td><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="true")</tt></td>
-<td>Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
-<td>Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
+<td style="text-align:left;"><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="true")</tt></td>
+<td style="text-align:left;">Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
 
 </tr>
 
 <tr>
-<td><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="false")<br/> (default) and MDB calls <tt>setRollbackOnly</tt></tt></td>
-<td>Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
-<td>Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
+<td style="text-align:left;"><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="false")<br/> (default) and MDB calls <tt>setRollbackOnly</tt></tt></td>
+<td style="text-align:left;">Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
 </tr>
 
 <tr>
-<td><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="false")</tt><br/>(default) and MDB does not call <tt>setRollbackOnly</tt></td>
-<td>Commit transaction <br/>Rethrow exception to resource adapter.</td>
-<td>Continue with next message.</td>
+<td style="text-align:left;"><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException(rollback="false")</tt><br/>(default) and MDB does not call <tt>setRollbackOnly</tt></td>
+<td style="text-align:left;">Commit transaction <br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Continue with next message.</td>
 </tr>
 
 <tr>
-<td>Any other <tt>RuntimeException</tt></td><td>Rollback transaction.<br/>
+<td style="text-align:left;">Any other <tt>RuntimeException</tt></td><td style="text-align:left;">Rollback transaction.<br/>
 Discard MDB instance<br/>
-Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td>Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
+Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td style="text-align:left;">Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
 </tr>
 
-<tr><td rowspan="2">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>NotSupported</tt> attribute <br/><br/>(This case is not well defined in EJB 3.2, but this is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException</tt></td><td><tt>Rethrow exception to resource adapter.</tt></td><td>Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
-<tr><td>Any other <tt>RuntimeException</tt></td><td>Discard MDB instance<br/>
-Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td>Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
+<tr><td rowspan="2">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>NotSupported</tt> attribute <br/><br/>(This case is not well defined in EJB 3.2, but this is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td style="text-align:left;"><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException</tt></td><td style="text-align:left;"><tt>Rethrow exception to resource adapter.</tt></td><td style="text-align:left;">Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
+<tr><td style="text-align:left;">Any other <tt>RuntimeException</tt></td><td style="text-align:left;">Discard MDB instance<br/>
+Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td style="text-align:left;">Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
 
 <tr>
-<td rowspan="2">Bean-managed transaction<br/><br/>(Message is received in auto-ack or dups-ok-ack mode, not in a transaction. However <tt>onMessage</tt> may itself start and commit a transaction.)</td><td><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException</tt></td><td>Rethrow exception to resource adapter.</td><td>Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td>
+<td rowspan="2">Bean-managed transaction<br/><br/>(Message is received in auto-ack or dups-ok-ack mode, not in a transaction. However <tt>onMessage</tt> may itself start and commit a transaction.)</td><td style="text-align:left;"><tt>RuntimeException</tt> is annotated with <tt>@ApplicationException</tt></td><td style="text-align:left;">Rethrow exception to resource adapter.</td><td style="text-align:left;">Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td>
 </tr>
 
-<tr><td>Any other <tt>RuntimeException</tt></td><td>Rollback transaction if there is one in progress (this does not affect the message being delivered)<br/>
+<tr><td style="text-align:left;">Any other <tt>RuntimeException</tt></td><td style="text-align:left;">Rollback transaction if there is one in progress (this does not affect the message being delivered)<br/>
 Discard MDB instance<br/>
-Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td>Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
+Wrap exception in <tt>EJBException</tt> and rethrow to resource adapter.</td><td style="text-align:left;">Redeliver message immediately. May "give up" after repeated attempts. (JMS 2.0 section 8.7 applies)</td></tr>
 
 </table>
 
@@ -214,29 +214,29 @@ The EJB 3.2 specification already defines how the EJB container should handle ch
 <tr><th colspan="4">Existing rules for handling a checked exception thrown by callback method in new-style MDB</th></tr>
 <tr><th>Transactional mode</th><th>Type of checked exception</th><th>Container's action<br/> (as defined by EJB 3.2 section 9.3.4)</th><th>Resource adapter's action (as defined by JMS 2.0 specification)</th></tr>
 <tr><td rowspan="3">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>Required</tt> attribute (which is also the default)<br/><br/>  (Message is received in a transaction, and callback method is called in the same transaction)</td>
-<td>Checked exception is annotated with <tt>@ApplicationException(rollback="true")</tt></td>
-<td>Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
-<td>Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
+<td style="text-align:left;">Checked exception is annotated with <tt>@ApplicationException(rollback="true")</tt></td>
+<td style="text-align:left;">Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
 </tr>
-<tr><td>Any other checked exception and <br/>MDB called <tt>setRollbackOnly</tt>
+<tr><td style="text-align:left;">Any other checked exception and <br/>MDB called <tt>setRollbackOnly</tt>
 </td>
-<td>Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
-<td>Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
+<td style="text-align:left;">Rollback transaction.<br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Message is "automatically recovered" (JMS 2.0 section 6.2.7 applies)</td>
 </tr>
 
-<tr><td>Any other checked exception and <br/>MDB did not call <tt>setRollbackOnly</tt></td>
-<td>Commit transaction.<br/>Rethrow exception to resource adapter.</td>
-<td>Transaction was committed so continue with next message</td>
-</tr>
-
-<tr>
-<td rowspan="1">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>NotSupported</tt> attribute <br/><br/>(This case is not well defined in EJB 3.2, but this is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td>Any checked exception</td><td><tt>Rethrow exception to resource adapter.</tt></td>
-<td>Not defined in JMS 2.0</td>
+<tr><td style="text-align:left;">Any other checked exception and <br/>MDB did not call <tt>setRollbackOnly</tt></td>
+<td style="text-align:left;">Commit transaction.<br/>Rethrow exception to resource adapter.</td>
+<td style="text-align:left;">Transaction was committed so continue with next message</td>
 </tr>
 
 <tr>
-<td rowspan="1">Bean-managed transaction<br/><br/>(The message is received in auto-ack or dups-ok-ack mode, not in a transaction. However <tt>onMessage</tt> may itself start and commit a transaction.)</td><td>Any checked exception</td><td>Rethrow checked exception to resource adapter.</td>
-<td>Not defined in JMS 2.0</td>
+<td rowspan="1">Container-managed transaction demarcation configured (which is the default) and callback method configured with <tt>NotSupported</tt> attribute <br/><br/>(This case is not well defined in EJB 3.2, but this is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td style="text-align:left;">Any checked exception</td><td style="text-align:left;"><tt>Rethrow exception to resource adapter.</tt></td>
+<td style="text-align:left;">Not defined in JMS 2.0</td>
+</tr>
+
+<tr>
+<td rowspan="1">Bean-managed transaction<br/><br/>(The message is received in auto-ack or dups-ok-ack mode, not in a transaction. However <tt>onMessage</tt> may itself start and commit a transaction.)</td><td style="text-align:left;">Any checked exception</td><td style="text-align:left;">Rethrow checked exception to resource adapter.</td>
+<td style="text-align:left;">Not defined in JMS 2.0</td>
 </tr>
 </table>
 
@@ -266,7 +266,7 @@ See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_spec
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="text-align:left; margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
 
@@ -299,7 +299,7 @@ Here is a proposed extended wording.
 
 The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in more detail. This chapter will have a section (arbitrarily numbered 16.5 here) devoted to exceptions thrown by callback methods and a section following it (arbitrarily numbered 16.6 here)  about message redelivery in general. Here is a suggested wording. This section will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="text-align:left; margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 <h3>16. JMS message-driven beans</h3>
 <h4>16.5 Exceptions thrown by message callback methods</h4>
 
@@ -397,7 +397,7 @@ There are a number of things we should review here. Probably the main thing we n
 2. to have a smaller number of annotations, each of which set multiple attributes.
 
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Side discussion:</b> Should "destination type" be mandatory or have a default?
 
 We need to decide whether the application should be required to specify whether the destination is a queue or a topic.

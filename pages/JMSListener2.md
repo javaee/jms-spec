@@ -15,7 +15,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 * A MDB may define multiple callback methods. The earlier proposal to allow only a single callback method has been dropped. Each callback method will be treated as representing a separate consumer, and so may specify a different queue or topic, connection factory, durable subscription, message selector etc.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>New Issue I17:</b> Should multiple callback methods be permitted or should MDBs be restricted to a single callback method as in the previous version?. There is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications. It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. Comments are invited.
 </td></tr></table>
 
@@ -27,7 +27,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 * Each callback method must be annotated with <tt>@JMSListener</tt>. If this annotation is omitted then the method will not be treated as a callback method; any other callback annotations are ignored. (This restriction does not apply to the <tt>javax.jms.MessageListener</tt> method <tt>onMessage(Message m)</tt>).
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>New Issue I18:</b> Should we relax the requirement for each callback method (other than  the <tt>javax.jms.MessageListener</tt> method <tt>onMessage(Message m)</tt>) to be annotated with <tt>@JMSListener</tt>, and allow  the presence of <i>any</i> of the annotations <tt>@JMSConnectionFactory</tt>, <tt>@JMSListener</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt>, <tt>@MessageSelector</tt> or <tt>@Acknowledge</tt> to be sufficient to designate a callback method?
 </td></tr></table>
 
@@ -37,7 +37,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 * If the MDB implements <tt>javax.jms.MessageListener</tt> then application-defined callback methods (in addition to <tt>onMessage(Message m)</tt>) may only be implemented if the MDB is explicitly configured to specify that its listener interface is <tt>JMSMessageDrivenBean</tt> (e.g. by using the annotation <tt>@MessageDriven(messageListenerInterface=JMSMessageDrivenBean.class)</tt>). This is required to satisfy the requirements of EJB 3.2 section 5.6.5 "Message-Driven Bean with No-Methods Listener Interface".  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] proposes the removal of this requirement.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>New Issue I19:</b> This requirement may be a cause of unexpected errors, since the resource adapter has no way to verify at deployment  time whether the MDB has been configured to specify that its listener interface is <tt>JMSMessageDrivenBean</tt>. The <tt>endpointActivation</tt> method has no access to this information. This means that the resource adapter will only discover when it tries to deliver a message that the message endpoint does not implement the callback method. Note that  although <tt>endpointActivation</tt> has access to an instance of <tt>MessageEndpointFactory</tt> this cannot be used to examine what methods are implemented by the endpoint class since  it may not be valid to call <tt>createEndpoint</tt> until after deployment has completed. Note that  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126]  would remove this issue.
 </td></tr></table>
 
@@ -47,7 +47,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 * If any of the parameters of the callback method cannot be set because they have an incompatible type then callback method will not be invoked. Such messages may either be discarded or delivered to a provider-specific dead message queue.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>New Issue I20:</b> Is this an adequate definition of the required behaviour when parameters of the callback method cannot be set?
 </td></tr></table>
 
@@ -57,7 +57,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 * The JMS provider should detect repeated attempts to redeliver the same message to a MDB. Such messages may either be discarded or delivered to a provider-specific dead message queue. (Note that this not completely new to JMS: JMS 2.1 section 8.7 refers to a JMS provider "giving up" after a message has been redelivered a certain number of times).
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>New Issue I21:</b> Is this an adequate definition of the required behaviour when a callback method throws an exception?
 </td></tr></table>
 
@@ -67,11 +67,11 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 <b>Other new issues</b>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I22:</b> How about replacing <tt>@JMSListener</tt> with separate <tt>@JMSQueueListener</tt> and <tt>@JMSTopicListener</tt> annotations? This would remove the need for a separate "type" attribute. 
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I23:</b> Currently the <tt>acknowledgeMode</tt> activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>.  The same confusion will apply if we define the new <tt>@Acknowledge</tt> annotation to work the same way as <tt>acknowledgeMode</tt>. 
 
 In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>. You don't actually need to set the <tt>acknowledgeMode</tt> activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the <tt>acknowledgeMode</tt> activation property is if you wanted to specify <tt>DUPS_OK</tt>.  
@@ -158,7 +158,7 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
 
 These proposals do not change the existing threading rules for MDBs, even for MDBs with multiple callback methods. These rules are defined in the EJB 3.2 specification:
 
-<table style="text-align:left; margin-left:16px"> <tr> <td>
+<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 5.4.11 Serializing message-driven bean methods
 
 The container serializes calls to each message-driven bean instance. Most containers will support many instances of a message-driven bean executing concurrently; however, each instance sees only a serialized sequence of method calls. Therefore, a message-driven bean does not have to be coded as reentrant.
@@ -182,27 +182,27 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 
 * In the JMS specification itself, chapter 13 "Resource adapter" (which contains optional recommendations for a JMS resource adapter) will be extended to cover these new features.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I1:</b> Deleted
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I2:</b> Deleted
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. <tt>glassfish-ejb-jar.xml</tt>) or by using a default resource adapter provided by the application server.  (Note that it is hoped that the EJB specification can be updated to define a standard way to associate a MDB with a resource adapter. See [https://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127])
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I4:</b> Deleted (superseded by New Issue I17)
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I5:</b> It would be desirable to avoid the need to implement  <tt>javax.jms.JMSMessageDrivenBean</tt> since this is needed purely to satisfy EJB 3.2.   [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115]  and  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] propose removal of this requirement from the next version of EJB.  
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I6:</b> The reason why these annotations cannot be applied to the <tt>onMessage</tt> method of a <tt>MessageListener</tt> is that <tt>MessageListener</tt> is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 </td></tr></table>
 
@@ -245,19 +245,19 @@ In Java EE 8 a JMS MDB may continue to specify activation properties, even if th
 <br/>
 These annotations are introduced in more detail in the following sections.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I7:</b> Any alternative proposals for the <tt>@JMSConnectionFactory</tt>, <tt>@Acknowledge</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt> or <tt>@MessageSelector</tt> annotations?
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I8:</b> Should JMS define a set of deployment descriptor which correspond to these annotations, and which can be used by a deployer to override them? This would require a major change to the EJB and JCA specs since a resource adapter cannot currently access the deployment descriptor. A slightly simpler alternative might be to require the EJB container to convert these deployment descriptor elements to activation properties and pass them to the resource adapter in the activation spec.
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I9:</b> What happens if the same attribute is specified using an activation property and using one of these new annotations? It is proposed that a value defined using an activation property always overrides the same property defined using one of these new annotations, since this would provide a way to override these new annotations in the deployment descriptor.
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I10:</b> Is an additional annotation required to allow non-standard properties to be passed to the resource adapter or container? Or are activation properties adequate for this purpose?
 </td></tr></table>
 
@@ -271,15 +271,15 @@ The <tt>lookup</tt> attribute may be used to specify the JNDI name of the queue 
 <br/>
 The <tt>@JMSListener</tt> method annotation also has a mandatory attribute <tt>type</tt>. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property <tt>destinationType</tt>, though the attribute is an enumerated type rather than a <tt>String</tt>.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I11:</b> Deleted
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I12:</b> The EJB and Java EE specifications currently define a number of other ways of  defining the destination used by the MDB, such as by setting the <tt>mappedName</tt> attribute of the <tt>@MessageDriven</tt> annotation. The specification will need to clarify the override order used if the destination is specified in multiple ways.
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I13:</b> Is it right that the  <tt>@JMSListener</tt> attribute <tt>"type"</tt> is mandatory,? The existing EJB 3.2 activation property <tt>destinationType</tt> does not define a default value. Should it remain optional, in which case should the specification designate a default value when  <tt>@JMSListener</tt> is used?
 </td></tr></table>
 
@@ -324,7 +324,7 @@ If the MDB is being used to consume messages from a topic, three further annotat
 <br/>
 The subscription durability is specified using an enumerated type <tt>SubscriptionDurability.Mode</tt>, which is a nested type of the <tt>SubscriptionDurability</tt> annotation.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I14:</b> Should the <tt>@SubscriptionDurability</tt>, <tt>@SubscriptionName</tt> and <tt>@ClientId</tt> annotations (or perhaps the first two) be combined into a single annotation?
 </td></tr></table>
 
@@ -547,11 +547,11 @@ The following table lists all the options available for customising the method p
 
 If the callback method parameter cannot be set, either because it does not match any of the cases in the preceding table, or because a <tt>MessageFormatException</tt> was encountered whilst trying to convert the required value to the specified type, then the callback method will not be invoked. The message may either be discarded or delivered to a provider-specific dead message queue. 
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I15:</b> Deleted
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I16:</b> Deleted
 </td></tr></table>
 

@@ -89,7 +89,7 @@ This section describes JMS listener beans in more detail and how they relate to 
 
 The CDI 1.2 specification defines a managed bean in [section 3.1 "Managed beans"](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#managed_beans). This states:
 
-<table style="text-align:left;  margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td>
+<table style="text-align:left;  margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td style="text-align:left;">
 A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE specification, or if it meets all of the following conditions:
 * It is not a non-static inner class.
 * It is a concrete class, or is annotated @Decorator.
@@ -178,15 +178,15 @@ The <tt>@Transactional</tt> annotation has an optional attribute which allows th
 * <tt>@Transactional(Transactional.TxType.REQUIRES_NEW)</tt>. This is not appropriate for a MDB and will be treated as an error.
 * <tt>@Transactional(Transactional.TxType.SUPPORTS)</tt>. This is not appropriate for a MDB and will be treated as an error.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 1:</b> Should a CDI managed bean be allowed to have multiple callback methods or should it be restricted to have just one? 
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 2:</b> Do we need an additional annotation to allow arbitrary properties to be specifed (analogous to activation properties)? 
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 3:</b> Do we need an additional annotation (either at class or method level) to allow a resource adapter to be specified?? 
 </td></tr></table>
 
@@ -311,13 +311,13 @@ The application server will provide a CDI "portable extension" which extends the
 
 Note that the term "portable extension" used here is CDI terminology for an extension to an application server's CDI container that interacts with the CDI container using CDI's portable extension integration SPI. Although it is expected that this SPI will be sufficient, the application server may use any API that is required.
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 4:</b> It is currently proposed to re-use the existing JCA methods <tt>endpointActivation</tt> and <tt>endpointActivation</tt> so that they are used for both MDBs and for JMS listener beans, and require the resource adapter to make use of the existing <tt>MessageEndpointClass</tt> interface to obtain the listener instead. This avoids the need to extend the JCA specification as well as the controversy of doing so for a JMS-specific feature. 
 <br/><br/>
 However using this existing API for JMS listener beans is an awkward fit, since for each activation there can only ever be one instance of the listener bean. This means that the mechanism of a <tt>MessageEndpointFactory</tt> which can return multiple instances of <tt>MessageEndpoint</tt> is unnecessarily complicated, with the <tt>MessageEndpointFactory</tt> having to behave as if it were managing a pool containing just one instance. To avoid the resource adapter unsuccessfully trying to deliver messages concurrently in multiple threads, all but one of which get blocked whilst they contend for the same instance, the call to <tt>endpointActivation</tt> will need to somehow specify  which type of activation is being performed (MDB or listener bean).
 </td></tr></table>
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 5:</b>How does the application server determine what resource adapter to use? Is this a per-bean or per-method setting? In these proposals a single call to <tt>endpointActivation</tt> is responsible for handling all the callback methods on a listener bean, which means that all callback methods must use the same resource adapter (and so probably the same JMS provider). Is this desirable, or do we want each callback method to be able to specify a different resource adapter?
 </td></tr></table>
 
@@ -352,7 +352,7 @@ Note that a CDI bean is itself either a proxy (for normal-scoped beans) or a wra
 The <tt>@javax.transaction.Transactional</tt> annotation can be used to specify which methods, when thrown by the bean method, will cause the transdaction to be marked for rollback. The application server will need to ensure that any such exception is caught by the <tt>MessageEndpoint</tt> wrapper code and used to determine whether the subsequent call to <tt>afterCompletion</tt> will commit or rollback the transaction.
 
 
-<table> <tr style="background-color:#f8f8f8;"> <td>
+<table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue 6:</b> The interaction between the <tt>beforeCompletion</tt>/<tt>afterCompletion</tt> methods of the <tt>MessageEndpoint</tt>, and the normal CDI interceptors that wrap any bean business method, needs to be considered carefully.
 </td></tr></table>
 
