@@ -11,7 +11,7 @@ These proposals are separate to the proposals for [[JMSListener2|More flexible J
 __TOC__
 
 * auto-gen TOC:
-{:toc
+{:toc}
 
 ## Introduction
 
