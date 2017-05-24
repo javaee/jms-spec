@@ -67,10 +67,10 @@ See [Joining the JMS expert group](JMSExperts#Joining_the_JMS_expert_group).
 
 ###  Mailing lists open to everyone
 
-First Header | Second Header
+Email address | Purpose | Access
 ------------ | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+Content from cell 1 | Content from cell 2 | zz
+Content in the first column | Content in the second column | zz
 
 Email address | Purpose | Access
 ------------- | ------- | ------
