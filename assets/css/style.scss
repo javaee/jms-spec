@@ -208,7 +208,12 @@ blockquote {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, serif;
   font-weight: normal;
   font-size: 1em;
+  margin-top: 10px; /* added by Nigel */
   margin-bottom: 2px;
+}
+
+#main-content table {
+  margin-top: 10px; /* added by Nigel */
 }
 
 .footer {
