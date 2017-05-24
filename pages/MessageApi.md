@@ -1,0 +1,1 @@
+moved over to MessageApi: http://java.net/projects/messageapi/pages/Annotations
