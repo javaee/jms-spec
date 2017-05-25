@@ -87,7 +87,7 @@ Comments are still invited on any of these issues. These can be made either dire
 
 ## Timescales 
 
-Stage | Current plan<br/>(updated 27 Jan 2015) | Actual
+**Stage** | **Current plan**<br/>(updated 27 Jan 2015) | **Actual**
 :--- | :--- | :---
 Start of Informal discussions |  | Mon 24 Nov 2014  
 Informal discussions          |  |  Mon 24 Nov 2014 - Fri 16 Dec 2014                    
