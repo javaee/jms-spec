@@ -60,7 +60,7 @@ The `JMSContext` object used by `method1a` will be created when `method1a` uses 
 
 The `JMSContext` object used by `method1b` will be created when `method1b` uses `context` for the first time, and destroyed when the second transaction is committed.
 
-### Use case B: Two methods on the same bean within the same transaction
+## Use case B: Two methods on the same bean within the same transaction
 
 Consider two stateless session beans, `Bean1` and `Bean2`. 
 
