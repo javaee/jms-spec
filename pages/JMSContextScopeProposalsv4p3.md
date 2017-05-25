@@ -160,8 +160,8 @@ Q | A
 :--- | :---
 Are the `context` variables in the five calls to `context.send()`  injected using identical annotations? | Yes, since they  use the same variable declaration.
 What scope do the `context` variables in the five calls to `context.send()` have? | The first, second, fourth and fifth calls to `context.send()` take place without a transaction, so these `context` variables have **request** scope. The third call to `context.send()` take place within a transaction, and so this `context` variable has **transaction** scope.
-
 Are the `context` variables in the five calls to `context.send()` in the same scope? | The first, second, fourth and fifth calls to `context.send()` take place in the same request and so these `context` variables have the same request scope.
+
 In addition the  `context` variable used in the third call to to `context.send()` has a completely separate transaction scope.
 Do the `context` variables in the five calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | All five `context` variables  are injected using identical annotatons. The `context` variables in the first, second, fourth and fifth calls are in the same request scope and so share the same `JMSContext` (and therefore `MessageProducer`) object.  The `context` variable in the third call is in a separate transaction scope and so uses a different `JMSContext` (and therefore `MessageProducer`) object. 
 Are the five messages guaranteed to be delivered in the order in which they are sent? | The first, second, fourth and fifth messages share one `MessageProducer` object and are delivered in order. However the third message uses a different `MessageProducer` object and so there is no guarantee that the third message will be delivered between the second and fourth messages.
