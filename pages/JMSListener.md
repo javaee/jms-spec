@@ -165,7 +165,8 @@ The destination can be specified in two ways:
 `@JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)`
 
 2. Alternatively the `name` attribute can be used to specify the "provider-specific" name of the queue or topic. The container would use the JMS methods `Session#createQueue` or `Session#createTopic`. This is a new feature which is not defined in EJB 3.2 and since these methods are provider-specific the specification would need to advise against using it in portable applications.
-`@JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)`<br><br>
+`@JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)`
+
 The `@JMSListener` method annotation also has a mandatory attribute `type`. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property `destinationType`, though the attribute is an enumerated type rather than a `String`.
 
 <b>Issue I11:</b> Allowing the queue or topic to be specified by destination name rather than by JNDI name is a new feature. Since it is not portable, is this actually desirable?
@@ -177,42 +178,38 @@ The `@JMSListener` method annotation also has a mandatory attribute `type`. This
 ### Specifying the connection factory
 
 The existing `@JMSConnectionFactory` annotation may be used to specify the JNDI name of the connection factory used to receive messages.This corresponds to the existing EJB 3.2 activation property `connectionFactoryLookup`. 
-<br/>
- @JMSConnectionFactory("java:global/MyCF")
-<br/>
+`@JMSConnectionFactory("java:global/MyCF")`
 Note that `@JMSConnectionFactory` is an existing annotation which is currently used to configure the connection factory used to create an injected `JMSContext` object. It better to reuse this annotation than have two very similar annotations.
 
 ### Specifying the acknowledgement mode when using bean-managed transactions
 
 The existing `@Acknowledge` annotation may be used to specify acknowledge mode that will be used if bean-managed transaction demarcation is used.
 This corresponds to the existing EJB 3.2 activation property `acknowledgeMode`. 
-<br/>
- @Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
-<br/>
+`@Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)`
 The acknowledgement mode is specified using an enumerated type `Acknowledge.Mode`, which is a nested type of the `Acknowledge` annotation.
 
 ### Specifying durable topic subscriptions
 
 If the MDB is being used to consume messages from a topic, three further annotations are available: `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId`.  These correspond to the EJB 3.2 activation properties  `subscriptionDurability`, `subscriptionName` and `clientId`. 
-<br/>
- @MessageDriven
- public class MyMessageBean implements JMSMessageDrivenBean {
+```
+@MessageDriven
+public class MyMessageBean implements JMSMessageDrivenBean {
  
-   @Resource(mappedName = "java:global/replyQueue")
-   private Queue replyQueue;
+  @Resource(mappedName = "java:global/replyQueue")
+  private Queue replyQueue;
  
-   @Inject
-   private JMSContext jmsContext;
+  @Inject
+  private JMSContext jmsContext;
   
-   @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
-   @SubscriptionName("mySubName1")
-   @ClientId("myClientID1")  
-   @JMSListener(lookup="java:global/inboundTopic", type=JMSListener.Type.TOPIC)
-   public void giveMeAMessage(Message message) {
-     ...
-   }
- }
-<br/>
+  @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
+  @SubscriptionName("mySubName1")
+  @ClientId("myClientID1")  
+  @JMSListener(lookup="java:global/inboundTopic", type=JMSListener.Type.TOPIC)
+  public void giveMeAMessage(Message message) {
+    ...
+  }
+}
+```
 The subscription durability is specified using an enumerated type `SubscriptionDurability.Mode`, which is a nested type of the `SubscriptionDurability` annotation.
 
 <b>Issue I14:</b> Should the `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId` annotations (or perhaps the first two) be combined into a single annotation?
