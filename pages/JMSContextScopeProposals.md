@@ -55,7 +55,7 @@ There has also been discussion as to whether the annotations for specifying the 
 
 ## New proposals for JMS 2.0 Public Draft (Options 2 and 3) 
 
-To address the problems with the Early Draft proposal, two possible alternatives are proposed. We call these "option 2" and "option 3".
+To address the problems with the Early Draft proposal, two possible alternatives are proposed. We call these **option 2** and **option 3**.
 
 ###  Option 2 
 
