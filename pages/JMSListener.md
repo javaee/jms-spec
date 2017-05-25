@@ -301,17 +301,12 @@ void processTrade(TextMessage messageText, @MessageProperty("price") long price,
 
 The following table lists all the options available for customising the method parameters:
 
-{|- border="1"
-! Message type
-! Parameter type
-! Annotation
-! Set to
-|-
-| `TextMessage`
-| `TextMessage`
-| None
-| The `TextMessage` object 
-|-
+Message type | Parameter type | Annotation | Set to
+:--- | :--- :--- | :---
+`TextMessage` | `TextMessage` | None | The `TextMessage` object 
+
+
+
 | `StreamMessage`
 | `StreamMessage`
 | None
