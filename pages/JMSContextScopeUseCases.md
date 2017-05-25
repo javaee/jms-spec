@@ -8,7 +8,7 @@ This is as defined in the JMS 2.0 Early Draft, which can be downloaded [here](ht
 
 These are described in 
 
-*  [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals)
+* [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals)
 * [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2)
 * [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3)
 
@@ -16,7 +16,7 @@ These are described in
 
 These are described in
 
-*[Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1)
-*[Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2)
-*[Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3)
-*[Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4)
+* [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1)
+* [Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2)
+* [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3)
+* [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4)
