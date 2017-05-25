@@ -4,13 +4,15 @@
 
 This page discusses that part of the JMS 2.0 Early Draft which defines how `javax.jms.JMSContext` objects may be injected.   In particular it discusses the scope and lifecycle of injected `JMSContext` objects. 
 
-**The JMS 2.0 Early Draft** proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".
+**The JMS 2.0 Early Draft** proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as **Option 1**.
 
-**Two further proposals** were made which both envisaged a new scope called `@TransactionScoped` which would have the scope of a transaction, but extended to the start and end of the method. In [[JMSContextScopeProposals#Option_2|Option 2]] it was proposed that a separate JMSContext instance would still be injected for every injection point.    [[JMSContextScopeProposals#Option_3|Option 3]] offered a variant of this: the requirement that a separate JMSContext instance would be injected for every injection point was dropped but instead a requirement that the injected JMSContext's six state properties would be given dependent scope.
+**Two further proposals** were made which both envisaged a new scope called `@TransactionScoped` which would have the scope of a transaction, but extended to the start and end of the method. In [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) it was proposed that a separate JMSContext instance would still be injected for every injection point. [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) offered a variant of this: the requirement that a separate JMSContext instance would be injected for every injection point was dropped but instead a requirement that the injected JMSContext's six state properties would be given dependent scope.
 
-**This page now describes a fourth option**, Option 4. This proposals new a new definition of the scope of an injected `JMSContext`.  It should be read in conjunction with some new  [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]].
+**This page now describes a fourth option**, Option 4. This proposals new a new definition of the scope of an injected `JMSContext`.  It should be read in conjunction with some new  [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
 
-The scope described here is illustrated in a series of use cases:  [[JMSContextScopeProposalsv4p2|Injection of JMSContext objects - Use Cases A - E (version 4)]] and [[JMSContextScopeProposalsv4p3|Injection of JMSContext objects - Use Cases F - K (version 4)]].
+The scope described here is illustrated in a series of use cases:  [Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2) and [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3).
+
+## Contents
 
 * auto-gen TOC:
 {:toc}
