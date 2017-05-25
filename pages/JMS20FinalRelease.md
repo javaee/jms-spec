@@ -42,29 +42,29 @@ New methods have been added to `Session` which return a `MessageConsumer` on a d
 
 The specification has been clarified in various places.
 
-The JMS 2.0 specification was developed by recording each proposed change in a a JIRA issue tracker. Here's a summary page of  [http://java.net/projects/jms-spec/pages/JSR343Planning all JIRA issues incorporated into JMS 2.0]<br/>
+The JMS 2.0 specification was developed by recording each proposed change in a a JIRA issue tracker. Here's a summary page of  [all JIRA issues incorporated into JMS 2.0](/jms-spec/pages/JSR343Planning)
 
 ## More information about JMS 2.0 
 
-Watch this [http://www.youtube.com/watch?v=itx4xjqI7yY&feature=em-share_video_in_list_user&list=PL74xrT3oGQfCCLFJ2HCTR_iN5hV4penDz 15 minute slide presentation]
+Watch this [15 minute slide presentation](http://www.youtube.com/watch?v=itx4xjqI7yY&feature=em-share_video_in_list_user&list=PL74xrT3oGQfCCLFJ2HCTR_iN5hV4penDz).
 
 Read these two OTN articles by by Nigel Deakin, JSR 343 spec lead:
-* [http://www.oracle.com/technetwork/articles/java/jms20-1947669.html What's New in JMS 2.0, Part One: Ease of Use] 
-* [http://www.oracle.com/technetwork/articles/java/jms2messaging-1954190.html What's New in JMS 2.0, Part Two—New Messaging Features]
+* [What's New in JMS 2.0, Part One: Ease of Use](http://www.oracle.com/technetwork/articles/java/jms20-1947669.html) 
+* [What's New in JMS 2.0, Part Two—New Messaging Features](http://www.oracle.com/technetwork/articles/java/jms2messaging-1954190.html)
 
-Read [[JMS20MeansLessCode|Ten ways in which JMS 2.0 means writing less code]].
+Read [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode).
 
-Listen to a  [https://blogs.oracle.com/javaspotlight/entry/java_spotlight_episode_131_nigel Java Spotlight Podcast interview] with Nigel Deakin, JSR 343 spec lead in which he talks to host Roger Brinkley about some of the new features in JMS 2.0.
+Listen to a  [Java Spotlight Podcast interview](https://blogs.oracle.com/javaspotlight/entry/java_spotlight_episode_131_nigel) with Nigel Deakin, JSR 343 spec lead in which he talks to host Roger Brinkley about some of the new features in JMS 2.0.
 
-If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [[JMS20ReasonsFAQ | JMS 2.0 design FAQ]].
+If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ).
 
 ## Reference implementation 
 
 The purpose of a reference implementation is to prove that a specification can be implemented. There are two reference implementations for JMS 2.0.
 
-*The reference implementation for JMS 2.0 in a Java SE environment is based on Open Message Queue 5.0 and is available at [https://mq.java.net/downloads/ri/] 
+*The reference implementation for JMS 2.0 in a Java SE environment is based on [Open Message Queue](/openmq) 5.0 and is available from the [Open MQ RI downloads page](/openmq/www/downloads/ri/).
 
-* The reference implementation for JMS 2.0 as part of a Java EE 7 application server is based on GlassFish Server Open Source Edition 4.0 and will available at [https://glassfish.java.net/downloads/ri/] just as soon as the Java EE  7 specification is released.  
+* The reference implementation for JMS 2.0 as part of a Java EE 7 application server is based on GlassFish Server Open Source Edition 4.0 and is available from the [GlassFish project page](https://javaee.github.io/glassfish/).
 
 ## JMS 2.0 tutorial
 
