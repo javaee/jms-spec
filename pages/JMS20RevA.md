@@ -49,7 +49,7 @@ ID | Description | Nature | Status
 Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify behaviour of createContext when used on a QueueConnectionFactory or TopicConnectionFactory  |  | Deferred until JMS 2.1.<br/>This is similar to existing issue  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138), which requests clarification of the behaviour of createConnection with these objects. 
 [JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133) | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128) | Typo in section 4.14 "Queue" | Document error | Accepted for JMS 2.0 errata.
-[JMS_SPEC-127Z](https://github.com/javaee/jms-spec/issues/127) | Incorrect HTML in API documentation | Document error.  | These were corrected by the spec lead soon after the original JMS 2.0 release <br/>[Diffs of javadoc for Message](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589718)<br/>[Diffs of javadoc for JMSProducer](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589719)<br/>[Diffs of javadoc for MapMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589720)<br/>[Diffs of javadoc for StreamMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589721)
+[JMS_SPEC-127](https://github.com/javaee/jms-spec/issues/127) | Incorrect HTML in API documentation | Document error.  | These were corrected by the spec lead soon after the original JMS 2.0 release <br/>[Diffs of javadoc for Message](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589718)<br/>[Diffs of javadoc for JMSProducer](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589719)<br/>[Diffs of javadoc for MapMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589720)<br/>[Diffs of javadoc for StreamMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589721)
 [JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125) | Define whether a JMS provider should call reset after sending a BytesMessage asynchronously | Request for clarification. | Accepted for JMS 2.0 errata.
 [JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122) | Typos in javadocs for ConnectionFactory.createContext  | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120) | Typo: in example, change .class() to .class | Document error | Accepted for JMS 2.0 errata.
@@ -60,34 +60,16 @@ Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarif
 
 This table lists all the changes in JMS 2.0 revision a.
 
-[https://java.net/jira/browse/JMS_SPEC-167?jql=fixVersion%20%3D%20%22JMS%202.0%20rev%20A%22%20AND%20project%20%3D%20JMS_SPEC Query]  
+[Query](https://github.com/javaee/jms-spec/milestone/6?closed=1)
 
-{|- border="1"
-! ID
-! Description
-! Nature
-! Status
-|-
-| [https://github.com/javaee/jms-spec/issues/167 JMS_SPEC-167]
-| Session javadoc should mention consumer.close is allowed outside thread of control
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-167?focusedCommentId=383844 Changes to javadoc for Session].
-|-
-| [https://github.com/javaee/jms-spec/issues/165 JMS_SPEC-165]
-| Error in javadoc for Connection#stop and JMSContext#stop
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-165?focusedCommentId=382826 Changes to specification].
-|-
-| [https://github.com/javaee/jms-spec/issues/164 JMS_SPEC-164]
-| Typos in section 7.3.5 and 12.2: Change Session to MessageProducer
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-164 Changes to specification].
-|-  
-| [https://github.com/javaee/jms-spec/issues/163 JMS_SPEC-163]
-| Javadoc for JMSContext#setClientID contains obsolete MessageContext reference
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-163?focusedCommentId=382062 Changes to javadoc for JMSContext#setClientID].
-|-  
+ID | Description | Nature | Status
+:--- | :--- | :--- | :---
+[https://github.com/javaee/jms-spec/issues/167 JMS_SPEC-167] | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [https://java.net/jira/browse/JMS_SPEC-167?focusedCommentId=383844 Changes to javadoc for Session].
+[https://github.com/javaee/jms-spec/issues/165 JMS_SPEC-165] | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [https://java.net/jira/browse/JMS_SPEC-165?focusedCommentId=382826 Changes to specification].
+[https://github.com/javaee/jms-spec/issues/164 JMS_SPEC-164] | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [https://java.net/jira/browse/JMS_SPEC-164 Changes to specification].
+[https://github.com/javaee/jms-spec/issues/163 JMS_SPEC-163] | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [https://java.net/jira/browse/JMS_SPEC-163?focusedCommentId=382062 Changes to javadoc for JMSContext#setClientID].
+
+  
 | [https://github.com/javaee/jms-spec/issues/162 JMS_SPEC-162]
 | Typos in section 7.3 "Asynchronous send"
 | Document error
