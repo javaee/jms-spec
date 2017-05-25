@@ -96,7 +96,7 @@ Formal public maintenance review period |  |  Mon 21 Jan 2015 - Sun 22 Feb 2015
 Start of EC ballot: | Mon 23 Feb 2015 | Mon 23 Feb 2015            
 End of EC ballot: | Mon 2 Mar 2015 | Mon 2 Mar 2015 
 Maintenance lead sends final materials sent to PMO | Fri 6 March 2015 | Fri 6 March 2015       
-Errata release |  Mon 9 March 2015 | 
+Errata release |  Mon 9 March 2015 | Mon 16 Mar 2015
 
 ## What is the version number of this errata release? 
 
