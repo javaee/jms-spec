@@ -124,6 +124,7 @@ This is `Bean2`:
 
 #### Case B, option 2: Analysis
 
+Q | A
 :--- | :---
 Do the `context` variables in the two calls to `context.send()`  use the same injection point? | Yes, since they  use the same `context` variable.
 Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
