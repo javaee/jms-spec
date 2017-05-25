@@ -64,8 +64,7 @@ public class Bean2 {
 
 Q | A
 :--- | :---
-Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes. Although they  use separate variable declarations, both declarations use identical annotations.
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes. Although they  use separate variable declarations, both declarations use identical annotations.
 What scope do the `context` variables in the two calls to `context.send()` have? | Both  calls to `context.send()` take place when there is no transaction, so they both have **request** scope.
 Are the `context` variables in the two calls to `context.send()` in the same scope? | Yes, since the two calls to `context.send()` take place in the same request
 Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes. They are injected using identical annotations and have the same request scope.
