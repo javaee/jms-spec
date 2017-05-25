@@ -60,19 +60,11 @@ The `JMSContext` object used by `method1b` will be created when `method1b` uses 
 
 #### Case A, option 3: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they  use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`?
-| No, since the two calls to `context.send()` take place in different transactions
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| No. Although they are injected using identical annotatons they are not in the same `@TransactionScope`
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different `MessageProducer` objects.
-|} 
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they  use the same `context` variable.
+| Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | No, since the two calls to `context.send()` take place in different transactions
+ Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are injected using identical annotatons they are not in the same `@TransactionScope`
+Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
 
 #### Case A, option 3: JMSContext lifecycle
 
@@ -132,19 +124,11 @@ This is `Bean2`:
 
 #### Case B, option 2: Analysis
 
-{|- border="1"
-| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
-| Yes, since they  use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction.
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they use the same injection point and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Do the `context` variables in the two calls to `context.send()`  use the same injection point? | Yes, since they  use the same `context` variable.
+Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they use the same injection point and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 **Important note:** Note however that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. If the method invocations are serviced by different stateless session bean instances, the answer to the first question above is not necessarily 'Yes'.
 
@@ -154,19 +138,11 @@ The `JMSContext` object will be created when `method2a` uses the `context` varia
 
 #### Case B, option 3: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they  use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction.
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they  use the same `context` variable.
+Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 #### Case B, option 2: JMSContext lifecycle
 
@@ -227,19 +203,11 @@ This is `Bean2`
 
 #### Case C, option 2: Analysis
 
-{|- border="1"
-| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
-| No, since they are in different beans and so use different `context` variables.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| No. Although they are in the same `@TransactionScope`  they use different injection points. 
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different `MessageProducer` objects.
-|} 
+:--- | :---
+Do the `context` variables in the two calls to `context.send()`  use the same injection point? | No, since they are in different beans and so use different `context` variables.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are in the same `@TransactionScope`  they use different injection points. 
+Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
 
 #### Case C, option 2: JMSContext lifecycle
 
@@ -249,19 +217,11 @@ The `JMSContext` object used by `method2` will be created when  `method2` uses `
 
 #### Case C, option 3: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes. Although they are in different beans and so use different `context` variables, both variables are injected using identical annotations.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`. 
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they use the same `MessageProducer` object.
-|} 
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes. Although they are in different beans and so use different `context` variables, both variables are injected using identical annotations.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they are injected using identical annotations and are in the same `@TransactionScope`. 
+ Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they use the same `MessageProducer` object.
 
 #### Case C, option 3: JMSContext lifecycle
 
@@ -296,19 +256,11 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
 
 #### Case D, option 2: Analysis
 
-{|- border="1"
-| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
-| Yes, since they use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction and in the same method. Either of these would be sufficient to place them in the same scope.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they use the same injection point and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Do the `context` variables in the two calls to `context.send()`  use the same injection point? | Yes, since they use the same `context` variable.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction and in the same method. Either of these would be sufficient to place them in the same scope.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they use the same injection point and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 #### Case D, option 2: JMSContext lifecycle
 
@@ -316,19 +268,11 @@ The `JMSContext` object will be created when `method1` uses the `context` variab
 
 #### Case D, option 3: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes, since the two calls to `context.send()` take place in the same transaction and in the same method. Either of these would be sufficient to place them in the same scope.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they use the same `context` variable.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction and in the same method. Either of these would be sufficient to place them in the same scope.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 #### Case D, option 3: JMSContext lifecycle
 
@@ -358,19 +302,11 @@ Consider a stateless session bean `Bean1`. This is configured to use **bean**-ma
 
 #### Case E, option 2: Analysis
 
-{|- border="1"
-| Do the `context` variables in the two calls to `context.send()`  use the same injection point?
-| Yes, since they use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes. Although there is no transaction, the two calls to `context.send()` take place in the same method.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they use the same injection point and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Do the `context` variables in the two calls to `context.send()`  use the same injection point? | Yes, since they use the same `context` variable.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes. Although there is no transaction, the two calls to `context.send()` take place in the same method.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they use the same injection point and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 _Case E, option 2: JMSContext lifecycle
 
@@ -382,19 +318,11 @@ The same behaviour would apply when the bean is configured to use container-mana
 
 #### Case E, option 3: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they use the same `context` variable.
-|- valign="top"
-| Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`?
-| Yes. Although there is no transaction, the two calls to `context.send()` take place in the same method.
-|- valign="top"
-| Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they use the same `context` variable.
+Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes. Although there is no transaction, the two calls to `context.send()` take place in the same method.
+Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they are injected using identical annotations and are in the same `@TransactionScope`.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 #### Case E, option 3: JMSContext lifecycle
 
