@@ -341,7 +341,7 @@ Any | `String` | @MessageProperty("foo") | `message.getStringProperty("foo")`<br
 
 ## Summary and links to javadocs 
 
-The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html here]. Direct links to the javadocs for each class are given in the table below.
+The draft javadocs can be found [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html). Direct links to the javadocs for each class are given in the table below.
 
 {|- border="1"
 ! New or modified?
@@ -352,50 +352,50 @@ The draft javadocs can be found [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/
 | New
 | Marker interface
 | `javax.jms.JMSMessageDrivenBean`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html javadocs]
+| [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html)
 |-
 | New
 | Method annotation
 | `javax.jms.JMSListener`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html)
 |-
 | Modified
 | Method or field annotation
 | `javax.jms.JMSConnectionFactory`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html)
 |-
 | New
 | Method annotation
 | `javax.jms.Acknowledge`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html)
 |-|-
 | New
 | Method annotation
 | `javax.jms.SubscriptionDurability`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html)
 |-
 | New
 | Method annotation
 | `javax.jms.SubscriptionName`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html)
 |-
 | New
 | Method annotation
 | `javax.jms.ClientId`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html)
 |-
 | New
 | Method annotation
 | `javax.jms.MessageSelector`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html)
 |-
 | New
 | Parameter annotation
 | `javax.jms.MessageHeader`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html)
 |-
 | New
 | Parameter annotation
 | `javax.jms.MessageProperty`
-| [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html javadocs]
+| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html)
 |} 
