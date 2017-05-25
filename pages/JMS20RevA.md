@@ -46,50 +46,14 @@ ID | Description | Nature | Status
 [JMS_SPEC-157](https://github.com/javaee/jms-spec/issues/157) | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-156](https://github.com/javaee/jms-spec/issues/156) | JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE | Request for clarification | Deferred until JMS 2.1
 [JMS_SPEC-155](https://github.com/javaee/jms-spec/issues/155) | JMS 2.0 introduced incompatible changes to createSession(bool,int) | Compatibility error | Accepted for JMS 2.0 errata.
-Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify behaviour of createContext when used on a QueueConnectionFactory or TopicConnectionFactory  |  | Deferred until JMS 2.1.<br/>This is similar to existing issue  [https://github.com/javaee/jms-spec/issues/138 JMS_SPEC-138], which requests clarification of the behaviour of createConnection with these objects. 
-
-
-| [JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133)
-| Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession
-| Document error
-| Accepted for JMS 2.0 errata.
-|-    
-| [JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128)
-| Typo in section 4.14 "Queue"
-| Document error
-| Accepted for JMS 2.0 errata.
-|-    
-| [JMS_SPEC-127Z](https://github.com/javaee/jms-spec/issues/127)
-| Incorrect HTML in API documentation
-| Document error. 
-| These were corrected by the spec lead soon after the original JMS 2.0 release <br/>
-[Diffs of javadoc for Message](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589718)<br/>
-[Diffs of javadoc for JMSProducer](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589719)<br/>
-[Diffs of javadoc for MapMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589720)<br/>
-[Diffs of javadoc for StreamMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589721)
-|-  
-| [JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125)
-| Define whether a JMS provider should call reset after sending a BytesMessage asynchronously
-| Request for clarification.
-| Accepted for JMS 2.0 errata.
-|-   
-| [JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122)
-| Typos in javadocs for ConnectionFactory.createContext 
-| Document error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120)
-| Typo: in example, change .class() to .class
-| Document error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119)
-| Remove reference to password alias
-| Document error
-| Accepted for JMS 2.0 errata.
-|-  
-|}
-
+Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify behaviour of createContext when used on a QueueConnectionFactory or TopicConnectionFactory  |  | Deferred until JMS 2.1.<br/>This is similar to existing issue  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138), which requests clarification of the behaviour of createConnection with these objects. 
+[JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133) | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128) | Typo in section 4.14 "Queue" | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-127Z](https://github.com/javaee/jms-spec/issues/127) | Incorrect HTML in API documentation | Document error.  | These were corrected by the spec lead soon after the original JMS 2.0 release <br/>[Diffs of javadoc for Message](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589718)<br/>[Diffs of javadoc for JMSProducer](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589719)<br/>[Diffs of javadoc for MapMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589720)<br/>[Diffs of javadoc for StreamMessage](https://github.com/javaee/jms-spec/issues/127#issuecomment-298589721)
+[JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125) | Define whether a JMS provider should call reset after sending a BytesMessage asynchronously | Request for clarification. | Accepted for JMS 2.0 errata.
+[JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122) | Typos in javadocs for ConnectionFactory.createContext  | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120) | Typo: in example, change .class() to .class | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119) | Remove reference to password alias | Document error | Accepted for JMS 2.0 errata.
 
 <a name="review1ProposedChanges"/>
 ## Change log 
