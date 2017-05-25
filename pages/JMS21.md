@@ -11,17 +11,17 @@ The next version of the JMS specification will be JMS 2.1, which is being develo
 
 * The first JMS 2.1 early draft  is now out, containing a new chapter on flexible JMS message-driven beans. You can download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
 * The corresponding JMS 2.1 draft Javadocs can be viewed online [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/).
-* JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [https://java.net/projects/jms-spec/downloads/download/JMS%202.1/CON3942_WhatsNewInJMS21.pdf Download the slides].[https://youtu.be/6exFuFJhfcA?t=27336 Watch the video].
+* JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf).[Watch the video](https://youtu.be/6exFuFJhfcA?t=27336).
 * We've started to hold online meetings. See [[JMS21Meetings|Meetings]]
-* Early Draft 1 contained a proposal for "flexible JMS MDBs". We're continuing to improve this proposal: the latest thinking is summarised on [[JMSListener5|this wiki page]] and in [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/ these javadocs]
+* Early Draft 1 contained a proposal for "flexible JMS MDBs". We're continuing to improve this proposal: the latest thinking is summarised on [this page](/jms-spec/pages/JMSListener5) and in [these javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/)
 
 ## What's going to be in JMS 2.1? 
 
-The initial proposals for JMS 2.1 are summarised in [https://jcp.org/en/jsr/detail?id=368 JSR 368]. This is not intended to be a definitive list. It is expected that new items will be added, and some will be dropped, during the course of the development of the new specification.
+The initial proposals for JMS 2.1 are summarised in [JSR 368](https://jcp.org/en/jsr/detail?id=368). This is not intended to be a definitive list. It is expected that new items will be added, and some will be dropped, during the course of the development of the new specification.
 
-The current plan is described in the [[JMS21Plan|JMS 2.1 plan]]
+The current plan is described in the [JMS 2.1 plan](/jms-spec/pages/JMS21Plan)
 
-A longer list of issues proposed for JMS 2.1 may be found on the [[JMS21LongList|JMS 2.1 planning long list]]. Each issue is recorded in the [/jms-spec/pages/Home JIRA issue tracker]. Proposals for new features (or other changes to the specification) are always welcome. 
+A longer list of issues proposed for JMS 2.1 may be found on the [JMS 2.1 planning long list](/jms-spec/pages/JMS21LongList). Each issue is recorded in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues). Proposals for new features (or other changes to the specification) are always welcome. 
 
 ## How to get involved in JMS 2.1 
 
