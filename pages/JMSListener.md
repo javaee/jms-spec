@@ -96,7 +96,7 @@ Notes:
 
 <b>Issue I4:</b> The current proposal is that a JMS MDB has a single listener method. However EJB 3.2 section 5.4.2 and JCA 1.7 does allow a MDB to have more than one listener method, with the resource adapter deciding which method is invoked. Is this something we would want to allow? Would these be alternative callback methods for the same consumer, with the container choosing which one to call depending on the message and the method signature, or would these represent two completely different consumers, on different destinations?
 
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.  [EJVB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) proposes removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.  [EJB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) proposes removal of this requirement from the next version of EJB.  
 
 <b>Issue I6:</b> The reason why these annotations cannot be applied to the `onMessage` method of a `MessageListener` is that `MessageListener` is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 
@@ -162,9 +162,8 @@ The `@JMSListener` method annotation must always be supplied. It designates (1) 
 The destination can be specified in two ways:
 
 1. The `lookup` attribute can be used to specify the JNDI name of the queue or topic. This corresponds to the existing EJB 3.2 activation property `destinationLookup`.
-<br/>
- @JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)
-<br/>
+`@JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)`
+
 2. Alternatively the `name` attribute can be used to specify the "provider-specific" name of the queue or topic. The container would use the JMS methods `Session#createQueue` or `Session#createTopic`. This is a new feature which is not defined in EJB 3.2 and since these methods are provider-specific the specification would need to advise against using it in portable applications.
 <br/>
  @JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)
