@@ -69,18 +69,12 @@ ID | Description | Nature | Status
 [JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/164#issue-225650287).
 [JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [Changes to javadoc for JMSContext#setClientID](https://github.com/javaee/jms-spec/issues/163#issuecomment-298590494)].
 [JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/162#issuecomment-298590457)
-[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [Open MQ Fix details]|https://github.com/javaee/openmq/issues/359#issuecomment-300257172
+[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [Open MQ Fix details](https://github.com/javaee/openmq/issues/359#issuecomment-300257172
 [JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | [Changes to javadocs for Message and JMSConsumer](https://github.com/javaee/jms-spec/issues/160#issuecomment-298590418)
-[https://github.com/javaee/jms-spec/issues/158 JMS_SPEC-158] | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | [Changes to specification and javadocs for Connection, Session and JMSContext](https://github.com/javaee/jms-spec/issues/158#issuecomment-298590370).
-[https://github.com/javaee/jms-spec/issues/157 JMS_SPEC-157] | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | [Changes to specification and javadocs for Connection](https://github.com/javaee/jms-spec/issues/157#issuecomment-298590343).
+[JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158) | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | [Changes to specification and javadocs for Connection, Session and JMSContext](https://github.com/javaee/jms-spec/issues/158#issuecomment-298590370).
+[JMS_SPEC-157](https://github.com/javaee/jms-spec/issues/157) | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | [Changes to specification and javadocs for Connection](https://github.com/javaee/jms-spec/issues/157#issuecomment-298590343).
+[JMS_SPEC-155](https://github.com/javaee/jms-spec/issues/155) | JMS 2.0 introduced incompatible changes to createSession(bool,int) | Compatibility error | [Changes to specification (Connection only)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590302)<br/>[Changes for Connection.html#createSession(boolean, int)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590293)<br/>[Changes for Connection.html#createSession(int)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590295)
 
-| [https://github.com/javaee/jms-spec/issues/155 JMS_SPEC-155]
-| JMS 2.0 introduced incompatible changes to createSession(bool,int)
-| Compatibility error
-| [https://java.net/jira/browse/JMS_SPEC-155?focusedCommentId=382430 Changes to specification (Connection only)]<br/>
-[https://java.net/jira/browse/JMS_SPEC-155?focusedCommentId=382142 Changes for Connection.html#createSession(boolean, int)]<br/>
-[https://java.net/jira/browse/JMS_SPEC-155?focusedCommentId=382143 Changes for Connection.html#createSession(int)]
-|-
 | [https://github.com/javaee/jms-spec/issues/133 JMS_SPEC-133]
 | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession
 | Document error
