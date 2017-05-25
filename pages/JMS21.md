@@ -11,7 +11,7 @@ The next version of the JMS specification will be JMS 2.1, which is being develo
 
 * The first JMS 2.1 early draft  is now out, containing a new chapter on flexible JMS message-driven beans. You can download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
 * The corresponding JMS 2.1 draft Javadocs can be viewed online [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/).
-* JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf).[Watch the video](https://youtu.be/6exFuFJhfcA?t=27336).
+* JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf). [Watch the video](https://youtu.be/6exFuFJhfcA?t=27336).
 * We've started to hold online meetings. See [Meetings](/jms-spec/pages/JMS21Meetings)
 * Early Draft 1 contained a proposal for "flexible JMS MDBs". We're continuing to improve this proposal: the latest thinking is summarised on [this page](/jms-spec/pages/JMSListener5) and in [these javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/)
 
@@ -27,49 +27,45 @@ A longer list of issues proposed for JMS 2.1 may be found on the [JMS 2.1 planni
 
 ### Send an email
 
-If you would like to comment on the JSR, please do so by sending an email either to the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net]. Before you can post messages to this list you need to join the [http://jms-spec.java.net jms-spec.java.net] project as an observer and then subscribe to this list. For more information about JMS mailing lists see [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
+If you would like to comment on the JSR, please do so by sending an email either to the JMS community mailing list [users@jms-spec.java.net](mailto:users@jms-spec.java.net). Before you can post messages to this list you need to join the [jms-spec.java.net](http://jms-spec.java.net) project as an observer and then subscribe to this list. For more information about JMS mailing lists see [JMS community mailing lists](/jms-spec/#jms-community-mailing-lists). 
 
-If you prefer you can send email directly to  [mailto:nigel.deakin@oracle.com Nigel Deakin]. Please note that your comments may be forwarded to  [mailto:users@jms-spec.java.net users@jms-spec.java.net].
+If you prefer you can send email directly to  [Nigel Deakin](mailto:nigel.deakin@oracle.com). Please note that your comments may be forwarded to  [users@jms-spec.java.net](mailto:users@jms-spec.java.net).
 
 ### Join the community alias
 
-Even if you don't have anything to contribute at this stage, you can join the JMS community mailing list [mailto:users@jms-spec.java.net users@jms-spec.java.net] and see what is going on.  See [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project Mailing lists]. 
+Even if you don't have anything to contribute at this stage, you can join the JMS community mailing list [users@jms-spec.java.net](mailto:users@jms-spec.java.net) and see what is going on.  See [JMS community mailing lists](/jms-spec/#jms-community-mailing-lists). 
 
 ### Join the JSR 368 expert group 
 
-Applications to join the JSR 368 expert group are now invited. Please use the form at [https://jcp.org/en/jsr/egnom?id=368].  The application process is described in detail in [[HowToJoinTheJSR368ExpertGroup|How to join the JSR 368 expert group]].
+Applications to join the JSR 368 expert group are now invited. Please use the form at [https://jcp.org/en/jsr/egnom?id=368](https://jcp.org/en/jsr/egnom?id=368).
+The application process is described in detail in [How to join the JSR 368 expert group](/jms-spec/pages/HowToJoinTheJSR368ExpertGroup).
 
-All applications, and the decision for any rejection, are recorded on the [[JSR368EGNominations|JSR 368 expert group nominations]] page. 
+All applications, and the decision for any rejection, are recorded on the [JSR 368 expert group nominations](/jms-spec/pages/JSR368EGNominations) page. 
 
 Members of the JSR 343 expert group are invited to make a new application to join the JSR 368 expert group. 
 
 ### Log an issue or comment on an existing issue
 
-If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [https://jcp.org/en/jsr/detail?id=368 JSR 368], the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page], or in the [/jms-spec/pages/Home JIRA issue tracker] then you are welcome to log a new issue in JIRA.  Pleased read  [/jms-spec/pages/Home#Issue_tracker More information about the issue tracker]. We'll then add it to the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page] and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
+If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
 
 ### Attend our regular video meetings
 
-We've started to hold online meetings. See [[JMS21Meetings|Meetings]]
+We've started to hold online meetings. See [Meetings](/jms-spec/pages/JMS21Meetings).
 
 ##  JMS 2.1 plan
 
-See the JMS 2.1 plan, see the [[JMS21Plan|JMS 2.1 plan]]
+See the JMS 2.1 plan, see the [JMS 2.1 plan](/jms-spec/pages/JMS21Plan)
 
-For a longer list of all the open issues (many of which won't make it into JMS 2.1), see the [[JMS21LongList|JMS 2.1 planning long list]]
+For a longer list of all the open issues (many of which won't make it into JMS 2.1), 
+see the [JMS 2.1 planning long list](/jms-spec/pages/JMS21LongList).
 
 ##  JMS 2.1 schedule
 
-{|- border="1"
-! Stage
-! Initial plan<br/>(Sep 2014)
-! Current plan<br/> (updated  11 Jun 2015)
-! Actual
-|- 
-! JSR approval
-| Sep 2014
-|  
-| Sep 2014
-|-
+Stage | Initial plan<br/>(Sep 2014) | Current plan<br/> (updated  11 Jun 2015) | Actual
+:--- | :--- | :--- | :---
+JSR approval | Sep 2014 |   | Sep 2014
+
+
 ! Expert group formation
 | Q3 (Sep) 2014
 |  
