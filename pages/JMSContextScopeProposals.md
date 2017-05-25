@@ -27,7 +27,6 @@ Injection would only be supported if the following three conditions were all sat
 * the deployed archive contained a `META-INF/beans.xml` descriptor to enable CDI support
 
 The injected `JMSContext` would have a scope and lifecycle as follows:
-
 * The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
 * However, unlike a normal CDI request-scoped object, a separate JMSContext instance would be injected for every injection point.
 
@@ -38,7 +37,7 @@ The connection factory, user, password, session mode and autoStart behaviour, wh
 @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
 @JMSAutoStart(false)
 @JMSPasswordCredential(userName="admin",password="mypassword")
- private JMSContext context;
+private JMSContext context;
 ```
 ## Problems with the JMS 2.0 Early Draft proposal 
 
@@ -73,7 +72,7 @@ However this option would drop the requirement that a separate `JMSContext` inst
 
 This change addresses a limitation of option 2 which is illustrated in [Use case C](/jms-spec/pages/JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction). Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different `JMSContext` objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same `JMSContext` object would be used, meaning that messages sent using them will be delivered in order.
 
-However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method `setPriority%28int%29 `setPriority` (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
+However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method `setPriority` (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
 
 To avoid possible confusion whilst retaining the advantaged of CD scoping it is therefore proposed that different parts of the `JMSContext`'s state be given different priority:
 
