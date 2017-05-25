@@ -132,7 +132,9 @@ producer.send(destination,message);
 Note that even if the `JMSContext` were injected, the `JMSProducer` would be an ordinary Java variable, typically an ordinary method variable which is scoped to a specific invocation of the method in which it is declared. This means that there is no possibility of calling `setPriority` on a `JMSProducer` in one bean and for it to have an effect on a `JMSProducer` in another bean.
 
 One of the goals of the simplified API was to reduce the number of objects an application needed to create in order to send or receive a message. Adding a new `JMSProducer` object undermines this goal. However we can take reduce the amount of code needed by making all the setter methods return the `JMSProducer`, in order to allow method chaining:
-    context.createProducer().setPriority(1).send(destination,message);
+```
+context.createProducer().setPriority(1).send(destination,message);
+```
 
 ###  Other aspects of using a JMSProducer
 
