@@ -2,13 +2,15 @@
 
 The next version of the JMS specification will be JMS 2.1, which is being developed under the Java Community Process as [JSR 368](https://jcp.org/en/jsr/detail?id=368).  
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
 ## Latest news on JMS 2.1 
 
-* The first JMS 2.1 early draft  is now out, containing a new chapter on flexible JMS message-driven beans. You can download it [https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html here].
-* The corresponding JMS 2.1 draft Javadocs can be viewed online [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/ here].
+* The first JMS 2.1 early draft  is now out, containing a new chapter on flexible JMS message-driven beans. You can download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
+* The corresponding JMS 2.1 draft Javadocs can be viewed online [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/).
 * JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [https://java.net/projects/jms-spec/downloads/download/JMS%202.1/CON3942_WhatsNewInJMS21.pdf Download the slides].[https://youtu.be/6exFuFJhfcA?t=27336 Watch the video].
 * We've started to hold online meetings. See [[JMS21Meetings|Meetings]]
 * Early Draft 1 contained a proposal for "flexible JMS MDBs". We're continuing to improve this proposal: the latest thinking is summarised on [[JMSListener5|this wiki page]] and in [https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/ these javadocs]
