@@ -74,7 +74,7 @@ Notes:
 
 * The details of all these annotations are discussed in the next section.
 
-* The listener class is still a message-driven bean and so must be configured as one, either by adding the `@MessageDriven` annotation or using the `&lt;message-driven&gt;` element in the deployment descriptor.
+* The listener class is still a message-driven bean and so must be configured as one, either by adding the `@MessageDriven` annotation or using the `<message-driven>` element in the deployment descriptor.
 
 * A JMS MDB may have only one callback method.  
 
