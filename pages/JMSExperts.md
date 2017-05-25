@@ -19,7 +19,7 @@ All applications, and the decision for any rejection, are recorded on the [JSR 3
 
 ##  JMS expert group mailing lists
 
-This section lists the mailing lists for JSR 368 expert group members. Expert group members are also expected to join the **users@jms-spec.java.net** mailing list and may wish to join the **issues@jms-spec.java.net** and **commits@jms-spec.java.net** mailing lists. For more information see [[Home#JMS_community_mailing_lists|JMS community mailing lists]].
+This section lists the mailing lists for JSR 368 expert group members. Expert group members are also expected to join the **users@jms-spec.java.net** mailing list and may wish to join the **issues@jms-spec.java.net** and **commits@jms-spec.java.net** mailing lists. For more information see [JMS community mailing lists](/jms-spec/#jms-community-mailing-lists).
 
 Email address | Purpose | Access
 :=== | :=== | :===
