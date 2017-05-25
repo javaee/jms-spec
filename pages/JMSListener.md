@@ -35,7 +35,7 @@ These new annotations will initially be available only on MDBs. This offers a la
 
 These are currently just proposals, and comments are invited, especially to the various issues mentioned.
 
-See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21].
+See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21).
 
 ## Specifying the callback method 
 
