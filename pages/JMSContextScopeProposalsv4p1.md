@@ -32,17 +32,18 @@ Injection would only be supported if the following three conditions were all sat
 
 The injected `JMSContext` would have a scope and lifecycle as follows:
 
-*The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
+* The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
 * However, unlike a normal CDI request-scoped object, a separate JMSContext instance would be injected for every injection point.
 
 The connection factory, user, password, session mode and autoStart behaviour, where needed, could  be specified using annotations as follows:
-
- @Inject
- @JMSConnectionFactory("jms/connectionFactory") 
- @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
- @JMSAutoStart(false)
- @JMSPasswordCredential(userName="admin",password="mypassword")
- private JMSContext context;
+```
+@Inject
+@JMSConnectionFactory("jms/connectionFactory") 
+@JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
+@JMSAutoStart(false)
+@JMSPasswordCredential(userName="admin",password="mypassword")
+private JMSContext context;
+```
 
 ## Problems with the JMS 2.0 Early Draft proposal 
 
