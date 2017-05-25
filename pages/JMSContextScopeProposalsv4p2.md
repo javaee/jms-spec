@@ -2,16 +2,16 @@
 
 ## Summary 
 
-This page contains a number of use cases which demonstrate how the scope proposed in [[JMSContextScopeProposalsv4p1|Injection of JMSContext objects - Proposals (version 4)]] would appear to users. Each use case is followed by an analysis. 
+This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 
-After reading these, now read [[JMSContextScopeProposalsv4p3|Injection of JMSContext objects - Use Cases F-K (version 4)]]
+After reading these, now read [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3).
 
-Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]]
+Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
+
+## Contents
 
 * auto-gen TOC:
 {:toc}
-
-## Use cases 
 
 ### Use case A: Two methods on the same bean within separate transactions
 
