@@ -4,7 +4,7 @@
 
 This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
 
-If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction).
+If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction).
 
 Note that these use cases are not intended to demonstrate how `@TransactionScoped` beans behave in general. They are intended only to demonstrate how injected `JMSContext` objects behave.
 
@@ -64,7 +64,7 @@ The `JMSContext` object used by `method1b` will be created when `method1b` uses 
 Q | A
 :--- | :---
 Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they  use the same `context` variable.
-| Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | No, since the two calls to `context.send()` take place in different transactions
+Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | No, since the two calls to `context.send()` take place in different transactions
  Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are injected using identical annotatons they are not in the same `@TransactionScope`
 Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
 
@@ -84,9 +84,8 @@ Consider two stateless session beans, `Bean1` and `Bean2`.
 
 A remote client obtains a reference to `Bean1` and calls `method1`
 
-<br/>
 This is `Bean1`:
-
+```
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean1{
@@ -99,10 +98,9 @@ This is `Bean1`:
        bean2.method2b();
     }
  }
-
-<br/>
+```
 This is `Bean2`:
-
+```
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean2{
@@ -123,6 +121,7 @@ This is `Bean2`:
        context.send(queue,"Message 2);
      }
  }
+```
 
 ### Case B, option 2: Analysis
 
@@ -163,9 +162,8 @@ Consider two stateless session beans, `Bean1` and `Bean2`
 
 A remote client obtains a reference to `Bean1` and calls `method1`
 
-<br/>
 This is `Bean1`
-
+```
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean1 {
@@ -184,11 +182,9 @@ This is `Bean1`
         bean2.method2();
     } 
  }
-
-<br/>
+```
 This is `Bean2`
-
- 
+``` 
  @TransactionManagement(TransactionManagementType.CONTAINER) 
  @Stateless
  public class Bean2 {
@@ -204,6 +200,7 @@ This is `Bean2`
         context.send(queue,"Message 2");
     }
  }
+```
 
 ### Case C, option 2: Analysis
 
@@ -341,4 +338,4 @@ Note that it is entirely valid to create and use a `JMSContext` object when ther
 
 The same behaviour would apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`.
 
-After reading these, now read [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]]
+After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 3)](jms-spec/pages/JMSContextScopeProposals3)
