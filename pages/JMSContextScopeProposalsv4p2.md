@@ -120,7 +120,7 @@ Are the `context` variables in the two calls to `context.send()` in the same sco
 Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes. They are injected using identical annotatons and have same transaction scope.
 Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
-#### Case B: JMSContext lifecycle
+### Case B: JMSContext lifecycle
 
 The `JMSContext` object will be created when `method2a` uses the `context` variable for the first time, and destroyed when when the transaction is committed, which will occur after `method1` returns.
 
