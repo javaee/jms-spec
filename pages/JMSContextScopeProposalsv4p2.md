@@ -233,42 +233,32 @@ Consider a stateless session bean `Bean1`. This is configured to use **bean**-ma
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
 ```
- @TransactionManagement(TransactionManagementType.BEAN)
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.BEAN)
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
   
-    public void method1() {
-        context.send(queue,"Message 1");
-        context.send(queue,"Message 2");
-    }
- }
+  public void method1() {
+    context.send(queue,"Message 1");
+    context.send(queue,"Message 2");
+  }
+}
 ```
 
 ### Case E: Analysis
 
 Q | A
 :--- | :---
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they they use the same variable declaration.
-|- valign="top"
-| What scope do the `context` variables in the two calls to `context.send()` have?
-| Both  calls to `context.send()` take place when there is no transaction, so they both have **request** scope.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same scope?
-| Yes, since the two calls to `context.send()` take place in the same request
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes. They are injected using identical annotations and have the same request scope.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they they use the same variable declaration.
+What scope do the `context` variables in the two calls to `context.send()` have? | Both  calls to `context.send()` take place when there is no transaction, so they both have **request** scope.
+Are the `context` variables in the two calls to `context.send()` in the same scope? | Yes, since the two calls to `context.send()` take place in the same request
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes. They are injected using identical annotations and have the same request scope.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
 #### Case E: JMSContext lifecycle
 
@@ -278,4 +268,4 @@ Note that it is entirely valid to create and use a `JMSContext` object when ther
 
 The same behaviour would apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`.
 
-After reading these, now read [[JMSContextScopeProposalsv4p3|Injection of JMSContext objects - Use Cases F-K (version 4)]]
+After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3)
