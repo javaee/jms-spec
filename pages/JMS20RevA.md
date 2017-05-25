@@ -64,27 +64,16 @@ This table lists all the changes in JMS 2.0 revision a.
 
 ID | Description | Nature | Status
 :--- | :--- | :--- | :---
-[https://github.com/javaee/jms-spec/issues/167 JMS_SPEC-167] | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [https://java.net/jira/browse/JMS_SPEC-167?focusedCommentId=383844 Changes to javadoc for Session].
-[https://github.com/javaee/jms-spec/issues/165 JMS_SPEC-165] | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [https://java.net/jira/browse/JMS_SPEC-165?focusedCommentId=382826 Changes to specification].
-[https://github.com/javaee/jms-spec/issues/164 JMS_SPEC-164] | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [https://java.net/jira/browse/JMS_SPEC-164 Changes to specification].
-[https://github.com/javaee/jms-spec/issues/163 JMS_SPEC-163] | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [https://java.net/jira/browse/JMS_SPEC-163?focusedCommentId=382062 Changes to javadoc for JMSContext#setClientID].
+[JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [https://java.net/jira/browse/JMS_SPEC-167?focusedCommentId=383844 Changes to javadoc for Session].
+[JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [https://java.net/jira/browse/JMS_SPEC-165?focusedCommentId=382826 Changes to specification].
+[JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [https://java.net/jira/browse/JMS_SPEC-164 Changes to specification].
+[JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [Changes to javadoc for JMSContext#setClientID(https://github.com/javaee/jms-spec/issues/163#issuecomment-298590494)].
+[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | [https://java.net/jira/browse/JMS_SPEC-162?focusedCommentId=382061 Changes to specification]
+[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [https://java.net/jira/browse/MQ-359?focusedCommentId=381985 Fix details]
+[JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | [https://java.net/jira/browse/JMS_SPEC-160?focusedCommentId=382069 Changes to javadocs for Message and JMSConsumer]
+
 
   
-| [https://github.com/javaee/jms-spec/issues/162 JMS_SPEC-162]
-| Typos in section 7.3 "Asynchronous send"
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-162?focusedCommentId=382061 Changes to specification]
-|-  
-| [https://github.com/javaee/jms-spec/issues/161 JMS_SPEC-161]
-| serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0
-| Compatibility error
-| [https://java.net/jira/browse/MQ-359?focusedCommentId=381985 Fix details]
-|-  
-| [https://github.com/javaee/jms-spec/issues/160 JMS_SPEC-160]
-| JMS API source contains self-closing HTML tags
-| Typo
-| [https://java.net/jira/browse/JMS_SPEC-160?focusedCommentId=382069 Changes to javadocs for Message and JMSConsumer]
-|-  
 | [https://github.com/javaee/jms-spec/issues/158 JMS_SPEC-158]
 | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close
 | Compatibility error
