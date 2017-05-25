@@ -36,51 +36,19 @@ This list does not include proposals for new features in JMS 2.1.
 ID | Description | Nature | Status
 :--- | :--- | :--- | :---
 [JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | Accepted for JMS 2.0 errata.
-| [JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | Accepted for JMS 2.0 errata
+[JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158) | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-157](https://github.com/javaee/jms-spec/issues/157) | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-156](https://github.com/javaee/jms-spec/issues/156) | JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE | Request for clarification | Deferred until JMS 2.1
+[JMS_SPEC-155](https://github.com/javaee/jms-spec/issues/155) | JMS 2.0 introduced incompatible changes to createSession(bool,int) | Compatibility error | Accepted for JMS 2.0 errata.
+Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify behaviour of createContext when used on a QueueConnectionFactory or TopicConnectionFactory  |  | Deferred until JMS 2.1.<br/>This is similar to existing issue  [https://github.com/javaee/jms-spec/issues/138 JMS_SPEC-138], which requests clarification of the behaviour of createConnection with these objects. 
 
 
-| [JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162)
-| Typos in section 7.3 "Asynchronous send"
-| Document error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161)
-| serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0
-| Compatibility error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160)
-| JMS API source contains self-closing HTML tags
-| Typo
-| Accepted for JMS 2.0 errata.]
-|-  
-| [JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158)
-| JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close
-| Compatibility error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-157](https://github.com/javaee/jms-spec/issues/157)
-| JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE
-| Compatibility error
-| Accepted for JMS 2.0 errata.
-|-  
-| [JMS_SPEC-156](https://github.com/javaee/jms-spec/issues/156)
-| JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE
-| Request for clarification
-| Deferred until JMS 2.1
-|-  
-| [JMS_SPEC-155](https://github.com/javaee/jms-spec/issues/155)
-| JMS 2.0 introduced incompatible changes to createSession(bool,int)
-| Compatibility error
-| Accepted for JMS 2.0 errata.
-|-
-| Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138)
-| Clarify behaviour of createContext when used on a QueueConnectionFactory or TopicConnectionFactory 
-| 
-| Deferred until JMS 2.1.<br/>This is similar to existing issue  [https://github.com/javaee/jms-spec/issues/138 JMS_SPEC-138] , which requests clarification of the behaviour of createConnection with these objects. 
-|-  
 | [JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133)
 | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession
 | Document error
