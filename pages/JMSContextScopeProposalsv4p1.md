@@ -78,9 +78,9 @@ If, within the same scope, different beans, or different methods within the same
 
 Although this is normal CDI behaviour this is potentially confusing to developers because it means that changing a property of a JMSContext in one bean would change that property in a JMSContext in a different bean, despite different variables being used.  
 
-To avoid this potential confusion,  some major changes are proposed to the `JMSContext` API for sending messages. These are described in  [[JMSContextScopeProposalsv4p4|Proposed changes to JMSContext to support injection (Option 4)]].
+To avoid this potential confusion,  some major changes are proposed to the `JMSContext` API for sending messages. These are described in  [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
 
 ## Use cases 
 
-After reading this, please read  [Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/[ages/JMSContextScopeProposalsv4p2) and [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/[ages/JMSContextScopeProposalsv4p2).
+After reading this, please read  [Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2) and [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2).
 
