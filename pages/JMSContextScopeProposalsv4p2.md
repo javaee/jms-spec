@@ -13,57 +13,48 @@ Note that these examples do **not** use the proposed new `JMSContext` API for se
 * auto-gen TOC:
 {:toc}
 
-### Use case A: Two methods on the same bean within separate transactions
+## Use case A: Two methods on the same bean within separate transactions
 
 Consider a stateless session bean configured to use container-managed transactions with two business methods. Each method is configured to require a transaction. The bean has an injected `JMSContext`. Each method uses the context to send a message.  
 
 A remote client obtains a reference to `Bean1` and calls the methods `method1a` and `method1b` in turn. 
 
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean1{
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean1{
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1a() {
-       context.send(queue,"Message 1);
-    }
+  @TransactionAttribute(REQUIRED)
+  public void method1a() {
+    context.send(queue,"Message 1);
+  }
  
-    @TransactionAttribute(REQUIRED)
-    public void method1b() {
-       context.send(queue,"Message 2);
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1b() {
+    context.send(queue,"Message 2);
+  }
+}
 ```
 
-#### Case A: Analysis
+### Case A: Analysis
 
-{|- border="1"
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they  use the same variable declaration.
-|- valign="top"
-| What scope do the `context` variables in the two calls to `context.send()` have?
-| Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same scope?
-| No, since the two calls to `context.send()` take place in different transactions
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| No. Although they are injected using identical annotatons they are not in the same transaction and so have separate transaction scopes.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| No, since they are sent using different `MessageProducer` objects.
-|} 
+Q | A
+:--- | :---
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they  use the same variable declaration.
+What scope do the `context` variables in the two calls to `context.send()` have? | Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
+Are the `context` variables in the two calls to `context.send()` in the same scope? | No, since the two calls to `context.send()` take place in different transactions
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are injected using identical annotatons they are not in the same transaction and so have separate transaction scopes.
+ Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
 
   * Important note:** Note that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. However, even if the method invocations are serviced by different stateless session bean instances this does not affect whether or not the same `JMSContext` object is used. 
 
-#### Case A: JMSContext lifecycle
+### Case A: JMSContext lifecycle
 
 The `JMSContext` object used by `method1a` will be created when `method1a` uses `context` for the first time, and destroyed when the first transaction is committed.
 
@@ -121,7 +112,8 @@ This is `Bean2`:
 
 #### Case B: Analysis
 
-{|- border="1"
+Q | A
+:--- | :---
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
 | Yes, since they  use the same variable declaration.
 |- valign="top"
@@ -195,7 +187,8 @@ This is `Bean2`
 
 #### Case C: Analysis
 
-{|- border="1"
+Q | A
+:--- | :---
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
 | Yes. Although they use separate variable declarations, both declarations use identical annotations.
 |- valign="top"
@@ -242,7 +235,8 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
 
 # Case D: Analysis
 
-{|- border="1"
+Q | A
+:--- | :---
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
 | Yes, since they they use the same variable declaration.
 |- valign="top"
@@ -288,7 +282,8 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
 
 #### Case E: Analysis
 
-{|- border="1"
+Q | A
+:--- | :---
 | Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
 | Yes, since they they use the same variable declaration.
 |- valign="top"
