@@ -22,7 +22,7 @@ All applications, and the decision for any rejection, are recorded on the [JSR 3
 This section lists the mailing lists for JSR 368 expert group members. Expert group members are also expected to join the **users@jms-spec.java.net** mailing list and may wish to join the **issues@jms-spec.java.net** and **commits@jms-spec.java.net** mailing lists. For more information see [[Home#JMS_community_mailing_lists|JMS community mailing lists]].
 
 Email address | Purpose | Access
-:=== | :=== :===
+:=== | :=== | :===
 **jsr368-experts@jms-spec.java.net**  | Mailing list for members of the JSR 368 (JMS 2.1)  expert group. Discussions on this mailing list are forwarded  to **users@jms-spec.java.net** to allow observers to monitor the discussions of the expert group. For reasons of [http://jcp.org/en/resources/transparency transparency] expert group discussions should use this list where possible. On the rare occasions where a discussion needs to be kept private to the EG, use **jsr-368-eg@jcp.org** instead. | Before you can receive messages from or post messages to this list, you need to be a member of the  [JSR 368](http://jcp.org/en/jsr/summary?id=368) expert group ([apply here](https://jcp.org/en/jsr/egnom?id=368)), join the [jms-spec.java.net](http://jms-spec.java.net) project as an observer ([how to do this](/jms-spec/#mailing-lists-faq), request that the spec lead make you a "content developer", and then subscribe to this list ([how to do this](/jms-spec/pages/Home#Mailing_lists_FAQ). [Online archive of past messages](http://java.net/projects/jms-spec/lists/jsr343-experts/archive)
 
 | **jsr-368-eg@jcp.org**
