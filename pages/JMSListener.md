@@ -165,9 +165,7 @@ The destination can be specified in two ways:
 `@JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)`
 
 2. Alternatively the `name` attribute can be used to specify the "provider-specific" name of the queue or topic. The container would use the JMS methods `Session#createQueue` or `Session#createTopic`. This is a new feature which is not defined in EJB 3.2 and since these methods are provider-specific the specification would need to advise against using it in portable applications.
-<br/>
- @JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)
-<br/>
+`@JMSListener(name="tradeTopic", type=JMSListener.Type.Topic)`<br><br>
 The `@JMSListener` method annotation also has a mandatory attribute `type`. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property `destinationType`, though the attribute is an enumerated type rather than a `String`.
 
 <b>Issue I11:</b> Allowing the queue or topic to be specified by destination name rather than by JNDI name is a new feature. Since it is not portable, is this actually desirable?
