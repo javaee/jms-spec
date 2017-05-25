@@ -338,4 +338,4 @@ Note that it is entirely valid to create and use a `JMSContext` object when ther
 
 The same behaviour would apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`.
 
-After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 3)](jms-spec/pages/JMSContextScopeProposals3)
+After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3)
