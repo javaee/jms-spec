@@ -95,7 +95,7 @@ I tried to reply to an email but it was rejected. Why?
 
 Email address | Purpose | Access
 :------------ | :------ | :-----
-  * jsr-368-observers@jcp.org** | Legacy mailing list for observers of JSR 368. <br /><br /> Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br /> If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above. | Registered observers of [JSR 368](http://jcp.org/en/jsr/summary?id=368) are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. <br /><br />There is currently no online archive of past messages.
+  **jsr-368-observers@jcp.org** | Legacy mailing list for observers of JSR 368. <br /><br /> Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br /> If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above. | Registered observers of [JSR 368](http://jcp.org/en/jsr/summary?id=368) are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. <br /><br />There is currently no online archive of past messages.
 
 ## JMS expert group mailing lists
 
