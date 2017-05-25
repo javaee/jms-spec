@@ -4,11 +4,11 @@
 
 This page discusses that part of the JMS 2.0 Early Draft which defines how `javax.jms.JMSContext` objects may be injected.   In particular it discusses the scope and lifecycle of injected `JMSContext` objects. 
 
-**The JMS 2.0 Early Draft** proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as **Option 1**.
+  * The JMS 2.0 Early Draft** proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as **Option 1**.
 
-**Two further proposals** were made which both envisaged a new scope called `@TransactionScoped` which would have the scope of a transaction, but extended to the start and end of the method. In [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) it was proposed that a separate JMSContext instance would still be injected for every injection point. [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) offered a variant of this: the requirement that a separate JMSContext instance would be injected for every injection point was dropped but instead a requirement that the injected JMSContext's six state properties would be given dependent scope.
+  * Two further proposals** were made which both envisaged a new scope called `@TransactionScoped` which would have the scope of a transaction, but extended to the start and end of the method. In [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) it was proposed that a separate JMSContext instance would still be injected for every injection point. [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) offered a variant of this: the requirement that a separate JMSContext instance would be injected for every injection point was dropped but instead a requirement that the injected JMSContext's six state properties would be given dependent scope.
 
-**This page now describes a fourth option**, Option 4. This proposals new a new definition of the scope of an injected `JMSContext`.  It should be read in conjunction with some new  [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
+  * This page now describes a fourth option**, Option 4. This proposals new a new definition of the scope of an injected `JMSContext`.  It should be read in conjunction with some new  [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
 
 The scope described here is illustrated in a series of use cases:  [Injection of JMSContext objects - Use Cases A - E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2) and [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3).
 
@@ -63,13 +63,13 @@ There has also been discussion as to whether the annotations for specifying the 
 In this proposal, the scope of an injected JMSContext object will depend on whether it is used in a transaction. Whereas  [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and  [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) proposed a single scope which was used irrespective of whether there was a transaction or not, this option proposes that the scope used depends on whether the injected JMSContext is used in a transaction or not.
 
 * If an injected JMSContext is used in a JTA transaction (both bean-managed and container-managed), its scope will be that of the transaction. This means that:
-** The JMSContext object will be automatically created the first time it is used within the transaction.
-** The JMSContext object will be automatically closed when the transaction is committed.
-** If, within the same JTA transaction, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
+  * The JMSContext object will be automatically created the first time it is used within the transaction.
+  * The JMSContext object will be automatically closed when the transaction is committed.
+  * If, within the same JTA transaction, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
 * If an injected JMSContext is used when there is no JTA transaction then its scope will be the existing CDI scope @RequestScoped. This means that:
-** The JMSContext object will be created the first time it is used within a request.
-** The JMSContext object will be closed when the request ends.
-** If, within the same request, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
+  * The JMSContext object will be created the first time it is used within a request.
+  * The JMSContext object will be closed when the request ends.
+  * If, within the same request, different beans, or different methods within the same bean, use an injected JMSContext which is injected using identical annotations then they will all share the same JMSContext object.
 * If injected JMSContext is used both in a JTA transaction and outside a JTA transaction then separate JMSContext objects will be used, with a separate JMSContext object being used for each JTA transaction as described above.
 
 ### Modified JMSContext API

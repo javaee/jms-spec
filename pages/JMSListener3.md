@@ -341,8 +341,8 @@ The proposals above could be extended to include a fuller set of features which 
 * The maximum number of times a message can be redelivered before some other action is taken
 
 * The action to be taken when the redelivery limit has been reached. Options could be
-** delete the message
-** forward the message to a specified queue or topic
+  * delete the message
+  * forward the message to a specified queue or topic
 
 The proposals above will define the behaviour when none of these are specified. 
 
