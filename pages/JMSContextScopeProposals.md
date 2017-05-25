@@ -6,9 +6,9 @@ This page discusses that part of the JMS 2.0 Early Draft which defines how `java
 
 The JMS 2.0 Early Draft proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".
 
-This page describes some drawbacks to that proposal and offers two alternatives, [[JMSContextScopeProposals#Option_2|Option 2]] and  [[JMSContextScopeProposals#Option_3|Option 3]]. 
+This page describes some drawbacks to that proposal and offers two alternatives, [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and  [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
 
-After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]] and [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]].
+After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
 
 * auto-gen TOC:
 {:toc}
@@ -16,9 +16,9 @@ After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSCon
 ## Proposal in JMS 2.0 Early Draft (Option 1) 
 
 The JMS 2.0 early draft (section 11.3) specified that applications may declare a field of type `javax.jms.JMSContext` and annotate it with the `javax.inject.Inject` annotation as follows:
-
- @Inject JMSContext context;
-
+```
+@Inject JMSContext context;
+```
 This would cause the container to inject a `JMSContext`. 
 
 Injection would only be supported if the following three conditions were all satisfied:
@@ -28,18 +28,18 @@ Injection would only be supported if the following three conditions were all sat
 
 The injected `JMSContext` would have a scope and lifecycle as follows:
 
-*The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
+* The injected `JMSContext` would have request scope and be automatically closed when the request ends. 
 * However, unlike a normal CDI request-scoped object, a separate JMSContext instance would be injected for every injection point.
 
 The connection factory, user, password, session mode and autoStart behaviour, where needed, could  be specified using annotations as follows:
-
- @Inject
- @JMSConnectionFactory("jms/connectionFactory") 
- @JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
- @JMSAutoStart(false)
- @JMSPasswordCredential(userName="admin",password="mypassword")
+```
+@Inject
+@JMSConnectionFactory("jms/connectionFactory") 
+@JMSSessionMode(JMSContext.AUTO_ACKNOWLEDGE)
+@JMSAutoStart(false)
+@JMSPasswordCredential(userName="admin",password="mypassword")
  private JMSContext context;
-
+```
 ## Problems with the JMS 2.0 Early Draft proposal 
 
 Since the Early Draft was published there has been a great deal of discussion in the JSR 343 expert group and elsewhere about how `JMSContext` objects should be injected. The following conclusions were drawn:
@@ -60,7 +60,7 @@ To address the problems with the Early Draft proposal, two possible alternatives
 
 This option proposes that the JMS 2.0 public draft (section 11.3) should specify that the injected `JMSContext` would have a scope and lifecycle as follows:
 
-*The injected `JMSContext` would have a new CDI scope called "transaction". This scope would end, and the injected `JMSContext` automatically closed, when the transaction ends, or the method ends, whichever comes last. 
+* The injected `JMSContext` would have a new CDI scope called "transaction". This scope would end, and the injected `JMSContext` automatically closed, when the transaction ends, or the method ends, whichever comes last. 
 * In addition to the functionality offered through the new scope, JMS will ensure that a separate `JMSContext` instance would be injected for every injection point.
 
 A full definition of this new "transaction" scope will be defined in CDI 1.1. 
@@ -73,7 +73,7 @@ However this option would drop the requirement that a separate `JMSContext` inst
 
 This change addresses a limitation of option 2 which is illustrated in <a href="#Use_case_C._One_bean_which_calls_another_within_the_same_transaction">Use case C</a> below. Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different `JMSContext` objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same `JMSContext` object would be used, meaning that messages sent using them will be delivered in order.
 
-However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method [http://jms-spec.java.net/2.0-SNAPSHOT/apidocs/javax/jms/JMSContext.html#setPriority%28int%29 `setPriority`] (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
+However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method `setPriority%28int%29 `setPriority` (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
 
 To avoid possible confusion whilst retaining the advantaged of CD scoping it is therefore proposed that different parts of the `JMSContext`'s state be given different priority:
 
@@ -89,7 +89,7 @@ Since the user doesn't have direct access to the `JMSContext`'s underlying `Conn
 
 ## Proposed definition of TransactionScoped for CDI 1.1
 
-Here's Reza's draft proposal to the CDI developer alias: (also available in the cdi-dev archives  [http://lists.jboss.org/pipermail/cdi-dev/2012-May/001856.html here])
+Here's Reza's draft proposal to the CDI developer alias (also available in the cdi-dev archives  [here](http://lists.jboss.org/pipermail/cdi-dev/2012-May/001856.html here):
 
 <blockquote>
 The transaction context is provided by a context object for the built-in scope type @TransactionScoped. When a JTA transaction is available, the transaction scope is active when TransactionManager.begin is called (when the status goes to active), and ends when TransactionManager.commit or TransactionManager.rollback is called. In the absence of a currently active transaction or in case of very short-lived transactions that are begun and committed within a single managed bean method call, the transaction context is active during the managed bean method call and ends when the managed bean method returns. Note that each managed bean method call begins and ends its own separate local context. Note also that most Container-Managed Transactions (CMT) span one or more manage bean method calls. Conversely, most Bean-Manage Transactions (BMT) are begun and committed during a single method call (for the purposes of defining this context, it is assumed that JTA is the underlying transaction API used by both CMT and BMT).
@@ -103,6 +103,4 @@ If a transaction is suspended, transactional scoped objects are not impacted. It
 
 ## Use cases 
 
-After reading this, please read  [[JMSContextScopeProposals2|Injection of JMSContext objects - Use Cases A-E (version 3)]] and [[JMSContextScopeProposals3|Injection of JMSContext objects - Use Cases F-K (version 3)]].
-
-
+After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
