@@ -64,38 +64,12 @@ see the [JMS 2.1 planning long list](/jms-spec/pages/JMS21LongList).
 Stage | Initial plan<br/>(Sep 2014) | Current plan<br/> (updated  11 Jun 2015) | Actual
 :--- | :--- | :--- | :---
 JSR approval | Sep 2014 |   | Sep 2014
-
-
-! Expert group formation
-| Q3 (Sep) 2014
-|  
-| Dec 2014
-|-   
-! Early draft review 1
-| 
-| 
-|  Oct 2015
-|-
-! Early draft review 2
-| Q1 (Mar) 2015
-| Q4 (Dec) 2015
-|  
-|-
-! Public Review
-| Q3 (Sep) 2015
-| Q1 (Mar) 2016
-| 
-|-
-! Proposed Final Draft  
-| Q4 (Dec) 2015
-| Q3 (Sep) 2016
-|  
-|-
-! Final release
-| Q3 (Sep) 2016
-| H1 (Jun) 2017
-|  
-|}
+Expert group formation | Q3 (Sep) 2014 |   | Dec 2014
+Early draft review 1 |  |  |  Oct 2015
+Early draft review 2 | Q1 (Mar) 2015 | Q4 (Dec) 2015 |  
+Public Review | Q3 (Sep) 2015 | Q1 (Mar) 2016 | 
+Proposed Final Draft | Q4 (Dec) 2015 | Q3 (Sep) 2016 |  
+Final release | Q3 (Sep) 2016 | H1 (Jun) 2017 |  
 
 This is based in the [https://www.jcp.org/en/jsr/detail?id=366 schedule for the Java EE platform]
 
