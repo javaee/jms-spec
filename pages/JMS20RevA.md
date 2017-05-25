@@ -83,48 +83,20 @@ ID | Description | Nature | Status
 
 ## Feedback 
 
-Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [mailto:users@jms-spec.java.net users@jms-spec.java.net] mailing list. Instructions on how to join the mailing list may be found [/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here].
+Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [users@jms-spec.java.net](mailto:users@jms-spec.java.net) mailing list. Instructions on how to join the mailing list may be found [here](https://javaee.github.io/jms-spec/#jms-community-mailing-lists).
 
 ## Timescales 
 
-{|- border="1"                                                                                          
-! Stage                                                                                                    
-! Current plan<br/>(updated 27 Jan 2015)
-! Actual                                                                                                 
-|-                                                                                                      
-| Start of Informal discussions                              
-|                           
-| Mon 24 Nov 2014  
-|- 
-| Informal discussions                                 
-|                           
-|  Mon 24 Nov 2014 - Fri 16 Dec 2014                    
-|- 
-| Maintenance lead sends list of proposed changes to JCP
-|   
-|  Fri 23 Jan 2015          
-|- 
-| Formal public maintenance review period                               
-|                                  
-|  Mon 21 Jan 2015 - Sun 22 Feb 2015 
-|- 
-| Start of EC ballot:                
-| Mon 23 Feb 2015                                                          
-| Mon 23 Feb 2015            
-|- 
-| End of EC ballot: 
-| Mon 2 Mar 2015                                                                 
-| Mon 2 Mar 2015       
-|- 
-| Maintenance lead sends final materials sent to PMO     
-| Fri 6 March 2015                        
-| Fri 6 March 2015       
-|- 
-| Errata release                                     
-|  Mon 9 March 2015     
-|  
-|- 
-|}
+Stage | Current plan<br/>(updated 27 Jan 2015) | Actual
+:--- | :--- | :---
+Start of Informal discussions |  | Mon 24 Nov 2014  
+Informal discussions          |  |  Mon 24 Nov 2014 - Fri 16 Dec 2014                    
+Maintenance lead sends list of proposed changes to JCP |  |  Fri 23 Jan 2015          
+Formal public maintenance review period |  |  Mon 21 Jan 2015 - Sun 22 Feb 2015 
+Start of EC ballot: | Mon 23 Feb 2015 | Mon 23 Feb 2015            
+End of EC ballot: | Mon 2 Mar 2015 | Mon 2 Mar 2015 
+Maintenance lead sends final materials sent to PMO | Fri 6 March 2015 | Fri 6 March 2015       
+Errata release |  Mon 9 March 2015 | 
 
 ## What is the version number of this errata release? 
 
