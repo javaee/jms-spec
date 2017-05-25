@@ -1,4 +1,4 @@
-=Proposals for the injection of JMSContext objects### 
+# Proposals for the injection of JMSContext objects
 
 ## Option 1 
 
