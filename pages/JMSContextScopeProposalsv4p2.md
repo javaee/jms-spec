@@ -124,7 +124,7 @@ Are the two messages guaranteed to be delivered in the order in which they are s
 
 The `JMSContext` object will be created when `method2a` uses the `context` variable for the first time, and destroyed when when the transaction is committed, which will occur after `method1` returns.
 
-### Use case C. One bean which calls another within the same transaction
+## Use case C. One bean which calls another within the same transaction
 
 Consider two stateless session beans, `Bean1` and `Bean2`
 
@@ -189,55 +189,45 @@ Are the two messages guaranteed to be delivered in the order in which they are s
 
 The `JMSContext` object will be created when  `method1` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after `method1` returns.
 
-### Use case D. One bean which sends two messages within the same transaction
+## Use case D. One bean which sends two messages within the same transaction
 
 Consider a stateless session bean `Bean1`. This is configured to use container-managed transactions and has one business method, `method1`, which is configured to require a transaction. The bean has an injected `JMSContext` . `method1` uses the context to send two messages.
 
 A remote client obtains a reference to `Bean1` and calls `method1`.
 ````
- @TransactionManagement(TransactionManagementType.CONTAINER)
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-        context.send(queue,"Message 1");
-        context.send(queue,"Message 2");
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1() {
+    context.send(queue,"Message 1");
+    context.send(queue,"Message 2");
+  }
+}
 ````
 
-# Case D: Analysis
+### Case D: Analysis
 
 Q | A
 :--- | :---
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes, since they they use the same variable declaration.
-|- valign="top"
-| What scope do the `context` variables in the two calls to `context.send()` have?
-| Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same scope?
-| Yes, since the two calls to `context.send()` take place in the same transaction
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes. They are injected using identical annotations and have the same transaction scope.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes, since they they use the same variable declaration.
+What scope do the `context` variables in the two calls to `context.send()` have? | Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
+Are the `context` variables in the two calls to `context.send()` in the same scope? | Yes, since the two calls to `context.send()` take place in the same transaction
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes. They are injected using identical annotations and have the same transaction scope.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
-# Case D: JMSContext lifecycle
+### Case D: JMSContext lifecycle
 
 The `JMSContext` object will be created when `method1` uses the `context` variable for the first time, to send the first message. It will be destroyed when the transaction is committed.
 
-### Use case E. One bean which sends two messages when there is no transaction
+## Use case E. One bean which sends two messages when there is no transaction
 
 Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`.  `method1` does not start a transaction and uses the context to send two messages.
 
@@ -260,7 +250,7 @@ A remote client obtains a reference to `Bean1` and calls `method1`.
  }
 ```
 
-#### Case E: Analysis
+### Case E: Analysis
 
 Q | A
 :--- | :---
