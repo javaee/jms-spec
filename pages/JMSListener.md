@@ -105,39 +105,39 @@ Notes:
 Before it can be used, a JMS MDB must specify where the messages will come from and how they will be received.  In Java EE 7 these are specified using "activation properties", each of which has a  String name and a String value. The name and value of each property must be hardcoded into the either application code or the deployment descriptor, and the developer gets no help from the compiler or schema to check that they are using the correct name and setting it to an appropriate value. The syntax itself is also cumbersome.
 
 ```
- @MessageDriven(activationConfig = {
-   @ActivationConfigProperty(
-     propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
-   @ActivationConfigProperty(
-     propertyName = "destinationLookup", propertyValue = "java:global/java:global/Trades"),
-   @ActivationConfigProperty
-     (propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
-   @ActivationConfigProperty(
-     propertyName = "clientId", propertyValue = "Consumer123"),
-   @ActivationConfigProperty(
-     propertyName = "subscriptionDurability", propertyValue = "Durable"),
-   @ActivationConfigProperty(
-     propertyName = "subscriptionName", propertyValue = "Subscription456"),
-   @ActivationConfigProperty(
-     propertyName = "messageSelector", propertyValue = "ticker=ORCL")
- }
- public class MyMessageBean implements MessageListener {
-   ...
- }
+@MessageDriven(activationConfig = {
+  @ActivationConfigProperty(
+    propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
+  @ActivationConfigProperty(
+    propertyName = "destinationLookup", propertyValue = "java:global/java:global/Trades"),
+  @ActivationConfigProperty
+    (propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+  @ActivationConfigProperty(
+    propertyName = "clientId", propertyValue = "Consumer123"),
+  @ActivationConfigProperty(
+    propertyName = "subscriptionDurability", propertyValue = "Durable"),
+  @ActivationConfigProperty(
+    propertyName = "subscriptionName", propertyValue = "Subscription456"),
+  @ActivationConfigProperty(
+    propertyName = "messageSelector", propertyValue = "ticker=ORCL")
+}
+public class MyMessageBean implements MessageListener {
+  ...
+}
 ```
 
 In Java EE 8 a MDB may continue to specify activation properties, even if the MDB does not implement `javax.jms.MessageListener`. However they will be superseded by a new set of JMS-specific annotations which allow each activation property to be configured by a JMS-specific annotation on the callback method itself.
 ```
-   @JMSConnectionFactory("java:global/MyCF")
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
-   @ClientId("myClientID1")  
-   @SubscriptionName("mySubName1")
-   @MessageSelector("ticker=ORCL'")
-   @Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
-   public void giveMeAMessage(Message message) {
-     ...
-   }
+@JMSConnectionFactory("java:global/MyCF")
+@JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+@SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
+@ClientId("myClientID1")  
+@SubscriptionName("mySubName1")
+@MessageSelector("ticker=ORCL'")
+@Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
+public void giveMeAMessage(Message message) {
+  ...
+}
 ```
 These annotations are introduced in more detail the following sections.
 
