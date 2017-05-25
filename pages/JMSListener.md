@@ -321,54 +321,17 @@ Any | `Integer` or `int` | `@MessageHeader(Header.JMSPriority)` | `message.getJM
 Any | `Boolean` or `boolean` | `@MessageHeader(Header.JMSRedelivered)` | `message.getJMSRedelivered()`.
 Any | `Destination` | `@MessageHeader(Header.JMSReplyTo)` | `message.getJMSReplyTo()`.
 Any | `Long` or `long` | `@MessageHeader(Header.JMSTimestamp)` | `message.getJMSTimestamp()`.
+Any | `String` | `@MessageHeader(Header.JMSType)` | `message.getJMSType()`.
+Any | `Boolean` or `boolean` | `@MessageProperty("foo")` | `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `byte` | @MessageProperty("foo") | `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Short` or `short` | @MessageProperty("foo") | `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Integer` or `int` | @MessageProperty("foo") | `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Long` or `long` | @MessageProperty("foo") | `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Float` or `float` | @MessageProperty("foo") | `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Double` or `double` | @MessageProperty("foo") | `message.getDoubleProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `String` | @MessageProperty("foo") | `message.getStringProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 
-| Any
-| `String`
-| `@MessageHeader(Header.JMSType)`
-| `message.getJMSType()`.
-|-
-| Any
-| `Boolean` or `boolean`
-| `@MessageProperty("foo")`
-| `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `byte`
-| @MessageProperty("foo")
-| `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Short` or `short`
-| @MessageProperty("foo")
-| `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Integer` or `int`
-| @MessageProperty("foo")
-| `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Long` or `long`
-| @MessageProperty("foo")
-| `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Float` or `float`
-| @MessageProperty("foo")
-| `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Double` or `double`
-| @MessageProperty("foo")
-| `message.getDoubleProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `String`
-| @MessageProperty("foo")
-| `message.getStringProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|} 
-
-* If none of the following applies then the parameter is set to the default value [https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.12.5 as defined in the JLS] (e.g. `null` for objects, 0 for int etc)
+* If none of the following applies then the parameter is set to the default value [as defined in the JLS](https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.12.5) (e.g. `null` for objects, 0 for int etc)
 
 * It is recommended that the callback method has a `void` return type. A non-`void` return type is allowed but the returned value will be ignored.
 
