@@ -52,7 +52,7 @@ Are the `context` variables in the two calls to `context.send()` in the same sco
 Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are injected using identical annotatons they are not in the same transaction and so have separate transaction scopes.
  Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
 
-  * Important note:** Note that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. However, even if the method invocations are serviced by different stateless session bean instances this does not affect whether or not the same `JMSContext` object is used. 
+  * **Important note:** Note that there is no guarantee that the same bean instance is used for both method invocations. Stateless session bean instances might be pooled, or new stateless session bean instances might be created, but in either case there is no guarantee that the same instance is reused for a client. However, even if the method invocations are serviced by different stateless session bean instances this does not affect whether or not the same `JMSContext` object is used. 
 
 ### Case A: JMSContext lifecycle
 
