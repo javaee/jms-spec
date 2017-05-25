@@ -302,7 +302,7 @@ void processTrade(TextMessage messageText, @MessageProperty("price") long price,
 The following table lists all the options available for customising the method parameters:
 
 Message type | Parameter type | Annotation | Set to
-:--- | :--- :--- | :---
+:--- | :--- | :--- | :---
 `TextMessage` | `TextMessage` | None | The `TextMessage` object 
 `StreamMessage` | `StreamMessage` | None | The `StreamMessage` object
 `BytesMessage` | `BytesMessage` | None | The `BytesMessage` object
@@ -343,59 +343,48 @@ Any | `String` | @MessageProperty("foo") | `message.getStringProperty("foo")`<br
 
 The draft javadocs can be found [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html). Direct links to the javadocs for each class are given in the table below.
 
-{|- border="1"
-! New or modified?
-! Interface or annotation?
-! Name
-| Link to javadocs
+New or modified? | ! Interface or annotation? | Name | Link to javadocs
+:--- | :--- | :--- | :---
+New | Marker interface | `javax.jms.JMSMessageDrivenBean` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html)
+New | Method annotation | `javax.jms.JMSListener` | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html)
+
 |-
-| New
-| Marker interface
-| `javax.jms.JMSMessageDrivenBean`
-| [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html)
-|-
-| New
-| Method annotation
-| `javax.jms.JMSListener`
-| [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html)
-|-
-| Modified
+Modified
 | Method or field annotation
 | `javax.jms.JMSConnectionFactory`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html)
 |-
-| New
+New
 | Method annotation
 | `javax.jms.Acknowledge`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html)
 |-|-
-| New
+New
 | Method annotation
 | `javax.jms.SubscriptionDurability`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html)
 |-
-| New
+New
 | Method annotation
 | `javax.jms.SubscriptionName`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html)
 |-
-| New
+New
 | Method annotation
 | `javax.jms.ClientId`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html)
 |-
-| New
+New
 | Method annotation
 | `javax.jms.MessageSelector`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html)
 |-
-| New
+New
 | Parameter annotation
 | `javax.jms.MessageHeader`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html)
 |-
-| New
+New
 | Parameter annotation
 | `javax.jms.MessageProperty`
 | [javadocs] (https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html)
-|} 
