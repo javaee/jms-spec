@@ -182,18 +182,18 @@ The `@JMSListener` method annotation also has a mandatory attribute `type`. This
 ### Specifying the connection factory
 
 The existing `@JMSConnectionFactory` annotation may be used to specify the JNDI name of the connection factory used to receive messages.This corresponds to the existing EJB 3.2 activation property `connectionFactoryLookup`. 
-
-`@JMSConnectionFactory("java:global/MyCF")`
-
+```
+@JMSConnectionFactory("java:global/MyCF")`
+```
 Note that `@JMSConnectionFactory` is an existing annotation which is currently used to configure the connection factory used to create an injected `JMSContext` object. It better to reuse this annotation than have two very similar annotations.
 
 ### Specifying the acknowledgement mode when using bean-managed transactions
 
 The existing `@Acknowledge` annotation may be used to specify acknowledge mode that will be used if bean-managed transaction demarcation is used.
 This corresponds to the existing EJB 3.2 activation property `acknowledgeMode`. 
-
-`@Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)`
-
+```
+@Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)`
+```
 The acknowledgement mode is specified using an enumerated type `Acknowledge.Mode`, which is a nested type of the `Acknowledge` annotation.
 
 ### Specifying durable topic subscriptions
