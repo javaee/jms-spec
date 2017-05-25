@@ -2,9 +2,9 @@
 
 ## Summary 
 
-This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#Option-3). 
+This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
 
-If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#Option-3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2##use-case-c-one-bean-which-calls-another-within-the-same-transaction).
+If you're looking for a use case which demonstrates the differences between [Option 2](/jms-spec/pages/JMSContextScopeProposals#Option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3), please look at [use case C](/jms-spec/pages/JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction).
 
 Note that these use cases are not intended to demonstrate how `@TransactionScoped` beans behave in general. They are intended only to demonstrate how injected `JMSContext` objects behave.
 
