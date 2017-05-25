@@ -2,7 +2,7 @@
 
 JMS 2.0 was finally released on 21 May 2013.
 
-The specification document and API documentation may be downloaded from the JCP website [ http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html here]. 
+The specification document and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
 Browse the API documentation for [http://jms-spec.java.net/2.0/apidocs/index.html JMS 2.0 only] (on jms-spec.java.net) or for [http://docs.oracle.com/javaee/7/api/ all of Java EE 7] (on docs.oracle.com)
 
