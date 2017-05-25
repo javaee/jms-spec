@@ -64,26 +64,16 @@ This table lists all the changes in JMS 2.0 revision a.
 
 ID | Description | Nature | Status
 :--- | :--- | :--- | :---
-[JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [https://java.net/jira/browse/JMS_SPEC-167?focusedCommentId=383844 Changes to javadoc for Session].
-[JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [https://java.net/jira/browse/JMS_SPEC-165?focusedCommentId=382826 Changes to specification].
-[JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [https://java.net/jira/browse/JMS_SPEC-164 Changes to specification].
-[JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [Changes to javadoc for JMSContext#setClientID(https://github.com/javaee/jms-spec/issues/163#issuecomment-298590494)].
-[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | [https://java.net/jira/browse/JMS_SPEC-162?focusedCommentId=382061 Changes to specification]
-[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [https://java.net/jira/browse/MQ-359?focusedCommentId=381985 Fix details]
-[JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | [https://java.net/jira/browse/JMS_SPEC-160?focusedCommentId=382069 Changes to javadocs for Message and JMSConsumer]
+[JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [Changes to javadoc for Session](https://github.com/javaee/jms-spec/issues/167#issuecomment-298590579).
+[JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [Changes to javadoc](https://github.com/javaee/jms-spec/issues/165#issuecomment-298590536).
+[JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/164#issue-225650287).
+[JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [Changes to javadoc for JMSContext#setClientID](https://github.com/javaee/jms-spec/issues/163#issuecomment-298590494)].
+[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/162#issuecomment-298590457)
+[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [Open MQ Fix details]|https://github.com/javaee/openmq/issues/359#issuecomment-300257172
+[JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | [Changes to javadocs for Message and JMSConsumer](https://github.com/javaee/jms-spec/issues/160#issuecomment-298590418)
+[https://github.com/javaee/jms-spec/issues/158 JMS_SPEC-158] | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | [Changes to specification and javadocs for Connection, Session and JMSContext](https://github.com/javaee/jms-spec/issues/158#issuecomment-298590370).
+[https://github.com/javaee/jms-spec/issues/157 JMS_SPEC-157] | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | [Changes to specification and javadocs for Connection](https://github.com/javaee/jms-spec/issues/157#issuecomment-298590343).
 
-
-  
-| [https://github.com/javaee/jms-spec/issues/158 JMS_SPEC-158]
-| JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close
-| Compatibility error
-| [https://java.net/jira/browse/JMS_SPEC-158?focusedCommentId=382772&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-382772 Changes to specification and javadocs for Connection, Session and JMSContext].
-|-  
-| [https://github.com/javaee/jms-spec/issues/157 JMS_SPEC-157]
-| JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE
-| Compatibility error
-| [https://java.net/jira/browse/JMS_SPEC-157?focusedCommentId=382448 Changes to specification and javadocs for Connection].
-|-  
 | [https://github.com/javaee/jms-spec/issues/155 JMS_SPEC-155]
 | JMS 2.0 introduced incompatible changes to createSession(bool,int)
 | Compatibility error
