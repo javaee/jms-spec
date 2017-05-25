@@ -311,58 +311,17 @@ Message type | Parameter type | Annotation | Set to
 `Message`  | `Message` | None  The `Message` object
 Any | `someClass` | None | The message body, if it can be converted to the specified type using `message.getBody(someClass)` without throwing a `MessageFormatException`
 Any | `String` | `@MessageHeader(Header.JMSCorrelationID)` | `message.getJMSCorrelationID()`.
+Any | `byte[]` | `@MessageHeader(Header.JMSCorrelationIDAsBytes)` | `message.getJMSCorrelationIDAsBytes()`.
+Any | `Integer` or `int` | `@MessageHeader(Header.JMSDeliveryMode)` | `message.getJMSDeliveryMode()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSDeliveryTime)` | `message.getJMSDeliveryTime()`.
+Any | `Destination` | `@MessageHeader(Header.JMSDestination)` | `message.getJMSDestination()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSExpiration)` | `message.getJMSExpiration()`.
+Any | `String` | `@MessageHeader(Header.JMSMessageID)` | `message.getJMSMessageID()`.
+Any | `Integer` or `int` | `@MessageHeader(Header.JMSPriority)` | `message.getJMSPriority()`.
+Any | `Boolean` or `boolean` | `@MessageHeader(Header.JMSRedelivered)` | `message.getJMSRedelivered()`.
+Any | `Destination` | `@MessageHeader(Header.JMSReplyTo)` | `message.getJMSReplyTo()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSTimestamp)` | `message.getJMSTimestamp()`.
 
-
-| Any
-| `byte[]`
-| `@MessageHeader(Header.JMSCorrelationIDAsBytes)`
-| `message.getJMSCorrelationIDAsBytes()`.
-|-
-| Any
-| `Integer` or `int`
-| `@MessageHeader(Header.JMSDeliveryMode)`
-| `message.getJMSDeliveryMode()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSDeliveryTime)`
-| `message.getJMSDeliveryTime()`.
-|-
-| Any
-| `Destination`
-| `@MessageHeader(Header.JMSDestination)`
-| `message.getJMSDestination()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSExpiration)`
-| `message.getJMSExpiration()`.
-|-
-| Any
-| `String`
-| `@MessageHeader(Header.JMSMessageID)`
-| `message.getJMSMessageID()`.
-|-
-| Any
-| `Integer` or `int`
-| `@MessageHeader(Header.JMSPriority)`
-| `message.getJMSPriority()`.
-|-
-| Any
-| `Boolean` or `boolean`
-| `@MessageHeader(Header.JMSRedelivered)`
-| `message.getJMSRedelivered()`.
-|-
-| Any
-| `Destination`
-| `@MessageHeader(Header.JMSReplyTo)`
-| `message.getJMSReplyTo()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSTimestamp)`
-| `message.getJMSTimestamp()`.
-|-
 | Any
 | `String`
 | `@MessageHeader(Header.JMSType)`
