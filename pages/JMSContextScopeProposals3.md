@@ -379,4 +379,4 @@ The `JMSContext` object used by `method1` will be created when  `method1` uses `
 
 The `JMSContext` object used by `method2` will be created when  `method2` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after both methods have returned.
 
-_Note how specifying different connection factories means that the same injected `JMSContext` object cannot be used.
+_Note how specifying different connection factories means that the same injected `JMSContext` object cannot be used._
