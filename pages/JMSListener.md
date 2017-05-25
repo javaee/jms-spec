@@ -2,7 +2,9 @@
 
 This page contains proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8.
 
-This is version 1 of these proposals. These are out of date. Please look at [[JMSListener2 | version 2]].
+This is version 1 of these proposals. These are out of date. Please look at [version 2](/jms-spec/pages/JMSListener2).
+
+## Contents
 
 * auto-gen TOC:
 {:toc}
@@ -11,15 +13,15 @@ This is version 1 of these proposals. These are out of date. Please look at [[JM
 
 There have been several proposals to improve the ways that JMS applications can consume messages asynchronously:
 
-* In [https://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116] John Ament proposed (back in March 2013, just as JMS 2.0 was being finalised) improving the ways that JMS MDBs were defined, taking advantage of some new features that were added to EJB 3.2 and JCA 1.7 (at the suggestion of David Blevins) just before they were released. 
+* In [issue 116](https://github.com/javaee/jms-spec/issues/116) John Ament proposed (back in March 2013, just as JMS 2.0 was being finalised) improving the ways that JMS MDBs were defined, taking advantage of some new features that were added to EJB 3.2 and JCA 1.7 (at the suggestion of David Blevins) just before they were released. 
 
-* In [https://java.net/jira/browse/JMS_SPEC-134 JMS_SPEC-134] Reza Rahman proposed that JMS defined some annotations that allowed any CDI bean to listen for JMS messages
+* In [issue 134](https://github.com/javaee/jms-spec/issues/134) Reza Rahman proposed that JMS defined some annotations that allowed any CDI bean to listen for JMS messages
 
-* In [https://java.net/jira/browse/JMS_SPEC-100 JMS_SPEC-100]  Bruno Borges proposed improving the ways that JMS MDBs were defined, though in the subsequent discussion he proposed that this could be extended to other types of Java EE class such as session beans. That makes this essentially a combination of the other two proposals.
+* In [issue 100](https://github.com/javaee/jms-spec/issues/100)  Bruno Borges proposed improving the ways that JMS MDBs were defined, though in the subsequent discussion he proposed that this could be extended to other types of Java EE class such as session beans. That makes this essentially a combination of the other two proposals.
 
 ## Goals 
 
-The proposals on this page are addressed at the first of these proposals,  [https://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116]:
+The proposals on this page are addressed at the first of these proposals,  [issue 116](https://github.com/javaee/jms-spec/issues/116):
 
 * The requirement for a MDB that consumes JMS messages to implement`javax.jms.MessageListener` will be removed.
 
@@ -33,35 +35,35 @@ These new annotations will initially be available only on MDBs. This offers a la
 
 These are currently just proposals, and comments are invited, especially to the various issues mentioned.
 
-See [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
+See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21].
 
 ## Specifying the callback method 
-<br/>
-In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.<br/><br/>
 
- @MessageDriven(activationConfig = {
-   @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
-   @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
- })
- public class MyMessageBean implements MessageListener {
+In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.<br/><br/>
+```
+@MessageDriven(activationConfig = {
+  @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
+  @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
+})
+public class MyMessageBean implements MessageListener {
  
-   public void onMessage(Message message){
-     ...
-   }
+  public void onMessage(Message message){
+    ...
+  }
  
- }
-<br/>
+}
+```
 Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
 ```
- @MessageDriven
- public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
+@MessageDriven
+public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
  
-   <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
-   public void processTrade(TextMessage tradeMessage){
-     ...
-   }
+  <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
+  public void processTrade(TextMessage tradeMessage){
+    ...
+  }
  
- }
+}
 ```
 
 Notes:
