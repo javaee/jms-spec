@@ -39,7 +39,7 @@ See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-i
 
 ## Specifying the callback method 
 
-In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.<br/><br/>
+In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.
 ```
 @MessageDriven(activationConfig = {
   @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
@@ -56,9 +56,9 @@ public class MyMessageBean implements MessageListener {
 Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
 ```
 @MessageDriven
-public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
+public class MyMessageBean implements JMSMessageDrivenBean {
  
-  <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
+  @JMSListener(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
   public void processTrade(TextMessage tradeMessage){
     ...
   }
