@@ -44,6 +44,7 @@ A remote client obtains a reference to `Bean1` and calls the methods `method1a` 
 ```
 #### Case A, option 2: Analysis
 
+:--- | :---
 Do the `context` variables in the two calls to `context.send()`  use the same injection point? | Yes, since they  use the same `context` variable.
 Are the `context` variables in the two calls to `context.send()` in the same `@TransactionScope`? | No, since the two calls to `context.send()` take place in different transactions
 Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they use the same injection point they are not in the same `@TransactionScope`
