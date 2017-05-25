@@ -225,15 +225,16 @@ The subscription durability is specified using an enumerated type `SubscriptionD
 ### Specifying a message selector
 
 The `@MessageSelector` annotation may be used to specify the message selector to be used. This corresponds directly to the EJB 3.2 activation property `messageSelector`, which may be used to override it.
-<br/>
- @MessageDriven
- public class MyMessageBean implements JMSMessageDrivenBean {
+```
+@MessageDriven
+public class MyMessageBean implements JMSMessageDrivenBean {
  
-   @MessageSelector("JMSType = 'car' AND colour = 'blue'")
-   @JMSListener(lookup="java:global/requestQueue", type=JMSListener.Type.QUEUE)
-   public void giveMeAMessage(Message message) {
-     ...
-   }
+  @MessageSelector("JMSType = 'car' AND colour = 'blue'")
+  @JMSListener(lookup="java:global/requestQueue", type=JMSListener.Type.QUEUE)
+  public void giveMeAMessage(Message message) {
+    ...
+  }
+```
 
 ## Flexible method signature
 
@@ -244,54 +245,57 @@ When a message is delivered the container will set each method parameter to the 
 ### Message parameters
 
 A parameter may be `Message` or one of its five subtypes `TextMessage`, `StreamMessage`, `BytesMessage`, `MapMessage`, `ObjectMessage`. This avoids the need for the listener method to cast the `Message` to the expected subtype.
-<br/>
- void processTrade(TextMessage textMessage){
-   ...
- }
+```
+void processTrade(TextMessage textMessage){
+  ...
+}
+```
 
 ### Parameters for message body
 
 If the message is a `TextMessage` then any parameter of type `String` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-<br/>
- void processTrade(String messageText){
-   ...
- }
-<br/>
+```
+void processTrade(String messageText){
+  ...
+}
+```
 If the message is a `ObjectMessage` then any parameter to which the message body is assignable (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(Trade incomingTrade){
-   ...
- }
-<br/>
+```
+void processTrade(Trade incomingTrade){
+  ...
+}
+```
 If the message is a `MapMessage` then any parameter of type `Map` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(Map tradeData){
-   ...
- }
-<br/>
+```
+void processTrade(Map tradeData){
+  ...
+}
+```
 If the message is a `BytesMessage` then any parameter of type `byte[]` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(byte[] tradeBytes){
-   ...
- }
+```
+void processTrade(byte[] tradeBytes){
+  ...
+}
+```
 
 ### Message headers
 
 The `@MessageHeader` annotation may be used to specify that a parameter should be set to the specified message header.
-<br/>
- void processTrade(TextMessage messageText, @MessageHeader(Header.JMSCorrelationID) String correlationId,){
-   ...
- } 
-<br/>
+```
+void processTrade(TextMessage messageText, @MessageHeader(Header.JMSCorrelationID) String correlationId,){
+  ...
+} 
+```
 The message header is specified using an enumerated type `MessageHeader.Header`, which is a nested type of the `MessageHeader` annotation.
 
 ### Message properties
 
 The `@MessageProperty` annotation may be used to specify that a parameter should be set to the specified message property.
-<br/>
- void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
-   ...
- } 
+```
+void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
+  ...
+} 
+```
 
 ### Summary
 
