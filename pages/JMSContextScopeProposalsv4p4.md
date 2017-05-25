@@ -163,7 +163,7 @@ Although a `JMSProducer` looks a bit like a `MessageProducer` , the proposal her
 
 ### Prohibit all the other methods which change the state of a JMSContext
 
-Now let's consider some of the other methods on `JMSContext` that make it appear stateful:
+Now let's consider some of the other methods on `JMSContext` that mak    e it appear stateful:
 
 * `setClientID`
 * `setExceptionListener`
@@ -236,9 +236,13 @@ We could copy all these methods onto the `JMSProducer` object, define them to re
 * `JMSProducer setProperty(String name, String value)`
 
 This would then allow the properties of a `Message`  to be set prior to sending it as follows
-    context.createProducer().setProperty("foo","bar").send(destination,message);
+```
+context.createProducer().setProperty("foo","bar").send(destination,message);
+```
 or in the case of the methods which allow the application to sent the payload directly:
-    context.createProducer().setProperty("foo","bar").send(destination,"This is a message");
+```
+context.createProducer().setProperty("foo","bar").send(destination,"This is a message");
+```
 
 ### Additional feature: setting JMS message headers on a JMSProducer
 
@@ -301,7 +305,7 @@ The following methods on `JMSContext` will **throw an exception if the `JMSConte
 We will **add a new method to `JMSContext`**
 * `JMSProducer getProducer()`
 
-### New class JMSProducer
+### New class JMSProducer    
 
 We will define a new class `JMSProducer`. This a simple object used to configure send-time options before sending one or more messages. It does not hold any state that would ever need a `close` method. Despite the name, it does not itself wrap a `MessageProducer`. Instead the `JMSContext` continues to wrap an anonymous MessageProducer (or perhaps one for each destination) in order to allow the order of message sent to a destination using the same `JMSContext` to be guaranteed.
 
