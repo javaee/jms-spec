@@ -353,8 +353,7 @@ public class Bean2 {
 
 Q | A
 :--- | :---
-Do the `context` variables in the two calls to `context.send()`  use the same injection point?
-| No, since they are in different beans and so use different `context` variables.
+Do the `context` variables in the two calls to `context.send()`  use the same injection point? | No, since they are in different beans and so use different `context` variables.
 Are the `context` variables in each call to `context.send()` in the same `@TransactionScope`? | Yes, since the two calls to `context.send()` take place in the same transaction.
 Do the `context` variables in each call to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | No. Although they are in the same `@TransactionScope`  they use different injection points. 
 Are the two messages guaranteed to be delivered in the order in which they are sent? | No, since they are sent using different `MessageProducer` objects.
