@@ -242,7 +242,7 @@ The `JMSContext` object used by `method1` will be created when `method1` uses `c
 
 The `JMSContext` object used by `method2` will be created when `method2` uses `context` for the first time, and destroyed when the second transaction is committed, which will be when `method2` returns.
 
-### Use case K. One bean which calls another within the same transaction, but using different connection factories
+## Use case K. One bean which calls another within the same transaction, but using different connection factories
 
 (Note that this use case is identical to [http://java.net/projects/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction use case C] except that the two beans specify different connection factories).
 
