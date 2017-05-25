@@ -136,66 +136,56 @@ A remote client obtains a reference to `Bean1` and calls `method1`
 
 This is `Bean1`
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @EJB Bean2 bean2;
+  @EJB Bean2 bean2;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-        context.send(queue,"Message 1");
-        bean2.method2();
-    } 
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1() {
+    context.send(queue,"Message 1");
+    bean2.method2();
+  } 
+}
 ```
 
 This is `Bean2`
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean2 {
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean2 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method2() {
-        context.send(queue,"Message 2");
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method2() {
+    context.send(queue,"Message 2");
+  }
+}
 ```
 
-#### Case C: Analysis
+### Case C: Analysis
 
 Q | A
 :--- | :---
-| Are the `context` variables in the two calls to `context.send()`  injected using identical annotations?
-| Yes. Although they use separate variable declarations, both declarations use identical annotations.
-|- valign="top"
-| What scope do the `context` variables in the two calls to `context.send()` have?
-| Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
-|- valign="top"
-| Are the `context` variables in the two calls to `context.send()` in the same scope?
-| Yes, since the two calls to `context.send()` take place in the same transaction
-|- valign="top"
-| Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects?
-| Yes. They are injected using identical annotations and have the same transaction scope.
-|- valign="top"
-| Are the two messages guaranteed to be delivered in the order in which they are sent?
-| Yes, since they are sent using the same `MessageProducer` object.
-|} 
-
-#### Case C: JMSContext lifecycle
+Are the `context` variables in the two calls to `context.send()`  injected using identical annotations? | Yes. Although they use separate variable declarations, both declarations use identical annotations.
+What scope do the `context` variables in the two calls to `context.send()` have? | Both  calls to `context.send()` take place within a transaction, so they both have transaction scope.
+Are the `context` variables in the two calls to `context.send()` in the same scope? | Yes, since the two calls to `context.send()` take place in the same transaction
+Do the `context` variables in the two calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes. They are injected using identical annotations and have the same transaction scope.
+Are the two messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
+ 
+### Case C: JMSContext lifecycle
 
 The `JMSContext` object will be created when  `method1` uses `context` for the first time, and destroyed when the container commits the transaction, which will be after `method1` returns.
 
