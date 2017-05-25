@@ -60,7 +60,7 @@ There has also been discussion as to whether the annotations for specifying the 
 ## New proposals for JMS 2.0 Public Draft (Option 4) 
 
 ### Scope of injected JMSContext objects
-In this proposal, the scope of an injected JMSContext object will depend on whether it is used in a transaction. Whereas  [[JMSContextScopeProposals#Option_2|Option 2]] and  [[JMSContextScopeProposals#Option_3|Option 3]] proposed a single scope which was used irrespective of whether there was a transaction or not, this option proposes that the scope used depends on whether the injected JMSContext is used in a transaction or not.
+In this proposal, the scope of an injected JMSContext object will depend on whether it is used in a transaction. Whereas  [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and  [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) proposed a single scope which was used irrespective of whether there was a transaction or not, this option proposes that the scope used depends on whether the injected JMSContext is used in a transaction or not.
 
 * If an injected JMSContext is used in a JTA transaction (both bean-managed and container-managed), its scope will be that of the transaction. This means that:
 ** The JMSContext object will be automatically created the first time it is used within the transaction.

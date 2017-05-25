@@ -70,9 +70,9 @@ This is the potentially confusing situation we need to avoid. There have been se
 
 * The JMS 2.0 Early Draft proposed using a separate `JMSContext` instance for each injection point. However this prevents the sharing of message order and `XAResource` object between different beans within the same scope.
 
-* The proposal described as  [[JMSContextScopeProposals#Option_2|Option 2]]  also proposed using a separate `JMSContext` instance for each injection point, which had the same drawbacks.
+* The proposal described as  [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2)  also proposed using a separate `JMSContext` instance for each injection point, which had the same drawbacks.
 
-* The proposal described as [[JMSContextScopeProposals#Option_3|Option 3]] proposed that although the injected `JMSContext` would have a combined transaction/method scope, the six JavaBean properties of the `JMSContext`'s underlying MessageProducer would have dependent scope so that changing a property in one bean would not affact a property in another bean, even if they both used the same underlying `JMSContext` .  This proposal received some support, but others found it confusing.
+* The proposal described as [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) proposed that although the injected `JMSContext` would have a combined transaction/method scope, the six JavaBean properties of the `JMSContext`'s underlying MessageProducer would have dependent scope so that changing a property in one bean would not affact a property in another bean, even if they both used the same underlying `JMSContext` .  This proposal received some support, but others found it confusing.
 
 This page therefore makes a fourth proposal to address this issue.
 
