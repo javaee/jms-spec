@@ -77,10 +77,9 @@ ID | Description | Nature | Status
 [JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133) | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession | Document error | [Changes to QueueConnection#createQueueSession and TopicConnection#createTopicSession](https://github.com/javaee/jms-spec/issues/133#issuecomment-298589848)
 [JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128) | Typo in section 4.14 "Queue" | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/128#issuecomment-298589741)
 [JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125) | Define whether a JMS provider should call reset after sending a BytesMessage asynchronously | Request for clarification. | [https://java.net/jira/browse/JMS_SPEC-125?focusedCommentId=382468 Changes to javadoc for BytesMessage]
-[JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122) | Typos in javadocs for ConnectionFactory.createContext 
-| Document error | [Changes to ConnectionFactory.createContext](https://github.com/javaee/jms-spec/issues/122#issuecomment-298589629 
+[JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122) | Typos in javadocs for ConnectionFactory.createContext | Document error | [Changes to ConnectionFactory.createContext](https://github.com/javaee/jms-spec/issues/122#issuecomment-298589629)
 [JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120) | Typo: in example, change .class() to .class | Document error | [Change to specification](https://github.com/javaee/jms-spec/issues/120#issuecomment-298589567)
-[JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119) | Remove reference to password alias | Document error | [https://java.net/jira/browse/JMS_SPEC-119?focusedCommentId=382100 Change to specification]
+[JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119) | Remove reference to password alias | Document error | [Change to specification](https://github.com/javaee/jms-spec/issues/119#issuecomment-298589545)
 
 ## Feedback 
 
