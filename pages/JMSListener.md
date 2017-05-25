@@ -96,12 +96,12 @@ Notes:
 
 <b>Issue I4:</b> The current proposal is that a JMS MDB has a single listener method. However EJB 3.2 section 5.4.2 and JCA 1.7 does allow a MDB to have more than one listener method, with the resource adapter deciding which method is invoked. Is this something we would want to allow? Would these be alternative callback methods for the same consumer, with the container choosing which one to call depending on the message and the method signature, or would these represent two completely different consumers, on different destinations?
 
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.  [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115] proposes removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.  [EJVB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) proposes removal of this requirement from the next version of EJB.  
 
 <b>Issue I6:</b> The reason why these annotations cannot be applied to the `onMessage` method of a `MessageListener` is that `MessageListener` is not a no-method interface, which means the resource adapter cannot access the methods of the MDB implementation class. It may be possible to change the EJB specification to allow this restriction to be removed.
 
 ## Specifying what messages will be received 
-<br/>
+
 Before it can be used, a JMS MDB must specify where the messages will come from and how they will be received.  In Java EE 7 these are specified using "activation properties", each of which has a  String name and a String value. The name and value of each property must be hardcoded into the either application code or the deployment descriptor, and the developer gets no help from the compiler or schema to check that they are using the correct name and setting it to an appropriate value. The syntax itself is also cumbersome.
 
 ```
