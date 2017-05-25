@@ -4,7 +4,7 @@
 
 This page proposes some changes to the JMS 2.0 simplified API to support the injection of `JMSContext` objects.
 
-It discusses the potential confusion that might be caused by the sharing of injected `JMSContext` objects between different beans within the same scope, and proposes some changes to the `JMSContext` API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [Injection of `JMSContext` objects - Proposals (version 4](/jms-spec/pages/JMSContextScopeProposalsv4p1) they would apply to earlier scoping proposals as well.
+It discusses the potential confusion that might be caused by the sharing of injected `JMSContext` objects between different beans within the same scope, and proposes some changes to the `JMSContext` API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [Injection of JMSContext objects - Proposals (version 4](/jms-spec/pages/JMSContextScopeProposalsv4p1) they would apply to earlier scoping proposals as well.
 
 ## Contents
 
@@ -18,45 +18,45 @@ Let's begin with a description of the problem we need to address. The example be
 Consider a stateless session bean with a business method `method1` which calls the method `method2` on a second stateless session bean. Both methods use an injected `JMSContext`  to send a message.
 
 This is Bean1
-
- @TransactionManagement(TransactionManagementType.CONTAINER)
- @Stateless
- public class Bean1 {
+```
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context1;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context1;
  
-    @EJB Bean2 bean2;
+  @EJB Bean2 bean2;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-        context1.send(queue,"Message 1");
-        bean2.method2();
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1() {
+    context1.send(queue,"Message 1");
+    bean2.method2();
+  }
+}
+```
 
 This is Bean2
-
-
- @TransactionManagement(TransactionManagementType.CONTAINER)
- @Stateless
- public class Bean2 {
+```
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Stateless
+public class Bean2 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context2;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context2;
  
-    @TransactionAttribute(REQUIRED)
-    public void method2() {
-        context2.send(queue,"Message 2");
-    }
- }
-
+  @TransactionAttribute(REQUIRED)
+  public void method2() {
+    context2.send(queue,"Message 2");
+  }
+}
+```
 Let's assume that the injected `JMSContext` has a scope which covers both method calls. We're not discussing the details of scope here, but in this example both transaction scope and request scope would achieve this. This means that since `context1` (used in `Bean1`) and `context2` (used in `bean2`) are both injected using identical annotations (e.g. specify the same connection factory) they would actually refer to the same `JMSContext` object.
 
 This is in principle desirable because it would mean that 
@@ -65,7 +65,9 @@ This is in principle desirable because it would mean that
 * only a single `XAResource` would be used in the XA transaction which would allow the use of single-phase rather than two-phase commits
 
 However it might potentially be confusing for developers. For example, if `Bean1` called
-   context1.setTimeToLive(1000);
+```
+context1.setTimeToLive(1000);
+```
 in order to give the first message a time-to-live of 1000ms, this would have the somewhat unexpected effect of also giving the second message a time-to-live of 1000ms as well, even though the second message was sent using a completely different bean, using what appears to be a completely separate `JMSContext` object.
 
 This is the potentially confusing situation we need to avoid. There have been several previous attempts at addressing this issue:
@@ -117,16 +119,16 @@ Let's start by considering the six methods which specify behaviour when subseque
 * `setDisableMessageID`
 
 We can remove these methods from `JMSContext` and move them to a new `JMSProducer` object. We would also move all the send methods from `JMSContext` to `JMSProducer` . This means that an application that needed to send a message would do the following:
-
-    JMSProducer producer = context.createProducer();
-    producer.send(destination,message);
-
+```
+JMSProducer producer = context.createProducer();
+producer.send(destination,message);
+```
 An application which needed to set the priority of this message would do the following:
-
-    JMSProducer producer = context.createProducer();
-    producer.setPriority(1);
-    producer.send(destination,message);
-
+```
+JMSProducer producer = context.createProducer();
+producer.setPriority(1);
+producer.send(destination,message);
+```
 Note that even if the `JMSContext` were injected, the `JMSProducer` would be an ordinary Java variable, typically an ordinary method variable which is scoped to a specific invocation of the method in which it is declared. This means that there is no possibility of calling `setPriority` on a `JMSProducer` in one bean and for it to have an effect on a `JMSProducer` in another bean.
 
 One of the goals of the simplified API was to reduce the number of objects an application needed to create in order to send or receive a message. Adding a new `JMSProducer` object undermines this goal. However we can take reduce the amount of code needed by making all the setter methods return the `JMSProducer`, in order to allow method chaining:
@@ -135,18 +137,26 @@ One of the goals of the simplified API was to reduce the number of objects an ap
 ###  Other aspects of using a JMSProducer
 
 A happy side-effect of introducing a `JMSProducer` and allowing method chaining is that it allows us to drop methods such as
-    void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive)
+```
+void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive)
+```
 since an application can instead do
-    context.createProducer().
-      setDeliveryMode(DeliveryMode.NON_PERSISTENT).setPriority(1).setTimeToLive(1000).send(destination,message);
-
+```
+context.createProducer().
+  setDeliveryMode(DeliveryMode.NON_PERSISTENT).setPriority(1).setTimeToLive(1000).send(destination,message);
+```
 Similarly we can drop the need to have async variants of each send method, such as
-    void send(Destination destination, Message message, CompletionListener completionListener)
+```
+void send(Destination destination, Message message, CompletionListener completionListener)
+```
 by adding a new `setAsync` method to `JMSProducer` to allow
-    context.createProducer().setAsync(completionListener).send(destination,message);   
+```
+context.createProducer().setAsync(completionListener).send(destination,message);   
+```
 or
-    context.createProducer().setAsync(completionListener).send(destination,"This is a message");   
-
+```
+context.createProducer().setAsync(completionListener).send(destination,"This is a message");   
+```
 Note that the Destination to which a message is sent is specified using a parameter to the send method rather than using a `setDestination` method. This is because, unlike all the other properties of a `JMSProducer`,  a `Destination` must always be specified, and allowing it to be configured using   `setDestination` would imply that it was optional.
 
 Although a `JMSProducer` looks a bit like a `MessageProducer` , the proposal here is that the `MessageProducer` is still associated with the `JMSContext`. This means that message order is guaranteed for all messages sent to a given destination using the same `JMSContext` , even if they use different `JMSProducer` objects. (There's actually more to JMS message order than this: see the JMS specification for a complete definition).
@@ -246,7 +256,9 @@ We could copy all these methods onto the `JMSProducer` object and define them to
 
 This would allow these message headers to be set prior to sending as follows:
 
-    context.createProducer().setJMSReplyTo(replyDest).send(destination,message);
+```
+context.createProducer().setJMSReplyTo(replyDest).send(destination,message);
+```
 
 ## Summary of changes 
 
