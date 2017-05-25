@@ -64,17 +64,17 @@ Here's a suggested high-level list of features for JMS 2.1, and an approximate o
 
 Minor changes are not listed here: these could be considered in parallel to this: we need to decide on a parallel list of minor changes. We could have a separate "issue triage" session to discuss minor proposals in turn.
 
-* Flexible JMS MDBs ([http://java.net/jira/browse/JMS_SPEC-116 JMS_SPEC-116])
+* Flexible JMS MDBs ([https://github.com/javaee/jms-spec/issues/116 JMS_SPEC-116])
   * (See above)
 
-* CDI beans as message listeners ([http://java.net/jira/browse/JMS_SPEC-134 JMS_SPEC-134])
+* CDI beans as message listeners ([https://github.com/javaee/jms-spec/issues/134 JMS_SPEC-134])
   * (See above)
 
-* Batch delivery to MDBs ([http://java.net/jira/browse/JMS_SPEC-36 JMS_SPEC-36])
+* Batch delivery to MDBs ([https://github.com/javaee/jms-spec/issues/36 JMS_SPEC-36])
 
 * New and custom acknowledgement modes
-  * No acknowledge mode ([http://java.net/jira/browse/JMS_SPEC-21 JMS_SPEC-21], [https://java.net/jira/browse/JMS_SPEC-168 JMS_SPEC-168])
-  * Individual acknowledge mode ([http://java.net/jira/browse/JMS_SPEC-95 JMS_SPEC-95] and related [https://java.net/jira/browse/JMS_SPEC-176 JMS_SPEC-176])
+  * No acknowledge mode ([https://github.com/javaee/jms-spec/issues/21 JMS_SPEC-21], [https://java.net/jira/browse/JMS_SPEC-168 JMS_SPEC-168])
+  * Individual acknowledge mode ([https://github.com/javaee/jms-spec/issues/95 JMS_SPEC-95] and related [https://java.net/jira/browse/JMS_SPEC-176 JMS_SPEC-176])
   * Allowing custom acknowledgement modes ([https://java.net/jira/browse/JMS_SPEC-169 JMS_SPEC-169])
 
 * Allowing setMessageListener in a Java EE web or EJB application
@@ -90,11 +90,11 @@ Minor changes are not listed here: these could be considered in parallel to this
   * redeliveryLimit
   * deadMessageLookup
 
-* Missing method createXAJMSContext() on XAJMSContext (to allow multiple XAJMSContexts to share the same connection) ([http://java.net/jira/browse/JMS_SPEC-152 JMS_SPEC-152])
+* Missing method createXAJMSContext() on XAJMSContext (to allow multiple XAJMSContexts to share the same connection) ([https://github.com/javaee/jms-spec/issues/152 JMS_SPEC-152])
 
 * JMS in a Java EE application: adding clarifications and removing restrictions
   * Defining the behavior of a JMS session that is created outside a JTA transaction but used to send or receive a message within a JTA transaction, and vice versa. ([https://java.net/jira/browse/JMS_SPEC-129 JMS_SPEC-129])
-  * Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction ([http://java.net/jira/browse/JMS_SPEC-130 JMS_SPEC-130])
+  * Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction ([https://github.com/javaee/jms-spec/issues/130 JMS_SPEC-130])
   * Clarifying the existing restrictions on using client-acknowledgement and local transactions in a Java EE environment and removing these restrictions where possible ([https://java.net/jira/browse/JMS_SPEC-131 JMS_SPEC-131])
 
 * Anything else?
