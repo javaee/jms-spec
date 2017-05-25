@@ -69,39 +69,18 @@ ID | Description | Nature | Status
 [JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/164#issue-225650287).
 [JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | [Changes to javadoc for JMSContext#setClientID](https://github.com/javaee/jms-spec/issues/163#issuecomment-298590494)].
 [JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/162#issuecomment-298590457)
-[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [Open MQ Fix details](https://github.com/javaee/openmq/issues/359#issuecomment-300257172
+[JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | [Open MQ Fix details](https://github.com/javaee/openmq/issues/359#issuecomment-300257172)
 [JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | [Changes to javadocs for Message and JMSConsumer](https://github.com/javaee/jms-spec/issues/160#issuecomment-298590418)
 [JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158) | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | [Changes to specification and javadocs for Connection, Session and JMSContext](https://github.com/javaee/jms-spec/issues/158#issuecomment-298590370).
 [JMS_SPEC-157](https://github.com/javaee/jms-spec/issues/157) | JMS 2.0 introduced an incompatible restriction on creating two sessions per connection in Java EE | Compatibility error | [Changes to specification and javadocs for Connection](https://github.com/javaee/jms-spec/issues/157#issuecomment-298590343).
 [JMS_SPEC-155](https://github.com/javaee/jms-spec/issues/155) | JMS 2.0 introduced incompatible changes to createSession(bool,int) | Compatibility error | [Changes to specification (Connection only)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590302)<br/>[Changes for Connection.html#createSession(boolean, int)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590293)<br/>[Changes for Connection.html#createSession(int)](https://github.com/javaee/jms-spec/issues/155#issuecomment-298590295)
 [JMS_SPEC-133](https://github.com/javaee/jms-spec/issues/133) | Update javadoc comments for QueueConnection#createQueueSession and TopicConnection#createTopicSession | Document error | [Changes to QueueConnection#createQueueSession and TopicConnection#createTopicSession](https://github.com/javaee/jms-spec/issues/133#issuecomment-298589848)
-
-| [JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128)
-| Typo in section 4.14 "Queue"
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-128?focusedCommentId=382467& Changes to specification]
-|-    
-| [JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125)
-| Define whether a JMS provider should call reset after sending a BytesMessage asynchronously
-| Request for clarification.
-| [https://java.net/jira/browse/JMS_SPEC-125?focusedCommentId=382468 Changes to javadoc for BytesMessage]
-|-   
-| [JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122)
-| Typos in javadocs for ConnectionFactory.createContext 
-| Document error
-| [https://github.com/javaee/jms-spec/issues/122 Changes to ConnectionFactory.createContext]
-|-  
-| [JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120)
-| Typo: in example, change .class() to .class
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-120?focusedCommentId=382097 Change to specification]
-|-  
-| [JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119)
-| Remove reference to password alias
-| Document error
-| [https://java.net/jira/browse/JMS_SPEC-119?focusedCommentId=382100 Change to specification]
-|-  
-|}
+[JMS_SPEC-128](https://github.com/javaee/jms-spec/issues/128) | Typo in section 4.14 "Queue" | Document error | [Changes to specification](https://github.com/javaee/jms-spec/issues/128#issuecomment-298589741)
+[JMS_SPEC-125](https://github.com/javaee/jms-spec/issues/125) | Define whether a JMS provider should call reset after sending a BytesMessage asynchronously | Request for clarification. | [https://java.net/jira/browse/JMS_SPEC-125?focusedCommentId=382468 Changes to javadoc for BytesMessage]
+[JMS_SPEC-122](https://github.com/javaee/jms-spec/issues/122) | Typos in javadocs for ConnectionFactory.createContext 
+| Document error | [https://github.com/javaee/jms-spec/issues/122 Changes to ConnectionFactory.createContext]
+[JMS_SPEC-120](https://github.com/javaee/jms-spec/issues/120) | Typo: in example, change .class() to .class | Document error | [https://java.net/jira/browse/JMS_SPEC-120?focusedCommentId=382097 Change to specification]
+[JMS_SPEC-119](https://github.com/javaee/jms-spec/issues/119) | Remove reference to password alias | Document error | [https://java.net/jira/browse/JMS_SPEC-119?focusedCommentId=382100 Change to specification]
 
 ## Feedback 
 
