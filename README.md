@@ -26,7 +26,7 @@ An errata for JMS 2.0 was released in March 2015. For more information see the [
 ## JMS 2.0
 
 JMS 2.0 is the latest released version of JMS and  was released on 21 May 2013. 
-See the [JMS 2.0 Final Release page](JMS20FinalRelease) for information on where to find the specification and API documentation. 
+See the [JMS 2.0 Final Release page](/jms-spec/pages/JMS20FinalRelease) for information on where to find the specification and API documentation. 
 That page also contains information on the new features in JMS 2.0, where to download the reference implementation, 
 and provides links to various useful articles about JMS 2.0.
 
