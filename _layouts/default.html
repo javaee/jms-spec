@@ -47,11 +47,6 @@
             <h2><a href="http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html"><p>JMS 2.0 javadocs</p></a></h2>
             <h2><a href="http://docs.oracle.com/javaee/6/api/index.html?javax/jms/package-summary.html"><p>JMS 1.1 javadocs</p></a></h2>
                     
-            {% if site.links.source %}
-               <h2><a href="{{ site.links.source }}"><p>API and specification source repository</p></a></h2>
-            {% endif %}
-            
-                       
             {% if site.links.javadocs %}
               <h2><a href="{{ site.links.javadocs }}"><p>APIs</p></a></h2>
             {% endif %}
@@ -72,6 +67,10 @@
 
             {% if site.links.hide_issuetracker != true %}
             <h2><a href="{{ site.github.issues_url }}"><p>Issue Tracker</p></a></h2>
+            {% endif %}
+
+            {% if site.links.source %}
+               <h2><a href="{{ site.links.source }}"><p>API and specification source repository</p></a></h2>
             {% endif %}
 
             {% if site.links.mailinglist %}
