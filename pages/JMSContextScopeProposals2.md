@@ -21,26 +21,26 @@ Consider a stateless session bean configured to use container-managed transactio
 
 A remote client obtains a reference to `Bean1` and calls the methods `method1a` and `method1b` in turn. 
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean1{
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean1{
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1a() {
+  @TransactionAttribute(REQUIRED)
+  public void method1a() {
        context.send(queue,"Message 1);
-    }
+  }
  
-    @TransactionAttribute(REQUIRED)
-    public void method1b() {
-       context.send(queue,"Message 2);
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1b() {
+    context.send(queue,"Message 2);
+  }
+}
 ```
 ### Case A, option 2: Analysis
 
@@ -86,41 +86,41 @@ A remote client obtains a reference to `Bean1` and calls `method1`
 
 This is `Bean1`:
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean1{
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean1{
  
-   @EJB Bean2 bean2;
+  @EJB Bean2 bean2;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-       bean2.method2a();
-       bean2.method2b();
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1() {
+    bean2.method2a();
+    bean2.method2b();
+  }
+}
 ```
 This is `Bean2`:
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean2{
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean2{
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method2a() {
-       context.send(queue,"Message 1);
-     }
+  @TransactionAttribute(REQUIRED)
+  public void method2a() {
+    context.send(queue,"Message 1);
+  }
  
-    @TransactionAttribute(REQUIRED)
-    public void method2b() {
-       context.send(queue,"Message 2);
-     }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method2b() {
+    context.send(queue,"Message 2);
+  }
+}
 ```
 
 ### Case B, option 2: Analysis
@@ -164,42 +164,42 @@ A remote client obtains a reference to `Bean1` and calls `method1`
 
 This is `Bean1`
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @EJB Bean2 bean2;
+  @EJB Bean2 bean2;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-        context.send(queue,"Message 1");
-        bean2.method2();
-    } 
- }
+  @TransactionAttribute(REQUIRED)
+  public void method1() {
+    context.send(queue,"Message 1");
+      bean2.method2();
+  } 
+}
 ```
 This is `Bean2`
 ``` 
- @TransactionManagement(TransactionManagementType.CONTAINER) 
- @Stateless
- public class Bean2 {
+@TransactionManagement(TransactionManagementType.CONTAINER) 
+@Stateless
+public class Bean2 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method2() {
-        context.send(queue,"Message 2");
-    }
- }
+  @TransactionAttribute(REQUIRED)
+  public void method2() {
+    context.send(queue,"Message 2");
+  }
+}
 ```
 
 ### Case C, option 2: Analysis
@@ -239,22 +239,22 @@ Consider a stateless session bean `Bean1`. This is configured to use container-m
 A remote client obtains a reference to `Bean1` and calls `method1`.
 
 ```
- @TransactionManagement(TransactionManagementType.CONTAINER)
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
  
-    @TransactionAttribute(REQUIRED)
-    public void method1() {
-        context.send(queue,"Message 1");
-        context.send(queue,"Message 2");
-    }
- }
+  TransactionAttribute(REQUIRED)
+  public void method1() {
+    context.send(queue,"Message 1");
+    context.send(queue,"Message 2");
+  }
+}
 ```
 
 ### Case D, option 2: Analysis
@@ -288,21 +288,21 @@ The `JMSContext` object will be created when `method1` uses the `context` variab
 Consider a stateless session bean `Bean1`. This is configured to use **bean**-managed transactions and has one business method, `method1`. The bean has an injected `JMSContext`.  `method1` does not start a transaction and uses the context to send two messages.
 
 ```
- @TransactionManagement(TransactionManagementType.BEAN)
- @Stateless
- public class Bean1 {
+@TransactionManagement(TransactionManagementType.BEAN)
+@Stateless
+public class Bean1 {
  
-    @Resource(lookup="jms/inboundQueue") Queue queue;
+  @Resource(lookup="jms/inboundQueue") Queue queue;
  
-    @Inject
-    @JMSConnectionFactory("jms/connectionFactory")
-    JMSContext context;
+  @Inject
+  @JMSConnectionFactory("jms/connectionFactory")
+  JMSContext context;
   
-    public void method1() {
-        context.send(queue,"Message 1");
-        context.send(queue,"Message 2");
-    }
- }
+  public void method1() {
+    context.send(queue,"Message 1");
+    context.send(queue,"Message 2");
+  }
+}
 ```
 
 ### Case E, option 2: Analysis
