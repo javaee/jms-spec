@@ -8,10 +8,11 @@ Note that these use cases are not intended to demonstrate how `@TransactionScope
 
 Before reading these, read [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2)
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
-## Use cases 
 
 ## Use case F: One bean which calls another when there is no transaction
 
@@ -132,8 +133,7 @@ public class Bean1 {
 Q | A
 :--- | :---
 Do the `context` variables in the four calls to `context.send()`  use the same injection point? | Yes, since they  all use the same `context` variable.
-Are the `context` variables in the four calls to `context.send()` in the same `@TransactionScope`? | Yes. Although the first two and second two calls to `context.send()` take place in different transactions, all four calls take place in the same method. <br/>
-(When the first transaction is committed the context remains in scope since the method has not yet completed. When the third and fourth message sends are performed it uses the context that is already in scope.)
+Are the `context` variables in the four calls to `context.send()` in the same `@TransactionScope`? | Yes. Although the first two and second two calls to `context.send()` take place in different transactions, all four calls take place in the same method. (When the first transaction is committed the context remains in scope since the method has not yet completed. When the third and fourth message sends are performed it uses the context that is already in scope.)
 Do the `context` variables in the four calls to `context.send()` use the same `JMSContext` (and therefore `MessageProducer`) objects? | Yes, since they use the same injection point and are in the same `@TransactionScope`
 Are the four messages guaranteed to be delivered in the order in which they are sent? | Yes, since they are sent using the same `MessageProducer` object.
 
