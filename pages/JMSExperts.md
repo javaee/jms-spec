@@ -2,6 +2,8 @@
 
 This page contains administrative information for members (or prospective members) of the JMS 2.1 (JSR 368) expert group. 
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
@@ -9,11 +11,11 @@ This page contains administrative information for members (or prospective member
 
 Applications to join the JSR 368 expert group are now invited. 
 
-Please use the form at [https://jcp.org/en/jsr/egnom?id=368].  
+Please use the form at https://jcp.org/en/jsr/egnom?id=368.  
 
-The application process is described in detail in [[HowToJoinTheJSR368ExpertGroup|How to join the JSR 368 expert group]].  
+The application process is described in detail in [How to join the JSR 368 expert group](/jms-spec/pages/HowToJoinTheJSR368ExpertGroup).  
 
-All applications, and the decision for any rejection, are recorded on the [[JSR368EGNominations|JSR 368 expert group nominations]] page. Members of the JSR 343 expert group are invited to make a new application to join the JSR 368 expert group.
+All applications, and the decision for any rejection, are recorded on the [JSR 368 expert group nominations](/jms-spec/pages/JSR368EGNominations) page. Members of the JSR 343 expert group are invited to make a new application to join the JSR 368 expert group.
 
 ##  JMS expert group mailing lists
 
