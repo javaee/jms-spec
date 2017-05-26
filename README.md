@@ -11,8 +11,8 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 
 The JMS 2.1 Early Draft is now out! 
 * Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
-* See the [latest news on JMS 2.1](JMS21#Latest_news_on_JMS_2.1 JMS 2.1)
-* Find out all about [JMS 2.1](JMS21).
+* See the [latest news on JMS 2.1](/jms-spec/pages/JMS21#latest-news-on-jms-21)
+* Find out all about [JMS 2.1](/jms-spec/pages/JMS21).
 
 ## JMS 2.1
 
