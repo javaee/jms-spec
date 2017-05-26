@@ -153,7 +153,7 @@ public void send1() throws Exception{
 ### Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?
 
 The section 
-<a href="/jms-spec/pages/JMS20ReasonsFAQ#Why_do_we_need_a_separate_JMSProducer_object?_Why_can_t_we_move_all_its_methods_onto_the_JMSContext?">Why do we need a separate JMSProducer object?</a>
+<a href="/jms-spec/pages/JMS20ReasonsFAQ#why-do-we-need-a-separate-jmsproducer-object-why-cant-we-move-all-its-methods-onto-the-jmscontext">Why do we need a separate JMSProducer object?</a>
 above explained that an injected `JMSContext` needs to be _stateless_ to avoid users getting confused (or worse) by the same `JMSContext` object being used in multiple components within the same scope. 
 
 Imagine a user creates two EJBs (or other Java EE components such as a servlet or CDI bean) and injects a  `JMSContext`  into each, using the same annotations. If the two EJBs are used within the same transaction, or, if there is no transaction, within the same request, then the two injected  `JMSContext` fields will (in accordance with expected CDI behaviour) refer to the same object. This means that calling a method such as `acknowledge()` or `commit()` on one   `JMSContext` field would have an effect on the other   `JMSContext` field. It was decided that this was potentially confusing and a possible cause of errors, especially if the two EJBs were developed by different people. To avoid this confusion it was decided to simply disallow the use of client-acknowledgement or local transactions on an injected `JMSContext`.
