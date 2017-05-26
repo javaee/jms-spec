@@ -4,6 +4,8 @@ JMS 2.0 was finally released on 21 May 2013.
 
 The specification document and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
+Since the JMS 2.0 "final release" there has since been an errata release: See [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
+
 Browse the API documentation for [http://jms-spec.java.net/2.0/apidocs/index.html JMS 2.0 only] (on jms-spec.java.net) or for [http://docs.oracle.com/javaee/7/api/ all of Java EE 7] (on docs.oracle.com)
 
 JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/detail?id=343 JSR 343].
@@ -53,8 +55,6 @@ Read these two OTN articles by by Nigel Deakin, JSR 343 spec lead:
 * [What's New in JMS 2.0, Part Two—New Messaging Features](http://www.oracle.com/technetwork/articles/java/jms2messaging-1954190.html)
 
 Read [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode).
-
-Listen to a  [Java Spotlight Podcast interview](https://blogs.oracle.com/javaspotlight/entry/java_spotlight_episode_131_nigel) with Nigel Deakin, JSR 343 spec lead in which he talks to host Roger Brinkley about some of the new features in JMS 2.0.
 
 If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ).
 

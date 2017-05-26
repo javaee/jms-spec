@@ -21,7 +21,7 @@ For more information see the [main JMS 2.1 page](/jms-spec/pages/JMS21).
 
 ## JMS 2.0 errata
 
-An errata for JMS 2.0 was released in March 2015. For more information see the [JMS 2.0 errata page](JMS20RevA).
+An errata for JMS 2.0 was released in March 2015. For more information see the [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
 
 ## JMS 2.0
 
