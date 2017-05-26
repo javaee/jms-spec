@@ -1,6 +1,6 @@
 # JMS 2.0 Final Release 
 
-JMS 2.0 was finally released on 21 May 2013.
+JMS 2.0 was finally released on 21 May 2013.T
 
 The specification document and API documentation of the JMS 2.0 final release may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
@@ -11,6 +11,8 @@ Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?jav
 JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/detail?id=343 JSR 343].
 
   * Comments are invited**. You can either send email to the JMS spec  [mailto:users@jms-spec.java.net user list] (you will need to subscribe first: see [http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or directly to the maintenance lead,  [mailto:nigel.deakin@oracle.com Nigel Deakin]. Reports of possible errors or omissions are especially welcome.
+  
+## Contents
 
 * auto-gen TOC:
 {:toc}
@@ -72,7 +74,7 @@ The purpose of a reference implementation is to prove that a specification can b
 
 ## JMS 2.0 tutorial
 
-The [JMS 2.0 tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm) (part of the [Java EE 7 tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/home.htm)) introduces the basics of JMS 2.0 and provides some simple examples that you can download and run.
+The [JMS 2.0 tutorial](https://docs.oracle.com/javaee/7/tutorial/partmessaging.htm) (part of the [Java EE 7 tutorial](https://docs.oracle.com/javaee/7/tutorial/)) introduces the basics of JMS 2.0 and provides some simple examples that you can download and run.
 
 ## JMS 2.0 demonstration examples 
 
