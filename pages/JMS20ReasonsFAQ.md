@@ -2,6 +2,8 @@
 
 This page records some of the design decisions taken during the development of the JMS 2.0 specification,
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
@@ -11,13 +13,13 @@ This page records some of the design decisions taken during the development of t
 
 There are a number of reasons why the use of asynchronous send is not permitted in a Java EE web or EJB container.
 
-  * Restriction on asynchronous callbacks in Java EE**
+** Restriction on asynchronous callbacks in Java EE**
 
 One reason is that performing an async send registers a callback object which is invoked in a separate thread. Performing a callback in a separate thread is something that the Java EE and EJB specifications have historically not allowed. For example the  `MessageConsumer` method `setMessageListener`, which registers a `MessageListener` whose `onMessage` method is called when a message is delivered, has long been prohibited in a Java EE web or EJB container. 
 
 However it has been suggested that this is an unnecessary restriction which it may be possible to remove in a future version of Java EE. One of the issues that would need to be resolved is what the transactional context is within a `CompletionListener` callback.
 
-  * Difficulty in implementing in XA transactions**
+** Difficulty in implementing in XA transactions**
 
 Another reason is that performing an asynchronous send in a JTA (XA) transaction raises some additional issues which could not be addressed in the time available for JMS 2.0. 
 
@@ -55,7 +57,7 @@ Apart from API simplicity, a second reason for keeping a separate consumer objec
 When JMS 2.0 was being developed, early versions of the simplified API didn't have a separate producer object. Instead, the `JMSContext` had a number of `send` methods for sending a message, all of which took the queue or topic as a parameter. In addition  the `JMSContext` had the same methods for setting delivery options as `MessageProducer`, namely  `setDeliveryMode`, `set Priority`, `setDisableMessageID`, ` 	setDisableMessageTimestamp`, `setTimeToLive` and the new `setDeliveryDelay`.
 
 Initially this design seemed to work well. Essentially, a `JMSContext` could be thought of as wrapping an anonymous `MessageProducer` (one with no queue or topic associated with it). It allowed the code for sending it to be something like this:
-
+```
  /*
   * original simplfied API for sending a message  
   */
@@ -63,7 +65,7 @@ Initially this design seemed to work well. Essentially, a `JMSContext` could be 
  context.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
  TextMessage textMessage = context.createTextMessage("Hello world");
  context.send(queue,textMessage);
-
+```
 However when we added support for injection of `JMSContext` objects a problem arose.
 
 Like any CDI bean (an object injected using CDI), an injected `JMSContext` needs to have a _scope_. A scope is needed so that the container knows when to "dispose" (close) the injected `JMSContext`. It was decided to follow the example of an injected `EntityManager` in JPA and give it "transaction scope". This means that the injected `JMSContext` will be closed by the container at the end of the transaction.
@@ -77,7 +79,7 @@ Now this reuse of `JMSContext` objects has some nice consequences. In particular
 However this reuse of `JMSContext` objects is also potentially confusing to the developer. Imagine that a developer creates two EJBs, EJB1 and EJB2. 
 
 EJB1 has an injected `JMSContext` which it uses to send a non-persistent message. It then calls EJB2 which sends a persistent message. Here's EJB1:
-
+```
  @Stateless
  @LocalBean
  public class EJB1 implements Serializable {
@@ -96,9 +98,9 @@ EJB1 has an injected `JMSContext` which it uses to send a non-persistent message
       ejb2.send2();
     }
  } 
-
+```
 and here is EJB2:
-
+```
  @Stateless
  @LocalBean
  public class EJB1 implements Serializable {
@@ -114,7 +116,7 @@ and here is EJB2:
        context2.send(queue,textMessage);
     }
  } 
-
+```
 So you might expect that if you call the `EJB1` method  `send1`, this would send a non-persistent message and then calls the `EJB2` method `send2`, which sends a persistent message. 
 
 However this would be wrong. The field `context1` in `EJB1` and the field `context2` in `EJB2` are injected using the same annotations and are executed within the same container-managed transaction. This means that they actually refer to the same object. So when the first bean calls `context1.setDeliveryMode(DeliveryMode.NON_PERSISTENT)` this has the unexpected result of causing the message sent by the second bean to be non-persistent as well. However in the normal Java language these are completely separate fields. 
@@ -130,7 +132,7 @@ To lessen the inconvenience of managing this extra object, we designed it so tha
 For the same reason we declared that a `JMSProducer` was intended to be a lightweight object which simply held a set of message delivery options, which could be created feely, and which did not need a `close` method.  We envisaged that the `JMSContext` would continue to hold an anonymous `MessageProducer`. The `JMSProducer` `send` method would be implemented to copy the various settings of the `JMSProducer` to the `JMSContext`'s anonymous `MessageProducer` and then use it to send the message. It would then reset the  `JMSContext`'s anonymous `MessageProducer` to its original state ready for the next message.
 
 The fact that the   `JMSProducer` was lightweight, never needed closing, and supported a builder pattern means that in most cases it's never necessary to ever save it in a field. This means that the code to send a non-persistent message actually turns out to be very simple, despite using an extra object:
-
+```
     public void send1() throws Exception{
        // use actual simplified API
        TextMessage textMessage = context1.createTextMessage("Message from EJB1");
@@ -140,14 +142,14 @@ The fact that the   `JMSProducer` was lightweight, never needed closing, and sup
     }
 
 Having gone this far in allowing the `JMSProducer` to be used in a builder pattern, we extended it to allow message headers and properties to be set using builder methods, This means that in most cases it isn't necessary to create a message object at all. Instead, you can call methods on `JMSProducer` to set delivery options, message headers and message properties and then simply pass the message body into the `send` method.
-
+```
     public void send1() throws Exception{
        // use actual simplified API
        context1.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).send(queue,"Message from EJB1);
  
        ...
     }
-
+```
 ### Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?
 
 The section 
