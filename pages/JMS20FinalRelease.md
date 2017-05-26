@@ -86,7 +86,7 @@ This demonstration (which was last updated to work with GlassFish build 82) show
 * Use of the new `receiveBody` method to synchronously receive a message and return its body in a single method call
 * Use of the new `getBody` method to return the body of a `Message` without the need to cast it to a more specific message type
 
-Please report issues with this demonstration directly to [Nigel Deakin](mailto:nigel.deakin@oracle.com).
+Please report issues with this demonstration using the [issue tracker](https://github.com/javaee/jms-spec/issues).
 
 ##  JMS 2.0 schedule (historical)
 
