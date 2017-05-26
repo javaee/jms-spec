@@ -123,7 +123,7 @@ However this would be wrong. The field `context1` in `EJB1` and the field `conte
 
 It was decided that this was potentially confusing and a possible cause of errors, especially if the two beans were developed by different people.
 
-We decided to solve this problem by making the  `JMSContext` _stateless_ by removing all the methods which could be used to change its behaviour. This meant removing the methods   `setDeliveryMode`, `set Priority`, `setDisableMessageID`, ` 	setDisableMessageTimestamp`, `setTimeToLive` and `setDeliveryDelay` and moving these onto a separate object. This is the `JMSProducer`, which is a perfectly normal Java object. Instances of `JMSProducer` would never be reused unexpectedly.
+We decided to solve this problem by making the  `JMSContext` _stateless_ by removing all the methods which could be used to change its behaviour. This meant removing the methods   `setDeliveryMode`, `set Priority`, `setDisableMessageID`, `setDisableMessageTimestamp`, `setTimeToLive` and `setDeliveryDelay` and moving these onto a separate object. This is the `JMSProducer`, which is a perfectly normal Java object. Instances of `JMSProducer` would never be reused unexpectedly.
 
 Moving these "state" methods to `JMSProducer` means that we had to move `send` there as well.
 
