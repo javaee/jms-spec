@@ -13,12 +13,11 @@ An "errata" is a simple kind of maintenance release intended purely to correct e
 
 One of the errors was a bug in the JMS API jar ([JMS spec issue 161](https://github.com/javaee/jms-spec/issues/161)). To fix that we needed to release a new version of that jar. This jar is actually part of the RI, not the spec, but the bug was included here for convenience.
 
-The following page explains what an "errata" is: [https://java.net/projects/javaee-spec/pages/JCPProcesses](https://java.net/projects/javaee-spec/pages/JCPProcesses).
+There is an explanation of what an "errata" is on the [Java EE spec JCP processes page](/javaee-spec/JCPProcesses).
 
-The JCP process for a maintenance release is [https://jcp.org/en/procedures/jcp2#5](https://jcp.org/en/procedures/jcp2#5
-)
+The JCP process for a maintenance release is [https://jcp.org/en/procedures/jcp2#5](https://jcp.org/en/procedures/jcp2#5)
 
-This errata was proposed by [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle), JSR 343 (JMS 2.0) maintenance lead. Errata releases (and maintenance releases in general) don't have an expert group. Everyone in the JMS community was invited to comment and contribute, including members of the new JSR 368 (JMS 2.1) expert group, former former members of the old JSR 343 (JMS 2.0) expert group, and subscribers to users@jms-spec.java.net.
+This errata was proposed by [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle), JSR 343 (JMS 2.0) maintenance lead. Errata releases (and maintenance releases in general) don't have an expert group. Everyone in the JMS community was invited to comment and contribute, including members of the new JSR 368 (JMS 2.1) expert group, former former members of the old JSR 343 (JMS 2.0) expert group, and subscribers to the community email list.
 
 The errata was released on 16th March 2015 and may be downloaded [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html).
 

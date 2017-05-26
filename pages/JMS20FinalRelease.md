@@ -90,7 +90,7 @@ Please report issues with this demonstration using the [issue tracker](https://g
 
 ##  JMS 2.0 schedule (historical)
 
-<br/>Also see the [http://java.net/projects/jms-spec/pages/JSR343Planning JMS 2.0 Planning] page <br/>
+Also see the [http://java.net/projects/jms-spec/pages/JSR343Planning JMS 2.0 Planning] page 
 
 Stage | Initial plan<br/>(Feb 2011) | Current plan<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013) | Actual
 :--- | :--- | :---
