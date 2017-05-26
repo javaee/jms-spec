@@ -66,7 +66,9 @@ The purpose of a reference implementation is to prove that a specification can b
   * [Open Message Queue project page](/openmq)
   * [Open MQ RI downloads page](/openmq/www/downloads/ri/)
 
-* The reference implementation for JMS 2.0 as part of a Java EE 7 application server is based on GlassFish Server Open Source Edition 4.0 and is available from the [GlassFish project page](https://javaee.github.io/glassfish/).
+* The reference implementation for JMS 2.0 as part of a Java EE 7 application server is based on GlassFish Server Open Source Edition 4.0.
+  * [GlassFish project page](/glassfish/)
+  * [GlassFish RI downloads page](/glassfish/downloads/ri/index.html)
 
 ## JMS 2.0 tutorial
 
