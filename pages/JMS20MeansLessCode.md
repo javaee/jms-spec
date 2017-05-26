@@ -65,13 +65,14 @@ The same syntax may be used when creating a `JMSContext`.
 ...one is all you need:
 
 **JMS 1.1**
-
- Session session = connection.createSession(true,Session.SESSION_TRANSACTED);
+```
+Session session = connection.createSession(true,Session.SESSION_TRANSACTED);
+```
 
 **JMS 2.0**
-
- Session session = connection.createSession(Session.SESSION_TRANSACTED);
-
+```
+Session session = connection.createSession(Session.SESSION_TRANSACTED);
+```
 There are similar methods for creating a `JMSContext`
 
 ## No need to pass in any parameters when creating a session in a Java EE transaction 
