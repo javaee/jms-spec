@@ -72,11 +72,11 @@ The purpose of a reference implementation is to prove that a specification can b
 
 ## JMS 2.0 tutorial
 
-The [http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm JMS 2.0 tutorial] (part of the [http://docs.oracle.com/javaee/7/tutorial/doc/home.htm Java EE 7 tutorial]) introduces the basics of JMS 2.0 and provides some simple examples that you can download and run.
+The [JMS 2.0 tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/partmessaging.htm) (part of the [Java EE 7 tutorial](http://docs.oracle.com/javaee/7/tutorial/doc/home.htm)) introduces the basics of JMS 2.0 and provides some simple examples that you can download and run.
 
 ## JMS 2.0 demonstration examples 
 
-A [http://netbeans.org NetBeans] project which demonstrates some of the new features of JMS 2.0 may be downloaded  [http://java.net/projects/jms-spec/downloads/download/JMS20Demo.zip as a zip] or checked out from the project's subversion repository [http://java.net/projects/jms-spec/sources/repository/show/jms2.0/demos/JMS20Demo here]. An earlier version was demonstrated at JavaOne 2012.
+A [NetBeans](http://netbeans.org) project which demonstrates some of the new features of JMS 2.0 may be downloaded  [as a zip](/jms-spec/downloads/JMS20Demo.zip) or checked out from the project's GitHub repository [here](https://github.com/javaee/jms-spec/tree/master/jms2.0/demos/JMS20Demo). An earlier version was demonstrated at JavaOne 2012.
 
 This demonstration (which was last updated to work with GlassFish build 82) shows
 * Use of the JMS 2.0 simplified API  using application-managed `JMSContext` objects
@@ -84,77 +84,25 @@ This demonstration (which was last updated to work with GlassFish build 82) show
 * Use of the new `receiveBody` method to synchronously receive a message and return its body in a single method call
 * Use of the new `getBody` method to return the body of a `Message` without the need to cast it to a more specific message type
 
-Please report issues with this demonstration directly to [mailto:nigel.deakin@oracle.com Nigel Deakin].
+Please report issues with this demonstration directly to [Nigel Deakin](mailto:nigel.deakin@oracle.com).
 
 ##  JMS 2.0 schedule (historical)
 
 <br/>Also see the [http://java.net/projects/jms-spec/pages/JSR343Planning JMS 2.0 Planning] page <br/>
 
-{|- border="1"
-! Stage
-! Initial plan<br/>(Feb 2011)
-! Current plan<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013)
-! Actual
-|- 
-! JSR approval
-|  March 2011
-|  
-| March 2011
-|-
-! Expert group formation
-|  March 2011
-|  
-| May 2011
-|-   
-! Early draft review
-|  Q3 2011
-| 
-|   28 Feb - 29 Mar 2012
-|-
-! Submission of Public Review Draft to the JCP
-| 
-| 19 Dec 2012 	
-| 19 Dec 2012 	
-|-
-! Start of Public Review
-|
-| 3  Jan 2013 	
-| 3  Jan 2013 
-|-
-! End of Public Review
-|
-| 4  Feb 2013 	
-| 4  Feb 2013 
-|-
-! Completion of JCP Public Review Ballot
-|
-|18 Feb 2013
-|18 Feb 2013
-|-
-! Submission of Proposed Final Draft to the JCP
-|
-| 20 Feb 2013
-| 20 Feb 2013
-|-
-! Submission of Materials for Final Ballot to the JCP
-|
-| 20 Mar 2013 	
-| 20 Mar 2013 	
-|-
-! Start of Final Ballot
-|
-| 26 Mar 2013 	
-| 26 Mar 2013 	
-|-
-! Completion of Final Ballot
-|
-| 8  Apr 2013 	
-| 8  Apr 2013 	
-|-
-! Release of Spec, RI, TCK 
-|
-| <strike>15 Apr 2013</strike> <strike>30 Apr 2013</strike> 22 April 2013
-| 21 May 2013
-|}
+Stage | Initial plan<br/>(Feb 2011) | Current plan<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013) | Actual
+:--- | :--- | :---
+JSR approval | March 2011 |   | March 2011
+Expert group formation | March 2011 | | May 2011
+Early draft review | Q3 2011 | |   28 Feb - 29 Mar 2012
+Submission of Public Review Draft to the JCP | | 19 Dec 2012 | 19 Dec 2012 	
+Start of Public Review | | 3 Jan 2013 | 3  Jan 2013 
+End of Public Review | | 4  Feb 2013 | 4  Feb 2013 
+Completion of JCP Public Review Ballot | |18 Feb 2013 |18 Feb 2013
+Submission of Proposed Final Draft to the JCP | | 20 Feb 2013 | 20 Feb 2013
+Submission of Materials for Final Ballot to the JCP | | 20 Mar 2013 | 20 Mar 2013 	
+Start of Final Ballot | | 26 Mar 2013 | 26 Mar 2013 	
+Completion of Final Ballot | | 8  Apr 2013 | 8  Apr 2013 	
+Release of Spec, RI, TCK | <strike>15 Apr 2013</strike> <strike>30 Apr 2013</strike> 22 April 2013 | 21 May 2013
 
-This was based in the [http://java.net/projects/javaee-spec/pages/Home#Java_EE_7_Schedule schedule for the Java EE platform]
+This was based on the schedule for the Java EE 7 platform.
