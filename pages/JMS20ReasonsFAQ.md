@@ -80,42 +80,42 @@ However this reuse of `JMSContext` objects is also potentially confusing to the 
 
 EJB1 has an injected `JMSContext` which it uses to send a non-persistent message. It then calls EJB2 which sends a persistent message. Here's EJB1:
 ```
- @Stateless
- @LocalBean
- public class EJB1 implements Serializable {
+@Stateless
+@LocalBean
+public class EJB1 implements Serializable {
  
-    @Inject JMSContext context1;
+  @Inject JMSContext context1;
  
-    @EJB EJB2 ejb2;
+  @EJB EJB2 ejb2;
  
-    public void send1() throws Exception{
-       // use original simplified API
-       context1.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-       TextMessage textMessage = context1.createTextMessage("Message from EJB1");
-       context1.send(queue,textMessage);
+  public void send1() throws Exception{
+    // use original simplified API
+    context1.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+    TextMessage textMessage = context1.createTextMessage("Message from EJB1");
+    context1.send(queue,textMessage);
  
-      // call second bean
-      ejb2.send2();
-    }
+    // call second bean
+    ejb2.send2();
+  }
  } 
 ```
 and here is EJB2:
 ```
- @Stateless
- @LocalBean
- public class EJB1 implements Serializable {
+@Stateless
+@LocalBean
+public class EJB1 implements Serializable {
  
-    @Inject JMSContext context12;
+  @Inject JMSContext context12;
  
-    @EJB EJB2 ejb2;
+  @EJB EJB2 ejb2;
  
-    public void send2() throws Exception{
-       // use original simplified API
-       // there's no need to set delivery mode as the default is DeliveryMode.PERSISTENT, surely?
-       TextMessage textMessage = context2.createTextMessage("Message from EJB2");
-       context2.send(queue,textMessage);
-    }
- } 
+  public void send2() throws Exception{
+    // use original simplified API
+    // there's no need to set delivery mode as the default is DeliveryMode.PERSISTENT, surely?
+    TextMessage textMessage = context2.createTextMessage("Message from EJB2");
+    context2.send(queue,textMessage);
+  }
+} 
 ```
 So you might expect that if you call the `EJB1` method  `send1`, this would send a non-persistent message and then calls the `EJB2` method `send2`, which sends a persistent message. 
 
@@ -133,22 +133,22 @@ For the same reason we declared that a `JMSProducer` was intended to be a lightw
 
 The fact that the   `JMSProducer` was lightweight, never needed closing, and supported a builder pattern means that in most cases it's never necessary to ever save it in a field. This means that the code to send a non-persistent message actually turns out to be very simple, despite using an extra object:
 ```
-    public void send1() throws Exception{
-       // use actual simplified API
-       TextMessage textMessage = context1.createTextMessage("Message from EJB1");
-       context1.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).send(queue,textMessage);
+public void send1() throws Exception{
+  // use actual simplified API
+  TextMessage textMessage = context1.createTextMessage("Message from EJB1");
+  context1.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).send(queue,textMessage);
  
-       ...
-    }
+  ...
+}
 
 Having gone this far in allowing the `JMSProducer` to be used in a builder pattern, we extended it to allow message headers and properties to be set using builder methods, This means that in most cases it isn't necessary to create a message object at all. Instead, you can call methods on `JMSProducer` to set delivery options, message headers and message properties and then simply pass the message body into the `send` method.
 ```
-    public void send1() throws Exception{
-       // use actual simplified API
-       context1.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).send(queue,"Message from EJB1);
- 
-       ...
-    }
+public void send1() throws Exception{
+  // use actual simplified API
+  context1.createProducer().setDeliveryMode(DeliveryMode.NON_PERSISTENT).send(queue,"Message from EJB1);
+
+  ...
+}
 ```
 ### Why don't we allow client-acknowledgement or local transactions on an injected JMSContext?
 
