@@ -6,7 +6,7 @@ The specification document and API documentation of the JMS 2.0 final release ma
 
 Since the JMS 2.0 final release there has since been a maintenance release which may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html). For more information see [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
 
-Browse the API documentation for [http://jms-spec.java.net/2.0/apidocs/index.html JMS 2.0 only] (on jms-spec.java.net) or for [http://docs.oracle.com/javaee/7/api/ all of Java EE 7] (on docs.oracle.com)
+Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html).
 
 JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/detail?id=343 JSR 343].
 
