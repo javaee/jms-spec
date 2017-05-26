@@ -140,7 +140,7 @@ public void send1() throws Exception{
  
   ...
 }
-
+```
 Having gone this far in allowing the `JMSProducer` to be used in a builder pattern, we extended it to allow message headers and properties to be set using builder methods, This means that in most cases it isn't necessary to create a message object at all. Instead, you can call methods on `JMSProducer` to set delivery options, message headers and message properties and then simply pass the message body into the `send` method.
 ```
 public void send1() throws Exception{
