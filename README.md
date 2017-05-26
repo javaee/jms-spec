@@ -1,5 +1,13 @@
 # JMS specification source repository
 
+This repository contains 
+* The source of the JMS specification (various versions)
+* Source code for the JMS API
+
+This repository is used to generate the official Javadocs that are sent to the JCP when a new version of the JMS specification is released. 
+
+However it is not used to directly generate the JMS API jar published in Maven Central. Instead, when a new version of the JMS specification is released, the API classes are copied to [Open Message Queue](https://github.com/javaee/openmq) and the JMS API jar built from there.
+
 Directory or file | Notes
 :--- | :---
 `FinalRelease-1.0.1` | Framemaker source of the JMS 1.0.1 specification
