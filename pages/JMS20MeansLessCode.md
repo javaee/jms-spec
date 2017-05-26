@@ -2,6 +2,8 @@
 
 <p>Here are ten simple examples that demonstrate how JMS 2.0 requires less code than JMS 1.1.</p>
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
@@ -10,48 +12,49 @@
 The JMS 2.0 simplified API introduces a new object, `JMSContext`, which provides the same functionality as the separate `Connection` and
 `Session` objects in the JMS 1.1 API:
 
-  * JMS 1.1**
-
- Connection connection = connectionFactory.createConnection();
- Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-
-  * JMS 2.0**
-
- JMSContext context = connectionFactory.createContext(JMSContext.SESSION_TRANSACTED);
+**JMS 1.1**
+```
+Connection connection = connectionFactory.createConnection();
+Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+```
+**JMS 2.0**
+```
+JMSContext context = connectionFactory.createContext(JMSContext.SESSION_TRANSACTED);
+```
 
 ## Use of try-with-resources block means no need to call close 
 
 Failing to close a `Connection` after use may cause your application to run out of resources.
 
-  * JMS 1.1**
+**JMS 1.1**
 
 In JMS 1.1 the best way to make sure your connection gets closed after use is to call `close()` in a `finally` block:
-
- try {
-    Connection connection = connectionFactory.createConnection();
-    try {
-       Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-       ... etc ...
-    } finally {
-       connection.close();
-    }
- } catch (JMSException ex) {
-    ex.printStackTrace();
- }
-
+```
+try {
+  Connection connection = connectionFactory.createConnection();
+  try {
+    Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+    ... etc ...
+  } finally {
+    connection.close();
+  }
+} catch (JMSException ex) {
+  ex.printStackTrace();
+}
+```
 This is rather verbose. To make things worse, if you get an exception in the body of the `try` block, followed by an exception in `close()`,
 the first exception will be lost, even though the first exception is probably the root cause of the failure.
 
-  * JMS 2.0**
+**JMS 2.0**
 
 In JMS 2.0 the `Connection` object implements the `java.lang.AutoCloseable` interface. This means that if you create the `Connection`  object in a try-with-resources block the `close` method will be called automatically at the end of the block. 
-
+```
  try (Connection connection = connectionFactory.createConnection();){
     ... etc ...
  } catch (JMSException ex) {
     ex.printStackTrace();
  }
-
+```
 This requires less code. In addition it allows exceptions to be handled better: if you get an exception in the body of the try block, followed by an exception in `close()`, the
 first exception will be nicely nested within the first, so you can easily identify the root cause.
 
