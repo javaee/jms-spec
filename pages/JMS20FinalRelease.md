@@ -103,6 +103,6 @@ Submission of Proposed Final Draft to the JCP | | 20 Feb 2013 | 20 Feb 2013
 Submission of Materials for Final Ballot to the JCP | | 20 Mar 2013 | 20 Mar 2013 	
 Start of Final Ballot | | 26 Mar 2013 | 26 Mar 2013 	
 Completion of Final Ballot | | 8  Apr 2013 | 8  Apr 2013 	
-Release of Spec, RI, TCK | <strike>15 Apr 2013</strike> <strike>30 Apr 2013</strike> 22 April 2013 | 21 May 2013
+Release of Spec, RI, TCK | | <strike>15 Apr 2013</strike> <strike>30 Apr 2013</strike> 22 April 2013 | 21 May 2013
 
 This was based on the schedule for the Java EE 7 platform.
