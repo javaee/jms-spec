@@ -13,13 +13,13 @@ This page records some of the design decisions taken during the development of t
 
 There are a number of reasons why the use of asynchronous send is not permitted in a Java EE web or EJB container.
 
-** Restriction on asynchronous callbacks in Java EE**
+**Restriction on asynchronous callbacks in Java EE**
 
 One reason is that performing an async send registers a callback object which is invoked in a separate thread. Performing a callback in a separate thread is something that the Java EE and EJB specifications have historically not allowed. For example the  `MessageConsumer` method `setMessageListener`, which registers a `MessageListener` whose `onMessage` method is called when a message is delivered, has long been prohibited in a Java EE web or EJB container. 
 
 However it has been suggested that this is an unnecessary restriction which it may be possible to remove in a future version of Java EE. One of the issues that would need to be resolved is what the transactional context is within a `CompletionListener` callback.
 
-** Difficulty in implementing in XA transactions**
+**Difficulty in implementing in XA transactions**
 
 Another reason is that performing an asynchronous send in a JTA (XA) transaction raises some additional issues which could not be addressed in the time available for JMS 2.0. 
 
