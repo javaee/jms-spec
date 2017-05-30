@@ -148,26 +148,25 @@ With JMS listener beans it is proposed to follow the existing existing mechanism
 So in the following example, each message will be received, and the callback method invoked, without the container using a transaction:
 
 ```
- public class MYListenerBean{
+public class MYListenerBean{
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void giveMeAMessage(Message message) {
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void giveMeAMessage(Message message) {
      ...
-   }
- }
+  }
+}
 ```
-
 However in the following example, each message will be received, and the callback method invoked, in the same container-managed transaction:
 
 ```
- public class MYListenerBean{
+public class MYListenerBean{
  
-   @Transactional 
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void giveMeAMessage(Message message) {
-     ...
-   }
- }
+  @Transactional 
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void giveMeAMessage(Message message) {
+    ...
+  }
+}
 ```
 
 The `@Transactional` annotation has an optional attribute which allows the "transaction type" to be specified. This can be set to one of the six possible values. Not all are appropriate for listener beans:
@@ -200,26 +199,26 @@ By default a CDI managed bean has _dependent scope_. This can be denoted by addi
 So if we define a CDI managed bean as follows:
 
 ```
- @Dependent
- public class MyDepScopeListenerBean{
+@Dependent
+public class MyDepScopeListenerBean{
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void deliver(Message message) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void deliver(Message message) {
+    ...
+  }
+}
 ```
 And inject it into, say, a Servlet as follows:
 ```
- @WebServlet("/myjmsservlet1")
- public class MyJMSServlet1 extends HttpServlet {
+@WebServlet("/myjmsservlet1")
+public class MyJMSServlet1 extends HttpServlet {
  
-   @Inject MyDepScopeListenerBean myDepScopeListenerBean;
+  @Inject MyDepScopeListenerBean myDepScopeListenerBean;
     
-   public void service(ServletRequest req, ServletResponse res) throws IOException, ServletException {
-      ...
-   }
- }
+  public void service(ServletRequest req, ServletResponse res) throws IOException, ServletException {
+     ...
+  }
+}
 ```
 Then whenever an instance of the servlet is created (by the container) an instance of `MyDepScopeListenerBean` will be automatically created which will start listening for messages from the specified. Each time a message is delivered the callback method will be invoked. When the servlet instance is destroyed (by the container) the instance will cease listening for messages.
 
@@ -253,28 +252,28 @@ For example, the `@RequestScoped` class annotation can be used to specify that t
 So if we define a CDI managed bean as follows:
 
 ```
- @RequestScoped
- public class MyReqScopeListenerBean{
+@RequestScoped
+public class MyReqScopeListenerBean{
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void deliver(Message message) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void deliver(Message message) {
+    ...
+  }
+}
 ```
 And inject it into, a Servlet as follows:
 ```
- @WebServlet("/myjmsservlet1")
- public class MyJMSServlet1 extends HttpServlet {
+@WebServlet("/myjmsservlet1")
+public class MyJMSServlet1 extends HttpServlet {
  
-   @Inject MyReqScopeListenerBean listener;
+  @Inject MyReqScopeListenerBean listener;
     
-   public void service(ServletRequest req, ServletResponse res) throws IOException, ServletException {
-     listener.toString(); // trigger instantiation of the listener
-      ...
-     // listener will be destroyed when scope ends
-   }
- }
+  public void service(ServletRequest req, ServletResponse res) throws IOException, ServletException {
+    listener.toString(); // trigger instantiation of the listener
+    ...
+    // listener will be destroyed when scope ends
+  }
+}
 ```
 Then each time a request is received, and the service method invoked, the call to `listener.toString()` will cause a new listener to be created and will start listening for messages. It will then continue to listen for messages until the request ends.
 
@@ -306,12 +305,9 @@ The application server will provide a CDI "portable extension" which extends the
 * It will extend the `postConstruct` behaviour of such beans to:
   * Determine which resource adapter to use
   * Call the `ResourceAdapter` method `endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)`
-
 * This will lookup the connection factory and destination specified in the callback annotations and use these and the other annotations to create a consumer which will deliver messages, one at a time, to the specified callback method, adding whatever transactional behaviour is specified. 
-
 * It will extend the `postConstruct` behaviour of such beans to:
   * Call the `ResourceAdapter` method `endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)`
-
 * This will close the consumer so that no further messages are delivered to the bean, and clean up any other state created during the `postConstruct` stage.
 
 Note that the term "portable extension" used here is CDI terminology for an extension to an application server's CDI container that interacts with the CDI container using CDI's portable extension integration SPI. Although it is expected that this SPI will be sufficient, the application server may use any API that is required.
