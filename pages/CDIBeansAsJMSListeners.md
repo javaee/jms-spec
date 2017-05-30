@@ -20,22 +20,22 @@ In the current version of Java EE the only way that an application can consume J
 Here's an example of a MDB in Java EE 7:
 
 ```
- @MessageDriven(activationConfig = {
-   @ActivationConfigProperty(
-     propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
-   @ActivationConfigProperty(
-     propertyName = "destinationLookup", propertyValue = "java:global/java:global/News"),
-   @ActivationConfigProperty
-     (propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
-   @ActivationConfigProperty(
-     propertyName = "messageSelector", propertyValue = "ticker='ORCL'")
- }
- public class MyMDB20 implements MessageListener {
+@MessageDriven(activationConfig = {
+  @ActivationConfigProperty(
+    propertyName = "connectionFactoryLookup", propertyValue = "java:global/MyCF"),
+  @ActivationConfigProperty(
+    propertyName = "destinationLookup", propertyValue = "java:global/java:global/News"),
+  @ActivationConfigProperty
+    (propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+  @ActivationConfigProperty(
+    propertyName = "messageSelector", propertyValue = "ticker='ORCL'")
+}
+public class MyMDB20 implements MessageListener {
  
-   public void onMessage(Message message){
-     ...
-   }
- }
+  public void onMessage(Message message){
+    ...
+  }
+}
 ```
 
 ### In Java EE 8, we're proposing that JMS MDBs will be more flexible
@@ -46,18 +46,17 @@ will make them even simpler by removing the need for the MDB to implement the
 Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
 
 ```
- @MessageDriven
- public class MyMDB21 {
+@MessageDriven
+public class MyMDB21 {
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
+}
 ```
-
 However those proposals leave the MDB lifecycle unchanged. This means that a MDB (or pool of MDBs) will start listening for messages as soon as the application is started, and will continue to listen for messages until the application is shut down. There is no way to listen for messages for a shorter period that this, or to allow objects that are not MDBs to listen for messages.
 
 ### In Java EE 8, we're now proposing that any CDI managed bean may listen for JMS messages
@@ -65,18 +64,17 @@ However those proposals leave the MDB lifecycle unchanged. This means that a MDB
 To address the restrictions in the MDB lifecycle **it is now proposed to allow any CDI managed bean in a Java EE application to listen for JMS messages**. The bean will start listening for messages as soon as a bean instance is created, and it will continue to listen for messages until it is destroyed. All that will be necessary is to define a suitable callback method on the bean and add method annotations in the same way as is proposed for JMS MDBs. Here's an example of such a bean:
 
 ```
- @Dependent
- public class MyCDIBean21 {
+@Dependent
+public class MyCDIBean21 {
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
+}
 ```
-
 As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This is deliberate: all the new annotations that can be used on a callback method of a JMS MDB (`@JMSListener` etc) can also be used on a CDI managed bean.  (Note also that these annotations are still being designed: comments are invited.)
 
 However note that this object is not a MDB. It does not have the `MessageDriven` annotation. Instead it is a CDI managed bean which can have any CDI scope and can be injected into Java EE code just like any other CDI managed bean. When a CDI bean is injected, the lifecycle of the bean instance is managed by the CDI container. When the bean instance is created, if it is annotated with `JMSListener` then it will start listening for messages, and when the bean instance is destroyed (such as when its scope ends) it will stop listening for messages.
@@ -89,19 +87,17 @@ This section describes JMS listener beans in more detail and how they relate to 
 
 The CDI 1.2 specification defines a managed bean in [section 3.1 "Managed beans"](http://docs.jboss.org/cdi/spec/1.2/cdi-spec.html#managed_beans). This states:
 
-<table style="text-align:left;  margin-left: 40px;" class="tab"> <tr style="background-color:#edf9fb;"> <td style="text-align:left;">
-A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE specification, or if it meets all of the following conditions:
-* It is not a non-static inner class.
-* It is a concrete class, or is annotated @Decorator.
-* It is not annotated with an EJB component-defining annotation or declared as an EJB bean class in ejb-jar.xml.
-* It does not implement javax.enterprise.inject.spi.Extension.
-* It is not annotated @Vetoed or in a package annotated @Vetoed.
-* It has an appropriate constructor - either:
-  *  the class has a constructor with no parameters, or
-  *  the class declares a constructor annotated @Inject.
-
-All Java classes that meet these conditions are managed beans and thus no special declaration is required to define a managed bean.
-</td></tr></table>
+> A top-level Java class is a managed bean if it is defined to be a managed bean by any other Java EE specification, or if it meets all of the following conditions:
+> * It is not a non-static inner class.
+> * It is a concrete class, or is annotated @Decorator.
+> * It is not annotated with an EJB component-defining annotation or declared as an EJB bean class in ejb-jar.xml.
+> * It does not implement javax.enterprise.inject.spi.Extension.
+> * It is not annotated @Vetoed or in a package annotated @Vetoed.
+> * It has an appropriate constructor - either:
+>   *  the class has a constructor with no parameters, or
+>   *  the class declares a constructor annotated @Inject.
+> 
+> All Java classes that meet these conditions are managed beans and thus no special declaration is required to define a managed bean.
 
 In addition, the managed bean instance must be obtained via dependency injection. This allows its lifecycle will be managed by the CDI container. The CDI container will take care of creating the instance when needed, and destroying it afterwards.  For the purposes of this proposal, the term "managed bean" refers to a managed bean instance that has been obtained via dependency injection.
 
