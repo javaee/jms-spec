@@ -123,7 +123,7 @@ Although this option will remain, it is proposed in Java EE 8 to remove the requ
 @MessageDriven
 public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
  
-  <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
+  @JMSListener(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
   public void processTrade(TextMessage tradeMessage){
     ...
   }
