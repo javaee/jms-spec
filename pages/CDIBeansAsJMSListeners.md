@@ -2,7 +2,7 @@
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
-These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments are invited. See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1).
+These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments are invited. See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21).
 
 For a summary of the comments made so far, see [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments). 
 
@@ -303,7 +303,7 @@ The application server must support the use of a resource adapter if one is expl
 
 ### Responsibilities of the application server
 
-## CDI portable extension
+#### CDI portable extension
 
 The application server will provide a CDI "portable extension" which extends the behaviour of all CDI managed beans that have one or more methods annotated with `JMSListener`, as follows:
 
@@ -330,7 +330,7 @@ However using this existing API for JMS listener beans is an awkward fit, since 
 <b>Issue 5:</b>How does the application server determine what resource adapter to use? Is this a per-bean or per-method setting? In these proposals a single call to `endpointActivation` is responsible for handling all the callback methods on a listener bean, which means that all callback methods must use the same resource adapter (and so probably the same JMS provider). Is this desirable, or do we want each callback method to be able to specify a different resource adapter?
 </td></tr></table>
 
-## MessageEndpointFactory
+#### MessageEndpointFactory
 
 The application server will be responsible for providing a suitable `MessageEndpointFactory` class which will be passed to the resource adapter in the calls to `endpointActivation` and `endpointDeactivation`. 
 
@@ -342,7 +342,7 @@ The application server will be responsible for providing a suitable `MessageEndp
 
 * The method `isDeliveryTransacted(Method method)` will return whether message deliveries to the specified method are transacted or not. The application server will determine this by checking whether or not the specified method has a `@javax.transaction.Transactional` annotation.
 
-## MessageEndpoint
+#### MessageEndpoint
 
 The application server will be responsible for returning a suitable `MessageEndpoint` object when  `MessageEndpointFactory#createEndpoint(XAResource xaResource)` and `MessageEndpointFactory#createEndpoint(XAResource xaResource, long timeout)` are called.
 
@@ -369,7 +369,7 @@ The `@javax.transaction.Transactional` annotation can be used to specify which m
 
 The main responsibility of the resource adapter is to implement the  `ResourceAdapter` methods `endpointActivation` and `endpointDeactivation` so that they handle JMS listener beans as follows:
 
-## endpointActivation
+#### endpointActivation
 
 The resource adapter must implement  the `ResourceAdapter` method `endpointActivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)` as follows:
 
@@ -386,7 +386,7 @@ The resource adapter must implement  the `ResourceAdapter` method `endpointActiv
 
 Note that this is very similar behaviour to that required for activating JMS MDBs. The main difference is that there will only ever be a single instance of  `MessageEndpoint`. There is therefore no point in the resource adapter attempting to deliver messages from a given consumer in more than as single thread.
 
-## endpointDeactivation
+#### endpointDeactivation
 
 The resource adapter must implement  the `ResourceAdapter` method `endpointDeactivation(MessageEndpointFactory endpointFactory, ActivationSpec spec)` as follows:
 
