@@ -108,17 +108,17 @@ These callbacks would be called during the bean's `postConstruct` phase, after t
 
 If the bean had multiple multiple callbacks then each callback might have different destinations, message selectors, etc. To handle that the callback may need to have a parameter which specifies method the call applies to:
 ```
-   @GetMessageSelector
-   public void returnMessageSelectors(Method m){
-     // some logic to work out message selector for the specified method
-     return ...
-   }
+@GetMessageSelector
+public void returnMessageSelectors(Method m){
+  // some logic to work out message selector for the specified method
+  return ...
+}
 ```
 It would be simpler overall if we allowed these beans to define just a single callback method. (The same issue applies to the new-style MDBs).
 
 #### Customisation using EL expressions
 
-[https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/45 Another proposal] is to allow parameters to the various annotations to be specified using the Java Unified Expression Language (EL). 
+[Another proposal](https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/45) is to allow parameters to the various annotations to be specified using the Java Unified Expression Language (EL). 
 
 In this the application would define a bean class with a callback method that returns the required value, and use `@Named` to give the bean a name
 ```
