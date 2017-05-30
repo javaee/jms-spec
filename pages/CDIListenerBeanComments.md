@@ -60,7 +60,7 @@ This mechanism only works for scopes that fire the `@Initialized` event. CDI 1.2
 
 #### `@Eager`
 
-There's a utility library called [http://showcase.omnifaces.org/ Omnifaces], intended for JSF applications. This includes a number of convenient CDI extensions. One of these is an annotation [http://showcase.omnifaces.org/cdi/Eager `@Eager`] which can be added to any managed bean of scope `@RequestScoped`, `@ViewScoped`, `@SessionScoped` or `@ApplicationScoped` and which will cause the bean to be "instantiated automatically at the start of each such scope instead of on demand when a bean is first referenced." 
+There's a utility library called [Omnifaces](http://showcase.omnifaces.org/), intended for JSF applications. This includes a number of convenient CDI extensions. One of these is an annotation [http://showcase.omnifaces.org/cdi/Eager `@Eager`] which can be added to any managed bean of scope `@RequestScoped`, `@ViewScoped`, `@SessionScoped` or `@ApplicationScoped` and which will cause the bean to be "instantiated automatically at the start of each such scope instead of on demand when a bean is first referenced." 
 
 This is effectively a shorter alternative to listening for `@Initialize` events, with some additional features for `@RequestScoped` and `@ViewScoped` to allow the application to specifty which particular request URI/view it applies to.
 
@@ -82,24 +82,24 @@ It would be desirable to allow these to be specified at runtime, for each listen
 
 #### Customisation using bean callbacks
 
-[https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/23 One suggestion] is to allow the listener bean itself to have callbacks which return these values:
+[One suggestion](https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/23) is to allow the listener bean itself to have callbacks which return these values:
 ```
- @SessionScoped
- public class MyCDIBean21 {
+@SessionScoped
+public class MyCDIBean21 {
   
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
  
-   **@GetMessageSelector
-   public void returnMessageSelector(){
-     // some logic to work out message selector
-     return ... 
-   }**
- }
+  @GetMessageSelector
+  public void returnMessageSelector(){
+    // some logic to work out message selector
+    return ... 
+  }
+}
 ```
 These callbacks would be called during the bean's `postConstruct` phase, after the bean has been created but before the consumer is created.  This could be done either
 
