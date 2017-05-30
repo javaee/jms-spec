@@ -360,7 +360,7 @@ This is an appealing idea. However there are some significant differences betwee
 
 Here's a summary of some of the differences between the way that CDI delivers events to observers and the way that JMS delivers messages to asynchronous consumers.
 
-* CDI events are _pub-sub_ in the sense that if two different observer bean classes are configured to receive events of the same type, then when the event is fired an instance of each class will be created or obtained and the same event delivered to each. This corresponds approximately with JMS topics. <br><br>However CDI does not offer an equivalent to "point-to-point" as used by JMS queues, in which each message is delivered to a single recipient.
+* CDI events are _pub-sub_ in the sense that if two different observer bean classes are configured to receive events of the same type, then when the event is fired an instance of each class will be created or obtained and the same event delivered to each. This corresponds approximately with JMS topics. <p>However CDI does not offer an equivalent to "point-to-point" as used by JMS queues, in which each message is delivered to a single recipient.
 
 foo foo
 
