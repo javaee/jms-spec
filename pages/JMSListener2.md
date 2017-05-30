@@ -295,9 +295,9 @@ Note that `@JMSConnectionFactory` is an existing annotation which is currently u
 
 The existing `@Acknowledge` annotation may be used to specify the acknowledgement mode that will be used if bean-managed transaction demarcation is used.
 This corresponds to the existing EJB 3.2 activation property `acknowledgeMode`. 
-<br/>
- @Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
-<br/>
+```
+@Acknowledge(Acknowledge.Mode.DUPS_OK_ACKNOWLEDGE)
+```
 The acknowledgement mode is specified using an enumerated type `Acknowledge.Mode`, which is a nested type of the `Acknowledge` annotation.
 
 ### Specifying durable topic subscriptions
