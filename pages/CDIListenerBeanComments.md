@@ -135,7 +135,7 @@ public class SelectorProvider {
 ```
 The JMS listener bean would then refer to this bean by name using EL syntax:
 ```
- @MessageSelector("method=#{selectorProvider.tickerSelector}")
+@MessageSelector("method=#{selectorProvider.tickerSelector}")
 ```
 A suggestion for implementing this is [here](https://java.net/projects/jms-spec/lists/users/archive/2015-09/message/1).
 
@@ -175,24 +175,24 @@ Having created the bean, the application would then need some way to obtain the 
 
 We could allow the application to inject the temporary queue or topic directly into the listener bean
 ```
- @SessionScoped
- public class MyCDIBean21 {
+@SessionScoped
+public class MyCDIBean21 {
  
-   // Inject the temporary queue this bean is listening to
-   @Inject @TemporaryQueue TemporaryQueue tempQueue;
+  // Inject the temporary queue this bean is listening to
+  @Inject @TemporaryQueue TemporaryQueue tempQueue;
  
-   @TemporaryQueueListener
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
+  @TemporaryQueueListener
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
  
-   public TemporaryQueue getTempQueue(){
-     return tempQueue;
-   }
+  public TemporaryQueue getTempQueue(){
+    return tempQueue;
+  }
  
- }
+}
 ```
 The application could create the listener bean, call the `getTempQueue()` getter method to find out the temporary destination, and then either send messages to it or pass it in the `replyTo` header of a request message. 
 
@@ -239,17 +239,17 @@ public class MyCDIBean21 {
 ```
 It is probably desirable to provide a way for the application server to notify the application that there has been an initialisation error. This could be done using a special, optional, callback on the listener bean. This callback could also be used to notify that a listener bean which had previously been successfully initialised had stopped working for some reason such as connection to the JMS server having been lost:
 ```
-   @OnError
-   public void onError(Exception e) {
-     ...
-   }
+@OnError
+public void onError(Exception e) {
+  ...
+}
 ```
 This might be accompanied by a callback to specify that the error previously reported had now been cleared (e.g. connection to the JMS server had been re-established), and the listener bean was now working correctly.
 ```
-   @onSuccess
-   public void onSuccess() {
-     ...
-   }
+@onSuccess
+public void onSuccess() {
+  ...
+}
 ```
 ## What scopes are active when the callback method is invoked? 
 
@@ -270,32 +270,32 @@ Unlike MDBs, JMS listener beans may have business methods just like any other CD
 
 This may have some unexpected consequences if the listener bean has normal-scoped fields:
 ```
- public class MyCDIBean21 {
+public class MyCDIBean21 {
  
-   @Inject  private MyApplicationScopedBean appScopedBean; 
-   @Inject  private MyRequestScopedBean requestScopedBean;
-   @Inject  private MyConversationScopedBean convScopedBean;
+  @Inject  private MyApplicationScopedBean appScopedBean; 
+  @Inject  private MyRequestScopedBean requestScopedBean;
+  @Inject  private MyConversationScopedBean convScopedBean;
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC)
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     // will see the same instance of MyApplicationScopedBean as businessMethod
-     // will see a different instance of MyRequestScopedBean than businessMethod
-     // will never see an instance of MyConversationScopedBean
-     // since never called in an active conversation scope
-     ...
-   }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC)
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    // will see the same instance of MyApplicationScopedBean as businessMethod
+    // will see a different instance of MyRequestScopedBean than businessMethod
+    // will never see an instance of MyConversationScopedBean
+    // since never called in an active conversation scope
+    ... 
+  }
  
-   public void businessMethod(String param) {
-     // will see the same instance of MyApplicationScopedBean as businessMethod
-     // will always see a different instance of MyRequestScopedBean than callback method
-     // will only see an instance of MyConversationScopedBean 
-     // if called in an active conversation scope
-     ...
-   }  
+  public void businessMethod(String param) {
+    // will see the same instance of MyApplicationScopedBean as businessMethod
+    // will always see a different instance of MyRequestScopedBean than callback method
+    // will only see an instance of MyConversationScopedBean 
+    // if called in an active conversation scope
+    ...
+  }  
  
- }
+}
 ```
 * If the listener bean injects an application-scoped bean into a field then both message callbacks and business methods will see the **same** bean instance.
 
@@ -307,29 +307,29 @@ This may have some unexpected consequences if the listener bean has normal-scope
 
 It also might cause surprising behaviour if the listener bean is request scoped, since request scope essentially means thread scope:
 ```
- @RequestScoped
- public class MyCDIBean21 {
+@RequestScoped
+public class MyCDIBean21 {
  
-   // for a given bean instance, 
-   // businessMethod1 and businessMethod2 will never be called at the same time from different threads
-   // however processNewsItem may be called at the same time as a call to one of the business methods
+  // for a given bean instance, 
+  // businessMethod1 and businessMethod2 will never be called at the same time from different threads
+  // however processNewsItem may be called at the same time as a call to one of the business methods
   
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC)
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
- 
-   public void businessMethod1(String param) {
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC)
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
     ...
-   }  
+  }
  
-   public void businessMethod2(String param) {
-    ...
-   }  
+  public void businessMethod1(String param) {
+   ...
+  }  
  
- }
+  public void businessMethod2(String param) {
+   ...
+  }  
+ 
+}
 ```
 
 * With ordinary CDI managed beans each application thread "sees" a different instance of the bean. This has the effect of causing all accesses to a given bean instance via business methods to take place in the same thread. 
@@ -354,7 +354,7 @@ public void afterAdminLogin(@Observes @Role("admin") LoggedInEvent event) { ... 
 ```
 JMS messages are rather like CDI events. Can we extend the CDI observer mechanism to allow JMS messages to be received?
 
-### Discussion<
+### Discussion
 
 This is an appealing idea. However there are some significant differences between the CDI event model and  the JMS message model which make it unclear how this would work in practice. 
 
@@ -370,7 +370,7 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 
   * If the observer has normal scope then, by default, a new instance of the bean will be created for every elegible event if one does not already exist for that scope. Once created, the same bean instance will be used to receive events within the same scope.  However this means that there is no way to start and stop delivery of events for a given scope since if there is no bean in existence when an event is fired then one will always be automatically created.
 
-  * If the observer specifies `@Observes(notifyObserver=Reception.IF_EXISTS)` then if there is no instance of the bean in existence for a given scope an instance is <rm>not</em> created and the event is _not_ delivered. to that scope. This allows the observing code to control whether events are received within a given scope. 
+  * If the observer specifies `@Observes(notifyObserver=Reception.IF_EXISTS)` then if there is no instance of the bean in existence for a given scope an instance is _not_ created and the event is _not_ delivered. to that scope. This allows the observing code to control whether events are received within a given scope. 
   
   * It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.
 
