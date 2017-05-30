@@ -358,28 +358,29 @@ void processTrade(TextMessage textMessage){
 ### Parameters for message body
 
 If the message is a `TextMessage` then any parameter of type `String` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-<br/>
- void processTrade(String messageText){
-   ...
- }
-<br/>
+```
+void processTrade(String messageText){
+  ...
+}
+```
 If the message is a `ObjectMessage` then any parameter to which the message body is assignable (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(Trade incomingTrade){
-   ...
- }
-<br/>
+```
+void processTrade(Trade incomingTrade){
+  ...
+}
+```
 If the message is a `MapMessage` then any parameter of type `Map` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(Map tradeData){
-   ...
- }
-<br/>
+```
+void processTrade(Map tradeData){
+  ...
+}
+```
 If the message is a `BytesMessage` then any parameter of type `byte[]` (and which is not annotated with `@MessageHeader` or `@MessageProperty`) will be set to contain the message body.
-
- void processTrade(byte[] tradeBytes){
-   ...
- }
+```
+void processTrade(byte[] tradeBytes){
+  ...
+}
+```
 
 ### Message headers
 
