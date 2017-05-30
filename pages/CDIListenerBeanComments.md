@@ -362,11 +362,11 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 
 <ul>
 <li>CDI events are <em>pub-sub</em> in the sense that if two different observer bean classes are configured to receive events of the same type, then when the event is fired an instance of each class will be created or obtained and the same event delivered to each. This corresponds approximately with JMS topics. 
-<br></br>
+<br><br>
 However CDI does not offer an equivalent to "point-to-point" as used by JMS queues, in which each message is delivered to a single recipient.</li>
-
+<br><br>
 <li> If a CDI event is delivered to more than one observer bean then in CDI 1.2 (the current version) each observer is invoked in turn from a the same thread that is firing the event. This not only ties the firer and observer to the same thread; it also means a particular observer will not receive the event until the previous observers have processed the same event. This differs from JMS in which multiple listeners on the same topic may receive the same message at the same time, using a completely unrelated thread to that which originally sent the message to the queue or topic.</li>
-
+<br><br>
 <li>
 CDI assumes that the firer of an event is running in the same CDI container (i.e. JVM) as the observer of that event. This makes it possible to create instances of the observer class automatically when an event is fired.<br/>
 
@@ -375,24 +375,24 @@ CDI assumes that the firer of an event is running in the same CDI container (i.e
 
 <li>If the observer has normal scope then, by default, a new instance of the bean will be created for every elegible event if one does not already exist for that scope. Once created, the same bean instance will be used to receive events within the same scope.  However this means that there is no way to start and stop delivery of events for a given scope since if there is no bean in existence when an event is fired then one will always be automatically created.</li>
 
-<li>If the observer specifies `@Observes(notifyObserver=Reception.IF_EXISTS)` then if there is no instance of the bean in existence for a given scope an instance is _not_ created and the event is _not_ delivered. to that scope. This allows the observing code to control whether events are received within a given scope.</li>
+<li>If the observer specifies <tt>@Observes(notifyObserver=Reception.IF_EXISTS)</tt> then if there is no instance of the bean in existence for a given scope an instance is <rm>not</em> created and the event is <rm>not</em> delivered. to that scope. This allows the observing code to control whether events are received within a given scope.</li>
 </ul>
-It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the `Observes` annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.</li>
+It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.</li>
 
-<li>CDI events are always delivered as a single object. Any Java type may be an event, so there is no reason why events of type `javax.jms.Message` could not be used.
+<li>CDI events are always delivered as a single object. Any Java type may be an event, so there is no reason why events of type <tt>javax.jms.Message</tt> could not be used.
 
 However since CDI may deliver the same event object to multiple observers the application needs to be aware that JMS messages are not designed for concurrent access from multiple threads.
 
-Even if the message is not used concurrently from multiple threads there would still be the possibility that two unrelated observer beans would receive the same message. For messages of type `BytesMessage` and `StreamMessage`, reading a message will change the current read position. This means that each observer bean would need to be written to take account that some other bean may have changed the message's current read position.
+Even if the message is not used concurrently from multiple threads there would still be the possibility that two unrelated observer beans would receive the same message. For messages of type <tt>BytesMessage</tt> and <tt>StreamMessage</tt>, reading a message will change the current read position. This means that each observer bean would need to be written to take account that some other bean may have changed the message's current read position.
 
-This is less of an issue with JMS since which each consumer receives a separate instance of `javax.jms.Message`, even if they represent the same sent message.</li>
+This is less of an issue with JMS since which each consumer receives a separate instance of <tt>javax.jms.Message</tt>, even if they represent the same sent message.</li>
 
 <li>CDI observer callbacks simply pass the event object. There is no equivalent to the proposed JMS listener bean callbacks which allow the listener method to specify that one argument should be the message body, another argument should be a specified message property, and so on:
-
- void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
-   ...
- } 
-
+<pre>
+void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
+  ...
+} 
+</pre>
 </li>
 </ul>
 
