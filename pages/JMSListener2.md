@@ -331,15 +331,16 @@ The subscription durability is specified using an enumerated type `SubscriptionD
 ### Specifying a message selector
 
 The `@MessageSelector` annotation may be used to specify the message selector to be used. This corresponds directly to the EJB 3.2 activation property `messageSelector`, which may be used to override it.
-<br/>
- @MessageDriven
- public class MyMessageBean implements JMSMessageDrivenBean {
+```
+@MessageDriven
+public class MyMessageBean implements JMSMessageDrivenBean {
  
-   @MessageSelector("JMSType = 'car' AND colour = 'blue'")
-   @JMSListener(lookup="java:global/requestQueue", type=JMSListener.Type.QUEUE)
-   public void giveMeAMessage(Message message) {
-     ...
-   }
+  @MessageSelector("JMSType = 'car' AND colour = 'blue'")
+  @JMSListener(lookup="java:global/requestQueue", type=JMSListener.Type.QUEUE)
+  public void giveMeAMessage(Message message) {
+    ...
+  }
+```
 
 ## Flexible method signature
 
@@ -348,10 +349,11 @@ When a message is delivered the container will set each method parameter to the 
 ### Message parameters
 
 A parameter may be `Message` or one of its five subtypes `TextMessage`, `StreamMessage`, `BytesMessage`, `MapMessage`, `ObjectMessage`. This avoids the need for the listener method to cast the `Message` to the expected subtype.
-<br/>
- void processTrade(TextMessage textMessage){
-   ...
- }
+```
+void processTrade(TextMessage textMessage){
+  ...
+}
+```
 
 ### Parameters for message body
 
