@@ -69,11 +69,11 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 <b>Other new issues</b>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I22:</b> How about replacing `@JMSListener` with separate `@JMSQueueListener` and `@JMSTopicListener` annotations? This would remove the need for a separate "type" attribute. 
+<b>Issue I22:</b> How about replacing <tt>@JMSListener</tt> with separate <tt>@JMSQueueListener</tt> and <tt>@JMSTopicListener</tt> annotations? This would remove the need for a separate "type" attribute. 
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I23:</b> Currently the `acknowledgeMode` activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation `@TransactionManagement(TransactionManagementType.BEAN)`.  The same confusion will apply if we define the new `@Acknowledge` annotation to work the same way as `acknowledgeMode`. 
+<b>Issue I23:</b> Currently the <tt>acknowledgeMode</tt> activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>.  The same confusion will apply if we define the new <tt>@Acknowledge</tt> annotation to work the same way as <tt>acknowledgeMode</tt>. 
 
 In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set `@TransactionManagement(TransactionManagementType.BEAN)`. You don't actually need to set the `acknowledgeMode` activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the `acknowledgeMode` activation property is if you wanted to specify `DUPS_OK`.  
 
