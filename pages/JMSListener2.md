@@ -103,38 +103,36 @@ The proposals on this page are addressed at the first of these proposals, [JMS s
 These new annotations will initially be available only on MDBs. This offers a large scope for improvement without the need to consider issues such as listener lifecycle, listener pooling and resource adapter integration. A later stage in the development of JMS 2.1 will consider extending them to other types of Java EE object such as CDI managed beans.
 
 ## Specifying the callback method 
-<br/>
+
 In Java EE 7, a JMS MDB must implement the `javax.jms.MessageListener` interface. This means that the callback method must be called `onMessage`, it must return `void` and it must have a single parameter of type `Message`.
 ```
- @MessageDriven(activationConfig = {
-   @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
-   @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
- })
- public class MyMessageBean implements MessageListener {
+@MessageDriven(activationConfig = {
+  @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:global/requestQueue"),
+  @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
+})
+public class MyMessageBean implements MessageListener {
  
-   public void onMessage(Message message){
-     ...
-   }
+  public void onMessage(Message message){
+    ...
+  }
  
- }
+}
 ```
-
 Although this option will remain, it is proposed in Java EE 8 to remove the requirement for a JMS MDB to implement the `javax.jms.MessageListener` interface. Instead the developer can use the `@JMSListener` annotation to designate any method to be the callback method.
 ```
- @MessageDriven
- public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
+@MessageDriven
+public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
  
-   <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
-   public void processTrade(TextMessage tradeMessage){
-     ...
-   }
+  <b>@JMSListener</b>(lookup="java:global/Trades", type=JMSListener.Type.QUEUE)
+  public void processTrade(TextMessage tradeMessage){
+    ...
+  }
  
- }
+}
 ```
-
 <b>This is still a MDB</b>
 
-* The listener class is still a message-driven bean and so must be configured as one, either by adding the `@MessageDriven` annotation or using the `&lt;message-driven&gt;` element in the deployment descriptor. It may also be necessary to specify which resource adapter should be used.
+* The listener class is still a message-driven bean and so must be configured as one, either by adding the `@MessageDriven` annotation or using the `<message-driven>` element in the deployment descriptor. It may also be necessary to specify which resource adapter should be used.
 
 <b>Application-defined callback methods</b>
 
