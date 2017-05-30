@@ -84,15 +84,15 @@ We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be bette
 
 There have been several proposals to improve the ways that JMS applications can consume messages asynchronously:
 
-* In [JMS spec issue 116](https://github.com/javaee/jms-spec/issues/116)] John Ament proposed (back in March 2013, just as JMS 2.0 was being finalised) improving the ways that JMS MDBs were defined, taking advantage of some new features that were added to EJB 3.2 and JCA 1.7 (at the suggestion of David Blevins) just before they were released. 
+* In [JMS spec issue 116](https://github.com/javaee/jms-spec/issues/116) John Ament proposed (back in March 2013, just as JMS 2.0 was being finalised) improving the ways that JMS MDBs were defined, taking advantage of some new features that were added to EJB 3.2 and JCA 1.7 (at the suggestion of David Blevins) just before they were released. 
 
-* In [JMS spec issue 134](https://github.com/javaee/jms-spec/issues/134)] Reza Rahman proposed that JMS defined some annotations that allowed any CDI bean to listen for JMS messages
+* In [JMS spec issue 134](https://github.com/javaee/jms-spec/issues/134) Reza Rahman proposed that JMS defined some annotations that allowed any CDI bean to listen for JMS messages
 
-* In [JMS spec issue 100](https://github.com/javaee/jms-spec/issues/100)]  Bruno Borges proposed improving the ways that JMS MDBs were defined, though in the subsequent discussion he proposed that this could be extended to other types of Java EE class such as session beans. That makes this essentially a combination of the other two proposals.
+* In [JMS spec issue 100](https://github.com/javaee/jms-spec/issues/100)  Bruno Borges proposed improving the ways that JMS MDBs were defined, though in the subsequent discussion he proposed that this could be extended to other types of Java EE class such as session beans. That makes this essentially a combination of the other two proposals.
 
 ## Goals 
 
-The proposals on this page are addressed at the first of these proposals, [JMS spec issue 116](https://github.com/javaee/jms-spec/issues/116)]:
+The proposals on this page are addressed at the first of these proposals, [JMS spec issue 116](https://github.com/javaee/jms-spec/issues/116):
 
 * The requirement for a MDB that consumes JMS messages to implement`javax.jms.MessageListener` will be removed.
 
