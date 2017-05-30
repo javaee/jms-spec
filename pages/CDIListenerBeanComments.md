@@ -26,35 +26,35 @@ If the bean is normal scoped then CDI does provide a way to automatically create
 So in the following example, whenever a new request scope is created  an instance of `MyListenerBean` will be automatically created and will start listening for JMS messages. When the request scope ends the instance will stop listening for messages and will be destroyed.
 
 ```
- @RequestScoped
- public class MyListenerBean{
+@RequestScoped
+public class MyListenerBean{
  
-   public void myInit(@Observes @Initialized(RequestScoped.class) Object event) {
+  public void myInit(@Observes @Initialized(RequestScoped.class) Object event) {
     // no need to do anything
-   }
+  }
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void deliver(Message message) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void deliver(Message message) {
+    ...
+  }
+}
 ```
 However since there are a lot of different cases which create a new request scope. The application may only be interested in listening for JMS messages whilst processing a HTTP request to a servlet. However the bean above would also be created whenever a session bean is invoked or a MDB receives a message, which may not be what the application wants. So this mechanism is unlikely to be useful with request scoped listeners.
 
 Probably the most useful use of this mechanism would be for the `@ApplicationScoped` scope. In the following example, whenever the application is started a new application scope is created. This causes an instance of `MyListenerBean` will be automatically created and will start listening for JMS messages. The bean will then continue to listen for messages until the application is shut down. This gives a lifecycle similar to that of a MDB:
 ```
- @ApplicationScoped
- public class MyListenerBean{
+@ApplicationScoped
+public class MyListenerBean{
  
-   public void myInit(@Observes @Initialized(ApplicationScoped.class) Object event) {
+  public void myInit(@Observes @Initialized(ApplicationScoped.class) Object event) {
     // no need to do anything
-   }
+  }
  
-   @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
-   public void deliver(Message message) {
-     ...
-   }
- }
+  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
+  public void deliver(Message message) {
+    ...
+  }
+}
 ```
 This mechanism only works for scopes that fire the `@Initialized` event. CDI 1.2 section 6.7 specifies that these events must be fired for `@RequestScoped`, `@SessionScoped`, `@ApplicationScoped` and `@ConversationScoped`. For user-defined scopes firing these events is "encouraged" but nor mandatory. For scopes defined in other specifications (JSF, JTA etc)  it would depend on those specs. 
 
