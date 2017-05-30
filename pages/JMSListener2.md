@@ -280,7 +280,7 @@ The `@JMSListener` method annotation also has a mandatory attribute `type`. This
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I13:</b> Is it right that the  `@JMSListener` attribute `"type"` is mandatory,? The existing EJB 3.2 activation property `destinationType` does not define a default value. Should it remain optional, in which case should the specification designate a default value when  `@JMSListener` is used?
+<b>Issue I13:</b> Is it right that the  <tt>@JMSListener</tt> attribute `"type"` is mandatory,? The existing EJB 3.2 activation property <tt>destinationType</tt> does not define a default value. Should it remain optional, in which case should the specification designate a default value when <tt>@JMSListener</tt> is used?
 </td></tr></table>
 
 ### Specifying the connection factory
