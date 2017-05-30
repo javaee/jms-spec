@@ -266,9 +266,9 @@ These annotations are introduced in more detail in the following sections.
 The `@JMSListener` method annotation must always be supplied (except in the special case of the `onMessage` method of a `MessageListener`). It designates (1) the method as being a listener callback method and optionally (2) the destination from which messages are to be received and (3) whether the specified destination is a queue or topic. 
 
 The `lookup` attribute may be used to specify the JNDI name of the queue or topic. This corresponds to the existing EJB 3.2 activation property `destinationLookup`.
-<br/>
- @JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)
-<br/>
+```
+@JMSListener(lookup="java:global/Trades", type=JMSListener.Type.Topic)
+```
 The `@JMSListener` method annotation also has a mandatory attribute `type`. This must be used to specify whether the destination is a queue or topic.  This corresponds to the existing EJB 3.2 activation property `destinationType`, though the attribute is an enumerated type rather than a `String`.
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
