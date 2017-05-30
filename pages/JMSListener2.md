@@ -408,48 +408,15 @@ The following table lists all the options available for customising the method p
 Message type | Parameter type | Annotation | Set to
 :-- | :-- | :-- | :--
 `TextMessage` | `TextMessage` | None | The `TextMessage` object 
+`StreamMessage` | `StreamMessage` | None | The `StreamMessage` object
+`BytesMessage` | `BytesMessage` | None | The `BytesMessage` object
+`MapMessage` | `MapMessage` | None | The `MapMessage` object
+`ObjectMessage` | `ObjectMessage` | None | The `ObjectMessage` object
+`Message`  | `Message` | None | The `Message` object
+Any | `someClass` | None | The message body, if it can be converted to the specified type using `message.getBody(someClass)` without throwing a `MessageFormatException`
+Any | `String` | `@MessageHeader(Header.JMSCorrelationID)` | `message.getJMSCorrelationID()`.
+Any | `byte[]` | `@MessageHeader(Header.JMSCorrelationIDAsBytes)` | `message.getJMSCorrelationIDAsBytes()`.
 
-
-| `StreamMessage`
-| `StreamMessage`
-| None
-| The `StreamMessage` object
-|-
-| `BytesMessage`
-| `BytesMessage`
-| None
-| The `BytesMessage` object
-|-
-| `MapMessage`
-| `MapMessage`
-| None
-| The `MapMessage` object
-|-
-| `ObjectMessage`
-| `ObjectMessage`
-| None
-| The `ObjectMessage` object
-|-
-| `Message` 
-| `Message`
-| None
-| The `Message` object
-|-
-| Any
-| `someClass`
-| None
-| The message body, if it can be converted to the specified type using `message.getBody(someClass)` without throwing a `MessageFormatException`
-|-
-| Any
-| `String`
-| `@MessageHeader(Header.JMSCorrelationID)`
-| `message.getJMSCorrelationID()`.
-|-
-| Any
-| `byte[]`
-| `@MessageHeader(Header.JMSCorrelationIDAsBytes)`
-| `message.getJMSCorrelationIDAsBytes()`.
-|-
 | Any
 | `Integer` or `int`
 | `@MessageHeader(Header.JMSDeliveryMode)`
