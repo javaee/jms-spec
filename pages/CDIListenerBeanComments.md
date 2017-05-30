@@ -366,7 +366,7 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 However CDI does not offer an equivalent to "point-to-point" as used by JMS queues, in which each message is delivered to a single recipient.</li>
 <br><br>
 <li> If a CDI event is delivered to more than one observer bean then in CDI 1.2 (the current version) each observer is invoked in turn from a the same thread that is firing the event. This not only ties the firer and observer to the same thread; it also means a particular observer will not receive the event until the previous observers have processed the same event. This differs from JMS in which multiple listeners on the same topic may receive the same message at the same time, using a completely unrelated thread to that which originally sent the message to the queue or topic.</li>
-<br><br>
+
 <li>
 CDI assumes that the firer of an event is running in the same CDI container (i.e. JVM) as the observer of that event. This makes it possible to create instances of the observer class automatically when an event is fired.<br/>
 
@@ -377,7 +377,8 @@ CDI assumes that the firer of an event is running in the same CDI container (i.e
 
 <li>If the observer specifies <tt>@Observes(notifyObserver=Reception.IF_EXISTS)</tt> then if there is no instance of the bean in existence for a given scope an instance is <rm>not</em> created and the event is <rm>not</em> delivered. to that scope. This allows the observing code to control whether events are received within a given scope.</li>
 </ul>
-It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.</li>
+
+<li>It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.</li>
 
 <li>CDI events are always delivered as a single object. Any Java type may be an event, so there is no reason why events of type <tt>javax.jms.Message</tt> could not be used.
 
