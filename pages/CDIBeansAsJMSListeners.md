@@ -319,7 +319,7 @@ However using this existing API for JMS listener beans is an awkward fit, since 
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue 5:</b>How does the application server determine what resource adapter to use? Is this a per-bean or per-method setting? In these proposals a single call to `endpointActivation` is responsible for handling all the callback methods on a listener bean, which means that all callback methods must use the same resource adapter (and so probably the same JMS provider). Is this desirable, or do we want each callback method to be able to specify a different resource adapter?
+<b>Issue 5:</b> How does the application server determine what resource adapter to use? Is this a per-bean or per-method setting? In these proposals a single call to `endpointActivation` is responsible for handling all the callback methods on a listener bean, which means that all callback methods must use the same resource adapter (and so probably the same JMS provider). Is this desirable, or do we want each callback method to be able to specify a different resource adapter?
 </td></tr></table>
 
 #### MessageEndpointFactory
@@ -348,7 +348,7 @@ Note that a CDI bean is itself either a proxy (for normal-scoped beans) or a wra
 
 * The method `release()` may be called by the  by the resource adapter to indicate that it no longer needs a proxy endpoint instance. After this method has been called then the instance becomes available to be returned by a subsequent call to `MessageEndpointFactory#createEndpoint`.
 
-  * Important note:** Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the `beforeCompletion`/`afterCompletion` methods of the `MessageEndpoint`, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the `beforeCompletion` method has already started one.  
+**Important note:** Since the CDI listener bean is itself a proxy or wrapper and when the resource adapter calls the callback method then the CDI runtime will intercept this call and add transactional behaviour just like with any other method on a CDI bean. This means we are liable to have two mechanisms for starting and completing the transaction: the `beforeCompletion`/`afterCompletion` methods of the `MessageEndpoint`, and the normal CDI interceptors that wrap any bean business method. The application server will need to ensure that the normal CDI interceptors do not attempt to start or complete a transaction if the `beforeCompletion` method has already started one.  
 
 The `@javax.transaction.Transactional` annotation can be used to specify which methods, when thrown by the bean method, will cause the transdaction to be marked for rollback. The application server will need to ensure that any such exception is caught by the `MessageEndpoint` wrapper code and used to determine whether the subsequent call to `afterCompletion` will commit or rollback the transaction.
 
