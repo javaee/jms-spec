@@ -10,7 +10,7 @@ See the [summary of changes](#changes-from-version-1) compared to [Version 1 of 
 {:toc}
 
 ## Changes from version 1 
-If you haven't read version 1 then you may prefer to skip this section and go straight to the following section, <a href="#Background">Background</a>. When you've read the rest you may wish to come back here and review the list of new issues added in this section.
+If you haven't read version 1 then you may prefer to skip this section and go straight to the following section, [Background](#background). When you've read the rest you may wish to come back here and review the list of new issues added in this section.
 
 <b>Multiple callback methods</b>
 
@@ -29,7 +29,7 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 * Each callback method must be annotated with `@JMSListener`. If this annotation is omitted then the method will not be treated as a callback method; any other callback annotations are ignored. (This restriction does not apply to the `javax.jms.MessageListener` method `onMessage(Message m)`).
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>New Issue I18:</b> Should we relax the requirement for each callback method (other than  the `javax.jms.MessageListener` method `onMessage(Message m)`) to be annotated with `@JMSListener`, and allow  the presence of <i>any</i> of the annotations `@JMSConnectionFactory`, `@JMSListener`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName`, `@MessageSelector` or `@Acknowledge` to be sufficient to designate a callback method?
+<b>New Issue I18:</b> Should we relax the requirement for each callback method (other than  the <tt>javax.jms.MessageListener</tt> method `onMessage(Message m)`) to be annotated with `@JMSListener`, and allow  the presence of <i>any</i> of the annotations `@JMSConnectionFactory`, `@JMSListener`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName`, `@MessageSelector` or `@Acknowledge` to be sufficient to designate a callback method?
 </td></tr></table>
 
 <b>If the MDB implements javax.jms.MessageListener</b>
