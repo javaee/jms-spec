@@ -354,7 +354,7 @@ public void afterAdminLogin(@Observes @Role("admin") LoggedInEvent event) { ... 
 ```
 JMS messages are rather like CDI events. Can we extend the CDI observer mechanism to allow JMS messages to be received?
 
-### Discussion
+### Discussion<
 
 This is an appealing idea. However there are some significant differences between the CDI event model and  the JMS message model which make it unclear how this would work in practice. 
 
@@ -370,9 +370,9 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 
   * If the observer has normal scope then, by default, a new instance of the bean will be created for every elegible event if one does not already exist for that scope. Once created, the same bean instance will be used to receive events within the same scope.  However this means that there is no way to start and stop delivery of events for a given scope since if there is no bean in existence when an event is fired then one will always be automatically created.
 
-  * If the observer specifies `@Observes(notifyObserver=Reception.IF_EXISTS)` then if there is no instance of the bean in existence for a given scope an instance is <rm>not</em> created and the event is <rm>not</em> delivered. to that scope. This allows the observing code to control whether events are received within a given scope. 
+  * If the observer specifies `@Observes(notifyObserver=Reception.IF_EXISTS)` then if there is no instance of the bean in existence for a given scope an instance is <rm>not</em> created and the event is _not_ delivered. to that scope. This allows the observing code to control whether events are received within a given scope. 
   
- * It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.
+  * It is not possible to create instances of the observer class automatically when receiving JMS messages. This is because the listener code must explicitly subscribe to the queue or topic before any messages will arrive in the JVM. This extra step of creating a subscription has no analogue in CDI. Qualifiers on the <tt>Observes</tt> annotation simply define a subset of events that the observer will receive. This is not the same as creating a subscription on a queue or topic.
 
 * CDI events are always delivered as a single object. Any Java type may be an event, so there is no reason why events of type `javax.jms.Message` could not be used.<br><br>However since CDI may deliver the same event object to multiple observers the application needs to be aware that JMS messages are not designed for concurrent access from multiple threads. <br><br>Even if the message is not used concurrently from multiple threads there would still be the possibility that two unrelated observer beans would receive the same message. For messages of type `BytesMessage` and `StreamMessage`, reading a message will change the current read position. This means that each observer bean would need to be written to take account that some other bean may have changed the message's current read position. <br><br>This is less of an issue with JMS since which each consumer receives a separate instance of `javax.jms.Message`, even if they represent the same sent message.
 
