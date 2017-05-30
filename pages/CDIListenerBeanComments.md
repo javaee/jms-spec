@@ -122,28 +122,28 @@ It would be simpler overall if we allowed these beans to define just a single ca
 
 In this the application would define a bean class with a callback method that returns the required value, and use `@Named` to give the bean a name
 ```
- import javax.inject.Named;
+import javax.inject.Named;
  
- @Named
- public class SelectorProvider {
+@Named
+public class SelectorProvider {
  
-   public String tickerSelector() {
-     return "ticker='ORCL'";
-   }
+  public String tickerSelector() {
+    return "ticker='ORCL'";
+  }
  
- }
+}
 ```
 The JMS listener bean would then refer to this bean by name using EL syntax:
 ```
  @MessageSelector("method=#{selectorProvider.tickerSelector}")
 ```
-A suggestion for implementing this is [https://java.net/projects/jms-spec/lists/users/archive/2015-09/message/1 here].
+A suggestion for implementing this is [here](https://java.net/projects/jms-spec/lists/users/archive/2015-09/message/1).
 
 #### Customisation by the injecting code
 
-The proposal above for [[CDIListenerBeanComments#Customisation_using_bean_callbacks|Customisation using bean callbacks]] allows the listen bean itself to decide what values should be used for destination lookup,  message selector, and so on. However this  doesn't provide a way for the application which is injecting it to decide the message selector. This is probably the main requirement.
+The proposal above for [Customisation using bean callbacks](#customisation-using-bean-callbacks) allows the listen bean itself to decide what values should be used for destination lookup,  message selector, and so on. However this  doesn't provide a way for the application which is injecting it to decide the message selector. This is probably the main requirement.
 
-CDI provides a way to programmatically obtain an instance of the listener bean. This is described in the proposals [here](/jms-spec/pages/CDIBeansAsJMSListeners#JMS_listener_bean_with_dependent_scope_and_explicit_lifecycle_management).
+CDI provides a way to programmatically obtain an instance of the listener bean. This is described in the proposals [here](/jms-spec/pages/CDIBeansAsJMSListeners#jms-listener-bean-with-dependent-scope-and-explicit-lifecycle-management).
 ```
 Inject Instance&lt;MyCDIBean21 &gt; listenerProvider;
 MyCDIBean21 jmsListener1 = listenerProvider.get();
