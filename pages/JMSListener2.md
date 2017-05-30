@@ -199,7 +199,7 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2. [EJB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) and  [EJB spec issue 126](https://github.com/javaee/ejb-spec/issues/126) propose removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2. <a href="https://github.com/javaee/ejb-spec/issues/115">EJB spec issue 115</a> and  <a href="https://github.com/javaee/ejb-spec/issues/126">EJB spec issue 126</a> propose removal of this requirement from the next version of EJB.  
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
