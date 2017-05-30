@@ -303,29 +303,29 @@ The acknowledgement mode is specified using an enumerated type `Acknowledge.Mode
 ### Specifying durable topic subscriptions
 
 If the MDB is being used to consume messages from a topic, three further annotations are available: `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId`.  These correspond to the EJB 3.2 activation properties  `subscriptionDurability`, `subscriptionName` and `clientId`. 
-<br/>
- @MessageDriven
- public class MyMessageBean implements JMSMessageDrivenBean {
+```
+@MessageDriven
+public class MyMessageBean implements JMSMessageDrivenBean {
  
-   @Resource(mappedName = "java:global/replyQueue")
-   private Queue replyQueue;
- 
-   @Inject
-   private JMSContext jmsContext;
+  @Resource(mappedName = "java:global/replyQueue")
+  private Queue replyQueue;
+
+  @Inject
+  private JMSContext jmsContext;
   
-   @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
-   @SubscriptionName("mySubName1")
-   @ClientId("myClientID1")  
-   @JMSListener(lookup="java:global/inboundTopic", type=JMSListener.Type.TOPIC)
-   public void giveMeAMessage(Message message) {
-     ...
-   }
- }
-<br/>
+  @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
+  @SubscriptionName("mySubName1")
+  @ClientId("myClientID1")  
+  @JMSListener(lookup="java:global/inboundTopic", type=JMSListener.Type.TOPIC)
+  public void giveMeAMessage(Message message) {
+    ...
+  }
+}
+``` 
 The subscription durability is specified using an enumerated type `SubscriptionDurability.Mode`, which is a nested type of the `SubscriptionDurability` annotation.
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I14:</b> Should the `@SubscriptionDurability`, `@SubscriptionName` and `@ClientId` annotations (or perhaps the first two) be combined into a single annotation?
+<b>Issue I14:</b> Should the <tt>@SubscriptionDurability</tt>, <tt>@SubscriptionName</tt> and <tt>@ClientId</tt> annotations (or perhaps the first two) be combined into a single annotation?
 </td></tr></table>
 
 ### Specifying a message selector
