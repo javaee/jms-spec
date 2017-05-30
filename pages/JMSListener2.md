@@ -385,20 +385,21 @@ void processTrade(byte[] tradeBytes){
 ### Message headers
 
 The `@MessageHeader` annotation may be used to specify that a parameter should be set to the specified message header.
-<br/>
- void processTrade(TextMessage messageText, @MessageHeader(Header.JMSCorrelationID) String correlationId,){
-   ...
- } 
-<br/>
+```
+void processTrade(TextMessage messageText, @MessageHeader(Header.JMSCorrelationID) String correlationId,){
+  ...
+} 
+```
 The message header is specified using an enumerated type `MessageHeader.Header`, which is a nested type of the `MessageHeader` annotation.
 
 ### Message properties
 
 The `@MessageProperty` annotation may be used to specify that a parameter should be set to the specified message property.
-<br/>
- void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
-   ...
- } 
+```
+void processTrade(TextMessage messageText, @MessageProperty("price") long price,){
+  ...
+} 
+```
 
 ### Summary of callback method parameters
 
