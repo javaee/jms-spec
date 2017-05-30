@@ -144,7 +144,7 @@ public class MyMessageBean <b>implements JMSMessageDrivenBean</b> {
 
 * Each application-defined callback method must return void.
 
-* An MDB with application-defined callback methods must implement the interface `javax.jms.JMSMessageDrivenBean` This is a new marker interface which defines no methods, and is required to satisfy the requirements of EJB 3.2 section 5.6.5 "Message-Driven Bean with No-Methods Listener Interface".   (Note that it is hoped that the EJB spec can be updated so that this marker interface will not actually be needed. See  [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115]  and  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] ) 
+* An MDB with application-defined callback methods must implement the interface `javax.jms.JMSMessageDrivenBean` This is a new marker interface which defines no methods, and is required to satisfy the requirements of EJB 3.2 section 5.6.5 "Message-Driven Bean with No-Methods Listener Interface".   (Note that it is hoped that the EJB spec can be updated so that this marker interface will not actually be needed. See [EJB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) and  [EJB spec issue 126](https://github.com/javaee/ejb-spec/issues/126)) 
 
 * Both the callback method and the `JMSMessageDrivenBean` interface may be inherited.
 
@@ -199,7 +199,7 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2.   [https://java.net/jira/browse/EJB_SPEC-115 EJB_SPEC-115]  and  [https://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126] propose removal of this requirement from the next version of EJB.  
+<b>Issue I5:</b> It would be desirable to avoid the need to implement  `javax.jms.JMSMessageDrivenBean` since this is needed purely to satisfy EJB 3.2. [EJB spec issue 115](https://github.com/javaee/ejb-spec/issues/115) and  [EJB spec issue 126](https://github.com/javaee/ejb-spec/issues/126) propose removal of this requirement from the next version of EJB.  
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
