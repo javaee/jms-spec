@@ -286,9 +286,9 @@ The `@JMSListener` method annotation also has a mandatory attribute `type`. This
 ### Specifying the connection factory
 
 The existing `@JMSConnectionFactory` annotation may be used to specify the JNDI name of the connection factory used to receive messages.This corresponds to the existing EJB 3.2 activation property `connectionFactoryLookup`. 
-<br/>
- @JMSConnectionFactory("java:global/MyCF")
-<br/>
+```
+@JMSConnectionFactory("java:global/MyCF")
+```
 Note that `@JMSConnectionFactory` is an existing annotation which is currently used to configure the connection factory used to create an injected `JMSContext` object. It better to reuse this annotation than have two very similar annotations.
 
 ### Specifying the acknowledgement mode when using bean-managed transactions
