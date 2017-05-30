@@ -2,6 +2,8 @@
 
 This page lists and discusses some of the comments made on the proposals for JMS listener beans  [/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
@@ -17,7 +19,7 @@ The JMS listener bean cannot start listening for messages until it has been crea
 
 ### Discussion
 
-==== `@Initialized`
+#### `@Initialized`
 
 If the bean is normal scoped then CDI does provide a way to automatically create the listener bean when a new scope starts.  This involves adding a method to the listener bean which observes CDI events which have the qualifier `@Initialized(X.class)`, where `X.class` is the class of the scope.  This event is fired whenever a new scope begins. CDI defines that whenever an event is fired, if an instance of the observer class does not already exist (in that scope) then one will be automatically created. This means that if the JMS listener bean observes events with the qualifier, say, `@Initialized(RequestScoped.class)` then an instance of the bean will be created whenever a new request scope begins.
 
@@ -56,7 +58,7 @@ Probably the most useful use of this mechanism would be for the `@ApplicationSco
 ```
 This mechanism only works for scopes that fire the `@Initialized` event. CDI 1.2 section 6.7 specifies that these events must be fired for `@RequestScoped`, `@SessionScoped`, `@ApplicationScoped` and `@ConversationScoped`. For user-defined scopes firing these events is "encouraged" but nor mandatory. For scopes defined in other specifications (JSF, JTA etc)  it would depend on those specs. 
 
-==== `@Eager`
+#### `@Eager`
 
 There's a utility library called [http://showcase.omnifaces.org/ Omnifaces], intended for JSF applications. This includes a number of convenient CDI extensions. One of these is an annotation [http://showcase.omnifaces.org/cdi/Eager `@Eager`] which can be added to any managed bean of scope `@RequestScoped`, `@ViewScoped`, `@SessionScoped` or `@ApplicationScoped` and which will cause the bean to be "instantiated automatically at the start of each such scope instead of on demand when a bean is first referenced." 
 
@@ -143,8 +145,8 @@ The proposal above for [[CDIListenerBeanComments#Customisation_using_bean_callba
 
 CDI provides a way to programmatically obtain an instance of the listener bean. This is described in the proposals [here](/jms-spec/pages/CDIBeansAsJMSListeners#JMS_listener_bean_with_dependent_scope_and_explicit_lifecycle_management).
 ```
-   Inject Instance&lt;MyCDIBean21 &gt; listenerProvider;
-   MyCDIBean21 jmsListener1 = listenerProvider.get();
+Inject Instance&lt;MyCDIBean21 &gt; listenerProvider;
+MyCDIBean21 jmsListener1 = listenerProvider.get();
 ```
 However since the consumer is created during the bean's @postCreate stage then we need a way for the application to specify the message selector etc before we actually create the bean. CDI allows qualifiers to be specified before calling get(), but these annotations are not qualifiers. Ideas welcome.
 
@@ -157,28 +159,27 @@ _It might be desirable to allow JMS listener beans to listen to temporary queues
 ### Discussion
 
 One possible way to achieve this would be to specify that the bean should create the temporary queue or topic when it is initialised, perhaps by replacing the `@JMSListener` annotation with a new `@TemporaryQueueListener ` annotation:
-
- @SessionScoped
- public class MyCDIBean21 {
+```
+@SessionScoped
+public class MyCDIBean21 {
   
-   **@TemporaryQueueListener**
-   @JMSConnectionFactory("java:global/MyCF")
-   @MessageSelector("ticker='ORCL'")
-   public void processNewsItem(String newsItem) {
-     ...
-   }
- 
- }
-
+  @TemporaryQueueListener
+  @JMSConnectionFactory("java:global/MyCF")
+  @MessageSelector("ticker='ORCL'")
+  public void processNewsItem(String newsItem) {
+    ...
+  }
+...
+```
 Having created the bean, the application would then need some way to obtain the `TemporaryQueue` or `TemporaryTopic` on which the bean was listening.
 
 We could allow the application to inject the temporary queue or topic directly into the listener bean
-
+```
  @SessionScoped
  public class MyCDIBean21 {
  
-   **// Inject the temporary queue this bean is listening to**
-   **@Inject @TemporaryQueue TemporaryQueue tempQueue;**
+   // Inject the temporary queue this bean is listening to
+   @Inject @TemporaryQueue TemporaryQueue tempQueue;
  
    @TemporaryQueueListener
    @JMSConnectionFactory("java:global/MyCF")
@@ -187,12 +188,12 @@ We could allow the application to inject the temporary queue or topic directly i
      ...
    }
  
-   **public TemporaryQueue getTempQueue(){
+   public TemporaryQueue getTempQueue(){
      return tempQueue;
-   }**
+   }
  
  }
-
+```
 The application could create the listener bean, call the `getTempQueue()` getter method to find out the temporary destination, and then either send messages to it or pass it in the `replyTo` header of a request message. 
 
 Note that if we allow JMS listener beans to specify more than one callback method then it might be configured to listen on more than one temporary destination. The syntax for injecting the temporary destination would need to be extended to allow the callback method to be specified. (This is another argument against allowing multiple callback methods).
@@ -344,13 +345,13 @@ _I think we should leverage the existing CDI event/observer functionality instea
 ### Summary of issue
 
 CDI allows any CDI managed bean to define a callback method which is called whenever a CDI event of the specified type is "fired":
-
- public void afterLogin(@Observes LoggedInEvent event) { ... }
-
+```
+public void afterLogin(@Observes LoggedInEvent event) { ... }
+```
 Qualifiers may be used to specify that the callback only wants to receive a subset of events: 
-
- public void afterAdminLogin(@Observes @Role("admin") LoggedInEvent event) { ... }
-
+```
+public void afterAdminLogin(@Observes @Role("admin") LoggedInEvent event) { ... }
+```
 JMS messages are rather like CDI events. Can we extend the CDI observer mechanism to allow JMS messages to be received?
 
 ### Discussion
@@ -360,8 +361,8 @@ This is an appealing idea. However there are some significant differences betwee
 Here's a summary of some of the differences between the way that CDI delivers events to observers and the way that JMS delivers messages to asynchronous consumers.
 
 <ul>
-<li>CDI events are _pub-sub_ in the sense that if two different observer bean classes are configured to receive events of the same type, then when the event is fired an instance of each class will be created or obtained and the same event delivered to each. This corresponds approximately with JMS topics. 
-
+<li>CDI events are <em>pub-sub</em> in the sense that if two different observer bean classes are configured to receive events of the same type, then when the event is fired an instance of each class will be created or obtained and the same event delivered to each. This corresponds approximately with JMS topics. 
+<br></br>
 However CDI does not offer an equivalent to "point-to-point" as used by JMS queues, in which each message is delivered to a single recipient.</li>
 
 <li> If a CDI event is delivered to more than one observer bean then in CDI 1.2 (the current version) each observer is invoked in turn from a the same thread that is firing the event. This not only ties the firer and observer to the same thread; it also means a particular observer will not receive the event until the previous observers have processed the same event. This differs from JMS in which multiple listeners on the same topic may receive the same message at the same time, using a completely unrelated thread to that which originally sent the message to the queue or topic.</li>
