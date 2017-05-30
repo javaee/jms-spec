@@ -416,97 +416,26 @@ Message type | Parameter type | Annotation | Set to
 Any | `someClass` | None | The message body, if it can be converted to the specified type using `message.getBody(someClass)` without throwing a `MessageFormatException`
 Any | `String` | `@MessageHeader(Header.JMSCorrelationID)` | `message.getJMSCorrelationID()`.
 Any | `byte[]` | `@MessageHeader(Header.JMSCorrelationIDAsBytes)` | `message.getJMSCorrelationIDAsBytes()`.
-
-| Any
-| `Integer` or `int`
-| `@MessageHeader(Header.JMSDeliveryMode)`
-| `message.getJMSDeliveryMode()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSDeliveryTime)`
-| `message.getJMSDeliveryTime()`.
-|-
-| Any
-| `Destination`
-| `@MessageHeader(Header.JMSDestination)`
-| `message.getJMSDestination()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSExpiration)`
-| `message.getJMSExpiration()`.
-|-
-| Any
-| `String`
-| `@MessageHeader(Header.JMSMessageID)`
-| `message.getJMSMessageID()`.
-|-
-| Any
-| `Integer` or `int`
-| `@MessageHeader(Header.JMSPriority)`
-| `message.getJMSPriority()`.
-|-
-| Any
-| `Boolean` or `boolean`
-| `@MessageHeader(Header.JMSRedelivered)`
-| `message.getJMSRedelivered()`.
-|-
-| Any
-| `Destination`
-| `@MessageHeader(Header.JMSReplyTo)`
-| `message.getJMSReplyTo()`.
-|-
-| Any
-| `Long` or `long`
-| `@MessageHeader(Header.JMSTimestamp)`
-| `message.getJMSTimestamp()`.
-|-
-| Any
-| `String`
-| `@MessageHeader(Header.JMSType)`
-| `message.getJMSType()`.
-|-
-| Any
-| `Boolean` or `boolean`
-| `@MessageProperty("foo")`
-| `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `byte`
-| @MessageProperty("foo")
-| `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Short` or `short`
-| @MessageProperty("foo")
+Any | `Integer` or `int` | `@MessageHeader(Header.JMSDeliveryMode)` | `message.getJMSDeliveryMode()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSDeliveryTime)` | `message.getJMSDeliveryTime()`.
+Any | `Destination` | `@MessageHeader(Header.JMSDestination)` | `message.getJMSDestination()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSExpiration)` | `message.getJMSExpiration()`.
+Any | `String` | `@MessageHeader(Header.JMSMessageID)` | `message.getJMSMessageID()`.
+Any | `Integer` or `int` | `@MessageHeader(Header.JMSPriority)` | `message.getJMSPriority()`.
+Any | `Boolean` or `boolean` | `@MessageHeader(Header.JMSRedelivered)` | `message.getJMSRedelivered()`.
+Any | `Destination` | `@MessageHeader(Header.JMSReplyTo)` | `message.getJMSReplyTo()`.
+Any | `Long` or `long` | `@MessageHeader(Header.JMSTimestamp)` | `message.getJMSTimestamp()`.
+Any | `String` | `@MessageHeader(Header.JMSType)` | `message.getJMSType()`.
+Any | `Boolean` or `boolean` | `@MessageProperty("foo")` | `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `byte` | @MessageProperty("foo") | `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Short` or `short` | @MessageProperty("foo")|}
 | `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Integer` or `int`
-| @MessageProperty("foo")
-| `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Long` or `long`
-| @MessageProperty("foo")
-| `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Float` or `float`
-| @MessageProperty("foo")
-| `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `Double` or `double`
-| @MessageProperty("foo")
-| `message.getDoubleProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|-
-| Any
-| `String`
-| @MessageProperty("foo")
-| `message.getStringProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-|} 
+Any | `Integer` or `int` | @MessageProperty("foo") | `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Long` or `long` | @MessageProperty("foo") | `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Float` or `float` | @MessageProperty("foo") | `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Double` or `double` | @MessageProperty("foo") | `message.getDoubleProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `String` | @MessageProperty("foo") | `message.getStringProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+ 
 
 ### Incompatible method parameters
 
