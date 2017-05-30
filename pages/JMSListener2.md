@@ -74,10 +74,10 @@ If you haven't read version 1 then you may prefer to skip this section and go st
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
 <b>Issue I23:</b> Currently the <tt>acknowledgeMode</tt> activation property is rather confusing, as it is ignored when the bean is configured to use container-managed transactions. It is only used when the MDB is configured to use bean-managed transactions, such as with the class-level annotation <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>.  The same confusion will apply if we define the new <tt>@Acknowledge</tt> annotation to work the same way as <tt>acknowledgeMode</tt>. 
-
-In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set `@TransactionManagement(TransactionManagementType.BEAN)`. You don't actually need to set the `acknowledgeMode` activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the `acknowledgeMode` activation property is if you wanted to specify `DUPS_OK`.  
-
-We can't change the behaviour of `acknowledgeMode`, but it would be better if we could replace the existing `@TransactionManagement` annotation and the proposed `@AcknowledgeMode` annotation with a single annotation which could define both at the same time. 
+<br><br>
+In fact if you want the MDB to consume messages without a transaction and using automatic-acknowledgement then all you need to do is to set <tt>@TransactionManagement(TransactionManagementType.BEAN)</tt>. You don't actually need to set the <tt>acknowledgeMode</tt> activation property, since it defaults to auto-ack anyway. The only reason you ever need to use the <tt>acknowledgeMode</tt> activation property is if you wanted to specify <tt>DUPS_OK</tt>.  
+<br><br>
+We can't change the behaviour of <tt>acknowledgeMode</tt>, but it would be better if we could replace the existing <tt>@TransactionManagement</tt> annotation and the proposed <tt>@AcknowledgeMode</tt> annotation with a single annotation which could define both at the same time. 
 </td></tr></table>
 
 ## Background 
