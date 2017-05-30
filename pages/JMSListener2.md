@@ -246,7 +246,7 @@ public void giveMeAMessage(Message message) {
 These annotations are introduced in more detail in the following sections.
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I7:</b> Any alternative proposals for the <tt>@JMSConnectionFactory</tt>, <tt>@Acknowledge</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt> or </tt>@MessageSelector</tt> annotations?
+<b>Issue I7:</b> Any alternative proposals for the <tt>@JMSConnectionFactory</tt>, <tt>@Acknowledge</tt>, <tt>@SubscriptionDurability</tt>, <tt>@ClientId</tt>, <tt>@SubscriptionName</tt> or <tt>@MessageSelector</tt> annotations?
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
