@@ -428,8 +428,7 @@ Any | `Long` or `long` | `@MessageHeader(Header.JMSTimestamp)` | `message.getJMS
 Any | `String` | `@MessageHeader(Header.JMSType)` | `message.getJMSType()`.
 Any | `Boolean` or `boolean` | `@MessageProperty("foo")` | `message.getBooleanProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 Any | `byte` | @MessageProperty("foo") | `message.getByteProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
-Any | `Short` or `short` | @MessageProperty("foo")|}
-| `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
+Any | `Short` or `short` | @MessageProperty("foo") | `message.getShortProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 Any | `Integer` or `int` | @MessageProperty("foo") | `message.getIntProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 Any | `Long` or `long` | @MessageProperty("foo") | `message.getLongProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
 Any | `Float` or `float` | @MessageProperty("foo") | `message.getFloatProperty("foo")`<br/>if this returns without throwing a `MessageFormatException`
