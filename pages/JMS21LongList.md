@@ -9,14 +9,10 @@ Improvements to the JMS specification are managed using issues in JIRA. Here is 
 
 ID | Description | Status | Notes
 :--- | :--- | :--- | :---
-[https://github.com/javaee/jms-spec/issues/175 JMS_SPEC-175] | Fix javadocs to remove need to disable doclint | |
-[https://github.com/javaee/jms-spec/issues/173 JMS_SPEC-173] | Javadocs for `JMSContext#start` should mention that it is usually called automatically | |
+[JMS_SPEC-175](https://github.com/javaee/jms-spec/issues/175) | Fix javadocs to remove need to disable doclint | |
+[JMS_SPEC-173](https://github.com/javaee/jms-spec/issues/173) | Javadocs for `JMSContext#start` should mention that it is usually called automatically | |
+[JMS_SPEC-171](https://github.com/javaee/jms-spec/issues/171) | Typo in javadoc for JMSDestinationDefinition | |
 
-
-| [https://github.com/javaee/jms-spec/issues/171 JMS_SPEC-171]
-| Typo in javadoc for JMSDestinationDefinition
-|  
-| 
 |-
 | [https://github.com/javaee/jms-spec/issues/153 JMS_SPEC-153]
 | Correction to 7.3.8. "Use of the CompletionListener by the JMS provider"
