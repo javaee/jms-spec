@@ -86,54 +86,21 @@ ID | Description | Status | Notes
 
 This section contains various proposals for new acknowledgement modes.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/169 JMS_SPEC-169] <br/>
-| Vendor-defined acknowledgement modes
-|
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/168 JMS_SPEC-168] <br/>
-| No-acknowledge mode
-|    
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/95 JMS_SPEC-95] <br/>
-| Individual message acknowledge mode
-|    
-|   
-|-
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-169](https://github.com/javaee/jms-spec/issues/169) | Vendor-defined acknowledgement modes | |
+[JMS_SPEC-168](https://github.com/javaee/jms-spec/issues/168) | No-acknowledge mode | |
+[JMS_SPEC-95](https://github.com/javaee/jms-spec/issues/95) | Individual message acknowledge mode | |   
 
 ## Resource creation and configuration 
 
 This section contains various proposals affecting the creation and configuration of ConnectionFactory, Queue and Topic objects. Note that the requirements for Java SE applications, Java EE applications and resource adapters are different.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/172 JMS_SPEC-172]
-| Resource adapter: define standard destination and connection factory properties 
-|  
-| 
-|-  
-| [https://github.com/javaee/jms-spec/issues/90 JMS_SPEC-90]
-| Provide simpler mechanism to refer to queues and topics in a portable way
-| 
-| Discussed for JMS 2.0 but consensus not reached
-|-  
-| [https://github.com/javaee/jms-spec/issues/89 JMS_SPEC-89]
-| Define standard API to create and configure a ConnectionFactory in Java SE applications and by a Java EE container
-| 
-| Discussed for JMS 2.0 but consensus not reached
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-172](https://github.com/javaee/jms-spec/issues/172) | Resource adapter: define standard destination and connection factory properties | |
+[JMS_SPEC-90](https://github.com/javaee/jms-spec/issues/90) | Provide simpler mechanism to refer to queues and topics in a portable way | | Discussed for JMS 2.0 but consensus not reached
+[JMS_SPEC-89](https://github.com/javaee/jms-spec/issues/89) | Define standard API to create and configure a ConnectionFactory in Java SE applications and by a Java EE container | | Discussed for JMS 2.0 but consensus not reached
 
 ## Application server integration. 
 
@@ -141,58 +108,20 @@ These issues are concerned with the API used to "plug in" a particular JMS provi
 
 They don't affect the JMS API as used by user applications.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/28 JMS_SPEC-28]
-| Clarify how the JMS provider should interact with Transaction Managers.
-| Awaiting proposals from original proposer
-| 
-|-  
-| [https://github.com/javaee/jms-spec/issues/26 JMS_SPEC-26]
-| Decide on the future of the optional Chapter 8 API "JMS Application Server Facilities"
-| 
-| No consensus yet 
-|-  
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-28](https://github.com/javaee/jms-spec/issues/28) | Clarify how the JMS provider should interact with Transaction Managers. | Awaiting proposals from original proposer |
+[JMS_SPEC-26](https://github.com/javaee/jms-spec/issues/26) | Decide on the future of the optional Chapter 8 API "JMS Application Server Facilities" | | No consensus yet 
 
 ## Behaviour of JMS API in a Java EE application server 
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/156 JMS_SPEC-156 ]
-| JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE
-| 
-| Deferred from JMS 2.0 Rev. A
-|-
-| [https://github.com/javaee/jms-spec/issues/145 JMS_SPEC-145 ]
-| Allow the execution of async message sending on an application server if done within a ManagedExecutorService
-| 
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/131 JMS_SPEC-131]
-| Allow client-acknowledgement and local transactions to be used in the Java EE web and EJB containe
-|  
-|  
-|-
-| [https://github.com/javaee/jms-spec/issues/129 JMS_SPEC-129]
-| Resolve some undefined use cases when using Java EE bean-managed JTA transactions
-|  
-| 
-|- 
-| [https://github.com/javaee/jms-spec/issues/92 JMS_SPEC-92]
-| Session.commit() etc should require TransactionInProgressException to be thrown if called in a JTA transaction
-|  
-| 
-|-   
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-156](https://github.com/javaee/jms-spec/issues/156) | JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE | | Deferred from JMS 2.0 Rev. A
+[JMS_SPEC-145](https://github.com/javaee/jms-spec/issues/145) | Allow the execution of async message sending on an application server if done within a ManagedExecutorService | |   
+[JMS_SPEC-131](https://github.com/javaee/jms-spec/issues/131) | Allow client-acknowledgement and local transactions to be used in the Java EE web and EJB container | |  
+[JMS_SPEC-129|https://github.com/javaee/jms-spec/issues/129] | Resolve some undefined use cases when using Java EE bean-managed JTA transactions | | 
+[JMS_SPEC-92](https://github.com/javaee/jms-spec/issues/92) | Session.commit() etc should require TransactionInProgressException to be thrown if called in a JTA transaction | | 
 
 ## API improvements for JMS MDBs 
 
