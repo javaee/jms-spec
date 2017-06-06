@@ -12,7 +12,7 @@ Please note that anyone can participate in JSR 343 without formally joining the 
 
 * If you're representing an organisation, that organisation must be a JCP member. The organisation must sign the Java Specification Participation Agreement (JSPA) and pay the appropriate fee (US$ 5000 for commercial entities,.US$ 2000 for educational or non-profit institutions, US$ 0 for existing licensees). If you're joining as an individual, you must personally sign the Java Specification Participation Agreement (JSPA); the fee is US$ 0.  For more information on becoming a JCP member, see [http://jcp.org/en/participation/membership](http://jcp.org/en/participation/membership).
 
-* Register with the  [jcp.org](http://jcp.org) website if you haven't already done so. To set up an account, use the form at [http://jcp.org/en/user/add]
+* Register with the  [jcp.org](http://jcp.org) website if you haven't already done so. To set up an account, use the form at [http://jcp.org/en/user/add](http://jcp.org/en/user/add).
 
 * If you are applying to join the expert group on behalf of an organisation, then you must associate your jcp account with this organisation. To request to be associated with an existing JCP Member, go to [jcp.org](http://jcp.org) and log in. Then click "My Profile" under "My JCP". This will take you to the "View Profile page where you can review and update your contact information. Near the top of the page is a link labeled "Request Member association". Click this link and fill out the form, selecting the JCP Member which you represent from a list. When the form is submitted, the primary contact of that JCP Member will get a message asking them to confirm your status as an official representative of that Membership.
 
