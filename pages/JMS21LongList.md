@@ -35,10 +35,10 @@ ID | Description | Status | Notes
 ID | Description | Status | Notes
 :--- | :--- | :--- | :---
 [JMS_SPEC-159](https://github.com/javaee/jms-spec/issues/159) | Allow stop and close to be called from a message listener | |
-[JMS_SPEC-151](https://github.com/javaee/jms-spec/issues/151) | Add repeating annotation support to @JMSConnectionFactoryDefinition and @JMSDestinationDefinition | |
+[JMS_SPEC-151](https://github.com/javaee/jms-spec/issues/151) | Add repeating annotation support to `@JMSConnectionFactoryDefinition` and `@JMSDestinationDefinition` | |
 [JMS_SPEC-149](https://github.com/javaee/jms-spec/issues/149) | Asynchronous Send Functionality Should Use Java SE 8 Completeable Future | | 
 [JMS_SPEC-148](https://github.com/javaee/jms-spec/issues/148) | The Delivery Delay Feature Should Utilize the Java SE 8 Date/Time API | |
-[JMS_SPEC-147](https://github.com/javaee/jms-spec/issues/147) | Extend the @JMSConnectionFactory annotation to allow a resource reference to be defined | |
+[JMS_SPEC-147](https://github.com/javaee/jms-spec/issues/147) | Extend the `@JMSConnectionFactory` annotation to allow a resource reference to be defined | |
 [JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144) | `StreamMessage#getBody` | |   
 [JMS_SPEC-139](https://github.com/javaee/jms-spec/issues/139) | Clarify scope of ClientID between JavaDoc and specification | |
 [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify whether you can call createContext on a QueueConnectionFactory or TopicConnectionfactory | | 
@@ -46,69 +46,18 @@ ID | Description | Status | Notes
 [JMS_SPEC-124](https://github.com/javaee/jms-spec/issues/124) | Sending a foreign message using a provider which does not support setJMSCorrelationIDAsBytes | | A bit obscure and unimportant.
 [JMS_SPEC-118](https://github.com/javaee/jms-spec/issues/118) | MessageListeners should be as simple as lambda expressions | |  
 [JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113) | Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause() | |  
-
-
-| [https://github.com/javaee/jms-spec/issues/110 JMS_SPEC-110]
-| add JMS methods to access an Object's creator: Message.getSession(), Session.getConnection(), ...
-|
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/109 JMS_SPEC-109]
-| add method Destination.getName() 
-|
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/108 JMS_SPEC-108]
-| add generics to methods currently returning raw types
-|
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/91 JMS_SPEC-91]
-| New "relaxed message order" option
-|  
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/85 JMS_SPEC-85] <br/>
-| Clarify how Message.receiveNoWait() is expected to behave
-|    
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/79 JMS_SPEC-79]
-| New factory methods to create BytesMessage and MapMessage and set the payload
-|  
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/71 JMS_SPEC-71]
-| Change XAConnectionFactory to extend ConnectionFactory
-|  
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/68 JMS_SPEC-68]
-| Add new method Session.acknowledge()
-|  
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/67 JMS_SPEC-67]
-| Relaxing the requirement to throw an exception if a message is sent to a deleted temp destination
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/66 JMS_SPEC-66]
-| Define how MessageConsumer.receive should handle a thread interrupt
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/24 JMS_SPEC-24]
-| Clarify classloader used in ObjectMessage.getObject() and/or provide new method getObject(ClassLoader classLoader)
-|  
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/22 JMS_SPEC-22]
-| Add JMS defined property JMSXGroupLast
-|  
-| 
-|-
-|}
+[JMS_SPEC-110](https://github.com/javaee/jms-spec/issues/110) | add JMS methods to access an Object's creator: `Message.getSession()`, `Session.getConnection()`, ... | |
+[JMS_SPEC-109](https://github.com/javaee/jms-spec/issues/109) | add method Destination.getName() | | 
+[JMS_SPEC-108](https://github.com/javaee/jms-spec/issues/108) | add generics to methods currently returning raw types | | 
+[JMS_SPEC-91](https://github.com/javaee/jms-spec/issues/91) | New "relaxed message order" option | |
+[JMS_SPEC-85](https://github.com/javaee/jms-spec/issues/85) | Clarify how `Message.receiveNoWait()` is expected to behave | |   
+[JMS_SPEC-79](https://github.com/javaee/jms-spec/issues/79) | New factory methods to create BytesMessage and MapMessage and set the payload | |
+[JMS_SPEC-71](https://github.com/javaee/jms-spec/issues/71) | Change XAConnectionFactory to extend ConnectionFactory | |
+[JMS_SPEC-68](https://github.com/javaee/jms-spec/issues/68) | Add new method Session.acknowledge() | |
+[JMS_SPEC-67](https://github.com/javaee/jms-spec/issues/67) | Relaxing the requirement to throw an exception if a message is sent to a deleted temp destination | | 
+[JMS_SPEC-66](https://github.com/javaee/jms-spec/issues/66) | Define how MessageConsumer.receive should handle a thread interrupt | | 
+[JMS_SPEC-24](https://github.com/javaee/jms-spec/issues/24) | Clarify classloader used in ObjectMessage.getObject() and/or provide new method getObject(ClassLoader classLoader) | |
+[JMS_SPEC-22](https://github.com/javaee/jms-spec/issues/22) | Add JMS defined property JMSXGroupLast | | 
 
 ## Messaging features (major) 
 
