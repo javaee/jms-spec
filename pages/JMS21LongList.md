@@ -41,124 +41,46 @@ ID | Description | Status | Notes
 [JMS_SPEC-147](https://github.com/javaee/jms-spec/issues/147) | Extend the `@JMSConnectionFactory` annotation to allow a resource reference to be defined | |
 [JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144) | `StreamMessage#getBody` | |   
 [JMS_SPEC-139](https://github.com/javaee/jms-spec/issues/139) | Clarify scope of ClientID between JavaDoc and specification | |
-[JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify whether you can call createContext on a QueueConnectionFactory or TopicConnectionfactory | | 
+[JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify whether you can call createContext on a `QueueConnectionFactory` or TopicConnectionfactory | | 
 [JMS_SPEC-137](https://github.com/javaee/jms-spec/issues/137) | Section 8.7 of the JMS 2.0 spec has a malformed sentence | | 
 [JMS_SPEC-124](https://github.com/javaee/jms-spec/issues/124) | Sending a foreign message using a provider which does not support setJMSCorrelationIDAsBytes | | A bit obscure and unimportant.
 [JMS_SPEC-118](https://github.com/javaee/jms-spec/issues/118) | MessageListeners should be as simple as lambda expressions | |  
-[JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113) | Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause() | |  
+[JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113) | Clarify the difference (if any) between `JMSException.getLinkedException()` and JMSException.getCause() | |  
 [JMS_SPEC-110](https://github.com/javaee/jms-spec/issues/110) | add JMS methods to access an Object's creator: `Message.getSession()`, `Session.getConnection()`, ... | |
 [JMS_SPEC-109](https://github.com/javaee/jms-spec/issues/109) | add method Destination.getName() | | 
 [JMS_SPEC-108](https://github.com/javaee/jms-spec/issues/108) | add generics to methods currently returning raw types | | 
 [JMS_SPEC-91](https://github.com/javaee/jms-spec/issues/91) | New "relaxed message order" option | |
 [JMS_SPEC-85](https://github.com/javaee/jms-spec/issues/85) | Clarify how `Message.receiveNoWait()` is expected to behave | |   
-[JMS_SPEC-79](https://github.com/javaee/jms-spec/issues/79) | New factory methods to create BytesMessage and MapMessage and set the payload | |
-[JMS_SPEC-71](https://github.com/javaee/jms-spec/issues/71) | Change XAConnectionFactory to extend ConnectionFactory | |
-[JMS_SPEC-68](https://github.com/javaee/jms-spec/issues/68) | Add new method Session.acknowledge() | |
+[JMS_SPEC-79](https://github.com/javaee/jms-spec/issues/79) | New factory methods to create `BytesMessage` and `MapMessage` and set the payload | |
+[JMS_SPEC-71](https://github.com/javaee/jms-spec/issues/71) | Change `XAConnectionFactory` to extend `ConnectionFactory` | |
+[JMS_SPEC-68](https://github.com/javaee/jms-spec/issues/68) | Add new method `Session.acknowledge()` | |
 [JMS_SPEC-67](https://github.com/javaee/jms-spec/issues/67) | Relaxing the requirement to throw an exception if a message is sent to a deleted temp destination | | 
-[JMS_SPEC-66](https://github.com/javaee/jms-spec/issues/66) | Define how MessageConsumer.receive should handle a thread interrupt | | 
-[JMS_SPEC-24](https://github.com/javaee/jms-spec/issues/24) | Clarify classloader used in ObjectMessage.getObject() and/or provide new method getObject(ClassLoader classLoader) | |
-[JMS_SPEC-22](https://github.com/javaee/jms-spec/issues/22) | Add JMS defined property JMSXGroupLast | | 
+[JMS_SPEC-66](https://github.com/javaee/jms-spec/issues/66) | Define how `MessageConsumer.receive` should handle a thread interrupt | | 
+[JMS_SPEC-24](https://github.com/javaee/jms-spec/issues/24) | Clarify classloader used in `ObjectMessage.getObject()` and/or provide new method getObject(ClassLoader classLoader) | |
+[JMS_SPEC-22](https://github.com/javaee/jms-spec/issues/22) | Add JMS defined property `JMSXGroupLast` | | 
 
 ## Messaging features (major) 
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-  
-| [https://github.com/javaee/jms-spec/issues/154 JMS_SPEC-154 ]
-| Standardize Abstractions for Common Message Processing Patterns
-| 
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/142 JMS_SPEC-142]
-| Standardize Dead Letter Queues
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/130 JMS_SPEC-130]
-| Allow a JMSContext or Session to opt out of a Java EE transaction
-|  
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/95 JMS_SPEC-95]
-| Individual message acknowledge mode
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/83 JMS_SPEC-83]
-| Tighter specification of Expired Message Handling in Section 4.8 "Message Time-to-Live"
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/73 JMS_SPEC-73]
-| Define how messages from a topic are delivered to clustered application server instances
-| 
-| Added to JMS 2.0 public draft but removed from the final draft
-|-
-| [https://github.com/javaee/jms-spec/issues/72 JMS_SPEC-72]
-| Poison message management
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/59 JMS_SPEC-59]
-| Basic metadata/management via JMS
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/58 JMS_SPEC-58]
-| New method Message.copyMessage() to create a mutable copy of a received message
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/41 JMS_SPEC-41]
-| Support topic hierarchies
-| Awaiting proposals from original proposer
-| 
-|-  
-| [https://github.com/javaee/jms-spec/issues/37 JMS_SPEC-37]
-| Last Value Cache Feature for a topic.
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/36 JMS_SPEC-36]
-| Allow messages to be delivered asynchronously in batches
-| 
-| This was deferred from JMS 2.0 until async receive was made simpler, so should be revisited for JMS 2.1
-|-
-| [https://github.com/javaee/jms-spec/issues/25 JMS_SPEC-25]
-| Standardise the interface between a JMS provider and a Java EE application server
-| 
-| The JMS 2.0 considered making JCA support mandatory but rejected it. Any other ideas?
-|-
-| [https://github.com/javaee/jms-spec/issues/21 JMS_SPEC-21]
-| Support for pre-acknowledge ack mode
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/18 JMS_SPEC-18]
-| Standard set of server JMX MBeans
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/14 JMS_SPEC-14]
-| Durable subscription browser
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/7 JMS_SPEC-7]
-| Provide HTTP Binding
-|  
-|  
-|- 
-| [https://github.com/javaee/jms-spec/issues/5 JMS_SPEC-5]
-| Multi-Value Support in Properties
-|  
-| 
-|-
-|}
-
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-154](https://github.com/javaee/jms-spec/issues/154) | Standardize Abstractions for Common Message Processing Patterns | |   
+[JMS_SPEC-142](https://github.com/javaee/jms-spec/issues/142) | Standardize Dead Letter Queues | | 
+[JMS_SPEC-130](https://github.com/javaee/jms-spec/issues/130) | Allow a JMSContext or Session to opt out of a Java EE transaction | |   
+[JMS_SPEC-95](https://github.com/javaee/jms-spec/issues/95) | Individual message acknowledge mode | | 
+[JMS_SPEC-83](https://github.com/javaee/jms-spec/issues/83) | Tighter specification of Expired Message Handling in Section 4.8 "Message Time-to-Live" | | 
+[JMS_SPEC-73](https://github.com/javaee/jms-spec/issues/73) | Define how messages from a topic are delivered to clustered application server instances | | Added to JMS 2.0 public draft but removed from the final draft
+[JMS_SPEC-72](https://github.com/javaee/jms-spec/issues/72) | Poison message management | | 
+[JMS_SPEC-59](https://github.com/javaee/jms-spec/issues/59) | Basic metadata/management via JMS | | 
+[JMS_SPEC-58](https://github.com/javaee/jms-spec/issues/58) | New method Message.copyMessage() to create a mutable copy of a received message | | 
+[JMS_SPEC-41](https://github.com/javaee/jms-spec/issues/41) | Support topic hierarchies | Awaiting proposals from original proposer | 
+[JMS_SPEC-37](https://github.com/javaee/jms-spec/issues/37) | Last Value Cache Feature for a topic. | | 
+[JMS_SPEC-36](https://github.com/javaee/jms-spec/issues/36) | Allow messages to be delivered asynchronously in batches | | This was deferred from JMS 2.0 until async receive was made simpler, so should be revisited for JMS 2.1
+[JMS_SPEC-25](https://github.com/javaee/jms-spec/issues/25) | Standardise the interface between a JMS provider and a Java EE application server | | The JMS 2.0 considered making JCA support mandatory but rejected it. Any other ideas?
+[JMS_SPEC-21](https://github.com/javaee/jms-spec/issues/21) | Support for pre-acknowledge ack mode | | 
+[JMS_SPEC-18](https://github.com/javaee/jms-spec/issues/18) | Standard set of server JMX MBeans | | 
+[JMS_SPEC-14](https://github.com/javaee/jms-spec/issues/14) | Durable subscription browser | | 
+[JMS_SPEC-7](https://github.com/javaee/jms-spec/issues/7) | Provide HTTP Binding | |  
+[JMS_SPEC-5](https://github.com/javaee/jms-spec/issues/5) | Multi-Value Support in Properties | | 
 
 ## New acknowledgement modes 
 
