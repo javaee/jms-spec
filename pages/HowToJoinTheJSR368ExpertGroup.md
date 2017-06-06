@@ -29,6 +29,6 @@ If you're familiar with the JMS specification and are able to devote a significa
 
 ### Participation without joining the expert group
 
-Please note that anyone can participate in JSR 368 without formally joining the expert group. So before you start your application, please join the users@jms-spec.java.net mailing list. You can find some instructions on how to join, and how to browse the online archives, [ http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project here] .  Doing so will give you full access to the expert group's deliberations and give you an opportunity to comment on its activities. 
+Please note that anyone can participate in JSR 368 without formally joining the expert group. So before you start your application, please join the `users@jms-spec.java.net` mailing list. You can find some instructions on how to join, and how to browse the online archives, [here](/jms-spec/#jms-community-mailing-lists).  Doing so will give you full access to the expert group's deliberations and give you an opportunity to comment on its activities. 
 
-In addition, once work has started on JMS 2.1 you will be able to view or download the draft spec and javadocs by following the links on this site, without waiting for approval from anyone. (A link will be added here once this becomes available).
+In addition, once work has started on JMS 2.1 you will be able to view or download the draft spec and javadocs by following the links on this site, without waiting for approval from anyone.
