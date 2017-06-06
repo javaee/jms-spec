@@ -15,18 +15,11 @@ ID | Description | Status | Notes
 [JMS_SPEC-153](https://github.com/javaee/jms-spec/issues/153) | Correction to 7.3.8. "Use of the CompletionListener by the JMS provider" | |
 [JMS_SPEC-150](https://github.com/javaee/jms-spec/issues/150) | Add guidance on when to use receiveBody and how to handle MessageFormatRuntimeException | |
 [JMS_SPEC-121](https://github.com/javaee/jms-spec/issues/121) | Injection of JMSContext objects not possible in a WebSocket @OnMessage or @OnClose callback method | | Not really a bug, but may require noting in the spec
+[JMS_SPEC-123](https://github.com/javaee/jms-spec/issues/123) | `JMSProducer#setJMSCorrelationIDAsBytes` should be allowed to throw a `java.lang.UnsupportedOperationException` | |
+[JMS_SPEC-104](https://github.com/javaee/jms-spec/issues/104) | API javadocs need to conform to Oracle accessibility standards and W3C HTML validation standards | |  Partially completed for JMS 2.0 but one issue remains.
 
 
-| [https://github.com/javaee/jms-spec/issues/123 JMS_SPEC-123]
-| `JMSProducer#setJMSCorrelationIDAsBytes` should be allowed to throw a `java.lang.UnsupportedOperationException`
-|  
-| 
-|- 
-| [https://github.com/javaee/jms-spec/issues/104 JMS_SPEC-104] <br/>
-| API javadocs need to conform to Oracle accessibility standards and W3C HTML validation standards
-|    
-|  Partially completed for JMS 2.0 but one issue remains.
-|-
+
 | [https://github.com/javaee/jms-spec/issues/84 JMS_SPEC-84]
 | Clarify when acknowledged persistent messages may be dropped
 |  
