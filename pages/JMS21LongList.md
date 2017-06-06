@@ -120,7 +120,7 @@ ID | Description | Status | Notes
 [JMS_SPEC-156](https://github.com/javaee/jms-spec/issues/156) | JMS does not adequately define the behaviour of getAcknowledgeMode, getTransacted and getSessionMode in Java EE | | Deferred from JMS 2.0 Rev. A
 [JMS_SPEC-145](https://github.com/javaee/jms-spec/issues/145) | Allow the execution of async message sending on an application server if done within a ManagedExecutorService | |   
 [JMS_SPEC-131](https://github.com/javaee/jms-spec/issues/131) | Allow client-acknowledgement and local transactions to be used in the Java EE web and EJB container | |  
-[JMS_SPEC-129](https://github.com/javaee/jms-spec/issues/129] | zResolve some undefined use cases when using Java EE bean-managed JTA transactions | | 
+[JMS_SPEC-129](https://github.com/javaee/jms-spec/issues/129] | Resolve some undefined use cases when using Java EE bean-managed JTA transactions | | 
 [JMS_SPEC-92](https://github.com/javaee/jms-spec/issues/92) | Session.commit() etc should require TransactionInProgressException to be thrown if called in a JTA transaction | | 
 
 ## API improvements for JMS MDBs 
