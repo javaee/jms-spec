@@ -1,8 +1,8 @@
 # JMS 2.0 Proposed Final Draft
 
-The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [ http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html here]. 
+The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html). 
 
-In addition the API documentation may be browsed online [http://jms-spec.java.net/2.0/apidocs/index.html here]. (This link now takes you to the final API docs)
+In addition the API documentation may be browsed online [here](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html). (Note: this link now takes you to the final API docs)
 
   * Comments are invited** but must be received in time to be considered and incorporated in time for the final submission on 20 March 2013. You can either send email to the JMS spec  [mailto:users@jms-spec.java.net user list] (you will need to subscribe first: see [http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or you can send your comments directly to the specification lead,  [mailto:nigel.deakin@oracle.com Nigel Deakin]. 
 
@@ -12,14 +12,14 @@ In addition the API documentation may be browsed online [http://jms-spec.java.ne
 ## Reference implementation 
 
 You are also invited to try out the current version of the JMS 2.0 reference implementation. This is still under development but is essentially feature complete. 
-* If you would like to try JMS 2.0 as part of a full Java EE 7 application server then you you need to download a recent build of GlassFish Server Open Source Edition 4.0. The promoted builds are [http://dlc.sun.com.edgesuite.net/glassfish/4.0/promoted/ here] and the less stable nightly builds are [http://dlc.sun.com.edgesuite.net/glassfish/4.0/nightly/ here]. 
-*If you are are interested in JMS 2.0 in a Java SE environment only then you can download a recent promoted build of the standalone Open Message Queue 5.0 [http://mq.java.net/5.0.html#download here]. 
+* If you would like to try JMS 2.0 as part of a full Java EE 7 application server then you you need to download a recent build of GlassFish Server Open Source Edition 4.0. The promoted builds are [here](http://dlc.sun.com.edgesuite.net/glassfish/4.0/promoted/) and the less stable nightly builds are [here](http://dlc.sun.com.edgesuite.net/glassfish/4.0/nightly/). 
+*If you are are interested in JMS 2.0 in a Java SE environment only then you can download a recent promoted build of the standalone Open Message Queue 5.0 [here](http://mq.java.net/5.0.html#download). 
 
 (Strictly speaking these are not actually reference implementations. They are community projects which will be used to create the reference implementation when JMS 2.0 is released.)
 
 ## JMS 2.0 demonstration examples 
 
-A [http://netbeans.org NetBeans] project which demonstrates some new features of JMS 2.0 may be downloaded  [http://java.net/projects/jms-spec/downloads/download/JMS20Demo.zip as a zip] or checked out from the project's subversion repository [http://java.net/projects/jms-spec/sources/repository/show/jms2.0/demos/JMS20Demo here]. An earlier version was demonstrated at JavaOne 2012.
+A [NetBeans](http://netbeans.org) project which demonstrates some new features of JMS 2.0 may be downloaded  [as a zip](/jms-spec/downloads/JMS20Demo.zip) or checked out from the project's subversion repository [here](https://github.com/javaee/jms-spec/tree/master/jms2.0/demos/JMS20Demo). An earlier version was demonstrated at JavaOne 2012.
 
 This demonstration (which has been updated to work with GlassFish build 82 (glassfish-4.0-b82-03_22_2013) shows
 * Use of the JMS 2.0 simplified API  using application-managed `JMSContext` objects
