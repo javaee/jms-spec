@@ -1,25 +1,16 @@
 # JMS 2.1 Planning Long List
 
-Improvements to the JMS specification are managed using issues in JIRA. Here is a classified list of all the open issues. Only a subset of these issues will actually make it into JMS 2.1. See the actual [[JMS21Plan|JMS 2.1 plan]].
-
-(This page was reorganised on 28 Aug 2015. The previous version is [/jms-spec/pages/JMS21Planning/revisions/88 here].)
+Improvements to the JMS specification are managed using issues in JIRA. Here is a classified list of all the open issues. Only a subset of these issues will actually make it into JMS 2.1. See the actual [JMS 2.1 plan](/jms-spec/pages/JMS21Planning).
 
 * auto-gen TOC:
 {:toc}
 
 ## Corrections and clarifications (minor)
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/175 JMS_SPEC-175] <br/>
-| Fix javadocs to remove need to disable doclint
-|
-|
-|-
+ID | Description | Status | Notes
+:--- | :--- | :--- | :---
+[https://github.com/javaee/jms-spec/issues/175 JMS_SPEC-175] | Fix javadocs to remove need to disable doclint |
+
 | [https://github.com/javaee/jms-spec/issues/173 JMS_SPEC-173] <br/>
 | Javadocs for `JMSContext#start` should mention that it is usually called automatically
 |
