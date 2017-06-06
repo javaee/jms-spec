@@ -12,23 +12,11 @@ ID | Description | Status | Notes
 [JMS_SPEC-175](https://github.com/javaee/jms-spec/issues/175) | Fix javadocs to remove need to disable doclint | |
 [JMS_SPEC-173](https://github.com/javaee/jms-spec/issues/173) | Javadocs for `JMSContext#start` should mention that it is usually called automatically | |
 [JMS_SPEC-171](https://github.com/javaee/jms-spec/issues/171) | Typo in javadoc for JMSDestinationDefinition | |
+[JMS_SPEC-153](https://github.com/javaee/jms-spec/issues/153) | Correction to 7.3.8. "Use of the CompletionListener by the JMS provider" | |
+[JMS_SPEC-150](https://github.com/javaee/jms-spec/issues/150) | Add guidance on when to use receiveBody and how to handle MessageFormatRuntimeException | |
+[JMS_SPEC-121](https://github.com/javaee/jms-spec/issues/121) | Injection of JMSContext objects not possible in a WebSocket @OnMessage or @OnClose callback method | | Not really a bug, but may require noting in the spec
 
-|-
-| [https://github.com/javaee/jms-spec/issues/153 JMS_SPEC-153]
-| Correction to 7.3.8. "Use of the CompletionListener by the JMS provider"
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/150 JMS_SPEC-150 ]
-|  Add guidance on when to use receiveBody and how to handle MessageFormatRuntimeException 
-|  
-|          
-|-
-| [https://github.com/javaee/jms-spec/issues/121 JMS_SPEC-121]
-| Injection of JMSContext objects not possible in a WebSocket @OnMessage or @OnClose callback method 
-|  
-| Not really a bug, but may require noting in the spec
-|-    
+
 | [https://github.com/javaee/jms-spec/issues/123 JMS_SPEC-123]
 | `JMSProducer#setJMSCorrelationIDAsBytes` should be allowed to throw a `java.lang.UnsupportedOperationException`
 |  
