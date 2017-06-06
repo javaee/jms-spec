@@ -20,88 +20,34 @@ ID | Description | Status | Notes
 [JMS_SPEC-84](https://github.com/javaee/jms-spec/issues/84) | Clarify when acknowledged persistent messages may be dropped | | Will defer to JMS 2.1
 [JMS_SPEC-75](https://github.com/javaee/jms-spec/issues/75) | Ambiguous javadocs for Connection.createConnectionConsumer and createDurableConnectionConsumer | | Carried forward from JMS 2.0
 [JMS_SPEC-47](https://github.com/javaee/jms-spec/issues/47) | Deprecate domain-specific APIs and propose for removal | | Deprecation not allowed by Java EE policy. Could make a recommendation not to use.  
-[JMS_SPEC-3] (https://github.com/javaee/jms-spec/issues/3) | Fix JavaDocs to reflect missing NumberFormatException from API methods | | Carried forward from JMS 2.0
+[JMS_SPEC-3](https://github.com/javaee/jms-spec/issues/3) | Fix JavaDocs to reflect missing NumberFormatException from API methods | | Carried forward from JMS 2.0
 [JMS_SPEC-2](https://github.com/javaee/jms-spec/issues/2) | Fix JavaDocs to reflect missing IllegalStateException from API methods | | Carried forward from JMS 2.0
 
 ## Corrections (major) 
 
 ID | Description | Status | Notes
 :--- | :--- | :--- | :---
-[JMS_SPEC-152](https://github.com/javaee/jms-spec/issues/152) | New method XAJMSContext#createXAJMSContext | | 
-[JMS_SPEC-126](https://github.com/javaee/jms-spec/issues/126) |  API to allow app servers to implement JMSContext without needing an additional connection pool | | 
+[JMS_SPEC-152](https://github.com/javaee/jms-spec/issues/152) | New method `XAJMSContext#createXAJMSContext` | | 
+[JMS_SPEC-126](https://github.com/javaee/jms-spec/issues/126) |  API to allow app servers to implement `JMSContext` without needing an additional connection pool | | 
 
 ## Messaging features (minor)
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/159 JMS_SPEC-159 ]
-|  Allow stop and close to be called from a message listener
-|  
-|            
-|-
-| [https://github.com/javaee/jms-spec/issues/151 JMS_SPEC-151 ]
-|  Add repeating annotation support to @JMSConnectionFactoryDefinition and @JMSDestinationDefinition
-|  
-|  
-|-
+ID | Description | Status | Notes
+:--- | :--- | :--- | :---
+[JMS_SPEC-159](https://github.com/javaee/jms-spec/issues/159) | Allow stop and close to be called from a message listener | |
+[JMS_SPEC-151](https://github.com/javaee/jms-spec/issues/151) | Add repeating annotation support to @JMSConnectionFactoryDefinition and @JMSDestinationDefinition | |
+[JMS_SPEC-149](https://github.com/javaee/jms-spec/issues/149) | Asynchronous Send Functionality Should Use Java SE 8 Completeable Future | | 
+[JMS_SPEC-148](https://github.com/javaee/jms-spec/issues/148) | The Delivery Delay Feature Should Utilize the Java SE 8 Date/Time API | |
+[JMS_SPEC-147](https://github.com/javaee/jms-spec/issues/147) | Extend the @JMSConnectionFactory annotation to allow a resource reference to be defined | |
+[JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144) | `StreamMessage#getBody` | |   
+[JMS_SPEC-139](https://github.com/javaee/jms-spec/issues/139) | Clarify scope of ClientID between JavaDoc and specification | |
+[JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarify whether you can call createContext on a QueueConnectionFactory or TopicConnectionfactory | | 
+[JMS_SPEC-137](https://github.com/javaee/jms-spec/issues/137) | Section 8.7 of the JMS 2.0 spec has a malformed sentence | | 
+[JMS_SPEC-124](https://github.com/javaee/jms-spec/issues/124) | Sending a foreign message using a provider which does not support setJMSCorrelationIDAsBytes | | A bit obscure and unimportant.
+[JMS_SPEC-118](https://github.com/javaee/jms-spec/issues/118) | MessageListeners should be as simple as lambda expressions | |  
+[JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113) | Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause() | |  
 
 
-
-| [https://github.com/javaee/jms-spec/issues/149 JMS_SPEC-149]
-|  Asynchronous Send Functionality Should Use Java SE 8 Completeable Future
-|
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/148 JMS_SPEC-148 ]
-| The Delivery Delay Feature Should Utilize the Java SE 8 Date/Time API
-|
-|
-|-
-
-| [https://github.com/javaee/jms-spec/issues/147 JMS_SPEC-147 ]
-| Extend the @JMSConnectionFactory annotation to allow a resource reference to be defined
-|
-|
-|-
-| [https://github.com/javaee/jms-spec/issues/144 JMS_SPEC-144 ]
-| StreamMessage#getBody
-|
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/139 JMS_SPEC-139]
-| Clarify scope of ClientID between JavaDoc and specification
-|   
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/138 JMS_SPEC-138]
-| Clarify whether you can call createContext on a QueueConnectionFactory or TopicConnectionfactory
-|  
-|  
-|-
-| [https://github.com/javaee/jms-spec/issues/137 JMS_SPEC-137]
-| Section 8.7 of the JMS 2.0 spec has a malformed sentence
-|
-| 
-|- 
-| [https://github.com/javaee/jms-spec/issues/124 JMS_SPEC-124]
-| Sending a foreign message using a provider which does not support setJMSCorrelationIDAsBytes
-|
-|  A bit obscure and unimportant.
-|-
-| [https://github.com/javaee/jms-spec/issues/118 JMS_SPEC-118]
-| MessageListeners should be as simple as lambda expressions
-| 
-|  
-|-
-| [https://github.com/javaee/jms-spec/issues/113 JMS_SPEC-113]
-| Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause()
-|
-|  
-|-
 | [https://github.com/javaee/jms-spec/issues/110 JMS_SPEC-110]
 | add JMS methods to access an Object's creator: Message.getSession(), Session.getConnection(), ...
 |
