@@ -13,7 +13,7 @@ In addition the API documentation may be browsed online [here](http://docs.oracl
 
 You are also invited to try out the current version of the JMS 2.0 reference implementation. This is still under development but is essentially feature complete. 
 * If you would like to try JMS 2.0 as part of a full Java EE 7 application server then you you need to download a recent build of GlassFish Server Open Source Edition 4.0. The promoted builds are [here](http://dlc.sun.com.edgesuite.net/glassfish/4.0/promoted/) and the less stable nightly builds are [here](http://dlc.sun.com.edgesuite.net/glassfish/4.0/nightly/). 
-*If you are are interested in JMS 2.0 in a Java SE environment only then you can download a recent promoted build of the standalone Open Message Queue 5.0 [here](http://mq.java.net/5.0.html#download). 
+* If you are are interested in JMS 2.0 in a Java SE environment only then you can download a recent promoted build of the standalone Open Message Queue 5.0 [here](http://mq.java.net/5.0.html#download). 
 
 (Strictly speaking these are not actually reference implementations. They are community projects which will be used to create the reference implementation when JMS 2.0 is released.)
 
