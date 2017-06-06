@@ -127,18 +127,12 @@ ID | Description | Status | Notes
 
 This section contains proposals for improvements to the whole programming model for JMS MDBs. This includes improvements to the ways JMS MDBs are configured, making JMS MDBs more flexible, and allowing objects which are not MDBs to list for JMS messages. Changes may require an update to the EJB specification as well as to JMS.
 
-Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [/jms-spec/pages/JMS21Planning2#Functional_improvements_to_JMS_MDBs Functional improvements to JMS MDBs] below.
+Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [Functional improvements to JMS MDBs](/jms-spec/pages/JMS21LongList#functional-improvements-to-jms-mdbs) below.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/174 JMS_SPEC-174]
-| Define a standard way to specify the resource adapter used by a JMS MDB
-|  
-| [https://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127] 
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-174](https://github.com/javaee/jms-spec/issues/174) | Define a standard way to specify the resource adapter used by a JMS MDB |  | [EJB_SPEC-127](https://github.com/javaee/ejb-spec/issues/127) 
+
 |-  
 | [https://github.com/javaee/jms-spec/issues/146 JMS_SPEC-146]
 | Allow the registration of a message listener via a connection when done within an ManagedExecutorService.
