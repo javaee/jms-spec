@@ -2,8 +2,6 @@
 
 The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html). 
 
-In addition the API documentation may be browsed online [here](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html). (Note: this link now takes you to the final API docs)
-
   * Comments are invited** but must be received in time to be considered and incorporated in time for the final submission on 20 March 2013. You can either send email to the JMS spec  [mailto:users@jms-spec.java.net user list] (you will need to subscribe first: see [http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or you can send your comments directly to the specification lead,  [mailto:nigel.deakin@oracle.com Nigel Deakin]. 
 
 * auto-gen TOC:
