@@ -132,98 +132,35 @@ Specific functional improvements to JMS MDBs (rather than improvements to the AP
 ID | Description | Status | Notes
 :--- | :--- | :--- | :--- 
 [JMS_SPEC-174](https://github.com/javaee/jms-spec/issues/174) | Define a standard way to specify the resource adapter used by a JMS MDB |  | [EJB_SPEC-127](https://github.com/javaee/ejb-spec/issues/127) 
-
-|-  
-| [https://github.com/javaee/jms-spec/issues/146 JMS_SPEC-146]
-| Allow the registration of a message listener via a connection when done within an ManagedExecutorService.
-|  
-|  
-|-  
-| [https://github.com/javaee/jms-spec/issues/134 JMS_SPEC-134]
-| Declarative Annotation Based JMS Listeners
-|  
-| 
-|-  
-| [https://github.com/javaee/jms-spec/issues/116 JMS_SPEC-116]
-| Take advantage of EJB 3.2's RA improvement for MDBs
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/100 JMS_SPEC-100]
-| Allow Java EE components other than MDBs to consume messages asynchronously
-|  
-| 
-|-  
-|}
+[JMS_SPEC-146](https://github.com/javaee/jms-spec/issues/146) | Allow the registration of a message listener via a connection when done within an ManagedExecutorService. | |  
+[JMS_SPEC-134](https://github.com/javaee/jms-spec/issues/134) | Declarative Annotation Based JMS Listeners | | 
+[JMS_SPEC-116](https://github.com/javaee/jms-spec/issues/116) | Take advantage of EJB 3.2's RA improvement for MDBs | | 
+[JMS_SPEC-100](https://github.com/javaee/jms-spec/issues/100) | Allow Java EE components other than MDBs to consume messages asynchronously | | 
 
 ## Functional improvements to JMS MDBs 
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [https://github.com/javaee/jms-spec/issues/143 JMS_SPEC-143]
-| Define standard MDB activation properties to allow the MDB pool to be configured
-|
-|   
-|-
-| [https://github.com/javaee/jms-spec/issues/141 JMS_SPEC-141]
-| Allow async delivery to temporary destinations in Java EE
-|  
-| 
-|-     
-| [https://github.com/javaee/jms-spec/issues/117 JMS_SPEC-117]
-| Specifying redelivery behaviour when a JMS MDB performs rollback
-|  
-| 
-|-  
-| [https://github.com/javaee/jms-spec/issues/88 JMS_SPEC-88]
-| Bind JMS to CDI events and/or business interfaces
-|  
-| 
-|-
-| [https://github.com/javaee/jms-spec/issues/74 JMS_SPEC-74]
-| Define lifecycle of durable subscriptions used by MDBs
-|  
-| 
-|-
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[JMS_SPEC-143](https://github.com/javaee/jms-spec/issues/143) | Define standard MDB activation properties to allow the MDB pool to be configured | |   
+[JMS_SPEC-141](https://github.com/javaee/jms-spec/issues/141) | Allow async delivery to temporary destinations in Java EE | | 
+[JMS_SPEC-117](https://github.com/javaee/jms-spec/issues/117) | Specifying redelivery behaviour when a JMS MDB performs rollback | | 
+[JMS_SPEC-88](https://github.com/javaee/jms-spec/issues/88) | Bind JMS to CDI events and/or business interfaces | | 
+[JMS_SPEC-74](https://github.com/javaee/jms-spec/issues/74) | Define lifecycle of durable subscriptions used by MDBs | | 
 
 ## EJB spec improvements
 
 This section lists a number of improvements to the EJB specification that have been proposed by the JMS specification lead. Since these are not specific to JMS they need to be considered by the EJB expert group.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [http://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126]
-| Allow listener method to always be determined at runtime by resource adapter
-|  
-| 
-|-
-| [http://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127]
-| Define a standard way to specify the resource adapter used by a JMS MDB
-|  
-| 
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[EJB_SPEC-126](https://github.com/javaee/ejb-spec/issues/126) | Allow listener method to always be determined at runtime by resource adapter | | 
+[EJB_SPEC-127](https://github.com/javaee/ejb-spec/issues/127) | Define a standard way to specify the resource adapter used by a JMS MDB | | 
 
 ## Connector spec improvements
 
 This section lists a number of improvements to the Connector specification that have been proposed by the JMS specification lead.
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [http://java.net/jira/browse/CONNECTOR_SPEC-15 CONNECTOR_SPEC-15]
-| Define a standard way to specify the resource adapter used by a JMS MDB
-|  
-| Logged at request of JCA spec lead, to track any JCA changes needed to support [http://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127]
-|}
+ID | Description | Status | Notes
+:--- | :--- | :--- | :--- 
+[CONNECTOR_SPEC-15](https://github.com/javaee/connector-spec/issues/15)| Define a standard way to specify the resource adapter used by a JMS MDB | | Logged at request of JCA spec lead, to track any JCA changes needed to support [EJB_SPEC-127](https://github.com/javaee/ejb-spec/issues/127)
+
