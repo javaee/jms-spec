@@ -2,6 +2,11 @@
 
 This page describes the steps that need to be followed if you wish to join the JSR 343 Expert Group
 
+## Contents
+
+* auto-gen TOC:
+{:toc}
+
 ## Before you start
 
 Please note that anyone can participate in JSR 343 without formally joining the expert group. So before you start your application, please join the `users@jms-spec.java.net` mailing list. You can find some instructions on how to join, and how to browse the online archives, [here](/jms-spec/#jms-community-mailing-lists).  Doing so will give you full access to the expert group's deliberations and give you an opportunity to comment on its activities. In addition, please take a look at the draft spec and javadocs by following the links [here](http://java.net/projects/jms-spec/pages/Home#Latest_draft_specification_and_javadocs). You can do all this right now without waiting for any approvals from anyone. 
