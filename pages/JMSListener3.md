@@ -262,6 +262,7 @@ See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_spec
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
 >**16. JMS message-driven beans**
+> 
 >**16.5 Exceptions thrown by message callback methods**
 >
 >An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
@@ -291,6 +292,7 @@ Here is a proposed extended wording.
 The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in more detail. This chapter will have a section (arbitrarily numbered 16.5 here) devoted to exceptions thrown by callback methods and a section following it (arbitrarily numbered 16.6 here)  about message redelivery in general. Here is a suggested wording. This section will follow a number of previous sections which define how JMS MDBs are configured.
 
 >**16. JMS message-driven beans**
+> 
 >**16.5 Exceptions thrown by message callback methods**
 >
 >An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
@@ -352,7 +354,7 @@ However the current proposals still need to be reviewed in detail. Aspects needi
 ### Recap of current proposal (Option A) 
 
 The following example illustrates the annotations currently proposed:
-
+```
  @JMSListener(lookup="java:global/java:global/Trades",type=JMSListener.Type.TOPIC )
  @JMSConnectionFactory("java:global/MyCF")
  @SubscriptionDurability(SubscriptionDurability.Mode.DURABLE)
@@ -365,7 +367,7 @@ The following example illustrates the annotations currently proposed:
  public void giveMeAMessage(Message message) {
    ...
  }
-
+```
 Obviously, this is an extreme example which demonstrates the use of every annotation. 
 
 The most important annotation here is `@JMSListener`. This has two attributes, "`lookup`" and "`type`"
@@ -419,7 +421,7 @@ plus zero or more occurrences of the newly-proposed annotation:
 This would remove the need for the user to specify destinationType or subscriptionDurability as attributes.
 
 Here's an example of a MDB which listens for messages from a queue:
-
+```
  @JMSQueueListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     messageSelector=""ticker='ORCL'",
@@ -429,9 +431,9 @@ Here's an example of a MDB which listens for messages from a queue:
  public void giveMeAMessage(Message message) {
     ...
  }
-
+```
 Here's an example of a MDB which listens for messages from a durable topic subscription:
-
+```
  @JMSDurableTopicListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     clientId="myClientID1",
@@ -443,9 +445,9 @@ Here's an example of a MDB which listens for messages from a durable topic subsc
  public void giveMeAMessage(Message message) {
     ...
  }
-
+```
 Here's an example of a MDB which listens for messages from a non-durable topic subscription:
-
+```
  @JMSNonDurableTopicListener(destinationLookup="java:global/java:global/Trades",
     connectionFactoryLookup="java:global/MyCF",
     messageSelector=""ticker='ORCL'",
@@ -455,7 +457,7 @@ Here's an example of a MDB which listens for messages from a non-durable topic s
  public void giveMeAMessage(Message message) {
     ...
  }
-
+```
 Some of these attributes would need to be specified, others would be optional.
 
 The main benefits of this option are:
@@ -469,7 +471,7 @@ The main benefits of this option are:
 A third option might be to combine option B with an additional, completely generic annotation.
 
 In addition to `@JMSQueueListener`, `@JMSDurableTopicListener` and `@JMSNonDurableTopicListener`, there would also be an alternative, generic annotation  `@JMSDestinationListener`. This would strictly be unnecessary, but some users may prefer it:
-
+```
  @JMSDestinationListener(destinationLookup="java:global/java:global/Trades",
     type=JMSListener.DestinationType.TOPIC,
     connectionFactoryLookup="java:global/MyCF",
@@ -483,7 +485,7 @@ In addition to `@JMSQueueListener`, `@JMSDurableTopicListener` and `@JMSNonDurab
  public void giveMeAMessage(Message message) {
     ...
  }
-
+```
 This generic annotation would need  to allow the attributes `destinationType` and `subscriptionDurability` to be specified.
 
 ###  Option D
