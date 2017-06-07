@@ -12,7 +12,6 @@ The next version of the JMS specification will be JMS 2.1, which is being develo
 * The first JMS 2.1 early draft  is now out, containing a new chapter on flexible JMS message-driven beans. You can download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
 * The corresponding JMS 2.1 draft Javadocs can be viewed online [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/).
 * JMS spec lead Nigel Deakin gave a presentation at JavaOne "What's coming in JMS 2.1". [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf). [Watch the video](https://youtu.be/6exFuFJhfcA?t=27336).
-* We've started to hold online meetings. See [Meetings](/jms-spec/pages/JMS21Meetings)
 * Early Draft 1 contained a proposal for "flexible JMS MDBs". We're continuing to improve this proposal: the latest thinking is summarised on [this page](/jms-spec/pages/JMSListener5) and in [these javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/)
 
 ## What's going to be in JMS 2.1? 
@@ -47,10 +46,6 @@ Members of the JSR 343 expert group are invited to make a new application to joi
 ### Log an issue or comment on an existing issue
 
 If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
-
-### Attend our regular video meetings
-
-We've started to hold online meetings. See [Meetings](/jms-spec/pages/JMS21Meetings).
 
 ##  JMS 2.1 plan
 
