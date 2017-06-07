@@ -15,32 +15,22 @@ Minor changes, which could be considered in parallel to this, are listed under [
 
 * Flexible JMS MDBs [JMS_SPEC-116](https://github.com/javaee/jms-spec/issues/116)
   * Latest proposals are in the [JMS 2.1 Early Draft 1](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html)
-
 * CDI beans as message listeners [JMS_SPEC-134](https://github.com/javaee/jms-spec/issues/134)
   * (Under discussion)
-
 * Batch delivery to MDBs [JMS_SPEC-36](https://github.com/javaee/jms-spec/issues/36)
-
 * New and custom acknowledgement modes
   * No acknowledge mode [JMS_SPEC-21](https://github.com/javaee/jms-spec/issues/21), [JMS_SPEC-168](https://github.com/javaee/jms-spec/issues/168)
   * Individual acknowledge mode [JMS_SPEC-95](https://github.com/javaee/jms-spec/issues/95) and related [JMS_SPEC-176](https://github.com/javaee/jms-spec/issues/176)
   * Allowing custom acknowledgement modes [JMS_SPEC-169](https://github.com/javaee/jms-spec/issues/169)
-
 * Allowing setMessageListener in a Java EE web or EJB application
-
 * API to create a connection factory (without using JNDI) in a Java SE application [JMS_SPEC-89](https://github.com/javaee/jms-spec/issues/89)
-
 * API to create a queue or topic (without using JNDI) in a Java SE application [JMS_SPEC-90](https://github.com/javaee/jms-spec/issues/90)
-
 * Repeatable annotations for resource definitions [JMS_SPEC-151](https://github.com/javaee/jms-spec/issues/151)
-
 * Configuring message redelivery and dead message queues for MDBs [JMS_SPEC-117](https://github.com/javaee/jms-spec/issues/117)
   * redeliveryInterval
   * redeliveryLimit
   * deadMessageLookup
-
 * Missing method createXAJMSContext() on XAJMSContext (to allow multiple XAJMSContexts to share the same connection) [JMS_SPEC-152](https://github.com/javaee/jms-spec/issues/152)
-
 * JMS in a Java EE application: adding clarifications and removing restrictions
   * Defining the behavior of a JMS session that is created outside a JTA transaction but used to send or receive a message within a JTA transaction, and vice versa. [JMS_SPEC-129](https://github.com/javaee/jms-spec/issues/129)
   * Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction [JMS_SPEC-130](https://github.com/javaee/jms-spec/issues/130)
