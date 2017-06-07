@@ -346,7 +346,7 @@ The proposals above could be extended to include a fuller set of features which 
 
 The proposals above will define the behaviour when none of these are specified. 
 
-Adding these will be considered separately. (See also [https://java.net/jira/browse/JMS_SPEC-117 JMS_SPEC-117]).
+Adding these will be considered separately. (See also [https://github.com/javaee/jms-spec/issues/117 JMS_SPEC-117]).
 
 ## Simplifying the method annotations: some options 
 
