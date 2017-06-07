@@ -98,13 +98,11 @@ Since this gives us yet another way to define activation properties we need to d
 
 ### Callback methods that throw exceptions
 
-Version 2 [[JMSListener2#Specifying_the_callback_method|proposed]] that callback methods will be allowed to throw exceptions as follows:
+Version 2 [proposed](/jms-spec/pages/JMSListener2#specifying-the-callback-method) that callback methods will be allowed to throw exceptions as follows:
 
-<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
 * Callback methods will be allowed to declare and throw exceptions. Checked exceptions and `RuntimeException` thrown by the callback method (including those thrown by the `onMessage` method of a `MessageListener`) will be handled by the EJB container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods".  This defines whether or not any transaction in progress is committed or rolled back, depending on whether or not the exception is a "system exception" or an "application exception", whether or not the application exception is specified as causing rollback, and whether or not the application has called `setRollbackOnly`. It also defines whether or not the MDB instance is discarded. If the transaction is rolled back, or a transaction is not being used, then the message will be redelivered. 
 
 * The JMS provider should detect repeated attempts to redeliver the same message to a MDB. Such messages may either be discarded or delivered to a provider-specific dead message queue. (Note that this not completely new to JMS: JMS 2.1 section 8.7 refers to a JMS provider "giving up" after a message has been redelivered a certain number of times).
-</td></tr></table>
 
 Version 3 expands on this by reviewing how exceptions thrown by old-style MDBs should be handled now, and uses this as the basis for proposals on how exceptions thrown by new-style MDBs should be handled.
 
@@ -260,7 +258,7 @@ However we may decide that we want to do more than the minimum:
 
 See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_specification Proposed extended new wording for JMS 2.1 specification] below.
 
-### Proposed minimum new wording for JMS 2.1 specification
+#### Proposed minimum new wording for JMS 2.1 specification
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
@@ -291,7 +289,7 @@ The proposed minimum wording above essentially extends the wording already used 
 
 * The proposed wording above not repeat the statement in JMS 2.0 section 8.7 that "it is possible for a listener to throw a `RuntimeException`; however, this is considered a client programming error.". That statement remains for Java SE message listeners for reasons of backward compatibility. However we're not repeating it here for MDBs since we're explicitly allowing MDB callback methods to throw checked exceptions, and it seems arbitrary to allow checked exceptions but to discourage `RuntimeException`s. Especially as methods in the JMS 2.0 simplified API throw `RuntimeException`s.
 
-### Proposed extended new wording for JMS 2.1 specification
+#### Proposed extended new wording for JMS 2.1 specification
 
 Here is a proposed extended wording. 
 
@@ -329,7 +327,7 @@ The proposed extended wording above extends the minimum wording as follows:
 
 * There's a new section which defines how messages are redelivered after rollback. This states that redelivery may not be immediate. It also states that the redelivery flag should be set , that the redelivery count should be incremented and that the resource adapter may "give up" after repeated redelivery.
 
-### Redelivery delays, redelivery limits and dead-letter queues
+#### Redelivery delays, redelivery limits and dead-letter queues
 
 The proposals above could be extended to include a fuller set of features which allow the user to configure
 
