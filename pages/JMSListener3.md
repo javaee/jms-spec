@@ -116,25 +116,23 @@ In deciding how old-style MDBs should handle `RuntimeException`s there are sever
 
 * JMS 2.0 section 8.7 "Receiving messages asynchronously" (reproduced below) defines how a JMS provider should handle a `RuntimeException` thrown by the `onMessage` method  of a `MessageListener`. However this section only considers Java SE acknowledgement modes. That means that it is not relevant to MDBs which consume messages in a container-managed transaction. However it _is_ relevant for MDBs which consume messages in auto-acknowledge or dups-ok-acknowledge modes - which is the case when bean-managed transactions are specified. It says that in this case the message will be "immediately redelivered", where "the number of times a JMS provider will redeliver the same message before giving up is provider-dependent".
 
-<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
-8.7 Receiving messages asynchronously
-
-A client can register an object that implements the JMS MessageListener interface with a consumer. As messages arrive for the consumer, the provider delivers them by calling the listener’s onMessage method.
-
-It is possible for a listener to throw a RuntimeException; however, this is considered a client programming error. Well behaved listeners should catch such exceptions and attempt to divert messages causing them to some form of application-specific ‘unprocessable message’ destination.
-
-The result of a listener throwing a RuntimeException depends on the session’s acknowledgment mode.
-
-<ul>
-<li>AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE - the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.</li>
-<li>CLIENT_ACKNOWLEDGE - the next message for the listener is delivered. If a client wishes to have the previous unacknowledged message redelivered, it must manually recover the session.</li>
-<li>Transacted Session - the next message for the listener is delivered. The client can either commit or roll back the session (in other words, a RuntimeException does not automatically rollback the session).</li>
-</ul>
-
-JMS providers should flag clients with message listeners that are throwing RuntimeException as possibly malfunctioning.
-
-See Section 6.2.13 “Serial execution of client code” for information about how onMessage calls are serialized by a session.
-</td></tr></table>
+>>8.7 Receiving messages asynchronously
+>>
+>>A client can register an object that implements the JMS MessageListener interface with a consumer. As messages arrive for the consumer, the provider delivers them by calling the listener’s onMessage method.
+>>
+>>It is possible for a listener to throw a RuntimeException; however, this is considered a client programming error. Well behaved listeners should catch such exceptions and attempt to divert messages causing them to some form of application-specific ‘unprocessable message’ destination.
+>>
+>>The result of a listener throwing a RuntimeException depends on the session’s acknowledgment mode.
+>>
+>><ul>
+>><li>AUTO_ACKNOWLEDGE or DUPS_OK_ACKNOWLEDGE - the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.</li>
+>><li>CLIENT_ACKNOWLEDGE - the next message for the listener is delivered. If a client wishes to have the previous unacknowledged message redelivered, it must manually recover the session.</li>
+>><li>Transacted Session - the next message for the listener is delivered. The client can either commit or roll back the session (in other words, a RuntimeException does not automatically rollback the session).</li>
+>></ul>
+>>
+>>JMS providers should flag clients with message listeners that are throwing RuntimeException as possibly malfunctioning.
+>>
+>>See Section 6.2.13 “Serial execution of client code” for information about how onMessage calls are serialized by a session.
 
 * EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods" describes how the EJB container should handle exceptions thrown by the MDB's callback method. It specifies whether any transaction is committed or rolled back, whether the MDB is discarded, and what exception is rethrown to the resource adapter (or JMS provider). However it does not define how the resource adapter (or JMS provider) should handle any such exception. For that we need to look at the JMS specification.
 
