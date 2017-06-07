@@ -261,8 +261,8 @@ See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_spec
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
->16. JMS message-driven beans
->16.5 Exceptions thrown by message callback methods
+>**16. JMS message-driven beans**
+>**16.5 Exceptions thrown by message callback methods**
 >
 >An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
 >
@@ -290,8 +290,8 @@ Here is a proposed extended wording.
 
 The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in more detail. This chapter will have a section (arbitrarily numbered 16.5 here) devoted to exceptions thrown by callback methods and a section following it (arbitrarily numbered 16.6 here)  about message redelivery in general. Here is a suggested wording. This section will follow a number of previous sections which define how JMS MDBs are configured.
 
->16. JMS message-driven beans
->16.5 Exceptions thrown by message callback methods
+>**16. JMS message-driven beans**
+>**16.5 Exceptions thrown by message callback methods**
 >
 >An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
 >
@@ -307,13 +307,15 @@ The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in mor
 >
 >If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a `RuntimeException`, then the message will be automatically redelivered.  The message will not be acknowledged and will be immediately redelivered. Message redelivery after an exception in auto-acknowledge or dups-ok-acknowledge mode is described in more detail in section 16.6.2 "Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode".
 >
-> 16.6 Message redelivery to MDBs
+>**16.6 Message redelivery to MDBs**
 >
->16.6.1 Message redelivery after transaction rollback</h5>
+>**16.6.1 Message redelivery after transaction rollback**
+>
 >If a message is being delivered to the callback method of a MDB, and container-managed transaction demarcation is being used, then if the transaction is rolled back for any reason the message will be redelivered. Redelivery may not be immediate. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
 >
->16.6.2 Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode</h5>
-If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a RuntimeException then the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
+>**16.6.2 Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode**
+> 
+>If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a RuntimeException then the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
 
 The proposed extended wording above extends the minimum wording as follows:
 
