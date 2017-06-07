@@ -225,7 +225,7 @@ The EJB 3.2 specification already defines how the EJB container should handle ch
 </tr>
 
 <tr>
-<td rowspan="1">Container-managed transaction demarcation configured (which is the default) and callback method configured with `NotSupported` attribute <br/><br/>(This case is not well defined in EJB 3.2, but this is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td style="text-align:left;">Any checked exception</td><td style="text-align:left;">`Rethrow exception to resource adapter.`</td>
+<td rowspan="1">Container-managed transaction demarcation configured (which is the default) and callback method configured with `NotSupported` attribute <br/><br/>(This case is not well defined in EJB 3.2, but thies is assumed to mean that no transaction is used either to receive the message or to execute the callback method. Instead  the message will be received in auto-acknowledge or dups-ok-acknowledge mode.)</td><td style="text-align:left;">Any checked exception</td><td style="text-align:left;">`Rethrow exception to resource adapter.`</td>
 <td style="text-align:left;">Not defined in JMS 2.0</td>
 </tr>
 
@@ -261,24 +261,20 @@ See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_spec
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
-<h3>16. JMS message-driven beans
-==== 16.5 Exceptions thrown by message callback methods
-
-An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
-
-The `onMessage` method of a JMS MDB that implements `MessageListener` may throw `RuntimeException`s.
-
-All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
-
-If a resource adapter is being used it must catch any checked exceptions or `RuntimeException`s thrown by the callback method. 
-
-If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the `beforeDelivery` method on the `javax.resource.spi.endpoint.MessageEndpoint` prior to invoking the callback method then it must call the `afterDelivery` method afterwards even if the callback method threw a checked exception or `RuntimeException`. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
-
-If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a `RuntimeException` then the message will be automatically redelivered.  The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.
-
-</td></tr></table>
-
+>16. JMS message-driven beans
+>16.5 Exceptions thrown by message callback methods
+>
+>An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
+>
+>The `onMessage` method of a JMS MDB that implements `MessageListener` may throw `RuntimeException`s.
+>
+>All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
+>
+>If a resource adapter is being used it must catch any checked exceptions or `RuntimeException`s thrown by the callback method. 
+>
+>If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the `beforeDelivery` method on the `javax.resource.spi.endpoint.MessageEndpoint` prior to invoking the callback method then it must call the `afterDelivery` method afterwards even if the callback method threw a checked exception or `RuntimeException`. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
+>
+>If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a `RuntimeException` then the message will be automatically redelivered.  The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances.
 
 The proposed minimum wording above essentially extends the wording already used in the JMS specification for Java SE message listeners to cover JMS MDBs:
 
@@ -294,33 +290,30 @@ Here is a proposed extended wording.
 
 The JMS 2.1 specification will contain a new chapter 16 defining JMS MDBs in more detail. This chapter will have a section (arbitrarily numbered 16.5 here) devoted to exceptions thrown by callback methods and a section following it (arbitrarily numbered 16.6 here)  about message redelivery in general. Here is a suggested wording. This section will follow a number of previous sections which define how JMS MDBs are configured.
 
-<table style="text-align:left; margin-left:16px"> <tr> <td style="text-align:left;">
-<h3>16. JMS message-driven beans
-==== 16.5 Exceptions thrown by message callback methods
-
-An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
-
-The `onMessage` method of a JMS MDB that implements `MessageListener` may throw `RuntimeException`s.
-
-All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
-
-If a resource adapter is being used it must catch any checked exceptions or `RuntimeException`s thrown by the callback method. 
-
-If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the `beforeDelivery` method on the `javax.resource.spi.endpoint.MessageEndpoint` prior to invoking the callback method then it must call the `afterDelivery` method afterwards even if the callback method threw a checked exception or `RuntimeException`. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
-
-If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the transaction is rolled back, then the message will be automatically recovered. Message delivery after transaction recovery is described in more detail in section 16.6.1 "Message redelivery after transaction rollback".
-
-If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a `RuntimeException`, then the message will be automatically redelivered.  The message will not be acknowledged and will be immediately redelivered. Message redelivery after an exception in auto-acknowledge or dups-ok-acknowledge mode is described in more detail in section 16.6.2 "Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode".
-
-==== 16.6 Message redelivery to MDBs
-
-<h5>16.6.1 Message redelivery after transaction rollback</h5>
-If a message is being delivered to the callback method of a MDB, and container-managed transaction demarcation is being used, then if the transaction is rolled back for any reason the message will be redelivered. Redelivery may not be immediate. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
-
-<h5>16.6.2 Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode</h5>
+>16. JMS message-driven beans
+>16.5 Exceptions thrown by message callback methods
+>
+>An application-defined callback method of a JMS MDB may throw checked exceptions (where allowed by the method signature) or `RuntimeException`s. 
+>
+>The `onMessage` method of a JMS MDB that implements `MessageListener` may throw `RuntimeException`s.
+>
+>All exceptions thrown by message callback methods must be handled by the container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods". This defines whether or not any container-managed transaction is committed or rolled back by the container. It also defines whether or not the MDB instance is discarded, whether or not the exception is required to be logged, and what exception is re-thrown to the resource adapter (if a resource adapter is being used).
+>
+>If a resource adapter is being used it must catch any checked exceptions or `RuntimeException`s thrown by the callback method. 
+>
+>If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the resource adapter had called the `beforeDelivery` method on the `javax.resource.spi.endpoint.MessageEndpoint` prior to invoking the callback method then it must call the `afterDelivery` method afterwards even if the callback method threw a checked exception or `RuntimeException`. This ensures that the container-managed transaction is rolled back or committed by the container as required by the EJB specification.
+>
+>If a message is being delivered to the callback method of a MDB using container-managed transaction demarcation, and the transaction is rolled back, then the message will be automatically recovered. Message delivery after transaction recovery is described in more detail in section 16.6.1 "Message redelivery after transaction rollback".
+>
+>If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a `RuntimeException`, then the message will be automatically redelivered.  The message will not be acknowledged and will be immediately redelivered. Message redelivery after an exception in auto-acknowledge or dups-ok-acknowledge mode is described in more detail in section 16.6.2 "Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode".
+>
+> 16.6 Message redelivery to MDBs
+>
+>16.6.1 Message redelivery after transaction rollback</h5>
+>If a message is being delivered to the callback method of a MDB, and container-managed transaction demarcation is being used, then if the transaction is rolled back for any reason the message will be redelivered. Redelivery may not be immediate. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
+>
+>16.6.2 Message redelivery after an exception, in auto-acknowledge or dups-ok-acknowledge mode</h5>
 If a message is being delivered to the callback method of a MDB, and auto-acknowledge or dups-ok-acknowledge mode is being used, and the callback method throws a checked exception or a RuntimeException then the message will be immediately redelivered. The number of times a JMS provider will redeliver the same message before giving up is provider-dependent. The JMSRedelivered message header field will be set, and the JMSXDeliveryCount message property incremented, for a message redelivered under these circumstances. 
-
-</td></tr></table>
 
 The proposed extended wording above extends the minimum wording as follows:
 
