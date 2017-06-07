@@ -19,6 +19,7 @@ In the proposed API, all JMS objects are created and destroyed per method call. 
 
 To facilitate a focus on the core business domain, the helper class automatically converts objects to the most appropriate JMS message type and vice-versa. Byte arrays are converted to BytesMessage, maps are converted to MapMessage, strings are converted to TextMessage and serializable objects are converted to ObjectMessage. StreamMessage types are not handled.
 ## Usage Patterns 
+
 Since the utility class is a very basic abstraction with a minimum number of runtime dependencies, it could be used as-is in Java SE, even without any dependency injection support. For example, it could be programmatically instantiated like this:
  JmsUtility jmsUtility = new JmsUtility(connectionFactory); 
 In a Java EE environment, the API could take advantage of resource injection like this:
@@ -78,7 +79,9 @@ Some notes on the initial version of the API:
 * In addition to operation variants that support a JMS destination parameter and default destination setting, Spring JmsTemplate also supports a variant with String destination names. I did not add this variant to reduce clutter and because look-ups seem a little anachronistic with injection, particularly the type-safe injection that CDI supports. If desired we could add that variant here as well. Under the hood, these String names would be used for JNDI look-ups.
 * For some reason, Spring JmsTemplate currently has no support for durable subscriptions. I added that here.
 * The message QoS settings (delivery mode, priority, time-to-live) would only be used if at least one is set explicitly by the user. Otherwise, these values are assumed to be set at the resource level by the JMS resource provider/application server.
+
 ## Strengths 
+
 The following are the benefits of this model as I see it:
 * <b><i>It is a simple-to-implement API that has minimal external dependencies.</i></b> In fact, it is very similar to something most developers would implement in-house themselves (indeed, I implemented something very similar myself before JmsTemplate existed).
 * <b><i>It is a familiar/popular mental model.</i></b> I will be the first to admit I do not give much weight to anything based solely on its popularity - it seems a lot like <i>argumentum ad populum</i> to me. One need not look much farther than pop music icons like Britney Spears or the Spice Girls or most Bollywood movies with mass market appeal to see the obvious weaknesses in adopting something just because "everyone is doing it". That being said, Spring JmsTemplate along with Spring does enjoy a wide install base. Adopting this model would mean leveraging existing developer familiarity with a workable approach.
