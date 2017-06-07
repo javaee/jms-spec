@@ -107,3 +107,5 @@ In course of developing this proposal, a few ideas for improving the basic JMS A
 The way I see it, the weaknesses of this approach outweighs its benefits. <i>I believe we should not consider this approach further and focus on the Seam JMS style injection/context management based abstraction going forward.</i> In either case, developers can continue to use the Spring JmsTemplate with JMS 2/Java EE 7. Others can similarly use the JMS-CDI Event bridge that I also do no believe should be standardized right now.
 
 However, I do think that we should discuss the merits of these approaches not just in the EG but also with the broader community given the broad impact and longevity of these changes.
+
+_Rüdiger zu Dohna_
