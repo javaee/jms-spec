@@ -1,10 +1,12 @@
 # More flexible JMS MDBs (Updates to version 2)
 
-This page contains some updates to  [[JMSListener2|version 2 of the proposals]]  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
+This page contains some updates to  [version 2 of the proposals](/jms-spec/pages/JMSListener2)  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
-Comments are invited. See [/jms-spec/pages/JMS21#How_to_get_involved_in_JMS_2.1 How to get involved in JMS 2.1].
+Comments are invited. See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21).
 
 This page will be extended with additional changes and points for discussion. When a reasonable degree of agreement has been received, an updated version (version 3) of the proposals will be added.
+
+## Contents
 
 * auto-gen TOC:
 {:toc}
@@ -13,9 +15,13 @@ This page will be extended with additional changes and points for discussion. Wh
 
 The major issues which still need to be decided are:
 
-* Issue I17: Should multiple callback methods be permitted? As issue I18 describes, there is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications (i.e. that defining multiple callbacks reduces the number of MDB instances available to process each callback unless the MDB poolsize is increased.). It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. It may also require an excessive amount of extra work for vendors which offer monitoring and management features for JMS MDBs, since they might need to be extended to allow each callback to be managed separately. Finally, it introduces an ambiguity as to how old-style activation properties relate to multiple callback methods. For example, what is the effect of setting the activation property clientId? when there are multiple callback methods, each using a separate connection?  
+**Issue I17: Should multiple callback methods be permitted?**
 
-* Whether we should allow the new annotations to be combined with old-style activation properties. The current proposals state that activation properties may be used to override new-style annotations. However this introduces additional test scenarios. It also introduces potential ambiguity if there are multiple callback methods. However these are still MDBs, and activation properties are an intrinsic feature of both MDBs and the JCA API for message endpoints. One possible clarification is to state that activation properties *defined in the EJB spec* will override those implied by new-style annotations, and that the effect of setting any non-standard activation properties (e.g. other ways to specify the destination) is not defined by the spec - just like the way that the current spec does not define how spec-defined annotations interact with non-standard annotations.
+ As issue I18 describes, there is an argument that allowing multiple callback methods may be confusing for developers, who may not realise the concurrency implications (i.e. that defining multiple callbacks reduces the number of MDB instances available to process each callback unless the MDB poolsize is increased.). It may also make implementation more complex for application servers that automatically calculate the size of the MDB pool. It may also require an excessive amount of extra work for vendors which offer monitoring and management features for JMS MDBs, since they might need to be extended to allow each callback to be managed separately. Finally, it introduces an ambiguity as to how old-style activation properties relate to multiple callback methods. For example, what is the effect of setting the activation property clientId? when there are multiple callback methods, each using a separate connection?  
+
+** Whether we should allow the new annotations to be combined with old-style activation properties.**
+
+The current proposals state that activation properties may be used to override new-style annotations. However this introduces additional test scenarios. It also introduces potential ambiguity if there are multiple callback methods. However these are still MDBs, and activation properties are an intrinsic feature of both MDBs and the JCA API for message endpoints. One possible clarification is to state that activation properties *defined in the EJB spec* will override those implied by new-style annotations, and that the effect of setting any non-standard activation properties (e.g. other ways to specify the destination) is not defined by the spec - just like the way that the current spec does not define how spec-defined annotations interact with non-standard annotations.
 
 ### Relationship between the old and new ways to define a JMS MDB
 
@@ -23,9 +29,13 @@ Should these new annotations be allowed for MDBs that implement the `javax.jms.M
 
 There are two possible cases we need to consider:
 
-* Allowing these new annotations to be used on the legacy `onMessage` method of a `javax.jms.MessageListener`[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed any of the new annotations could be specified. However the requirement that the `@JMSListener` always be specified could not apply since that would break existing MDBs.
+* **Allowing these new annotations to be used on the legacy `onMessage` method of a `javax.jms.MessageListener`**
 
-* Allowing these new annotations to be used to define additional callback methods (i.e. in addition to the `onMessage` method).[[JMSListener2#Specifying_the_callback_method|Version 2]]  proposed that this be allowed so long as the MDB also implemented the `javax.jms.JMSMessageDrivenBean` marker interface. 
+  * [Version 2](/jms-spec/pages/JMSListener2#specifying-the-callback-method) proposed any of the new annotations could be specified. However the requirement that the `@JMSListener` always be specified could not apply since that would break existing MDBs.
+
+* **Allowing these new annotations to be used to define additional callback methods (i.e. in addition to the `onMessage` method).**
+
+  * [Version 2](/jms-spec/pages/JMSListener2#specifying-the-callback-method) proposed that this be allowed so long as the MDB also implemented the `javax.jms.JMSMessageDrivenBean` marker interface. 
 
 On reflection, this is probably introducing unnecessary complexity. It means that lots of additional use cases need to be defined in the spec, implemented, and tested, whilst bringing little benefits to users who can convert to a new-style JMS MDB easily enough.
 

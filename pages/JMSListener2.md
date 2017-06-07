@@ -6,6 +6,8 @@ Comments are invited, especially to the various issues mentioned. See [How to ge
 
 See the [summary of changes](#changes-from-version-1) compared to [Version 1 of these proposals](/jms-spec/pages/JMSListener).
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 

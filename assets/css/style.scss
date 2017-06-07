@@ -211,7 +211,7 @@ blockquote {
   margin-bottom: 2px; 
 }
 
-#markdown-toc p, li {
+#markdown-toc p, li { /* The TOC should not have too much vertical space */
   margin-top: 2px; /* added by Nigel */
   margin-bottom: 2px; /* added by Nigel */
 }
