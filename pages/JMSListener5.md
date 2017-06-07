@@ -2,12 +2,14 @@
 
 This page discusses the method annotations on flexible JMS MDBs
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
 ##  Latest proposal (option H) 
 
-  * Note:** This page has been updated to reflect the discussion in the meeting on Thursday 19th November. 
+**Note:** This page has been updated to reflect the discussion in the meeting on Thursday 19th November. 
 
 Key features of this proposal
 
