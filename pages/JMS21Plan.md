@@ -50,11 +50,11 @@ Minor changes, which could be considered in parallel to this, are listed under [
 
 We need have a separate "issue triage" session to discuss minor proposals in turn. The following minor issues are being actively promoted by members of the community (e.g. by recent updated to JIRA).
 
-* StreamMessage#getBody(Class&lt;T&gt;) [JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144)
+* `StreamMessage.getBody(Class<T>)` [JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144)
 
 *  Add generics to methods currently returning raw types  [JMS_SPEC-108](https://github.com/javaee/jms-spec/issues/108)
 
-* Clarify the difference (if any) between JMSException.getLinkedException() and JMSException.getCause()  [JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113)
+* Clarify the difference (if any) between `JMSException.getLinkedException()` and `JMSException.getCause()`  [JMS_SPEC-113](https://github.com/javaee/jms-spec/issues/113)
 
 ## Anything else 
 
