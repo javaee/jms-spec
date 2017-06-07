@@ -260,7 +260,7 @@ However we may decide that we want to do more than the minimum:
 
 See [/jms-spec/pages/JMSListener3#Proposed_extended_new_wording_for_JMS_2.1_specification Proposed extended new wording for JMS 2.1 specification] below.
 
-#### Proposed minimum new wording for JMS 2.1 specification
+### Proposed minimum new wording for JMS 2.1 specification
 
 Here is a proposed minimum wording. This would be a new section (arbitrarily numbered 16.5 here) in a new chapter 16 defining JMS MDBs in more detail. It will follow a number of previous sections which define how JMS MDBs are configured.
 
@@ -291,7 +291,7 @@ The proposed minimum wording above essentially extends the wording already used 
 
 * The proposed wording above not repeat the statement in JMS 2.0 section 8.7 that "it is possible for a listener to throw a `RuntimeException`; however, this is considered a client programming error.". That statement remains for Java SE message listeners for reasons of backward compatibility. However we're not repeating it here for MDBs since we're explicitly allowing MDB callback methods to throw checked exceptions, and it seems arbitrary to allow checked exceptions but to discourage `RuntimeException`s. Especially as methods in the JMS 2.0 simplified API throw `RuntimeException`s.
 
-#### Proposed extended new wording for JMS 2.1 specification
+### Proposed extended new wording for JMS 2.1 specification
 
 Here is a proposed extended wording. 
 
@@ -329,7 +329,7 @@ The proposed extended wording above extends the minimum wording as follows:
 
 * There's a new section which defines how messages are redelivered after rollback. This states that redelivery may not be immediate. It also states that the redelivery flag should be set , that the redelivery count should be incremented and that the resource adapter may "give up" after repeated redelivery.
 
-#### Redelivery delays, redelivery limits and dead-letter queues
+### Redelivery delays, redelivery limits and dead-letter queues
 
 The proposals above could be extended to include a fuller set of features which allow the user to configure
 
