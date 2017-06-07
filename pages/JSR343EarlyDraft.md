@@ -1,8 +1,8 @@
 # JMS 2.0 Early Draft
 
-The JMS 2.0 Early Draft is now published and may be downloaded [ http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html here]. The formal review period ended on 29 March 2012. 
+The JMS 2.0 Early Draft is now published and may be downloaded [here](http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html). The formal review period ended on 29 March 2012. 
 
-  * Comments are still welcome**. You can either send email to the  [mailto:users@jms-spec.java.net user list] ([http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or you can add a comment to the specific JIRA issue [http://java.net/projects/jms-spec/pages/Home#Issue_tracker (how]).
+**Comments are still welcome**. You can either send email to the community mailing list ([how to  subscribe](/jms-spec/#jms-community-mailing-lists)) or you can add a comment to the specific issue ([how](/jms-spec/#issue-tracker)).
 
 * auto-gen TOC:
 {:toc}
@@ -43,28 +43,23 @@ The JCP process encourages the release of the Early Draft when the specification
 
 A more detailed discussion of these unresolved issues is given in section A.2 "Unresolved issues in the JMS 2.0 Early Draft" in the draft specification.
 
-##  JIRA Queries related to the Early Draft
+##  Issues related to the Early Draft
 
-The following JIRA query will list all the "issues" included in the Early Draft: <br/>
+The following query will list all the "issues" included in the Early Draft: <br/>
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+Tags+%3D+ed20-added Issues included in the JMS 2.0 Early Draft]<br/>
+[Issues included in the JMS 2.0 Early Draft](/javaee/jms-spec/issues?utf8=✓&q=label%3Aed20-added)
 
 ##  What's planned for after the early draft? 
 
 Quite a few issues didn't make it into the Early Draft and have been deferred until the next draft (the Public Draft): These can be listed using the JIRA query below.
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+Tags+%3D+pd20-underreview Issues which are not included in the JMS 2.0 Early Draft but will be considered for inclusion in the JMS 2.0 Public Draft]<br/>
+[Issues which are not included in the JMS 2.0 Early Draft but will be considered for inclusion in the JMS 2.0 Public Draft](https://github.com/javaee/jms-spec/issues?utf8=%E2%9C%93&q=label%3Apd20-underreview)
 
 ##  Related specifications
 
 Several JMS-related issues affect other specifications and have been submitted to the appropriate expert group: <br/>
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+Tags+%3D+jms20-jsr345 Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification]<br/>
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+Tags+%3D+jms20-jsr342 Issues which have been passed to the Java EE 7  expert group for inclusion in that specification]<br/>
+[Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](/jms-spec/issues?utf8=✓&q=label%3Ajms20-jsr345)
+[Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](/jms-spec/issues?utf8=✓&q=label%3Ajms20-jsr342)
 
-##  Rejected issues
-
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+resolution+%3D+%22Won%27t+Fix%22+AND+status+%3D+Closed Issues that have been rejected]
-
-(More JIRA queries on the [[JIRAUsage | JIRA usage]] page).
 
