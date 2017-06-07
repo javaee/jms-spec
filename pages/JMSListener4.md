@@ -2,15 +2,17 @@
 
 This page discusses the method annotations on flexible JMS MDBs
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
 ##  Original proposal (option A) 
 
-[/jms-spec/pages/JMSListener3#Recap_of_current_proposal_%28Option_A%29 Description of option A]
+[Description of option A](/jms-spec/pages/JMSListener3#recap-of-current-proposal-option-a)
 
 ### Queue (option A)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -24,9 +26,9 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
-
+```
 ### Non-Durable subscription on topic (option A)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -42,9 +44,9 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
-
+```
 ### Durable subscription on topic (option A)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -60,13 +62,13 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
-
+```
 ### Option A: discussion
 
 ##  Proposal in Early Draft (option B)
 
 ### Queue (option B)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -80,9 +82,10 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
+```
 
 ### Non-Durable subscription on topic (option B) 
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -96,9 +99,10 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
+```
 
 ### Durable subscription on topic (option B) 
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -114,6 +118,7 @@ This page discusses the method annotations on flexible JMS MDBs
      ...
    }
  }
+```
 
 ### Proposals in early draft: some observations
 
@@ -141,7 +146,7 @@ Bad:
 This option is based on the discussion at the JMS face-to-face meeting on 29th October, and marks a return to the original approach which used a larger number of simpler annotations rather than using a smaller number of larger annotations.
 
 ### Queue (option F)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -157,9 +162,10 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
      ...
    }
  }
+```
 
 ### Non-Durable subscription on topic (option F)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -175,9 +181,10 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
      ...
    }
  }
+```
 
 ### Durable subscription on topic (option F)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -193,6 +200,7 @@ This option is based on the discussion at the JMS face-to-face meeting on 29th O
      ...
    }
  }
+```
 
 ### New option F: discussion
 
@@ -240,7 +248,7 @@ Key features of this proposal
 * The user has the option of specifying the delivery QoS (transactional, auto-ack, dups-ok-ack) directly on the callback method. 
 
 ### Queue (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -254,11 +262,11 @@ Key features of this proposal
      ...
    }
  }
-
+```
 Setting `@DupsOKAcknowledge` overrides an explicit or by-default setting of `@TransactionManagement(TransactionManagementType.CONTAINER)`
 
 ### Non-Durable subscription on topic (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -273,11 +281,11 @@ Setting `@DupsOKAcknowledge` overrides an explicit or by-default setting of `@Tr
      ...
    }
  }
-
+```
 Setting `@AutoAcknowledge` overrides an explicit or by-default setting of `@TransactionManagement(TransactionManagementType.CONTAINER)`
 
 ### Durable subscription on topic (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -291,7 +299,7 @@ Setting `@AutoAcknowledge` overrides an explicit or by-default setting of `@Tran
      ...
    }
  }
-
+```
 Even though the `@JMSDurableTopicListener` has been specified, the subscription name and clientId are set using two separate annotations. This is because in practice these settings (which only became standard in EJB 3.2) are often not required. It also follows the approach of having multiple annotations rather than having a single annotation with multiple attributes.
 
 ### Option G: discussion
