@@ -22,7 +22,7 @@ Minor changes, which could be considered in parallel to this, are listed under [
 * Batch delivery to MDBs [JMS_SPEC-36](https://github.com/javaee/jms-spec/issues/36)
 
 * New and custom acknowledgement modes
-  * No acknowledge mode [JMS_SPEC-21](https://github.com/javaee/jms-spec/issues/21), [JMS_SPEC-168](https://java.net/jira/browse/JMS_SPEC-168)
+  * No acknowledge mode [JMS_SPEC-21](https://github.com/javaee/jms-spec/issues/21), [JMS_SPEC-168](https://github.com/javaee/jms-spec/issues/168)
   * Individual acknowledge mode [JMS_SPEC-95](https://github.com/javaee/jms-spec/issues/95) and related [JMS_SPEC-176](https://java.net/jira/browse/JMS_SPEC-176)
   * Allowing custom acknowledgement modes [JMS_SPEC-169](https://java.net/jira/browse/JMS_SPEC-169)
 
