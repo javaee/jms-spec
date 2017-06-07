@@ -140,8 +140,9 @@ In deciding how old-style MDBs should handle `RuntimeException`s there are sever
 
 Considering the EJB 3.2 specification and JMS 2.0 specifications together, here is a summary the existing requirements for handling a `RuntimeException` thrown by the `onMessage` method of a JMS MDB:
 
+**Existing rules for handling a `RuntimeException` thrown by old-style `onMessage`**
+
 <table border="1">
-<tr><th colspan="4">Existing rules for handling a `RuntimeException` thrown by old-style `onMessage`</th></tr>
 <tr><th>Transactional mode</th><th>Type of RuntimeException</th><th>Container's action<br/> (as defined by EJB 3.2 section 9.3.4)</th><th>Resource adapter's action (as defined by JMS 2.0 specification)</th></tr>
 
 <tr>
@@ -203,9 +204,9 @@ In addition, it is proposed that callback methods on new-style MDBs be allowed t
 
 The EJB 3.2 specification already defines how the EJB container should handle checked exceptions thrown by a MDB's callback method (although this has never previously been possible with JMS MDBs). Here's a summary of what the existing EJB and JMS specifications define when the callback method of a new-style MDB throws a checked exception.:
 
+**Existing rules for handling a checked exception thrown by callback method in new-style MDB**
 
 <table border="1">
-<tr><th colspan="4">Existing rules for handling a checked exception thrown by callback method in new-style MDB</th></tr>
 <tr><th>Transactional mode</th><th>Type of checked exception</th><th>Container's action<br/> (as defined by EJB 3.2 section 9.3.4)</th><th>Resource adapter's action (as defined by JMS 2.0 specification)</th></tr>
 <tr><td rowspan="3">Container-managed transaction demarcation configured (which is the default) and callback method configured with `Required` attribute (which is also the default)<br/><br/>  (Message is received in a transaction, and callback method is called in the same transaction)</td>
 <td style="text-align:left;">Checked exception is annotated with `@ApplicationException(rollback="true")`</td>
