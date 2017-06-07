@@ -11,7 +11,7 @@ For a longer list of all the open issues (many of which won't make it into JMS 2
 
 ## Major changes 
 
-Minor changes, which could be considered in parallel to this, are listed under [/jms-spec/pages/JMS21Plan#minor-changes Minor changes] below.
+Minor changes, which could be considered in parallel to this, are listed under [Minor changes](/jms-spec/pages/JMS21Plan#minor-changes) below.
 
 * Flexible JMS MDBs [JMS_SPEC-116](https://github.com/javaee/jms-spec/issues/116)
   * Latest proposals are in the [JMS 2.1 Early Draft 1](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html)
