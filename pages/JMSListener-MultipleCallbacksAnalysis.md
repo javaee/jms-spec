@@ -2,6 +2,8 @@
 
 This page discusses the method annotations on flexible JMS MDBs
 
+## Contents
+
 * auto-gen TOC:
 {:toc}
 
