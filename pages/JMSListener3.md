@@ -106,7 +106,7 @@ Version 2 [proposed](/jms-spec/pages/JMSListener2#specifying-the-callback-method
 
 Version 3 expands on this by reviewing how exceptions thrown by old-style MDBs should be handled now, and uses this as the basis for proposals on how exceptions thrown by new-style MDBs should be handled.
 
-#### A review of how `RuntimeException`s thrown by old-style MDBs are handled
+#### A review of how RuntimeExceptions thrown by old-style MDBs are handled
 
 With old-style JMS MDBs (those that implement `javax.jms.MessageListener`) the `onMessage` callback method is prevented by the compiler from declaring or throwing checked exceptions. However the compiler does allow them to throw unchecked exceptions and the existing EJB and JMS specifications do define how `RuntimeException`s should be handled.
 
