@@ -211,8 +211,8 @@ blockquote {
   margin-bottom: 2px;
 }
 
-#main-content ul {
-  margin-top: 10px; /* added by Nigel */
+#main-content ul, ol, dl {
+  margin-bottom: 0px; /* added by Nigel */
 }
 
 #main-content table {
