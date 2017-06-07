@@ -23,7 +23,7 @@ Key features of this proposal
 * If the user has specified `@TopicListener("java:global/topicName")` then they may additionally specify `@DurableSubscription` to designate that the subscription is durable. They may additionally specify `@SubscriptionName` to specify the name of the durable subscription, and `ClientId` to specify the clientId. 
   * If `@DurableSubscription` is not supplied then a non-durable subscription will be used. There is no corresponding `@NonDurableSubscription` annotation. This is because there has always been a long-standing convention in JMS that a topic subscription is non-durable unless otherwise specified. For example, the methods `Session#createConsumer` and `TopicSession#createSubscriber` always create non-durable subscriptions. If the user wants a durable subscription they need to specify this by calling  `Session#createDurableConsumer` or `TopicSession#createDurableSubscriber`.
 
-* (**Resolved issue**) We discussed combining these three separate annotations into a single annotation with two elements. For example instead of 
+  * (**Resolved issue**) We discussed combining these three separate annotations into a single annotation with two elements. For example instead of 
 ```
 @TopicListener("java:global/topicName")
 @DurableSubscription
@@ -35,7 +35,7 @@ we could have
 @TopicListener("java:global/topicName")
 @DurableSubscription(name="mySubName", clientId="myClientId")
 ```
-However we decided to define three separate annotations. Discussion and reasons [https://java.net/projects/jms-spec/lists/users/archive/2015-11/message/14 here].
+However we decided to define three separate annotations. Discussion and reasons [here](https://java.net/projects/jms-spec/lists/users/archive/2015-11/message/14).
 
 * `@AutoAcknowledge` or `@DupsOKAcknowledge` are used to specify the corresponding non-transactional acknowledgement mode. To use these modes the MDB must also be configured to use bean-managed transaction demarcation, such as using the class-level annotation `@TransactionManagement(value=TransactionManagementType.BEAN)`. The application server will be recommended to fail deployment if the user specifies `@AutoAcknowledge` or `@DupsOKAcknowledge` without also configuring bean-managed transaction demarcation.
   * The goal here is to prevent the user from setting `@AutoAcknowledge` or `@DupsOKAcknowledge` without realising that they also need to configure bean-managed transaction demarcation. Ideally the application server or resource adapter would be required to fail deployment if the user specifies `@AutoAcknowledge` or `@DupsOKAcknowledge` but leaves the MDB configured to use container-managed transactions. However there is no standard way for a resource adapter to find out whether bean-managed transaction demarcation has been configured, so this needs to be just a recommendation. 
