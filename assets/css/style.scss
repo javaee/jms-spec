@@ -211,6 +211,11 @@ blockquote {
   margin-bottom: 2px; 
 }
 
+#matkdown-toc p, li {
+  margin-top: 2px; /* added by Nigel */
+  margin-bottom: 2px; /* added by Nigel */
+}
+
 #main-content table {
   margin-top: 10px; /* added by Nigel */
 }  

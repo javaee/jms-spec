@@ -18,6 +18,7 @@ Another approach to the issue is creating a more traditional abstraction that ac
 In the proposed API, all JMS objects are created and destroyed per method call. Unless used with pooled JMS resources, this would cause serious scalability issues. Other than relying on connection pooling, the API could support a mode where JMS objects are cached for the lifetime of the API object instance or for the duration of a transaction. Although the default mode for Spring JmsTemplate is to do no caching, in a Java EE environment, it might be most sensible to cache object for the lifetime of a transaction by default.
 
 To facilitate a focus on the core business domain, the helper class automatically converts objects to the most appropriate JMS message type and vice-versa. Byte arrays are converted to BytesMessage, maps are converted to MapMessage, strings are converted to TextMessage and serializable objects are converted to ObjectMessage. StreamMessage types are not handled.
+
 ## Usage Patterns 
 
 Since the utility class is a very basic abstraction with a minimum number of runtime dependencies, it could be used as-is in Java SE, even without any dependency injection support. For example, it could be programmatically instantiated like this:
@@ -31,18 +32,18 @@ public void setConnectionFactory(ConnectionFactory connectionFactory) {
   jmsUtility = new JmsUtility(connectionFactory);
 }
 ```
-The API instance could also be configured entirely in XML as below (the example uses [http://docs.jboss.org/seam/3/config/latest/reference/en-US/html/ Seam XML] OO-style syntax, but any bean wiring syntax could be used):
+The API instance could also be configured entirely in XML as below (the example uses [Seam XML](http://docs.jboss.org/seam/3/config/latest/reference/en-US/html/) OO-style syntax, but any bean wiring syntax could be used):
 ```
- &lt;javaee:JmsUtility>
-     &lt;connectionFactory>
-         &lt;Resource name="jms/DefaultConnectionFactory" />
-     &lt;/connectionFactory>
-     &lt;defaultDestination>
-         &lt;Resource name="jms/DefaultQueue" />
-     &lt;/defaultDestination>
-     &lt;disableMessageID>true&lt;/disableMessageID>
-     &lt;receiveTimeout>0&lt;/receiveTimeout>
- &lt;/javaee:JmsUtility>
+ <javaee:JmsUtility>
+     <connectionFactory>
+         <Resource name="jms/DefaultConnectionFactory" />
+     </connectionFactory>
+     <defaultDestination>
+         <Resource name="jms/DefaultQueue" />
+     </defaultDestination>
+     <disableMessageID>true</disableMessageID>
+     <receiveTimeout>0</receiveTimeout>
+ </javaee:JmsUtility>
 ```
 The XML wired API instance can then be injected where desired:
 ```
