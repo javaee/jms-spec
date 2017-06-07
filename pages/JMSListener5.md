@@ -47,7 +47,7 @@ However we decided to define three separate annotations. Discussion and reasons 
 * Other properties are set using individual annotations: ` @JMSConnectionFactory` (which reuses an existing annotation) and `MessageSelector`.
 
 ### Queue (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -61,9 +61,10 @@ However we decided to define three separate annotations. Discussion and reasons 
      ...
    }
  }
+```
 
 ### Non-Durable subscription on topic (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -78,9 +79,10 @@ However we decided to define three separate annotations. Discussion and reasons 
      ...
    }
  }
+```
 
 ### Durable subscription on topic (option G)
-
+```
  @MessageDriven
  public class MyMessageBean {
  
@@ -94,6 +96,7 @@ However we decided to define three separate annotations. Discussion and reasons 
      ...
    }
  }
+```
 
 ### Other notes (option G)
 
