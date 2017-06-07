@@ -103,8 +103,8 @@ There's a complete list of all currently-proposed features (too many to do all o
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 
-* Allow listener method to always be determined at runtime by resource adapter ([http://java.net/jira/browse/EJB_SPEC-126 EJB_SPEC-126])
+* Allow listener method to always be determined at runtime by resource adapter ([https://github.com/javaee/ejb-spec/issues/126 EJB_SPEC-126])
 
-* Define a standard way to specify the resource adapter used by a JMS MDB ([http://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127])
+* Define a standard way to specify the resource adapter used by a JMS MDB ([https://github.com/javaee/ejb-spec/issues/127 EJB_SPEC-127])
 
 
