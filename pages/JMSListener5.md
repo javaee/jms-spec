@@ -1,6 +1,8 @@
 # Flexible JMS MDBs: method annotations (version 5)
 
-This page discusses the method annotations on flexible JMS MDBs
+This page discusses the method annotations on flexible JMS MDBs.
+
+_These are the latest proposals that were made before work on JMS 2.1 was halted and JSR 368 withdrawn. There are retained here as a historical record and in case they prove useful to a future JMS expert group._
 
 ## Contents
 
