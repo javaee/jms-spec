@@ -41,11 +41,12 @@ ID | Description | Notes
 [JMS_SPEC-106](https://github.com/javaee/jms-spec/issues/106) | Methods on JMSContext that are disallowed if the context is injected should throw a IllegalStateException not a JMSException |
 [JMS_SPEC-105](https://github.com/javaee/jms-spec/issues/105) | Provide API to allow an app server or resource adapter to obtain a XAResource from a JMSContext |
 [JMS_SPEC-102](https://github.com/javaee/jms-spec/issues/102) | Make JMSConsumer.receivePayload methods consistent with Message.getBody |
-[JMS_SPEC-101](https://github.com/javaee/jms-spec/issues/101) | New method Message.getBody | In the public draft | Resolved
+[JMS_SPEC-101](https://github.com/javaee/jms-spec/issues/101) | New method Message.getBody |
 [JMS_SPEC-98](https://github.com/javaee/jms-spec/issues/98) | Fix findbugs warnings in JMSException, JMSRuntimeException, QueueRequestor, TopicRequestor | RI rather than spec issue, resolved
 [JMS_SPEC-96](https://github.com/javaee/jms-spec/issues/96) | Define Java EE JMS Connection Factory Definition annotation and descriptor elements | This was introduced into the public draft and further updated for the proposed final draft and the final release. Annotations are defined in JMS, descriptor elements are defined in the Java EE schema. 
 [JMS_SPEC-97](https://github.com/javaee/jms-spec/issues/97) | This was introduced into the public draft and further updated for the proposed final draft and the final release. Annotations are defined in JMS, descriptor elements are defined in the Java EE schema
-[JMS_SPEC-94](https://github.com/javaee/jms-spec/issues/94) | Define what characters are valid in a durable (or shared subscription) name |[JMS_SPEC-93](https://github.com/javaee/jms-spec/issues/93) | Does changing the noLocal flag when connecting to a durable subscription cause the durable subscription to be deleted? |
+[JMS_SPEC-94](https://github.com/javaee/jms-spec/issues/94) | Define what characters are valid in a durable (or shared subscription) name
+[JMS_SPEC-93](https://github.com/javaee/jms-spec/issues/93) | Does changing the noLocal flag when connecting to a durable subscription cause the durable subscription to be deleted? |
 [JMS_SPEC-82](https://github.com/javaee/jms-spec/issues/82) | Clarify definition of JMSExpiration, replacing GMT with UTC | 
 [JMS_SPEC-80](https://github.com/javaee/jms-spec/issues/80) | Error in example 9.3.3.2 "Reconnect to a topic using a durable subscription" |
 [JMS_SPEC-78](https://github.com/javaee/jms-spec/issues/78) | JMS implementation of QueueRequestor and TopicRequestor doesn't throw correct exception when destination is null | RI rather than spec issue, resolved
