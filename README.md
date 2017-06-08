@@ -28,7 +28,7 @@ An errata for JMS 2.0 was released in March 2015. This is now the latest release
 
 ## JMS 2.0
 
-JMS 2.0 is the latest released version of JMS and  was released on 21 May 2013. 
+JMS 2.0 was released on 21 May 2013. 
 See the [JMS 2.0 Final Release page](/jms-spec/pages/JMS20FinalRelease). 
 
 ## About the development of the JMS specification
@@ -37,7 +37,9 @@ The Java Message Service (JMS) specification was first released in 1998, at the 
 
 On 1st March 2011 a Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.0. This is [JSR 343](http://jcp.org/en/jsr/detail?id=343).  
 
-On 21 May 2013 JMS 2.0 was released. This major update introduces a new simplified API and adds support for the injection of JMS connections into Java EE applications. It forms part of Java EE 7. Now that JMS 2.0 is released, JSR 343 moves into maintenance mode.
+On 21 May 2013 JMS 2.0 was released. This major update introduces a new simplified API and adds support for the injection of JMS connections into Java EE applications. It forms part of Java EE 7. Now that JMS 2.0 is released, JSR 343 moved into maintenance mode.
+
+In March 2015 JMS 2.0 Rev a was released. This is an errata release of JMS 2.0.
 
 In August 2014 a new Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.1.   This was [JSR 368](http://jcp.org/en/jsr/detail?id=368). Following a review of priorities at Oracle, this JSR was withdrawn in November 2016. For more information see the [main JMS 2.1 page](/jms-spec/pages/JMS21).
 
@@ -46,6 +48,7 @@ by hosting their mailing lists, issue tracker, and any other resources that are 
 It runs in conjunction with the [official JSR 343 page on the JCP website](http://jcp.org/en/jsr/detail?id=343).
 which is used mainly to conduct the formal aspects of these JSRs.
 
+JMS 2.0 is now in maintenance mode and is administered directly by the maintenance lead. 
 The maintenance lead for JSR 343 (JMS 2.0) is [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle). 
 
 ## Getting involved
@@ -55,8 +58,6 @@ Here are some ways to get involved in the development of the JMS specification:
 * If you'd like to **contribute** to the development of the JMS specification, or simply **observe** what is going on in the expert group, join the user mailing list at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec).
 
 * If you'd like to **submit proposals** for consideration for a future maintenance or feature release, log them as issues in the [issue tracker](/javaee/jms-spec/issues). We're interested in comments on JMS 2.0 as well as proposals for new features.
-
-* JSR 343 (JMS 2.0) is now in maintenance mode and is administered directly by the maintenance lead. 
 
 ## JMS community mailing list
 
