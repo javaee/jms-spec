@@ -1,8 +1,10 @@
 # Java Message Service Specification
+{: .no_toc}
 
 Welcome to the website for the development of the Java Message Service (JMS) specification.
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}
