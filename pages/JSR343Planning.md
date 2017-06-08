@@ -18,7 +18,7 @@ Issues are listed by the draft in which they were resolved.
 
 [Query: All issues with the milestone "2.0ED"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :---
 [JMS_SPEC-65](https://github.com/javaee/jms-spec/issues/65) | Clarify use of NoLocal arg when using createDurableSubscriber | This was introduced into the Early Draft and further updated for the Public Draft. 
 [JMS_SPEC-53](https://github.com/javaee/jms-spec/issues/53) | Make Connection and other interfaces implement AutoCloseable | 
@@ -41,7 +41,7 @@ ID | Description | Notes
 
 [Query: All issues with the milestone "2.0PD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0PD)
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :---
 [JMS_SPEC-107](https://github.com/javaee/jms-spec/issues/107) | Extend connection consumer API to support shared durable and non-durable subscriptions |
 [JMS_SPEC-106](https://github.com/javaee/jms-spec/issues/106) | Methods on JMSContext that are disallowed if the context is injected should throw a IllegalStateException not a JMSException |
@@ -66,7 +66,7 @@ ID | Description | Notes
 
 [Query: All issues with the milestone "2.0FD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0FD)
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :---
 [JMS_SPEC-115](https://github.com/javaee/jms-spec/issues/115) | Remove the statement that portable applications should only have one consumer per queue |
 [JMS_SPEC-114](https://github.com/javaee/jms-spec/issues/114) | Clarify javadoc descriptions of XAQueueConnection#createSession and XATopicSession#createSession |
@@ -82,19 +82,19 @@ ID | Description | Notes
 
 [Query: All issues with the milestone "2.0"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0)
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :---
 [JMS_SPEC-86](https://github.com/javaee/jms-spec/issues/86) | Chapter 1 "Introduction" is a little dated and requires rewriting |
 [JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** specification.
 
 ## Issues resolved by updates to the Java EE 7 specification 
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :--- 
 [JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** specification.
 
 ##  Issues resolved by updates to the Java Connector Architecture 1.7 specification
 
-ID | Description | Notes
+**ID** | **Description** | **Notes**
 :--- | :--- | :--- 
 [CONNECTOR_SPEC-4](https://github.com/javaee/connector-spec/issues/4) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
