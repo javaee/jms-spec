@@ -21,10 +21,10 @@ This page contains historical information about JMS 2.1, including the most rece
 
 * The initial proposals for JMS 2.1 are summarised in [JSR 368](https://jcp.org/en/jsr/detail?id=368)
 * The [JMS 2.1 early draft](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html) was released in October 2015. This included a new chapter on flexible JMS message-driven beans.
-* JMS spec lead Nigel Deakin gave a presentation at JavaOne in October 2015 "What's coming in JMS 2.1". This included a summary of what was in the early draft, together with some other ideas. [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf). [Watch the video](https://youtu.be/6exFuFJhfcA?t=27336).
+* JMS spec lead Nigel Deakin gave a presentation at JavaOne in October 2015 "What's coming in JMS 2.1". [Download the slides](/jms-spec/downloads/JMS%202.1/CON3942_WhatsNewInJMS21.pdf). [Watch the video](https://youtu.be/6exFuFJhfcA?t=27336). This included a summary of what was in the early draft, together with some other ideas.
 * After the early draft was released, the expert group continued work on improving and refining its proposals for flexible JMS MDBs. The latest thinking is summarised on [this page](/jms-spec/pages/JMSListener5).
 * The [JMS 2.1 plan](/jms-spec/pages/JMS21Plan) contains a list of the features planned for JMS 2.1. 
-* The [JMS 2.1 Planning Long List] contains a classified list of all the open issues that were in the JMS issue tracker at the time that JMS 2.1 was being developed. This includes many issues that were not expected make it into JMS 2.1.
+* The [JMS 2.1 Planning Long List](/jms-spec/pages/JMS21LongList) contains a classified list of all the open issues that were in the JMS issue tracker at the time that JMS 2.1 was being developed. This includes many issues that were not expected make it into JMS 2.1.
 * All these issues are also recorded in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues).
 
 ##  JMS 2.1 schedule
