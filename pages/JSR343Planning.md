@@ -7,7 +7,12 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ## All issues incorporated in the JMS 2.0 final release 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&jqlQuery=project+%3D+JMS_SPEC+AND+resolution+%3D+Fixed+AND+fixVersion+%3D+%222.0%22  Query]  (All fixed issues with fix version=JMS20)
+Issues are listed by the draft in which they were resolved.
+
+* [All issues resolved in the early draft](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
+* [All additional issues resolved in the public draft"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0PD)
+* [All additional issues resolved in the final draft"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0FD)
+* [All additional issues resolved in the final release](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0)
 
 ## Issues incorporated in the early draft 
 
@@ -30,8 +35,9 @@ ID | Description | Notes
 [JMS_SPEC-34](https://github.com/javaee/jms-spec/issues/34) | Calling setJMSDeliveryMode or setJMSPriority on a javax.jms.Message before it is sent don't have any effect |
 [JMS_SPEC-33](https://github.com/javaee/jms-spec/issues/33) | Improving the JMS API with API simplifications, annotations and CDI | 
 [JMS_SPEC-27](https://github.com/javaee/jms-spec/issues/27) | Clarify the relationship between the JMS and other Java EE specifications | 
+[JMS_SPEC-12](https://github.com/javaee/jms-spec/issues/12) | Message producer confirms aka async message production. | Duplicate of [JMS_SPEC-43](https://github.com/javaee/jms-spec/issues/43) 
 
-## Issues incorporated in the public draft. 
+## Additional issues incorporated in the public draft. 
 
 [All issues with the milestone "2.0PD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0PD)
 
@@ -43,8 +49,8 @@ ID | Description | Notes
 [JMS_SPEC-102](https://github.com/javaee/jms-spec/issues/102) | Make JMSConsumer.receivePayload methods consistent with Message.getBody |
 [JMS_SPEC-101](https://github.com/javaee/jms-spec/issues/101) | New method Message.getBody |
 [JMS_SPEC-98](https://github.com/javaee/jms-spec/issues/98) | Fix findbugs warnings in JMSException, JMSRuntimeException, QueueRequestor, TopicRequestor | RI rather than spec issue, resolved
-[JMS_SPEC-96](https://github.com/javaee/jms-spec/issues/96) | Define Java EE JMS Connection Factory Definition annotation and descriptor elements | This was introduced into the public draft and further updated for the proposed final draft and the final release. Annotations are defined in JMS, descriptor elements are defined in the Java EE schema. 
 [JMS_SPEC-97](https://github.com/javaee/jms-spec/issues/97) | This was introduced into the public draft and further updated for the proposed final draft and the final release. Annotations are defined in JMS, descriptor elements are defined in the Java EE schema
+[JMS_SPEC-96](https://github.com/javaee/jms-spec/issues/96) | Define Java EE JMS Connection Factory Definition annotation and descriptor elements | This was introduced into the public draft and further updated for the proposed final draft and the final release. Annotations are defined in JMS, descriptor elements are defined in the Java EE schema. 
 [JMS_SPEC-94](https://github.com/javaee/jms-spec/issues/94) | Define what characters are valid in a durable (or shared subscription) name
 [JMS_SPEC-93](https://github.com/javaee/jms-spec/issues/93) | Does changing the noLocal flag when connecting to a durable subscription cause the durable subscription to be deleted? |
 [JMS_SPEC-82](https://github.com/javaee/jms-spec/issues/82) | Clarify definition of JMSExpiration, replacing GMT with UTC | 
@@ -53,15 +59,12 @@ ID | Description | Notes
 [JMS_SPEC-77](https://github.com/javaee/jms-spec/issues/77) | MapMessage.setBytes API discrepancy found in the javadocs |
 [JMS_SPEC-70](https://github.com/javaee/jms-spec/issues/70) | Define annotations for injecting MessagingContext objects |
 [JMS_SPEC-64](https://github.com/javaee/jms-spec/issues/64) | Define simplified JMS API |
-[JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55) | Define a standard way to configure the connection factory used by a JMS MDB to consume messages | Now covered in a new JMS 2.0 chapter  "Resource adapter". Text also added to EJB 3.2 specification. 
 [JMS_SPEC-40](https://github.com/javaee/jms-spec/issues/40) | Allow multiple consumers to be created on the same topic subscription |
 [JMS_SPEC-31](https://github.com/javaee/jms-spec/issues/31) | change javadoc on session.createQueue and createTopic to make clearer the provider may create a physical destination |
 
-## Issues incorporated in the proposed final draft 
+## Additional issues incorporated in the proposed final draft 
 
-These are either minor documentation issues or updates to issues first addressed in previous drafts.
-
-[All issues with the label "jms20-fd20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fd20-doc-added+is%3Aclosed)
+[All issues with the milestone "2.0FD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0FD)
 
 ID | Description | Notes
 :--- | :--- | :---
@@ -70,26 +73,27 @@ ID | Description | Notes
 [JMS_SPEC-87](https://github.com/javaee/jms-spec/issues/87) | Section 2.5 "Interfaces" needs updating to introduce the simplified API | 
 [JMS_SPEC-81](https://github.com/javaee/jms-spec/issues/81) | Remove Change History for previous versions from the specification |
 [JMS_SPEC-69](https://github.com/javaee/jms-spec/issues/69) | Clarify that QueueRequestor and TopicRequestor only work in a non-transacted session with auto or dups-ok ack |
+[JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55) | Define a standard way to configure the connection factory used by a JMS MDB to consume messages | Now covered in a new JMS 2.0 chapter  "Resource adapter". Text also added to EJB 3.2 specification. 
 [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) | Define a standard way to configure the destination on which a JMS MDB consumes messages | Now covered in a new JMS 2.0 chapter "Resource adapter". Text also added to EJB 3.2 specification. 
 [JMS_SPEC-30](https://github.com/javaee/jms-spec/issues/30) | Define mandatory activation config properties clientId and subscriptionName | Text also added to EJB 3.2 specification. 
 
-## Minor documentation updates included in the final release 
 
-[All issues with the label "jms20-fr20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fr20-doc-added+is%3Aclosed)
+## Additional issues incorporated in the final release 
+
+[All issues with the milestone "2.0"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0)
 
 ID | Description | Notes
 :--- | :--- | :---
 [JMS_SPEC-86](https://github.com/javaee/jms-spec/issues/86) | Chapter 1 "Introduction" is a little dated and requires rewriting |
+[JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** specification.
 
-## Issues incorporated in the Java EE 7 specification 
-
-[All issues with the label "jms20-jsr342-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
+## Issues resolved by updates to the Java EE 7 specification 
 
 ID | Description | Notes
 :--- | :--- | :--- 
-[JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** Early Draft
+[JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** specification.
 
-##  Issues incorporated in the Java Connector Architecture 1.7 specification
+##  Issues resolved by updates to the Java Connector Architecture 1.7 specification
 
 ID | Description | Notes
 :--- | :--- | :--- 
