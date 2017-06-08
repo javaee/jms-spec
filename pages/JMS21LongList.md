@@ -1,6 +1,6 @@
-# JMS 2.1 Planning Long List
+# JMS Planning Long List
 
-Improvements to the JMS specification are managed using issues in JIRA. Here is a classified list of all the open issues. Only a subset of these issues will actually make it into JMS 2.1. See the actual [JMS 2.1 plan](/jms-spec/pages/JMS21Planning).
+Improvements to the JMS specification are managed using the [issue tracker](https://github.com/javaee/jms-spec/issues). Here is a classified list of all the open issues. 
 
 * auto-gen TOC:
 {:toc}

@@ -50,7 +50,7 @@ We need have a separate "issue triage" session to discuss minor proposals in tur
 
 ## Anything else 
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning).
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS planning long list](/jms-spec/pages/JMS21LongList).
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 

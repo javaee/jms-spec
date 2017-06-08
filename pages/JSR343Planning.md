@@ -1,6 +1,6 @@
 # JMS 2.0 Planning
 
-This page contains lists of issues which were resolved in JMS 2.0. For information about JMS 2.1 (or whatever version follows JMS 2.0), see the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning).
+This page contains lists of issues which were resolved in JMS 2.0. 
 
 * auto-gen TOC:
 {:toc}
