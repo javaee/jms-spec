@@ -48,7 +48,7 @@ New methods have been added to `Session` which return a `MessageConsumer` on a d
 
 The specification has been clarified in various places.
 
-The JMS 2.0 specification was developed by recording each proposed change in an issue tracker. Here's a summary page of [all issues incorporated into JMS 2.0](/jms-spec/pages/JSR343Planning)
+The JMS 2.0 specification was developed by recording each proposed change in an issue tracker. There's a summary of all issues incorporated into JMS 2.0 on the [JMS 2.0 planning](/jms-spec/pages/JSR343Planning) page.
 
 ## More information about JMS 2.0 
 
@@ -110,3 +110,10 @@ Completion of Final Ballot | | 8  Apr 2013 | 8  Apr 2013
 Release of Spec, RI, TCK | | <strike>15 Apr 2013</strike> <strike>30 Apr 2013</strike> 22 April 2013 | 21 May 2013
 
 This was based on the schedule for the Java EE 7 platform.
+
+## Related pages
+
+* [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning)
+* [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode)
+* [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
+* [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA)
