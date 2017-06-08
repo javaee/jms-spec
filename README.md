@@ -58,19 +58,13 @@ Here are some ways to get involved in the development of the JMS specification:
 
 * JSR 343 (JMS 2.0) is now in maintenance mode and is administered directly by the maintenance lead. 
 
-## JMS community mailing lists
+## JMS community mailing list
 
-###   Mailing lists open to everyone
+The JMS community mailing list is **jms-spec@javaee.groups.io**. This is for general discussion about the JMS specification. It can also be used to raise issues with, or participate in discussions with, other members of the community including the maintenance lead. 
 
-Email address | Purpose | Access
-:------------ | :------------- | :-------------
-**jms-spec@javaee.groups.io** | Mailing list for general discussion about the JMS specification. <br><br>Everyone is welcome to join.<br><br>This list can also be used to raise issues with, or participate in discussions with, the spec lead and the expert group, if there is one in operation. | Sign up (and view the archive of past messages) at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec).
+Anyone may join and participate in discussions. Sign up (and view the archive of past messages) at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec).
 
-###   Observer mailing list (not used) 
-
-Email address | Purpose | Access
-:------------ | :------ | :-----
-  **jsr-368-observers@jcp.org** | Legacy mailing list for observers of JSR 368. <br /><br /> Being an "observer" of a JSR is an obsolete concept and although this mailing list does exist it is not used. <br /><br /> If you wish to observe what is going on with JSR 368, join the join the **users@jms-spec.java.net** mailing list using the instructions above. | Registered observers of [JSR 368](http://jcp.org/en/jsr/summary?id=368) are automatically subscribed to this list.  However being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted. <br /><br />There is currently no online archive of past messages.
+There's also **jsr-368-observers@jcp.org**, which is a mailing list for observers of JSR 368. We don't use this list. Being an "observer" of a JSR is an obsolete concept and applications to be observers will not be accepted.
 
 ## Issue tracker
 
