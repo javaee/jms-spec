@@ -1,15 +1,16 @@
 # JSR 368 Meeting 1 at JavaOne 2015
 
-0900-1100 Thursday 29th October<br/>
-Hilton San Francisco Union Square, 333 O'Farrell Street, San Francisco<br/>
+## Meeting details
+
+0900-1100 Thursday 29th October
+
+Hilton San Francisco Union Square, 333 O'Farrell Street, San Francisco
+
 Room "Union Square 22". (JavaOne badge not required)
 
-* auto-gen TOC:
-{:toc}
+Up to the [Meetings index](/jms-spec/pages/JMS21#Meetings).
 
-Up to the [/jms-spec/pages/JMS21#Meetings Meetings index].
-
-The minutes of this meeting are [https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47 here].
+The minutes of this meeting are [here](https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47).
 
 ## Agenda 
 
