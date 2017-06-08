@@ -20,7 +20,8 @@ This page contains historical information about JMS 2.1, including the most rece
 * After the early draft was released, the expert group continued work on improving and refining its proposals for flexible JMS MDBs. 
   * The latest thinking is summarised in [Flexible JMS MDBs: method annotations (version 5)](/jms-spec/pages/JMSListener5). The corresponding API interfaces and annotations can be seen in the source code repository [here](https://github.com/javaee/jms-spec/tree/master/jms2.1/src/main/java/javax/jms). 
   * Older versions of these proposals are [version 1](/jms-spec/pages/JMSListener), [version 2](/jms-spec/pages/JMSListener2), [version 3](/jms-spec/pages/JMSListener3) and [version 4](/jms-spec/pages/JMSListener4)_.
-* The spec lead also made some proposals for [CDI Managed Beans as JMS listeners](/jms-spec/pages/CDIBeansAsJMSListeners). [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments) summarises and discusses the comments received.
+* The spec lead also made some proposals for [CDI Managed Beans as JMS listeners](/jms-spec/pages/CDIBeansAsJMSListeners). 
+  * [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments) summarises and discusses the comments received.
 * The [JMS 2.1 plan](/jms-spec/pages/JMS21Plan) contains a list of the features that were planned for JMS 2.1. 
 * The [JMS 2.1 Planning Long List](/jms-spec/pages/JMSLongList) contains a classified list of all the open issues that were in the JMS issue tracker at the time that JMS 2.1 was being developed. This includes many issues that were not expected make it into JMS 2.1.
 * All these issues are also recorded in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues).
