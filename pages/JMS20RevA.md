@@ -1,7 +1,7 @@
 # JMS 2.0 errata release (Rev a)
 {: .no_toc}
 
-The first maintenance release of JMS 2.0, revision a, was released on 16th March 2015. This is an "errata" release.
+The first maintenance release of JMS 2.0, Rev a, was released on 16th March 2015. This is an "errata" release.
 
 The specification document and API documentation may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html).
 
