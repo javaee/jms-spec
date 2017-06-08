@@ -63,7 +63,7 @@ Quite a few issues didn't make it into the Early Draft and have been deferred un
 
 Several JMS-related issues affect other specifications and have been submitted to the appropriate expert group: <br/>
 
-[Query:  Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr345+is%3Aclosed)
-[Query:  Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](/https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
+[Query:  Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](/jms-spec/issues?q=label%3Ajms20-jsr345+is%3Aclosed)
+[Query:  Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
 
 
