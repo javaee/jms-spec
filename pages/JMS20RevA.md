@@ -1,7 +1,9 @@
 # JMS 2.0 errata release (Rev a)
 {: .no_toc}
 
-This page describes the JMS 2.0 errata release (JMS 2.0 revision a)
+The first maintenance release of JMS 2.0, revision a, was released on 16th March 2015. This is an "errata" release.
+
+The specification document and API documentation may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html).
 
 ## Contents
 {: .no_toc}
@@ -22,8 +24,6 @@ There is an explanation of what an "errata" is on the [Java EE spec JCP processe
 The JCP process for a maintenance release is [https://jcp.org/en/procedures/jcp2#5](https://jcp.org/en/procedures/jcp2#5)
 
 This errata was proposed by Nigel Deakin] (Oracle), JSR 343 (JMS 2.0) maintenance lead. Errata releases (and maintenance releases in general) don't have an expert group. Everyone in the JMS community was invited to comment and contribute, including members of the new JSR 368 (JMS 2.1) expert group, former former members of the old JSR 343 (JMS 2.0) expert group, and subscribers to the community email list.
-
-The errata was released on 16th March 2015 and may be downloaded [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html).
 
 <a name="review1IssueList"/>
 
