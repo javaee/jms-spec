@@ -6,6 +6,8 @@ _These proposals supersede [version 1](/jms-spec/pages/JMSListener), [version 2]
 
 _These proposals were superseded by version 5](/jms-spec/pages/JMSListener5)._
 
+_These proposals are retained here as a historical record and in case they prove useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+
 ## Contents
 
 * auto-gen TOC:

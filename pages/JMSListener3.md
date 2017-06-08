@@ -6,9 +6,7 @@ _These proposals supersede [version 1](/jms-spec/pages/JMSListener) and [version
 
 _These proposals were superseded by [version 4](/jms-spec/pages/JMSListener4) and [version 5](/jms-spec/pages/JMSListener5)._
 
-Comments are invited. 
-
-This page will be extended with additional changes and points for discussion. When a reasonable degree of agreement has been received, an updated version (version 3) of the proposals will be added.
+_These proposals are retained here as a historical record and in case they prove useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
 
 ## Contents
 

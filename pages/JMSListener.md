@@ -4,6 +4,9 @@ This page contains version 1 of proposals to simplify the configuration of JMS M
 
 _These proposals were superseded by [version 2](/jms-spec/pages/JMSListener2), [version 3](/jms-spec/pages/JMSListener3), [version 4](/jms-spec/pages/JMSListener4) and [version 5](/jms-spec/pages/JMSListener5)._
 
+_These proposals are retained here as a historical record and in case they prove useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+
+
 ## Contents
 
 * auto-gen TOC:
