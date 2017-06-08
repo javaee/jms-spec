@@ -15,10 +15,9 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 ID | Description | Status | Notes
 :--- | :--- | :--- | :---
-[JMS_SPEC-65](https://github.com/javaee/jms-spec/issues/65) | Clarify use of NoLocal arg when using createDurableSubscriber | In the Early Draft. | This has been further updated for the Public Draft. Resolved.
+[JMS_SPEC-65](https://github.com/javaee/jms-spec/issues/65) | Clarify use of NoLocal arg when using createDurableSubscriber | In the Early Draft. | This has been further updated for the Public Draft. | Resolved.
 [JMS_SPEC-53](https://github.com/javaee/jms-spec/issues/53) | Make Connection and other interfaces implement AutoCloseable | In the Early Draft | Resolved
-[JMS_SPEC-52](https://github.com/javaee/jms-spec/issues/52)
-| Clarify that a message may be sent using a different session from that used to create the message | In the Early Draft | Resolved
+[JMS_SPEC-52](https://github.com/javaee/jms-spec/issues/52) | Clarify that a message may be sent using a different session from that used to create the message | In the Early Draft | Resolved
 [JMS_SPEC-51](https://github.com/javaee/jms-spec/issues/51) | New methods to replace Session.createDurableSubscriber() and return a MessageConsumer | In the Early Draft | Resolved
 [JMS_SPEC-50](https://github.com/javaee/jms-spec/issues/50) | Clarify that JMS providers must implement both P2P and Pub-Sub | In the Early Draft | Resolved
 [JMS_SPEC-49](https://github.com/javaee/jms-spec/issues/49) | Improve specification of ExceptionListener | In the Early Draft | Resolved   
