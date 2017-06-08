@@ -1,6 +1,8 @@
 # Proposed changes to JMSContext to support injection (Option 4)
 {: .no_toc}
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
 This page proposes some changes to the JMS 2.0 simplified API to support the injection of `JMSContext` objects.
 
 It discusses the potential confusion that might be caused by the sharing of injected `JMSContext` objects between different beans within the same scope, and proposes some changes to the `JMSContext` API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [Injection of JMSContext objects - Proposals (version 4](/jms-spec/pages/JMSContextScopeProposalsv4p1) they would apply to earlier scoping proposals as well.

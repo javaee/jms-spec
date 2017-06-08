@@ -1,6 +1,8 @@
 # Injection of JMSContext objects - Use Cases A - E (version 4)
 {: .no_toc}
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
 This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 
 After reading these, now read [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3).

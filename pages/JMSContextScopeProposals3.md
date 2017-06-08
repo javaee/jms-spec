@@ -1,6 +1,8 @@
 # Injection of JMSContext objects - Use Cases F - K  (version 3)
 {: .no_toc}
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
 This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
 
 Note that these use cases are not intended to demonstrate how `@TransactionScoped` beans behave in general. They are intended only to demonstrate how injected `JMSContext` objects behave.

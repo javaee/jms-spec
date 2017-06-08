@@ -1,6 +1,8 @@
 # Injection of JMSContext objects - Proposals (version 3)
 {: .no_toc}
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
 This page discusses that part of the JMS 2.0 Early Draft which defines how `javax.jms.JMSContext` objects may be injected.   In particular it discusses the scope and lifecycle of injected `JMSContext` objects. 
 
 The JMS 2.0 Early Draft proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".

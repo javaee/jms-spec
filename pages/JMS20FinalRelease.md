@@ -121,3 +121,5 @@ This was based on the schedule for the Java EE 7 platform.
 * [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
 * [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
 * [How to join the JSR 343 (JMS 2.0) Expert group](/jms-spec/pages/HowToJoinTheJSR343ExpertGroup) (Retained for historical purposes only)
+* [Proposals for the injection of JMSContext objects](https://javaee.github.io/jms-spec/pages/JMSContextScopeUseCases) (Discussion of various alternative options: retained for historical purposes only)
+

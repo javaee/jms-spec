@@ -1,5 +1,9 @@
 # Proposals for the injection of JMSContext objects
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
+This page records the evolution of changes to the JMS 2.0 simplified API to support the injection of `JMSContext` objects.
+
 ## Option 1 
 
 This is as defined in the JMS 2.0 Early Draft, which can be downloaded [here](http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html)
