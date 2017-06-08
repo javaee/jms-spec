@@ -42,7 +42,7 @@ A full list of the new features, changes and clarifications introduced in JMS 2.
 The JCP process encourages the release of the Early Draft when the specification still has some unresolved issues. Although comments and suggestions are welcome on all parts of the specification, the following issues in particular are known to be unresolved:
 
 * Simplified JMS API: Should the new `MessagingContext` object allow multiple consumers to be created on the same session, which will require separate consumer objects to be created, or should the API restrict a session to a single consumer in order to avoid the need to create a separate object?
-* Simplified API: what is the most appropriate API, scope and behaviour for the injection of `>MessagingContext` objects?
+* Simplified API: what is the most appropriate API, scope and behaviour for the injection of `MessagingContext` objects?
 * Batch message delivery: Is the proposed API appropriate or is it getting too complicated?
 
 A more detailed discussion of these unresolved issues is given in section A.2 "Unresolved issues in the JMS 2.0 Early Draft" in the draft specification.
