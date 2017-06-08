@@ -5,7 +5,7 @@ JMS 2.0 was finally released on 21 May 2013.
 
 The specification document and API documentation of the JMS 2.0 final release may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
-Since the JMS 2.0 final release there has since been a maintenance release which may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html). For more information see [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
+Since the JMS 2.0 final release there has since been a maintenance release which may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html). For more information see [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA).
 
 Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html).
 
@@ -92,9 +92,9 @@ Please report issues with this demonstration using the [issue tracker](https://g
 
 ##  JMS 2.0 schedule (historical)
 
-Also see the [http://java.net/projects/jms-spec/pages/JSR343Planning JMS 2.0 Planning] page 
+Also see the [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning) page.
 
-Stage | Initial plan<br/>(Feb 2011) | Current plan<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013) | Actual
+**Stage** | **Initial plan**<br/>(Feb 2011) | **Current plan**<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013) | **Actual**
 :--- | :--- | :---
 JSR approval | March 2011 |   | March 2011
 Expert group formation | March 2011 | | May 2011
@@ -116,4 +116,4 @@ This was based on the schedule for the Java EE 7 platform.
 * [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning)
 * [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode)
 * [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
-* [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA)
+* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
