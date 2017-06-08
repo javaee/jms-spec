@@ -34,13 +34,13 @@ This table lists all the error reports and requests for clarification that have 
 [Query: Issues that were resolved in this errata release](https://github.com/javaee/jms-spec/milestone/6?closed=1)
 [Query: Issues that were not resolved in this errata release](https://github.com/javaee/jms-spec/labels/jms20-errata)
 
-ID | Description | Nature | Status
+**ID** | **Description** | **Nature** | **Status**
 :--- | :--- | :--- | :---
 [JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | Accepted for JMS 2.0 errata.
-[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-162]https://github.com/javaee/jms-spec/labels/jms20-errata(https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | Accepted for JMS 2.0 errata
 [JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158) | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | Accepted for JMS 2.0 errata.
@@ -63,7 +63,7 @@ This table lists all the changes in JMS 2.0 revision a.
 
 [Query: All issues resolved in the JMS 2.0 errata release (Rev a)](https://github.com/javaee/jms-spec/milestone/6?closed=1)
 
-ID | Description | Nature | Status
+**ID** | **Description** | **Nature** | **Status**
 :--- | :--- | :--- | :---
 [JMS_SPEC-167](https://github.com/javaee/jms-spec/issues/167) | Session javadoc should mention consumer.close is allowed outside thread of control | Document error | [Changes to javadoc for Session](https://github.com/javaee/jms-spec/issues/167#issuecomment-298590579).
 [JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | [Changes to javadoc](https://github.com/javaee/jms-spec/issues/165#issuecomment-298590536).
@@ -84,7 +84,7 @@ ID | Description | Nature | Status
 
 ## Feedback 
 
-Comments are still invited on any of these issues. These can be made either directly on the issue or using the [users@jms-spec.java.net](mailto:users@jms-spec.java.net) mailing list. Instructions on how to join the mailing list may be found [here](https://javaee.github.io/jms-spec/#jms-community-mailing-lists).
+**Comments are invited**. See [Getting involved](/jms-spec/#getting-involved).
 
 ## Timescales 
 
