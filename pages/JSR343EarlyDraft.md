@@ -1,11 +1,9 @@
 # JMS 2.0 Early Draft
 {: .no_toc}
 
-_JMS 2.0 has now been released. This page is retained here as a historical record and in case they prove useful to a future JMS expert group. See also the [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page._
+_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page._
 
 The JMS 2.0 Early Draft is now published and may be downloaded [here](http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html). The formal review period ended on 29 March 2012. 
-
-**Comments are still welcome**. You can either send email to the community mailing list ([how to  subscribe](/jms-spec/#jms-community-mailing-lists)) or you can add a comment to the specific issue ([how](/jms-spec/#issue-tracker)).
 
 ## Contents
 {: .no_toc}
@@ -53,19 +51,19 @@ A more detailed discussion of these unresolved issues is given in section A.2 "U
 
 The following query will list all the "issues" included in the Early Draft: <br/>
 
-[Issues included in the JMS 2.0 Early Draft](/javaee/jms-spec/issues?utf8=✓&q=label%3Aed20-added)
+[Query: All issues resolved in the early draft](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
 
 ##  What's planned for after the early draft? 
 
 Quite a few issues didn't make it into the Early Draft and have been deferred until the next draft (the Public Draft): These can be listed using the query below.
 
-[Issues which are not included in the JMS 2.0 Early Draft but will be considered for inclusion in the JMS 2.0 Public Draft](https://github.com/javaee/jms-spec/issues?utf8=%E2%9C%93&q=label%3Apd20-underreview)
+[Query: Issues which are not included in the JMS 2.0 Early Draft but will be considered for inclusion in the JMS 2.0 Public Draft](https://github.com/javaee/jms-spec/issues?utf8=%E2%9C%93&q=label%3Apd20-underreview)
 
 ##  Related specifications
 
 Several JMS-related issues affect other specifications and have been submitted to the appropriate expert group: <br/>
 
-[Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](/jms-spec/issues?utf8=✓&q=label%3Ajms20-jsr345)
-[Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](/jms-spec/issues?utf8=✓&q=label%3Ajms20-jsr342)
+[Query:  Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr345+is%3Aclosed)
+[Query:  Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
 
 

@@ -20,7 +20,7 @@ Issues are listed by the draft in which they were resolved.
 
 ## Issues incorporated in the early draft 
 
-[Query: All issues with the milestone "2.0ED"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
+[Query: All issues resolved in the early draft](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
 
 **ID** | **Description** | **Notes**
 :--- | :--- | :---
@@ -43,7 +43,7 @@ Issues are listed by the draft in which they were resolved.
 
 ## Additional issues incorporated in the public draft. 
 
-[Query: All issues with the milestone "2.0PD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0PD)
+[Query: All additional issues resolved in the public draft](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0PD)
 
 **ID** | **Description** | **Notes**
 :--- | :--- | :---
@@ -68,7 +68,7 @@ Issues are listed by the draft in which they were resolved.
 
 ## Additional issues incorporated in the proposed final draft 
 
-[Query: All issues with the milestone "2.0FD"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0FD)
+[Query: All additional issues resolved in the final draft](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0FD)
 
 **ID** | **Description** | **Notes**
 :--- | :--- | :---
@@ -84,7 +84,7 @@ Issues are listed by the draft in which they were resolved.
 
 ## Additional issues incorporated in the final release 
 
-[Query: All issues with the milestone "2.0"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0)
+[Query: All additional issues resolved in the final release](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0)
 
 **ID** | **Description** | **Notes**
 :--- | :--- | :---
