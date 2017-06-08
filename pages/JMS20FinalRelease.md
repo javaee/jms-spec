@@ -48,7 +48,7 @@ New methods have been added to `Session` which return a `MessageConsumer` on a d
 
 The specification has been clarified in various places.
 
-The JMS 2.0 specification was developed by recording each proposed change in a a JIRA issue tracker. Here's a summary page of  [all JIRA issues incorporated into JMS 2.0](/jms-spec/pages/JSR343Planning)
+The JMS 2.0 specification was developed by recording each proposed change in an issue tracker. Here's a summary page of [all issues incorporated into JMS 2.0](/jms-spec/pages/JSR343Planning)
 
 ## More information about JMS 2.0 
 

@@ -195,7 +195,7 @@ The container must serialize all the container-invoked callbacks (e.g., lifecycl
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">
-<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. `glassfish-ejb-jar.xml`) or by using a default resource adapter provided by the application server.  (Note that it is hoped that the EJB specification can be updated to define a standard way to associate a MDB with a resource adapter. See [https://java.net/jira/browse/EJB_SPEC-127 EJB_SPEC-127])
+<b>Issue I3:</b> The EJB specification does not define a standard way to associate a MDB with a resource adapter. JMS MDBs that require the use of a resource adapter will continue to need to specify the resource adapter in a non-portable way, either using the app-server-specific deployment descriptor (e.g. `glassfish-ejb-jar.xml`) or by using a default resource adapter provided by the application server.  (Note that it is hoped that the EJB specification can be updated to define a standard way to associate a MDB with a resource adapter. See <a href="https://github.com/javaee/ejb-spec/issues/127>EJB_SPEC-127</a>)
 </td></tr></table>
 
 <table> <tr style="background-color:#f8f8f8;"> <td style="text-align:left;">

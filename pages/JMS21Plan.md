@@ -40,7 +40,7 @@ Minor changes, which could be considered in parallel to this, are listed under [
 
 ## Minor changes 
 
-We need have a separate "issue triage" session to discuss minor proposals in turn. The following minor issues are being actively promoted by members of the community (e.g. by recent updated to JIRA).
+We need have a separate "issue triage" session to discuss minor proposals in turn. The following minor issues are being actively promoted by members of the community (e.g. by recent updates to the issue).
 
 * `StreamMessage.getBody(Class<T>)` [JMS_SPEC-144](https://github.com/javaee/jms-spec/issues/144)
 
