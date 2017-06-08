@@ -1,13 +1,18 @@
 # CDI Managed Beans as JMS listeners (Version 1)
 {: .no_toc}
 
+_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
-These changes are proposed for JMS 2.1 which will be part of Java EE 8. Comments are invited. 
+These changes are proposed for JMS 2.1 which will be part of Java EE 8.
 
 For a summary of the comments made so far, see [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments). 
 
-These proposals are separate to the proposals for [More flexible JMS MDBs](/jms-spec/pages/JMSListener2), though the two sets of proposals are designed to use a common set of annotations.
+These proposals are separate to the proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5), though the two sets of proposals are designed to use a common set of annotations.
+
+## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

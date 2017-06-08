@@ -1,6 +1,8 @@
 # JMS Listener beans: summary of comments
 {: .no_toc}
 
+_This page discusses some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+
 This page lists and discusses some of the comments made on the proposals for JMS listener beans  [/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
 
 ## Contents

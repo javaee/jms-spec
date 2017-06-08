@@ -1,7 +1,7 @@
 # Flexible JMS MDBs: method annotations (version 5)
 {: .no_toc}
 
-This page discusses the method annotations on flexible JMS MDBs.
+This page discusses the method annotations on flexible JMS MDBs 
 
 _These proposals supersede [version 1](/jms-spec/pages/JMSListener), [version 2](/jms-spec/pages/JMSListener2), [version 3](/jms-spec/pages/JMSListener3) and [version 4](/jms-spec/pages/JMSListener4)_.
 
