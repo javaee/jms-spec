@@ -1,4 +1,5 @@
 # JMS 2.0 Planning
+{: .no_toc}
 
 This page contains lists of issues which were resolved in JMS 2.0. 
 
