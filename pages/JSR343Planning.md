@@ -94,4 +94,4 @@ ID | Description | Notes
 
 ID | Description | Notes
 :--- | :--- | :--- 
-[http://java.net/jira/browse/CONNECTOR_SPEC-4 CONNECTOR_SPEC-4 ) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
+[CONNECTOR_SPEC-4](https://github.com/javaee/connector-spec/issues/4) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
