@@ -54,22 +54,24 @@ ID | Description | Notes
 [JMS_SPEC-70](https://github.com/javaee/jms-spec/issues/70) | Define annotations for injecting MessagingContext objects |
 [JMS_SPEC-64](https://github.com/javaee/jms-spec/issues/64) | Define simplified JMS API |
 [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55) | Define a standard way to configure the connection factory used by a JMS MDB to consume messages | Now covered in a new JMS 2.0 chapter  "Resource adapter". Text also added to EJB 3.2 specification. 
-[JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) | Define a standard way to configure the destination on which a JMS MDB consumes messages | Now covered in a new JMS 2.0 chapter "Resource adapter". Text also added to EJB 3.2 specification. 
 [JMS_SPEC-40](https://github.com/javaee/jms-spec/issues/40) | Allow multiple consumers to be created on the same topic subscription |
 [JMS_SPEC-31](https://github.com/javaee/jms-spec/issues/31) | change javadoc on session.createQueue and createTopic to make clearer the provider may create a physical destination |
-[JMS_SPEC-30](https://github.com/javaee/jms-spec/issues/30) | Define mandatory activation config properties clientId and subscriptionName | Text also added to EJB 3.2 specification. 
 
-## Minor documentation updates included in the proposed final draft 
+## Issues incorporated in the proposed final draft 
+
+These are either minor documentation issues or updates to issues first addressed in previous drafts.
 
 [All issues with the label "jms20-fd20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fd20-doc-added+is%3Aclosed)
 
 ID | Description | Notes
 :--- | :--- | :---
-[JMS_SPEC-69](https://github.com/javaee/jms-spec/issues/69) | Clarify that QueueRequestor and TopicRequestor only work in a non-transacted session with auto or dups-ok ack |
-[JMS_SPEC-81](https://github.com/javaee/jms-spec/issues/81) | Remove Change History for previous versions from the specification |
-[JMS_SPEC-87](https://github.com/javaee/jms-spec/issues/87) | Section 2.5 "Interfaces" needs updating to introduce the simplified API | 
-[JMS_SPEC-114](https://github.com/javaee/jms-spec/issues/114) | Clarify javadoc descriptions of XAQueueConnection#createSession and XATopicSession#createSession |
 [JMS_SPEC-115](https://github.com/javaee/jms-spec/issues/115) | Remove the statement that portable applications should only have one consumer per queue |
+[JMS_SPEC-114](https://github.com/javaee/jms-spec/issues/114) | Clarify javadoc descriptions of XAQueueConnection#createSession and XATopicSession#createSession |
+[JMS_SPEC-87](https://github.com/javaee/jms-spec/issues/87) | Section 2.5 "Interfaces" needs updating to introduce the simplified API | 
+[JMS_SPEC-81](https://github.com/javaee/jms-spec/issues/81) | Remove Change History for previous versions from the specification |
+[JMS_SPEC-69](https://github.com/javaee/jms-spec/issues/69) | Clarify that QueueRequestor and TopicRequestor only work in a non-transacted session with auto or dups-ok ack |
+[JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) | Define a standard way to configure the destination on which a JMS MDB consumes messages | Now covered in a new JMS 2.0 chapter "Resource adapter". Text also added to EJB 3.2 specification. 
+[JMS_SPEC-30](https://github.com/javaee/jms-spec/issues/30) | Define mandatory activation config properties clientId and subscriptionName | Text also added to EJB 3.2 specification. 
 
 ## Minor documentation updates included in the final release 
 
