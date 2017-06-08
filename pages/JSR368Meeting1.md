@@ -8,8 +8,6 @@ Hilton San Francisco Union Square, 333 O'Farrell Street, San Francisco
 
 Room "Union Square 22". (JavaOne badge not required)
 
-Up to the [Meetings index](/jms-spec/pages/JMS21#Meetings).
-
 The minutes of this meeting are [here](https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47).
 
 ## Agenda 
@@ -59,7 +57,7 @@ Particular issues to cover
 
 ## Proposed high-level plan 
 
-[/jms-spec/pages/JMS21#JMS_2.1_schedule JMS 2.1 schedule]
+[JMS 2.1 schedule](/jms-spec/pages/JMS21#jms-21-schedule)
 
 Here's a suggested high-level list of features for JMS 2.1, and an approximate order in which they will be considered. 
 
@@ -100,7 +98,7 @@ Minor changes are not listed here: these could be considered in parallel to this
 
 * Anything else?
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [planning page](/jms-spec/pages/JMS21Planning JMS 2.1).
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [planning page](/jms-spec/pages/JMS21Planning).
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 
