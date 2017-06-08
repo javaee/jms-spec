@@ -6,7 +6,7 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 ## Contents
 {: .no_toc}
 
-* auto-gen TOC:
+- auto-gen TOC:
 {:toc}
 
 ## Latest news (Oct 2015)
