@@ -63,7 +63,7 @@ Here are some ways to get involved in the development of the JMS specification:
 
 * If you'd like to **contribute** to the development of the JMS specification, or simply **observe** what is going on in the expert group, join the [mailing list](mailto:users@jms-spec.java.net users@jms-spec.java.net). See below for instructions on how to join.
 
-* If you'd like to **submit proposals** for consideration by the expert group, log them as issues in the JIRA  [issue tracker](http://java.net/jira/browse/JMS_SPEC). Please read [How to use the issue tracker](http://java.net/projects/jms-spec/pages/Home#How_to_create_an_issue). We're interested in comments on JMS 2.0 as well as proposals for JMS 2.1.
+* If you'd like to **submit proposals** for consideration by the expert group, log them as issues in the [issue tracker](/javaee/jms-spec/issues). Please read [How to use the issue tracker](http://java.net/projects/jms-spec/pages/Home#How_to_create_an_issue). We're interested in comments on JMS 2.0 as well as proposals for JMS 2.1.
 
 * A new expert group is being formed for JSR 368 (JMS 2.1). 
 Applications to **join the JSR 368 expert group** are now invited. 
@@ -79,8 +79,6 @@ Email address | Purpose | Access
 :------------ | :------------- | :-------------
 **jms-spec@javaee.groups.io** | Mailing list for general discussion about the JMS specification. <br><br>Everyone is welcome to join.<br><br>This list can also be used to raise issues with, or participate in discussions with, the spec lead and the expert group, if there is one in operation. | Sign up (and view the archive of past messages) at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec).
   **users@jms-spec.java.net** | Mailing list for general discussion about the JMS specification, including JMS 2.0 and JMS 2.1. Everyone is welcome to join. <br><br>This list can also be used to raise issues with, or participate in discussions with, the spec lead and expert group. All members of the expert group are expected to subscribe to this list. <br><br>Discussions on the **jsr-368-experts@jms-spec.java.net** mailing list are forwarded to this list to allow other members of the community to monitor the discussions of the expert group. Members of the community are welcome to join in on these discussions, but they'll need to send their replies to this list rather than directly to the expert group. | Anyone may send email to this list. Messages from non-subscribers are moderated (to prevent spam) so there may be a delay. <br><br>To receive messages from this list, you need to "join" the [jms-spec.java.net](http://jms-spec.java.net) project and then subscribe to this list.  ([How to do this](/jms-spec/#mailing-lists-faq).  Messages from subscribers are not moderated. <br><br>[Online archive of past messages](http://java.net/projects/jms-spec/lists/users/archive).  
-  **issues@jms-spec.java.net** | Mailing list for JIRA issue notifications. Everyone is welcome to join. <br /> <br />Additions and updates to the [JIRA issue tracker](http://java.net/jira/browse/JMS_SPEC) are automatically sent to this list. Please don't use this list for discussions.<br /> | Before you can receive messages from or post messages to this list, you need to join the [jms-spec.java.net](http://jms-spec.java.net) project as an observer and then subscribe to this list. ([How to do this](/jms-spec/pages/Home#Mailing_lists_FAQ))<br /><br />[Online archive of past messages](http://java.net/projects/jms-spec/lists/issues/archive)
-  **commits@jms-spec.java.net** | Mailing list for source code repository update notifications. <br /> <br /> Anyone by join, but there's no need to unless you are updating the source code repository yourself. Whenever there's anything new of interest an email will be sent to the user mailing list.  Please don't use this list for discussions.<br /> | Before you can receive messages from or post messages to this list, you need to join the [ http://jms-spec.java.net  jms-spec.java.net] project as an observer and then subscribe to this list. ([How to do this](/jms-spec/pages/Home#Mailing_lists_FAQ))<br /><br />[Online archive of past messages](http://java.net/projects/jms-spec/lists/commits/archive)
 
 ###   Mailing lists FAQ
 How do I join the [jms-spec.java.net](http://jms-spec.java.net) project? 
@@ -107,10 +105,9 @@ There are two mailing lists that only JMS expert group members may subscribe. Th
 
 ## Issue tracker
 
-Comments and changes to the JMS specification will be managed using  [the JIRA issue tracker](http://java.net/jira/browse/JMS_SPEC).
+Comments and changes to the JMS specification will be managed using [the JMS issue tracker](https://github.com/javaee/jms-spec/issues).
 
-If you would like to propose a change to the JMS specification, please [create an issue](http://java.net/jira/secure/CreateIssue!default.jspa)
-containing a description of the proposed change, or [search for an existing issue](http://java.net/jira/secure/IssueNavigator.jspa?mode=show&createNew=true) and add a comment.  You need to sign up for a java.net account and login first. 
+If you would like to propose a change to the JMS specification, please create an issue containing a description of the proposed change, or find an existing issue and add a comment.  You need to sign up for a free GitHub account and login first. 
 
 ###  How to create an issue
 
@@ -166,4 +163,4 @@ Members of the JSR 343 expert group are invited to make a new application to joi
 
 ### Log an issue or comment on an existing issue
 
-If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS planning long list](/jms-spec/pages/JMSLongList), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS planning long list](/jms-spec/pages/JMSLongList) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
+If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS planning long list](/jms-spec/pages/JMSLongList), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS planning long list](/jms-spec/pages/JMSLongList) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing issues 

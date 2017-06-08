@@ -82,7 +82,7 @@ ID | Description | Nature | Status
 
 ## Feedback 
 
-Comments are still invited on any of these issues. These can be made either directly on the JIRA issue or using the [users@jms-spec.java.net](mailto:users@jms-spec.java.net) mailing list. Instructions on how to join the mailing list may be found [here](https://javaee.github.io/jms-spec/#jms-community-mailing-lists).
+Comments are still invited on any of these issues. These can be made either directly on the issue or using the [users@jms-spec.java.net](mailto:users@jms-spec.java.net) mailing list. Instructions on how to join the mailing list may be found [here](https://javaee.github.io/jms-spec/#jms-community-mailing-lists).
 
 ## Timescales 
 

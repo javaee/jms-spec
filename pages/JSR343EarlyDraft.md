@@ -51,7 +51,7 @@ The following query will list all the "issues" included in the Early Draft: <br/
 
 ##  What's planned for after the early draft? 
 
-Quite a few issues didn't make it into the Early Draft and have been deferred until the next draft (the Public Draft): These can be listed using the JIRA query below.
+Quite a few issues didn't make it into the Early Draft and have been deferred until the next draft (the Public Draft): These can be listed using the query below.
 
 [Issues which are not included in the JMS 2.0 Early Draft but will be considered for inclusion in the JMS 2.0 Public Draft](https://github.com/javaee/jms-spec/issues?utf8=%E2%9C%93&q=label%3Apd20-underreview)
 
