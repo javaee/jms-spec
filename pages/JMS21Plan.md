@@ -6,7 +6,7 @@ Here's the high-level list of features planned for JMS 2.1, and an approximate o
 
 See also the [JMS 2.1 schedule](/jms-spec/pages/JMS21#jms-21-schedule).
 
-For a longer list of all the open issues (many of which won't make it into JMS 2.1), see the [JMS 2.1 planning long list](/jms-spec/pages/JMS21LongList).
+For a longer list of all the open issues (many of which won't make it into JMS 2.1), see the [JMS 2.1 planning long list](/jms-spec/pages/JMSLongList).
 
 * auto-gen TOC:
 {:toc}
@@ -50,7 +50,7 @@ We need have a separate "issue triage" session to discuss minor proposals in tur
 
 ## Anything else 
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS planning long list](/jms-spec/pages/JMS21LongList).
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS planning long list](/jms-spec/pages/JMSLongList).
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 

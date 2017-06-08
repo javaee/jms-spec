@@ -127,7 +127,7 @@ ID | Description | Status | Notes
 
 This section contains proposals for improvements to the whole programming model for JMS MDBs. This includes improvements to the ways JMS MDBs are configured, making JMS MDBs more flexible, and allowing objects which are not MDBs to list for JMS messages. Changes may require an update to the EJB specification as well as to JMS.
 
-Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [Functional improvements to JMS MDBs](/jms-spec/pages/JMS21LongList#functional-improvements-to-jms-mdbs) below.
+Specific functional improvements to JMS MDBs (rather than improvements to the API) are listed separately in [Functional improvements to JMS MDBs](/jms-spec/pages/JMSLongList#functional-improvements-to-jms-mdbs) below.
 
 ID | Description | Status | Notes
 :--- | :--- | :--- | :--- 
