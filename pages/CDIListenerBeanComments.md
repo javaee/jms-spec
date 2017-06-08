@@ -1,9 +1,9 @@
-# JMS Listener beans: summary of comments
+# CDI Managed Beans as JMS listeners (Version 1): summary of comments
 {: .no_toc}
 
 _This page discusses some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
 
-This page lists and discusses some of the comments made on the proposals for JMS listener beans  [/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
+This page lists and discusses some of the comments made on the proposals made for [CDI Managed Beans as JMS listeners (Version 1)](/jms-spec/pages/CDIBeansAsJMSListeners).
 
 ## Contents
 {: .no_toc}
@@ -389,3 +389,9 @@ void processTrade(TextMessage messageText, @MessageProperty("price") long price,
 * If a CDI observer has normal scope, then it will only receive events if the event is fired from within the same scope. It is not possible to configure a normal-scoped bean to receive messages that were fired in some other scope. This imposes a dependency between firer and observer that does not exist in JMS. It means that the only way for an observer to receive events sent from any other part of the application is for the observer to be dependent scope. However if the observer is dependent scoped then a new instance will always be created for every event. There is no way to define an observer with a limited lifetime (e.g. for the duration of a request or session) which can receive events from anywhere.
 
 What all this means is that there's more to receiving JMS messages as events than simply defining some special qualifiers that allow an `Observes` method to specify a JMS queue or topic. 
+
+## Related pages
+
+* The original proposals for [CDI Managed Beans as JMS listeners](/jms-spec/pages/CDIBeansAsJMSListeners)
+* The separate proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5)
+* Main [JMS 2.1 page](/jms-spec/pages/JMS21)

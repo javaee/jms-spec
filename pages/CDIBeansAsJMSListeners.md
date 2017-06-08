@@ -5,9 +5,9 @@ _This page contains some proposals for JMS 2.1 that were being considered by the
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
-These changes are proposed for JMS 2.1 which will be part of Java EE 8.
+These changes are proposed for JMS 2.1.
 
-For a summary of the comments made so far, see [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments). 
+For a summary of the comments made so far, see [CDI Managed Beans as JMS listeners (Version 1): summary of comments](/jms-spec/pages/CDIListenerBeanComments). 
 
 These proposals are separate to the proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5), though the two sets of proposals are designed to use a common set of annotations.
 
@@ -391,3 +391,9 @@ The resource adapter must implement  the `ResourceAdapter` method `endpointDeact
 
 * For each callback method
   *  Close the consumer created by `endpointActivation` and clean up any other state created by that method
+  
+## Related pages
+
+* [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments) summarises and discusses the comments received.
+* The separate proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5)
+* Main [JMS 2.1 page](/jms-spec/pages/JMS21)
