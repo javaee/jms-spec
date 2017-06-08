@@ -94,3 +94,7 @@ avaee-spec/CompatibilityRequirements) (on the Java EE Platform Specification web
 * [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
 * [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
 * [JMS 2.1](/jms-spec/pages/JMS21)
+
+## Other pages
+
+* [JMS 2.0 Utility API Proposal](/jms-spec/pages/JMS2UtilityAPIProposal) A proposal for JMS 2.0 which was not adopted.
