@@ -2,7 +2,7 @@
 
 This page discusses the method annotations on flexible JMS MDBs.
 
-_These are the latest proposals that were made before work on JMS 2.1 was halted and JSR 368 withdrawn. There are retained here as a historical record and in case they prove useful to a future JMS expert group._
+_These are the latest proposals that were made before work on JMS 2.1 was halted and JSR 368 withdrawn. There are retained here as a historical record and in case they prove useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
 
 ## Contents
 
