@@ -1,5 +1,7 @@
 # JMS 2.1 Plan
 
+_This is a historical record of the JMS 2.1 plan before work on JMS 2.1 ceased and JSR 386 was withdrawn_
+
 Here's the high-level list of features planned for JMS 2.1, and an approximate order in which they will be considered. 
 
 See also the [JMS 2.1 schedule](/jms-spec/pages/JMS21#jms-21-schedule).

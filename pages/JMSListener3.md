@@ -2,7 +2,7 @@
 
 This page contains some updates to  [version 2 of the proposals](/jms-spec/pages/JMSListener2)  to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
-Comments are invited. See [How to get involved in JMS 2.1](/jms-spec/pages/JMS21#how-to-get-involved-in-jms-21).
+Comments are invited. 
 
 This page will be extended with additional changes and points for discussion. When a reasonable degree of agreement has been received, an updated version (version 3) of the proposals will be added.
 

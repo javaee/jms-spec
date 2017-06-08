@@ -140,3 +140,28 @@ The [Java EE Backwards Compatibility Requirements](https://javaee.github.io/java
 * By contributing to this project, you are agreeing to the terms of use described in [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 * [Safe harbor statement](/jms-spec/pages/SafeHarborStatement).
+
+## How to get involved in JMS 2.1 
+
+### Send an email
+
+If you would like to comment on the JSR, please do so by sending an email either to the JMS community mailing list [users@jms-spec.java.net](mailto:users@jms-spec.java.net). Before you can post messages to this list you need to join the [jms-spec.java.net](http://jms-spec.java.net) project as an observer and then subscribe to this list. For more information about JMS mailing lists see [JMS community mailing lists](/jms-spec/#jms-community-mailing-lists). 
+
+If you prefer you can send email directly to  [Nigel Deakin](mailto:nigel.deakin@oracle.com). Please note that your comments may be forwarded to  [users@jms-spec.java.net](mailto:users@jms-spec.java.net).
+
+### Join the community alias
+
+Even if you don't have anything to contribute at this stage, you can join the JMS community mailing list [users@jms-spec.java.net](mailto:users@jms-spec.java.net) and see what is going on.  See [JMS community mailing lists](/jms-spec/#jms-community-mailing-lists). 
+
+### Join the JSR 368 expert group 
+
+Applications to join the JSR 368 expert group are now invited. Please use the form at [https://jcp.org/en/jsr/egnom?id=368](https://jcp.org/en/jsr/egnom?id=368).
+The application process is described in detail in [How to join the JSR 368 expert group](/jms-spec/pages/HowToJoinTheJSR368ExpertGroup).
+
+All applications, and the decision for any rejection, are recorded on the [JSR 368 expert group nominations](/jms-spec/pages/JSR368EGNominations) page. 
+
+Members of the JSR 343 expert group are invited to make a new application to join the JSR 368 expert group. 
+
+### Log an issue or comment on an existing issue
+
+If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS 2.1 planning page](/jms-spec/pages/JMS21Planning) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing JIRA issues 
