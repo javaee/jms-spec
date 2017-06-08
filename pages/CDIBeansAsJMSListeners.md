@@ -1,4 +1,5 @@
 # CDI Managed Beans as JMS listeners (Version 1)
+{: .no_toc}
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 

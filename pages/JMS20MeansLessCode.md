@@ -1,8 +1,10 @@
 # Ten ways in which JMS 2.0 means writing less code
+{: .no_toc}
 
 <p>Here are ten simple examples that demonstrate how JMS 2.0 requires less code than JMS 1.1.</p>
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

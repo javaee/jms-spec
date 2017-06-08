@@ -1,4 +1,5 @@
 # JMS 2.0 Proposed Final Draft
+{: .no_toc}
 
 The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html). 
 

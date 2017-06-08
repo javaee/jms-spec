@@ -1,4 +1,5 @@
 # JMS 2.0 Final Release 
+{: .no_toc}
 
 JMS 2.0 was finally released on 21 May 2013.
 
@@ -13,6 +14,7 @@ JMS 2.0 was developed by the Java Community Process as [JSR 343](http://jcp.org/
 **Comments are invited**. Reports of possible errors or omissions are especially welcome. See [Getting involved](/jms-spec/#getting-involved).
   
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

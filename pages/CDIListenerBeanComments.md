@@ -1,8 +1,10 @@
 # JMS Listener beans: summary of comments
+{: .no_toc}
 
 This page lists and discusses some of the comments made on the proposals for JMS listener beans  [/jms-spec/pages/CDIBeansAsJMSListeners JMS listener beans].
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

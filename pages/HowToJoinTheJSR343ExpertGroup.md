@@ -1,8 +1,10 @@
 # How to join the JSR 343 Expert group
+{: .no_toc}
 
 This page describes the steps that need to be followed if you wish to join the JSR 343 Expert Group
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}
