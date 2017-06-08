@@ -41,3 +41,7 @@ Proposed Final Draft | Q4 (Dec) 2015 | Q3 (Sep) 2016 |
 Final release | Q3 (Sep) 2016 | H1 (Jun) 2017 |  
 
 This was based in the [schedule for the Java EE platform](https://www.jcp.org/en/jsr/detail?id=366) at the time.
+
+## Related pages
+
+* [How to join the JSR 368 (JMS 2.1) Expert group](/jms-spec/pages/HowToJoinTheJSR368ExpertGroup) (Included for historical purposes only)

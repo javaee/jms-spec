@@ -1,6 +1,8 @@
 # How to join the JSR 368 (JMS 2.1) Expert group
 {: .no_toc}
 
+_This page relates to JSR 368 (JMS 2.1) which has been withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. The JSR 368 expert group is no longer in operation and applications are not invited._
+
 If you're familiar with the JMS specification and are able to devote a significant amount of time into becoming actively involved in the development of JMS 2.1, then you are invited to join the JSR 368 expert group. This page describes the steps that need to be followed if you wish to join.
 
 ## Contents

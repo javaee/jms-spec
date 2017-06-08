@@ -1,6 +1,8 @@
 # How to join the JSR 343 Expert group
 {: .no_toc}
 
+_This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group. The JSR 343 expert group is no longer in operation and applications are not invited._
+
 This page describes the steps that need to be followed if you wish to join the JSR 343 Expert Group
 
 ## Contents
