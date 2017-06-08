@@ -63,98 +63,33 @@ ID | Description | Notes
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (`tag=jms20-fd20-doc-added `)
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [JMS_SPEC-69](https://github.com/javaee/jms-spec/issues/69)
-| Clarify that QueueRequestor and TopicRequestor only work in a non-transacted session with auto or dups-ok ack
-| 
-| Resolved
-|-
-| [JMS_SPEC-81](https://github.com/javaee/jms-spec/issues/81)
-| Remove Change History for previous versions from the specification
-| 
-| Resolved 
-|-  
-| [JMS_SPEC-87](https://github.com/javaee/jms-spec/issues/87)
-| Section 2.5 "Interfaces" needs updating to introduce the simplified API
-| 
-| Resolved
-|-  
-| [JMS_SPEC-114](https://github.com/javaee/jms-spec/issues/114)
-| Clarify javadoc descriptions of XAQueueConnection#createSession and XATopicSession#createSession
-| 
-| Resolved
-|-  
-|-
-| [JMS_SPEC-115](https://github.com/javaee/jms-spec/issues/115) <br/>
-| Remove the statement that portable applications should only have one consumer per queue
-| 
-| Resolved  
-|}
+ID | Description | Notes
+:--- | :--- | :---
+[JMS_SPEC-69](https://github.com/javaee/jms-spec/issues/69) | Clarify that QueueRequestor and TopicRequestor only work in a non-transacted session with auto or dups-ok ack |
+[JMS_SPEC-81](https://github.com/javaee/jms-spec/issues/81) | Remove Change History for previous versions from the specification |
+[JMS_SPEC-87](https://github.com/javaee/jms-spec/issues/87) | Section 2.5 "Interfaces" needs updating to introduce the simplified API | 
+[JMS_SPEC-114](https://github.com/javaee/jms-spec/issues/114) | Clarify javadoc descriptions of XAQueueConnection#createSession and XATopicSession#createSession |
+[JMS_SPEC-115](https://github.com/javaee/jms-spec/issues/115) | Remove the statement that portable applications should only have one consumer per queue |
 
 ## Minor documentation updates included in the final release 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fr20-doc-added Query]  (`tag=jms20-fr20-doc-added `)
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-
-| [JMS_SPEC-86](https://github.com/javaee/jms-spec/issues/86)
-| Chapter 1 "Introduction" is a little dated and requires rewriting
-|  
-| Resolved
-|- 
-|}
+ID | Description | Notes
+:--- | :--- | :---
+[JMS_SPEC-86](https://github.com/javaee/jms-spec/issues/86) | Chapter 1 "Introduction" is a little dated and requires rewriting |
 
 ## Issues incorporated in the Java EE 7 specification 
 
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-jsr342-added  Query]  (`tag=jms20-jsr342-added `)
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-  
-| [JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63)
-| Introduce concept of platform default JMS connection factory in Java EE
-| Included in **Java EE 7** Early Draft
-|  
-|-
-|}
+ID | Description | Notes
+:--- | :--- | :--- 
+[JMS_SPEC-63](https://github.com/javaee/jms-spec/issues/63) | Introduce concept of platform default JMS connection factory in Java EE | Included in **Java EE 7** Early Draft
 
 ##  Issues incorporated in the Java Connector Architecture 1.7 specification
 
-{|- border="1"
-! ID
-! Description
-! Status
-! Notes
-|-  
-| [http://java.net/jira/browse/CONNECTOR_SPEC-4 CONNECTOR_SPEC-4 )
-| Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI
-| Agreed by JCA EG. Resolved.
-| Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
-|}
+ID | Description | Notes
+:--- | :--- | :--- 
+[http://java.net/jira/browse/CONNECTOR_SPEC-4 CONNECTOR_SPEC-4 ) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
 
-## Reference implementation 
-
-The following queries will list the implementation issues for the reference implementation
-
-{|- border="1"
-! Component
-! Issues
-|-
-| Message Queue
-| [http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11294 JIRA query)
-|-
-| GlassFish
-| [http://java.net/jira/secure/IssueNavigator.jspa?mode=hide&requestId=11555  JIRA query)
-|}
