@@ -68,5 +68,6 @@ Several JMS-related issues affect other specifications and have been submitted t
 
 ## Related pages
 
+* [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
 * [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
 * [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
