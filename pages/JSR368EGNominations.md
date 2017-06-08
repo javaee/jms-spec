@@ -8,7 +8,7 @@ If the sole reason for rejection is that the applicant hasn't provided the neces
 
 ### List of nominations
 
-Date of application | Name (and affiliation, if appropriate) of applicant | Spec lead decision | PMO decision | Result
+**Date of application** | **Name (and affiliation, if appropriate) of applicant** | **Spec lead decision** | **PMO decision** | **Result**
 :--- | :--- | :--- | :--- | :---
 29 Aug 2014 | Seunghoon Han, representing TmaxSoft  | Yes | Yes | Accepted
 24 Sep 2014 | Rüdiger zu Dohna | Yes | Yes | Accepted
