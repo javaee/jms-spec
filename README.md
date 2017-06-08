@@ -17,22 +17,19 @@ The JMS specification has moved to GitHub and groups.io from its old home on jav
 * The issue tracker is at [https://github.com/javaee/jms-spec/issues](https://github.com/javaee/jms-spec/issues)
 * The user mailing list is on groups.io at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec) 
 
-## JMS 2.1
+## JMS 2.1 (now withdrawn)
 
-[JSR 368](https://jcp.org/en/jsr/detail?id=368) will be the next version of JMS. 
-For more information see the [main JMS 2.1 page](/jms-spec/pages/JMS21).
+[JSR 368](https://jcp.org/en/jsr/detail?id=368) was withdrawn in November 2016.
+See the [main JMS 2.1 page](/jms-spec/pages/JMS21).
 
 ## JMS 2.0 errata
 
-An errata for JMS 2.0 was released in March 2015. For more information see the [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
+An errata for JMS 2.0 was released in March 2015. This is now the latest release of JMS. See the [JMS 2.0 errata page](/jms-spec/pages/JMS20RevA).
 
 ## JMS 2.0
 
 JMS 2.0 is the latest released version of JMS and  was released on 21 May 2013. 
-See the [JMS 2.0 Final Release page](/jms-spec/pages/JMS20FinalRelease) for information on where to find the specification and API documentation. 
-That page also contains information on the new features in JMS 2.0, where to download the reference implementation, 
-and provides links to various useful articles about JMS 2.0.
-
+See the [JMS 2.0 Final Release page](/jms-spec/pages/JMS20FinalRelease). 
 
 ## About the development of the JMS specification
 
@@ -42,19 +39,14 @@ On 1st March 2011 a Java Specification Request (JSR) was submitted to the [Java 
 
 On 21 May 2013 JMS 2.0 was released. This major update introduces a new simplified API and adds support for the injection of JMS connections into Java EE applications. It forms part of Java EE 7. Now that JMS 2.0 is released, JSR 343 moves into maintenance mode.
 
-In August 2014 a new Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.1.  For more information see the [main JMS 2.1 page](/jms-spec/pages/JMS21).
+In August 2014 a new Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.1.   This was [JSR 368](http://jcp.org/en/jsr/detail?id=368). Following a review of priorities at Oracle, this JSR was withdrawn in November 2016. For more information see the [main JMS 2.1 page](/jms-spec/pages/JMS21).
 
 The purpose of this website is to support the continuing development of the JMS specification. 
-Currently it is focussed on JSR 343 (JMS 2.0) and  JSR 368  (JMS 2.1) 
-by hosting their mailing lists, issue tracker, wiki and any other resources that are required. 
-It runs in conjunction with the  [official JSR 343 page on the JCP website](http://jcp.org/en/jsr/detail?id=343)
-and the  [official JSR 368 page on the JCP webs
-Comments and changes to the JMS specificaite](http://jcp.org/en/jsr/detail?id=368)
-which are used mainly to conduct the formal aspects of these JSRs.
+by hosting their mailing lists, issue tracker, and any other resources that are required. 
+It runs in conjunction with the [official JSR 343 page on the JCP website](http://jcp.org/en/jsr/detail?id=343).
+which is used mainly to conduct the formal aspects of these JSRs.
 
-This website is a project hosted by java.net. To get the best out of this website, to join the mailing lists and use the issue tracker, you need to register with java.net and log in. 
-
-The maintenance lead for JSR 343 (JMS 2.0) and the prospective specification lead for JSR 368 (JMS 2.1) is [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle). 
+The maintenance lead for JSR 343 (JMS 2.0) is [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle). 
 
 ## Getting involved
 
