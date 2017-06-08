@@ -61,6 +61,9 @@ ID | Description | Notes
 
 ## Minor documentation updates included in the proposed final draft 
 
+[All issues with the label "jms20-fd20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fd20-doc-added+is%3Aclosed)
+
+
 [http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (`tag=jms20-fd20-doc-added `)
 
 ID | Description | Notes
@@ -73,7 +76,7 @@ ID | Description | Notes
 
 ## Minor documentation updates included in the final release 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fr20-doc-added Query]  (`tag=jms20-fr20-doc-added `)
+[All issues with the label "jms20-fr20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fr20-doc-added+is%3Aclosed)
 
 ID | Description | Notes
 :--- | :--- | :---
@@ -81,7 +84,7 @@ ID | Description | Notes
 
 ## Issues incorporated in the Java EE 7 specification 
 
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-jsr342-added  Query]  (`tag=jms20-jsr342-added `)
+[All issues with the label "jms20-jsr342-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
 
 ID | Description | Notes
 :--- | :--- | :--- 
@@ -92,4 +95,3 @@ ID | Description | Notes
 ID | Description | Notes
 :--- | :--- | :--- 
 [http://java.net/jira/browse/CONNECTOR_SPEC-4 CONNECTOR_SPEC-4 ) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
-
