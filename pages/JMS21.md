@@ -12,11 +12,6 @@ Oracle confirmed that JMS would remain part of Java EE 8, but the existing versi
 
 This page contains historical information about JMS 2.1, including the most recent version of the proposals for improving JMS MDBs. 
 
-## Contents
-
-* auto-gen TOC:
-{:toc}
-
 ## Historical information about JMS 2.1 
 
 * The initial proposals for JMS 2.1 are summarised in [JSR 368](https://jcp.org/en/jsr/detail?id=368)
