@@ -5,6 +5,9 @@ The JMS 2.0 Early Draft is now published and may be downloaded [here](http://jcp
 
 **Comments are still welcome**. You can either send email to the community mailing list ([how to  subscribe](/jms-spec/#jms-community-mailing-lists)) or you can add a comment to the specific issue ([how](/jms-spec/#issue-tracker)).
 
+## Contents
+{: .no_toc}
+
 * auto-gen TOC:
 {:toc}
 
