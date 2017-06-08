@@ -66,4 +66,6 @@ Several JMS-related issues affect other specifications and have been submitted t
 [Query:  Issues which have been passed to the EJB 3.2 expert group for inclusion in that specification](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr345+is%3Aclosed)
 [Query:  Issues which have been passed to the Java EE 7  expert group for inclusion in that specification](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-jsr342-added+is%3Aclosed)
 
+## Related pages
 
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page

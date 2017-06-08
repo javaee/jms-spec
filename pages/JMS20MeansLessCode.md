@@ -220,3 +220,6 @@ public void onMessage(Message m){
   MyObject myObj = m.getBody(MyObject.class);
     ...
 ```
+## Related pages
+
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page

@@ -102,3 +102,7 @@ Issues are listed by the draft in which they were resolved.
 **ID** | **Description** | **Notes**
 :--- | :--- | :--- 
 [CONNECTOR_SPEC-4](https://github.com/javaee/connector-spec/issues/4) | Clarify whether the ResourceAdapter.endpointActivation call has full access to administered objects in JNDI | Agreed by JCA EG. Needed for  [JMS_SPEC-54](https://github.com/javaee/jms-spec/issues/54) and  [JMS_SPEC-55](https://github.com/javaee/jms-spec/issues/55)
+
+## Related pages
+
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page
