@@ -2,7 +2,7 @@
 
 This page contains lists of issues which were resolved in JMS 2.0. 
 
-auto-gen TOC:
+* auto-gen TOC:
 {:toc}
 
 ## All issues incorporated in the JMS 2.0 final release 
