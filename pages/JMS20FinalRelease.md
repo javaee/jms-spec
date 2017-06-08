@@ -1,6 +1,6 @@
 # JMS 2.0 Final Release 
 
-JMS 2.0 was finally released on 21 May 2013.T
+JMS 2.0 was finally released on 21 May 2013.
 
 The specification document and API documentation of the JMS 2.0 final release may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
@@ -8,9 +8,9 @@ Since the JMS 2.0 final release there has since been a maintenance release which
 
 Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html).
 
-JMS 2.0 was developed by the Java Community Process as [http://jcp.org/en/jsr/detail?id=343 JSR 343].
+JMS 2.0 was developed by the Java Community Process as [JSR 343](http://jcp.org/en/jsr/detail?id=343).
 
-  * Comments are invited**. You can either send email to the JMS spec  [mailto:users@jms-spec.java.net user list] (you will need to subscribe first: see [http://java.net/projects/jms-spec/pages/Home#Mailing_lists_connected_to_the_jms-spec.java.net_project how to  subscribe]) or directly to the maintenance lead,  [mailto:nigel.deakin@oracle.com Nigel Deakin]. Reports of possible errors or omissions are especially welcome.
+** Comments are invited**. Reports of possible errors or omissions are especially welcome. See [Getting involved](/jms-spec/#getting-involved).
   
 ## Contents
 
