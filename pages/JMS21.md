@@ -41,4 +41,4 @@ Public Review | Q3 (Sep) 2015 | Q1 (Mar) 2016 |
 Proposed Final Draft | Q4 (Dec) 2015 | Q3 (Sep) 2016 |  
 Final release | Q3 (Sep) 2016 | H1 (Jun) 2017 |  
 
-This is based in the [https://www.jcp.org/en/jsr/detail?id=366 schedule for the Java EE platform]
+This was based in the [schedule for the Java EE platform](https://www.jcp.org/en/jsr/detail?id=366)
