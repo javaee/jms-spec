@@ -24,7 +24,7 @@ ID | Description | Notes
 [JMS_SPEC-48](https://github.com/javaee/jms-spec/issues/48) | Specify that connection.stop() or close() may not be called from MessageListener | 
 [JMS_SPEC-45](https://github.com/javaee/jms-spec/issues/45) | Clarify and improve Connection.createSession 
 [JMS_SPEC-44](https://github.com/javaee/jms-spec/issues/44) | New API to specify delivery delay 
-[JMS_SPEC-43](https://github.com/javaee/jms-spec/issues/43) | New API to send a message with async acknowledgement from server | This was introduced into the Early Draft and further updated for the Public Draft. 
+[JMS_SPEC-43](https://github.com/javaee/jms-spec/issues/43) | New API to send a message with async acknowledgement from server | This was introduced into the Early Draft and further updated for the Public Draft. [JMS_SPEC-12](https://github.com/javaee/jms-spec/issues/12) is a duplicate of this.
 [JMS_SPEC-42](https://github.com/javaee/jms-spec/issues/42) | Make support for JMSXDeliveryCount mandatory |
 [JMS_SPEC-39](https://github.com/javaee/jms-spec/issues/39) | Make clientId optional when creating a durable subscription | Shared subscriptions only
 [JMS_SPEC-34](https://github.com/javaee/jms-spec/issues/34) | Calling setJMSDeliveryMode or setJMSPriority on a javax.jms.Message before it is sent don't have any effect |
@@ -62,9 +62,6 @@ ID | Description | Notes
 ## Minor documentation updates included in the proposed final draft 
 
 [All issues with the label "jms20-fd20-doc-added"](https://github.com/javaee/jms-spec/issues?q=label%3Ajms20-fd20-doc-added+is%3Aclosed)
-
-
-[http://java.net/jira/secure/IssueNavigator.jspa?reset=true&customfield_10002=jms20-fd20-doc-added Query]  (`tag=jms20-fd20-doc-added `)
 
 ID | Description | Notes
 :--- | :--- | :---
