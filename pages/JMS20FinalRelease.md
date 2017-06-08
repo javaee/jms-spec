@@ -116,7 +116,7 @@ This was based on the schedule for the Java EE 7 platform.
 * [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
 * [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode)
 * [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
-* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
 * [JMS 2.0 Early Draft](/jms-spec/pages/JSR343EarlyDraft)
 * [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
 * [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
+* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)

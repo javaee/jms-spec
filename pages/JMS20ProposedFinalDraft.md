@@ -55,3 +55,5 @@ This demonstration (which has been updated to work with GlassFish build 82 (glas
 * [JMS 2.0 Early Draft](/jms-spec/pages/JSR343EarlyDraft)
 * [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
 * [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
+* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
+

@@ -60,13 +60,13 @@ When JMS 2.0 was being developed, early versions of the simplified API didn't ha
 
 Initially this design seemed to work well. Essentially, a `JMSContext` could be thought of as wrapping an anonymous `MessageProducer` (one with no queue or topic associated with it). It allowed the code for sending it to be something like this:
 ```
- /*
-  * original simplfied API for sending a message  
-  */
- JMSContext context = connectionFactory.createContext();
- context.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
- TextMessage textMessage = context.createTextMessage("Hello world");
- context.send(queue,textMessage);
+/*
+ * original simplfied API for sending a message  
+ */
+JMSContext context = connectionFactory.createContext();
+context.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+TextMessage textMessage = context.createTextMessage("Hello world");
+context.send(queue,textMessage);
 ```
 However when we added support for injection of `JMSContext` objects a problem arose.
 
@@ -161,3 +161,7 @@ above explained that an injected `JMSContext` needs to be _stateless_ to avoid u
 Imagine a user creates two EJBs (or other Java EE components such as a servlet or CDI bean) and injects a  `JMSContext`  into each, using the same annotations. If the two EJBs are used within the same transaction, or, if there is no transaction, within the same request, then the two injected  `JMSContext` fields will (in accordance with expected CDI behaviour) refer to the same object. This means that calling a method such as `acknowledge()` or `commit()` on one   `JMSContext` field would have an effect on the other   `JMSContext` field. It was decided that this was potentially confusing and a possible cause of errors, especially if the two EJBs were developed by different people. To avoid this confusion it was decided to simply disallow the use of client-acknowledgement or local transactions on an injected `JMSContext`.
 
 Client-acknowledgement and local transactions are not allowed in a EJB or web application anyway (this is defined in EJB 3.1 and is not new). Restricting their use on an injected `JMSContext` does not therefore actually introduce any new limitations. However if the EJB specification was relaxed in the future to allow client-acknowledgement and local transactions for JMS it might still be necessary to restrict their use when the JMSContext was injected.
+
+## Related pages
+
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)

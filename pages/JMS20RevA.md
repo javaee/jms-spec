@@ -3,6 +3,9 @@
 
 This page describes the JMS 2.0 errata release (JMS 2.0 revision a)
 
+## Contents
+{: .no_toc}
+
 * auto-gen TOC:
 {:toc}
 
@@ -18,7 +21,7 @@ There is an explanation of what an "errata" is on the [Java EE spec JCP processe
 
 The JCP process for a maintenance release is [https://jcp.org/en/procedures/jcp2#5](https://jcp.org/en/procedures/jcp2#5)
 
-This errata was proposed by [Nigel Deakin](mailto:nigel.deakin@oracle.com) (Oracle), JSR 343 (JMS 2.0) maintenance lead. Errata releases (and maintenance releases in general) don't have an expert group. Everyone in the JMS community was invited to comment and contribute, including members of the new JSR 368 (JMS 2.1) expert group, former former members of the old JSR 343 (JMS 2.0) expert group, and subscribers to the community email list.
+This errata was proposed by Nigel Deakin] (Oracle), JSR 343 (JMS 2.0) maintenance lead. Errata releases (and maintenance releases in general) don't have an expert group. Everyone in the JMS community was invited to comment and contribute, including members of the new JSR 368 (JMS 2.1) expert group, former former members of the old JSR 343 (JMS 2.0) expert group, and subscribers to the community email list.
 
 The errata was released on 16th March 2015 and may be downloaded [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html).
 
@@ -28,9 +31,7 @@ The errata was released on 16th March 2015 and may be downloaded [here](https://
 
 This table lists all the error reports and requests for clarification that have been received subsequent to the original release of JMS 2.0, and shows the disposition of each. 
 
-This list does not include proposals for new features in JMS 2.1.
-
-[Query](https://github.com/javaee/jms-spec/issues?utf8=%E2%9C%93&q=is%3Aissue%20label%3Ajms20-errata%20) (`tag=jms20-errata`)
+[Query: All issues resolved in the JMS 2.0 errata release (Rev a)](https://github.com/javaee/jms-spec/milestone/6?closed=1)
 
 
 ID | Description | Nature | Status
@@ -107,3 +108,7 @@ This again does not define a new version of the spec.
 However it does reflect a new version of the implementation, so its version number was 2.0.1.
 
 [Safe Harbor Statement](/jms-spec/pages/SafeHarborStatement)
+
+## Related pages
+
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
