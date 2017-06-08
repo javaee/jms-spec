@@ -14,17 +14,17 @@ The minutes of this meeting are [here](https://java.net/projects/jms-spec/lists/
 
 ## Agenda 
 
-<h3>1. Introductions
+### 1. Introductions
 
 Please introduce yourself. Are you a JMS developer or a JMS user? What do you use JMS for? What would you like to see in JMS2.1?
 
-<h3>2. Improving collaboration
+### 2. Improving collaboration
 
 How can the spec lead make it easier for people to contribute to JMS 2.1? Should we hold meetings, regular conference calls or IM sessions? What is the role of the expert group? Should we be more formal in planning the work on JMS 2.1?
 
 Email lists. Draft spec and javadocs. Reference implementation. Compatibility tests. CTS assertions in the spec.
 
-<h3>3. Proposed high-level plan for JMS 2.1
+### 3. Proposed high-level plan for JMS 2.1
 
 See proposed plan below
 
@@ -34,7 +34,7 @@ What proposed features would you like to see dropped?
 
 Show of hands?
 
-<h3>4. Review of EDR1: Flexible JMS MDBs
+### 4. Review of EDR1: Flexible JMS MDBs
 
 Review of the detailed proposals for "Flexible JMS MDBs" as described in the JMS 2.1 Early Draft. 
 
@@ -47,7 +47,7 @@ Particular issues to cover
 * Handling conversion errors
 * Handling exceptions
 
-<h3>5. CDI beans as JMS message listeners
+### 5. CDI beans as JMS message listeners
 
 Particular issues to cover
 * Why we need this. Whether we need this.
@@ -65,47 +65,47 @@ Here's a suggested high-level list of features for JMS 2.1, and an approximate o
 
 Minor changes are not listed here: these could be considered in parallel to this: we need to decide on a parallel list of minor changes. We could have a separate "issue triage" session to discuss minor proposals in turn.
 
-* Flexible JMS MDBs ([https://github.com/javaee/jms-spec/issues/116 JMS_SPEC-116])
+* Flexible JMS MDBs ([JMS_SPEC-116](https://github.com/javaee/jms-spec/issues/116))
   * (See above)
 
-* CDI beans as message listeners ([https://github.com/javaee/jms-spec/issues/134 JMS_SPEC-134])
+* CDI beans as message listeners ([JMS_SPEC-134](https://github.com/javaee/jms-spec/issues/134))
   * (See above)
 
-* Batch delivery to MDBs ([https://github.com/javaee/jms-spec/issues/36 JMS_SPEC-36])
+* Batch delivery to MDBs ([JMS_SPEC-36](https://github.com/javaee/jms-spec/issues/36))
 
 * New and custom acknowledgement modes
-  * No acknowledge mode ([https://github.com/javaee/jms-spec/issues/21 JMS_SPEC-21], [https://github.com/javaee/jms-spec/issues/168 JMS_SPEC-168])
-  * Individual acknowledge mode ([https://github.com/javaee/jms-spec/issues/95 JMS_SPEC-95] and related [https://github.com/javaee/jms-spec/issues/176 JMS_SPEC-176])
-  * Allowing custom acknowledgement modes ([https://github.com/javaee/jms-spec/issues/169 JMS_SPEC-169])
+  * No acknowledge mode ([JMS_SPEC-21](https://github.com/javaee/jms-spec/issues/21), [JMS_SPEC-168(https://github.com/javaee/jms-spec/issues/168)])
+  * Individual acknowledge mode ([JMS_SPEC-95](https://github.com/javaee/jms-spec/issues/95) and related [JMS_SPEC-176](https://github.com/javaee/jms-spec/issues/176))
+  * Allowing custom acknowledgement modes ([JMS_SPEC-169](https://github.com/javaee/jms-spec/issues/169))
 
 * Allowing setMessageListener in a Java EE web or EJB application
 
-* API to create a connection factory (without using JNDI) in a Java SE application ([https://github.com/javaee/jms-spec/issues/89 JMS_SPEC-89])
+* API to create a connection factory (without using JNDI) in a Java SE application ([JMS_SPEC-89](https://github.com/javaee/jms-spec/issues/89))
 
-* API to create a queue or topic (without using JNDI) in a Java SE application ([https://github.com/javaee/jms-spec/issues/90 JMS_SPEC-90])
+* API to create a queue or topic (without using JNDI) in a Java SE application ([JMS_SPEC-90](https://github.com/javaee/jms-spec/issues/90))
 
-* Repeatable annotations for resource definitions ([https://github.com/javaee/jms-spec/issues/151 JMS_SPEC-151])
+* Repeatable annotations for resource definitions ([JMS_SPEC-151](https://github.com/javaee/jms-spec/issues/151))
 
-* Configuring message redelivery and dead message queues for MDBs ([https://github.com/javaee/jms-spec/issues/117 JMS_SPEC-117])
+* Configuring message redelivery and dead message queues for MDBs ([JMS_SPEC-117](https://github.com/javaee/jms-spec/issues/117))
   * redeliveryInterval
   * redeliveryLimit
   * deadMessageLookup
 
-* Missing method createXAJMSContext() on XAJMSContext (to allow multiple XAJMSContexts to share the same connection) ([https://github.com/javaee/jms-spec/issues/152 JMS_SPEC-152])
+* Missing method createXAJMSContext() on XAJMSContext (to allow multiple XAJMSContexts to share the same connection) ([JMS_SPEC-152](https://github.com/javaee/jms-spec/issues/152))
 
 * JMS in a Java EE application: adding clarifications and removing restrictions
-  * Defining the behavior of a JMS session that is created outside a JTA transaction but used to send or receive a message within a JTA transaction, and vice versa. ([https://github.com/javaee/jms-spec/issues/129 JMS_SPEC-129])
-  * Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction ([https://github.com/javaee/jms-spec/issues/130 JMS_SPEC-130])
-  * Clarifying the existing restrictions on using client-acknowledgement and local transactions in a Java EE environment and removing these restrictions where possible ([https://github.com/javaee/jms-spec/issues/131 JMS_SPEC-131])
+  * Defining the behavior of a JMS session that is created outside a JTA transaction but used to send or receive a message within a JTA transaction, and vice versa. ([JMS_SPEC-129](https://github.com/javaee/jms-spec/issues/129))
+  * Defining an API to allow a JMS connection factory, connection or session to opt-out of a JTA transaction ([JMS_SPEC-130](https://github.com/javaee/jms-spec/issues/130))
+  * Clarifying the existing restrictions on using client-acknowledgement and local transactions in a Java EE environment and removing these restrictions where possible ([JMS_SPEC-131](https://github.com/javaee/jms-spec/issues/131))
 
 * Anything else?
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [/jms-spec/pages/JMS21Planning JMS 2.1 planning page].
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [planning page](/jms-spec/pages/JMS21Planning JMS 2.1).
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 
-* Allow listener method to always be determined at runtime by resource adapter ([https://github.com/javaee/ejb-spec/issues/126 EJB_SPEC-126])
+* Allow listener method to always be determined at runtime by resource adapter ([EJB_SPEC-126](https://github.com/javaee/ejb-spec/issues/126))
 
-* Define a standard way to specify the resource adapter used by a JMS MDB ([https://github.com/javaee/ejb-spec/issues/127 EJB_SPEC-127])
+* Define a standard way to specify the resource adapter used by a JMS MDB ([EJB_SPEC-127](https://github.com/javaee/ejb-spec/issues/127))
 
 
