@@ -11,7 +11,7 @@ Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?jav
 
 JMS 2.0 was developed by the Java Community Process as [JSR 343](http://jcp.org/en/jsr/detail?id=343).
 
-**Comments are invited**. Reports of possible errors or omissions are especially welcome. See [Getting involved](/jms-spec/#getting-involved).
+**Comments are invited**. Reports of possible errors or omissions are especially welcome (note that there has since been an errata release). See [Getting involved](/jms-spec/#getting-involved).
   
 ## Contents
 {: .no_toc}

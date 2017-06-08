@@ -3,6 +3,9 @@
 
 Improvements to the JMS specification are managed using the [issue tracker](https://github.com/javaee/jms-spec/issues). Here is a classified list of all the open issues. 
 
+## Contents
+{: .no_toc}
+
 * auto-gen TOC:
 {:toc}
 

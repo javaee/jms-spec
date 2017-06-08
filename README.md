@@ -109,6 +109,8 @@ Comments and changes to the JMS specification will be managed using [the JMS iss
 
 If you would like to propose a change to the JMS specification, please create an issue containing a description of the proposed change, or find an existing issue and add a comment.  You need to sign up for a free GitHub account and login first. 
 
+Issues that are received will be reviewed and added to the [JMS Planning Long List](/jms-spec/pages/JMSLongList).
+
 ###  How to create an issue
 
 Here are some guidelines to follow when creating a new issue:
