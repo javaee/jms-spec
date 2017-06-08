@@ -1,5 +1,7 @@
 ## JSR 368 Expert group nominations
 
+_This page relates to JSR 368 (JMS 2.1) which has been withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. The JSR 368 expert group is no longer in operation and applications are not invited._
+
 This page lists all the applications which have been made to join the JSR 368 expert group. 
 
 Applications have to be approved by both the Specification Lead and by the JCP administrators. The JCP administrators check that the application is a member of the JCP, that the necessary legal agreements are in place, and that there are no other legal impediments

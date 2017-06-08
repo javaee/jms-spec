@@ -1,5 +1,7 @@
 # JSR 368 Meeting 1 at JavaOne 2015
 
+_This page relates to JSR 368 (JMS 2.1) which has been withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
+
 ## Meeting details
 
 0900-1100 Thursday 29th October

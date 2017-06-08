@@ -120,4 +120,4 @@ This was based on the schedule for the Java EE 7 platform.
 * [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
 * [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
 * [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
-* [How to join the JSR 343 (JMS 2.0) Expert group](/jms-spec/pages/HowToJoinTheJSR343ExpertGroup) (Included for historical purposes only)
+* [How to join the JSR 343 (JMS 2.0) Expert group](/jms-spec/pages/HowToJoinTheJSR343ExpertGroup) (Retained for historical purposes only)
