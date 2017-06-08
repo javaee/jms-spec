@@ -1,6 +1,5 @@
 # Injection of JMSContext objects - Proposals (version 3)
-
-## Summary 
+{: .no_toc}
 
 This page discusses that part of the JMS 2.0 Early Draft which defines how `javax.jms.JMSContext` objects may be injected.   In particular it discusses the scope and lifecycle of injected `JMSContext` objects. 
 
@@ -11,6 +10,7 @@ This page describes some drawbacks to that proposal and offers two alternatives,
 After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

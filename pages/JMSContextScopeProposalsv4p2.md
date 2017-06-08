@@ -1,6 +1,5 @@
 # Injection of JMSContext objects - Use Cases A - E (version 4)
-
-## Summary 
+{: .no_toc}
 
 This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 
@@ -9,6 +8,7 @@ After reading these, now read [Injection of JMSContext objects - Use Cases F - K
 Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

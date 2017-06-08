@@ -1,10 +1,12 @@
 # JMS 2 Utility API Proposal
+{: .no_toc}
 
 _A proposal for JMS 2.0 from Rüdiger zu Dohna_
 
 This is a basic proposal to add a utility API to simplify JMS synchronous operations such as sending and receiving messages. The proposal is based largely on analyzing the [Spring JmsTemplate](http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/jms/core/JmsTemplate.html) API. The code/API for the proposal is [here](http://rahmannet.net/projects/jmsutil/src/javax/jms/util/JmsUtility.java). For convenience, a corresponding Javadoc is [here](http://rahmannet.net/projects/jmsutil/doc/javax/jms/util/JmsUtility.html). The actual API code is more useful in this case than the Javadocs since it contains embedded comments important to the overall analysis/proposal.
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

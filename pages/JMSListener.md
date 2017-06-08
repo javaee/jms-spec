@@ -1,4 +1,5 @@
 # More flexible JMS MDBs (Version 1)
+{: .no_toc}
 
 This page contains version 1 of proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
@@ -8,6 +9,7 @@ _These proposals are retained here as a historical record and in case they prove
 
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

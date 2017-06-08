@@ -1,4 +1,5 @@
 # JMS 2.1 Plan
+{: .no_toc}
 
 _This is a historical record of the JMS 2.1 plan before work on JMS 2.1 ceased and JSR 386 was withdrawn_
 

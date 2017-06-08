@@ -1,6 +1,5 @@
 # Injection of JMSContext objects - Use Cases A - E (version 3)
-
-## Summary 
+{: .no_toc}
 
 This page contains a number of use cases which demonstrate how the proposals in [Injection of JMSContext objects - Proposals (version 3)](/jms-spec/pages/JMSContextScopeProposals) would appear to users. Each use case is followed by an analysis for both [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
 
@@ -11,6 +10,7 @@ Note that these use cases are not intended to demonstrate how `@TransactionScope
 After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
 
 ## Contents
+{: .no_toc}
 
 * auto-gen TOC:
 {:toc}

@@ -1,4 +1,5 @@
 # JMS 2.0 Early Draft
+{: .no_toc}
 
 The JMS 2.0 Early Draft is now published and may be downloaded [here](http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html). The formal review period ended on 29 March 2012. 
 

@@ -1,6 +1,5 @@
 # Injection of JMSContext objects - Use Cases F - K  (version 4)
-
-## Summary 
+{: .no_toc}
 
 This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 

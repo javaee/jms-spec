@@ -1,4 +1,5 @@
 # JMS Planning Long List
+{: .no_toc}
 
 Improvements to the JMS specification are managed using the [issue tracker](https://github.com/javaee/jms-spec/issues). Here is a classified list of all the open issues. 
 
