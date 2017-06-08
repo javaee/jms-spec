@@ -31,8 +31,8 @@ The errata was released on 16th March 2015 and may be downloaded [here](https://
 
 This table lists all the error reports and requests for clarification that have been received subsequent to the original release of JMS 2.0, and shows the disposition of each. 
 
-[Query: All issues resolved in the JMS 2.0 errata release (Rev a)](https://github.com/javaee/jms-spec/milestone/6?closed=1)
-
+[Query: Issues that were resolved in this errata release](https://github.com/javaee/jms-spec/milestone/6?closed=1)
+[Query: Issues that were not resolved in this errata release](https://github.com/javaee/jms-spec/labels/jms20-errata)
 
 ID | Description | Nature | Status
 :--- | :--- | :--- | :---
@@ -61,7 +61,7 @@ Added to  [JMS_SPEC-138](https://github.com/javaee/jms-spec/issues/138) | Clarif
 
 This table lists all the changes in JMS 2.0 revision a.
 
-[Query](https://github.com/javaee/jms-spec/milestone/6?closed=1)
+[Query: All issues resolved in the JMS 2.0 errata release (Rev a)](https://github.com/javaee/jms-spec/milestone/6?closed=1)
 
 ID | Description | Nature | Status
 :--- | :--- | :--- | :---
