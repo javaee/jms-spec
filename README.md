@@ -9,12 +9,13 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 * auto-gen TOC:
 {:toc}
 
-## Latest news (Oct 2015)
+## Latest news (June 2017)
 
-The JMS 2.1 Early Draft is now out! 
-* Download it [here](https://jcp.org/aboutJava/communityprocess/edr/jsr368/index.html).
-* See the [latest news on JMS 2.1](/jms-spec/pages/JMS21#latest-news-on-jms-21)
-* Find out all about [JMS 2.1](/jms-spec/pages/JMS21).
+The JMS specification has moved to GitHub and groups.io from its old home on java.net!
+* The website is here, [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/).
+* The source code repository is at [https://github.com/javaee/jms-spec] and uses Git. This contains the API and specification source.
+* The issue tracker is at [https://github.com/javaee/jms-spec/issues](https://github.com/javaee/jms-spec/issues)
+* The user mailing list is on groups.io at [https://javaee.groups.io/g/jms-spec](https://javaee.groups.io/g/jms-spec) 
 
 ## JMS 2.1
 
@@ -167,3 +168,12 @@ Members of the JSR 343 expert group are invited to make a new application to joi
 ### Log an issue or comment on an existing issue
 
 If there's a feature, or other change to the specification, that you would like to see that isn't already mentioned in [JSR 368](https://jcp.org/en/jsr/detail?id=368), the [JMS planning long list](/jms-spec/pages/JMSLongList), or in the [JMS spec issue tracker](https://github.com/javaee/jms-spec/issues) then you are welcome to log a new issue.  Pleased read  [More information about the issue tracker](/jms-spec/#issue-tracker). We'll then add it to the [JMS planning long list](/jms-spec/pages/JMSLongList) and make sure that it is considered by the new expert group. You're welcome to comment directly on existing issues 
+
+## Related pages
+
+* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
+* [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
+* [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode)
+* [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
+* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
+* [JMS 2.1](/jms-spec/pages/JMS21)
