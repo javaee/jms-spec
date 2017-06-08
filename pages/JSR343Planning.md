@@ -13,23 +13,23 @@ This page contains lists of issues which were incorporated into JMS 2.0. For inf
 
 [All issues with the milestone "2.0ED"](https://github.com/javaee/jms-spec/issues?q=is%3Aclosed+milestone%3A2.0ED)
 
-ID | Description | Status | Notes
-:--- | :--- | :--- | :---
-[JMS_SPEC-65](https://github.com/javaee/jms-spec/issues/65) | Clarify use of NoLocal arg when using createDurableSubscriber | In the Early Draft. | This has been further updated for the Public Draft. | Resolved.
-[JMS_SPEC-53](https://github.com/javaee/jms-spec/issues/53) | Make Connection and other interfaces implement AutoCloseable | In the Early Draft | Resolved
-[JMS_SPEC-52](https://github.com/javaee/jms-spec/issues/52) | Clarify that a message may be sent using a different session from that used to create the message | In the Early Draft | Resolved
-[JMS_SPEC-51](https://github.com/javaee/jms-spec/issues/51) | New methods to replace Session.createDurableSubscriber() and return a MessageConsumer | In the Early Draft | Resolved
-[JMS_SPEC-50](https://github.com/javaee/jms-spec/issues/50) | Clarify that JMS providers must implement both P2P and Pub-Sub | In the Early Draft | Resolved
-[JMS_SPEC-49](https://github.com/javaee/jms-spec/issues/49) | Improve specification of ExceptionListener | In the Early Draft | Resolved   
-[JMS_SPEC-48](https://github.com/javaee/jms-spec/issues/48) | Specify that connection.stop() or close() may not be called from MessageListener | In the Early Draft | Resolved
-[JMS_SPEC-45](https://github.com/javaee/jms-spec/issues/45) | Clarify and improve Connection.createSession | In the Early Draft | Resolved
-[JMS_SPEC-44](https://github.com/javaee/jms-spec/issues/44) | New API to specify delivery delay | In the Early Draft | Resolved
-[JMS_SPEC-43](https://github.com/javaee/jms-spec/issues/43) | New API to send a message with async acknowledgement from server | In the Early Draft | This has been further updated for the Public Draft. Resolved
-[JMS_SPEC-42](https://github.com/javaee/jms-spec/issues/42) | Make support for JMSXDeliveryCount mandatory | In the Early Draft | Resolved
-[JMS_SPEC-39](https://github.com/javaee/jms-spec/issues/39) | Make clientId optional when creating a durable subscription | In the Early Draft | Shared subscriptions only. Resolved.
-[JMS_SPEC-34](https://github.com/javaee/jms-spec/issues/34) | Calling setJMSDeliveryMode or setJMSPriority on a javax.jms.Message before it is sent don't have any effect | In the Early Draft | Resolved
-[JMS_SPEC-33](https://github.com/javaee/jms-spec/issues/33) | Improving the JMS API with API simplifications, annotations and CDI | In the Early Draft.  | Resolved
-[JMS_SPEC-27](https://github.com/javaee/jms-spec/issues/27) | Clarify the relationship between the JMS and other Java EE specifications | In the Early Draft | Resolved
+ID | Description | Notes
+:--- | :--- | :---
+[JMS_SPEC-65](https://github.com/javaee/jms-spec/issues/65) | Clarify use of NoLocal arg when using createDurableSubscriber | This was introduced into the Early Draft and further updated for the Public Draft. 
+[JMS_SPEC-53](https://github.com/javaee/jms-spec/issues/53) | Make Connection and other interfaces implement AutoCloseable | 
+[JMS_SPEC-52](https://github.com/javaee/jms-spec/issues/52) | Clarify that a message may be sent using a different session from that used to create the message |
+[JMS_SPEC-51](https://github.com/javaee/jms-spec/issues/51) | New methods to replace Session.createDurableSubscriber() and return a MessageConsumer |
+[JMS_SPEC-50](https://github.com/javaee/jms-spec/issues/50) | Clarify that JMS providers must implement both P2P and Pub-Sub | In the Early Draft | 
+[JMS_SPEC-49](https://github.com/javaee/jms-spec/issues/49) | Improve specification of ExceptionListener | 
+[JMS_SPEC-48](https://github.com/javaee/jms-spec/issues/48) | Specify that connection.stop() or close() may not be called from MessageListener | 
+[JMS_SPEC-45](https://github.com/javaee/jms-spec/issues/45) | Clarify and improve Connection.createSession 
+[JMS_SPEC-44](https://github.com/javaee/jms-spec/issues/44) | New API to specify delivery delay 
+[JMS_SPEC-43](https://github.com/javaee/jms-spec/issues/43) | New API to send a message with async acknowledgement from server | This was introduced into the Early Draft and further updated for the Public Draft. 
+[JMS_SPEC-42](https://github.com/javaee/jms-spec/issues/42) | Make support for JMSXDeliveryCount mandatory |
+[JMS_SPEC-39](https://github.com/javaee/jms-spec/issues/39) | Make clientId optional when creating a durable subscription | Shared subscriptions only
+[JMS_SPEC-34](https://github.com/javaee/jms-spec/issues/34) | Calling setJMSDeliveryMode or setJMSPriority on a javax.jms.Message before it is sent don't have any effect |
+[JMS_SPEC-33](https://github.com/javaee/jms-spec/issues/33) | Improving the JMS API with API simplifications, annotations and CDI | 
+[JMS_SPEC-27](https://github.com/javaee/jms-spec/issues/27) | Clarify the relationship between the JMS and other Java EE specifications | 
 
 ## Issues incorporated in the public draft. 
 
