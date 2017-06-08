@@ -9,6 +9,7 @@ If the sole reason for rejection is that the applicant hasn't provided the neces
 ### List of nominations
 
 Date of application | Name (and affiliation, if appropriate) of applicant | Spec lead decision | PMO decision | Result
+:--- | :--- | :--- | :--- | :---
 29 Aug 2014 | Seunghoon Han, representing TmaxSoft  | Yes | Yes | Accepted
 24 Sep 2014 | Rüdiger zu Dohna | Yes | Yes | Accepted
 27 Sep 2014 | Viquar Khan | Yes | Yes | Accepted
@@ -21,13 +22,22 @@ Date of application | Name (and affiliation, if appropriate) of applicant | Spec
 
 ### Transparency requirements
 
-These nominations are recorded here in order to comply with the transparency requirements of  [https://jcp.org/en/procedures/jcp2 version 2.9 of the Java Community Process]. 
+These nominations are recorded here in order to comply with the transparency requirements of  [version 2.9 of the Java Community Process](https://jcp.org/en/procedures/jcp2). 
 
 Section 1.2.1 "Expert group composition" states:
 
-> There is no size limit on the Expert Group. The Spec Lead may add additional Experts at any time so long as existing EG members are consulted. New members may be added, for example, to increase diversity of opinion.
+>There is no size limit on the Expert Group. 
+>The Spec Lead may add additional Experts at any time so long as existing EG members are consulted. 
+>New members may be added, for example, to increase diversity of opinion.
 >
-> Any JCP Member, Member Representative, or Member Associate may request to join an Expert Group at any time by submitting their nomination via the online form provided on the JSR Page. Member Associates, since they are not covered by the JSPA of their organization, must sign the JSPA in their own right before they will be permitted to join an Expert Group.
+>Any JCP Member, Member Representative, or Member Associate may request to join an Expert Group at any time 
+>by submitting their nomination via the online form provided on the JSR Page. 
+>Member Associates, since they are not covered by the JSPA of their organization, must sign the JSPA 
+>in their own right before they will be permitted to join an Expert Group.
 >
->Details of such requests, including the organizational affiliation of the requester, together with the Spec Lead's official response, substantive deliberations within the EG about the matter, and any other official decisions related to EG membership must be published through the EG's public communication channel. The PMO will ensure that the JSR Page lists the Members who are members of the EG together with the names of individual Member Representatives or Member Associates where appropriate. 
+>Details of such requests, including the organizational affiliation of the requester, 
+>together with the Spec Lead's official response, substantive deliberations within the EG about the matter, 
+>and any other official decisions related to EG membership must be published through the EG's public communication channel. 
+>The PMO will ensure that the JSR Page lists the Members who are members of the EG 
+> together with the names of individual Member Representatives or Member Associates where appropriate. 
 
