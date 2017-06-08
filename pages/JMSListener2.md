@@ -2,6 +2,10 @@
 
 This page contains version 2 of proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
+_These proposals supersede [version 1](/jms-spec/pages/JMSListener)_.
+
+_These proposals were superseded by [version 3](/jms-spec/pages/JMSListener3), [version 4](/jms-spec/pages/JMSListener4) and [version 5](/jms-spec/pages/JMSListener5)._
+
 Comments are invited, especially to the various issues mentioned. 
 
 See the [summary of changes](#changes-from-version-1) compared to [Version 1 of these proposals](/jms-spec/pages/JMSListener).
