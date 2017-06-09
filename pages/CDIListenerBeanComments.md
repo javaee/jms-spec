@@ -372,7 +372,7 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 
 *   CDI assumes that the firer of an event is running in the same CDI container (i.e. JVM) as the observer of that event. This makes it possible to create instances of the observer class automatically when an event is fired.
 
-  * If the observer has dependent scope then a new instance of the observer class is created for every single elegible event. There is no way to disable this behaviour and re-use an existing instance of the observer bean. This also means that there is no way to start and stop delivery of events.
+    *   If the observer has dependent scope then a new instance of the observer class is created for every single elegible event. There is no way to disable this behaviour and re-use an existing instance of the observer bean. This also means that there is no way to start and stop delivery of events.
 
   * If the observer has normal scope then, by default, a new instance of the bean will be created for every elegible event if one does not already exist for that scope. Once created, the same bean instance will be used to receive events within the same scope.  However this means that there is no way to start and stop delivery of events for a given scope since if there is no bean in existence when an event is fired then one will always be automatically created.
 
