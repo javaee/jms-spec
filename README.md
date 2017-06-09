@@ -15,5 +15,5 @@ The _master_ branch contains
 
 *   The source code for the JMS API. 
 
-For information about the files on the master branch, switch to the master branch and read 1README.md`.
+For information about the files on the master branch, switch to the master branch and read `README.md`.
 
