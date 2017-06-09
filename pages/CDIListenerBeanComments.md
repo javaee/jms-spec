@@ -392,6 +392,16 @@ void processTrade(TextMessage messageText, @MessageProperty("price") long price,
 
 What all this means is that there's more to receiving JMS messages as events than simply defining some special qualifiers that allow an `Observes` method to specify a JMS queue or topic. 
 
+*   This is a list item with two paragraphs. Lorem ipsum dolor
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+    sit amet velit.
+
+*   Suspendisse id sem consectetuer libero luctus adipiscing.
+
 ## Related pages
 
 * The original proposals for [CDI Managed Beans as JMS listeners](CDIBeansAsJMSListeners)
