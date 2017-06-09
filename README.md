@@ -38,5 +38,5 @@ Directory or file | Notes
 `jms2.0a/src` | JMS 2.0a API source (java)
 `jms2.0a/target/jms-2.0-javadoc.jar` | JMS 2.0a javadocs (html in a jar)<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`
 `jms2.1/specification/word` | JMS 2.1 specification source (Word)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.
-`jms2.1/src` | JMS 2.1 API source (java)<br>JMS 2.1 was withdrawn and never released. This is thelatest working version.
+`jms2.1/src` | JMS 2.1 API source (java)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.
 `jms2.1/target/jms-2.0-javadoc.jar` | JMS 2.1 javadocs (html in a jar)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`
