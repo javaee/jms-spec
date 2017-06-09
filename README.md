@@ -32,11 +32,11 @@ Directory or file | Notes
 `jms2.0/specification/word` | JMS 2.0 specification source (Word)
 `jms2.0/src` | JMS 2.0 API source (java)
 `jms2.0/target/jms-2.0.jar` | JMS 2.0 API jar (jar)<br>To rebuild, navigate to  `jms2.0` and type `mvn package`
-`jms2.0/target/jms-2.0-javadoc.jar` | JMS 2.0 javadocs (html in a jar)<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`
+`jms2.0/target/jms-2.0-javadoc.jar` | JMS 2.0 javadocs (html in a jar)<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`  <br>Note that doclint is disabled in build.xml: see [JMS_SPEC-175](https://github.com/javaee/jms-spec/issues/175).
 `jms2.0.1/src` | JMS 2.0.1 API source (java)<br>This is the source of the API jar released to fix [JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161). 
 `jms2.0a/specification/word` | JMS 2.0a specification source (Word)<br>JMS 2.0a is a JMS 2.0 maintenance release.
 `jms2.0a/src` | JMS 2.0a API source (java)
-`jms2.0a/target/jms-2.0-javadoc.jar` | JMS 2.0a javadocs (html in a jar)<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`
+`jms2.0a/target/jms-2.0-javadoc.jar` | JMS 2.0a javadocs (html in a jar)<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`. <br>Note that doclint is disabled in build.xml: see [JMS_SPEC-175](https://github.com/javaee/jms-spec/issues/175).
 `jms2.1/specification/word` | JMS 2.1 specification source (Word)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.
 `jms2.1/src` | JMS 2.1 API source (java)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.
-`jms2.1/target/jms-2.0-javadoc.jar` | JMS 2.1 javadocs (html in a jar)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`
+`jms2.1/target/jms-2.0-javadoc.jar` | JMS 2.1 javadocs (html in a jar)<br>JMS 2.1 was withdrawn and never released. This is the latest working version.<br/>To rebuild, navigate to  `jms2.0` and type `mvn javadoc:jar`  <br>Note that doclint is disabled in build.xml: see [JMS_SPEC-175](https://github.com/javaee/jms-spec/issues/175).
