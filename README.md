@@ -4,9 +4,9 @@ This is the _master_ branch. This contains
 * The source of the JMS specification (various versions)
 * Source code for the JMS API
 
-Stage | Initial plan<br/>(Sep 2014) | Current plan<br/> (updated  11 Jun 2015) 
-:--- | :--- | :--- 
-Change to the  _gh-pages_ branch to obtain the source of the JMS specification website [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/) | |   
+Stage | Initial plan<br/>(Sep 2014) 
+:--- | :--- 
+Change to the  _gh-pages_ branch to obtain the source of the JMS specification website [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/) |  
 
 
 Change to the  _gh-pages_ branch to obtain the source of the JMS specification website [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/). 
