@@ -5,7 +5,7 @@ JMS 2.0 was finally released on 21 May 2013.
 
 The specification document and API documentation of the JMS 2.0 final release may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/final/jsr343/index.html). 
 
-Since the JMS 2.0 final release there has since been a maintenance release which may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html). For more information see [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA).
+Since the JMS 2.0 final release there has since been a maintenance release which may be downloaded from the JCP website [here](https://jcp.org/aboutJava/communityprocess/mrel/jsr343/index.html). For more information see [JMS 2.0 errata release (Rev a)](JMS20RevA).
 
 Browse the [JMS 2.0 javadocs](http://docs.oracle.com/javaee/7/api/index.html?javax/jms/package-summary.html).
 
@@ -48,7 +48,7 @@ New methods have been added to `Session` which return a `MessageConsumer` on a d
 
 The specification has been clarified in various places.
 
-The JMS 2.0 specification was developed by recording each proposed change in an issue tracker. There's a summary of all issues incorporated into JMS 2.0 on the [JMS 2.0 planning](/jms-spec/pages/JSR343Planning) page.
+The JMS 2.0 specification was developed by recording each proposed change in an issue tracker. There's a summary of all issues incorporated into JMS 2.0 on the [JMS 2.0 planning](JSR343Planning) page.
 
 ## More information about JMS 2.0 
 
@@ -58,9 +58,9 @@ Read these two OTN articles by by Nigel Deakin, JSR 343 spec lead:
 * [What's New in JMS 2.0, Part One: Ease of Use](http://www.oracle.com/technetwork/articles/java/jms20-1947669.html) 
 * [What's New in JMS 2.0, Part Two—New Messaging Features](http://www.oracle.com/technetwork/articles/java/jms2messaging-1954190.html)
 
-Read [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode).
+Read [Ten ways in which JMS 2.0 means writing less code](JMS20MeansLessCode).
 
-If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ).
+If, having read about JMS 2.0, you have questions about why it was designed as it was, read the [JMS 2.0 design FAQ](JMS20ReasonsFAQ).
 
 ## Reference implementation 
 
@@ -92,7 +92,7 @@ Please report issues with this demonstration using the [issue tracker](https://g
 
 ##  JMS 2.0 schedule (historical)
 
-Also see the [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning) page.
+Also see the [JMS 2.0 Planning](JSR343Planning) page.
 
 **Stage** | **Initial plan**<br/>(Feb 2011) | **Current plan**<br/> (updated  <strike>1 Nov 2012</strike> 6 Feb 2013) | **Actual**
 :--- | :--- | :---
@@ -113,13 +113,13 @@ This was based on the schedule for the Java EE 7 platform.
 
 ## Related pages
 
-* [JMS 2.0 Planning](/jms-spec/pages/JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
-* [Ten ways in which JMS 2.0 means writing less code](/jms-spec/pages/JMS20MeansLessCode)
-* [JMS 2.0 design FAQ](/jms-spec/pages/JMS20ReasonsFAQ)
-* [JMS 2.0 Early Draft](/jms-spec/pages/JSR343EarlyDraft)
-* [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
-* [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
-* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
-* [How to join the JSR 343 (JMS 2.0) Expert group](/jms-spec/pages/HowToJoinTheJSR343ExpertGroup) (Retained for historical purposes only)
+* [JMS 2.0 Planning](JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
+* [Ten ways in which JMS 2.0 means writing less code](JMS20MeansLessCode)
+* [JMS 2.0 design FAQ](JMS20ReasonsFAQ)
+* [JMS 2.0 Early Draft](JSR343EarlyDraft)
+* [JMS 2.0 Public Draft](JMS20PublicDraft)
+* [JMS 2.0 Proposed Final Draft](JMS20ProposedFinalDraft)
+* [JMS 2.0 errata release (Rev a)](JMS20RevA)
+* [How to join the JSR 343 (JMS 2.0) Expert group](HowToJoinTheJSR343ExpertGroup) (Retained for historical purposes only)
 * [Proposals for the injection of JMSContext objects](https://javaee.github.io/jms-spec/pages/JMSContextScopeUseCases) (Discussion of various alternative options: retained for historical purposes only)
 

@@ -3,11 +3,11 @@
 
 _This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
 
-This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
+This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 
-Before reading these, read [Injection of JMSContext objects - Use Cases A-E (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p2).
+Before reading these, read [Injection of JMSContext objects - Use Cases A-E (version 4)](JMSContextScopeProposalsv4p2).
 
-Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
+Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](JMSContextScopeProposalsv4p4).
 
 * auto-gen TOC:
 {:toc}

@@ -1,7 +1,7 @@
 # JMS 2.0 Early Draft
 {: .no_toc}
 
-_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page._
+_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](JMS20FinalRelease) page._
 
 The JMS 2.0 Early Draft is now published and may be downloaded [here](http://jcp.org/aboutJava/communityprocess/edr/jsr343/index.html). The formal review period ended on 29 March 2012. 
 
@@ -68,8 +68,8 @@ Several JMS-related issues affect other specifications and have been submitted t
 
 ## Related pages
 
-* [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
-* [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
-* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
+* [JMS 2.0 Public Draft](JMS20PublicDraft)
+* [JMS 2.0 Proposed Final Draft](JMS20ProposedFinalDraft)
+* [JMS 2.0 Final Release](JMS20FinalRelease)
+* [JMS 2.0 errata release (Rev a)](JMS20RevA)
 

@@ -1,7 +1,7 @@
 # JMS 2.0 Proposed Final Draft
 {: .no_toc}
 
-_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page._
+_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](JMS20FinalRelease) page._
 
 The JMS 2.0 Proposed Final Draft was published on 26 Febuary 2013. The specification and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/pfd/jsr343/index.html). 
 
@@ -52,8 +52,8 @@ This demonstration (which has been updated to work with GlassFish build 82 (glas
 
 ## Related pages
 
-* [JMS 2.0 Early Draft](/jms-spec/pages/JSR343EarlyDraft)
-* [JMS 2.0 Public Draft](/jms-spec/pages/JMS20PublicDraft)
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
-* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
+* [JMS 2.0 Early Draft](JSR343EarlyDraft)
+* [JMS 2.0 Public Draft](JMS20PublicDraft)
+* [JMS 2.0 Final Release](JMS20FinalRelease)
+* [JMS 2.0 errata release (Rev a)](JMS20RevA)
 

@@ -107,8 +107,8 @@ The fix to [JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161)  requir
 This again does not define a new version of the spec. 
 However it does reflect a new version of the implementation, so its version number was 2.0.1.
 
-[Safe Harbor Statement](/jms-spec/pages/SafeHarborStatement)
+[Safe Harbor Statement](SafeHarborStatement)
 
 ## Related pages
 
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
+* [JMS 2.0 Final Release](JMS20FinalRelease)

@@ -1,13 +1,13 @@
 # More flexible JMS MDBs (Updates to version 2)
 {: .no_toc}
 
-_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](JMS21)_
 
 This page contains version 1 of proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
-These proposals supersede [version 1](/jms-spec/pages/JMSListener) and [version 2](/jms-spec/pages/JMSListener2).
+These proposals supersede [version 1](JMSListener) and [version 2](JMSListener2).
 
-These proposals were superseded by [version 4](/jms-spec/pages/JMSListener4) and [version 5](/jms-spec/pages/JMSListener5).
+These proposals were superseded by [version 4](JMSListener4) and [version 5](JMSListener5).
 
 ## Contents
 {: .no_toc}
@@ -35,11 +35,11 @@ There are two possible cases we need to consider:
 
 * Allowing these new annotations to be used on the legacy `onMessage` method of a `javax.jms.MessageListener`
 
-  * [Version 2](/jms-spec/pages/JMSListener2#specifying-the-callback-method) proposed any of the new annotations could be specified. However the requirement that the `@JMSListener` always be specified could not apply since that would break existing MDBs.
+  * [Version 2](JMSListener2#specifying-the-callback-method) proposed any of the new annotations could be specified. However the requirement that the `@JMSListener` always be specified could not apply since that would break existing MDBs.
 
 * Allowing these new annotations to be used to define additional callback methods (i.e. in addition to the `onMessage` method).
 
-  * [Version 2](/jms-spec/pages/JMSListener2#specifying-the-callback-method) proposed that this be allowed so long as the MDB also implemented the `javax.jms.JMSMessageDrivenBean` marker interface. 
+  * [Version 2](JMSListener2#specifying-the-callback-method) proposed that this be allowed so long as the MDB also implemented the `javax.jms.JMSMessageDrivenBean` marker interface. 
 
 On reflection, this is probably introducing unnecessary complexity. It means that lots of additional use cases need to be defined in the spec, implemented, and tested, whilst bringing little benefits to users who can convert to a new-style JMS MDB easily enough.
 
@@ -102,7 +102,7 @@ Since this gives us yet another way to define activation properties we need to d
 
 ### Callback methods that throw exceptions
 
-Version 2 [proposed](/jms-spec/pages/JMSListener2#specifying-the-callback-method) that callback methods will be allowed to throw exceptions as follows:
+Version 2 [proposed](JMSListener2#specifying-the-callback-method) that callback methods will be allowed to throw exceptions as follows:
 
 * Callback methods will be allowed to declare and throw exceptions. Checked exceptions and `RuntimeException` thrown by the callback method (including those thrown by the `onMessage` method of a `MessageListener`) will be handled by the EJB container as defined in the EJB 3.2 specification section 9.3.4 "Exceptions thrown from Message-Driven Bean Message Listener methods".  This defines whether or not any transaction in progress is committed or rolled back, depending on whether or not the exception is a "system exception" or an "application exception", whether or not the application exception is specified as causing rollback, and whether or not the application has called `setRollbackOnly`. It also defines whether or not the MDB instance is discarded. If the transaction is rolled back, or a transaction is not being used, then the message will be redelivered. 
 
@@ -249,7 +249,7 @@ The minimum we need to do for JMS 2.1 is:
 
 * Define the required behaviour for when the message is being received in auto-ack or dups-ok-ack mode and the callback method throws a checked exception. We could simply define that the result is the same as when the callback throws a `RuntimeException`, which is already defined for the Java SE case in JMS 2.0 section 8.7. This would say that the message would be immediately redelivered, that the redelivered flag should be set, and that the JMS provider may "give up" if a message is repeatedly redelivered. For completeness we could also extend this to cover a `RuntimeException` thrown by a MDB.
 
-See [Proposed minimum new wording for JMS 2.1 specification](/jms-spec/pages/JMSListener3#proposed-minimum-new-wording-for-jms-21-specification) below.
+See [Proposed minimum new wording for JMS 2.1 specification](JMSListener3#proposed-minimum-new-wording-for-jms-21-specification) below.
 
 However we may decide that we want to do more than the minimum:
 

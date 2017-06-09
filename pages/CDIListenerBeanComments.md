@@ -1,9 +1,9 @@
 # CDI Managed Beans as JMS listeners (Version 1): summary of comments
 {: .no_toc}
 
-_This page discusses some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+_This page discusses some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](JMS21)_
 
-This page lists and discusses some of the comments made on the proposals made for [CDI Managed Beans as JMS listeners (Version 1)](/jms-spec/pages/CDIBeansAsJMSListeners).
+This page lists and discusses some of the comments made on the proposals made for [CDI Managed Beans as JMS listeners (Version 1)](CDIBeansAsJMSListeners).
 
 ## Contents
 {: .no_toc}
@@ -19,7 +19,7 @@ _Is there a way to avoid the application having to inject and instantiate the li
 
 ### Summary of issue
 
-The JMS listener bean cannot start listening for messages until it has been created, and needs to be created just like any other CDI managed bean. The section on  [Listener lifecycles](/jms-spec/pages/CDIBeansAsJMSListeners#listener-lifecycles) describes some of ways a JMS listener bean could be created. They typically involve injecting the listener bean into some other bean and, if the bean is normal-scoped, calling a method (such as `toString()`) on it after the start of the scope. This contrasts with MDBs which can simply be defined without the need for the application to do anything to create them.
+The JMS listener bean cannot start listening for messages until it has been created, and needs to be created just like any other CDI managed bean. The section on  [Listener lifecycles](CDIBeansAsJMSListeners#listener-lifecycles) describes some of ways a JMS listener bean could be created. They typically involve injecting the listener bean into some other bean and, if the bean is normal-scoped, calling a method (such as `toString()`) on it after the start of the scope. This contrasts with MDBs which can simply be defined without the need for the application to do anything to create them.
 
 ### Discussion
 
@@ -147,7 +147,7 @@ A suggestion for implementing this is [here](https://java.net/projects/jms-spec/
 
 The proposal above for [Customisation using bean callbacks](#customisation-using-bean-callbacks) allows the listen bean itself to decide what values should be used for destination lookup,  message selector, and so on. However this  doesn't provide a way for the application which is injecting it to decide the message selector. This is probably the main requirement.
 
-CDI provides a way to programmatically obtain an instance of the listener bean. This is described in the proposals [here](/jms-spec/pages/CDIBeansAsJMSListeners#jms-listener-bean-with-dependent-scope-and-explicit-lifecycle-management).
+CDI provides a way to programmatically obtain an instance of the listener bean. This is described in the proposals [here](CDIBeansAsJMSListeners#jms-listener-bean-with-dependent-scope-and-explicit-lifecycle-management).
 ```
 Inject Instance&lt;MyCDIBean21 &gt; listenerProvider;
 MyCDIBean21 jmsListener1 = listenerProvider.get();
@@ -392,6 +392,6 @@ What all this means is that there's more to receiving JMS messages as events tha
 
 ## Related pages
 
-* The original proposals for [CDI Managed Beans as JMS listeners](/jms-spec/pages/CDIBeansAsJMSListeners)
-* The separate proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5)
-* Main [JMS 2.1 page](/jms-spec/pages/JMS21)
+* The original proposals for [CDI Managed Beans as JMS listeners](CDIBeansAsJMSListeners)
+* The separate proposals for [Flexible JMS MDBs](JMSListener5)
+* Main [JMS 2.1 page](JMS21)

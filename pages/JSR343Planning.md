@@ -105,4 +105,4 @@ Issues are listed by the draft in which they were resolved.
 
 ## Related pages
 
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page
+* [JMS 2.0 Final Release](JMS20FinalRelease) page

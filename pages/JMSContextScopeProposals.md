@@ -7,9 +7,9 @@ This page discusses that part of the JMS 2.0 Early Draft which defines how `java
 
 The JMS 2.0 Early Draft proposed that injected `JMSContext` objects will "have request scope and will be automatically closed when the request ends. However, unlike a normal CDI request-scoped object, a separate JMSContext instance will be injected for every injection point." This proposal will be referred to here as "Option 1".
 
-This page describes some drawbacks to that proposal and offers two alternatives, [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2) and  [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3). 
+This page describes some drawbacks to that proposal and offers two alternatives, [Option 2](JMSContextScopeProposals#option-2) and  [Option 3](JMSContextScopeProposals#option-3). 
 
-After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
+After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](JMSContextScopeProposals3).
 
 ## Contents
 {: .no_toc}
@@ -74,7 +74,7 @@ This option is a variant of option 2. Like that option, the injected `JMSContext
 
 However this option would drop the requirement that a separate `JMSContext` instance be injected for every injection point. Instead, normal CDI scoping behaviour would be used. This means that the same injected `JMSContext` object will be used in all places where a  `JMSContext` is injected within the same transaction, even if this is in different beans, so long as the annotations which defined the injected `JMSContext` object are identical.
 
-This change addresses a limitation of option 2 which is illustrated in [Use case C](/jms-spec/pages/JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction). Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different `JMSContext` objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same `JMSContext` object would be used, meaning that messages sent using them will be delivered in order.
+This change addresses a limitation of option 2 which is illustrated in [Use case C](JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction). Option 2 specifies that, if two separate beans are used to send messages within the same transaction, different `JMSContext` objects will be used in each bean. This means that the messages sent during the transaction may not be delivered in order.  If option 3 is adopted then the same `JMSContext` object would be used, meaning that messages sent using them will be delivered in order.
 
 However by using the same injected `JMSContext` object in different beans there is a possibility that this is confusing to the developer. To the casual reader the injected objects are fields of different beans and are completely separate. It would be counter-intuitive and confusing if, for example calling the JMSContext method `setPriority` (which sets the `JMSContext`'s default priority] in one bean affected the default priority used in another bean.
 
@@ -106,4 +106,4 @@ If a transaction is suspended, transactional scoped objects are not impacted. It
 
 ## Use cases 
 
-After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](/jms-spec/pages/JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](/jms-spec/pages/JMSContextScopeProposals3).
+After reading this, please read  [Injection of JMSContext objects - Use Cases A-E (version 3)](JMSContextScopeProposals2) and [Injection of JMSContext objects - Use Cases F-K (version 3)](JMSContextScopeProposals3).

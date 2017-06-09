@@ -3,11 +3,11 @@
 
 _This page relates to JSR 343 (JMS 2.0) which has been released. It is retained here as a historical record and in case it proves useful to a future JMS expert group._
 
-This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
+This page contains a number of use cases which demonstrate how the scope proposed in [Injection of JMSContext objects - Proposals (version 4)](JMSContextScopeProposalsv4p1) would appear to users. Each use case is followed by an analysis. 
 
-After reading these, now read [Injection of JMSContext objects - Use Cases F - K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3).
+After reading these, now read [Injection of JMSContext objects - Use Cases F - K (version 4)](JMSContextScopeProposalsv4p3).
 
-Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](/jms-spec/pages/JMSContextScopeProposalsv4p4).
+Note that these examples do **not** use the proposed new `JMSContext` API for sending messages described in [Proposed changes to JMSContext to support injection (Option 4)](JMSContextScopeProposalsv4p4).
 
 ## Contents
 {: .no_toc}
@@ -270,4 +270,4 @@ Note that it is entirely valid to create and use a `JMSContext` object when ther
 
 The same behaviour would apply when the bean is configured to use container-managed transactions but the transaction attribute type is `NEVER` or `NOT_SUPPORTED`.
 
-After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 4)](/jms-spec/pages/JMSContextScopeProposalsv4p3)
+After reading these, now read [Injection of JMSContext objects - Use Cases F-K (version 4)](JMSContextScopeProposalsv4p3)

@@ -59,7 +59,7 @@ Particular issues to cover
 
 ## Proposed high-level plan 
 
-[JMS 2.1 schedule](/jms-spec/pages/JMS21#jms-21-schedule)
+[JMS 2.1 schedule](JMS21#jms-21-schedule)
 
 Here's a suggested high-level list of features for JMS 2.1, and an approximate order in which they will be considered. 
 
@@ -100,7 +100,7 @@ Minor changes are not listed here: these could be considered in parallel to this
 
 * Anything else?
 
-There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS planning long list](/jms-spec/pages/JMSLongList).
+There's a complete list of all currently-proposed features (too many to do all of them) on the on the [JMS planning long list](JMSLongList).
 
 Note the following two requests for changes to the MDB specification (by definition this is not within our direct control).
 

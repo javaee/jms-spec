@@ -1,11 +1,11 @@
 # More flexible JMS MDBs (Version 1)
 {: .no_toc}
 
-_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](JMS21)_
 
 This page contains version 1 of proposals to simplify the configuration of JMS MDBs in JMS 2.1 and Java EE 8. 
 
-These proposals are superseded by [version 2](/jms-spec/pages/JMSListener2), [version 3](/jms-spec/pages/JMSListener3), [version 4](/jms-spec/pages/JMSListener4) and [version 5](/jms-spec/pages/JMSListener5).
+These proposals are superseded by [version 2](JMSListener2), [version 3](JMSListener3), [version 4](JMSListener4) and [version 5](JMSListener5).
 
 ## Contents
 {: .no_toc}

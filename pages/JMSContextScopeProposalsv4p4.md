@@ -5,7 +5,7 @@ _This page relates to JSR 343 (JMS 2.0) which has been released. It is retained 
 
 This page proposes some changes to the JMS 2.0 simplified API to support the injection of `JMSContext` objects.
 
-It discusses the potential confusion that might be caused by the sharing of injected `JMSContext` objects between different beans within the same scope, and proposes some changes to the `JMSContext` API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [Injection of JMSContext objects - Proposals (version 4](/jms-spec/pages/JMSContextScopeProposalsv4p1) they would apply to earlier scoping proposals as well.
+It discusses the potential confusion that might be caused by the sharing of injected `JMSContext` objects between different beans within the same scope, and proposes some changes to the `JMSContext` API, and some new restrictions, to avoid this. Although these proposals are intended to accompany the proposed new scoping rules defined in  [Injection of JMSContext objects - Proposals (version 4](JMSContextScopeProposalsv4p1) they would apply to earlier scoping proposals as well.
 
 ## Contents
 {: .no_toc}
@@ -76,9 +76,9 @@ This is the potentially confusing situation we need to avoid. There have been se
 
 * The JMS 2.0 Early Draft proposed using a separate `JMSContext` instance for each injection point. However this prevents the sharing of message order and `XAResource` object between different beans within the same scope.
 
-* The proposal described as  [Option 2](/jms-spec/pages/JMSContextScopeProposals#option-2)  also proposed using a separate `JMSContext` instance for each injection point, which had the same drawbacks.
+* The proposal described as  [Option 2](JMSContextScopeProposals#option-2)  also proposed using a separate `JMSContext` instance for each injection point, which had the same drawbacks.
 
-* The proposal described as [Option 3](/jms-spec/pages/JMSContextScopeProposals#option-3) proposed that although the injected `JMSContext` would have a combined transaction/method scope, the six JavaBean properties of the `JMSContext`'s underlying MessageProducer would have dependent scope so that changing a property in one bean would not affact a property in another bean, even if they both used the same underlying `JMSContext` .  This proposal received some support, but others found it confusing.
+* The proposal described as [Option 3](JMSContextScopeProposals#option-3) proposed that although the injected `JMSContext` would have a combined transaction/method scope, the six JavaBean properties of the `JMSContext`'s underlying MessageProducer would have dependent scope so that changing a property in one bean would not affact a property in another bean, even if they both used the same underlying `JMSContext` .  This proposal received some support, but others found it confusing.
 
 This page therefore makes a fourth proposal to address this issue.
 

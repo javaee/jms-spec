@@ -1,15 +1,15 @@
 # CDI Managed Beans as JMS listeners (Version 1)
 {: .no_toc}
 
-_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](/jms-spec/pages/JMS21)_
+_This page contains some proposals for JMS 2.1 that were being considered by the expert group before work was halted and JSR 368 withdrawn. It is retained here as a historical record and in case it proves useful to a future JMS expert group. See also the main [JMS 2.1 page](JMS21)_
 
 This page contains proposals to allow CDI managed beans in a Java EE application to listen asynchronously for JMS messages. 
 
 These changes are proposed for JMS 2.1.
 
-For a summary of the comments made so far, see [CDI Managed Beans as JMS listeners (Version 1): summary of comments](/jms-spec/pages/CDIListenerBeanComments). 
+For a summary of the comments made so far, see [CDI Managed Beans as JMS listeners (Version 1): summary of comments](CDIListenerBeanComments). 
 
-These proposals are separate to the proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5), though the two sets of proposals are designed to use a common set of annotations.
+These proposals are separate to the proposals for [Flexible JMS MDBs](JMSListener5), though the two sets of proposals are designed to use a common set of annotations.
 
 ## Contents
 {: .no_toc}
@@ -46,7 +46,7 @@ public class MyMDB20 implements MessageListener {
 
 ### In Java EE 8, we're proposing that JMS MDBs will be more flexible
 
-The separate proposals for [More flexible JMS MDBs](/jms-spec/pages/JMSListener2) in JMS 2.1 
+The separate proposals for [More flexible JMS MDBs](JMSListener2) in JMS 2.1 
 will make them even simpler by removing the need for the MDB to implement the 
 `javax.jms.MessageListener` and defining some new, JMS-specific, annotations.
 Here's an example of how those proposals would allow a JMS MDB to look in Java EE 8: 
@@ -85,7 +85,7 @@ As can be seen, this looks very similar to the example  of a JMS 2.1 MDB. This i
 
 However note that this object is not a MDB. It does not have the `MessageDriven` annotation. Instead it is a CDI managed bean which can have any CDI scope and can be injected into Java EE code just like any other CDI managed bean. When a CDI bean is injected, the lifecycle of the bean instance is managed by the CDI container. When the bean instance is created, if it is annotated with `JMSListener` then it will start listening for messages, and when the bean instance is destroyed (such as when its scope ends) it will stop listening for messages.
 
-For more about the lifecycle of a CDI JMS listener bean, see [Listener lifecycles](/jms-spec/pages/CDIBeansAsJMSListeners#listener-lifecycles) below.
+For more about the lifecycle of a CDI JMS listener bean, see [Listener lifecycles](CDIBeansAsJMSListeners#listener-lifecycles) below.
 
 ## JMS listener beans
 
@@ -119,9 +119,9 @@ It is now proposed that <b>JMS 2.1 will allow any managed bean to receive JMS me
 
 * A listener bean may have any number of application-defined callback methods. Each callback method will be treated as representing a separate consumer, and so may specify a different queue or topic, connection factory, durable subscription, message selector etc. 
 
-* Each callback method must be specified using the annotation `@JMSListener`. The `@JMSListener` annotation may also be used to specify the queue or topic from where messages are to be received. Additional information about how the consumer is configured may be specified using the annotations `@JMSConnectionFactory`, `@Acknowledge`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName` or `@MessageSelector`. These are exactly the same annotations as are proposed for improving JMS MDBs and are used in much the same way. See [the proposals for annotations to specify a callback method in a JMS MDB](/jms-spec/pages/JMSListener2#flexible-method-signature) for details.
+* Each callback method must be specified using the annotation `@JMSListener`. The `@JMSListener` annotation may also be used to specify the queue or topic from where messages are to be received. Additional information about how the consumer is configured may be specified using the annotations `@JMSConnectionFactory`, `@Acknowledge`, `@SubscriptionDurability`, `@ClientId`, `@SubscriptionName` or `@MessageSelector`. These are exactly the same annotations as are proposed for improving JMS MDBs and are used in much the same way. See [the proposals for annotations to specify a callback method in a JMS MDB](JMSListener2#flexible-method-signature) for details.
 
-* A callback method must return void and may have any number of parameters. Depending on the parameter type and any parameter annotations, each parameter will may be set to the message, the message body, a message header or a message property.  The same features will be available as are proposed for JMS MDBs. Again see [the proposals for annotations to specify a callback method in a JMS MDB](/jms-spec/pages/JMSListener2#flexible-method-signature) for details.
+* A callback method must return void and may have any number of parameters. Depending on the parameter type and any parameter annotations, each parameter will may be set to the message, the message body, a message header or a message property.  The same features will be available as are proposed for JMS MDBs. Again see [the proposals for annotations to specify a callback method in a JMS MDB](JMSListener2#flexible-method-signature) for details.
 
 * Both the callback method and the `JMSMessageDrivenBean` interface may be inherited.
 
@@ -394,6 +394,6 @@ The resource adapter must implement  the `ResourceAdapter` method `endpointDeact
   
 ## Related pages
 
-* [JMS Listener beans: summary of comments](/jms-spec/pages/CDIListenerBeanComments) summarises and discusses the comments received.
-* The separate proposals for [Flexible JMS MDBs](/jms-spec/pages/JMSListener5)
-* Main [JMS 2.1 page](/jms-spec/pages/JMS21)
+* [JMS Listener beans: summary of comments](CDIListenerBeanComments) summarises and discusses the comments received.
+* The separate proposals for [Flexible JMS MDBs](JMSListener5)
+* Main [JMS 2.1 page](JMS21)

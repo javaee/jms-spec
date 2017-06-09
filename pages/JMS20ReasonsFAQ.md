@@ -164,4 +164,4 @@ Client-acknowledgement and local transactions are not allowed in a EJB or web ap
 
 ## Related pages
 
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
+* [JMS 2.0 Final Release](JMS20FinalRelease)

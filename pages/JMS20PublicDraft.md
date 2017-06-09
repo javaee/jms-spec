@@ -1,7 +1,7 @@
 # JMS 2.0 Public Review Draft
 {: .no_toc}
 
-_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease) page._
+_JMS 2.0 has now been released. This page is retained here as a historical record. See also the [JMS 2.0 Final Release](JMS20FinalRelease) page._
 
 The JMS 2.0 Public Review Draft is now published. The specification and API documentation may be downloaded from the JCP website [here](http://jcp.org/aboutJava/communityprocess/pr/jsr343/index.html). The formal review period began on 3 January 2013 and ends on 4 February 2013.  
 
@@ -54,7 +54,7 @@ This demonstration shows
 
 ## Related pages
 
-* [JMS 2.0 Early Draft](/jms-spec/pages/JSR343EarlyDraft)
-* [JMS 2.0 Proposed Final Draft](/jms-spec/pages/JMS20ProposedFinalDraft)
-* [JMS 2.0 Final Release](/jms-spec/pages/JMS20FinalRelease)
-* [JMS 2.0 errata release (Rev a)](/jms-spec/pages/JMS20RevA)
+* [JMS 2.0 Early Draft](JSR343EarlyDraft)
+* [JMS 2.0 Proposed Final Draft](JMS20ProposedFinalDraft)
+* [JMS 2.0 Final Release](JMS20FinalRelease)
+* [JMS 2.0 errata release (Rev a)](JMS20RevA)
