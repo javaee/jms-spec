@@ -24,7 +24,7 @@ See the [main JMS 2.1 page](JMS21).
 
 ## JMS 2.0 errata
 
-An errata for JMS 2.0 was released in March 2015. This is now the latest release of JMS. See the [JMS 2.0 errata page](JMS20RevA).
+An errata for JMS 2.0 was released in March 2015. This is now the latest release of JMS. See the [JMS 2.0 errata page](pages/JMS20RevA).
 
 ## JMS 2.0
 
@@ -41,7 +41,7 @@ On 21 May 2013 JMS 2.0 was released. This major update introduces a new simplifi
 
 In March 2015 JMS 2.0 Rev a was released. This is an errata release of JMS 2.0.
 
-In August 2014 a new Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.1.   This was [JSR 368](http://jcp.org/en/jsr/detail?id=368). Following a review of priorities at Oracle, this JSR was withdrawn in November 2016. For more information see the [main JMS 2.1 page](JMS21).
+In August 2014 a new Java Specification Request (JSR) was submitted to the [Java Community Process](http://jcp.org/en/home/index) which proposed the development of JMS 2.1.   This was [JSR 368](http://jcp.org/en/jsr/detail?id=368). Following a review of priorities at Oracle, this JSR was withdrawn in November 2016. For more information see the [main JMS 2.1 page](pages/JMS21).
 
 The purpose of this website is to support the continuing development of the JMS specification. 
 by hosting their mailing lists, issue tracker, and any other resources that are required. 
@@ -73,7 +73,7 @@ Comments and changes to the JMS specification will be managed using [the JMS iss
 
 If you would like to propose a change to the JMS specification, please create an issue containing a description of the proposed change, or find an existing issue and add a comment.  You need to sign up for a free GitHub account and login first. 
 
-Issues that are received will be reviewed and added to the [JMS Planning Long List](JMSLongList).
+Issues that are received will be reviewed and added to the [JMS Planning Long List](pages/JMSLongList).
 
 ## Procedures and policies
 
@@ -84,14 +84,14 @@ avaee-spec/CompatibilityRequirements) (on the Java EE Platform Specification web
 
 * By contributing to this project, you are agreeing to the terms of use described in [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-* [Safe harbor statement](SafeHarborStatement).
+* [Safe harbor statement](pages/SafeHarborStatement).
 
 ## Related pages
 
 * [JMS 2.0 Final Release](JMS20FinalRelease)
 * [JMS 2.0 Planning](JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
-* [Ten ways in which JMS 2.0 means writing less code](JMS20MeansLessCode)
-* [JMS 2.0 design FAQ](JMS20ReasonsFAQ)
-* [JMS 2.0 errata release (Rev a)](JMS20RevA)
-* [JMS 2.1](JMS21)
+* [Ten ways in which JMS 2.0 means writing less code](pages/JMS20MeansLessCode)
+* [JMS 2.0 design FAQ](pages/JMS20ReasonsFAQ)
+* [JMS 2.0 errata release (Rev a)](pages/JMS20RevA)
+* [JMS 2.1](pages/JMS21)
 
