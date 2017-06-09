@@ -4,26 +4,15 @@ This repository has two main branches.
 
 The _master_ branch contains
 
-* The source of the JMS specification (various versions)
-* The source code for the JMS API. This is used  to generate the official Javadocs that are sent to the JCP when a new version of the JMS specification is released.
-    However it is not used to directly generate the JMS API jar published in Maven Central. Instead, when a new version of the JMS specification is released, the API classes are copied to [Open Message Queue](https://github.com/javaee/openmq) and the JMS API jar built from there.
+*   The source of the JMS specification (various versions)
+
+*   The source code for the JMS API. This is used  to generate the official Javadocs that are sent to the JCP when a new version of the JMS specification is released.
+
+    However it is not used to directly generate the JMS API jar published in Maven Central. Instead, when a new version of the JMS specification is released, the API classes are copied to [Open Message Queue](https://github.com/javaee/openmq) and the JMS API jar built from there.    
 
 The _gh-pages_ branch contains
+
 * The source of the JMS specification website [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/)
-
-This repository is used to generate the official Javadocs that are sent to the JCP when a new version of the JMS specification is released. 
-
-
-*   This is a list item with two paragraphs. Lorem ipsum dolor
-    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
-    mi posuere lectus.
-
-    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
-    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
-    sit amet velit.
-
-*   Suspendisse id sem consectetuer libero luctus adipiscing.
-
 
 ## Repository structure (master branch)
 
