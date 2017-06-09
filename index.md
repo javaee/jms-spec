@@ -29,7 +29,7 @@ An errata for JMS 2.0 was released in March 2015. This is now the latest release
 ## JMS 2.0
 
 JMS 2.0 was released on 21 May 2013. 
-See the [JMS 2.0 Final Release page](JMS20FinalRelease). 
+See the [JMS 2.0 Final Release page](pages/JMS20FinalRelease). 
 
 ## About the development of the JMS specification
 
@@ -88,8 +88,8 @@ avaee-spec/CompatibilityRequirements) (on the Java EE Platform Specification web
 
 ## Related pages
 
-* [JMS 2.0 Final Release](JMS20FinalRelease)
-* [JMS 2.0 Planning](JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
+* [JMS 2.0 Final Release](pages/JMS20FinalRelease)
+* [JMS 2.0 Planning](pages/JSR343Planning). Contains lists of issues that were resolved in JMS 2.0.
 * [Ten ways in which JMS 2.0 means writing less code](pages/JMS20MeansLessCode)
 * [JMS 2.0 design FAQ](pages/JMS20ReasonsFAQ)
 * [JMS 2.0 errata release (Rev a)](pages/JMS20RevA)
