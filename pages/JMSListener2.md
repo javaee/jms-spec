@@ -456,18 +456,18 @@ If the callback method parameter cannot be set, either because it does not match
 
 ## Summary and links to javadocs 
 
-The draft javadocs can be found [here](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/index.html?javax/jms/package-summary.html). Direct links to the javadocs for each class are given in the table below.
+_Note: The javadocs for this proposal are no longer available._
 
 New or modified? | Interface or annotation? | Name | Link to javadocs
 :-- | :-- | :-- | :--
-New | Marker interface | `javax.jms.JMSMessageDrivenBean` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSMessageDrivenBean.html)
-New | Method annotation | `javax.jms.JMSListener` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListener.html)
-Modified | Method or field annotation | `javax.jms.JMSConnectionFactory` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSConnectionFactory.html)
-New | Method annotation | `javax.jms.Acknowledge` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/Acknowledge.html)
-New | Method annotation | `javax.jms.SubscriptionDurability` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionDurability.html)
-New | Method annotation | `javax.jms.SubscriptionName` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/SubscriptionName.html)
-New | Method annotation | `javax.jms.ClientId` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/ClientId.html)
-New | Method annotation | `javax.jms.MessageSelector` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageSelector.html)
-New | Parameter annotation | `javax.jms.MessageHeader` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageHeader.html)
-New | Parameter annotation | `javax.jms.MessageProperty` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/MessageProperty.html)
+New | Marker interface | `javax.jms.JMSMessageDrivenBean` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.JMSListener` | (Javadocs no longer available)
+Modified | Method or field annotation | `javax.jms.JMSConnectionFactory` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.Acknowledge` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.SubscriptionDurability` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.SubscriptionName` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.ClientId` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.MessageSelector` | (Javadocs no longer available)
+New | Parameter annotation | `javax.jms.MessageHeader` | (Javadocs no longer available)
+New | Parameter annotation | `javax.jms.MessageProperty` | (Javadocs no longer available)
  

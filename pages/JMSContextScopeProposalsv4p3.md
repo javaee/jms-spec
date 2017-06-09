@@ -243,7 +243,7 @@ The `JMSContext` object used by `method2` will be created when `method2` uses `c
 
 ## Use case K. One bean which calls another within the same transaction, but using different connection factories
 
-(Note that this use case is identical to [http://java.net/projects/jms-spec/pages/JMSContextScopeProposals2#Use_case_C._One_bean_which_calls_another_within_the_same_transaction use case C] except that the two beans specify different connection factories).
+(Note that this use case is identical to [Use case C](JMSContextScopeProposals2#use-case-c-one-bean-which-calls-another-within-the-same-transaction) except that the two beans specify different connection factories).
 
 Consider two stateless session beans, `Bean1` and `Bean2`
 

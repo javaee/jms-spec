@@ -88,11 +88,12 @@ It is therefore proposed that a new method annotation `@JMSListenerProperty` be 
 ```
 Since this annotation is a repeatable annotation, a composite annotation needs to be defined as well which the compiler will insert automatically when it encounters a repeatable annotation. This will be called `@JMSListenerProperties`.  
 
+_Note: The javadocs for this proposal are no longer available._
 
 New or modified? | Interface or annotation? | Name | Link to javadocs
 :--- | :--- | :--- | :---
-New | Method annotation | `javax.jms.JMSListenerProperty` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListenerProperty.html)
-New | Method annotation | `javax.jms.JMSListenerProperties` | [javadocs](https://jms-spec.java.net/2.1-SNAPSHOT/apidocs/javax/jms/JMSListenerProperties.html)
+New | Method annotation | `javax.jms.JMSListenerProperty` | (Javadocs no longer available)
+New | Method annotation | `javax.jms.JMSListenerProperties` | (Javadocs no longer available)
 
 Since this gives us yet another way to define activation properties we need to define some override rules:
 
