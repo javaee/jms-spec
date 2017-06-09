@@ -384,7 +384,7 @@ Here's a summary of some of the differences between the way that CDI delivers ev
 
     Even if the message is not used concurrently from multiple threads there would still be the possibility that two unrelated observer beans would receive the same message. For messages of type `BytesMessage` and `StreamMessage`, reading a message will change the current read position. This means that each observer bean would need to be written to take account that some other bean may have changed the message's current read position.
 
-*   This is less of an issue with JMS since which each consumer receives a separate instance of `javax.jms.Message`, even if they represent the same sent message.   
+    This is less of an issue with JMS since which each consumer receives a separate instance of `javax.jms.Message`, even if they represent the same sent message.   
     
 * CDI observer callbacks simply pass the event object. There is no equivalent to the proposed JMS listener bean callbacks which allow the listener method to specify that one argument should be the message body, another argument should be a specified message property, and so on:
 ```
