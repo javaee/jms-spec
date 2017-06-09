@@ -13,6 +13,18 @@ The _gh-pages_ branch contains
 
 This repository is used to generate the official Javadocs that are sent to the JCP when a new version of the JMS specification is released. 
 
+
+1.  This is a list item with two paragraphs. Lorem ipsum dolor
+    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+    mi posuere lectus.
+
+    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+    sit amet velit.
+
+2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+
+
 ## Repository structure (master branch)
 
 Directory or file | Notes
