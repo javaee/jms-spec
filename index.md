@@ -20,7 +20,7 @@ The JMS specification has moved to GitHub and groups.io from its old home on jav
 ## JMS 2.1 (now withdrawn)
 
 [JSR 368](https://jcp.org/en/jsr/detail?id=368) was withdrawn in November 2016.
-See the [main JMS 2.1 page](JMS21).
+See the [main JMS 2.1 page](pages/JMS21).
 
 ## JMS 2.0 errata
 
