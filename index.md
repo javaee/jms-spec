@@ -11,7 +11,7 @@ Welcome to the website for the development of the Java Message Service (JMS) spe
 
 ## Latest news (June 2017)
 
-The JMS specification has moved to GitHub and groups.io from its old home on java.net!
+The JMS specification has moved to GitHub and groups.io from its old home on java.net.
 * The website is here, [https://javaee.github.io/jms-spec/](https://javaee.github.io/jms-spec/).
 * The source code repository is at [https://github.com/javaee/jms-spec](https://github.com/javaee/jms-spec) and uses Git. This contains the API and specification source.
 * The issue tracker is at [https://github.com/javaee/jms-spec/issues](https://github.com/javaee/jms-spec/issues)
