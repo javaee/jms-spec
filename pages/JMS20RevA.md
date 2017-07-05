@@ -40,7 +40,7 @@ This table lists all the error reports and requests for clarification that have 
 [JMS_SPEC-165](https://github.com/javaee/jms-spec/issues/165) | Error in javadoc for Connection#stop and JMSContext#stop | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-164](https://github.com/javaee/jms-spec/issues/164) | Typos in section 7.3.5 and 12.2: Change Session to MessageProducer | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-163](https://github.com/javaee/jms-spec/issues/163) | Javadoc for JMSContext#setClientID contains obsolete MessageContext reference | Document error | Accepted for JMS 2.0 errata.
-[JMS_SPEC-162]https://github.com/javaee/jms-spec/labels/jms20-errata(https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | Accepted for JMS 2.0 errata.
+[JMS_SPEC-162](https://github.com/javaee/jms-spec/issues/162) | Typos in section 7.3 "Asynchronous send" | Document error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-161](https://github.com/javaee/jms-spec/issues/161) | serialVersionUID of JMSException has changed from JMS 1.1 to JMS 2.0 | Compatibility error | Accepted for JMS 2.0 errata.
 [JMS_SPEC-160](https://github.com/javaee/jms-spec/issues/160) | JMS API source contains self-closing HTML tags | Typo | Accepted for JMS 2.0 errata
 [JMS_SPEC-158](https://github.com/javaee/jms-spec/issues/158) | JMS 2.0 introduced incompatible changes to Connection.stop and close and Session.close | Compatibility error | Accepted for JMS 2.0 errata.
