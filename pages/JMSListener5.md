@@ -43,7 +43,7 @@ we could have
 @TopicListener("java:global/topicName")
 @DurableSubscription(name="mySubName", clientId="myClientId")
 ```
-However we decided to define three separate annotations. Discussion and reasons [here](https://java.net/projects/jms-spec/lists/users/archive/2015-11/message/14).
+However we decided to define three separate annotations. Discussion and reasons [here](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/11/1108.html).
 
 * `@AutoAcknowledge` or `@DupsOKAcknowledge` are used to specify the corresponding non-transactional acknowledgement mode. To use these modes the MDB must also be configured to use bean-managed transaction demarcation, such as using the class-level annotation `@TransactionManagement(value=TransactionManagementType.BEAN)`. The application server will be recommended to fail deployment if the user specifies `@AutoAcknowledge` or `@DupsOKAcknowledge` without also configuring bean-managed transaction demarcation.
   * The goal here is to prevent the user from setting `@AutoAcknowledge` or `@DupsOKAcknowledge` without realising that they also need to configure bean-managed transaction demarcation. Ideally the application server or resource adapter would be required to fail deployment if the user specifies `@AutoAcknowledge` or `@DupsOKAcknowledge` but leaves the MDB configured to use container-managed transactions. However there is no standard way for a resource adapter to find out whether bean-managed transaction demarcation has been configured, so this needs to be just a recommendation. 

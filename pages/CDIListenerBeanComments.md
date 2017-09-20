@@ -86,7 +86,7 @@ It would be desirable to allow these to be specified at runtime, for each listen
 
 #### Customisation using bean callbacks
 
-[One suggestion](https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/23) is to allow the listener bean itself to have callbacks which return these values:
+One suggestion](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/08/0996.html) is to allow the listener bean itself to have callbacks which return these values:
 ```
 @SessionScoped
 public class MyCDIBean21 {
@@ -122,7 +122,7 @@ It would be simpler overall if we allowed these beans to define just a single ca
 
 #### Customisation using EL expressions
 
-[Another proposal](https://java.net/projects/jms-spec/lists/users/archive/2015-08/message/45) is to allow parameters to the various annotations to be specified using the Java Unified Expression Language (EL). 
+[Another proposal](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/08/1016.html) is to allow parameters to the various annotations to be specified using the Java Unified Expression Language (EL). 
 
 In this the application would define a bean class with a callback method that returns the required value, and use `@Named` to give the bean a name
 ```
@@ -141,7 +141,7 @@ The JMS listener bean would then refer to this bean by name using EL syntax:
 ```
 @MessageSelector("method=#{selectorProvider.tickerSelector}")
 ```
-A suggestion for implementing this is [here](https://java.net/projects/jms-spec/lists/users/archive/2015-09/message/1).
+A suggestion for implementing this is [here](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/09/1036.html).
 
 #### Customisation by the injecting code
 

@@ -10,7 +10,7 @@ Hilton San Francisco Union Square, 333 O'Farrell Street, San Francisco
 
 Room "Union Square 22". (JavaOne badge not required)
 
-The minutes of this meeting are [here](https://java.net/projects/jms-spec/lists/users/archive/2015-10/message/47).
+The minutes of this meeting are [here](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/10/1092.html).
 
 ## Agenda 
 
