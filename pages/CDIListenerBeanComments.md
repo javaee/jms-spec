@@ -86,7 +86,7 @@ It would be desirable to allow these to be specified at runtime, for each listen
 
 #### Customisation using bean callbacks
 
-One suggestion](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/08/0996.html) is to allow the listener bean itself to have callbacks which return these values:
+[One suggestion](http://download.oracle.com/javaee-archive/jms-spec.java.net/users/2015/08/0996.html) is to allow the listener bean itself to have callbacks which return these values:
 ```
 @SessionScoped
 public class MyCDIBean21 {
