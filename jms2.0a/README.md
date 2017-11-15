@@ -4,11 +4,11 @@
 To generate the JMS API Javadocs, run
 mvn javadoc:jar
 
-The Javadocs are generated under 'apidocs' directory
+The Javadocs are generated under 'target/apidocs' directory
 
 To generate the API jar, run
-mvn clean install
+mvn package
 
-The jar is generated under target/jms-2.0.jar
+The jar is generated under 'target/jms-2.0.jar'
 
 
